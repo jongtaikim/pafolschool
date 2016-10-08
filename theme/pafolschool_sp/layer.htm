@@ -1,0 +1,78 @@
+<div id="layer_popup" ></div>
+<!-- 로그인 -->
+<div class="background-overlay" style="display:none"></div>
+
+<div class="layer_container layer_login" style="display:none" id="layer_login">
+	<div class="inner_container">
+		<div class="login_wrap">
+			<h1><img src="./img/popup/h1_login.gif" alt="login"></h1>
+			<p>파폴스쿨에서 제공하는 보다 많은 정보와 서비스 이용을 원하신다면 로그인을 해주시기 바랍니다.</p>
+			<form name="loginFormMain"  id="loginFormMain" method="post" action="member.login" onsubmit="return validate(this);" >
+			<input type="hidden" name="oid" value="<?=_OID?>"/>
+			<input type="hidden" name="r_url" value="<?=$_SERVER[HTTP_HOST]?>"/>
+			<input type="hidden" name="re_url" value="<?=$_SERVER[HTTP_HOST]?>{? reurl}{reurl}{:}{act3}{/}"/>
+			<input type="hidden" name="redir" value="{? reurl}{reurl}{:}{act3}{/}"/>
+			<input type="hidden" name="ssid" name="ssid2" value="<?=$_REQUEST[PHPSESSID]?>"/>
+
+				<div class="form_area">
+					<span class="bg_login"></span>
+					<div class="login">
+						<p class="uid"><label for="uid">회원아이디</label><input type="text" name="userid" id="uid" class="txt_type" /></p>
+						<p class="upwd"><label for="upwd">비밀번호</label><input type="password" name="passwd" id="upwd" class="txt_type" /></p>
+					</div>
+					<input type="submit" value="" class="btn_login" />
+				</div>
+				<div class="info_box">
+					<p class="info"><span>- 회원가입 하시면, 더 많은 혜택과 각종 정보를 누리실 수 있습니다.</span><a href="member.join_step" class="btn_join">회원가입</a></p>
+					<p class="info"><span>- 회원 아이디와 비밀번호를 잊으셨습니까? 여기에서 확인하세요</span><a href="/member.findid" class="btn_srch">아이디,비밀번호 찾기</a></p>
+				</div>
+			</form>
+		</div>
+		<a href="javascript:loginClose()" class="btn_ly_close">닫기</a>
+	</div>
+</div>
+<!-- //로그인 -->
+
+
+<? if(date("Ymd") <= '20150101' && _ACT == "main"){ ?>
+<div id="player_pafol" style="width:640px;height:360px;position:fixed;z-index:3333;display:none">
+	<img src="./images/player_top.png" alt="" />	
+		<iframe width="640" height="360" src=""  id="uplayer" frameborder="0" allowfullscreen style="background-color:#000"></iframe>
+		<a href="#close">
+			<img src="./images/player_btm.png" alt="" id="cBtn_player"/>	
+		</a>
+</div>
+<script type="text/javascript">
+// <![CDATA[
+	$(document).ready(function(){
+		$('.background-overlay').css("background-color","#fff").fadeIn(100);
+		$('#uplayer').attr('src','//www.youtube.com/embed/tcH71FmXGRI?autoplay=1');
+		$('#player_pafol').css("left",($(window).width()/2) - ($('#player_pafol').width() /2)).css("top",($(window).height()/3) - ($('#player_pafol').height() / 4)).fadeIn(100);
+		$('#cBtn_player').click(function(){
+			
+			$('#uplayer').attr('src','');
+			$('.background-overlay').hide();
+			$('#player_pafol').hide();
+		});
+	});
+	
+// ]]>
+</script>
+<? } ?>
+
+
+<script type="text/javascript">
+// <![CDATA[
+function login(){
+	{? !_SESSION.USERID}
+		$('#sgnb').hide();
+		$('.background-overlay').show();
+		$('#layer_login').show();
+	{/}
+}
+function loginClose(){
+	$('.background-overlay').hide();
+	$('#layer_login').hide();
+}
+// ]]>
+</script>

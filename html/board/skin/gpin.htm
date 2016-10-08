@@ -1,0 +1,28 @@
+<script type="text/javascript">
+// <![CDATA[
+	function testAuth() {
+		wWidth = 360;
+		wHight = 120;
+		
+		wX = (window.screen.width - wWidth) / 2;
+		wY = (window.screen.height - wHight) / 2;
+		
+		// Request Page Call
+		var w = window.open("https://login.<?=DOMAIN_?>/g-pin.auth?re_url=<?=$_SERVER[HTTP_HOST]?>&g_oid=<?=_OID?>&board=y", "gPinLoginWin", "directories=no,toolbar=no,left="+wX+",top="+wY+",width="+wWidth+",height="+wHight);
+	}
+// ]]>
+</script>
+
+글쓸수 없삼<br>
+<br>
+
+인증 받으삼 <br><br>
+
+아래 버튼 클릭하삼<br><br><br>
+
+<center><input type="button" name="gpinJoin" value="G-PIN 으로 본인 인증" onclick="testAuth()"></center>
+
+<br><br><br>
+
+
+

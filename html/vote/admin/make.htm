@@ -1,0 +1,148 @@
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<!-- <link href="/css/admin_ver2006_2.css" rel="stylesheet" type="text/css"> -->
+
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+
+<body>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+				
+	<div class="tab19" width="100%">
+		<ul>
+			<li class="active"><a href="/vote.admin.main">투표목록</a></li>
+			<li><a href="/vote.admin.people_list">유권자 관리</a></li>
+		</ul>
+	</div>
+
+	<tr>
+		<td width="11" background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:19px 0px 13px 0px">
+			<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+				<tr>
+					<td width="20"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01">{? !serial }<strong>새 투표등록 </strong>{:}<strong>투표수정 </strong>{/}</td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+			<!-- 표1 Start -->	
+			<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+				<tr><td height="3"></td></tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>
+			</table>
+			
+			<form name="orderform" method="post" onsubmit="return validate(this);">
+			<input type="hidden" name="serial" value="{serial}">
+			
+			<table cellpadding="0" cellspacing="1" border="0" width="98%" align="center" bgcolor="d5dfe7">
+				<tr height="40" bgcolor="FFFFFF">
+					<td class="table02_title01" width="120">투표제목</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="3"></td>
+								<td width="12"rowspan="3"></td>
+								<td><input type='text' name='str_title' value="{str_title}" style="width:290;" hname="제목" required  maxbyte="100" class="fom01"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr height="160" bgcolor="FFFFFF">
+					<td class="table02_title01">부연설명</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="3"></td>
+								<td width="12"rowspan="3"></td>
+								<td><textarea name='str_text' style="width:424;height:130;" hname="부연설명" required  maxbyte="3900" class="fom01">{str_text}</textarea></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr height="40" bgcolor="FFFFFF">
+					<td class="table02_title01">입후보자</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="3"></td>
+								<td width="12"rowspan="3"></td>
+								<td>
+									<select name='num_user' hname="입후보자" required>
+									<option value='1' {? num_user ==1} selected{/}>1명</option>
+									<option value='2' {? num_user ==2} selected{/}>2명</option>
+									<option value='3' {? num_user ==3} selected{/}>3명</option>
+									<option value='4' {? num_user ==4} selected{/}>4명</option>
+									<option value='5' {? num_user ==5} selected{/}>5명</option>
+									<option value='6' {? num_user ==6} selected{/}>6명</option>
+									<option value='7' {? num_user ==7} selected{/}>7명</option>
+									<option value='8' {? num_user ==8} selected{/}>8명</option>
+									<option value='9' {? num_user ==9} selected{/}>9명</option>
+
+									</select>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr height="40" bgcolor="FFFFFF">
+					<td class="table02_title01">시작일자</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="3"></td>
+								<td width="12"rowspan="3"></td>
+								<td><wa:datepicker name="num_start_date" value="{num_start_date}" required="true" hname="시작일"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr height="40" bgcolor="FFFFFF">
+					<td class="table02_title01">종료일자</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="3"></td>
+								<td width="12"rowspan="3"></td>
+								<td><wa:datepicker name="num_end_date" value="{num_end_date}" required="true" hname="종료일"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="98%">
+				<tr>
+					<td colspan="3" width="100%" class="table_btm_line01"></td>
+				</tr>
+			</table>
+		<!-- 표1 End -->	
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr><td height="13"></td></tr>
+				<tr>
+					<td align="center">
+						<img src="/html/admin/images/btn_poll_early.gif" border="0" style="cursor:hand" onclick="location.reload()"><input type="image" src="/html/admin/images/btn_poll_next.gif" border="0">
+					</td>
+				</tr>
+			</table>
+
+		</td>
+		<td width="11" background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>
+
+</form>
+
+</body>
+</html>

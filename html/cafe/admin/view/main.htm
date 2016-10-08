@@ -1,0 +1,85 @@
+<SCRIPT LANGUAGE="JavaScript">
+	function actionTo(form){
+		if(!form.str_value.value){
+			alert("수정할 항목이 누락되었습니다");
+			return false;
+		}
+		form.submit();
+	}
+
+	function actionSet(form){				
+		str=form.str_value;
+		var radioVal="";	
+		for(var i=0;i<str.length; i++) { 
+		   if (str[i].checked == true) 
+		   { 
+		     radioVal = str[i].value; 
+		     break; 
+		   } 
+		} 	
+		if(radioVal == "" || radioVal == undefined) {			
+			alert("공개설정을 선택하세요");
+			str[0].focus();
+			return false;			
+		}						
+		alert('학급 홈피의 공개설정을 변경합니다. \n 게시판,갤러리,상담실의 별도권한 설정시에는 메뉴편집에서 권한을 변경하세요');			
+		form.submit();
+	}	
+</SCRIPT>
+<div id="sub_content_area">
+	<div id="admin_sub_content">
+		<table width='100%' border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+		<table width="700" border="0" cellspacing="0" cellpadding="0">
+				<tr> 
+				  <td width="100%" >
+					<h3 id="admin_sub_title">학급홈피 노출설정</h3>
+				  </td>
+				</tr>
+				<tr>	
+					<td height="5"></td>
+				</tr>
+				<tr> 
+				  <td>
+					<table width="100%" border="0" cellpadding="0" cellspacing="0" cellpadding="0">
+					<FORM NAME="orderForm" METHOD="POST">
+						<tr> 
+							<td width="5%"></td>
+							<td width="" valign="top">
+								<table width="100%" border="0" cellpadding="0" cellspacing="1" >							
+
+								<!-- DYNAMIC AREA 'STAFF_ROW' -->
+								<TR height=25>
+									<!-- DYNAMIC AREA 'STAFF_COL' -->
+									<TD width="2%"><INPUT TYPE="CHECKBOX" NAME="opt[]" VALUE="{{key}}" {{exp}} id="opt{{key}}"></TD>
+									<TD width="23%"><LABEL FOR="opt{{key}}" TITLE="{{val}} 표출">{{val}}</LABEL></TD>
+									<!-- DYNAMIC AREA 'STAFF_COL' -->
+								</TR>
+								<!-- DYNAMIC AREA 'STAFF_ROW' -->																  
+								
+								</table>
+							</td>
+							<td width="5%"></td>
+						</tr>
+						<tr>
+							<td height="20">&nbsp;</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td align="center">
+								<input type=image src="image/cafe/admin/motto_modify.gif" align="absmiddle" style="cursor:hand">
+							</td>
+							<td></td>
+						</tr>
+					</form>
+					</table></td>
+				</tr>
+				<tr> 
+				  <td>&nbsp;</td>
+				</tr>			  
+			  </table>
+		</td></tr>
+		</table>
+	</div>    
+</div>                                 
+

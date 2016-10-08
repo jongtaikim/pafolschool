@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"  xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<title>PAFOLSCHOOL 파폴스쿨</title>
+<meta name="viewport" content="width=device-width, initial-scale=0.38, maximum-scale=1, minimum-scale=0.38, user-scalable=yes, target-densitydpi=medium-dpi" />
+<meta property="og:title" content="PAFOLSCHOOL 파폴스쿨"/>
+<meta property="og:image" content="/theme/pafolschool/pgschool2.gif"/>
+<meta property="og:description" content="{? !title_text}파폴스쿨 입니다.{:}{title_text}{/}"/>
+<meta property="og:site_name" content="PAFOLSCHOOL 파폴스쿨"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://<?=$_SERVER[HTTP_HOST]?><?=getenv('REQUEST_URI')?>"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" href="/css/common.css" type="text/css" />
+<link rel="stylesheet" href="./css/default_style.css" type="text/css" />
+<link rel="stylesheet" href="./css/content_style.css" type="text/css" />
+<link rel="stylesheet" href="./css/popup_style.css" type="text/css" />
+<link rel="stylesheet" href="/css/doc_style.css" type="text/css" />
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/now_core.js"></script>
+<script type="text/javascript" src="/js/lib.validate2.js"></script>
+<script type="text/javascript" src="/js/Floating.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/js/jquery-plug.js"></script>
+</head>
+<body>
+{#LAYER}
+{#TOP_TOOL}
+<div class="page_container">
+	<div class="content-container">
+	
+		{#TOP}
+			
+		<div class="body_container">
+			<div class="inner_container">
+
+				<!-- left -->
+				<div class="left_area">
+				<wa:applet module="submenuObj.main" code="{mcode}" cate="{cate}" setmodule="{act2}">
+					
+						<div class="h2_wrap">
+							
+							{? substr(cate,0,2) == "11" || substr(cate,0,2) == "12"}
+							
+							
+							<h2 style="width:140px;color:#fff">
+								<!--img src="/b.gif" style="width:{=strlen(str_replace(' 멘토링스쿨','',current_menu))*13.43}px;height:26px;background:url(/font_2.php/ygo340/25/294c94/ffffff/?text={=urlencode(str_replace(' 멘토링스쿨','',current_menu))}) no-repeat left top;" alt="{current_menu} - {current_menu2}"-->
+
+								{=str_replace(' 멘토링스쿨','',current_menu)}
+				
+							
+							</h2>
+
+							<p style="width:150px;color:#fff;font-size:10px">Pafol School</p>
+							
+		
+								{: substr(cate,0,2) == "22"}
+								<h2 style="width:150px;color:#fff">
+									{=str_replace(' 공부몰입','',current_menu)}
+								<br />
+								공부몰입
+								</h2>
+								<p style="width:140px;color:#fff;font-size:10px">Immersion School</p>
+
+								{: substr(cate,0,2) == "23"}
+								<h2 style="width:140px;color:#fff">
+									{=str_replace(' 메이킹','',current_menu)}
+								<br />
+								메이킹
+								</h2>
+								<p style="width:140px;color:#fff;font-size:10px">Story Making</p>
+
+								{: substr(cate,0,2) == "24"}
+								<h2 style="width:140px;color:#fff">
+									{=str_replace(' 영어몰입','',current_menu)}
+								<br />
+								영어몰입
+								</h2>
+								<p style="width:140px;color:#fff;font-size:10px">English School</p>
+
+								{: substr(cate,0,4) == "2810"}
+								<h2 style="width:140px;color:#fff">
+									{=str_replace('필살기스쿨','',current_menu)}
+								<br />
+								필살기스쿨
+								</h2>
+								<p style="width:140px;color:#fff;font-size:10px">Pafol School</p>
+
+								{: substr(cate,0,4) == "2910"}
+								<h2 style="width:140px;color:#fff">
+									{=str_replace('특강스쿨','',current_menu)}
+								<br />
+								특강스쿨
+								</h2>
+								<p style="width:140px;color:#fff;font-size:10px">Pafol School</p>
+
+								{: substr(cate,0,2) == "30" }
+								<h2 style="width:140px;color:#fff">
+									{=str_replace('해외캠프','',current_menu)}
+								<br />
+								해외캠프
+								</h2>
+								<p style="width:140px;color:#fff;font-size:10px">{ current_menu2}</p>
+
+							{:}
+								
+								{? cate}
+								<h2 style=";color:#fff;width:150px">
+								<!--img src="/b.gif" style="width:{=strlen(current_menu)*11.43}px;height:26px;background:url(/font_2.php/ygo340/25/294c94/ffffff/?text={=urlencode(current_menu)}) no-repeat left top;" alt="{current_menu} - {current_menu2}"-->
+								{current_menu}
+								</h2>
+
+								<p style=";color:#fff;font-size:10px;width:148px">
+								<!--img src="/font_2.php/ygo330/11/294c94/ffffff/?text={?current_menu2}{=urlencode(current_menu2)}{:}PafolSchool{/}" alt="{current_menu2}" /></p-->
+									{? current_menu2}
+										{ current_menu2}
+									{:}
+										Pafol School
+									{/}
+								{:}
+								<h2 style=";color:#fff">
+								<!--img src="/b.gif" style="width:{=strlen(title_text)*11.43}px;height:26px;background:url(/font_2.php/ygo340/25/294c94/ffffff/?text={=urlencode(title_text)}) no-repeat left top;" alt="{current_menu} - {current_menu2}"-->
+
+								{title_text}
+
+								</h2>
+								
+								{/}
+							{/}
+
+							
+						</div>
+					<ul class="left_menu">
+						{@ SUBMENU}
+						<li><a href="{.str_link}" target="{.str_target}" {? substr(_GET.cate,0,4) == .num_cate && _GET.cate} class="on"{/}><strong style="color:#{? substr(_GET.cate,0,4) == .num_cate}003399{:}6b6b6b{/};font-size:14px">{.str_title}</strong></a></li>
+						{/}
+					</ul>
+				</wa:applet>
+					<div class="" id="" style="text-align:center">
+						<a href="/qna.list?mcode=1314&cate=1314">
+							<img src="./img/banner_counselling.png" alt="" />
+						</a>
+						<a href="/lms.order?ccode=47,48,57&mcode=1317&cate=1317&no_tab=y">
+							<img src="./img/banner_registration_03.png" alt="" />
+						</a>
+						<a href="/lms.order?ccode=21&mcode=1311&cate=1311">
+							<img src="./img/banner_registration.png" alt="" />
+						</a>
+
+						<a href="/lms.order?ccode=64&py=ts&mcode=1316&cate=1316">
+							<img src="./img/banner_registration2.png" alt="" />
+						</a>
+
+						<a href="/lms.order?ccode=88&py=z&mcode=1318&cate=1318">
+							<img src="./images/banner_registration6.png" alt="" />
+						</a>
+
+
+
+					</div>
+				</div>
+				<!-- //left -->
+				<wa:applet module="_titlebar" cate="{=substr(cate,0,4)}" mcode="{mcode}"/>
+				<!-- right -->
+				<div class="right_area">
+					<div class="history">Page history :  Home {menu_location5} > {? !title_text}<a href="#" class="now">빈메뉴</a>{:}<a href="#" class="now">{title_text}</a>{/}</div>
+					<!-- content -->
+					<div class="content_wrap" style="min-height:480px">
+						
+						<h1 style="color:#000;margin-bottom:30px">
+						
+						{? _GET.cate == '1321'}
+							신청/결제 확인 
+						{:}
+							{title_text}
+						{/}
+						</h1>
+						<div style="line-height: 1.8;">
+						
+						{? SUBMenus}
+						<div class="tab_line" id="tab_line">
+							<ul>
+								{@ SUBMenus}
+								<li class="m{.index_+1} {? cate == .num_cate} on {/}"><a href="{.str_link}" ><span>{.str_title}</span></a></li>
+								{/}
+							</ul>
+						</div>
+						
+						{/}
+						
+						{#CONTENT}
+						</div>
+					</div>
+					<!-- //content -->
+
+					<!-- sns -->
+					<div class="sns_box">
+						<a href="javascript:onSNS('T')" class="twitter">twitter</a>
+						<a href="javascript:onSNS('F')" class="facebook">facebook</a>
+					</div>
+
+					<!-- quick -->
+					<div class="quick_area" id="quick_area">
+						<div class="quick">
+							<!--a href="http://cafe.naver.com/pafolschool" target="_blank">
+								<img src="./img/qmenu/qmenu1.gif" alt="NAVER 카페 파폴스쿨" />
+							</a-->
+							<a href="http://cafe.naver.com/pafolschool.cafe?iframe_url=/ArticleList.nhn%3Fsearch.clubid=26630772%26search.menuid=101%26search.boardtype=L" target="_blank" >
+								<img src="./img/qmenu12.png" alt="후기" />
+							</a>
+							<!--a href="http://www.pafol.net" target="_blank">
+								<img src="./img/qmenu13.png" alt="" />
+							</a-->
+							<a href="https://www.facebook.com/pafolschool" target="_blank">
+								<img src="./img/qmenu14.png" alt="" />
+							</a>
+							<a href="http://pafolsports.pafolschool.com/" target="_blank">
+								<img src="./img/qmenu15.png" alt="" />
+							</a>
+							
+						</div>
+						
+					</div>
+					<!-- //quick -->
+					<script type="text/javascript">
+					// <![CDATA[
+					new Floating(document.getElementById('quick_area'),0,20);
+					// ]]>
+					</script>
+
+				</div>
+				<!-- //right -->
+
+			</div>
+		</div>
+
+		{#FOOT}
+
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+// <![CDATA[
+	function onSNS(type) {
+		//alert(type+' / '+id);
+		
+		switch (type) {
+			case "F":
+				x = "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent('http://<?=$_SERVER[HTTP_HOST]?><?=getenv("REQUEST_URI")?>');
+			break;
+			case "T":
+				//encodeURIComponent()
+		
+				x = "https://twitter.com/intent/tweet?source=webclient&text="+encodeURIComponent('PAFOLSCHOOL 파폴스쿨 - {t_menu} http://<?=$_SERVER[HTTP_HOST]?><?=getenv("REQUEST_URI")?>');
+				
+			break;
+		
+			}
+		
+		var sizeW = 600;
+		var sizeH = 400;
+		var posY = (screen.availWidth-sizeW)/2;
+		var posX = (screen.availHeight-sizeH)/2;
+	
+		window.open(x,'pop3up', 'width='+sizeW+', height='+sizeH+', scrollbars=no, toolbars=no, top='+posX+',left='+posY);
+		
+	}
+// ]]>
+</script>
+</body>
+</html>

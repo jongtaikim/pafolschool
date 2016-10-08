@@ -1,0 +1,47 @@
+<link href="/css/sangin.css" rel="stylesheet" type="text/css">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function MM_check( n, b, x )
+{
+	if(confirm('선택하시겠습니까?')) {
+		//parent.MM_fix( n, b, x );
+		var obj = document.orderForm;
+		obj.str_id.value = n;
+		obj.str_logonid.value = b;
+		obj.str_name.value = x;
+		obj.submit();
+	}
+}
+//-->
+</SCRIPT>
+
+<BODY TOPMARGIN=0 LEFTMARGIN=0>
+<form name="orderForm" method="post" >
+<input type="hidden" name="cafe_id" value="{{cafe_id}}">
+<input type="hidden" name="str_id">
+<input type="hidden" name="str_logonid">
+<input type="hidden" name="str_name">
+</form>
+<TABLE CELLSPACING=1 CELLPADDING=3 WIDTH="100%" ALIGN="CENTER" BORDER=0 bgcolor="D7D7D7">
+<tr bgcolor="F5F5F5">
+	<td align="center"> 이  름 </td>
+	<td align="center" width="140"> 아이디 </td>
+	<td align="center"> 선택 </td>
+</tr>
+<!-- DYNAMIC AREA 'LOOP' -->
+<TR bgcolor="#FFFFFF">
+	<TD ALIGN="center">{{str_name}}</TD>
+	<TD ALIGN="center" >{{str_logonid}}</TD>
+	<TD ALIGN="center"><a href="javascript:MM_check('{{str_id}}','{{str_logonid}}','{{str_name}}');">[추가]</a></TD>
+</TR>
+
+<!-- DYNAMIC AREA 'LOOP' -->
+</TABLE>
+<!-- <table width="100" border="0" cellspacing="0" cellpadding="0">
+<tr> 
+	<td width="39"><img src="/image/cafe/admin/add.gif" width="44" height="21"></td>
+	<td width="12">&nbsp;</td>
+	<td width="39"><img src="/image/cafe/admin/bt_cancel.gif" width="39" height="21"></td>
+</tr>
+</table> -->
+</body>

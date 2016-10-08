@@ -1,0 +1,78 @@
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<table cellpadding="0" cellspacing="0" border="0" width="685" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 200><b>
+					
+					SMS 충전
+					</b></td>
+				<td  style="padding:3 0 0 0; color:454545"><font color = red>※ 아직개발중인 기능입니다. </td>
+				</tr>
+			</table>
+			<br>
+
+<table width="680" class="table01">
+<form name="orderForm" method="post" onsubmit="return validate(this);">
+<tr>
+	<th width="20%">지점명</th>
+	<td width="80%">{__ONAME}</td>
+</tr>
+<tr>
+	<th>남은 SMS 포인트</th>
+	<td><font color="red"><b>{num_point}</b> Point</font></td>
+</tr>
+<tr>
+	<th>충전포인트</th>
+	<td>
+		<select name="num_point" onchange="calSmsPrice();">
+			<option value="5000">5,000</option>
+			<option value="10000">10,000</option>
+			<option value="30000">30,000</option>
+			<option value="50000">50,000</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<th>결제금액</th>
+	<td><div id="sms_point_price"></div></td>
+</tr>
+<tr>
+	<th>입금계좌</th>
+	<td>{sms_account}</td>
+</tr>
+<tr>
+	<th>입금자명</th>
+	<td><input type="text" name="str_payer" hname="입금자명" value="" required></td>
+</tr>
+</table>
+<table width="725" style="margin-left:15px;">
+<tr>
+	<td align="center">
+		<input type="submit" class="button2" value="포인트신청" onclick="if(!confirm('SMS 포인트를 신청하시겠습니까?')) return false;">
+		<input type="button" class="button2" value="취소">
+	</td>
+</tr>
+</table>
+</form>
+<br>
+
+<table width="680" class="table01">
+<tr>
+	<td>
+		※ 1Point는 1건의 문자를 보낼 수 있습니다.<br>
+		※ 1Point 당 30원의 유료서비스 입니다. (VAT 포함/ 선결제)<br>
+		※ 포인트 충전은 무통장 입금으로만 가능합니다.<br>
+		※ 포인트는 충전 후, 환불되지 않습니다.
+	</td>
+</tr>
+</table>
+
+<script type="text/javascript">
+price_list = new Array('150,000','300,000','900,000','1,500,000');
+function calSmsPrice() {
+	form = document.forms['orderForm'];
+	el = form.elements['num_point'];
+	document.getElementById('sms_point_price').innerHTML = price_list[el.selectedIndex];
+}
+calSmsPrice();
+</script>

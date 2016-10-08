@@ -1,0 +1,201 @@
+<html>
+<head>
+<title>학교관리자 메뉴</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<script src="/js/lib.errorhandle.js"></script>
+<script src="/js/lib.validate.js"></script>
+<script type="text/javascript" src="/js/tabpane.js"></script>
+
+<script language="javascript" src="/js/lib.colorpicker.js"></script>
+<script>
+// settings
+ColorPicker.align = 'left'; // ( left, right, middle, top, bottom)
+ColorPicker.handler = onColorChange1; // default handler
+
+// user custom handler
+function onColorChange1(str)
+{
+	document.getElementById("chr_oddcolor").value = str;
+}
+
+function onColorChange2(str)
+{
+	document.getElementById("chr_evencolor").value = str;
+}
+</script>
+
+<script>
+	WebFXTabPane.useCookie = false;
+</script>
+<script>
+	function choose_menu_type() {
+		var menuname = showModalDialog('?act=admin.menu.settype&mcode={mcode}','create','dialogHeight: 180px; dialogWidth: 350px');
+		if (!menuname) return;
+	}
+	
+	function edit_content() {
+		location.href = '/?act=admin.content.edit&mcode={mcode}';
+	}
+	
+	function edit_board_option() {
+		alert('게시판 옵션 변경하기');
+	}
+	
+	function edit_url() {
+		var menuname = showModalDialog('?act=admin.content.url&mcode={mcode}','create','dialogHeight: 180px; dialogWidth: 350px');
+		if (!menuname) return;
+	}
+	
+	function edit_calendar_option() {
+		alert('달력형 옵션 변경하기');
+	}
+
+	function edit_specific_show() {
+		var show = showModalDialog('?act=admin.content.specific_show&mcode={mcode}','create','dialogHeight: 300px; dialogWidth: 200px');
+		if (show) return;
+	}
+
+	function edit_sch_specific_content(name) {
+		location.href = '/?act=admin.content.specific&mcode={mcode}&ccode='+name;
+	}
+
+	function updatePreview(sel) {
+		var preview_area = document.getElementById('preview');
+		var skin = sel.options[sel.selectedIndex].value;
+		var url = '/html/{listtype}/' + skin + '/preview.gif';
+		preview_area.src = url;
+	}
+</script>
+<link type="text/css" rel="StyleSheet" href="/css/admin.css" />
+<link type="text/css" rel="StyleSheet" href="/css/tab.winclassic.css" />
+<STYLE>
+	body, td, input, textarea, select {font-size:12px;}
+	.button1 {font-size:12px; width:88px; height:24px;}
+	.button2 {font-size:11px; width:16px; height:14px;}
+	.line1 {background-image : url('/image/box/line.gif'); background-repeat:repeat-x; background-position:65% 35% ;}
+</STYLE>
+</head>
+<body topmargin="0">
+<table class="window">
+	<tr>
+		<td  class="title">게시판 설정</td>
+	</tr>
+	<tr>
+		<td class="body">
+<div class="tab-pane" id="tab-pane-1">
+	<div class="tab-page">
+		<h2 class="tab">기본정보</h2>
+		<table width="450" border="0" cellspacing="1"> 
+			<form name="basicinfo" method="post" onSubmit="return validate(this)">
+			<input type="hidden" name="mcode" value="{mcode}">
+			<input type="hidden" name="section" value="BASIC">
+			<TR align="center" height="25">
+				<TD align="right">게시판 이름 </TD>
+				<TD colspan="2" align="left">
+					<input type="hidden" name="title_type" value="{title_type}">
+					<input name="str_title" type="text" id="str_title" value="{str_title}">
+					<button disabled>고급설정</button>
+				</TD>
+			</TR>
+			<tr> 
+				<td HEIGHT="30" colspan=3 class="section">옵션</td> 
+			</tr>
+			<TR align="center" height="25"> 
+				<TD width="149" align="right">최근게시물에 등록 </TD> 
+				<TD width="341" colspan="2" align="left">
+					<input name="chr_recent" type="checkbox" id="chr_recent" value="Y" {? chr_recent=='Y'}checked{/}>
+					(최근게시물에 등록되길 원하시면 체크하세요)
+				</TD>
+			</TR>
+			<TR align="center" height="25"> 
+				<TD width="149" align="right">나도 한마디 사용 </TD> 
+				<TD width="341" colspan="2" align="left">
+					<input name="chr_comment" type="checkbox" id="chr_comment" value="Y" {? chr_comment=='Y'}checked{/}>
+					(나도 한마디를 사용하기 원하시면 체크하세요)
+				</TD>
+			</TR>
+			<TR align="center" height="25"> 
+				<TD width="149" align="right">페이지당 목록수 </TD> 
+				<TD width="341" colspan="2" align="left"><input name="num_listnum" type="text" id="num_listnum" value="{num_listnum}"></TD>
+			</TR>
+			<TR align="center" height="25"> 
+				<TD width="149" align="right">페이징 갯수 </TD> 
+				<TD width="341" colspan="2" align="left"><input name="num_navnum" type="text" id="num_navnum" value="{num_navnum}"></TD>
+			</TR>
+			<TR align="center" height="25"> 
+				<TD width="149" align="right">제목 길이 </TD> 
+				<TD width="341" colspan="2" align="left"><input name="num_titlelen" type="text" id="num_titlelen" value="{num_titlelen}"></TD>
+			</TR>
+			<tr> 
+				<td HEIGHT="30" colspan=3 class="section">색상</td> 
+			</tr> 
+			<TR align="center" height="25"> 
+				<TD width="149" align="right">홀수열 색상 </TD> 
+				<TD width="341" colspan="2" align="left"><input name="chr_oddcolor" type="text" id="chr_oddcolor" value="{chr_oddcolor}" onclick="ColorPicker.show(this, onColorChange1);"></TD>
+			</TR>
+			<TR align="center" height="25"> 
+				<TD width="149" align="right">짝수열 색상 </TD> 
+				<TD width="341" colspan="2" align="left"><input name="chr_evencolor" type="text" id="chr_evencolor" value="{chr_evencolor}" onclick="ColorPicker.show(this, onColorChange2);"></TD>
+			</TR>
+			<tr> 
+				<td HEIGHT="30" colspan=3 align="CENTER">스킨에 따라 목록 색상이 적용되지 않을 수도 있습니다. </td> 
+			</tr>
+			<!-- <tr> 
+				<td HEIGHT="30" colspan=3 class="section">게시판 설명 문구</td> 
+			</tr> 
+			<TR align="center" height="25"> 
+				<td HEIGHT="30" colspan=3 align="CENTER">
+					<textarea name="str_caption" rows="3" style="width:100%;">{str_caption}</textarea>
+				</td>
+			</tr>
+			<TR height="25"> 
+				<td HEIGHT="30" colspan=3 style="padding-left:30px;">
+					※ 게시판에 대한 간단한 설명 문구를 입력하여 주십시오.<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;(게시판 목록 위에 표시됩니다.)
+				</td> 
+			</TR> -->
+			<tr> 
+				<td HEIGHT="30" colspan=3 align="CENTER"><span>
+					<input type="submit" value="저장하기">
+				</span></td> 
+			</tr>
+			</form>
+		</table>
+	</div>
+	<div class="tab-page">
+		<h2 class="tab">게시판 스킨 </h2>
+		<table width="480" border="0" cellspacing="1"> 
+			<form name="skininfo" method="post" onSubmit="return validate(this)">
+			<input type="hidden" name="mcode" value="{mcode}">
+			<input type="hidden" name="section" value="SKIN">			
+			<tr>
+				<td HEIGHT="30" colspan=3 align="CENTER">기본제공 스킨 </td>
+			</tr>
+
+			<TR align="center" height="25">
+				<TD align="center">현재 스킨 </TD>
+				<TD colspan="2" align="left">{current_skinname}</TD>
+			</TR>
+			<TR align="center" height="25">
+				<TD align="center">스킨목록</TD>
+				<TD colspan="2" align="left"><select name="str_skin" size="1" id="str_skin" style="width: 200px" onChange="updatePreview(this)">
+					<!--{@ SKIN_LIST}-->
+                	<option value="{.str_skin}" {.sel}>{.skinname}</option>
+					<!--{/}-->					
+                	</select>
+					</TD>
+			</TR>
+			<!-- <tr> 
+				<td HEIGHT="30" colspan=3 align="CENTER"><img src="/html/{listtype}/{str_skin}/preview.gif" id="preview" width="300" height="300"></td> 
+			</tr> -->
+			<TR align="center" height="25">
+				<TD colspan="3" align="center"><input type="submit" class="button" value="저장하기"></TD>
+			</TR> 
+			</form>
+		</table>
+	</div>
+</div>
+		</td>
+	</tr>
+</table>

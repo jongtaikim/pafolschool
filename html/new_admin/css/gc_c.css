@@ -1,0 +1,18 @@
+/* CSS Document */
+
+td {font: 12px/150% arial, sans-serif ; color : #646464};
+.f-w13pt {FONT-SIZE: 14px; FONT-FAMILY: arial, sans-serif ; color:#ffffff ; font-weight:bold;}
+.f-w14pt {FONT-SIZE: 13px; FONT-FAMILY: arial, sans-serif ; color:#ffffff ; font-weight:bold;}
+
+a:link {text-decoration : none ; color : #646464}
+a:visited {text-decoration : none ; color : #646464} 
+a:hover {text-decoration : none ; color : #fe7e00}
+
+
+a.big-m:link {font: 12px/150% arial, sans-serif ; text-decoration : none ; color : #646464 ;}
+a.big-m:visited {font: 12px/150% arial, sans-serif ; text-decoration : none ; color : #646464 ; } 
+a.big-m:hover {font: 12px/150% arial, sans-serif ; text-decoration : none ; color : #000000 ; } 
+
+
+/*padding */
+.padding {padding:12 12 12 12;}

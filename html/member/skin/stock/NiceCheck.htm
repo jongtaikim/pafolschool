@@ -1,0 +1,192 @@
+<%
+
+	'#######################################################################################
+	'#####
+	'#####	개인/외국인 실명확인 서비스 샘플 페이지 소스				한국신용정보(주)
+	'#####
+	'#####	================================================================================
+	'#####
+	'#####	* 본 페이지는 귀사의 화면에 맞게 수정하십시오.
+	'#####	  단, Head 영역에 설정된 Javascript를 수정하거나 변경하시면 사용할 수 없습니다.
+	'#####
+	'#######################################################################################
+
+%>
+
+<html>
+	<head>
+		<title>한국신용정보주식회사 개인/외국인 실명확인 서비스 샘플 페이지</Title>
+		<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+
+		<!--	==========================================================	-->
+		<!--	한국신용정보주식회사 처리 모듈 (수정 및 변경하지 마십시오)	-->
+		<!--	==========================================================	-->
+
+		<script type="text/javascript" src="http://secure.nuguya.com/nuguya/nice.nuguya.oivs.crypto.js"></script>
+		<script type="text/javascript" src="http://secure.nuguya.com/nuguya/nice.nuguya.oivs.msg.js"></script>
+		<script type="text/javascript" src="http://secure.nuguya.com/nuguya/nice.nuguya.oivs.util.js"></script>
+
+	</head>
+
+	<script language="javascript">
+		document.onkeydown = onKeyDown;
+
+		function onKeyDown( event )
+		{
+			var e = event;
+			if ( event == null ) e = window.event;
+
+			if ( e.keyCode == 13 ) goIDCheck();
+		}
+
+		function lengthCheck( checkTag )
+		{
+			if ( checkTag.name == "userNo1" )
+			{
+				if ( checkTag.value.length >= 6 )
+				{
+					checkTag.blur();
+					document.all.userNo2.focus();
+				}
+			}
+		}
+
+		function loadAction()
+		{
+			document.pageForm.userNm.focus();
+		}
+
+		function validate()
+		{
+			var userNm = document.pageForm.userNm;
+			var userNo1 = document.pageForm.userNo1;
+			var userNo2 = document.pageForm.userNo2;
+			var foreigner = document.pageForm.foreigner;
+			var userNo = userNo1.value + userNo2.value;
+
+			if ( userNm.value == "" )
+			{
+				//alert( getCheckMessage( "S23" ) );
+				userNm.focus();
+				return false;
+			}
+
+			if ( userNo1.value == "" )
+			{
+				if ( foreigner.value == "2" )
+					alert( getCheckMessage( "S27" ) );
+				else
+					alert( getCheckMessage( "S21" ) );
+				userNo1.value = "";
+				userNo1.focus();
+				return false;
+			}
+
+			if ( userNo2.value == "" )
+			{
+				if ( foreigner.value == "2" )
+					alert( getCheckMessage( "S27" ) );
+				else
+					alert( getCheckMessage( "S21" ) );
+				userNo2.value = "";
+				userNo2.focus();
+				return false;
+			}
+
+			if ( foreigner.value == "2" )
+			{
+				if ( checkForeignNm( userNm.value ) == false )
+				{
+					alert( getCheckMessage( "S28" ) );
+					document.all.userNm.focus();
+					return false;
+				}
+
+				if ( checkForeignNo( userNo ) == false )
+				{
+					alert( getCheckMessage( "S26" ) );
+					document.all.userNo2.focus();
+					return false;
+				}
+			}
+			else
+			{
+				if ( checkString( userNm.value ) == false )
+				{
+					alert( getCheckMessage( "S24" ) );
+					userNm.focus();
+					return false;
+				}
+
+				if ( checkNumeric( userNo ) == false )
+				{
+					alert( getCheckMessage( "S25" ) );
+					userNo1.focus();
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		function goIDCheck()
+		{
+			if ( validate() == true )
+			{
+				var strNm = document.pageForm.userNm.value;
+				var strNo = document.pageForm.userNo1.value + document.pageForm.userNo2.value;
+				var strRsn = document.pageForm.inqRsn.value;
+				var strForeigner = document.pageForm.foreigner.value;
+				document.inputForm.SendInfo.value = makeSendInfo( strNm, strNo, strRsn, strForeigner );
+
+				var form = document.inputForm;
+				form.submit();
+			}
+
+			return;
+		}
+
+	</script>
+
+	<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="javascript:loadAction();" >
+
+		<!-- 귀사의 도메인으로 설정하십시오. (http://www.귀사의도메인/RNCheckRequest.php) -->
+		<!--	다음 페이지로 전달된 form입니다. 추가로 넘길 파라미터가 있으시면 아래 폼에 추가해 주시면 됩니다.-->
+		<FORM name="inputForm" method="POST" action="./RNCheckRequest.php">
+			<input type="hidden" id="SendInfo" name="SendInfo"></input>
+		</FORM>
+
+		<table align="center" width="50%" border="0" cellSpacing="1" cellpadding="8" bgcolor="#afafaf">
+		<form name="pageForm" method="POST">
+		<!--	내/외국인 구분을 설정하십시오. ( '1'-내국인, '2'-외국인 )	-->
+		<input type="hidden" id="foreigner" name="foreigner" value="1"></input>
+		<!--	조회사유를 설정하십시오. ( '10'-회원가입, '20'-기존회원 확인, '30'-성인인증, '40'-비회원 확인, '90'-기타 사유 )	-->
+		<input type="hidden" id="inqRsn" name="inqRsn" value="10"></input>
+			<tr bordercolor="#000000">
+	  			<td height="31" colspan="3" bgcolor="#f4f4f4">
+					<b>한국신용정보(주) 개인/외국인 실명확인 서비스 샘플 페이지 </b>
+				</td>
+			</tr>
+			<tr>
+				<td align="right" width="40%" bgcolor="#CCCCCC">성명</td>
+			  	<td colspan="2" bgcolor="#FFFFFF">
+			  		<input type="text" id="userNm" name="userNm" style="ime-mode:active;width:100;" value="">
+			  	</td>
+			</tr>
+			<tr>
+				<td align="right" bgcolor="#CCCCCC" id="TypeTag" >주민등록번호</td>
+			  	<td colspan="2" bgcolor="#FFFFFF">
+			  		<input type="text" id="userNo1" name="userNo1" maxlength="6" style="width:63" value="" onKeyUp="javascript:lengthCheck( this );">
+			  		<font color="#333333">-</font>
+			  		<input type="password" id="userNo2" name="userNo2" maxlength="7" style="width:69" value="" onKeyUp="javascript:lengthCheck( this );" >
+			  	</td>
+			</tr>
+
+			<tr valign="top" bgcolor="#FFFFFF">
+			  	<td colspan="3" align="center"><input name="Confirm" type="button" id="Confirm" value="실명 확인" onclick="javascript:goIDCheck();"></td>
+			</tr>
+			</form>
+		</table>
+
+	</body>
+</html>

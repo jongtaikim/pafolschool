@@ -1,0 +1,41 @@
+<body>
+<wa:applet module="admin.main.comptabs"></wa:applet>
+
+<h2>{? type == 'B'}최근게시물{:}최근겔러리{/}</h2>
+<div style="margin:10px;">
+<form name="configForm" method="post">
+<table width="600" class="table01">
+<tr>
+	<th width="60%">게시판</td>
+	<th width="20%">최근게시물</td>
+	<th width="20%">노출</td>
+</tr>
+<!--{@ LIST}-->
+<tr>
+	<td>{.str_title} </td> <td> <select name='board_num[]' >
+								
+								
+
+								<option value='1' {? .chr_num == 1}  selected=selected {/}>1번 최근게시물</option>
+								<option value='2'  {? .chr_num == 2}  selected=selected {/}>2번 최근게시물</option>
+												
+							    
+								</select>
+	
+</td>
+	<td align="center" colspan = 2>
+		<input type="checkbox" name="mcodes[]" value="{.num_mcode}" style="border:0px;"{? .chr_recent == 'Y'} checked{/}>
+		<input type="hidden" name="mcodes2[]" value="{.num_mcode}"	>
+	</td>
+</tr>
+<!--{/}-->
+</table>
+<table width="500">
+<tr>
+	<td align="center"><input type="submit" class="button2" value="저장"></td>
+</tr>
+</table>
+</form>
+</div>
+※ {? type == 'B'}최근게시물{:}최근겔러리{/}에 등록될 게시판을 선택하여 주십시오.
+</body>

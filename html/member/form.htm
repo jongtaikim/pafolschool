@@ -1,0 +1,115 @@
+<link rel="stylesheet" type="text/css" href="css/proptable.css">
+<style type="text/css">
+input[type=text], input[type=password] {
+	border: 1px solid #c0c0c0;
+	background-color: #FFFFFF;	
+}
+input[type=text]:focus, input[type=password]:focus {
+	border: 1px solid #c0c0c0;
+	background-color: #FFFFCC;
+}
+</style>
+<script>
+WebApp.Import('JSON.js');
+WebApp.Import('dynamic.js');
+</script>
+<script>
+function check_duplicate() {
+	var form = document.forms['memberform'];
+	var el = form.elements['str_id'];
+	var url = 'member.check_duplicate?str_id=' + el.value;
+	var result = JSON.decode(dynamic.loadText(url));
+	alert(result.Message);
+	if (result.Code == 00) {
+		form.elements['str_pass'].focus();
+	} else {
+		form.elements['str_id'].select();
+	}
+}
+</script>
+<wa:form name="memberform">
+<input type="hidden" name="memtype" value="{memtype}" />
+<input type="hidden" name="update" value="{? str_id}1{:}0{/}" />
+<table width="100%"  border="0" cellspacing="0" cellpadding="0" class="proptable">
+	<tr>
+		<th>아이디</th>
+		<td colspan="3"><input name="str_id" type="text" id="str_id" value="{str_id}" {? str_id}readonly{/} required="true">
+		<!--{? !str_id}--><input type="button" value="중복확인" onClick="check_duplicate()"><!--{/}--></td>
+	</tr>
+	<tr>
+		<th>패스워드</th>
+		<td><input name="str_pass" type="password" id="str_pass" required="true" match="str_pass2"></td>
+		<th>패스워드확인</th>
+		<td><input name="str_pass2" type="password" id="str_pass2"></td>
+	</tr>
+	<tr>
+		<th>이름</th>
+		<td colspan="3"><input name="str_name" type="text" id="str_name" value="{str_name}" required="true"> 
+			* 이름은 반드시 실명으로 공백없이 입력하세요 </td>
+	</tr>
+	<tr>
+		<th>주민등록번호</th>
+		<td colspan="3"><input name="jumin1" type="text" id="jumin1" value="{jumin1}" size="6" required="true" option="jumin" span="2" glue="-"> 
+			- 
+			<input name="jumin2" type="text" id="jumin2" value="{jumin2}" size="6"> </td>
+	</tr>
+	<tr>
+		<th>생년월일</th>
+		<td colspan="3"><input name="birthyear" type="text" id="birthyear" value="{birthyear}" size="4" span="3" glue="-">
+			년
+				<input name="birthmonth" type="text" id="birthmonth" value="{birthmonth}" size="2"> 
+				월
+				<input name="birthday" type="text" id="birthday" value="{birthday}" size="2"> 
+				일
+        <label><input name="cal" type="radio" value="radiobutton">
+        양력</label>
+        <label><input name="cal" type="radio" value="radiobutton">
+        음력</label></td>
+	</tr>
+	<tr>
+		<th>이메일</th>
+		<td colspan="3"><input name="str_email" size="50" type="text" id="str_email" value="{str_email}" option="email"></td>
+	</tr>
+	<tr>
+		<th>우편번호</th>
+		<td colspan="3"><input name="zip1" type="text" id="zip1" value="{zip1}" size="3"> 
+			- 
+			<input name="zip2" type="text" id="zip2" value="{zip2}" size="3">
+			<input type="button" value="찾기"></td>
+    </tr>
+	<tr>
+		<th>주소</th>
+		<td colspan="3"><input name="addr1" type="text" id="addr1" value="{addr1}" size="60" required="true">
+		<br>
+		<input name="addr2" type="text" id="addr2" value="{addr2}" size="60" required="true"></td>
+	</tr>
+	<tr>
+		<th>집전화</th>
+		<td><input name="phone1" type="text" id="phone1" value="{phone1}" size="4" required="true" option="phone" span="3" glue="-"> 
+			- 
+			<input name="phone2" type="text" id="phone2" value="{phone2}" size="4"> 
+			- 
+			<input name="phone3" type="text" id="phone3" value="{phone3}" size="4"></td>
+	    <th>휴대전화</th>
+	    <td><input name="mobile1" type="text" id="mobile1" value="{mobile1}" size="4" required="true" option="phone" span="3" glue="-">
+-
+    <input name="mobile2" type="text" id="mobile2" value="{mobile2}" size="4">
+-
+<input name="mobile3" type="text" id="mobile3" value="{mobile3}" size="4"></td>
+	</tr>
+	<tr>
+		<th colspan="4" style="text-align: center !important">
+		<!--{? memtype == 'g'}-->
+			<input type="submit" value="가입">
+		<!--{:}
+			<input type="submit" value="다음 >">
+		{/}-->
+		</th>
+	</tr>
+<!--{? memtype != 'g'}-->
+	<tr>
+		<td colspan="4" style="text-align: center !important"> 추가정보를 마저 입력하셔야 등록이 완료됩니다.</td>
+	</tr>
+<!--{/}-->
+</table>
+</wa:form>

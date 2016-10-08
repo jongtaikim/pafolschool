@@ -1,0 +1,80 @@
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight)+20+"px";
+         var w = parseInt(document.body.scrollWidth)+20+"px"; 
+	self.resizeTo(w, h); 
+
+} 
+//-->
+
+
+
+function selec(idx){
+if(idx=="move") {
+$('bbsd').style.display='';
+ var w = parseInt(document.body.scrollWidth); 
+	self.resizeTo(w, 102); 
+	$('mode').value= idx;
+}else if(idx=="del"){
+$('bbsd').style.display='none';
+ var w = parseInt(document.body.scrollWidth); 
+	self.resizeTo(w, 70); 
+	$('mode').value= idx;
+}else{
+ var w = parseInt(document.body.scrollWidth); 
+self.resizeTo(w, 70); 
+$('bbsd').style.display='none';
+$('mode').value= '';
+}
+
+}
+</script>
+
+<body style="margin:0" bgcolor="#FFFFFF" >
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<form method=post onsubmit="return validate(this);">
+<input type="hidden" name="mode" value="" hname="실행할 작업" errmsg="실행할 작업을 선택해주세요." required>
+<input type="hidden" name="mcode" value="{mcode}">
+<input type="hidden" name="bbs" value="{bbsList}">
+
+<table cellpadding="0" cellspacing="0" border="0" width="350"  class= "table01">
+<tr>
+<td>
+<img src='/arr.gif' > 선택한 <b>{total}</b>건의 게시물을 
+<select name="mode" onchange = "selec(this.value)">
+   <option value="">-- 작업선택 --</option>	
+   <option value="move">게시판을 이동합니다.</option>	
+   <option value="del">삭제합니다.</option>	
+  </select>
+</td>
+</tr>
+
+
+<tr  id='bbsd' style = "display:none">
+  <td >
+  대상 : 
+  <select name="mmcode"  style=  "font-size:11px">
+	{@ LIST}
+	<option value="{.num_mcode}">{.str_title}</option>
+	{/}
+  </select> 
+  </td>
+</tr>
+
+<tr>
+  <td align= center> <input type="submit" name="" value="실행" class="button"></td>
+</tr>
+</table>
+</form>
+
+
+</body>

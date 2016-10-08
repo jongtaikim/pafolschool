@@ -1,0 +1,28 @@
+
+
+<div style="margin-top:5px">
+
+{? log_LIST}
+	{@ log_LIST}
+	<div style="border:1px solid #cdcdcd;width:94%;float:left;margin-bottom:5px;background-color:#f6f6f6;padding:5px">
+	
+		
+		<div style="width:100%;float:left;;font-size:11px;padding-bottom:5px">
+			{=nl2br(.str_text)} <a href="log?mode=del&code={.str_code}&date={.num_date}" style="color:#3333ff;float:right">X</a>
+		</div>
+	
+		<div style="float:right;font-size:11px;width:100%;border-top:1px dashed #cdcdcd;padding-top:5px">
+		<span style="float:left;color:#6666ff">{.str_name}</span>
+		<span style="float:right">{=date("Y.m.d H:i:s",.num_date)}</span>
+		</div>
+	</div>
+	
+	{/}
+{/}
+
+	<form method=post action="/log">
+	<input type="hidden" name="code" value="{log_code}">
+		<input type="hidden" name="str_name" value="{_SESSION.NAME}">
+				<textarea name="str_text" style="width:98%;float:left;margin-bottom:5px;height:60px"></textarea><span class="btn_pack medium" style="float:right"><span class="add"></span><input type="submit"  value="로그저장"></span>
+		</form>
+</div>

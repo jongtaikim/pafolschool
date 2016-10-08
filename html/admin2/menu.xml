@@ -1,0 +1,66 @@
+<Navigation>
+<menu align="auto" stageW="674" stageH="70" startX="8" startY="11" mmSpace="5" smSpace="5" smNextTab="10" smMaxX="15">
+<item name="학교소개" href="menu.blank?mcode=10" target="">
+<submenu>
+<sub href="board.list?mcode=1010" target="">1학년 동영상 자료실</sub>
+<sub href="board.list?mcode=1011" target="">2학년동상자료실</sub>
+<sub href="board.list?mcode=1012" target="">3학년동상자료실</sub>
+<sub href="board.list?mcode=1013" target="">4학년동상자료실</sub>
+<sub href="board.list?mcode=1014" target="">5학년동상자료실</sub>
+<sub href="board.list?mcode=1015" target="">6학년동상자료실</sub>
+</submenu>
+</item>
+<item name="열린소식" href="" target="">
+<submenu>
+<sub href="" target=""></sub>
+</submenu>
+</item>
+<item name="우리교실" href="" target="">
+<submenu>
+<sub href="" target=""></sub>
+</submenu>
+</item>
+<item name="어린이마당" href="" target="">
+<submenu>
+<sub href="" target=""></sub>
+</submenu>
+</item>
+<item name="선생님마당" href="" target="">
+<submenu>
+<sub href="board.list?mcode=1010" target="">1학년 동영상 자료실</sub>
+<sub href="board.list?mcode=1011" target="">2학년동상자료실</sub>
+<sub href="board.list?mcode=1012" target="">3학년동상자료실</sub>
+<sub href="board.list?mcode=1013" target="">4학년동상자료실</sub>
+<sub href="board.list?mcode=1014" target="">5학년동상자료실</sub>
+<sub href="board.list?mcode=1015" target="">6학년동상자료실</sub>
+<sub href="board.list?mcode=1010" target="">1학년 동영상 자료실</sub>
+<sub href="board.list?mcode=1011" target="">2학년동상자료실</sub>
+<sub href="board.list?mcode=1012" target="">3학년동상자료실</sub>
+<sub href="board.list?mcode=1013" target="">4학년동상자료실</sub>
+<sub href="board.list?mcode=1014" target="">5학년동상자료실</sub>
+<sub href="board.list?mcode=1015" target="">6학년동상자료실</sub>
+</submenu>
+</item>
+<item name="학부모마당" href="" target="">
+<submenu>
+<sub href="board.list?mcode=1010" target=""></sub>
+</submenu>
+</item>
+<item name="학교운영위원회" href="" target="">
+<submenu>
+<sub href="board.list?mcode=1010" target="">1학년 동영상 자료실</sub>
+<sub href="board.list?mcode=1011" target="">2학년동상자료실</sub>
+<sub href="board.list?mcode=1012" target="">3학년동상자료실</sub>
+<sub href="board.list?mcode=1013" target="">4학년동상자료실</sub>
+<sub href="board.list?mcode=1014" target="">5학년동상자료실</sub>
+<sub href="board.list?mcode=1015" target="">6학년동상자료실</sub>
+<sub href="board.list?mcode=1010" target="">1학년 동영상 자료실</sub>
+<sub href="board.list?mcode=1011" target="">2학년동상자료실</sub>
+<sub href="board.list?mcode=1012" target="">3학년동상자료실</sub>
+<sub href="board.list?mcode=1013" target="">4학년동상자료실</sub>
+<sub href="board.list?mcode=1014" target="">5학년동상자료실</sub>
+<sub href="board.list?mcode=1015" target="">6학년동상자료실</sub>
+</submenu>
+</item>
+</menu>
+</Navigation>

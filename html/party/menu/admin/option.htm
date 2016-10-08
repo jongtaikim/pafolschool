@@ -1,0 +1,111 @@
+<script type="text/javascript" src="/js/now_core.js"></script>
+<script>
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight)+'px';
+		var w = parseInt(document.body.scrollWidth)+'px';
+
+	//self.resizeTo(w, h); 
+
+
+} 
+</script>
+<body >
+<div style="width:100%">
+
+<!--{? env.showopt}-->
+<div >
+	<form name="basicinfo" method="post" target="optionIfr" action = "/party.menu.admin.option">
+	<input type="hidden" name="mcode" value="{mcode}">
+	<input type="hidden" name="pcode" value="{pcode}">
+	<input type="hidden" name="str_in" value="{str_in}">
+
+	<input type="hidden" name="htype" value="{? str_type =='board#B'} (통합게시판){/}{? str_type =='board#A'} (스텝게시판){/}{? str_type =='link'} (링크){/}{? str_type =='title'} (메뉴타이틀){/}">
+	
+	<table width="100%" class="table01"> 
+		<tr> 
+			<th HEIGHT="30" colspan=2 class="head">메뉴 옵션 </th> 
+		</tr> 
+		<tr align="center"  height="25">
+			<th align="center" width="80">메뉴이름</th>
+			<td align="left" ><input name="str_title" type="text" id="str_title" value="{str_title}" class="button" style="width:210px"></td>
+		</tr>
+		{? str_type !="link" && str_type !="title"}
+		<tr align="center"  height="25"> 
+			<th align="center"  width="80">형태</th> 
+			<td align="left" >
+
+			
+
+			<input type="radio" name="str_skin" value="board" {? str_skin =="board"}checked{/}> 게시판형
+			<input type="radio" name="str_skin" value="gallery" {? str_skin =="gallery"}checked{/}> 갤러리형
+			
+
+		
+			</td>
+		</tr>
+
+		<tr align="center"  height="25"> 
+			<th align="center"  width="80">메인에 표출</th> 
+			<td align="left" >
+			<input type="radio" name="str_main_view" value="N" {? str_main_view !="Y"}checked{/}> 표출안함
+			<input type="radio" name="str_main_view" value="Y" {? str_main_view =="Y"}checked{/}> 표출
+			
+
+		
+			</td>
+		</tr>
+		<tr align="center"  height="25"> 
+			<th align="center"  width="80">특별메뉴</th> 
+			<td align="left">
+				<input type="radio" name="str_top_menu" id="str_top_menu_1" value="Y" style="border:0px;"{? str_top_menu} checked{/}> <label for="str_top_menu_1">노출</label>
+				<input type="radio" name="str_top_menu" id="str_top_menu_0" value="N" style="border:0px;"{? !str_top_menu} checked{/}> <label for="str_top_menu_0">표출안함</label>
+			</td>
+		</tr>
+		{/}
+		{? str_type =="link"}
+		<tr align="center"  height="25"> 
+			<th align="center"  width="80">링크주소</th> 
+			<td align="left" >
+			<input name="str_link_url" type="text" id="str_link_url" value="{str_link_url}" class="button" style="width:310px">
+			<input type="radio" name="str_target" value="_blank" {? str_target =="_blank"} checked{/}> 새창
+			<input type="radio" name="str_target" value="_self" {? str_target !="_blank"} checked{/}> 현재창
+			</td>
+		</tr>
+		{/}
+
+
+
+		<tr align="center"  height="25"> 
+			<th align="center"  width="80">메뉴숨김</th> 
+			<td align="left">
+				<input type="radio" name="num_view" id="num_view_1" value="1" style="border:0px;"{? num_view} checked{/}> <label for="num_view_1">노출</label>
+				<input type="radio" name="num_view" id="num_view_0" value="0" style="border:0px;"{? !num_view} checked{/}> <label for="num_view_0">숨김</label>
+			</td>
+		</tr>
+
+
+
+
+
+		
+		<tr align="center">
+			<td colspan="2" align="center">
+			<input name="submit" type="submit" value="저장하기" class="button2" onclick = " parent.$('using_components[]').options[parent.$('using_components[]').selectedIndex].text = {?str_in}'ㄴ'+{/}$('str_title').value + $('htype').value;"><br>
+			</td>
+		</tr>
+	</table>
+
+	</form>
+</div>
+<!--{/}-->	
+</div>
+</body>
+</html>

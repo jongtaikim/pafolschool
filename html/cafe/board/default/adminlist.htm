@@ -1,0 +1,117 @@
+<div id="sub_content_area">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+// 전체선택, 전체해제 구성
+function MM_chkBoxCotrol(form)
+{
+	len = form.elements.length;
+	for( var i=0; i<len; i++ )
+	{
+		if( form.elements[i].name != "chr_chk" )
+		form.elements[i].checked = form.chr_chk.checked;
+	}
+}
+//-->
+// 삭제관련 프로세스
+	function deleteConfirm(form) {
+		el = form.elements['del_ids[]'];
+		if(!el) return;
+		if(!el.length) el = new Array(el);
+		flag = false;
+		for(i=0, cnt=el.length; i<cnt; i++) {
+			if(el[i].checked) flag = true;
+		}
+		if(flag) {
+			if(!confirm('선택하신 항목을 삭제하시겠습니까? \n * 삭제후 복구가 불가능합니다. ')) return false;
+		}else {
+			alert('선택하신 항목이 없습니다');
+			return false;
+		}
+		if(!validate(form)) return false;
+		form.submit();
+	}
+//-->
+</script>
+	<form method='post' action='/cafe.php?act=cafe.board.list_modify' onsubmit="return deleteConfirm(this);">
+		<input type='hidden' name='cafe_id' value='{{cafe_id}}' />
+		<input type='hidden' name='mcode' value='{{mcode}}' />
+		<input type='hidden' name='page' value='{{page}}' />
+		<!-- IF 'SUB_TITLE' -->
+		<div id="sub_title_area">
+		{{board_title}}
+		</div>
+		<hr/>
+		<!-- 라이센스 추가 2008.06.24 BY NCS -->
+	<table width="100%">
+		<tr>
+			<td height="10">&nbsp;</td>
+		<tr>
+		<tr>
+			<td>
+				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td align="center">
+					{{LICENCE}}
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<!-- 라이센스 추가 2008.06.24 BY NCS -->
+		<span id="list_total">총 {{total}} 개의 게시물이 있습니다 </span>
+		<table id="board_list" class="board_top">
+			<tr align="center">
+				<th class="board_num border_bottom_2px border_top_1px border_color_2""><input type="checkbox" name="chr_chk" onClick="MM_chkBoxCotrol(this.form);" /><span class="hidden">삭제</span></th>
+				<th class="board_title border_bottom_2px border_top_1px border_color_2">제목</td>
+				<th class="board_author border_bottom_2px border_top_1px border_color_2">글쓴이</td>
+				<th class="board_date border_bottom_2px border_top_1px border_color_2">날짜</td>
+				<th class="board_view border_bottom_2px border_top_1px border_color_2">조회</td>
+			</tr>
+			<!-- DYNAMIC AREA 'NOTICE' -->
+			<!-- DYNAMIC AREA 'NOTICE' -->
+			<!-- DYNAMIC AREA 'LIST' -->
+			<tr>
+				<td class="board_num border_bottom_1px border_color_3" align="center"><input type="checkbox" name="del_ids[]" value="{{num_serial}}" /></td>
+				<td class="board_title border_bottom_1px border_color_3">{{indent}}{{icon}}<a href="{{readlink}}">{{title}}</a> <font color="#990000">{{cmt}}</font></td>
+				<td class="board_author border_bottom_1px border_color_3" align="center">{{name}}</td>
+				<td class="board_date border_bottom_1px border_color_3" align="center" class="f-d8pt">{{date}}</td>
+				<td class="board_view border_bottom_1px border_color_3" align="center">{{hit}}</td>
+			</tr>
+			<!-- DYNAMIC AREA 'LIST' -->
+		</table>
+		<hr/>
+		<!-- IF 'WRITABLE' -->
+			<a href="{{writelink}}" id="write_btn"><img src="/image/button/bt01/01.gif" width="51" height="19" border="0" alt="글쓰기 버튼" /></a>
+			<input type="image" src="/image/button/bt01/07.gif" id="delete_btn" alt="삭제 버튼" />
+		<!-- ENDIF 'WRITABLE' -->
+	</form>
+	<form method="get" name="searchform" id="admin_search_form">
+		<input type="hidden" name="cafe_id" value="{{cafe_id}}" />
+		<input type="hidden" name="act" value="{{act}}" />
+		<input type="hidden" name="mcode" value="{{mcode}}" />
+			<select name="key" id="key">
+				<option value="str_name" {{search_name}}>글쓴이</option>
+				<option value="str_title" {{search_title}}>제목</option>
+			</select>
+		<input name="search" type="text" class="login" id="search" value="{{search}}" />
+		<input type="image" src="/image/button/bt01/04.gif" alt="검색 버튼" id="search_btn" />
+	</form>		
+	<div id="board_page_num">
+		<script src="/js/lib.pagingcafe.js"></script>
+		<script>
+			PG = new Paging({{total}});
+			with(PG.config) {
+				itemPerPage = {{listnum}};
+				prevIcon = "/image/board/orange/btn_prevpage.gif";
+				nextIcon = "/image/board/orange/btn_nextpage.gif";
+				firstIcon = "/image/board/orange/btn_firstpage.gif";
+				lastIcon = "/image/board/orange/btn_lastpage.gif";;
+				thisPageStyle = "font-weight:bold;";
+			}
+			document.write(PG);
+		</script>
+	</div>
+
+
+</div>

@@ -1,0 +1,592 @@
+
+<link rel="stylesheet" href="/css/doc_style.css" type="text/css" />
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript" src="/js/dynamic.js"></script>
+<script type="text/javascript" src="/js/JSON.js"></script>
+
+
+<script type="text/javascript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() {
+	//이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+	if(document.body.readyState == "complete") {
+		clearInterval(ifrContentsTimer);
+	}
+	else {
+		resizeFrame();
+	}
+}
+function resizeFrame(){
+	//페이지가 로딩되면 바로 리사이즈..
+	var h = parseInt(document.body.scrollHeight);
+	var w = parseInt(document.body.scrollWidth);
+	self.resizeTo(w, h);
+
+	document.getElementById('loding').style.left =  10;
+	document.getElementById('loding').style.top = 80;
+
+}
+
+
+function checkjumin() {
+	var params = "&mode=jumin&jumin1="+$$('jumin1').value;
+	var form = document.forms['joinForm'];
+	var mid = document.joinForm.jumin1;
+	var searchko = mid.value;
+
+	//10글자 확인
+	if(strlen($$('jumin1').value) > 11 || strlen($$('jumin1').value) < 9){
+		alert('{=_la('주민번호를 정확하게 입력해주세요')}');
+		$$('jumin1').value='';
+		$$('jumin1').focus();
+		return false;
+	}
+
+	//앞 2자리 문자 뒤 8자리 숫자 체크
+	//앞 2자리
+	for (ii = 0 ; ii < 2 ; ii++) {
+		ski = searchko.charAt(ii);
+		if ((ski < 'a' || ski > 'z')) {
+			alert('{=_la('주민번호 2자리 문자가 올바르지 않습니다.')}');
+			mid.value = "";
+			mid.focus();
+			return false;
+		}
+	}
+
+	//뒤 숫자 8개
+	for (i = 2 ; i < 10 ; i++) {
+		sko = searchko.charAt(i);
+		if ((sko < '0' || sko > '9')) {
+			alert('{=_la('주민번호 8자리 숫자가 올바르지 않습니다.')}');
+			mid.value = "";
+			mid.focus();
+			return false;
+		}
+	}
+
+	sendRequest("/member.juminchk", params, FromServers, "POST");
+}
+function FromServers() {
+	if (httpRequest.readyState == 4) {
+		if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+
+			if(str_text =="N"){
+				alert('{=_la('등록가능한 주민번호입니다.')}');
+				document.joinForm.juminchk.value='Y'; // 주민번호 체크됩
+			}
+			else{
+				alert('{=_la('이미 사용중인 주민번호입니다.')}');
+				document.joinForm.juminchk.value=''; // 주민번호 체크됩
+				$$('jumin1').value='';
+			}
+		}
+	}
+}
+
+
+
+function cchk() {
+	var params = "&mode=email&email1="+$$('email1').value+"&email2="+$$('email2').value;
+	if($$('email1').value=='' || $$('email2').value==''){
+		alert('{=_la('이메일을 정확하게 입력해주세요.')}');
+		return false;
+	}
+	sendRequest("/member.emailchk", params, FromServer, "POST");
+}
+function FromServer() {
+	if (httpRequest.readyState == 4) {
+		if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			if(str_text =="N"){
+				alert('{=_la('등록가능한 이메일입니다.')}');
+				document.joinForm.emailchk.value='Y'; // 이메일 체크됩
+			}
+			else{
+				alert('{=_la('이미 사용중인 이메일입니다.')}');
+				document.joinForm.emailchk.value=''; // 이메일 체크됩
+				$$('email1').value='';
+				$$('email2').value=''
+			}
+		}
+	}
+}
+
+
+
+function emailSelect(idx){
+	$$('email2').value=idx;
+}
+
+function checkId(id) {
+	form = document.forms['joinForm'];
+
+		if(!id) return false;
+		ret = dynamic.load('member.check_masterid?id=' + id);
+	//jo = JSON.decode(ret);
+	//cknum=jo.Code;
+	cknum=ret;
+
+	if(cknum == '00'||cknum == '0') {
+		form.str_id_prev.value = id;
+		$$('id_pr').innerHTML = '<font color=#0099FF>{=_la('사용 가능한 ID 입니다.')}</font>';
+
+		//form.str_passwd.focus();
+	}
+	else if(cknum == '99') {
+		form.str_id_prev.value = '';
+		$$('id_pr').innerHTML = '<font color=#FF0099>{=_la('이미 존재하는 ID 입니다.')}</font>';
+		//form.str_id.focus();
+	}
+	else if(cknum == '98' ) {
+		form.str_id_prev.value = '';
+		$$('id_pr').innerHTML = '<font color=#996699>{=_la('영문 소문자나 숫자, 3자리 이상 10자리 이하로 입력하여주십시오.')}</font>';
+		//form.str_id.focus();
+	}
+}
+
+
+function checkNick(id) {
+	form = document.forms['joinForm'];
+		if(!id) return false;
+		if(strlen(id) <3) {
+			$$('nick_pr').innerHTML = '<font color=#996699>{=_la('3자 이상 작성해주세요.')}</font>';
+		return false;
+	}
+	ret = dynamic.load('member.check_masternick?id=' + id);
+	cknum2=ret;
+
+	if(cknum2 == '00'||cknum2 == '0') {
+		form.str_nick_prev.value = id;
+		$$('nick_pr').innerHTML = '<font color=#0099FF>{=_la('사용 가능한 닉네임 입니다.')}</font>';
+
+	}
+	else if(cknum2 == '99') {
+		form.str_nick_prev.value ='';
+		$$('nick_pr').innerHTML = '<font color=#FF0099>{=_la('이미 존재하는 닉네임 입니다.')}</font>';
+
+	}
+	else if(cknum2 == '98' ) {
+		form.str_nick_prev.value = '';
+		$$('nick_pr').innerHTML = '<font color=#996699>{=_la('사용할 수 없는 닉네임입니다.')}</font>';
+
+	}
+}
+
+function checkPass(){
+	/*if(strstr($$('str_passwd').value,$$('str_id').value)){
+	alert('{=_la('비밀번호에 아이디가 포함되어있습니다.')}');
+
+	return false;
+	}
+	if(strstr($$('str_passwd').value,$$('num_birthday').value)){
+	alert('{=_la('비밀번호에 생년월일 포함되어있습니다.')}');
+	return false;
+	}
+	
+*/
+
+}
+
+function fsubmit(){
+	if(checkPass()==true)
+		joinForm.submit();
+}
+
+
+function popup_zip() {
+	form = 'joinForm';
+	wZip = window.open('core.zipcode?el_addr=str_addr1&el_zip=str_zipcode&el_focus=str_addr2&form='+form,'zipsearch','width=400, height=200,scrollbars=yes');
+}
+
+function checkSelected() {
+	
+	return $('#uselecr').val();
+}
+
+function yak(){
+
+	var result = confirm("{=_la('약관을 모두 읽고 동의 하십니까?')}");
+	if(result){
+		$$('body1').style.display='';
+		$$('body2').style.display='none';
+
+
+
+	}
+
+}
+
+function Chkval(frm) {
+	if(validate(frm)){
+		var chk = checkSelected();
+		if(chk == 'v' && (document.joinForm.elements['num_fcode'].value == '')){
+			alert('{=_la('학급을 선택해주세요.')}');
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
+
+function selectValues(){
+	var chkval=checkSelected();
+	if (!chkval) return false;
+
+	if(chkval == 's' || chkval == 'p'){
+		$$('fcodediv').style.display='';
+	}else{
+		$$('fcodediv').style.display='none';
+		$$('num_fcode').value='';
+	}
+}
+
+//-->
+</script>
+<body>
+
+
+
+<!-- 회원가입정보 Start -->	
+
+
+
+
+
+
+<form name="joinForm" id="joinForm" method="post" onsubmit="return Chkval(this)"  enctype="multipart/form-data">
+<input type="hidden" name="mode" id="mode" value="join" required="false"/>
+<input type="hidden" name="emailchk" id="emailchk" required="false"/>
+<input type="hidden" id="uselecr"  name="uselecr" value="{chr_mtype}" required="false"/>
+<input type="hidden" name="num_birthday" id="num_birthday" value="{num_birthday}" required="false"/>
+<input type="hidden" name="chr_birthday" id="chr_birthday" value="{chr_birthday}" required="false"/>
+<input type="hidden" name="str_sex" id="str_sex" value="{str_sex}" required="false"/>
+<input type="hidden" name="str_sms" id="str_sms" value="y" />
+<input type="hidden" name="str_mailring" id="str_mailring" value="Y"/>
+
+	
+<fieldset>
+<legend>legend</legend>
+
+<p class="buTitle02">회원 정보 입력</p>
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+<tr>
+	<th scope="row">{=_la('회원유형')}</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<b>{chr_mtype_name} / {? str_sex == "1"}남{:}여{/}</b>
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('이름')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" title="레이블 텍스트" type="text" name="str_name" hname="이름" maxbyte="50" value="{str_name}" readonly required> 
+		</div>
+	</td>
+</tr>
+
+<!--tr>
+	<th scope="row">{=_la('영어이름')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" title="레이블 텍스트" type="text" name="str_eng_name" hname="영어이름" maxbyte="50" value="{str_eng_name}" readonly required> 
+		</div>
+	</td>
+</tr-->
+
+<!--tr>
+	<th scope="row">{=_la('주민등록번호')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" title="레이블 텍스트" type="text" name="jumin1" id="jumin1" maxlength="10" maxbyte="10" minbyte="1" required hname="{=_la('주민번호')}"> 
+
+			<a href="#" onclick="checkjumin();"><img src="images/join/cloneBtn.gif" alt="{=_la('주민번호 중복확인, 팝업창으로 뜹니다')}" /></a>
+		</div>
+	</td>
+</tr-->
+
+{? chr_mtype == "s"}
+<tr>
+	<th scope="row">{=_la('학교/학년')}</th>
+	<td>
+		<div class="item">
+			
+			<input class="i_text" title="학교명" type="text" name="str_school" id="str_school" hname="{=_la('학교명')}"  required> 
+
+			<select  name="str_class" id="str_class" hname="학년정보" required>
+				<option value="">-- {=_la('학년정보')} --</option>
+				
+				<optgroup label="초등학교">
+					
+					<option value="초등학교 1학년">1학년</option>
+					<option value="초등학교 2학년">2학년</option>
+					<option value="초등학교 3학년">3학년</option>
+					<option value="초등학교 4학년">4학년</option>
+					<option value="초등학교 5학년">5학년</option>
+					<option value="초등학교 6학년">6학년</option>
+					
+				</optgroup>
+
+				<optgroup label="중학교">
+					
+					<option value="중학교 1학년">1학년</option>
+					<option value="중학교 2학년">2학년</option>
+					<option value="중학교 3학년">3학년</option>
+					
+				</optgroup>
+
+				<optgroup label="고등학교">
+					
+					<option value="고등학교 1학년" {? str_class =='고등학교 1학년'} selected{/}>1학년</option>
+					<option value="고등학교 2학년" {? str_class =='고등학교 2학년'} selected{/}>2학년</option>
+					<option value="고등학교 3학년" {? str_class =='고등학교 3학년'} selected{/}>3학년</option>
+					
+				</optgroup>
+
+			</select>
+		</div>
+	</td>
+</tr>
+{/}
+
+<tr>
+	<th scope="row">{=_la('아이디')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" title="레이블 텍스트" type="text" name="str_id" id="str_id" hname="{=_la('아이디')}" maxlength="10" maxbyte="10" minbyte="5" onkeyup="checkId(this.value);" required> 
+
+		<input type="hidden" name="str_id_prev" hname="{=_la('아이디')}" errmsg="{=_la('사용할 수 없는 아이디입니다.')}"  value="" nofocus required>		
+		
+		<p  id="id_pr" class="i_dsc">{=_la('5~15자의 영문소문자, 숫자만 가능합니다.')}
+		</p>
+
+		</div>
+	</td>
+</tr>
+
+
+<tr>
+	<th scope="row">{=_la('비밀번호')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="str_passwd" hname="{=_la('비밀번호')}" maxlength="10" maxbyte="10" minbyte="5" match="str_passwd2" type="password"   id="str_passwd" required onchange="checkPass();"> 
+
+	
+		<p  class="i_dsc">
+			{=_la('5~10의 영문,숫자,특수문자 조합으로 이용가능합니다.')}<br />
+			{=_la('ID와 개인정보, 추측하기 쉬운 비밀번호는 사용불가 합니다.')}
+		</p>
+
+		</div>
+	</td>
+</tr>
+
+
+<tr>
+	<th scope="row">{=_la('비밀번호 확인')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="str_passwd2" hname="{=_la('비밀번호 확인')}" type="password" maxlength="10"   id="str_passwd2"   required> 
+
+		</div>
+	</td>
+</tr>
+
+
+<tr>
+	<th scope="row">{=_la('이메일')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="email1" id="email1" hname="{=_la('이메일')}" type="text"  maxbyte="50" style="width:100px"  required >@<input name="email2" id="email2" hname="이메일" type="text"  maxbyte="50" required />
+										
+										<select name="emailSelect1" onchange = "emailSelect(this.value)" required="false">
+											<option value="">Email 주소 선택</option>
+											<option value="">직접입력</option>
+											<option value="gmail.com">구글(G메일)</option>
+											<option value="naver.com">네이버</option>
+											<option value="nate.com">네이트</option>
+											<option value="dreamwiz.com">드림위즈</option>
+											<option value="yahoo.co.kr">야후</option>
+											<option value="empal.com">엠파스</option>
+											<option value="paran.com">파란</option>
+											<option value="hanmail.net">한메일</option>
+											<option value="hotmail.com">Hotmail</option>
+										</select>
+		
+		
+		<wa:btn size="2" type="a" href="javascript:cchk();" value="이메일중복 확인" style="margin-top:5px"/>
+		
+		
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('주소')}</th>
+	<td>
+		<div class="item">
+
+		<input type="text" id="sample6_postcode" name="str_zipcode" value="{chr_zip}" placeholder="우편번호" class="i_text" style="width:80px">
+						<wa:btn size="2" type="a" href="javascript:sample6_execDaumPostcode();" value="우편번호 찾기" style="margin-top:5px"/><br>
+						<input type="text" id="sample6_address" name="str_addr1" placeholder="주소" value="{str_addr1}" required maxbyte="100" readonly class="i_text" style="width:400px"><br>
+						<input type="text" id="sample6_address2" name="str_addr2" placeholder="상세주소" value="{str_addr2}" required maxbyte="100" trim="trim" class="i_text" style="width:400px">
+
+						<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+						<script>
+						    function sample6_execDaumPostcode() {
+							  new daum.Postcode({
+								oncomplete: function(data) {
+								    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+								    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+								    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+								    var fullAddr = ''; // 최종 주소 변수
+								    var extraAddr = ''; // 조합형 주소 변수
+
+								    // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+								    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+									  fullAddr = data.roadAddress;
+
+								    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+									  fullAddr = data.jibunAddress;
+								    }
+
+								    // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+								    if(data.userSelectedType === 'R'){
+									  //법정동명이 있을 경우 추가한다.
+									  if(data.bname !== ''){
+										extraAddr += data.bname;
+									  }
+									  // 건물명이 있을 경우 추가한다.
+									  if(data.buildingName !== ''){
+										extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+									  }
+									  // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+									  fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+								    }
+
+								    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+								    document.getElementById('sample6_postcode').value = data.zonecode; //5자리 기초구역번호 사용
+								    document.getElementById('sample6_address').value = fullAddr;
+
+								    // 커서를 상세주소 필드로 이동한다.
+								    document.getElementById('sample6_address2').focus();
+								}
+							  }).open();
+						    }
+						</script>
+		</div>
+	</td>
+</tr>
+
+
+
+<tr>
+	<th scope="row">{=_la('전화번호')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="tel1" id="tel1"  hname="{=_la('연락처')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4" required>
+		-<input class="i_text"  name="tel2" id="tel2" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4" required>
+		-<input class="i_text"  name="tel3" id="tel3" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4" required>
+		
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('휴대폰')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="tel11" id="tel11"  hname="{=_la('핸드폰')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4" required>
+		-<input class="i_text"  name="tel22" id="tel22" hname="{=_la('핸드폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4" required>
+		-<input class="i_text"  name="tel33" id="tel33" hname="{=_la('핸드폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4" required>
+		
+		</div>
+	</td>
+</tr>
+<tr>  
+	<th scope="row">{=_la('등록 동기')}</th>  
+	<td>  
+		<div class="item">  
+		<script type="text/javascript">
+		// <![CDATA[
+		function selectTmp1(idx){
+			if(idx == "카페"){
+				$$('etc_text').style.display = 'block';
+				$$('tmp_title').innerHTML = '카페명 입력 : ';
+			}else if(idx == "블로그"){
+				$$('etc_text').style.display = 'block';
+				$$('tmp_title').innerHTML = '블로그명 입력 : ';
+			}else if(idx == "기타"){
+				$$('etc_text').style.display = 'block';
+				$$('tmp_title').innerHTML = '기타사유 : ';
+			}else{
+				$$('etc_text').style.display = 'none';
+				$$('tmp_title').innerHTML = '';
+				$('#str_plus2').val('기타유입사유');
+			}
+		}
+		// ]]>
+		</script>
+		 <select name="str_plus1" required onchange="selectTmp1(this.value)">
+			<option value="">선택하여 주세요.</option>
+			<!--option value="JEI재능방송">JEI재능방송</option-->
+			<option value="예스라이프">예스라이프</option>
+			<option value="인터넷검색">인터넷검색</option>
+			<option value="신문(기사,광고)">신문(기사,광고)</option>
+			<option value="카페">카페</option>
+			<option value="블로그">블로그</option>
+			<option value="주변사람의 소개">주변사람의 소개</option>
+			
+			<option value="기타">기타</option>
+		 </select>
+		</div>  
+		<div class="item" id="etc_text" style="display:none;margin-top:10px">  
+		<span id="tmp_title"></span><input class="i_text"  type="text" name="str_plus2"  id="str_plus2" hname="참가동기" required="false" maxbyte="50" value="{str_plus2}" value="기타유입사유" required="false"> 
+		</div>  
+	</td>  
+</tr>  
+
+<tr>  
+	<th scope="row">{=_la('본인 소개')}</th>  
+	<td>  
+		<div class="item">  
+		 <textarea  class="i_text" cols="50" rows="10" name="str_introduct" id="str_introduct" hname="{=_la('자기소개')}" required="false"></textarea> 
+		</div>  
+	</td>  
+</tr>  
+
+
+</tbody>
+</table>
+</div>
+</fieldset> 
+
+<p class="buTitle02">회원 이용 약관</p>
+<iframe width="100%" height="200px" src="/admin.pra_view?mode=user" frameborder="0" scrolling="yes" style="width:96%;border:2px solid #cdcdcd;padding:10px"></iframe>
+<br><br>
+<p class="buTitle02">회원 이용 약관</p>
+<iframe width="100%" height="200px" src="/admin.pra_view?mode=pra" frameborder="0" scrolling="yes" style="width:96%;border:2px solid #cdcdcd;padding:10px"></iframe>
+
+
+<div id="btnArea" style="text-align:center;margin-top:20px">
+
+	<wa:btn size="3" type="submit" icon="check" value="이용약관에 동의하며 회원가입"/>
+	&nbsp;
+	<wa:btn size="3" type="button" value="취소"/>
+	
+
+</div>
+
+</form>
+<br><br>
+

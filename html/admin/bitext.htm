@@ -1,0 +1,164 @@
+
+
+<form name="basicinfo" method="post" onsubmit="return validate(this);" enctype='multipart/form-data'>
+
+
+<fieldset>
+		<legend>Legend</legend>
+		<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" >
+			<tr >
+				<td width="20px" style="padding-top:3px"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+				<td class="subtitle01"> 게시판 필터링 관리</td>
+			</tr>
+		</table>
+
+		<div class="form_table" style="margin-top:5px;">
+		<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+			<tbody>
+				<tr>
+				
+				<td>
+					<div class="item">
+						<input type="checkbox" name="bi_no" <? if(_BI_NO=="Y"){?> checked <? } ?> value="Y">
+						주민번호 차단 기능 활성화
+					</div>
+				</td>
+				</tr>
+
+				<tr>
+			
+				<td>
+					<div class="item">
+						<input type="checkbox" name="jumin_no" <? if(_JUMIN_NO=="Y"){?> checked <? } ?> value="Y">
+						유해단어(금칙어) 차단 기능 활성화
+					</div>
+				</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+</fieldset>
+
+
+	<div style="text-align:center">
+		<span class="btn_pack medium icon"><span class="add"></span><input type="submit" value="저장"></span>
+	</div>
+
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			ㆍ필터링 기능은 게시판에 글을 등록할 때, 개인정보(주민등록번호) 및 유해단어(금칙어)가 업로드 되지 않도록 합니다.<br>
+			ㆍ유해단어(금칙어)의 경우에는 매년 신조어 및 은어가 발생됨으로, 관리자가 지속적으로 추가해주어야 깨끗하고 맑은 홈페이지를 유지할 수 있습니다.
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+
+
+
+<br>
+<br>
+<br>
+
+
+<fieldset>
+		<legend>Legend</legend>
+		<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" >
+			<tr >
+				<td width="20px" style="padding-top:3px"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+				<td class="subtitle01"> 유해단어(금칙어) 설정</td>
+			</tr>
+		</table>
+
+		<div class="form_table" style="margin-top:5px;">
+		<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+			<tbody>
+				<tr>
+				<th scope="row" width="130px">유해 게시 단어</th>
+				<td>
+					<div class="item">
+						
+						<b>ㆍ</b>기본 설정 단어<br>
+						<div style="padding:5px 3px 5px 0px">
+							<div style="padding:8; border:1px solid #d5dfe7; background-color:#ffffca; overflow:auto; width:460px ; height:124px">
+							바둑이|포카|nara.cn|xgame|고스톱|씨발|미친|8억|새끼|개새끼|소새끼|병신|지랄|씨팔|십팔|니기미|찌랄|지랄|쌍년|쌍놈|빙신|좆까|니기미|좆같은게|잡놈|벼엉신|바보새끼|씹새끼|씨발|씨팔|시벌|씨벌|떠그랄|좆밥|추천인|추천id|추천아이디|추천id|추천아이디|추/천/인|쉐이|등신|싸가지|미친놈|미친넘|찌랄|죽습니다|님아|님들아|씨밸넘|고스톱|포카|바둑이|포카|nara.cn|xgame|고스톱|씨발|미친|8억|개새끼|소새끼|병신|지랄|씨팔|십팔|니기미|찌랄|지랄|쌍년|쌍놈|빙신|좆까|니기미|좆같은게|잡놈|벼엉신|바보새끼|씹새끼|씨발|씨팔|시벌|씨벌|떠그랄|좆밥|추천인|추천id|추천아이디|추천id|추천아이디|추/천/인|쉐이|등신|싸가지|미친놈|미친넘|찌랄|죽습니다|님아|님들아|씨밸넘|고스톱|포카|간나새끼|간나쒝히|갈보넘|갈보년|갈보똥년|갈보똥놈|개년아|개놈아|개뇽아|개늠시키|개똥썅뇬|개똥썅늠|개똥썅욘|개똥씨앙넘|개똥씨앙년|개똥씨앙뇬|개보지|개부랄년|개부랄뇬|개뽕알넘|개뽕알년|개새끼야|개샹|개썅놈|개자지|개졎도|개좃두|개죶도|개호로새끼|거지깡깽이|거지날라리|거지땡초|걸래년|걸래뇬|구녕에|깨가툰쉑히|깨가튼새끼|깨가튼은|깨갈보년|깨거러지|깨새끼|눈깔뽑아버려|니미럴|니뿡|닝기미|대가리따버려|대갈통부셔|대질래|뒈져쓰|뒈지고|뒈질라|디질래|딸딸이나쳐|떠그럴|똴똴이|띠바새끼|띠발놈|띱때끼|문댕이따쉭|문댕이새뀌|문댕이쉐키|미친개뼉다구|뱅쉰|뱅신|병따|병삼같은|병신개잡년|병신또라이삽질|병신애자|병신육갑떠네|보지조갯살|뷩신개잡놈|뷩신개잡뇬|븅신같은년|븅신같은놈|븅신같은뇬|빙띠|빙쉰|빙신같은|빠구리|빠굴|샹놈새끼|샹호로|섹스나해|수벨놈|쉑끼|쉬발놈|쉬벵아|쉬불놈|쉬파|쉬풜|쉽알쉣끼|쉽팔넘|스팍새끼|시밤쾅|시벌넘|시벨놈|시봘놈|시블|십새끼|십새야|십세끼|십알넘|쌍간나새끼|쌍년|쌍놈|쌍놈새끼|쌍지뢀|썅년|썅놈|써글넘|써글년|쐉간나새끼|쐉간나쉑히|쐉것|쐉년|쐉새리|쐉세끼|쐉쉐끼|쑥탱자슥|쑥탱자식|쒸벨넘|쒸팔뇬|쓉쉐|쓉할|쓰댕아|쓰밸아|씝알|씨댕아|씨댕이|씨박|씨밖|씨발|씨발|씨밝|씨밞|씨방새|씨뱅새끼|씨뱅아|씨벵새끼|씨벵아|씨벵야|씨불년|씨붕|씨빡|씨빢|씨뽕새|씨팔|씨퍄|씹탱이|씹할새끼|아구창 날려버려|앵벓이|엄창해|용두질|입쳐닫어|잡년|재섭서|저빱|젏밥아|젓니|젖가튼|젖같은|젖까|젿니|젿밥|조빠라|조빱|족같이|존나게|졸롸|좁밥|좃까|좃나|좃밥|종간나새끼|좆같네|좆같은게|좆같이|좆까|좆나|좆물|좆밥|좆빠라|좆욘|좉나|죵니|지랄염병|지랄옘병|지랄하네|창녀같은년|창뇬|촹년|포르노|허러|호로같은놈|호로새끼|후장따|후장빨아|히밤바|히밤바새끼|
+							</div>
+						</div>
+					
+						<div style="padding:5px 0px 5px 0px">
+							<textarea name="content" cols="60" rows="3" style="width:460px;height:100px" class="textarea01">{content}</textarea><br>
+						<? //2008-11-20 현민 유해단어 수정시 /module/board/write.php 에서도 동일하게 수정해줘야함 ?>
+						</div>
+						
+						<div style="padding:5px 0px 5px 0px">
+							* "|" 구분자로 단어구분, 유해단어를 추가하지 않으셔도 기본유해단어로 게시판데이터가 필터링됩니다.<br>
+						</div>
+
+
+
+					</div>
+				</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+</fieldset>
+
+
+
+
+
+	<div style="text-align:center">
+		<span class="btn_pack medium icon"><span class="add"></span><input type="submit" value="저장"></span>
+	</div>
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			ㆍ유해게시단어는 “|”로  구분하며, 새로운 은어 및 적절하지 못한 신조어가 출현하면 추가해주시기 바랍니다. <br>
+			ㆍ본 유해단어로 지정된 단어가 포함된 문단 및  구절은 게시판에 업로드가 안되므로, 입력에 각별한 유의를 바랍니다.
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+
+</form>

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+	<meta name="description" content="<?=_ONAME?> 홈페이지" />
+	<meta name="keywords" content="<?=_ONAME?>, 학교홈페이지" />
+	<meta name="author" content="이웃닷컴, 김동우, 김은정, 이승희" />
+	<meta name="language" content="ko" />
+	<title><?=_ONAME?></title>
+	<link rel="stylesheet" href="./css/common.css" type="text/css" />
+	<link rel="stylesheet" href="./css/joinStep2.css" type="text/css" />
+	<script type="text/javascript" src="/js/lib.validate.js"></script>
+	<script type="text/javascript">
+	// <![CDATA[
+		function testAuth() {
+			wWidth = 360;
+			wHight = 120;
+			
+			wX = (window.screen.width - wWidth) / 2;
+			wY = (window.screen.height - wHight) / 2;
+			
+			// Request Page Call
+			var w = window.open("https://login.<?=DOMAIN_?>/g-pin.auth?re_url=<?=$_SERVER[HTTP_HOST]?>&g_oid=<?=_OID?>&chr_mtype={chr_mtype}", "gPinLoginWin", "directories=no,toolbar=no,left="+wX+",top="+wY+",width="+wWidth+",height="+wHight);
+		}
+	// ]]>
+	</script>
+</head>
+
+<body>
+	<div id="wrapper">
+
+
+		<!--회원가입 영역 시작-->
+		<div class="gnb">
+			<h1><?=_ONAME?> 회원가입</h1>
+			<ul>
+				<li><a href="http://{_SESSION.baseurl_}/">홈으로</a></li>
+				<li><a href="http://{_SESSION.baseurl_}/sitemap.view">사이트맵</a></li>
+			</ul>
+		</div>
+		<div id="joinStep2"> 
+			<div class="topArea">
+				
+				<img src="./images/step2Img.gif" alt="회원가입 2단계: 중복회원확인" />
+			</div>
+			<div class="contentArea">
+			<h2>중복회원 확인</h2>
+			<ul class="comment">
+				<li>우리학교 홈페이지에서는 주민등록번호를 사용하지 않고 있습니다.</li>
+				<li>회원식별을 위해서 반드시 본인의 정확한 이름(실명)과 생년월일을 입력해 주세요</li>
+			</ul>
+				
+				{? !str_id}
+				{? GPIN !='Y'}
+				
+				<!-- 중복회원 확인 1 -->
+
+				<form id="checkOverlap"  name="checkOverlap" method="post" onsubmit="return validate(this);">
+				<input type="hidden" name="chr_mtype" value="{chr_mtype}">
+					<fieldset>
+						<legend>가입여부 확인용 입력폼</legend>
+						<div id="nameInput" class="row left">
+							<div class="title"><label for="nameInput"><span>이름:</span></label></div>
+							<div class="input"><input type="text" name="str_name" id="nameInput"  hname="이름" required /></div>
+						</div>
+						<div id="sexInput" class="row right">
+							<div class="title"><label for="sexInput1"><span>성별:</span></label></div>
+							<div class="input">
+								<input type="radio" name="str_sex" id="sexInput1" checked="true" value="1" /><label for="sexInput1">남자</label>
+								<input type="radio" name="str_sex" id="sexInput2" value="2" /><label for="sexInput2">여자</label>
+							</div>
+						</div>
+						<div id="birthInput" class="row">
+							<div class="title"><label for="birthInput11"><span>생년월일:</span></label></div>
+							<div class="input">
+								<select name="str_y" id="birthInput11" hname="생년" required>
+										<option value="">생년</option>
+										<? for($ii=date("Y")+1; $ii>=1930; $ii--) { ?>
+										<option value="<?=$ii?>"><?=$ii?></option>
+										<? } ?>
+									</select>
+								
+								
+
+								
+								<select name="str_m" hname="월" required>
+										<option value="">월</option>
+										<? for($ii=1; $ii<13; $ii++) { ?>
+										<option value="<?=$ii?>"><?=$ii?></option>
+										<? } ?>
+									</select>
+								
+
+								<select name="str_d" id="str_d" hname="일" required>
+										<option value="">일</option>
+										<? for($ii=1; $ii<32; $ii++) { ?>
+										<option value="<?=$ii?>"><?=$ii?></option>
+										<? } ?>
+									</select>
+								
+								
+								<input type="hidden" name="chr_birthday" value="s" />
+							</div>
+						</div>
+					</fieldset>
+					<div class="btnArea">
+						<input type="image" src="./images/submitBtn.gif" alt="확인버튼, 다음 단계로 이동합니다" />
+						<a href="http://{_SESSION.baseurl_}/"><img src="./images/cancelBtn.gif" alt="취소버튼" /></a>
+					</div>
+					
+				</form>
+				<ul class="caution">
+						<li>반드시 본인의 이름과 생년월일 및 성별을 정확히 입력하여 주시기 바랍니다.</li>
+						<li>다른 사람의 개인정보를 도용할 경우에는 정보 통신망 이용촉진 및 정보보호등에 관한 법률에 따라 3년 이하의 징역 또는 1천만원 이하의 벌금에 처해질 수 있습니다.</li>
+				</ul>
+				
+				{:}
+				
+				<!-- 중복회원 확인 3 -->
+				<div id="ipinInfo">
+					<ul>
+						<li>{학교} 홈페이지에서는 공공I-PIN을 통하여 회원가입을 받고 있습니다.</li>
+						<li>본인인증(I-PIN)서비스는 행정안전부 공공I-PIN센터에서 제공되며, {학교명}에서는 별도의 주민번호를 저장하지 않습니다.</li>
+						<li>공공 I-PIN을 처음 사용하시는 분은 공공 I-PIN에 회원가입을 먼저 하시기 바랍니다.</li>
+					</ul>
+					<div id="infoBtnArea">
+						<a href="https://www.g-pin.go.kr/center/join/join.gpin" target="_blank"><img src="./images/ipinNewBtn.gif" alt="공공 I-PIN 신규발급 및 확인" /></a>
+						<a href="javascript:testAuth()"><img src="./images/ipinConfirmBtn.gif" alt="공공 I-PIN 인증" /></a>
+					</div>
+					<p>
+						<span>행정안전부 공공I-PIN센터에서 발급받은 식별ID 및 비밀번호를 이용하여 본인확인을 하는 주민번호 대체수단 서비스 입니다.<span><br />
+						<span class="link">공공I-PIN: <a href="http://www.g-pin.go.kr">http://www.g-pin.go.kr</a></span>
+						<a href="http://www.g-pin.go.kr/center/pic/sub_01.gpin" target="_blank"><img src="./images/ipinHelpBtn.gif" alt="공공 I-PIN 자세히 알아보기" /></a>
+					</p>
+					
+				</div>
+
+			{/}
+
+
+
+			{:}
+			<!-- 중복회원 확인 2 -->
+				<form id="checkOverlapResult" action="memberJoinStep02.html">
+					<h3 class="title bullet">가입여부 확인</h3>
+					<div id="resultArea">
+						<div id="resultInputArea">
+							<p class="title"><span>이미 가입된 아이디가 있습니다</span></p>
+							<p class="input"><span>가입된 아이디 :</span><label for="findId">{str_id}</label></p>
+							
+						</div>
+						<div class="resultBtnArea">
+							<input type="image" src="./images/submitBtn.gif" alt="확인버튼, 다음 단계로 이동합니다" onclick="location.href='https://login.<?=DOMAIN_?>/member.findid?themeset=<?=$_SESSION[themeset_]?>&baseurl=<?=$_SESSION[baseurl_]?>'; return false;" onkeypress="location.href='https://login.<?=DOMAIN_?>/member.findid?themeset=<?=$_SESSION[themeset_]?>&baseurl=<?=$_SESSION[baseurl_]?>'; return false;" />
+							<a href="http://<?=$_SESSION[baseurl_]?>"><img src="./images/cancelBtn.gif" alt="취소버튼" /></a>
+						</div>
+					</div>
+				</form>
+			{/}
+
+
+
+			</div>
+			<div class="footerArea">
+				<ul class="footerMenu">
+				<li><a href="http://{_SESSION.baseurl_}/admin.pra_view?mode=user&layout=Y">개인정보보호방침</a></li>
+					<li><a href="http://{_SESSION.baseurl_}/admin.pra_view?mode=pra&layout=Y">저작권지침 및 신고</a></li>
+					<li><a href="javascript:winOpen('/member.help?mode=1','725px','600px');">회원가입 도움말</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- 회원가입 영역 끝 -->
+
+	</div>
+</body>
+</html>

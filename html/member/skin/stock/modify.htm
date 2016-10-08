@@ -1,0 +1,355 @@
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<script type="text/javascript" src="/js/dynamic.js"></script>
+<script type="text/javascript" src="/js/JSON.js"></script>
+<script type="text/javascript">
+	function update(val) {
+
+		var val = val + "&end=";  
+		sendRequest("/member.admin.update", val, FromServer, "POST");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				if(str_text =="Y"){
+
+				alert('변경되었습니다.');	
+				}else{
+				//alert(str_text);
+				//alert('데이터를 모두 입력하시기 바랍니다.');
+				}
+			}
+		}
+	}
+
+	
+	function popup_zip() {
+			form = 'joinForm';
+			wZip = window.open('core.zipcode?el_addr=str_addr1&el_zip=str_zipcode&el_focus=str_addr2&form='+form,'zipsearch','width=400, height=200');
+		}
+
+
+	function checkNick(id) {
+				form = document.forms['joinForm'];
+				if(!id) return false;
+				if(strlen(id) <2) {
+					$('nick_pr').innerHTML = '<font color=#996699>2자리 이상 작성해주세요.</font>';
+					return false;
+				}
+				ret = dynamic.load('member.check_masternick?id=' + id);
+				cknum=ret;
+
+				if(cknum == '00'||cknum == '0') {
+					//form.str_nick_prev.value = id;
+					$('nick_pr').innerHTML = '<font color=#0099FF>사용 가능한 닉네임 입니다.</font>';
+				
+				} else if(cknum == '99') {
+					//form.str_nick_prev.value = form.str_nick.value = '';
+					$('nick_pr').innerHTML = '<font color=#FF0099>이미 존재하는 닉네임 입니다.</font>';
+				
+				} else if(cknum == '98' ) {
+					//form.str_nick_prev.value = form.str_nick.value = '';
+					$('nick_pr').innerHTML = '<font color=#996699>사용할 수 없는 닉네임입니다.</font>';
+				
+				}
+			}
+
+              function checkPass(){
+                  return true;
+              }
+
+function emailSelect(idx){
+	$('email2').value=idx;
+}
+
+</script>
+
+<style>select{behavior: url('/selectbox.htc');}</style>
+<style>
+.f1{padding:11 0 5 10; background-color:edf8fd;font-size:11px;color:#1c59a0;}
+ .f2{padding:5 0 5 10;font-size:11px;color:#666666; line-height:20px}
+ .f3{padding:11 0 5 20; background-color:edf8fd;font-size:11px;color:#1c59a0;}
+ .f4{padding:0 0 5 20; background-color:edf8fd;font-size:11px;color:#1c59a0;}
+  .f5{padding:10 20 10 20; background-color:edf8fd;font-size:11px;color:#1c59a0;}</style>
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td style="padding-left:2"><img src="/host_img/stock/modify_img1.gif"></td>
+	</tr>
+	<tr>
+		<td style="padding-left:2">
+			<form method='post'  style='border:0;margin:0' name = "joinForm" enctype=multipart/form-data onsubmit="return validate(this);"  >
+<table cellpadding="0" cellspacing="0" border="0" width="95%" align = center>
+<col width="15%"></col><col width="%"></col>
+<tr><td colspan="2" height="2" bgcolor="5e91c4"></td></tr>
+
+	<tr height="32" valign="top">
+		<td class="f1"><font color="1c59a0">*&nbsp;</font> 아이디</td>
+		<td class="f2">{str_id} &nbsp;<font color=666666 style=font-size:8pt> ({dt_date}에 가입)
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+
+
+<tr height="32" valign="top">
+		<td class="f1"><font color="1c59a0">*&nbsp;</font> 닉네임</td>
+		<td class="f2">
+			<div style = "float:left;">
+			<input name="str_nick" id="str_nick" hname="닉네임" maxlength="10" maxbyte="10" minbyte="2" type="text"  style="width:100px; border:1px solid #D1D1D1;" value = "{str_nick}"class="button" onkeyup="checkNick(this.value);" required>
+			
+			&nbsp;
+			</div>
+			<div  id="nick_pr"  style = "float:left;padding-top:4px">(10자리 이하)</div></td>
+	</tr>
+	<tr>
+		<td colspan="2" width="100%" height="1" background="./images/line1.gif"></td>
+	</tr>
+
+
+
+
+	<tr height="32" valign="top">
+		<td class="f1"><font color="1c59a0">*&nbsp;</font> 비밀번호</td>
+		<td class="f2"><input type=password name=str_passwd size=20 maxlength=20 value = {str_passwd} class=button required>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+
+	<tr height="32" valign="top">
+		<td class="f1"><font color="1c59a0">*&nbsp;</font> 이름</td>
+		<td class="f2">{str_name}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+<input type="hidden" name="num_jumin" value="{num_jumin}">
+
+
+	<tr height="32">
+		<td class="f1" rowspan="3"><font color="1c59a0">*&nbsp;</font>이메일</td>
+		<td class="f2">
+		
+		<input name="email1" hname="이메일" type="text"  maxbyte="50" style="width:100px; border:1px solid #D1D1D1;" value="{email1}" required class="button" >
+		@
+		<input name="email2" hname="이메일" type="text"  maxbyte="50" style="width:100px; border:1px solid #D1D1D1;" value="{email2}" required class="button">
+
+		<select name="emailSelect1" onchange = "emailSelect(this.value)">
+			<option value="">Email 주소 선택</option>
+			<option value="">직접입력</option>
+			<option value="gmail.com">구글(G메일)</option>
+			<option value="naver.com">네이버</option>
+			<option value="nate.com">네이트</option>
+			<option value="dreamwiz.com">드림위즈</option>
+			<option value="yahoo.co.kr">야후</option>
+			<option value="empal.com">엠파스</option>
+			<option value="paran.com">파란</option>
+			<option value="hanmail.net">한메일</option>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="f2">다음(daum.net, hanmail.net) 메일계정을 사용하시면 정상적으로 받으실 수 없습니다.</td>
+	</tr>
+	<tr>
+		<td height="8"></td>
+	</tr>
+
+{? tel1use || tel2use || addr || img || mypr || plus1_use || plus2_use || plus3_use || plus4_use || plus5_use}	
+<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+{/}
+
+{? tel1use}
+	<tr height="32" valign="top">
+		<td class="f1"> 휴대폰</td>
+		<td class="f2"><input type=text name=tel1 size=4 maxlength=4 value="{tel1}" class=button> - <input type=text name=tel2 size=4 maxlength=4 value="{tel2}" class=button> - <input type=text name=tel3 size=4 maxlength=4 value="{tel3}" class=button>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+{/}
+{? tel2use}
+
+	<tr height="32" valign="top">
+		<td class="f1"> 연락처</td>
+		<td class="f2"><input type=text name=tel11 size=4 maxlength=4 value="{tel11}" class=button> - <input type=text name=tel22 size=4 maxlength=4 value="{tel22}" class=button> - <input type=text name=tel33 size=4 maxlength=4 value="{tel33}" class=button>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+{/}
+{? addr}
+	<tr height="32" valign="top">
+		<td class="f1"> 주소</td>
+		<td class="f2">
+
+<input name="str_zipcode" hname="우편번호" size="7" maxlength="7" type="text"  style="border:1px solid #D1D1D1;" onclick="popup_zip();"  value = "{chr_zip}" class=button readonly>&nbsp;<input type=button value='검색 ' onclick="popup_zip();" class=button> 
+<br>
+<input name="str_addr1" hname="기본주소" type="text" style="width:313px; border:1px solid #D1D1D1;" maxbyte="100" onclick="popup_zip();"  value = "{str_addr1}"  class=button  readonly><br>
+<input name="str_addr2" hname="상세주소"  value = "{str_addr2}" type="text" maxbyte="100"  class=button style="width:313px; border:1px solid #D1D1D1;">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+
+
+{/}
+
+{? img}
+
+
+	<tr height="32" valign="top">
+		<td class="f3"> 대표이미지</td>
+		<td class="f2">
+		<div style="float:left;padding:5px">
+		<a href = "javascript:winOpen('/hosts/<?=HOST?>/files/member/{str_id}.gif',500,500)"><img src="/hosts/<?=HOST?>/files/member/{str_id}.gif_100"  onerror="this.src='/b.gif'"></a>
+		</div>
+		<div style="float:left;padding:5px">
+		<input type="file" name="upfile1" hname="대표이미지" pattern="\.(gif|jpg|jpeg|png)$" class="button"><br>
+		※ 사진은 gif, jpg, png 형식으로 올려주시기 바랍니다.<br>
+		※ 사진의 넓이는 100픽셀로 고정됩니다. <br>
+		※ 사이즈를 맞춰서 올려주시면 이미지가 깨지지 않습니다.
+		</div>
+					
+									
+										
+									
+						</td>
+	</tr>
+
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+{/}
+
+{? mypr}
+	<tr height="32" valign="top">
+		<td class="f1"> 자기소개</td>
+		<td class="f2" style = "padding:5px">
+
+		<textarea style=width:95% rows=4 name=str_introduct class=checkbox>{str_introduct}</textarea>
+		</td>
+	</tr>
+
+
+	
+	
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+{/}
+{? plus1_use}
+
+	<tr height="32" valign="top">
+		<td class="f3"> {plus1}</td>
+		<td class="f2"><input type="text" name="str_plus1" value="{str_plus1}" class="button" style = "width:400"></td>
+	</tr>
+
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+{/}
+{? plus2_use}
+
+	<tr height="32" valign="top">
+		<td class="f3"> {plus2}</td>
+		<td class="f2"><input type="text" name="str_plus2" value="{str_plus2}" class="button" style = "width:400"></td>
+	</tr>
+
+
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+{/}
+{? plus3_use}
+
+	<tr height="32" valign="top">
+		<td class="f3"> {plus3}</td>
+		<td class="f2"><input type="text" name="str_plus3" value="{str_plus3}" class="button" style = "width:400"></td>
+	</tr>
+
+
+
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+{/}
+{? plus4_use}
+	<tr height="32" valign="top">
+		<td class="f3"> {plus4}</td>
+		<td class="f2"><input type="text" name="str_plus4" value="{str_plus4}" class="button" style = "width:400"></td>
+	</tr>
+
+
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+
+{/}
+{? plus5_use}
+	<tr height="32" valign="top">
+		<td class="f3"> {plus5}</td>
+		<td class="f2"><input type="text" name="str_plus5" value="{str_plus5}" class="button" style = "width:400"></td>
+	</tr>
+
+{/}
+
+	
+
+<tr><td colspan="2" height="1" bgcolor="5e91c4"></td></tr>
+
+</table>
+
+
+
+<INPUT TYPE="hidden" NAME="mode" value = "update">
+<INPUT TYPE="hidden" NAME="str_id" value = "{str_id}">
+<INPUT TYPE="hidden" NAME="end" value = "{str_id}">
+<table align=center width = 98% align = center>
+
+<tr>
+<td align = center><br><input type="image" src="/host_img/stock/modify_btn_01.gif" border="0">&nbsp;<a href = "#" onclick = "javascript:history.back()"> <img src="/host_img/stock/join_btn_02.gif" border='0' alt=''></a>
+
+<!-- <INPUT TYPE="submit" value = "수정하기" class=button>&nbsp;<INPUT TYPE="button" value = "취소" onclick = "javascript:history.back()" class=button> --><br><br></td>
+</tr>
+</table>
+
+
+ </form>
+		</td>
+	</tr>
+</table>
+<!-- 	<table cellpadding="0" cellspacing="0" border="0" width = "100%" height="45" background="/html/admin2/images/sub_title_bg.gif">
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 150><b>회원정보수정</b></td>
+				<td> <font color=cc0000>{str_name}</font> 님의 정보를 수정하실수 있습니다.</td>
+				</tr>
+			</table>
+
+<br>
+ -->
+
+
+
+
+				<!--/// 내용 끝 ///-->	

@@ -1,0 +1,63 @@
+
+<!-- 검색 -->
+<div id="searchWin">
+	 <form action="/now_sch.query" method="get" enctype="multipart/form-data" onsubmit="return validate(this);">
+		<fieldset>
+			<legend>통합검색</legend>
+			<p><label style="display:none">검색하세요</label><input id="txt" type="text" name="keyword" id="keyword" hname="검색어" value="{keyword}" class="txt"  required /> <input type="image" src="/theme/<?=_THEME?>/images/sub1/searchBtn.gif" alt="검색" /></p>
+			<span><strong>인기검색어</strong> : {@ keyword_LIST}
+<a href="/now_sch.query?keyword={.str_keyword}">{=cut_str(.str_keyword,10,'')}</a>{? (count(keyword_LIST)-1) > .index_}, {/} 
+{/} </span>
+		</fieldset>
+	</form>
+	
+	<div class="result">
+		<p class="objTop"><strong class="txt">"{keyword}"</strong>에 대한 <?=_ONAME?> 사이트 검색 내용입니다. <strong class="num">({total+0}건)</strong></p>
+		<ul>
+		{?  LIST}
+			{@ LIST}
+			{? .str_type == "doc"}
+			<li>
+				<dl>
+					<dt><a href="/now_sch.go?urls={=urlencode(.str_url)}"{? .str_type == "news"} target="_blank"{/}>[웹페이지] {.str_title}</a></dt>
+					<dd class="detail">{.str_text_len}</dd>
+					<dd class="his">{.location}</dd>
+					<dd class="link"><a href="/now_sch.go?urls={=urlencode(.str_url)}" {? .str_type == "news"} target="_blank"{/}>http://<?=$_SERVER[HTTP_HOST]?>{.str_url}</a></dd>
+				
+				</dl>
+			</li>
+			{/}
+			{/}
+
+			{@ LIST}
+			{? .str_type != "doc"}
+			<li>
+				<dl>
+					<dt><a href="/now_sch.go?urls={=urlencode(.str_url)}"{? .str_type == "news"} target="_blank"{/}>
+					{?  .str_type == "board"}[게시판] {/}
+					{.str_title}</a></dt>
+					<dd class="detail">{.str_text_len}</dd>
+					<dd class="his">{.location}</dd>
+					<dd class="link"><a href="/now_sch.go?urls={=urlencode(.str_url)}" {? .str_type == "news"} target="_blank"{/}>http://<?=$_SERVER[HTTP_HOST]?>{.str_url}</a></dd>
+				
+				</dl>
+			</li>
+			{/}
+			{/}
+		{:}
+		<li>
+			<div style="width:100%;padding:30px;text-align:center">검색결과가 없습니다.</div>
+		</li>
+		{/}
+		</ul>
+	</div>
+</div>
+
+<div style="margin:10px 0 10px 0;border-bottom:1px solid #cdcdcd">
+<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" class="paginate_complex"/>
+</div>
+
+
+
+
+

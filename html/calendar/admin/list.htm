@@ -1,0 +1,122 @@
+<script type="text/javascript">
+function goCalendar(id) {
+	location.href = 'calendar.admin.list?ym={ym}&f={f}&id=' + id;
+}
+
+function changeImoticon(num) {
+	document.getElementById('icon_img').src = '/html/calendar/skin/{skin}/'+num+'.gif';
+}
+</script>
+
+  <link rel="stylesheet" type="text/css" href="css/admin.css">
+  <link rel="stylesheet" type="text/css" href="css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="css/tab.roundwhite.css">
+
+{? !f}
+	<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:20px">
+				<tr valign="top">
+					<td width="100%" colspan="7">
+						<div class="tab19" width="100%">
+							<ul>
+								<li class="active"><a href="#">학사일정관리</a></li>
+								<li ><a href="/admin.main.rights?sect=main&code=calendar&module=calendar&PageNum=030401&title=학사일정">학사일정관리 권한설정</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+	</table>
+{/}
+
+<form method=post >
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr height=30>
+		<td align="center">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td><a href='calendar.admin.list?y={prev_y}&f={f}'><img src="/html/admin/images/schedule_left.gif"></a></td>
+					<td width="4"></td>
+					<td><a href='calendar.admin.list?y={prev_y}&f={f}'>{prev_y}년</a></td>
+				</tr>
+			</table>
+		</td>
+		<td align="center"><b style="color:#285775">{year}년</b></a></td>
+		<td align="center">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td><a href='calendar.admin.list?y={next_y}&f={f}'>{next_y}년</a></td>
+					<td width="4"></td>
+					<td><a href='calendar.admin.list?y={next_y}&f={f}'><img src="/html/admin/images/schedule_right.gif"></a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+
+
+<!-- 표1 Start -->	
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td width="100%" class="table_top_line01"></td>
+	</tr>
+	<tr>
+		<td width="100%" class="table_top_line02"></td>
+	</tr>			
+</table>
+<table cellpadding="0" cellspacing="1" border="0" width="98%" align="center" bgcolor="d5dfe7">
+	<tr height="29">
+		<td align="center" background="/html/admin/images/bx_bg.gif" class="subtitle01">
+			<select  onChange="location.href='/calendar.admin.list?ym={year}'+this.value+'&f={f}'">
+			<option value=''>행사일</option>
+			<option value='01' {? month == '01'} selected{/}>1월</option>
+			<option value='02' {? month == '02'} selected{/}>2월</option>
+			<option value='03' {? month == '03'} selected{/}>3월</option>
+			<option value='04' {? month == '04'} selected{/}>4월</option>
+			<option value='05' {? month == '05'} selected{/}>5월</option>
+			<option value='06' {? month == '06'} selected{/}>6월</option>
+			<option value='07' {? month == '07'} selected{/}>7월</option>
+			<option value='08' {? month == '08'} selected{/}>8월</option>
+			<option value='09' {? month == '09'} selected{/}>9월</option>
+			<option value='10' {? month == '10'} selected{/}>10월</option>
+			<option value='11' {? month == '11'} selected{/}>11월</option>
+			<option value='12' {? month == '12'} selected{/}>12월</option>
+			</select>
+		</td>
+		<td align="center" background="/html/admin/images/bx_bg.gif" class="subtitle01">제 목</td>
+		<td align="center" background="/html/admin/images/bx_bg.gif" class="subtitle01">아이콘</td>
+		<td align="center" background="/html/admin/images/bx_bg.gif" class="subtitle01">관 리</td>
+
+	</tr>
+{@ LIST}
+	<tr height="24" bgcolor="FFFFFF">
+		<td class="table01_text01">{=substr(.num_date,0,4)}.{=substr(.num_date,4,2)}.{=substr(.num_date,6,2)}</td>
+		<td class="table01_text01"><a href="/calendar.admin.write?id={.num_serial}&f={f}">{.str_title}</a></td>
+		<td align="center"><img src='/image/calendar/{.num_icon}.gif'></td>
+		<td align="center"><input type="checkbox" name="serial[]" value="{.num_serial}" ></td>
+	</tr>
+{:}	
+	<tr>
+	  <td colspan="20" align="center" height="100px" bgcolor="FFFFFF">등록된 일정이 없습니다.</td>
+	</tr>
+{/}
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td width="100%" class="table_btm_line01"></td>
+	</tr>
+	<tr><td height="10"></td></tr>
+</table>
+<!-- 표1 End -->	
+
+<table cellspacing="0" cellpadding="0" border="0" width="98%">
+	<tr>
+		<td><a href="calendar.admin.write?ym={ym}&f={f}&id=write"><img src="/html/admin/images/btn_reg_02.gif" border="0" style="cursor:hand" ></a></td>
+		<td align="right"><input type="image" src="/html/admin/images/btn_delete_05.gif" border="0" style="cursor:hand"  id="delete"></td>
+	</tr>
+</table>
+
+
+</form>

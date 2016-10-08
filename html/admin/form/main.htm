@@ -1,0 +1,260 @@
+<html>
+
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.default.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.join.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript">
+		function add_class(form, nGrade){
+			document.orderForm.mode.value = "write";
+			document.orderForm.target_grade.value = nGrade;
+			document.orderForm.class_name.value = form.class_name.value;
+			document.orderForm.grade_name.value = form.grade_name.value;
+			document.orderForm.new_order.value = form.new_order.value;
+
+			if(document.orderForm.class_name.value){
+				document.orderForm.submit();
+			}else{
+				alert("추가할 학급 이름을 입력하세요");
+			}
+		}
+		function modify_class(form, nGrade, nClass){
+			if(confirm("저장하시겠습니까?\n") == true){
+				document.orderForm.mode.value="modify";
+				document.orderForm.target_grade.value=nGrade;
+				document.orderForm.target_class.value=nClass;
+				document.orderForm.class_name.value=form.class_name.value;
+				document.orderForm.grade_name.value=form.grade_name.value;
+				document.orderForm.teacherID.value=form.teacher_id.options[form.teacher_id.selectedIndex].value;
+				document.orderForm.class_teacher.value=form.class_teacher.value;
+				document.orderForm.submit();
+			}
+		}
+		function del_chg(form, nGrade, nClass){
+			if(confirm("삭제하시겠습니까?\n이미 입력된 회원의 학급 정보가 같이 삭제됩니다.\n사용중인 학급 홈피가 폐쇄됩니다.") == true){
+				document.orderForm.mode.value="delete";
+				document.orderForm.target_grade.value=nGrade;
+				document.orderForm.target_class.value=nClass;
+				document.orderForm.del_order.value = form.del_order.value;
+				document.orderForm.submit();
+			}
+		}
+		function choice_display() {
+			if(confirm("변경하시겠습니까?\n") == true){
+				document.location.href='/?act=admin.form.last_class_list&check={last_class_checked}';
+			}
+		}
+
+		function move_up(form, nGrade, nClass){
+			if(confirm("[" + form.grade_name.value + ' ' + form.class_name.value + "] 학급을 위로 이동하시겠습니까 ?\n") == true){
+				document.orderForm.mode.value="up";
+				document.orderForm.target_grade.value=nGrade;
+				document.orderForm.target_class.value=nClass;
+				document.orderForm.submit();
+			}
+		}
+
+		function move_down(form, nGrade, nClass){
+			if(confirm("[" + form.grade_name.value + ' ' + form.class_name.value + "] 학급을 아래로 이동하시겠습니까 ?\n") == true){
+				document.orderForm.mode.value="down";
+				document.orderForm.target_grade.value=nGrade;
+				document.orderForm.target_class.value=nClass;
+				document.orderForm.submit();
+			}
+		}
+	</SCRIPT>
+
+<body>
+
+<div>
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr height="14">
+		<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td colspan="2" background="/html/admin/images/bx_tip_top_bg.gif"></td>
+		<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr bgcolor="#f6f6f6">
+		<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			ㆍ학급편성시에는 학년을 먼저 구성하고 반을 구성합니다. <br> 
+			ㆍ초기 학급편성시 간편 만들기로 반을 쉽게 등록할 수 있습니다.<br>    
+			<font color="#d43e6c">ㆍ학년이나 학급을 삭제할 경우 소속 학급간의 연결과 학급홈피가 초기화됩니다.</font> 
+		</td>
+		<td><img src="/html/admin/images/btn_class_easy.gif" onClick="alert('< 주의!! > \n간편만들기시\n기존 학급이 모두 초기화됩니다.');view_info('admin.form.main_wizard','wizard',500,620,1);" style="cursor:hand" align="absmiddle"><img src="/html/admin/images/btn_grade_make.gif" onClick="alert('< 주의!! > \n학년 생성후 수정,삭제시\n기존 학급관계가 초기화 됩니다.');view_info('admin.form.main_grade_intro','grade',520,620,1);" alt="학년 만들기" style="cursor:hand" align="absmiddle"></td>
+		<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr height="14">
+		<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td colspan="2" background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+</div>
+
+<div style="padding-top:20px">
+<!--학급편성 start -->		
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+		<td background="/html/admin/images/bx1_top_bg.gif">
+			<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+				<tr>
+					<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+					<td class="bx1_title">{school_year}년도 학급편성</td>
+					<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+	</tr>
+	<tr>
+		<td background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:19px 0px 13px 0px">
+			<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>
+			</table>
+			
+			<form name="orderForm" method="post">
+				<input type="hidden" name="mode" value="">
+				<input type="hidden" name="target_grade" value="">
+				<input type="hidden" name="target_class" value="">
+				<input type="hidden" name="class_name" value="">
+				<input type="hidden" name="grade_name" value="">
+				<input type="hidden" name="class_teacher" value="">
+				<input type="hidden" name="teacherID" value="">
+				<input type="hidden" name="new_order" value="">
+				<input type="hidden" name="del_order" value="">
+			</form>
+			<table cellpadding="0" cellspacing="1" border="0" width="96%" align="center" bgcolor="d5dfe7">
+				<tr height="28" >
+					<td width="49" class="table01_title"><b>순서</b></td>
+					<td width="61" class="table01_title"><b>학년</b></td>
+					<td class="table01_title" align="center"><b>학급(반)</b></td>
+					<td class="table01_title"><b>학급홈피사용여부</b></td>
+					<td width="89" class="table01_title"><b>담임교사</b></td>
+					<td class="table01_title"><b>관리</b></td>
+				</tr>
+				{@ LIST}
+				
+
+				
+				{? .manage_class }
+				<tr bgcolor="#ffffff" height="28">
+				<form name="modify_{.num_grade}_{.num_class}" onSubmit="javascript:modify_class(this,{.num_grade},{.num_class});return false;">
+				<input type="hidden" name="class_teacher" value="{.str_teacher}">
+				<input type="hidden" name="grade_name" value="{.formation_grade}">
+				<input type="hidden" name="del_order" value="{.formation_order}">
+					<td align="center" style="padding-top:3">{.formation_order}</td>
+					<td align="center" style="padding-top:3">{.formation_grade}</td>
+					<td align="center">
+						{? .manage_class }<input type="text" name="class_name" value="{.formation_class}" class="fom01" style="width:100px">{/}
+					</td>
+					<td align="center" style="padding-top:3">{? .manage_class }{.formation_use_cafe} {? .formation_use_cafe =="O"}<a href="/cafe/{school_year}{? .num_grade<10}0{/}{.num_grade}{? .num_class<10}0{/}{.num_class}" target="_blank"><font color="#235e83">바로가기</font></a>{/} {/}</td>
+					<td align="center">
+						{? .manage_class }<select name="teacher_id">
+							<option value="nobody" >&nbsp;</option>
+							{@ .formation_teacher}
+							<option value="{..str_id}" {? .str_teacher == ..str_id} selected{/}>{..str_name}</option>
+							{/}
+						</select>
+						{/}
+					</td>
+					<td align="center" style="padding-top:4">
+					{? .manage_class }
+						<a href="#" onClick="javascript:move_up(modify_{.num_grade}_{.num_class}, {.num_grade},{.num_class});"><img src="/html/admin/images/top_prev.gif" alt="위로" border="0"></a>
+						<a href="#" onClick="javascript:move_down(modify_{.num_grade}_{.num_class}, {.num_grade},{.num_class});"><img src="/html/admin/images/top_next.gif"  alt="아래로" border="0"></a>		
+						<input type="image" src="/html/admin/images/btn_save_01.gif" style="cursor:hand">
+						<img src="/html/admin/images/btn_delete_03.gif" style="cursor:hand" onClick="javascript:del_chg(modify_{.num_grade}_{.num_class}, {.num_grade},{.num_class});">
+					{/}
+					</td>
+				</form>
+				</TR>
+				{/}
+				
+				{? .add_class}
+				<tr bgcolor="#f3f6f8" height="29">
+				
+				<Form name="add_{.num_grade}" onSubmit="javascript:add_class(this,{.num_grade});return false;">
+				
+					<td colspan="6" align="right" style="padding-right:4">
+						<input type="hidden" name="grade_name" value="{.formation_grade}">
+						<input type="hidden" name="new_order" value="{.insert_order+2}">
+					
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding-top:3px"><font color="#285775">{.formation_grade} 학급 추가 : </font></td>
+								<td width="4"></td>
+								<td><input type="text" name="class_name" size="14" class="fom01" style="width:110px"></td>
+								<td width="4"></td>
+								<td><input type="image" src="/html/admin/images/btn_add_small.gif" style="cursor:hand"></td>
+							</tr>
+						</table>
+					</td>
+				</form>
+				</tr>
+				{/}
+
+			
+
+					{/}
+				
+
+
+				<tr bgcolor="#f3f6f8" height="29">
+				
+				<Form name="add_{num_grade}" onSubmit="javascript:add_class(this,{num_grade});return false;">
+				
+					<td colspan="6" align="right" style="padding-right:4">
+						<input type="hidden" name="grade_name" value="{formation_grade}">
+					<input type="hidden" name="new_order" value="{insert_order}">
+					
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding-top:3px"><font color="#285775">{formation_grade} 학급 추가 : </font></td>
+								<td width="4"></td>
+								<td><input type="text" name="class_name" size="14" class="fom01" style="width:110px"></td>
+								<td width="4"></td>
+								<td><input type="image" src="/html/admin/images/btn_add_small.gif" style="cursor:hand"></td>
+							</tr>
+						</table>
+					</td>
+				</form>
+				</TR>
+			<!-- 	<tr>
+					<td bgcolor="F7F7F7">
+						<table cellspacing=0 cellpadding=0 border="0" align='right' bgcolor="E7E7E7">
+						<tr height="34" bgcolor="F7F7F7">
+							<td colspan=3 align="right" >				
+								<img src="/image/admin/button/class_main.gif" onClick="location.href='?act=admin.form.main'" style="cursor:hand">&nbsp;
+								<img src="/image/admin/button/delete.gif" style="cursor:hand" id="delete" disabled onClick="del_chg();">&nbsp;
+								<img src="/image/admin/button/class_down.gif" style="cursor:hand" id="subfor" disabled onClick="childArea();">
+							</td>
+							<td width='30'></td>
+						</tr>			
+						</table>
+					</td>
+				</tr>	 -->
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+				<tr>
+					<td width="100%" class="table_btm_line01"></td>
+				</tr>
+			</table>
+		</td>
+		<td background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>
+<!-- 학급편성 end -->
+</div>
+
+
+</body>
+</html>

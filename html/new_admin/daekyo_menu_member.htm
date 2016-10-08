@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>북마트 - 온라인 관리시스템</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<base target="admin_content">
+<style type="text/css">
+td.submenu {
+	font-size:9pt;
+	color:#4A4A4A;
+	font-weight:bold;
+	background-image:url('./image/submenu_line.gif');
+	background-repeat:no-repeat;
+	background-position:bottom left;
+}
+
+td.submenu a:link {color:#4A4A4A;text-decoration:none;}
+td.submenu a:hover {color:#4A4A4A;text-decoration:underline;}
+td.submenu a:visited {color:#4A4A4A;text-decoration:none;}
+td.submenu a:active {color:#4A4A4A;text-decoration:none;}
+
+div.submenu2 {
+	width:110px;
+	background-color:#F4F3F0;
+	margin:10 0 10 0px;
+	padding:7px;
+	line-height:20px;
+	font-size:11px;
+	letter-spacing:-1px;
+	font-family:'dotum';
+	color:#087692;
+}
+
+div.submenu2 a:link {color:#087692;text-decoration:none;}
+div.submenu2 a:hover {color:#087692;text-decoration:underline;}
+div.submenu2 a:visited {color:#087692;text-decoration:none;}
+div.submenu2 a:active {color:#087692;text-decoration:none;}
+</style>
+<script type="text/javascript">
+<!--
+function displayDiv(id) {
+	document.getElementById(id).style.display = (document.getElementById(id).style.display == 'none' ? 'block' : 'none');
+}
+//-->
+</script>
+</head>
+
+<body leftmargin="0" topmargin="0">
+
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr height="11"><td></td></tr>
+<tr height="61">
+	<td background="./image/submenu_title.gif" style="font-size:10pt;color:#000000;font-weight:bold;padding-right:10px;" align="center">고객관리</td>
+</tr>
+<tr height="*" valign="top">
+	<td style="padding-left:20px;" background="./image/submenu_bg.gif">
+		<table width="138" cellpadding="0" cellspacing="0">
+		<tr height="30">
+			<td width="15"><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td width="123" class="submenu"><a onclick="javascript:displayDiv('MENU04');" style="cursor:hand;">회원목록</a></td>
+		</tr>
+		<tr id="MENU04" style="display:none;">
+			<td></td>
+			<td>
+				<div class="submenu2">
+					- <a href="member.admin.list">전체회원</a><br>
+					- <a href="member.admin.list_c">개인회원</a><br>
+					- <a href="member.admin.list_b">기관회원</a><br>
+				</div>
+			</td>
+		</tr>
+		<tr height="30">
+			<td><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td class="submenu"><a href="member.admin.add">회원등록</a></td>
+		</tr>
+		<tr height="30">
+			<td><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td class="submenu"><a href="member.admin.staff">직원목록</a></td>
+		</tr>
+		<tr height="30">
+			<td><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td class="submenu"><a href="http://aci.kangsa.net/core.daekyo_mmember_list">대교선생님 리스트</a></td>
+		</tr>
+			<tr height="30">
+			<td><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td class="submenu"><a href="http://aak.kangsa.net/member.daekyo_member">대교선생님 추가</a></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</body>
+</html>

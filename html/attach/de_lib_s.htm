@@ -1,0 +1,387 @@
+<style>select{behavior: url('/selectbox.htc');}</style>
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight);
+         var w = parseInt(document.body.scrollWidth)+18; 
+	self.resizeTo(w, h); 
+
+document.getElementById('loding').style.left =  30;
+document.getElementById('loding').style.top = 30;
+
+} 
+//-->
+
+
+function Cachdel(module,theme) {
+
+		document.getElementById('loding').style.display = '';
+
+		parent.document.getElementById('tmp').value = "tmpakwe";
+		
+		var params = module +'='+ theme + '&mmode=session&back=Y' ;  
+		
+		sendRequest('/attach/de_lib'  , params, FromServerCachdel, "POST");
+		
+		setTimeout(function(){CallHtml(module,theme);}, 300);
+
+	}
+
+
+function CallHtml(module,theme,intp) {
+		
+		var params = 'theme='+ theme +'&ids=' + module +'&mmode=sample' ;  
+		sendRequest('/'+ module + '.lib'  , params, FromServer, "POST");
+	}
+
+
+	function CallHtml2(module,theme,r_module) {
+		Cachdel(module,theme);
+		var params = 'theme='+ theme +'&ids=' + module +'&r_module=' + r_module + '&mmode=sample' ;  
+		sendRequest('/lib_html.lib'  , params, FromServer, "POST");
+	}
+
+
+function FromServerCachdel() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			//alert(str_text);
+			
+			}
+		}
+	}
+
+
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			//alert(str_text);
+			html = str_text.split("|||")
+		
+			//document.getElementById('temp').innerHTML = html[0];
+			parent.document.getElementById(html[1]).innerHTML = html[0];
+			document.getElementById('loding').style.display = 'none';
+			}
+		}
+	}
+
+
+</script>
+<body onload="resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',100);" style="margin-top:0;margin-left:0" bgcolor="#FFFFFF" >
+<FORM METHOD=POST name="layoutForm" >
+<!--
+<div class="tab01">
+	<ul>
+		<li  class="active"><a href="/attach.de_lib?no=smenu" >메뉴</a></li>
+		<li ><a href="/attach.de_lib?no=lunch" >오늘의 식단</a></li>
+		<li ><a href="/attach.de_lib?no=latestboard" >최근게시물</a></li>
+		<li ><a href="/attach.de_lib?no=calendar" >학교일정</a></li>
+		<li ><a href="/attach.de_lib?no=poll" >설문조사</a></li>
+		<li ><a href="/attach.de_lib?no=counter" >카운터</a></li>
+		<li ><a href="/attach.de_lib?no=class" >학급홈페이지</a></li>
+		<li ><a href="/attach.de_lib?no=party" >동아리</a></li>
+	</ul>
+</div>-->
+		<script>
+		function Govw(key){
+		location.href='/attach.de_lib_s?key=' + key;
+		}
+		</script>
+		<select  onchange="Govw(this.value);">
+				{? !news_count }	<option value="news" {? key == "news"} selected {/} >공지사항,뉴스</option>{/}
+				{? !news2_count }	<option value="news2" {? key == "news2"} selected {/} >가정통신문</option>{/}
+				{? !smenu_count }<option value="smenu" {? key == "smenu"} selected {/} >서브메뉴</option>{/}
+				{? !lunch_count }<option value="lunch" {? key == "lunch"} selected {/} >오늘의 식단</option>{/}
+				{? !latestboard_count }<option value="latestboard" {? key == "latestboard"} selected {/} >최근게시물</option>{/}
+				{? !latestgallery_count }	<option value="latestgallery" {? key == "latestgallery"} selected {/} >최근겔러리</option>{/}
+				{? !calendar_count }	<option value="calendar" {? key == "calendar"} selected {/} >학교일정</option>{/}
+				{? !poll_count }	<option value="poll" {? key == "poll"} selected {/} >설문조사</option>{/}
+				{? !edusearch_count }	<option value="edusearch" {? key == "edusearch"} selected {/} >교육정보검색</option>{/}
+				{? !counter_count }<option value="counter" {? key == "counter"} selected {/} >카운터</option>{/}
+				{? !class_count }	<option value="class" {? key == "class"} selected {/} >학급홈페이지</option>{/}
+				{? !party_count }	<option value="party" {? key == "party"} selected {/} >동아리</option>{/}
+				{? !banner_count }	<option value="banner" {? key == "banner"} selected {/} >베너</option>{/}
+				
+				
+
+			
+		</select>
+<div style="padding-top:5px"></div>
+
+<TABLE align= center class=table01>
+
+{? key  =="news2"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "news2" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/news2.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+
+{? key  =="news"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "news" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/news.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+{? key  =="latestgallery"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "latestgallery" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/latestgallery.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+{? key  =="edusearch"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "edusearch" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/edu.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+{? key  =="banner"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "banner" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/banner.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+
+
+{? key  =="smenu"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "menu" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/smenu.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+
+{? key  =="latestboard"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "latestboard" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/latestboard.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+{? key  =="lunch"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "lunch" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/lunch.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+{? key  =="calendar"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "calendar" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/schedule.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+
+
+{? key  =="poll"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "poll" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/vote.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+{? key  =="counter"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "counter" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/counter.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+
+{? key  =="class"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "class" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/class.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+
+{? key  =="party"}
+<TR>
+			{@ LIST_demi }
+			
+			<TD name = "party" value = "{.api}" onclick="Cachdel(this.name,this.value);" width = 50 height = 50
+			background = "/theme/{.api}/attach/party.gif" valign = "bottom" style = "font-color:#D4D4D4;font-size:10px;cursor: hand">{.api}
+			</TD>
+
+			{? (.index_ + 1) %6 ==0}
+			</tr>
+			<tr>
+			{/}			
+			{/}
+</tr>
+
+{/}
+
+				
+				
+				</TABLE>
+
+<div style = "padding-top:3px;padding-left:3px">
+<TABLE align = center>
+<TR>
+	<TD><INPUT TYPE="image" src = "http://sh.hkedu.co.kr/module/btn/btn.php?text=적용&w=52&h=28&size=10&color=009933" ></FORM></TD>
+	<TD style = "padding-top:5px">
+	<FORM METHOD=POST >
+<INPUT TYPE="hidden" NAME="mmode" value = "reset">
+	<center><INPUT TYPE="image" src = "http://sh.hkedu.co.kr/module/btn/btn.php?text=기본세팅&w=73&h=28&size=10&color=009933"> </center>
+</FORM></TD>
+</TR>
+</TABLE>
+
+
+
+
+</div>
+
+
+<div id = "loding" style = "top:0px;position:absolute;display:none;z-index:999; left:0px;background-color:#ffffff;padding:30px;border:3px solid #38A356" >
+<center><img src = "http://sh.hkedu.co.kr/module/btn/mk.php?text=디자인 적용중입니다...&w=190&h=200&size=15&color=009933"></center>
+</div>
+</body>

@@ -1,0 +1,15 @@
+<Navigation>
+<menu align="left" stageW="607" stageH="75" startX="10" startY="4" mmSpace="19" smSpace="5" smNextTab="15" smMaxX="15">
+		<!--{@ MENU}-->
+		<item name="{.str_title}" names="{.str_title2}" href="{.str_link}" target="{.str_target}" tabidx="{.tabindex}" mcode="{.num_mcode}" {? !.MENUITEM}/{/}>
+			{? .MENUITEM}
+			<submenu>
+				<!--{@ MENUITEM}-->
+				<sub href="{..str_link}" target="{..str_target}" tabidx="{..tabindex}" mcode="{..num_mcode}">{..str_title}</sub>
+				<!--{/}-->
+			</submenu>
+		</item>
+		{/}
+		<!--{/}-->
+	</menu>
+</Navigation>

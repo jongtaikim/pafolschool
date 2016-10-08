@@ -1,0 +1,238 @@
+@charset "euc-kr";
+
+/*
+웹 퍼블리싱
+작업자 : 김종태, 김동우(haman@nate.com) 
+*/
+
+#wrapperArea {
+	width:955px;
+	margin:0 auto;
+	}
+
+	#cafeTopArea {
+		height:200px;
+		}
+		#cafeGnb {
+			height:30px;
+			background:#aaa;
+			}
+			#cafeGnb .cafeGnbSchool {
+				float:left;
+				}
+			#cafeGnb .cafeGnbMenu {
+				float:right;
+				}
+				#cafeGnb .cafeGnbMenu .cafeGnbLogin {
+					float:left;
+					}
+				#cafeGnb .cafeGnbMenu .cafeGnbMove {
+					float:left;
+					}
+		#cafeTitleArea {
+			clear:both;
+			height:168px;
+			background:#c3c3c3;
+			}
+	
+	#cafeContentArea {
+		clear:both;
+		float:left;
+		width:955px;
+		margin-top:5px;
+		}
+	
+		#cafeContentAreaTop {
+			clear:both;
+			float:left;
+			height:23px;
+			width:945px;
+			padding-top:12px;
+			padding-left:10px;
+			font-weight:bold;
+			background:#c3c3c3;
+			}
+		#cafeContentAreaMid {
+			clear:both;
+			float:left;
+			width:955px;
+			margin-top:5px;
+			}
+
+			#cafeSideMenu {
+				float:left;
+				overflow:hidden;
+				width:175px;				
+				margin-right:6px;
+				}
+
+				#cafeInfoArea {
+				width:175px;
+				margin-bottom:5px;
+				background:#ccc;
+				}
+
+				#cafeSubmenuArea {
+				width:175px;
+				background:#ccc;
+				}
+
+					/*카페 기본 메뉴 설정*/
+
+					#cafeSubmenu .cafeBoardAll {
+						display:block;
+						}
+					#cafeSubmenu .cafeGalleryAll {
+						display:block;
+						}
+					
+					/*카페 타이틀형 서브메뉴 설정*/
+					#cafeSubmenu .cafeSubMenuTitle {
+						display:block;
+						font-weight:bold;
+						color:#525252;
+						}
+
+					/*카페 서브메뉴 좌측 아이콘 설정*/
+					.cafeSubMenuSpace {
+						display:block;
+						padding-left:15px;
+						background:url(http://203.109.24.240/image/in_line.gif) no-repeat 2px -3px;
+						}
+					#cafeSubmenu .board {
+						display:block;
+						padding-left:15px;
+						height:15px;
+						background:url(http://203.109.24.240/image/img_board.gif) no-repeat 2px top;
+						}
+					#cafeSubmenu .gallery {
+						display:block;
+						padding-left:15px;
+						height:15px;
+						background:url(http://203.109.24.240/image/img_gallery.gif) no-repeat 2px top;
+						}
+					#cafeSubmenu .memo {
+						display:block;
+						padding-left:15px;
+						height:15px;
+						background:url(http://203.109.24.240/image/img_memo.gif) no-repeat 2px top;
+						}
+					
+					/*카페 서브메뉴 분류라인 설정*/
+					.cafeSubMenuLine {
+						display:block;
+						padding:0;
+						margin:5px 0;
+						}
+
+			#cafeContent {
+				float:left;
+				width:772px;
+				background:#999;
+				padding-bottom:5px;
+				}
+				#cafeMainVisualArea {
+					width:772px;
+					margin-bottom:25px;
+					}
+				#cafeMainBoardArea {
+					width:560px;
+					float:left;
+					margin-right:15px;
+					}
+				#cafeMainBoardArea .cafeObj {
+					clear:both;
+					float:left;
+					margin-bottom:10px;
+					}
+
+					#cafeMainBoardArea .cafeObjTop {
+						display:block;
+						overflow:hidden;
+						float:left;
+						width:560px;
+						height:15px;
+						border-bottom:#555 2px solid;
+						margin-bottom:5px;
+						}
+						#cafeMainBoardArea .cafeObjTop span.cafeMainBoardTitle {
+							font-size:12px;
+							font-weight:bold;
+							margin-left:5px;
+							}
+						#cafeMainBoardArea .cafeObjTop span.more {
+							float:right;
+							}
+
+				.cafeObjContent {
+					clear:both;
+					}
+
+					/*겔러리형 설정*/
+					.cafeObjContent .galleryList {
+						float:left;
+						clear:both;
+						width:565px;
+						}
+
+					.cafeObjContent .galleryNod {
+						display:block;
+						float:left;
+						width:110px;
+						margin-right:3px;
+						}
+						
+						.cafeObjContent .galleryNod .thumb{
+							display:block;
+							float:left;
+							width:104px;
+							height:74px;
+							padding:2px;
+							background:#ccc;
+							border:#999 1px solid;
+							}
+							.cafeObjContent .galleryNod .thumb img {
+								display:block;
+								float:left;
+								width:102px;
+								height:72px;
+								border:#ddd 1px solid;
+								}
+						.cafeObjContent .galleryNod .title {
+							display:block;
+							clear:both;
+							float:left;
+							width:100%;
+							overflow:hidden;
+							white-space:nowrap;
+							text-overflow:ellipsis;
+							}
+						.cafeObjContent .galleryNod .comment {
+							display:block;
+							clear:both;
+							float:left;
+							color:#666;
+							}
+
+			#cafeMainRecentArea {
+				width:195px;
+				float:left;
+				}
+
+		#cafeContentAreaBtm {
+			clear:both;
+			float:left;
+			width:955px;
+			margin-top:5px;
+			padding:10px 0;
+			border-top:#333 2px solid;
+			margin-bottom:20px;
+			background:#bbb;
+			}
+			#cafeFoot {
+				clear:both;
+				float:left;
+				width:953px;
+				font-weight:bold;
+				text-align:center; 
+				}

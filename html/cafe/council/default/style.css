@@ -1,0 +1,57 @@
+/*basic */
+body, td, input, textarea { font-size:9pt; color:#333333;};
+td {font-size : 9pt ; color : #333333; line-height : 140%;};
+.f9pt {font-size : 9pt ; color : #333333 ; line-height : 140%;};
+.f-CG9pt {font-size : 8pt ; color : #6A6A6A ; line-height : 140%;};
+.f8pt {font-size : 8pt ; color : #333333 ; line-height : 140%;};
+.f-CG8pt {font-size : 8pt ; color : #6A6A6A ; line-height : 140%;};
+.f-D8pt {FONT-SIZE: 8pt; FONT-FAMILY: "돋움, arial"; color:#333333; line-height : 140%;}
+
+A:LINK {text-decoration : none; color:#333333;}
+A:VISITED {text-decoration : none; color:#333333;}
+A:HOVER {text-decoration : none; color:#18A9DF;}	
+	
+a.big-m:link {text-decoration : none ; color : #000000}
+a.big-m:visited {text-decoration : none ; color : #000000} 
+a.big-m:hover {text-decoration : none ; color : #FF7E00 ; font-weight:bold;} 
+
+a.small-m:link {text-decoration : none ; color : #000000}
+a.small-m:visited {text-decoration : none ; color : #000000} 
+a.small-m:hover {text-decoration : none ; color : #88BE1F ; font-weight:bold;} 
+
+/*사방 여백주기 */
+.padding {padding:12 12 12 12;}
+
+/*스크롤 제어 */
+.sroll {
+font-size: 9pt;
+color: 868686;
+margin-left: 0 px;
+margin-top: 0 px;
+background-position: top left;
+background-repeat: no-repeat;
+scrollbar-3dlight-color: #ffffff; 
+scrollbar-arrow-color: #D4D4D4; 
+scrollbar-darkshadow-color: #ffffff; 
+scrollbar-face-color:   #ffffff; 
+scrollbar-highlight-color: #D4D4D4; 
+scrollbar-shadow-color: #D4D4D4; 
+scrollbar-track-color:  #ffffff;
+border:1px solid #D4D4D4;
+}
+
+
+.login{
+border:solid 1;
+font-family:굴림,verdana;
+font-size:9pt;
+color:868686;
+background-color:white;
+font-size:9pt;
+font-family:Arial;
+vertical-align:top;
+border-left-color:D4D4D4;
+border-right-color:D4D4D4;
+border-top-color:D4D4D4;
+border-bottom-color:D4D4D4;
+height:17px;}

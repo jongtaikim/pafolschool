@@ -1,0 +1,51 @@
+<style type="text/css">
+body, font, td { font-size: 9pt; }
+body { margin-top: 0px; }
+.richEdit { width: 550px; height: 100%; border: 2px inset; }
+</style>
+<link type="text/css" rel="StyleSheet" href="/css/cb2.css">
+<script type="text/javascript" src="/js/ieemu.js"></script>
+<script type="text/javascript" src="/js/cb2.js"></script>
+<script type="text/javascript" src="/js/richedit.js"></script>
+
+<div id="sub_content_area">
+<div id="admin_sub_content">		
+	<h3 id="admin_sub_title">웹페이지 편집</h3>
+	<div id="help_top_area">
+		<ul id="help_top_content">
+			<li>- 웹페이지 형태로 입력된 내용이 메뉴클릭시에 보여집니다. </li>
+		</ul>
+	</div>
+
+	<form method="post" name="writeform" onSubmit="return dump()">
+		<input type="hidden" name="act" value="{{act}}">
+		<input type="hidden" name="oid" value="{{oid}}">
+		<input type="hidden" name="cafe_id" value="{{cafe_id}}">
+		<input type="hidden" name="mcode" value="{{mcode}}">
+		<input type="hidden" name="phpsessid" value="{{phpsessid}}">
+		<input type="hidden" name="timestamp" value="{{timestamp}}">
+		<input type="hidden" name="id" value="{{id}}">
+		<input type="hidden" name="upfiles" value="">
+		<input type="hidden" name="str_thumb" value="{{str_thumb}}">
+		<input type="hidden" name="FILE_HOST" value="{{FILE_HOST}}">
+		<input type="hidden" name="origin_num_file" value="{{num_file}}">
+		<input type="hidden" name="buf" value="">
+		<table width="95%" border="1" cellspacing="1" cellpadding="1" bordercolor="#d7d7d7" align="center">
+			<tr><td height="30" valign="middle"><span style="padding:5px 15px 5px 5px; font-weight:bold;">제목</span><input type="text" value="{{str_title}}" style="width:400px;" readonly/></td></tr>
+			<tr>
+				<td>
+					<textarea name="content" class="sroll" id="content" style="width: 550px; height: 100%;" hname="내용" maxbyte="120000">{{content}}</textarea>
+					<script type="text/javascript" src="/util/FCKeditor_2.4.2/fckeditor.js"></script>
+					<script type="text/javascript">
+						var oFCKeditor = new FCKeditor('content', '100%', 400, 'WebEditDefault');
+						oFCKeditor.ReplaceTextarea() ;
+					</script>
+				</td>
+			</tr>
+		</table>
+		<div style="width:100%;text-align:center;">
+			<input type="submit" value="저장">&nbsp;&nbsp;<input type="button" value="취소" onClick="history.back(-1);">
+		</div>
+	</form>
+</div>
+</div>

@@ -1,0 +1,241 @@
+<link rel="stylesheet" type="text/css" href="/css/doc_style.css">
+<script type="text/javascript">
+// <![CDATA[
+function emailSelect(idx){
+	$('email2').value=idx;
+}
+// ]]>
+</script>
+
+
+
+<form method="POST" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo" id="basicinfo">
+	
+	<input type="hidden" name="serial" value="{serial}" required="false">
+	<input type="hidden" name="mcode" value="{mcode}" required="false">
+	<input type="hidden" name="cate" value="{cate}" required="false">
+	
+	
+
+
+	<table width="100%" cellspacing="0" border="1" summary="Q&A 보기" class="tbl_type">
+	<caption>Q&A 보기</caption>
+		<colgroup>
+			<col width="80"><col><col width="70"><col><col width="70"><col>
+		</colgroup>
+	<tbody>
+		
+		
+		<tr>
+			<th scope="row">제목</th>
+			<td colspan="4">
+				<strong>[질문]</strong> {data1.str_title}
+			</td>
+
+			<td>{=date("Y.m.d H:i:s",data1.str_date)}</td>
+		</tr>
+
+		<tr>
+			<th scope="row">질문분야</th>
+			<td >{data1.str_cate}</td>
+			<th scope="row">등록자</th>
+			<td >{data1.str_name}</td>
+			<th scope="row">처리상태</th>
+			<td >{? data1.str_st == "0"}문의{/}	{? data1.str_st == "2"}회신완료{/}</td>
+		</tr>
+		{? data1.str_fl == "0" || views == 'y'}
+		<tr>
+			<th scope="row">연락처</th>
+			<td colspan="5">{data1.str_phone}</td>
+			
+		</tr>
+		
+		<tr>
+			<!--th scope="row">E-mail</th>
+			<td>{data1.str_email}</td-->
+			<th scope="row">공개여부</th>
+			<td colspan="3">{? data1.str_fl == "0"}공개{:}비공개{/}</td>
+	
+
+		</tr>
+		{:}
+		
+		<tr>
+			<!--th scope="row">E-mail</th>
+			<td colspan="3">
+				
+				<input class="i_text" name="email1" id="email1" hname="{=_la('이메일')}" type="text" value="{email11}"  maxbyte="50" style="width:60px"  required >@<input name="email2" id="email2" hname="이메일" type="text"  style="width:90px" maxbyte="50" value="{email22}" required />
+										
+				<select name="emailSelect1" onchange = "emailSelect(this.value)" required="false">
+					<option value="">Email 주소 선택</option>
+					<option value="">직접입력</option>
+					<option value="gmail.com">구글(G메일)</option>
+					<option value="naver.com">네이버</option>
+					<option value="nate.com">네이트</option>
+					<option value="dreamwiz.com">드림위즈</option>
+					<option value="yahoo.co.kr">야후</option>
+					<option value="empal.com">엠파스</option>
+					<option value="paran.com">파란</option>
+					<option value="hanmail.net">한메일</option>
+				</select>
+
+			</td-->
+			<th scope="row">비밀번호</th>
+			<td colspan="5"><input type="password" name="passwd" value="{? _SESSION.ADMIN}{data1.str_passwd}{/}" class=""  style="width:90px" hname="비밀번호"  required></td>
+			
+
+		</tr>
+
+		{/}
+		
+		<tr>
+			<td colspan="6">
+				{? data1.str_fl == "0" || views == 'y'}
+				{=nl2br(data1.str_text)}
+				{:}
+				<p>현재 내용은 작성자께서 비공개로 하셨습니다.</p>
+				<p>작성자의 이메일과 비밀번호를 입력하시면 내용을 확인하실수 있습니다. </p>
+				{/}
+			</td>
+		</tr>
+		{? data1.str_fl == "0" || views == 'y'}
+			{? data1.str_file}
+			<tr>
+				<th scope="row">첨부파일</th>
+				<td colspan="5">
+					<a href="/hosts/<?=HOST?>/qna/{data1.str_file}">[다운로드]</a>
+				</td>
+			</tr>
+			{/}
+		{/}
+	</tbody>
+	</table>
+
+	{? data2}
+	
+	<table width="100%" cellspacing="0" border="1" summary="Q&A 답변" class="tbl_type" style="margin-top:20px">
+	<caption>Q&A 답변</caption>
+		<colgroup>
+			<col width="80"><col><col width="70"><col>
+		</colgroup>
+	<tbody>
+		
+		
+		<tr>
+			<th scope="row">제목</th>
+			<td colspan="2">
+				<strong >[답변]</strong> {data2.str_title}
+			</td>
+
+			<td>{=date("Y.m.d H:i:s",data2.str_date)}</td>
+		</tr>
+
+		<tr>
+			
+			<th scope="row">등록자</th>
+			<td >{data2.str_name}</td>
+			<th scope="row">처리상태</th>
+			<td >{? data2.str_st == "0"}문의{/}	{? data2.str_st == "2"}회신완료{/}</td>
+		</tr>
+		<tr>
+			<!--th scope="row">E-mail</th>
+			<td >{data2.str_email}</td-->
+			<th scope="row">연락처</th>
+			<td >{data2.str_phone}</td>
+		</tr>
+		
+		
+		
+		<tr>
+			<td colspan="4">
+				{? data1.str_fl == "0" || views == 'y'}
+				{=nl2br(data2.str_text)}
+				{:}
+				<p>현재 내용은 작성자께서 비공개로 하셨습니다.</p>
+				<p>작성자의 이메일과 비밀번호를 입력하시면 내용을 확인하실수 있습니다. </p>
+				{/}
+			</td>
+		</tr>
+		{? data2.str_fl == "0" || views == 'y'}
+			{? data2.str_file}
+			<tr>
+				<th scope="row">첨부파일</th>
+				<td colspan="3">
+					<a href="/hosts/<?=HOST?>/qna/{data2.str_file}">[다운로드]</a>
+				</td>
+			</tr>
+			{/}
+		{/}
+	</tbody>
+	</table>
+
+	<div style="text-align:center;margin-top:20px">
+		{? _SESSION.ADMIN}<span class="btn_pack medium"><a href="/qna.add?mcode={mcode}&cate={cate}&mode=reply&group={data2.num_group}&id={data2.num_serial}">답변수정하기</a></span> {/}
+		<span class="btn_pack medium"><a href="/qna.list?mcode={mcode}&cate={cate}">목록으로</a></span>
+	</div>
+	
+	{:}
+		<div style="text-align:center;margin-top:20px">
+		{? mode == "reply"}
+		
+		
+			{? data1.str_st == "0"}
+				
+				<span class="btn_pack medium"><a href="/qna.add?mcode={mcode}&cate={cate}&serial={id}">수정</a></span>
+				
+				<script type="text/javascript">
+				// <![CDATA[
+				function delCone(){
+					if (!confirm('삭제 하시겠습니까?')) return false;
+					location.href='/qna.delete?mcode={mcode}&cate={cate}&serial={id}';
+				}
+				// ]]>
+				</script>
+
+				<span class="btn_pack medium"><a href="#" onclick="delCone()">삭제</a></span>
+				
+
+				{? _SESSION.ADMIN}
+					
+					<span class="btn_pack medium"><a href="/qna.add?mcode={mcode}&cate={cate}&mode=reply&group={id}">답변달기</a></span>
+				{/}
+			
+			{/}
+	
+
+		{:}
+			
+			{? _SESSION.ADMIN}
+
+			<script type="text/javascript">
+				// <![CDATA[
+				function delCone(){
+					if (!confirm('삭제 하시겠습니까?')) return false;
+					location.href='/qna.delete?mcode={mcode}&cate={cate}&serial={id}';
+				}
+				// ]]>
+				</script>
+				<span class="btn_pack medium"><a href="#" onclick="delCone()">삭제</a></span>
+				
+				<span class="btn_pack medium"><a href="/qna.add?mcode={mcode}&cate={cate}&mode=reply&group={id}">답변달기</a></span>
+				{/}
+			
+			<span class="btn_pack medium icon"><span class="check"></span><input type="submit" value="답변확인"></span>
+			
+			
+		
+		{/}
+		</div>
+
+	{/}
+
+</form>
+
+
+<script type="text/javascript">
+// <![CDATA[
+{? data1.str_fl == "0" && mode !="view"}
+//	$('basicinfo').submit();
+{/}
+// ]]>
+</script>

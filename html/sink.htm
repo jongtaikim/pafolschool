@@ -1,0 +1,29 @@
+<?
+{mk} = mktime();
+?>
+<table align="center"  border=0 cellspacing=0 cellpadding=0 class=table01>
+{@ LIST}
+<form method=post>
+
+
+ <tr {? .str_gu_type == "y"} bgcolor={/}>
+ <td>{.index_ +1}</td>
+  <td>{.num_serial}</td>
+ <td>{.num_order_number}</td>
+ <td>{.str_id}</td>
+ <td>{.title}</td>
+ <td>{=date("Y-m-d",.dt_start_day + (.num_view_end * 86400))} 만료일 ({=round((.dt_start_day + (.num_view_end * 86400) - mk) / 86400 ) } 일 남음)</td>
+
+  <td>
+  {? .str_gu_type != "y"} <input type="submit" name="" value="신증권대학입력" class="">{:}입력작업함{/}
+  </td>
+<input type="hidden" name="occode" value="{.occode}">
+<input type="hidden" name="num_order_number_" value="{.num_order_number}">
+<input type="hidden" name="num_serial_" value="{.num_serial}">
+<input type="hidden" name="str_id" value="{.str_id}">
+
+<input type="hidden" name="num_view_end" value="{=round((.dt_start_day + (.num_view_end * 86400) - mk) / 86400 ) }">
+ </tr>
+ </form>
+ {/}
+</table>

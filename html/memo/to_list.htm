@@ -1,0 +1,170 @@
+<link rel="stylesheet" href="/css/common.css" type="text/css" />
+<link rel="stylesheet" href="./memo.css" type="text/css" />
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function deleteMemo() {
+		form = document.forms['MemoFrm'];
+		if (!checkSelected()) return false;
+		if (!confirm('선택하신 쪽지를 삭제 하시겠습니까?')) return false;
+
+		form.elements['mode'].value = 'delete';
+		form.method="post";
+		form.submit();
+	}
+
+	function saveMemo() {
+		form = document.forms['MemoFrm'];
+		if (!checkSelected()) return false;
+		if (!confirm('선택하신 쪽지를 보관함으로 옮기시겠습니까?')) return false;
+
+		form.elements['mode'].value = 'save';
+		form.method="post";
+		form.submit();
+	}
+
+	function checkSelected() {
+		form = document.forms['MemoFrm'];
+		ids = form.elements['serials[]'];
+		if (!ids) return false;
+		if (!ids.length) ids = [ids];
+		flag = false;
+		for (i = 0,cnt=ids.length; i<cnt; i++) {
+			if (ids[i].checked) {
+				flag = true;
+				break;
+			}
+		}
+		if(!flag) {
+			alert('회원을 선택하여 주십시오.');
+			return false;
+		}
+		return true;
+	}
+
+	function checkall() {
+
+		var all = document.getElementById("all").value;
+
+		if ( all == 'Y')
+		{
+			uncheckall() 
+			return;
+
+		}else{
+			var form = document.MemoFrm;
+			for (i=0; i < form.elements.length; i++) {
+				if (form.elements[i].name =="serials[]") {
+					form.elements[i].checked = true;
+				}
+			}
+			document.MemoFrm.all.value = "Y";
+			return;
+		}
+	}
+
+	function uncheckall() {
+		var form = document.MemoFrm;
+		for (i=0; i < form.elements.length; i++) {
+			if (form.elements[i].name =="serials[]") {
+				form.elements[i].checked = false;
+			}
+		}
+		document.MemoFrm.all.value = "";
+
+		return;
+	}
+//-->
+</SCRIPT>
+
+
+
+
+<form method="post" name="MemoFrm">
+					<INPUT TYPE="hidden" NAME="all" id="all" >
+					<INPUT TYPE="hidden" NAME="mode" id="mode">
+<div id="memoWrap">
+
+	<div class="objTop">
+		<div class="memoTit">
+			<img src="./images/memoTit.gif" alt="쪽지함" />
+		</div>
+		
+			{#MEMO_TOP}
+	</div>
+
+	<div class="objContent">
+
+		<!-- 게시판 영역 시작 -->
+		<div class="board">
+			
+			<div class="boardInfo">
+				<span class="infoTit">{? save == "Y" }쪽지보관함{:}받은쪽지함{/}</span>
+				<span class="infoNotice">쪽지 보관기간은 1개월입니다.</span>
+			</div>
+
+			<form class="boardListForm" action="#">
+				<fieldset>
+				<legend>{? save == "Y" }쪽지보관함{:}받은쪽지함{/} 목록</legend>
+					<table class="boardList" border="1" cellspacing="0" summary="{? save == "Y" }쪽지보관함{:}받은쪽지함{/} 목록입니다.">
+						<caption>{? save == "Y" }쪽지보관함{:}받은쪽지함{/} 목록</caption>
+						<thead>
+							<tr class="top">
+								<th scope="col"><input class="inputcheck" title="check all" type="checkbox" /></th>
+								<th scope="col">보낸이</th>
+								<th scope="col">제목</th>
+								<th scope="col">보낸날짜</th>
+								<th scope="col">읽은날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+		
+							{@ LIST}
+							<tr>
+								<td><input type="checkbox" name="serials[]" value="{.num_serial}"/></td>
+								<td>{? .str_send_nick }{.str_send_nick}{:}{.str_send_name}{/} ({.str_send_id})</td>
+								<td class="title"><a href="/memo.view?id={.num_serial}">{? .str_reading_date}{.str_title}{:}<b>{.str_title}</b>{/}</a> {? !.str_reading_date}<img src = "/image/iicon/ico_new2.gif">{/}</td>
+								<td>{=date("Y-m-d", .str_send_date)}</td>
+								<td>{=date("Y-m-d", .str_reading_date)}</td>
+							</tr>
+							 {/}
+							
+				
+						</tbody>
+					</table>
+					
+				</fieldset>
+			</form>
+			
+			<!-- 페이징 시작 -->
+			<div class="pagination">
+				<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}"/>
+			</div>
+			<!-- 페이징 끝 -->
+			
+			<!-- 버튼 시작 -->
+			<div class="buttonArea">
+				<span class="btn01">
+					<input type="image" src="././images/btn_delete.gif" value="삭제" onclick="return deleteMemo();"/>{? save == "N" }<input type="image" src="././images/btn_trust.gif" value="보관" onclick="return saveMemo();"/>{/}
+				</span>
+			</div>
+			<!-- 버튼 끝 -->
+
+		</div>
+		<!-- 게시판 영역 끝 -->
+
+	</div>
+
+</div>
+</form>
+
+
+
+
+
+
+
+
+

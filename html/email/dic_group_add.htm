@@ -1,0 +1,17 @@
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<script type="text/javascript">
+function getGroup(form) {
+	if(!validate(form)) return false;
+	returnValue = form.elements['str_group'].value;
+	self.close();
+}
+</script>
+<form method="post" style="margin:0px;" target="smsdic_content" onsubmit="return getGroup(this);">
+<table width="95%" class="table01" style="margin:5px;">
+<tr>
+	<th width="40%">그룹명</th>
+	<td width="60%"><input type="text" name="str_group" hname="그룹명" maxbyte="20" style="width:100%;" required></td>
+</tr>
+</table>
+<center><input type="submit" class="button2" value="그룹생성"></center>
+</form>

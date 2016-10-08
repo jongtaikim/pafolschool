@@ -1,0 +1,92 @@
+<style>
+ .ico{padding:0 0 0 15; background-color:f9f9f9;}
+ .f1{padding:3 0 0 6; background-color:f9f9f9;font-size:12px;color:#4a4a4a;}
+ .f2{padding:0 0 2 10; font-size:11px;color:#666666;}
+
+.formBody{width:95%; border-top:3px solid #C1C1C1;border-bottom:1px solid #BEBEBE;margin-bottom:20px; float:left;}
+.formBody .formTitle{width:100%; background-color:#F7F7F7;position: relative;float:left;}
+.formBody .formTitle .title{font-weight:bold; width:15%;float:left;text-align:center;position:absolute; top: 40%;}
+.formBody .formTitle .title2{font-weight:bold; width:15%;float:left;text-align:center;position:absolute; top: 35%;}
+.formBody .formTitle .formItem{width:84.8%; background-color:#ffffff;float:right; }
+.formBody .formTitle .formItem .lin {padding:10px}
+.title{padding:10px 5px 5px 5px}
+
+.subTitleLine {border-top:1px solid #C1C1C1;}
+</style>
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:10px">
+<tr><td height="10"></td></tr>
+<tr valign="top">
+	<td width="22" style="padding-top:2"><img src="/html/party/image/title_icon.gif"></td>
+	<td class="stitle"><img src='/f.php?text={cname} 기본설정&font=-윤고딕330&size2=8&bg=ffffff&color=423c2b'></td>
+</tr>
+<tr><td height="7"></td></tr>
+<tr><td height="3" bgcolor="f8f8f8" colspan="2"></td></tr>
+<tr><td height="1" bgcolor="f5f5f5" colspan="2"></td></tr>
+<tr><td height="1" bgcolor="ffffff" colspan="2"></td></tr>
+<tr><td height="1" bgcolor="cccccc" colspan="2"></td></tr>
+</table>
+
+
+
+<form name="joinForm" method="post" onsubmit="return validate(this);">
+<div class="formBody subTitleLine" >
+	<div class="formTitle">
+		<div class="title" >가입질문</div>
+		<div class="formItem">
+			<div class="lin">질문1 : <input type=text name="str_text1" class="button" size="70" value="{str_text1}"></div>
+			<div class="lin">질문2 : <input type=text name="str_text2" class="button" size="70" value="{str_text2}"></div>	
+			<div class="lin">질문3 : <input type=text name="str_text3" class="button" size="70" value="{str_text3}"></div>	
+			<div class="lin">질문4 : <input type=text name="str_text4" class="button" size="70" value="{str_text4}"></div>	
+			<div class="lin">질문5 : <input type=text name="str_text5" class="button" size="70" value="{str_text5}"></div>	
+			<div class="lin"><font color="red">※ 회원가입시 받게되는 추가 질문입니다. (항목을 입력하시면 가입시 필수항목으로 설정됩니다.)</font></div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="formBody subTitleLine" >
+	<div class="formTitle">
+		<div class="title" >{cname}소개</div>
+		<div class="formItem">
+			<div class="lin"><textarea name="str_memo" style="width:70%;height:80px;" hname="{cname} 소개" required>{str_memo}</textarea></div>
+			
+		</div>
+	</div>
+</div>
+
+
+<div class="formBody subTitleLine" >
+	<div class="formTitle">
+		<div class="title" >가입안내</div>
+		<div class="formItem">
+			<div class="lin"><textarea name="str_join_msg"  style="width:70%;height:80px;">{str_join_msg}</textarea></div>
+		</div>
+	</div>
+</div>
+
+
+<div class="formBody subTitleLine" >
+	<div class="formTitle">
+		<div class="title2" >가입 회원등급</div>
+		<div class="formItem">
+			<div class="lin">
+				
+				<select name="mtype" class="selectBox">
+				<!--{@ CMTYPES}-->
+				{?.key_ != 'x'}<option value="{.key_}"{? str_mtype==.key_} selected{/}>{.value_}</option>{/}
+				<!--{/}-->
+				</select>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<center><input type="image" src="/html/image/btn_save.gif" value="저장하기"></center>
+
+</form>

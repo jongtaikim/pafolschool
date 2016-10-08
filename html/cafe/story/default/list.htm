@@ -1,0 +1,63 @@
+<link rel="STYLESHEET" type="text/css" href="/css/classroom.css">
+<script src="/js/lib.cookie.js"></script>
+<script src="/js/lib.auth.js"></script>
+<script src="/js/lib.pagingcafe.js"></script>
+<script>
+	function openwin(url,feathre) {
+		var dummy = window.open(url,'',feathre);
+	}
+</script>
+<div id="sub_content_area">
+<!-- 김동우 메인스토리 수정-->
+<div  id="sub_title_area"> {{title}}</div>
+	<div id="sub_mstory">
+		<!-- IF 'HAS_IMAGE' -->
+		<table>
+			<tr> 
+				<td id="sub_mstory_img">
+					<center>
+					<img src="{{str_refile}}" align="center" onLoad="if(this.width>300)this.width=300" class="mstory_img border_color_2 border_3px"/>
+					</center>
+				</td>
+				<td id="sub_mstory_text">	
+					<!-- ENDIF 'HAS_IMAGE' -->
+					<p id="sub_mstory_contents">{{content}}</p>
+					<!-- IF 'HAS_IMAGE' -->			
+				</td>
+			</tr>
+		</table>
+		<!-- ENDIF 'HAS_IMAGE' -->
+	</div>
+	<form name="commentform" method="post" style="display: sexpression(Auth.box_visible())" id="comment_aera">
+			<span>메모남기기</span>
+			<input type="hidden" name="act" value="{{act}}">
+			<input type="hidden" name="num_main" value="{{num_main}}">
+			<input type="hidden" name="idx" value="{{idx}}">					
+			<input name="comment" type="text" class="login" id="comment" alt="메모쓰는곳" class="border_1px border_color_3"> 
+			<input type="image" src="/image/class/A/bt01.gif" width="35" height="18" id="comment_submit_btn" alt="메모남기기버튼">
+	</form>	
+	<!-- DYNAMIC AREA 'COMMENT' -->
+	<dl id="comment_list" class="border_bottom_1px border_color_3">
+		<dt id="comment_name"><b><a href="javascript:openwin('{{userinfo_link}}','width=500,height=475')">{{name}}</a> : </b></dt>
+		<dd id="comment_block"><span class="comment_content">{{comment}}</span><span class="comment_date">[{{date}}]</span> {{del}}</dd>
+	</dl>
+	<!-- DYNAMIC AREA 'COMMENT' -->
+	<div id="mstory_page_num" class="border_top_3px border_color_1">
+	<center>
+		<script>
+		PG = new Paging({{total}});
+		with (PG.config) {
+			pageVariable = 'idx';
+			itemPerPage = 1;
+			firstIcon = '/image/class/A/icon09.gif';
+			prevIcon = '/image/class/A/icon10.gif';
+			nextIcon = '/image/class/A/icon11.gif';
+			lastIcon = '/image/class/A/icon12.gif';
+			numberFormat = ' %n ';
+		}
+		document.write(PG);
+		</script>
+	</center>
+	<!-- ENDIF 'HAS_DATA' -->
+	</div>
+</div>

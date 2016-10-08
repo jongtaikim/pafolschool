@@ -1,0 +1,70 @@
+@charset "euc-kr";
+
+/* ÀÌ¿ô´åÄÄ(e-wut.com) 
+À¥ ÆÛºí¸®½Ì 
+ÀÛ¾÷ÀÚ:±èÀºÁ¤ */
+
+/*·¹ÀÌ¾Æ¿ô*/
+#wrapper {
+	float:left;
+	width:746px;
+	background:url(../images/popupRB.gif) no-repeat right bottom;
+	}
+/**/
+#findPWResult {
+	float:left;
+	padding-right:20px;
+	background:url(../images/popupRT.gif) no-repeat right top;
+	}
+#findPWResult .boxWrap {
+	float:left;
+	background:url(../images/findIDPW/boxBtm.gif) no-repeat left bottom;
+	}
+
+#findPWResult .objTop {
+		width:702px;
+	height:56px;
+	padding-left:24px;
+	padding-top:23px;
+	background:url(../images/popupLT.gif) no-repeat left top;
+	}
+#findPWResult .objContent {
+	float:left;
+	width:680px;
+	padding-left:33px;
+	padding-top:13px;
+	padding-bottom:30px;
+	background:url(../images/popupLB.gif) no-repeat left bottom;
+	}
+
+	#findPWResult .title {
+		display:block;
+			height:39px;
+			padding-top:25px;
+			text-align:center;
+		background:url(../images/popupInBoxTopBg.gif) no-repeat left top;
+		}
+		#findPWResult .title strong {
+			padding-left:10px;
+			background:url(../images/bu1.gif) no-repeat left 3px;
+			
+			}
+		
+	#findPWResult .objContent ul {
+		float:left;
+		width:100%;
+		padding-bottom:10px;
+		text-align:center;
+		background:url(../images/popupInBoxBtmBg.gif) no-repeat left bottom;
+		}
+
+		#findPWResult ul li {
+			margin:7px 0;
+			}
+	#findPWResult .btnArea {
+		float:left;
+		width:100%;
+		padding-top:13px;
+		text-align:center;
+		}
+	

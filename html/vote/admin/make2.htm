@@ -1,0 +1,187 @@
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<!-- <link href="/css/admin_ver2006_2.css" rel="stylesheet" type="text/css"> -->
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+<link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+<script type="text/javascript" src="/js/lib.validate.js"></script>		
+		
+
+<body>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+				
+	<div class="tab19" width="100%">
+		<ul>
+			<li class="active"><a href="/vote.admin.main">투표목록</a></li>
+			<li><a href="/vote.admin.people_list">유권자 관리</a></li>
+		</ul>
+	</div>
+
+	<tr>
+		<td width="11" background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:19px 0px 13px 0px">
+			<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+				<tr>
+					<td width="20"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01">후보등록<font color="#373737"> :: {str_title}</font></td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+			<!-- 표1 Start -->	
+			
+<!-- 			
+			<table cellpadding="0" cellspacing="1" border="0" width="98%" align="center" bgcolor="d5dfe7">
+				<tr height="33">
+					<td class="table02_title04" width="120">투표제목</td>
+				</tr>
+				<tr>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="3"></td>
+								<td width="12"rowspan="3"></td>
+								<td><input type='text' name='str_title' value="{str_title}" style="width:290;" hname="제목" required  maxbyte="100" class="fom01"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+			</table> -->
+
+
+			<table width="100%" ALIGN='CENTER' border="0" cellpadding="3" cellspacing="0">
+				<form name="orderform" method="post" enctype='multipart/form-data' onsubmit="return validate(this);">
+				<input type="hidden" name="serial" value="{serial}">
+				<input type="hidden" name="num_user" value="{num_user}">
+				<tr>
+					
+					{? LIST}
+						{@ LIST}
+						<td>
+							<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+								<tr><td height="3"></td></tr>
+								<tr>
+									<td width="100%" class="table_top_line02"></td>
+								</tr>
+							</table>
+							<table cellpadding="0" cellspacing="1" border="0" width="98%" height="100%" align="center" bgcolor="c4d4e7">
+								<tr height="33">
+									<td class="table02_title04">기호{.index_+1}</td>
+								</tr>
+								<tr bgcolor="#FFFFFF" valign="top">
+									<td>
+										<table cellpadding="0" cellspacing="0" border="0" width="100%">
+											<tr>
+												<td height="2" bgcolor="#f4f7fb" colspan="3"></td>
+											</tr>
+											<tr><td height="10"></td></tr>
+											<tr>
+												<td width="10"></td>
+												<td class="subtitle01">성명&nbsp;:&nbsp;</td>
+												<td><input type='text' name='str_name[{.index_}]' style="width:100;" hname="후보자 이름" value="{.str_name}" required class="fom01"></td>
+											</tr>
+											<tr><td height="6"></td></tr>
+											<tr>
+												<td width="10"></td>
+												<td class="subtitle01">사진&nbsp;:&nbsp;</td>
+												<td><input type='file' name='photo{.index_+1}' style="width:234;" class="fom01"></td>
+											</tr>
+											<tr><td height="6"></td></tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td>{? .img}<img src='{.img}' border="0" style="border:2px solid #f1f1f1;">{/}</td>
+											</tr>
+											<tr><td height="12"></td></tr>
+										</table>
+									</td>
+								</tr>
+							</table>							
+							<table cellpadding="0" cellspacing="0" border="0" width="98%">
+								<tr>
+									<td colspan="3" width="100%" class="table_btm_line01"></td>
+								</tr>
+							</table>
+						</td>
+						{? (.index_ +1) %2==0}</tr><tr><td height="8"></td></tr><tr>{/}
+						{/}
+						{:}
+						<? for($ii=0; $ii<{num_user}; $ii++) { ?>
+							
+						
+						<td bgcolor="#FFFFFF">
+							<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+								<tr><td height="3"></td></tr>
+								<tr>
+									<td width="100%" class="table_top_line02"></td>
+								</tr>
+							</table>
+							<table cellpadding="0" cellspacing="1" border="0" width="98%" align="center" bgcolor="c4d4e7">
+								<tr height="33">
+									<td class="table02_title04">기호<?=$ii+1?></td>
+								</tr>
+								<tr bgcolor="#FFFFFF">
+									<td>
+										<table cellpadding="0" cellspacing="0" border="0" width="100%">
+											<tr>
+												<td height="2" bgcolor="#f4f7fb" colspan="3"></td>
+											</tr>
+											<tr><td height="10"></td></tr>
+											<tr>
+												<td width="10"></td>
+												<td class="subtitle01">성명&nbsp;:&nbsp;</td>
+												<td><input type='text' name='str_name[<?=$ii?>]' style="width:70;" hname="후보자 이름" required class="fom01"></td>
+											</tr>
+											<tr><td height="6"></td></tr>
+											<tr>
+												<td width="10"></td>
+												<td class="subtitle01">사진&nbsp;:&nbsp;</td>
+												<td><input type='file' name='photo<?=$ii+1?>' style="width:260;" class="fom01"></td>
+											</tr>
+											<tr><td height="12"></td></tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<? if(($ii+1) %2 == 0) {?>
+						</tr><tr>
+						<? } ?>
+						<? } ?>
+						{/}
+					</tr>
+
+				</table>
+		<!-- 표1 End -->	
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr><td height="13"></td></tr>
+				<tr>
+					<td align="center">
+						<img src="/html/admin/images/btn_poll_before.gif" border="0" style="cursor:hand" onclick="history.back();"><input type="image" src="/html/admin/images/btn_poll_next.gif" border="0">
+					</td>
+				</tr>
+			</table>
+
+		</td>
+		<td width="11" background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%">
+	<tr><td height="10"></td></tr>
+	<tr>
+		<td style="color:#d43e6c; font-size:11px; padding-left:8px;">* 사진파일 용량이 500k 를 넘으면 정상적으로 업로드 되지 않을 수 있습니다.</td>
+	</tr>
+</table>
+</body>
+</html>

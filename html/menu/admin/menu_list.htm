@@ -1,0 +1,132 @@
+
+<script type="text/javascript">
+var gSelectedNode = '';
+
+function add_menu(parent)
+{
+	var menuname = showModalDialog('menu.admin.add?parent='+parent,'create','dialogHeight: 180px; dialogWidth: 350px;');
+}
+
+function setSelected(mcode) {
+	gSelectedNode = mcode;
+}
+
+function reloadSelected() {
+	tree.getSelected().reload();
+}
+
+function reloadParent() {
+	tree.getSelected().parentNode.reload();
+}
+
+function detail(mcode)
+{
+	parent.frames['content'].location.href = 'menu.admin.option?mcode=' + mcode;
+}
+
+function selectMenu(mcode) {
+	tree.getSelected().reload();
+	if(!mcode) mcode = '';
+	parent.frames['content'].location.href = 'menu.admin.listorder?mcode=' + mcode;
+}
+</script>
+
+
+
+<table border=0 cellspacing=0 cellpadding=0>
+ <tr>
+    <td style = "padding:5px "><img src = "/image/icon/madang.png" align=absmiddle></td>
+  <td style = "padding-top:6px">
+	 <a href="/menu.admin.menu_list">HOME</a> {? menu1 }> <a href="/menu.admin.menu_list?mcode={=substr(mcode,0,2)}">{menu1}</a>{/}
+	 {? menu2 } > <a href="/menu.admin.menu_list?mcode={=substr(mcode,0,4)}">{menu2}</a>{/}
+	 {? menu3 } > <a href="/menu.admin.menu_list?mcode={mcode}">{menu3}</a>{/}
+  </td>
+
+
+ </tr>
+ <tr>
+   <td height =5></td>
+ </tr>
+
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%"  class= "blue01" align = center>
+<tr>
+<th>메뉴명</th>
+
+<th>설정하기</th>
+<th>하위메뉴순서변경</th>
+</tr>
+
+{@ LIST}
+<tr align = center>
+<td align = left style = "padding-left:10px">{? .str_type =="menu"}<a href="menu.admin.menu_list?mcode={.num_mcode}"><b>{/} {.str_title} </b>{? .str_type =="menu"}
+<font style = "color:blue;font-size:11px">[하위]</font>
+{/}</td>
+
+<td><INPUT TYPE="button" value = "설정하기" class="button" onclick = "location.href='/menu.admin.option?mcode={.num_mcode}'"></td>
+
+<td><INPUT TYPE="button" value = "하위메뉴순서변경" class="button" onclick = "location.href='/menu.admin.listorder?mcode={.num_mcode}'"></td>
+</tr>
+{:}
+
+
+<tr>
+  <td height = 100 align =center colspan = 10>하위메뉴가 없습니다.<br>
+  <a href= "javascript:add_menu('{mcode_2}')" >만들기</a>
+  
+  </td>
+</tr>
+
+
+{/}
+</table>
+
+
+{? !mcode}
+
+<br>
+<table border=0 cellspacing=0 cellpadding=0>
+ <tr>
+    <td style = "padding:5px "><img src = "/image/icon/madang.png" align=absmiddle></td>
+  <td style = "padding-top:6px">
+	 <a href="/menu.admin.menu_list">HOME</a> > PLUS 메뉴
+  </td>
+
+
+ </tr>
+ <tr>
+   <td height =5></td>
+ </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%"  class= "blue01" align = center>
+<tr>
+<th>PLUS 메뉴명</th>
+
+<th>설정하기</th>
+</tr>
+
+{@ LIST_plus}
+<tr align = center>
+<td align = left style = "padding-left:10px">{.str_title} </b>
+</td>
+
+<td><INPUT TYPE="button" value = "설정하기" class="button" onclick = "location.href='/menu.admin.option?mcode={.num_mcode}'"></td>
+
+
+</tr>
+{:}
+
+
+<tr>
+  <td height = 100 align =center colspan = 10>하위메뉴가 없습니다.<br>
+  <a href= "javascript:add_menu('{mcode_2}')" >만들기</a>
+  
+  </td>
+</tr>
+
+
+{/}
+</table>
+{/}

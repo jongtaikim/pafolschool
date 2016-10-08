@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="/css/doc_style.css">
+<style type="text/css" title="">
+.texta1{ width:280px;height:16px}
+</style>
+
+
+<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo">
+	
+	<input type="hidden" name="serial" value="{serial}">
+	<input type="hidden" name="mcode" value="{mcode}">
+	<input type="hidden" name="cate" value="{cate}">
+
+	<p class="buTitle15" style="margin-bottom:10px">용여 편집</p>
+
+	<table width="100%" cellspacing="0" border="1" summary="용여 편집" class="tbl_type">
+	<caption>용여 편집</caption>
+		<colgroup>
+			<col width="140"><col><col width="120"><col>
+		</colgroup>
+	<tbody>
+		
+		<tr>
+			<th scope="row">인덱스</th>
+			<td colspan="3">
+				<select name="str_index" id="str_index"  hname="인덱스"  required>
+					<option value="">-- 인덱스 선택 --</option>
+					{@ index_word}
+					<option value="{.word}" {? str_index == .word} selected{/}>{.word}</option>
+					{/}
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row">용어</th>
+			<td colspan="3">
+				<input type="text" name="str_word" value="{str_word}" style="width:300px"  hname="교육과정"  required />
+			</td>
+		</tr>
+		
+
+		<tr >
+			<th scope="row">설명</th>
+			<td colspan="3">
+				<wa:upload part="editor_basic" sect="text_db" code="{mcode}" name="str_text" width="100%" height="150px">{str_text}</wa:upload>
+			</td>
+		</tr>
+
+	</tbody>
+	</table>
+	
+	
+
+	<div style="text-align:center;margin-top:20px">
+		<span class="btn_pack medium icon"><span class="check"></span><input type="submit" value="저장하기"></span>
+		<span class="btn_pack medium icon"><span class="refresh"></span><a href="javascript:history.go(-1)">취소</a></span>
+	</div>
+
+</form>
+

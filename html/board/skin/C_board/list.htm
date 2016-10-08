@@ -1,0 +1,334 @@
+<link rel="stylesheet" href="/css/board.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/html/board/borderBasic.css">
+
+<!-- 게시판 영역 시작 -->
+				<div class="board">
+					
+				
+				<div class="boardCateBody" style="margin:5px 0px 15px 0px;padding-left:2px">
+					
+					<div class="tab">
+					<ul>
+						<li {? !str_category} class="on"{/}>
+							<a href="#" onclick="select1();">전체 ({total+0})</a>
+						</li>
+						{@  cate_LIST}
+						<li {? .str_category == str_category} class="on"{/}>
+							<a href="#" onclick="select1('{.str_category}');">{.str_category} ({.counter})</a>
+						</li>
+						{/}
+							
+						</ul>
+					</div>
+					
+					
+				</div>
+
+
+
+			
+					<div class="boardInfo">
+					<div class="infoleft">
+					<div class="infoleft" style="padding-bottom:5px"><a href="/board.xml?mcode={mcode}" target="_blank"><img src='/image/rss.gif' border='0' alt="게시판 RSS보기"></a>
+						총 <strong>{total}</strong>개의 자료가 있습니다.</div>	
+			
+					</div>
+
+					
+					<div class="inforight search" style="margin-top:7px">
+							<form class="boardSearchForm" name="searchform" action="/board.list">
+								<fieldset>
+									<legend>게시물 검색</legend>
+									<img src="/images/board/boardSearchFormTit.gif" alt="검색" method="get" />
+									<input type="hidden" name="mcode" value="{mcode}"/>
+									<select name="key" id="key" style="float:right">
+										<option value="str_title">제목</option>
+										<option value="str_text">내용글</option>
+										
+									</select>
+
+
+
+									<input class="inputtxt" type="text" title="검색"  id="search" name="search"  value="{search}"/>
+									
+									<span class="button02 smallarrowIcon">
+										<span><input type="submit" value="검색" /></span>
+									</span>
+									
+								</fieldset>
+							</form>
+						</div>
+
+					</div>
+
+				
+				
+
+				<!-- 게시물 개수와 카테고리 부분 End -->
+
+
+				<script language="Javascript">
+
+				function checkall() {
+
+				var all = document.getElementById("all").value;
+
+				if ( all == 'Y')
+				{
+				uncheckall() 
+				 return;
+
+				}else{
+				  var form = document.listForm;
+				  for (i=0; i < form.elements.length; i++) {
+				 if (form.elements[i].name =="ids[]") {
+				    form.elements[i].checked = true;
+					
+				 }
+				  }
+				  document.listForm.all.value = "Y";
+				 
+				  
+				  return;
+				}
+				}
+
+				function uncheckall() {
+				  var form = document.listForm;
+				  for (i=0; i < form.elements.length; i++) {
+				 if (form.elements[i].name =="ids[]") {
+				  form.elements[i].checked = false;
+				 }
+				  }
+				  document.listForm.all.value = "";
+
+				 return;
+				}
+
+				function select1(val) { // 코드 입력
+				if(val) {
+					location.href='board.list?mcode={mcode}&str_category='+val;
+					}else{
+					location.href='board.list?mcode={mcode}';
+				}
+				}
+
+				</script>
+
+				
+
+						
+
+						<form method=post  name="listForm"  id="listForm"  action="/board.copy"  target="d_main" class="boardListForm" >
+						<input type="hidden" name="all" id="all" />
+						<input type="hidden" name="mcode" id="mcode" value="{mcode}" />
+			
+						<fieldset>
+						<legend>{title_text} 목록</legend>
+							<table class="boardList" border="1" cellspacing="0" summary="{title_text} 공지사항 목록입니다..">
+								<caption>{title_text} 목록</caption>
+								<thead>
+									<tr class="top">
+										<th scope="col" class="check"><input class="inputcheck" type="checkbox"  onclick ="checkall();" onkeypress="checkall();" title="체크박스 전체선택"/></th>
+										<th scope="col" class="num">번호</th>
+										<th scope="col" class="num" >구분</th>
+										<th scope="col" class="title">주요실적</th>
+
+										<th scope="col" class="date">등록일</th>
+										<th scope="col" class="count">조회</th>
+
+
+										
+									</tr>
+								</thead>
+								<tbody>
+									
+
+									<!--공지-->
+									{@ LIST_g}
+									<tr class="notice">
+										<td><input class="inputcheck" type="checkbox" /></td>
+										<td><img src = "./image/notice_icon.gif" alt=" 공지" /></td>
+										<td>{.str_category}</td>
+										<td class="title"><a href="/board.read?mcode={.num_mcode}&id={.num_serial}">{.title}</a> {? .cmt }<span class="replyNum">({.cmt })</span>{/} {? .is_recent}<img src="/images/board/newIco.gif" class="newIco" alt="" /></span>{/}</td>
+										
+										<td>{.dt_date1}.{.dt_date2}.{.dt_date3}</td>
+										<td>{.hit}</td>
+										
+									
+										
+									</tr>
+									{/}
+									
+									{@ LIST}
+									<tr class="{?(.index_ +1) %2 == 0}bg2{:}bg1{/}">
+										<td><input class="inputcheck" type="checkbox"  name="ids[]" value="{.num_serial}"/></td>
+										<td>{.num}</td>
+										<td>{.str_category}</td>
+										<td class="title">
+
+										{? .num_depth == 1}<span class="re">{/}
+										{? .num_depth == 2}<span class="re"><span class="re">{/}
+										{? .num_depth == 3}<span class="re"><span class="re"><span class="re">{/}
+
+										{? .num_input_pass}<img src="/html/secret.gif" alt="비밀 글" align="absmiddle" />&nbsp;{/}
+										
+										{? .num_input_pass }
+										{?_SESSION.ADMIN || _SESSION.ADMIN_sub}
+										 <a href="/board.read?mcode={.num_mcode}&id={.num_serial}" >{.str_title} </a>
+										 {:}
+										 <a href="#" onClick="return overlay(this, 'subcontent2', 'lefttbottom', '{.num_serial}')">{.str_title} </a>
+										 {/}
+										 {:}
+										<a href="/board.read?mcode={.num_mcode}&id={.num_serial}" >{.str_title} </a>
+										 {/}
+										
+										{? .cmt }<span class="replyNum">({.cmt })</span>{/}
+
+										{? .is_recent}<img src="/images/board/newIco.gif" class="newIco" alt="" /></span>{/}
+										
+										{? .num_depth == 1}</span>{/}
+										{? .num_depth == 2}</span></span>{/}
+										{? .num_depth == 3}</span></span></span>{/}
+										
+										
+
+										</td>
+										
+										<td>{.dt_date1}.{.dt_date2}.{.dt_date3}</td>
+										<td>{.hit}</td>
+										
+								
+									</tr>
+									{:}
+									
+									<tr>
+									  <td colspan="7" align="center" height="100px" style="padding-top:50px">게시물이 없습니다.</td>
+									</tr>
+
+									{/}
+									
+								
+								</tbody>
+							</table>
+						</fieldset>
+					</form>
+
+					<!-- 페이징 및 버튼 시작 -->
+					<div class="boardNavigation">
+						<div class="buttonLeft">
+							{?_SESSION.ADMIN || _SESSION.ADMIN_sub}
+							<span class="button01 arrowIcon">
+								<a href="#none" onclick = "fenster2('bbs_SETUP', '게시물관리', '',  '20%', '30%', '380px', '160px');$('listForm').submit()"><span>관리</span></a>
+							</span>
+							{/}
+						</div>
+						<div class="buttonRight">
+							<!--{? env.writable}-->
+							<span class="button01">
+								<a href="{writelink}"><span>글쓰기</span></a>
+							</span>
+							<!--{/}-->
+						</div>
+						<div class="pagination">
+							
+							<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/images/board/boardPrevBtn.gif" nexticon="/images/board/boardNextBtn.gif" firsticon="/images/board/boardFirstBtn.gif" lasticon="/images/board/boardLastBtn.gif" />
+
+						</div>
+					</div>
+					
+
+				</div>
+				
+
+
+
+
+
+
+
+<div id="subcontent2" style="position:absolute; display:none; border: 1px solid black; background-color: lightyellow; width: 180px; height: 80px; padding: 8px">
+<input type="hidden" name="idx" id="idx">
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td colspan = 2 >비밀글입니다...<br>비밀번호를 입력해주세요</td>
+	</tr>
+	<tr>
+		<td><input type="password" name="pass" id = "pass"></td>
+		<td><input type="button" value = "확인"   onkeypress = "nameChk();" onclick = "nameChk();" alt="확인" ></td>
+	</tr>
+</table>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript">
+function getposOffset(overlay, offsettype){
+    var totaloffset=(offsettype=="left")? overlay.offsetLeft : overlay.offsetTop;
+    var parentEl=overlay.offsetParent;
+    while (parentEl!=null){
+        totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+        parentEl=parentEl.offsetParent;
+    }
+    return totaloffset;
+}
+
+function overlay(curobj, subobjstr, opt_position, idx){
+  
+	document.getElementById("idx").value = idx ;
+
+	if (document.getElementById){
+    var subobj=document.getElementById(subobjstr)
+        subobj.style.display=(subobj.style.display!="block")? "block" : "none"
+    var xpos=getposOffset(curobj, "left")+((typeof opt_position!="undefined" && opt_position.indexOf("right")!=-1)? -(subobj.offsetWidth-curobj.offsetWidth) : 0) 
+    var ypos=getposOffset(curobj, "top")+((typeof opt_position!="undefined" && opt_position.indexOf("bottom")!=-1)? curobj.offsetHeight : 0)
+        subobj.style.left=xpos+"px"
+        subobj.style.top=ypos+"px"
+    return false
+    }
+    else
+return true
+}
+
+function overlayclose(subobj){
+    document.getElementById(subobj).style.display="none"
+}
+
+
+
+	function nameChk() {
+
+	
+		var val = "mcode={mcode}&pass=" + encodeURIComponent(document.getElementById("pass").value) + "&id=" + 
+		encodeURIComponent(document.getElementById("idx").value);
+
+//		alert(val);
+
+		sendRequest("/board.chk", val, FromServer_bichk, "POST"); 
+
+	}
+	function FromServer_bichk() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText; //받는값을 str_text로 정의
+				//alert(str_text);
+				if(str_text =="Y"){ 
+				var id = document.getElementById("idx").value;
+				self.location = 'board.read?mcode={mcode}&id='+id+'&num='+id+'';
+				//alert('암호맞음..');	
+				}else {
+				alert('비밀번호가 틀립니다.');
+				document.getElementById("pass").value;
+				overlayclose('subcontent2');
+				}
+			}
+		}
+	}
+
+
+</script>

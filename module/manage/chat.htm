@@ -1,0 +1,66 @@
+<body>
+
+<div style="width:98%;">
+
+
+<table width="100%" class="table01">
+<tr>
+	<td>
+		<script type="text/javascript" src="js/lib.validate.js"></script>
+		<form name="searchForm" onsubmit="return validate(this);" style="margin:0px;">
+		<select name="search_key">
+			<option value="str_organ">기관명</option>
+			<option value="str_domain">도메인</option>
+			<option value="num_oid">OID</option>
+		</select>
+		<input type="text" name="search_value" value="{search_value}">
+		<input type="submit" class="button" value="검색">
+		</form>
+	</td>
+</tr>
+</table>
+
+<table width="100%" class="table01">
+<tr>
+	<th width="30">OID</th>
+	<th width="60">기관명</th>
+	<th>회원수</th>
+	<th width="60">총게시물</th>
+	<th width="70">디스크사용</th>
+</tr>
+<!--{@ LIST}-->
+<tr>
+	<td align='center'>{.num_oid}</td>
+	<td>{? .str_host}<a href="http://{.str_host}" target="_blank">{.str_organ}</a>{:}{.str_organ}{/}</td>
+	<td>
+		<table>
+		<tr height="20" align=center>
+			<!--{@ .tot_mtype}-->
+			<td width=55 style="font-size:11px;">{..mtype}</td>
+			<!--{/}-->
+			<td width=55 style="font-size:11px;">총회원</td>
+		</tr>
+		<tr height="20">
+			<!--{@ .tot_mtype}-->
+			<td align=right style="font-size:11px;">{..mtype_cnt}</td>
+			<!--{/}-->
+			<td align=right style="font-size:11px;">{.tot_user}</td>
+		</tr>
+		</table>	
+	</td>
+	<td align=right>{.tot_board}개</td>
+	<td align=right>{.tot_file}</td>
+</tr>
+<!--{:}-->
+<tr height="100">
+	<td colspan="5" align="center">검색된 자료가 없습니다.</td>
+</tr>
+<!--{/}-->
+</table>
+<table width="100%">
+<tr>
+	<td align="center"><wa:paging total="{total}" listnum="{listnum}" /></td>
+</tr>
+</table>
+</div>
+</body>

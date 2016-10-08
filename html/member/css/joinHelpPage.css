@@ -1,0 +1,125 @@
+@charset "euc-kr";
+
+/* ÀÌ¿ô´åÄÄ(e-wut.com) 
+À¥ ÆÛºí¸®½Ì 
+ÀÛ¾÷ÀÚ:±èÀºÁ¤ */
+
+/*·¹ÀÌ¾Æ¿ô*/
+#wrapper {
+	float:left;
+	width:706px;
+	background:url(../images/popupRB.gif) no-repeat right bottom;
+	}
+/**/
+#joinHelpInfo {
+	float:left;
+	padding-right:20px;
+	background:url(../images/popupRT.gif) no-repeat right top;
+	}
+
+#joinHelpInfo .objTop {
+	width:662px;
+	height:56px;
+	padding-left:24px;
+	padding-top:23px;
+	background:url(../images/popupLT.gif) no-repeat left top;
+	}
+#joinHelpInfo .objContent {
+	float:left;
+	width:629px;
+	padding-left:33px;
+	padding-top:13px;
+	padding-bottom:30px;
+	background:url(../images/popupLB.gif) no-repeat left bottom;
+	}
+	
+#joinHelpInfo .objContent .comment {
+	line-height:150%;
+	}
+		#joinHelpInfo .listContent {
+			float:left;
+			}
+		#joinHelpInfo .listContent li {
+			float:left;
+			width:100%;
+			line-height:180%;
+			margin-bottom:10px;
+			}
+		#joinHelpInfo ul li span {
+			float:left;
+			width:100%;
+			font-weight:bold;
+			color:#016d9a;
+			}
+		#joinHelpInfo ul .num1 {
+			padding-left:20px;
+			background:url(../images/num1Icon.gif) no-repeat left 2px;
+			}
+		#joinHelpInfo ul .num2 {
+			padding-left:20px;
+			background:url(../images/num2Icon.gif) no-repeat left 2px;
+			}
+		#joinHelpInfo ul .num3 {
+			padding-left:20px;
+			background:url(../images/num3Icon.gif) no-repeat left 2px;
+			}
+		#joinHelpInfo ul .num4 {
+			padding-left:20px;
+			background:url(../images/num4Icon.gif) no-repeat left 2px;
+			}
+		
+		#joinHelpInfo ul p {
+			float:left;
+			width:100%;
+			margin:0;
+			margin-left:20px;
+			padding:10px 0;
+			}
+			#joinHelpInfo .step {
+				float:left;
+				width:100%;
+				clear:both;
+				margin-left:30px;
+				}
+			#joinHelpInfo .step li {
+				float:left;
+				width:186px;
+				height:44px;
+				margin-right:16px;
+				margin-bottom:10px;
+				padding-top:21px;
+				text-align:center;
+				font-weight:bold;
+				color:#016d9a;
+				line-height:130%;
+				background:url(../images/joinHelpLiBg.gif) no-repeat left top;
+				}
+				#joinHelpInfo .step .first {
+					height:51px;
+					padding-top:14px;
+					}
+				#joinHelpInfo .step .ex {
+					display:inline;
+					margin-left:101px;
+					}
+				#joinHelpInfo .step .last {
+					background:url(../images/completeBg.gif) no-repeat left top;s
+					}
+
+	#infoBtnArea {
+		padding:20px 0;
+		text-align:center;
+		}
+	#joinHelpInfo p .link {
+		font-weight:bold;
+		color:#006cad;
+		line-height:180%;
+		}
+		#joinHelpInfo p .link a {
+			font-weight:normal;
+		color:#006cad;
+			}
+		#joinHelpInfo p img {
+			display:block;
+			margin-top:20px;
+			}

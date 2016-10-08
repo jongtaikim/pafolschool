@@ -1,0 +1,127 @@
+.boardTopBody {width:100%;text-align:left}
+.boardTopBody #rssBtn{width:50px;padding-top:6px;padding-left:10px;float:left; height:30px}
+.boardTopBody #boardCount{width:50%;padding-top:8px;float:left; height:30px}
+.boardTopBody #boardTool{width:41%;padding-top:8px;float:left;text-align:right; height:30px}
+
+.boardCateBody {width:100%;text-align:left;border-bottom:1px solid #CDCDCD;padding-bottom:5px}
+.boardCateBody .menu{margin-top:10px}
+
+.boardCateBody .item{display:inline; padding:10px; background:url(/image/ic_dot.gif) no-repeat left center; margin:10px}
+
+.fileBody {border:1px solid #B5B5B5 ;width:99%}
+.fileTitle {float:left;width:15%;text-align:center;padding-top:20px;font-weight:bold }
+.fileModule {float:left;width:79%;padding-top:10px;border-left:1px solid #B5B5B5;background-color:#ffffff}
+.fileLine {border-top:1px solid #B5B5B5; width:100%;clear: both;height:0px}
+
+.btnBody{ width:100%;padding-top:10px;clear: both;}
+.btnBody .div50{ width:49%;float:left;}
+
+.fspanLeft{padding-left:10px;padding-top:5px}
+.fspanLeft b{padding-right:10px}
+.fspanLeft type{padding-right:10px}
+.fspanRight{padding-right:10px;text-align:right}
+
+.div50{ width:49%;float:left;}
+.div30{ width:29%;float:left;}
+.div60{ width:68%;float:left;}
+
+
+/* table01 */
+
+TABLE.table01 {	border: 1px solid #C0C0C0;	border-collapse: collapse;}
+
+TABLE.table01 TD,TABLE.table01 TH {	border: 1px solid #C0C0C0;	border-left: 1px solid #C0C0C0;	border-right: 1px solid #C0C0C0;	padding: 5px;	font-weight: normal;		color:#666666;}
+
+TABLE.table01 THEAD TH, TABLE.table01 TH.head {	color: #000000;	line-height: 100%;	text-align: left;	padding: 10px;	font-weight:bold;	background-color: #F6F6F6 ; }
+
+TABLE.table01 TH {background-color: #F6F6F6;	padding: 5px;	font-weight:bold;color:#666666;}
+
+
+
+	.f11 {font-size:12px; color:656565; font-family:돋움; padding-top:3}
+	.f1 {font-size:12px; color:565656; font-family:돋움; padding-top:3}
+
+DIV.boardType1 {width:100%}
+DIV.boardType1 li{list-style-type:none;float:left;font-size:12px;text-align:center}
+
+DIV.boardType1 .objTop{width:100%}
+DIV.boardType1 .objTop .menu{width:100%;padding:5px 0px 25px 0px;border-top:3px solid #EFEFEF;background-color:#F9F9F9;border-bottom:2px solid #EDEDED;}
+
+DIV.boardType1 .item1{width:10%;}
+
+DIV.boardType1 .item3{width:69%;}
+
+DIV.boardType1 .item5{width:12%;}
+DIV.boardType1 .item6{width:8%;}
+
+DIV.boardType1 .item{width:8%;clear: both;}
+
+
+
+DIV.boardType1 .objBody{width:100%}
+DIV.boardType1 .objBody .menu{width:100%;padding:5px 0px 25px 0px;border-bottom:1px solid #EDEDED}
+
+
+DIV.boardType1 .objBottom{width:100%}
+DIV.boardType1 .objBottom .page{width:100%;padding:10px 0px 10px 0px;text-align:center;border-bottom:2px solid #DCDCDC;margin-bottom:25px}
+DIV.boardType1 .objBottom .btn{width:100%;padding:10px 0px 5px 0px;}
+DIV.boardType1 .objBottom .btn .wbtn{float:left;width:30%;}
+DIV.boardType1 .objBottom .btn .sch{float:left;width:69%;}
+
+
+
+DIV.boardType1 .allGong {color:#5887B8;font-weight: bold}
+DIV.boardType1 .allGong2 {color:#009D6D;font-weight: bold}
+DIV.boardType1 .left{text-align:left}
+DIV.boardType1 .noneBoardData{padding-top:50px;width:100%;height:100px;text-align:center}
+
+
+/* 글쓰기 */
+DIV.boardType1 .writeTop{width:100% }
+DIV.boardType1 .writeTop .title{width:100%; padding:10px 0px 10px 0px}
+
+DIV.boardType1 .writeBody{width:100%;}
+DIV.boardType1 .writeBody .titleText{width:100%;}
+
+DIV.boardType1 .writeBody .titleText .text1 {width:15%;border:1px solid #DCDCDC; float:left;text-align:center;  padding: 7px 0px 7px 0px; height:15px;border-right:0px;font-weight:bold }
+
+DIV.boardType1 .writeBody .titleText .text2 {width:34.5%;float:left;border:1px solid #DCDCDC; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType1 .writeBody .titleText .text3 {width:84.5%;float:left;border:1px solid #DCDCDC; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType1 .editBody {margin-top:10px;padding-top:10px}
+
+
+.text50{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #DCDCDC;font-size:12px;}
+.text100{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #DCDCDC;font-size:12px;}
+
+.center{text-align:center}
+.paddingLeft{padding-left:10px}
+
+#category {float:left;padding-right:5px;padding-left:10px;padding-top:1px}
+.noborder{border:0px}
+
+.bgcolor{ background-color:#F3F3F3;}
+.bcolor{ color:#463D35}
+/* 글쓰기 끝*/
+
+
+
+/* 글 읽기 */
+
+DIV.boardType1 .readTop{width:100% }
+
+DIV.boardType1 .readTop .title{padding:10px 0px 10px 10px;font-size:12px}
+DIV.boardType1 .readTop .date{padding:10px 0px 10px 0px ; text-align:right}
+DIV.boardType1 .readTop .date a{color:#A4A4A4}
+DIV.boardType1 .readLine {border-top:1px dashed #B5B5B5; width:95%;clear: both;height:0px;margin-left:1%}
+
+DIV.boardType1 .readBody {padding:20px 10px 50px 10px ;clear: both;}
+
+DIV.boardType1 .readBodyFile2 {border:1px solid #B7B7B7; float:left; width:97%}
+
+DIV.boardType1 .readBodyFile2 .readBodyFileTitle{float:left;border:1px dotted #BEBEBE;margin:3px; 10px; 3px; 3px;width:100px;text-align:center;padding:25px 0 25px 0;}
+
+DIV.boardType1 .readBodyFile2 .readBodyFileItem{float:left;;margin:3px;border-bottom:1px dotted #BEBEBE;}
+
+/*  글 읽기  끝*/

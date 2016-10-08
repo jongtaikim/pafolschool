@@ -1,0 +1,161 @@
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td valign="top">
+		<table width="630" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>
+				<!-- <script type="text/javascript" src="/js/lib.validate.js"></script> -->
+				<script language="javascript">
+
+								function checkNumber(){
+					var objEv = event.srcElement;
+					var numPattern = /([^0-9])/;
+					numPattern = objEv.value.match(numPattern);
+					if(numPattern != null){
+						alert("숫자만 입력해 주세요!");
+						objEv.value="";
+						objEv.focus();
+						return false;}
+				}
+				</script>
+				<table width="630"  border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0" >
+						<tr>
+							<td width="20%" height="30" align="left"><font color="#FF8000">*</font> 학급 담당</td>
+							<td  align="left">
+							<font color="#5986D9"><b>{str_name}</b></font> &nbsp; <font color="#A4A4A4">선생님 입니다</font>
+							
+							</td>
+						</tr>
+						<!-- <tr>
+							<td height="30" align="left"><font color="#FF8000">*</font> 이 름</td>
+							<td align="left"><input name="str_name" value="" hname="이름" type="text" maxbyte="50" style="width:100px; border:1px solid #FFFFFF;" required rea donly>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>-->
+						</tr>
+						<tr><td width="100%" height="5" colspan="2" align="left" class="underdot"></td></tr>
+						
+						<tr>
+							<form method="post" action="member.attendance" onsubmit="return validate1(this);">
+							<td height="30" align="left"><font color="#FF8000">*</font> 학급</td>
+							<td align="left">
+							<font color="#5986D9"><b>{str_fname_full}</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF8000">*</font> 날짜&nbsp;&nbsp;<wa:datepicker name="dt_date" value="{dt_date}{num_date}" />&nbsp;
+							<!-- <input type="button" class="button_log" style="width:50" value="조회" onClick="chul_form1.submit();">  -->
+							<input type="submit" style="width:50;height:28;font-size:11px;" value="조회"><br>
+							<font color="#A4A4A4">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☞입력2006-04-02 형식 </font>
+							<input type="hidden" name="Subtarget" value="search">
+							<input type="hidden" name="Hak_search" value="{str_fname_full}">
+							<input type="hidden" name="Num_oid" value="{num_oid}">	
+							<input type="hidden" name="Num_fcode" value="{num_fcode}">
+							</form>
+							</td>
+						</tr>
+				<form name="joinForm" method="post" enctype="multipart/form-data" action="member.attendance?dt_date={dt_date}" onsubmit="return validate2(this);">
+						<tr>
+							<td align="left">&nbsp;</td>
+						</tr>
+						<tr><td width="100%" height="5" colspan="2" align="left" class="underdot" border="1">							</td></tr>
+						<tr>
+							<td height="30" align="left"><font color="#FF8000">*</font> 출결상황</td>
+							<td align="left">
+							<table class="text" bordercolor="#dbdbdb" height="80" cellspacing="0" cellpadding="0" width="500" border="1">
+								<tbody>
+									<tr bgcolor="#d6e8ff">
+										<td width="150" height="30">
+										<p align="center"><font face="Tahoma"><b>구분</b></font></p>
+										</td>
+										<td width="170" height="30">
+										<p align="center"><font face="Tahoma"><b>남학생</b>♂</font></p>
+										</td>
+										<td width="170" height="30">
+										<p align="center"><font face="Tahoma"><b>여학생</b>♀</font></p>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#D3EFAD" height="20">
+										<p align="center"><font face="Tahoma">재적</font></p>
+										</td>
+										<td bgcolor="#D3EFAD">
+										<p align="center"><input type="text" style="width:20%"  name="mjejuk" value="{num_aa}" onBlur="checkNumber();"></p>
+										</td>
+										<td bgcolor="#D3EFAD">
+										<p align="center"><input type="text" style="width:20%" name="wjejuk" value="{num_ab}" onBlur="checkNumber();"></p>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#fcfee8" height="20">
+										<p align="center"><font face="Tahoma">결석</font></p>
+										</td>
+										<td bgcolor="#fcfee8">
+										<p align="center"><input type="text" style="width:20%" name="mgyulsuk" value="{num_ba}" onBlur="checkNumber();"></p>
+										</td>
+										<td bgcolor="#fcfee8">
+										<p align="center"><input type="text" style="width:20%" name="wgyulsuk" value="{num_bb}" onBlur="checkNumber();"></p>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#D3EFAD" height="20">
+										<p align="center"><font face="Tahoma">조퇴</font></p>
+										</td>
+										<td bgcolor="#D3EFAD">
+										<p align="center"><input type="text" style="width:20%" name="mjotoi" value="{num_ca}" onBlur="checkNumber();"></p>
+										</td>
+										<td bgcolor="#D3EFAD">
+										<p align="center"><input type="text" style="width:20%" name="wjotoi" value="{num_cb}" onBlur="checkNumber();"></p>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#fcfee8" height="20">
+										<p align="center"><font face="Tahoma">전입</font></p>
+										</td>
+										<td bgcolor="#fcfee8">
+										<p align="center"><input type="text" style="width:20%" name="mjunip" value="{num_da}" onBlur="checkNumber();"></p>
+										</td>
+										<td bgcolor="#fcfee8">
+										<p align="center"><input type="text" style="width:20%" name="wjunip" value="{num_db}" onBlur="checkNumber();"></p>
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#D3EFAD" height="20">
+										<p align="center"><font face="Tahoma">전출</font></p>
+										</td>
+										<td bgcolor="#D3EFAD">
+										<p align="center"><input type="text" style="width:20%" name="mjunchul" value="{num_ea}" onBlur="checkNumber();"></p>
+										</td>
+										<td bgcolor="#D3EFAD">
+										<p align="center"><input type="text" style="width:20%" name="wjunchul" value="{num_eb}" onBlur="checkNumber();"></p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						<tr>
+							<td align="left">&nbsp;</td>
+							<td align="left">&nbsp;</td>
+						</tr>
+						<tr><td height="5" colspan="2" align="left" class="underdot"></td></tr>
+						<tr>
+							<td align="left">&nbsp;</td>
+							<td align="left">&nbsp;</td>
+						</tr>
+						<tr align="center">
+							<td height="30" colspan="2"><!-- <input type="submit" style="width:58;height:28;font-size:11px;" value="조회"> --> &nbsp;&nbsp;<input type="submit" style="width:58;height:28;font-size:11px;" value="저장"> &nbsp;<!-- <a href="/?main" target="top"><input type="button" style="width:42;height:28;font-size:11px;" value="취소"></a> -->
+							<input type="button" style="width:58;height:28;font-size:11px;" value=" 취소 " onclick="history.go(-1);"></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+							<input type="hidden" name="Subtarget" value="insert">
+							<input type="hidden" name="dt_date" value="{dt_date}{num_date}">
+							<input type="hidden" name="Str_fname_full" value="{str_fname_full}">	
+							<input type="hidden" name="Num_oid" value="{num_oid}">	
+							<input type="hidden" name="Num_fcode" value="{num_fcode}">
+				</form>
+				</table>
+			</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+</table>

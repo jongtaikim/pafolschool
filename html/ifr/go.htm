@@ -1,0 +1,29 @@
+<SCRIPT LANGUAGE=javascript>
+<!--
+function reSize(){
+    try {
+        var objBody = ibody.document.body;
+        var objFrame = document.all["ibody"];
+        ifrmHeight = objBody.scrollHeight + (objBody.offsetHeight - objBody.clientHeight);
+        //alert(objBody.offsetHeight)
+        if (ifrmHeight > {hh}) {
+            objFrame.style.height = ifrmHeight
+        }else{
+            objFrame.style.height = {hh};
+        }
+           // objFrame.style.width = '100%'
+        } catch(e) {
+        // Do nothing
+    }
+}
+function init_iframe(){
+    reSize();
+    setTimeout('init_iframe()',200)
+}
+
+//-->
+</SCRIPT>
+
+<center>
+<iframe name="ibody" src="{url}" width="620" height="{hh}" frameborder="0" framespacing="0" marginheight="0" marginwidth="0" scrolling="auto" vspace="0" onload="init_iframe();"></iframe> 
+</center>

@@ -1,0 +1,105 @@
+<body>
+<script type="text/javascript">
+// user custom handler
+function onColorChange1(str)
+{
+	document.getElementById("chr_oddcolor").value = str;
+}
+
+function onColorChange2(str)
+{
+	document.getElementById("chr_evencolor").value = str;
+}
+</script>
+
+<div class="tab01">
+	<ul>
+		<li><a href="menu.admin.option?mcode={mcode}">메뉴옵션</a></li>
+		<li><a href="menu.admin.rights?mcode={mcode}">권한설정</a></li>
+		<li class="active"><a href="#">기본설정</a></li>
+		<li><a href="mboard.admin.manage.skin?mcode={mcode}">강좌 게시판 스킨설정</a></li>
+	</ul>
+</div>
+<div style="padding:15px;">
+	<wa:form name="basicinfo" style="margin:0px;" onsubmit="return validate(this);">
+	<input type="hidden" name="mcode" value="{mcode}">
+	<table width="450" class="table01">
+		<tr>
+			<th colspan="2" class="head">기본정보</th>
+		</tr>
+		<tr align="center" >
+			<th align="right">강좌 게시판 이름 </th>
+			<td align="left">
+				<input type="hidden" name="title_type" value="{title_type}">
+				<input name="str_title" hname="게시판 이름" type="text" id="str_title" value="{str_title2}" required>
+				<!-- <button class="button" disabled>고급설정</button> -->
+			</td>
+		</tr>
+		<tr> 
+			<th class="head" colspan="2" >옵션</th> 
+		</tr>
+		
+		<tr align="center" > 
+			<th width="149" align="right">나도 한마디 사용 </th> 
+			<td width="341" align="left">
+				<input name="chr_comment" type="checkbox" id="chr_comment" value="Y" {? chr_comment=='Y'}checked{/} style="border:0px;">
+				(나도 한마디를 사용하기 원하시면 체크하세요)
+			</td>
+		</tr>
+		<tr align="center" > 
+			<th width="149" align="right">파일 업로드 사용</th> 
+			<td width="341" align="left">
+				<input name="chr_upload" type="checkbox" id="chr_upload" value="Y" {? chr_upload=='Y'}checked{/} style="border:0px;">
+			</td>
+		</tr>
+		<tr align="center" > 
+			<th width="149" align="right">페이지당 목록수 </th> 
+			<td width="341" align="left"><input name="num_listnum" hname="페이지당 목록수" type="text" id="num_listnum" value="{num_listnum}" size="2" maxlength="2" option="number" required></td>
+		</tr>
+		<tr align="center" > 
+			<th width="149" align="right">페이징 갯수 </th> 
+			<td width="341" align="left"><input name="num_navnum" hname="페이징 갯수" type="text" id="num_navnum" value="{num_navnum}" size="2" maxlength="2" option="number" required></td>
+		</tr>
+
+	
+		<tr> 
+			<th HEIGHT="30" colspan="2" class="head">색상</th> 
+		</tr> 
+		<tr align="center" > 
+			<th width="149" align="right">홀수열 색상 </th> 
+			<td width="341" align="left"><input name="chr_oddcolor" hname="홀수열 색상" type="text" id="chr_oddcolor" value="{chr_oddcolor}" size="7" maxlength="7" required></td>
+		</tr>
+		<tr align="center" > 
+			<th width="149" align="right">짝수열 색상 </th> 
+			<td width="341" align="left"><input name="chr_evencolor" hname="짝수열 색상" type="text" id="chr_evencolor" value="{chr_evencolor}" size="7" maxlength="7" required></td>
+		</tr>
+
+
+
+		<!--
+		<tr> 
+			<td HEIGHT="30" colspan=3 align="CENTER">스킨에 따라 목록 색상이 적용되지 않을 수도 있습니다. </td> 
+		</tr>
+		<tr> 
+			<td HEIGHT="30" colspan=3 class="section">게시판 설명 문구</td> 
+		</tr> 
+		<tr align="center" > 
+			<td HEIGHT="30" colspan=3 align="CENTER">
+				<textarea name="str_caption" rows="3" style="width:100%;">{str_caption}</textarea>
+			</td>
+		</tr>
+		<tr > 
+			<td HEIGHT="30" colspan=3 style="padding-left:30px;">
+				※ 게시판에 대한 간단한 설명 문구를 입력하여 주십시오.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;(게시판 목록 위에 표시됩니다.)
+			</td> 
+		</tr> -->
+		<tr> 
+			<th HEIGHT="30" colspan="2" class="head" style="text-align:center"><span>
+				<input type="submit" value="저장하기" class="button">
+			</span></th> 
+		</tr>
+	</table>
+	</wa:form>
+</div>
+</body>

@@ -1,0 +1,129 @@
+<script type="text/javascript">
+function confirmFill() {
+	form = document.forms['fillForm'];
+	els = form.elements['keys[]'];
+	if(!els) return false;
+	if(!els.length) els = new Array(els);
+	cnt = els.length;
+	flag = false;
+	for (i = 0; i < cnt; i++) {
+		if(els[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('충전하실 신청항목을 선택하여 주십시오.');
+		return false;
+	}
+	if(!confirm('충전하시겠습니까?')) return false;
+	form.submit();
+}
+
+function selectAll(flag) {
+	form = document.forms['fillForm'];
+	els = form.elements['keys[]'];
+	if(!els) return;
+	if(!els.length) els = new Array(els);
+	cnt = els.length;
+	for (i = 0; i < cnt; i++) {
+		els[i].checked = flag;
+	}
+}
+</script>
+
+<h2>SMS 서비스관리</h2>
+<div class="tab01">
+	<ul>
+		<li class="active"><a href="bs.admin.sms.mng_point">신청내역</a></li>
+		<li><a href="bs.admin.sms.mng_point_log">충전내역</a></li>
+	</ul>
+</div>
+
+<table width="725" class="table01">
+<form name="searchForm" method="get">
+<tr>
+	<td>
+		<div style="float:left;">
+		기간
+		<wa:datepicker name="search_sdate" value="{search_sdate}" /> ~
+		<wa:datepicker name="search_edate" value="{search_edate}" />
+		<input type="submit" class="button" value="검색">
+		<input type="button" class="button" value="전체" onclick="location.href='bs.admin.sms.mng_point';">
+		</div>
+		<div style="float:right;">
+		<select name="search_oid" onchange="this.form.submit();">
+		<option value="">- 지점별 보기 -</option>
+		<!--{@ ORGAN_LIST}-->
+		<option value="{.num_oid}">{.str_title}</option>
+		<!--{/}-->
+		</select>
+		</div>
+	</td>
+</tr>
+</form>
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<script type="text/javascript">
+document.forms['searchForm'].values = {'search_oid':'{search_oid}'};
+</script>
+</table>
+
+<table width="725" class="table01">
+<form name="fillForm" method="post">
+<tr>
+	<th width="5%"><input type="checkbox" name="select_all" onclick="selectAll(this.checked);"></th>
+	<th width="10%">신청일</th>
+	<th width="20%">지점명</th>
+	<th width="15%">충전포인트</th>
+	<th width="15%">결제금액</th>
+	<th width="20%">입금자</th>
+	<th width="15%">처리여부</th>
+</tr>
+<!--{@ LIST}-->
+<tr align="center">
+	<td>
+		{? .num_payment}
+			-
+		{:}
+			<input type="checkbox" name="keys[]" value="{.num_oid}|{.num_serial}">
+		{/}
+	</td>
+	<td>{.dt_date}</td>
+	<td>{.str_title}</td>
+	<td align="right">{= number_format(.num_point)}</td>
+	<td align="right">{= number_format(.num_price)}</td>
+	<td>{.str_payer}</td>
+	<td>
+		{? .num_payment}
+			충전완료
+		{:}
+			대기
+		{/}
+	</td>
+</tr>
+<!--{:}-->
+<tr height="100">
+	<td colspan="7" align="center">검색 된 신청내역이 없습니다.</td>
+</tr>
+<!--{/}-->
+</table>
+
+<table width="725" style="margin-left:15px;">
+<tr>
+	<td width="20%"><input type="button" class="button" value="포인트 충전" onclick="confirmFill();"></td>
+	<td width="60%" align="center">
+		<wa:paging total="{total}" listnum="{listnum}" />
+	</td>
+	<td width="20%"></td>
+</tr>
+</table>
+</form>
+
+<table width="725" class="table01">
+<tr>
+	<td>
+		※ SMS충전을 클릭하시면 SMS 포인트가 충전됩니다. 입금확인 후 충전해주세요.<br>
+		<font color="#ff0000">※ 충전버튼 클릭 후에는 충전내역을 변경, 취소할 수 없습니다.</font>
+	</td>
+</tr>
+</table>

@@ -1,0 +1,98 @@
+<body>
+
+<div style="width:690px;">
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="45" background="http://main.mtcomm.com/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="http://main.mtcomm.com/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 180><b>
+					B-MART 현황</b></td>
+				<td>&nbsp; ※ SCHOOL 은 학교, HOMEPAGE 는 일반홈, SHOP는 쇼핑몰, FSP는 플루스피크 </td>
+				</tr>
+			</table>
+
+
+<TABLE width = 100%>
+<TR>
+	<TD><div class="tab01" >
+				<ul>
+					<li{? code=='SCHOOL'} class="active"{/}><a href="/manage.organ?code=SCHOOL">SCHOOL</a></li>
+					<li{? code=='HOME'} class="active"{/}><a href="/manage.organ?code=HOME">HOMEPAGE</a></li>
+					<li{? code=='SHOP'} class="active"{/}><a href="/manage.organ?code=SHOP">SHOP</a></li>
+					<li{? code=='FSP'} class="active"{/}><a href="/manage.organ?code=FSP">FSP</a></li>
+					<li {? code=='BOOK'} class="active"{/}><a href="/manage.organ?code=BOOK">B-MART</a></li>
+				</ul>
+			</div></TD>
+</TR>
+</TABLE>
+
+
+<table width="100%" class="table01">
+<tr>
+	<td>
+		<script type="text/javascript" src="js/lib.validate.js"></script>
+		<form name="searchForm" onsubmit="return validate(this);" style="margin:0px;">
+		<select name="search_key">
+			<option value="str_title">기관명</option>
+			<option value="str_domain">도메인</option>
+			<option value="num_oid">OID</option>
+		</select>
+		<input type="text" name="search_value" value="{search_value}">
+		<input type="submit" class="button" value="검색">
+		</form>
+	</td>
+	<td align="right"><input type="button" class="button" value="생성" onclick="window.open('core.makehost','_blank');"></td>
+</tr>
+</table>
+
+<table width="100%" class="table01">
+<tr>
+	<th>OID</th>
+	<th>구분</th>
+	<th>기관명</th>
+	<th>도메인</th>
+	<th>타입</th>
+	<th>비밀번호</th>
+	<th>주소</th>
+	<th>담당자</th>
+	<th>휴대폰</th>
+	
+</tr>
+<!--{@ LIST}-->
+<tr>
+	<td align='center'>{.num_oid}</td>
+	<td width='8%' align='center'>
+	{? .num_status =='1' }
+		<strong> 본사</strong>
+		{: .num_status =='2'  }
+		<strong> 직판</strong>
+		{: .num_status  =='3'  }
+		<strong> 소매</strong>
+		{:}
+		<strong> 기타</strong>
+		{/}
+	</td>
+	<td width='15%'><strong>{.str_title}</strong></td>
+	<td>
+		{? .str_domain}<a href="http://{.str_domain}" target="_blank">{.str_domain}</a><br>{/}
+		{? .str_dir}<a href="http://{.str_dir}" target="_blank">{.str_dir}</a>{/}
+	</td>
+	<td><font color=#CC00CC><b>{.str_theme}</b></font></td>
+	<td><font color=red>{.str_password}</font></td>
+	<td>{.str_addr}</td>
+	<td width='8%'>{.str_master_name}</td>
+	<td width='15%'>{.str_master_mobile}</td>
+</tr>
+<!--{:}-->
+<tr height="100">
+	<td colspan="9" align="center">검색된 자료가 없습니다.</td>
+</tr>
+<!--{/}-->
+</table>
+<table width="100%">
+<tr>
+	<td align="center"><wa:paging total="{total}" listnum="{listnum}" /></td>
+</tr>
+</table>
+</div>
+</body>

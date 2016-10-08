@@ -1,0 +1,46 @@
+<FORM METHOD=POST name="editorForm">
+	
+   <div class="tab01">
+	<ul>
+		<li {? !mode} class="active"{/}><a href="/menu.admin.top_edit?mcode={mcode}"  >상단HTML</a></li>
+		<li {? mode ==2} class="active"{/}><a href="/menu.admin.top_edit?mode=2&mcode={mcode}" >세로메뉴 네비게이션 TOP</a></li>
+		<li {? mode ==3} class="active"{/}><a href="/menu.admin.top_edit?mode=3&mcode={mcode}" >본문상단(타이틀바아래)</a></li>
+		<li {? mode ==4} class="active"{/}><a href="/menu.admin.top_edit?mode=4&mcode={mcode}" >본문하단</a></li>
+       
+    
+     </ul>
+	</div>
+
+<br>
+<br>
+<table cellpadding="0" cellspacing="0" border="0" width="100%"  >
+<tr>
+<td>
+   <wa:upload part="script" sect="menu_top" code="{mcode}"></wa:upload>
+{? !mode }
+
+<wa:upload part="editor_new2" sect="menu_top" code="{mcode}" name="str_text" width="100%" height="385" form="editorForm">{str_text}</wa:upload>
+
+{/}
+{? mode==2 }
+<wa:upload part="editor_new2" sect="menu_top" code="{mcode}" name="str_text2" width="100%" height="385" form="editorForm">{str_text2}</wa:upload>
+{/}
+
+{? mode==3 }
+<wa:upload part="editor_new2" sect="menu_top" code="{mcode}" name="str_text3" width="100%" height="385" form="editorForm">{str_text3}</wa:upload>
+{/}
+
+
+{? mode==4 }
+<wa:upload part="editor_new2" sect="menu_top" code="{mcode}" name="str_text4" width="100%" height="385" form="editorForm">{str_text4}</wa:upload>
+{/}
+
+</td>
+
+
+</tr>
+<tr>
+  <td align = center><INPUT TYPE="submit" class="button" value = "저장하기"></td>
+</tr>
+</table>
+</FORM>        

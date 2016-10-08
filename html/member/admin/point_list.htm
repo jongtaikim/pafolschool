@@ -1,0 +1,272 @@
+
+
+<script language="Javascript">
+function resetGo(){
+
+ var result = confirm("회원들의 포인트를 전부 초기화 시키시겠습니까?");
+ if (result){
+document.resetFrom.submit();
+ }
+}
+</script>
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td>			
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr >
+					<td width="20"><img src="http://203.109.24.240/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01">포인트 점수 셋팅</td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" align="center">
+
+		<FORM METHOD=POST >
+		<INPUT TYPE="hidden" NAME="mode" value = "setup">
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="c4d4e7">
+			<col width="15%"></col><col width="%"></col>
+				<tr height="37" bgcolor="#FFFFFF">
+					<td class="table02_title02" width="68">로그인</td>
+					<td width="87" class="table01_sel01"><INPUT TYPE="text" NAME="num_login_point" style = "width : 60px" maxlength="4" value="{num_login_point}" class="fom01"> 점
+					</td>
+
+					<td class="table02_title02" width="68">글쓰기</td>
+					<td width="87" class="table01_sel01"><INPUT TYPE="text" NAME="num_board_point" style = "width : 60px" maxlength="4" value="{num_board_point}" class="fom01"> 점
+					</td>
+
+					<td class="table02_title02" width="68">답글</td>
+					<td width="87" class="table01_sel01"><INPUT TYPE="text" NAME="num_repaly_point" style = "width : 60px" maxlength="4" value="{num_repaly_point}" class="fom01"> 점
+					</td>
+
+					<td class="table02_title02" width="68">댓글</td>
+					<td width="87" class="table01_sel01"><INPUT TYPE="text" NAME="num_commint_point" style = "width : 60px" maxlength="4" value="{num_commint_point}" class="fom01"> 점
+					</td>
+				</tr>
+
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_btm_line01"></td>
+				</tr>
+				<tr><td height="14"></td></tr>
+			</table>
+
+			<table cellpadding="0" cellspacing="0" border="0" align="center">
+				<tr>
+					<td><input type="image" src="/html/admin/images/btn_08.gif" value="설정 저장하기" style="cursor:hand"></form></TD>
+					<td width="5"></td>
+					<td>
+						<FORM METHOD=POST name = "resetFrom"><INPUT TYPE="hidden" NAME="mode" value = "reset" id="setup2" ><input type="image" src="/html/admin/images/btn_09.gif" value="회원포인트 초기화" onclick="resetGo();" style="cursor:hand"></FORM>
+					</td>
+				</tr>
+			</table>
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr><td height="22"></td></tr>
+				<tr>
+					<td height="1" background="/html/admin/images/dot_line_02.gif"></td>
+				</tr>
+				<tr><td height="28"></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr >
+					<td width="20"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01">회원 포인트 현황</td>
+					<td align="right">
+
+						<FORM METHOD=get >
+
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr valign="top">
+								<td style="font-size:11px; padding:6px 6px 0px 0">목록수</font></td>
+								<td><input type="text" name="listnum"  style ="width: 40px;;" value = "{listnum}" class="fom03"></td>
+								<td style="padding:1px 0px 0px 3px"><input type="image" src="/html/admin/images/btn_refresh.gif"  value="새로고침">
+								<INPUT TYPE="hidden" NAME="f" value = "{f}"></td>
+							</tr>
+						</table>
+
+						</FORM>
+
+					</td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td>
+						<form name="searchForm3" method="get" style="display:inline;margin:0px;">
+						<INPUT TYPE="hidden" NAME="listnum" value = "{listnum}">
+						<INPUT TYPE="hidden" NAME="f" value = "{f}">
+						<select name="search_mtype" onchange="this.form.submit();">
+						<option value="">회원유형
+						<!--{@ MTYPES}-->
+						<option value="{.key_}"{? search_mtype==.key_} selected{/}>{.value_}</option>
+						<!--{/}-->
+						</select>
+						</form>
+
+						
+
+					</td>
+
+					<td align="right">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<form name="searchForm" method="get" style="margin:0px;">
+								<INPUT TYPE="hidden" NAME="listnum" value = "{listnum}">
+								<INPUT TYPE="hidden" NAME="f" value = "{f}">
+								<td>
+									<select name="search_key">
+									<option value="str_name"{? search_key=='str_name'} selected{/}>이름</option>
+									<option value="str_id"{? search_key=='str_id'} selected{/}>ID</option>
+									<option value="str_email"{? search_key=='str_email'} selected{/}>Email</option>
+									</select>
+								</td>
+								<td width="3"></td>
+								<td><input type="text" name="search_value" value="{search_value}" class="fom01"></td>
+								<td width="3"></td>
+								<td style="padding-top:1"><input TYPE="image" src="/html/admin/images/btn_bx4_search.gif" value="검색" ></td>
+								<td width="2"></td>
+								</form>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="8"></td></tr>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="#d5dfe7">
+				<tr bgcolor="f3f6f8" height="29">
+					
+					<td class="table01_title" style="">아이디</td>					
+					<td class="table01_title">이름</td>					
+					<td class="table01_title">등급</td>					
+					<td class="table01_title">로그인수</td>					
+					<td class="table01_title">게시글수</td>				
+					<td class="table01_title">답글수</td>					
+					<td class="table01_title">댓글수</td>		
+					<td class="table01_title">합계</td>
+				</tr>
+	
+				
+				{@ LIST}
+
+
+				<tr bgcolor="#FFFFFF" height="28">
+					
+					<td class="font11_03" align="center"><a href = "/member.admin.view?str_id={.str_id}">{.str_id}</a></td>
+					
+					<td class="font11_03" align="center">{.str_name}</td>
+					
+					<td class="font11_03" align="center">	
+					
+					{? .chr_mtype =="n"}가입대기{/}
+					{? .chr_mtype =="s"}준회원{/}
+					{? .chr_mtype =="t"}정회원{/}
+					{? .chr_mtype =="g"}우수회원{/}
+					{? .chr_mtype =="m"}중간관리자{/}
+					{? .chr_mtype =="a"}최고관리자{/}
+					<INPUT TYPE="hidden" NAME="str_id[]" value="{.str_id}">
+
+					</td>
+					
+					<td class="font11_03" align="center"><INPUT TYPE="text" NAME="num_login_point[]" value="{.num_login_point + 0}" style="width:60px" maxlength="5" class="fom03"></td>
+					
+					<td class="font11_03" align="center"><INPUT TYPE="text" NAME="num_board_point[]" value="{.num_board_point + 0}" style="width:60px" maxlength="5" class="fom03"></td>
+					
+					<td class="font11_03" align="center"><INPUT TYPE="text" NAME="num_commint_point[]" value="{.num_commint_point + 0}" style="width:60px" maxlength="5" class="fom03"></td>
+					
+					<td class="font11_03" align="center"><INPUT TYPE="text" NAME="num_repaly_point[]" value="{.num_repaly_point + 0}" style="width:60px" maxlength="5" class="fom03"></td>
+					
+					<td align="center">
+					<INPUT TYPE="text" NAME="num_point_total[]" value="{.num_point_total + 0}" style="width:60px" maxlength="5" class="fom03">
+					</td>
+				</tr>
+				{/}
+			</table>
+			
+		</td>
+	</tr>
+	<tr><td height="13"></td></tr>
+	<tr>
+		<td align="center">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr> 
+					<td width="20"><img src="/html/admin/images/btn_excel.gif" onclick="location.href='/member.admin.list_excel?{query_string}'"  style="cursor:hand"></td>
+					<td align="center">
+						<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/image/btn_prevpage.gif" nexticon="/image/btn_nextpage.gif" firsticon="/image/btn_firstpage.gif" lasticon="/image/btn_lastpage.gif" />
+					</td>
+					<td width="20"></td>
+				</tr>
+				<tr>
+					<td height="10"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			* 회원활동 포인트는 홈페이지 활성화를 위한 인센티브 방안으로 활용할 수 있습니다.<br>
+							* 본 기능은 홈페이지에서 활동한 회원들의 행동이 포인트로 표현됩니다.
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+
+
+

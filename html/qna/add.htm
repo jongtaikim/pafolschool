@@ -1,0 +1,123 @@
+<link rel="stylesheet" type="text/css" href="/css/doc_style.css">
+
+<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo">
+	
+	<input type="hidden" name="serial" value="{serial}" required="false">
+	<input type="hidden" name="mcode" value="{mcode}" required="false">
+	<input type="hidden" name="cate" value="{cate}" required="false">
+	<input type="hidden" name="mode" value="{mode}" required="false">
+	<input type="hidden" name="group" value="{group}" required="false">
+	
+	
+	
+
+	<p class="buTitle17" style="margin-bottom:10px">Q&A {? group }답변{:}입력{/}</p>
+
+	<table width="100%" cellspacing="0" border="1" summary="Q&A {? group }답변{:}입력{/}" class="tbl_type">
+	<caption>Q&A {? group }답변{:}입력{/}</caption>
+		<colgroup>
+			<col width="140"><col><col width="120"><col>
+		</colgroup>
+	<tbody>
+		
+		
+		<tr>
+			<th scope="row">제목</th>
+			<td colspan="3">
+				<input type="text" name="str_title" value="{str_title}" class="" hname="제목" style="width:400px" required>
+			</td>
+		</tr>
+		{? !group }
+		<!--tr style="display:none">
+			<th scope="row">공개여부</th>
+			<td colspan="3">
+				<input type="radio" name="str_fl" value="0" id="str_fl1" {? str_fl =="0" || !str_fl} checked{/}><label for="str_fl1">공개</label>
+				<input type="radio" name="str_fl" value="1" id="str_fl2" {? str_fl =="1"} checked{/}><label for="str_fl2">비공개</label>
+			</td>
+		</tr-->
+		<input type="hidden" name="str_fl" value="1"/>
+		<tr>
+			<th scope="row">질의분야</th>
+			<td>
+				<input type="text" name="str_cate" value="{str_cate}" class="" hname="질의분야"  required> 
+			</td>
+			<th scope="row">등록자</th>
+			<td>
+				<input type="text" name="str_name" value="{str_name}" class="" hname="등록자"  required> 
+			</td>
+		</tr>
+
+		<tr>
+			
+			<th scope="row">연락처</th>
+			<td colspan="3">
+				<input type="text" name="str_phone" value="{str_phone}" class="" hname="연락처"  required> 
+			</td>
+		</tr>
+
+		<!--tr>
+			<th scope="row">이메일</th>
+			<td colspan="3">
+				<input type="text" name="str_email" value="{str_email}" class="" hname="이메일" style="width:300px" option="email" required><br>
+				답변은 본 게시판에서만 확인 가능합니다. 이메일로 보내드리지 않습니다.
+			</td>
+		</tr-->
+		{:}
+
+
+		<tr style="display:none">
+			<th scope="row">공개여부</th>
+			<td colspan="3">
+				<input type="radio" name="str_fl" value="0" id="str_fl1" {? str_fl =="0" || !str_fl} checked{/}><label for="str_fl1">공개</label>
+				<input type="radio" name="str_fl" value="1" id="str_fl2" {? str_fl =="1"} checked{/}><label for="str_fl2">비공개</label>
+			</td>
+		</tr>
+		<tr>
+			
+			<th scope="row">등록자</th>
+			<td>
+				<input type="text" name="str_name" value="{str_name}" class="" hname="등록자"   required> 
+			</td>
+			<th scope="row">연락처</th>
+			<td>
+				<input type="text" name="str_phone" value="{str_phone}" class="" hname="연락처"  required> 
+			</td>
+		</tr>
+
+		<!--tr>
+			<th scope="row">이메일</th>
+			<td colspan="3">
+				<input type="text" name="str_email" value="{str_email}" class="" hname="이메일" style="width:300px" required>
+			</td>
+		</tr-->
+
+
+		{/}
+		<tr>
+			<th scope="row">내용</th>
+			<td colspan="3">
+				<wa:upload part="editor_SE3" sect="qna" code="{mcode}" name="str_text" width="100%" height="250px">{str_text}</wa:upload>
+			</td>
+		</tr>
+
+		
+
+		<tr>
+			<th scope="row">비밀번호</th>
+			<td colspan="3">
+				<input type="password" name="str_passwd"  id="str_passwd" value="" class=""  hname="비밀번호"  required>
+
+			</td>
+		</tr>
+
+		
+
+	</tbody>
+	</table>
+
+	<div style="text-align:center;margin-top:20px">
+		<span class="btn_pack medium icon" id="submit_ids"><span class="check"></span><input type="button" value="저장하기" onclick="_onSubmit(this);$('submit_ids').style.display='none'"></span>
+		<span class="btn_pack medium icon"><span class="refresh"></span><a href="javascript:history.go(-1)">취소</a></span>
+	</div>
+
+</form>

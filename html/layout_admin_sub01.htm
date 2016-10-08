@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> [<?=_OID?>] <?=_ONAME?> - 손쉬운 홈페이지 제작 울트라웹 관리자 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+<script language='javascript' src='/js/flash.js'></script>
+</head>
+</head>
+
+<body topmargin="0"  bgcolor="#FFFFFF" style="background-image:url(/html/admin/images/topbar_bg.gif); background-repeat:repeat-x;">
+<script language="Javascript">
+SaveCookie("STATICMENU_v", "false", 1);
+</script>
+{#EASYSCHOOL}
+<? 
+include 'admin_menu.php';
+
+$pn_1 = substr(_PN,1,1)-1;
+$pn_2 = substr(_PN,3,1)-1;
+
+?>
+
+		
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" align="center">
+	<tr>
+		<td height="78" align="center">{#TOP}</td>
+	</tr>
+	<tr>
+		<td align="center" valign="top">
+			<table cellpadding="0" cellspacing="0" border="0" width="980" height="100%">
+				<tr>
+					<td width="179" valign="top">{#LEFT_1}</td>
+					<td width="16"></td>
+					<td valign="top" width="645" align="center">{#CONTENT}</td>
+					<td width="9"></td>
+					 <td width="128">
+						{? _SESSION.ADMIN}
+						<div id="STATICMENU2" style="position:absolute; padding-top:73;width:128px">
+							<div style = "width:100%;height:39px;"><img src="/html/admin/images/quick_top.gif"></div>
+							<div style = "width:100%;height:88px; background-image:url(/html/admin/images/quick_bg_01.gif); background-repeat:repeat-x;">
+							<table cellpadding="0" cellspacing="0" border="0" align="center">
+								<tr><td height="10"></td></tr>
+								<tr>
+									<td><img src="/html/admin/images/quick_menu01.gif"></td>
+								</tr>
+								<tr><td height="3"></td></tr>
+								<tr>
+									<td><img src="/html/admin/images/quick_menu02.gif"></td>
+								</tr>
+								<tr><td height="3"></td></tr>
+								<tr>
+									<td><img src="/html/admin/images/quick_menu03.gif"></td>
+								</tr>
+							</table>
+							</div>	
+							<div style = "width:100%; position:;" id = "admin_menu_index">
+								<div style = "width:100%;" height="39"><img src="/html/admin/images/quick_mid.gif"></div>	
+
+								<div  id="admin_index;" style=" background-image:url(/html/admin/images/quick_bg.gif); padding:0px 18px 0px 18px;">
+								<table cellpadding="0" cellspacing="0" border="0">
+									<tr><td height="6"></td></tr>
+									<tr>
+										<td>{@ MENU_INDEX}	
+											<a href="{.str_url}" style="font-size:11px; font-family:돋움; color:#3e3e3e">{.str_title}</a><a href="/menu.plus?mode=del&serial={.num_serial}"><img src='/image/xf_close_icon.gif'></a><br>
+											
+											{/}</td>
+									</tr>
+								</table>
+								</div>
+								<div style = "width:100%;height:54px; background-image:url(/html/admin/images/quick_btm_bg.gif); background-repeat:repeat-x;text-align:center">
+								<form method=post action="/menu.plus">
+								<input type="hidden" name="act3" value="{act3}" >
+								<input type="hidden" name="pn" value="<?=_PN?>">		
+								<input type="hidden" name="mode" value="plus">
+								<input type = "image" src='/html/admin/images/btn_plus_quick.gif' style="cursor: hand" align=absmiddle width="103">
+								</form>
+								<table cellpadding="0" cellspacing="0" border="0">
+									<tr><td height="8"></td></tr>
+									<tr>
+										<td><img src="/html/admin/images/btn_top_quick.gif"></td>
+									</tr>
+								</table>
+								</div>
+							</div>
+							<div style="display:none" >
+							<input id="ANIMATE2" type="checkbox" onclick="ToggleANIMATE2();" style = "border:0px">
+							이동켜기
+							<script language="javascript">InitializeSTATICMENU2();</script>
+							</div>
+
+						</div>
+						{/}
+					  </td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
+

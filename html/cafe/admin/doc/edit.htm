@@ -1,0 +1,61 @@
+<div id="sub_content_area">
+
+	<link rel="stylesheet" href="/html/board/default/style.css" type="text/css" />
+	<link rel="StyleSheet" href="/css/cb2.css" type="text/css" />
+
+	<script type="text/javascript" src="/js/ieemu.js"></script>
+	<script type="text/javascript" src="/js/cb2.js"></script>
+	<script type="text/javascript" src="/js/lib.validate.js"></script>
+	<script type="text/javascript" src="/js/lib.attachfile.js"></script>
+	<script type="text/javascript">
+		// 폼검사 및 업로드가 완료되었는지 확인하는 플래그
+		function prepare(form)
+		{
+			if(confirm('저장하시겠습니까?') && validate(form))
+			{
+				form.elements['content'].value = oFCKeditor.GetValue();
+				return true;
+			}
+			return false;
+		}
+	</script>
+	
+	<div id="admin_sub_content">
+		<h3 id="admin_sub_title">시간표 입력</h3>
+		<div id="help_top_area">
+			<ul id="help_top_content">
+				<li>- <strong>문서 샘플</strong>을 선택한 후 <strong>시간표 유형</strong>중에 하나를 선택시 편리한 입력이 가능합니다. </li>
+			</ul>
+		</div>
+		<form name="writeform" method="post" enctype="multipart/form-data" onsubmit="return prepare(this);">
+			<input type="hidden" name="oid" value="{{oid}}">
+			<input type="hidden" name="cafe_id" value="{{cafe_id}}">
+			<input type="hidden" name="mcode" value="{{mcode}}">
+			<input type="hidden" name="phpsessid" value="{{phpsessid}}">
+			<input type="hidden" name="timestamp" value="{{timestamp}}">
+			<input type="hidden" name="id" value="{{id}}">
+			<input type="hidden" name="upfiles" value="">
+			<input type="hidden" name="str_thumb" value="{{str_thumb}}">
+			<input type="hidden" name="FILE_HOST" value="{{FILE_HOST}}">
+			<input type="hidden" name="origin_num_file" value="{{num_file}}">
+			<input type="hidden" name="buf" value="">
+			<input type="hidden" name="act" value="cafe.admin.doc.edit">
+			<table width='100%' border="0" cellspacing="10" cellpadding="0">
+				<tr>
+					<td>
+						<textarea name="content" class="sroll" id="content" style="width: 550px; height: 100%;" hname="내용" maxbyte="120000">{{content}}</textarea>
+						<script type="text/javascript" src="/util/FCKeditor_2.4.2/fckeditor.js"></script>
+						<script type="text/javascript">
+							var oFCKeditor = new FCKeditor('content', '100%', 400, 'Timetable');
+							oFCKeditor.ReplaceTextarea() ;
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><input type="submit" value="저장">&nbsp;&nbsp;<input type="button" value="취소" onClick="location.href='/cafe.php?act=cafe.admin.doc.edit&cafe_id={{cafe_id}}';"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+</div>

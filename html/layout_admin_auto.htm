@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> {? title_bar }{title_bar}{:}{__TITLE} {/}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<script language='javascript' src='/js/flash.js'></script>
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight) + 50;
+         var w = '725'; 
+
+	self.resizeTo(w, h); 
+
+
+} 
+//-->
+</script>
+</head>
+<body onload="resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',10);" >
+<TABLE align = center width = "100%" cellpadding="0" cellspacing="0" border="0">
+{? title_text}
+<tr>
+  <td>
+  
+  <table align="center" width=100% border=0 cellspacing=0 cellpadding=0 >
+ <tr>
+	<td width="4" style="padding-left:4"><img src="/theme_lib/titlebar/a_1/ico_bar.gif"></td>
+	<td style = "border-left:5px;padding:5 5 5 3px"><img src = "/f.php?text={title_text}&font=yg330&size2=7.8&bg=FFFFFF&color=000000" align="absmiddle" style="font-szie:11"></td>
+	<td align = right style = "border-left:0px;"><font style="font-size:11; font-family:돋움">{menu_location5}</font> </td>
+ </tr>
+
+ <tr>
+   <td colspan = 3 height = 2></td>
+ </tr>
+
+ <tr>
+   <td colspan = 3 bgcolor = c8c8c8 height = 1></td>
+ </tr>
+ <tr>
+   <td colspan = 3 bgcolor = #F5F5F5 height = 2></td>
+ </tr>
+
+ <tr>
+   <td colspan = 3  height = 20></td>
+ </tr>
+</table>
+
+  </td>
+</tr>
+{/}
+<TR>
+	<TD>{#CONTENT}</TD>
+</TR>
+</TABLE>
+</body>
+</html>

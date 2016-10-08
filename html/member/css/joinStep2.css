@@ -1,0 +1,218 @@
+@charset "euc-kr";
+
+/* ÀÌ¿ô´åÄÄ(e-wut.com) 
+À¥ ÆÛºí¸®½Ì 
+ÀÛ¾÷ÀÚ:±èµ¿¿ì, ±èÀºÁ¤ */
+
+body {
+	background:url(../images/step1BodyBg.gif) repeat-x left top;
+	}
+#wrapper {
+	width:760px;
+	margin:0 auto;
+	}
+h1 {
+	float:left;
+	position:static;
+	visibility:visible;
+	line-height:130%;
+	font-size:14px;
+	width:auto;
+	height:20px;
+	padding-top:3px;
+	padding-left:25px;
+	color:#0178aa;
+	background:url(../images/titleIcon2.gif) no-repeat left top;
+	
+	}
+#joinStep2 h2 {
+			visibility:visible;
+			line-height:130%;
+			font-size:14px;
+			width:auto;
+			height:29px;
+			padding-left:20px;
+			position:static;
+			background:url(../images/titleIcon.gif) no-repeat left top;
+			}
+ .gnb {
+	height:24px;
+	padding-top:31px;
+	margin-bottom:23px;
+	}
+.gnb ul {
+		overflow:hidden;
+		float:right;
+		}
+.gnb ul li {
+			float:left;
+			margin-right:-1px;
+			padding:0 10px;
+			font-size:0.92em;
+			background:url(../images/bar.gif) no-repeat right 1px;
+			}
+#joinStep2 .topArea {
+	margin-bottom:30px;
+	}
+#joinStep2 .contentArea {
+	padding:0 14px;
+	}
+#joinStep2 .contentArea .comment li {
+	padding-left:10px;
+		line-height:180%;
+		background:url(../images/joinInfoIcon.gif) no-repeat left 8px;
+	}
+
+#joinStep2 #checkOverlap {
+		margin-top:16px;
+		background:url(../images/boxBtmBg.gif) no-repeat left bottom;
+		}
+
+		#checkOverlap fieldset {
+			margin-top:5px;
+			padding:0 36px 15px;
+			background:url(../images/boxTopBg.gif) no-repeat left top;
+			}
+		#checkOverlap .row {
+			float:left;
+			width:100%;
+			height:32px;
+			padding-top:14px;
+			background:url(../images/line.gif) repeat-x left top;
+			}
+		#checkOverlap #nameInput, #checkOverlap #sexInput {
+			background:none;
+			}
+		#birthInput1 {
+			width:50px;
+			}
+		#birthInput2, #birthInput3{
+			width:30px;
+			}
+		#checkOverlap .left {
+			float:left;
+			width:351px;
+			}
+		#checkOverlap .right {
+			float:left;
+			width:256px;
+			}
+			#checkOverlap .title {
+				float:left;
+				width:87px;
+				margin-right:5px;
+				padding-top:4px;
+				font-weight:bold;
+				text-align:right;
+				color:#454545;
+				}
+				#checkOverlap .title span {
+					padding-left:10px;
+					background:url(../images/bu1.gif) no-repeat left 3px;
+					}
+				#checkOverlap #nameInput input, #birthInput1, #birthInput2, #birthInput3 {
+					border:#cccbca 1px solid;
+					background:url(../images/inputBg.gif) repeat-x left top;
+					}
+		#joinStep2 .contentArea .caution {
+	margin:20px 0;
+		}
+	#joinStep2 .contentArea .caution li {
+	padding-left:10px;
+	font-size:11px;
+	line-height:150%;
+	background:url(../images/bu2.gif) no-repeat left 3px;
+	}
+
+		#checkOverlapResult .resultBtnArea, #checkOverlap .btnArea {
+		margin-top:15px;
+			text-align:center;
+		}
+	
+
+		#btnArea input, #resultBtnArea input {
+			display:inline;
+			}
+		#btnArea img, #resultBtnArea img {
+			display:inline;
+			}
+	
+	#joinStep2 #checkOverlapResult {
+		background:url(../images/boxBtmBg.gif) no-repeat left bottom;
+		}
+
+	#resultInputArea {
+		padding-bottom:10px;
+		text-align:center;
+		background:url(../images/boxTopBg.gif) no-repeat left top;
+		}
+		#resultInputArea .input {
+			margin-bottom:5px;
+			}
+		#resultInputArea .title {
+			margin:0;
+			padding:15px 0;
+			}
+			#resultInputArea .title span {
+				padding-left:10px;
+				font-weight:bold;
+				background:url(../images/join/dot.gif) no-repeat left 3px;
+				}
+		#resultArea label {
+			font-weight:bold;
+			color:#0080c0;
+			}
+	#checkOverlapResult #resultInputBtm {
+		height:12px;
+		background:url(../images/join/boxBtmBg.gif) no-repeat left top;
+		}
+	
+
+	#ipinInfo li {
+		padding-left:10px;
+		line-height:180%;
+		background:url(../images/joinInfoIcon.gif) no-repeat left 8px;
+		}
+	#infoBtnArea {
+		padding:30px 0;
+		text-align:center;
+		background:url(../images/dotLine.gif) repeat-x left bottom;
+		}
+	#ipinInfo p {
+		padding:0 20px;
+		}
+	#ipinInfo p .link {
+		font-weight:bold;
+		color:#006cad;
+		line-height:150%;
+		}
+		#ipinInfo p .link a {
+			font-weight:normal;
+		color:#006cad;
+			}
+		#ipinInfo p img {
+			display:block;
+			margin-top:20px;
+			}
+	#joinStep2 .footerArea {
+	float:left;
+	width:100%;
+	padding-top:25px;
+	margin-top:30px;
+	background:url(../images/introFooterAreaBg.gif) no-repeat left top;
+	}
+	#joinStep2 .footerMenu {
+		display:inline;
+	overflow:hidden;
+		float:left;
+		width:500px;
+		margin-left:250px;
+		}
+	#joinStep2 .footerMenu li {
+		display:inline;
+		float:left;
+		margin-left:-1px;
+		padding:0 8px;
+		font-size:0.92em;
+		background:url(../images/bar.gif) no-repeat left 1px;
+		}

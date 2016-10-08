@@ -1,0 +1,330 @@
+<center>
+<style>
+	.f11 {font-size:12px; color:656565; font-family:돋움; padding-top:3}
+	.f1 {font-size:12px; color:565656; font-family:돋움; padding-top:3}
+</style>
+
+{#BOARD_TOP}
+
+
+
+<form method=post  name="listForm"  action="/board.copy"  target="d_main">
+<INPUT TYPE="hidden" NAME="all" id="all" >
+<INPUT TYPE="hidden" NAME="mcode" id="mcode" value="{mcode}" >
+
+<!-- 목록상단 부분 Start -->
+<table cellpadding="0" cellspacing="0" border="0" width="{? str_width}{str_width}{?str_width <= 100}%{/}{:}100%{/}">
+<col width="6%" align="center"></col>{? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}<col width="5%" align="center"></col>{/}<col width="%" align="center"></col><col width="12%" align="center"><col width="12%" align="center"></col><col width="8%" align="center"></col><col width="7%" align="center"></col><col width="1%" align="center"></col>
+	<tr>
+		<td {? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}colspan="8"{:}colspan="7"{/} height="3" bgcolor="e5e5e5"></td>
+	</tr>
+	<tr bgcolor="f9f9f9" height="28">
+		<td class="f1">번호</td>
+		{? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}
+		<td><input type="checkbox" name="" value="" onclick ="checkall();"></td>
+		{/}
+		<td class="f1">제목</td>
+		<td class="f1">작성자</td>
+		<td class="f1">작성일</td>
+		<td class="f1">조회</td>
+		<td class="f1">추천</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td {? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}colspan="8"{:}colspan="7"{/} height="1" bgcolor="efefef"></td>
+	</tr>
+	<tr>
+		<td {? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}colspan="8"{:}colspan="7"{/} height="1" bgcolor="ededed"></td>
+	</tr>
+
+<!-- 전체공지사항  Start -->
+	<!--{@ LIST_gong}-->
+	{? .num_notice == 2}
+	<tr height="32">
+		
+		<td class="f11">{?id==.num_serial }<img src='/image/arrow.gif' border='0' alt='' />{:}
+		{? .num_notice}<img src = "./image/notice_icon.gif">{:}{.num}{/}
+		{/}</td>
+
+		{? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}
+		<td></td>
+		{/}
+
+		<td class="f11" style="padding-left:10" align="left">
+			{? .num_notice == 2}
+			<font color = #FF0033><b><img src="./image/notice2.gif"  align="absmiddle"> {.indent}{? .num_depth}<img src="./image/icon_reply.gif" width="27" height="13">{/}<a href="/board.read?mcode={.num_mcode}&id={.num_serial}&num={.num_serial}">{.hak}<b><font color="5887b8" onmouseover = "this.style.color='#d1629b'" onmouseout = "this.style.color='5887b8'">{.title}</a>  {? .cmt }<font color="#990000">[{.cmt}]</font>{/}</b>
+			&nbsp;{? .is_recent} <img src="/image/icon/new2.gif" >{/}
+
+			{/}
+			
+		</td>
+		<td class="f11">{? .str_nick}{.str_nick}{:}{.str_name}{/}</td>
+		<td class="f11">{.date}</td>
+		<td class="f11">{.hit}</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td height="1" bgcolor="ededed" {? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}colspan="8"{:}colspan="7"{/}></td>
+	</tr>
+	{/}
+	<!--{/}-->
+<!-- 전체공지사항  End -->
+
+<!-- 공지사항  Start -->
+	<!--{@ LIST_g}-->
+	{? .num_notice == 1}
+	<tr height="32">
+		
+		<td class="f11">{?id==.num_serial }<img src='/image/arrow.gif' border='0' alt=''>{:}
+		{? .num_notice}<img src = "./image/notice_icon.gif">{:}{.num}{/}
+		{/}</td>
+		
+		{? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}
+		<td></td>
+		{/}
+		
+		<td class="f11" style="padding-left:10" align="left">
+			{? .num_notice == 1}
+			<font color = #2e939c><img src="./image/notice1.gif"  align="absmiddle"> {.indent}{? .num_depth}<img src="./image/icon_reply.gif" width="27" height="13">{/}<a href="{.readlink}" {?id==.num_serial }style="font-weight :bold"{/}>{.hak}<b><font color="009d6d" onmouseover = "this.style.color='#d1629b'" onmouseout = "this.style.color='009d6d'">{.title}</b></a>  {? .cmt }<font color="#990000">[{.cmt}]</font>{/}</b>
+			&nbsp;{? .is_recent} <img src="/image/icon/new2.gif" >{/}
+			{:}
+			{.indent}{? .num_depth}<img src="./image/icon_reply.gif" width="27" height="13">{/}
+
+			{? .num_input_pass}
+			<img src="/html/secret.gif" alt='비밀 글'>
+			{/}
+			{? ! env.admin}
+
+			{? .num_input_pass}
+			&nbsp;
+			<a href="#" onClick="return overlay(this, 'subcontent2', 'lefttbottom', '{.num_serial}')">
+
+			{:}<a href="{.readlink}" {?id==.num_serial }style="font-weight :bold"{/}>
+			{/}
+			{:}
+			<a href="{.readlink}" {?id==.num_serial }style="font-weight :bold"{/}>
+			{/}	
+
+			{.hak} {.title}</a> {? .cmt }<font color="#990000">[{.cmt}]</font>{/} &nbsp;{? .is_recent} <img src="/image/icon/new2.gif" >{/}
+			{/}
+		</td>
+		<td class="f11">{? .str_nick}{.str_nick}{:}{.str_name}{/}</td>
+		<td class="f11">{.date}</td>
+		<td class="f11">{.hit}</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td height="1" bgcolor="ededed" {? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}colspan="8"{:}colspan="7"{/}></td>
+	</tr>
+	{/}
+	<!--{/}-->
+
+<!-- 공지사항  End -->
+
+<!-- 일반목록 Start -->
+	<!--{@ LIST}-->
+	{? !.num_notice }
+	<tr  bgcolor="#ffffff" height="32">
+		
+		<td class="f11">
+		{?id==.num_serial }<img src='/image/arrow.gif' border='0' alt=''>{:}
+		{?id==.num_serial }<img src='/image/arrow.gif' border='0' alt=''>{:}
+		{? .num_notice}<img src = "./image/notice_icon.gif">{:}{.num}{/}
+		{/}
+		{/}
+		</td>
+		
+		{? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}
+		<td><input type="checkbox" name="ids[]" value="{.num_serial}"></td>
+		{/}
+
+		<td class="f11" style="padding-left:10" align="left">
+			{? .num_notice == 1}
+			<font color = #006600><b>[공지] {.indent}{? .num_depth}<img src="./image/icon_reply.gif" width="27" height="13">{/}<a href="{.readlink}" {?id==.num_serial }style="font-weight :bold"{/}>{.hak}<font color = #006600><b> {.title}</a>  {? .cmt }<font color="#990000">[{.cmt}]</font>{/}</b>
+			&nbsp;{? .is_recent} <img src="/image/icon/new2.gif" >{/}
+			{:}
+			{.indent}{? .num_depth}<img src="./image/icon_reply.gif" width="27" height="13">{/}
+
+			{? .num_input_pass}
+			<img src="/html/secret.gif" alt='비밀 글'>
+			{/}
+			{? ! env.admin}
+
+			{? .num_input_pass}
+			<a href="#" onClick="return overlay(this, 'subcontent2', 'lefttbottom', '{.num_serial}')">
+
+			{:}<a href="{.readlink}" {?id==.num_serial }style="font-weight :bold"{/}>
+			{/}
+			{:}
+			<a href="{.readlink}" {?id==.num_serial }style="font-weight :bold"{/}>
+			{/}	
+
+			{.hak} 
+			<font color="565656" style="font-size:11px" onmouseover = "this.style.color='#3c8f8f'" onmouseout = "this.style.color='565656'">[{.str_category}] {.title}</font></a> {? .cmt }[{.cmt}]</font>{/} &nbsp;{? .is_recent} <img src="/image/icon/new2.gif" >{/}
+			{/}
+		</td>
+		
+		<td class="f11">{? .str_nick}{.str_nick}{:}{.str_name}{/}</td>					
+		<td class="f11">{.date}</td>					
+		<td class="f11">{.hit}</td>					
+		<td>{.num_rank}</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td height="1" bgcolor="ededed" {? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}colspan="8"{:}colspan="7"{/}></td>
+	</tr>
+	<tr>
+		<td height="1"></td>
+	</tr>
+	{/}
+	<!--{:}-->
+	<tr>
+		<td align="center" height="180" colspan="10">등록된 게시물이 없습니다.</td>
+	</tr>
+	<!--{/}-->
+<!-- 공지사항  End -->
+</table>
+<!-- 목록상단 부분 End -->
+
+
+
+
+
+<!-- 목록하단 부분 Start -->
+<table border="0" cellspacing="0" cellpadding="0" align="center" width="{? str_width}{str_width}{?str_width <= 100}%{/}{:}100%{/}">	
+	<tr>
+		<td height="1" bgcolor="dcdcdc"></td>
+	</tr>
+	<tr>
+		<td height="1" bgcolor="#efefef"></td>
+	</tr>
+	<tr>
+		<td height="35" align="center">
+			<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="./image/btn_prevpage.gif" nexticon="./image/btn_nextpage.gif" firsticon="./image/btn_firstpage.gif" lasticon="./image/btn_lastpage.gif" />
+		</td>
+	</tr>
+	<tr>
+		<td height="30">
+			<table width="100%">
+			<tr>
+				<td width="43%" align="left">
+				
+					
+				</td>
+				<td width="57%" align="right">
+					<table align="right" border="0" cellspacing="0" cellpadding="0">
+					</form>
+					<form method="get" name="searchform" action="/board.list">
+					<input type="hidden" name="mcode" value="{mcode}">
+					<tr>
+						<td>
+							<select name="key" id="key" class="f11">
+								<option value="str_title">제목</option>
+								<option value="str_name">글쓴이</option>
+							</select>
+						</td>
+						<td width="140" align="center"><input name="search" type="text" class="login" id="search" style="width:90%; height:20" value="{search}" style="border:1 solid dcdcdc"></td>
+						<td width="41" align="right"><input type="image" src="./image/btn_search.gif"></td>
+					</tr>
+					</form>													
+					</table>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<!-- 목록하단 부분 End -->
+
+
+
+
+
+<div id="subcontent2" style="position:absolute; display:none; border: 1px solid black; background-color: lightyellow; width: 150px; height: 80px; padding: 8px">
+<input type="hidden" name="idx" id="idx">
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td colspan = 2 >비밀글입니다...<br>비밀번호를 입력해주세요</td>
+	</tr>
+	<tr>
+		<td><input type="password" name="pass" id = "pass"></td>
+		<td><input type="button" value = "확인" onclick = "nameChk();"></td>
+	</tr>
+</table>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript">
+function getposOffset(overlay, offsettype){
+    var totaloffset=(offsettype=="left")? overlay.offsetLeft : overlay.offsetTop;
+    var parentEl=overlay.offsetParent;
+    while (parentEl!=null){
+        totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+        parentEl=parentEl.offsetParent;
+    }
+    return totaloffset;
+}
+
+function overlay(curobj, subobjstr, opt_position, idx){
+  
+	document.getElementById("idx").value = idx ;
+
+	if (document.getElementById){
+    var subobj=document.getElementById(subobjstr)
+        subobj.style.display=(subobj.style.display!="block")? "block" : "none"
+    var xpos=getposOffset(curobj, "left")+((typeof opt_position!="undefined" && opt_position.indexOf("right")!=-1)? -(subobj.offsetWidth-curobj.offsetWidth) : 0) 
+    var ypos=getposOffset(curobj, "top")+((typeof opt_position!="undefined" && opt_position.indexOf("bottom")!=-1)? curobj.offsetHeight : 0)
+        subobj.style.left=xpos+"px"
+        subobj.style.top=ypos+"px"
+    return false
+    }
+    else
+return true
+}
+
+function overlayclose(subobj){
+    document.getElementById(subobj).style.display="none"
+}
+
+
+
+	function nameChk() {
+
+	
+		var val = "mcode={mcode}&pass=" + encodeURIComponent(document.getElementById("pass").value) + "&id=" + 
+		encodeURIComponent(document.getElementById("idx").value);
+
+//		alert(val);
+
+		sendRequest("/board.chk", val, FromServer_bichk, "POST"); 
+
+	}
+	function FromServer_bichk() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText; //받는값을 str_text로 정의
+				//alert(str_text);
+				if(str_text =="Y"){ 
+				var id = document.getElementById("idx").value;
+				self.location = 'board.read?mcode={mcode}&id='+id+'&num='+id+'';
+				//alert('암호맞음..');	
+				}else {
+				alert('비밀번호가 틀립니다.');
+				document.getElementById("pass").value;
+				overlayclose('subcontent2');
+				}
+			}
+		}
+	}
+
+
+</script>
+<center>

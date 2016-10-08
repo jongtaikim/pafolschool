@@ -1,0 +1,1222 @@
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/js/scriptaculous.js"></script>
+
+<script type="text/javascript">
+function reset(ii){
+SaveCookie("cafe_css[{pcode}]["+ii+"]", "", 1);
+}
+
+function resetValue(value){
+SaveCookie("cafe_value[{pcode}]["+value+"]", "", 1);
+}
+
+
+</script>
+
+
+<!--- 스타일 ----------->
+<style type='text/css'>
+    #popup_box{
+   position:absolute;
+
+   top:120px;left:10px;
+   z-index:9;
+    }
+</style>
+
+<script>
+//2008-06-26 종태 디자인툴 사용하다 이동시 체크
+//<[CDATA[
+var config12 = {'className':'jsTooltip-opacity'};
+var config = {'className':'jsTooltip'};
+//]]>
+
+
+
+function OpenTool(id, title,   x, y)
+{
+for(ii=0; ii<20; ii++) {
+	if($('tool['+ii+']')) $('tool['+ii+']').style.display="none";
+}
+
+//alert('mmenu'+id);
+	
+	$(id).style.display = ''
+   
+    $('nname').innerHTML = '<b>'+title+'<b>'
+    $('m_body').style.display = ''
+
+	$('m_body').style.left = 100;
+	$('m_body').style.top = 0;
+
+}
+
+function bgSelect_file(val){
+
+$('backgroundForm').submit();
+
+
+}
+
+function CreDivBackground(url){
+
+var str =  '<div style = "float:left;width:50px;height:50px;background-image:url('+url+');margin:1px;cursor:hand;;border: 1px solid #D0D0D0" onclick="document.body.style.backgroundImage=\'url('+url+')\'" ></div>'
+
+	$('bgselecred_up_td').innerHTML = $('bgselecred_up_td').innerHTML + str; // tbody에 자식노드를 하나 추가한다.
+	cssCook('0','body{background-image:url('+url+')}');
+
+}
+
+function CreDivBackgroundTop(url){
+
+var str =  '<div style = "float:left;width:50px;height:50px;background-image:url('+url+');margin:1px;cursor:hand;;border: 1px solid #D0D0D0" onclick="$(\'top_menu\').style.backgroundImage=\'url('+url+')\'" ></div>'
+
+	$('bgselecred_up_td2').innerHTML = $('bgselecred_up_td2').innerHTML + str; // tbody에 자식노드를 하나 추가한다.
+	cssCook('3','#top_menu{background-image:url('+url+')}');
+
+}
+</script>
+
+
+<!--- HTML 2008-04-16 종태 리모컨 몸통----------->
+<body   onfocus='$("selectColor").style.display="none";'  >
+
+<div  id='popup_box' onSelectstart="return false" ononscrollstart="return false" >
+  <div id="STATICMENU" style="width:99px;height:348; padding:0px; border:0px solid #D7D7D7;  display:none; text-align:center;position:absolute;z-index:9;top:10px" >
+
+
+
+{?_SESSION.CAFE_ADMIN}
+    <TABLE cellpadding="0" cellspacing="0" border="0" style = "background-image:url(/html/rm1.gif);background-repeat:no-repeat;filter:progid:DXImageTransform.Microsoft.Shadow(color=#999999,direction=135,strength=3);z-index:999999">
+<TR>
+	<TD valign = top style = "paddig-left:20px" width = 110 >
+		<div class='tit'  style="cursor:move;"><br><br></div>
+		<TABLE cellpadding="0" cellspacing="0" border="0"    width = "100">
+		<TD style="padding-top:5px;padding-left:0px;" >
+			<table cellpadding="0" cellspacing="0" border="0"  style="cursor:default; font-size:11px;" width = "100%" >
+			<tr><td height="5"></td></tr>
+
+			<tr>
+				<td  style = "padding-left:15px; padding-top:2px;" align="left">
+					<a href = "javascript:OpenTool('tool[0]', '배경설정')"
+					style="color:#e4ff93; font-size:11px;" onmouseout="this.style.color='#e4ff93'" onmouseover ="this.style.color='#00FF00'">
+					배경설정
+				</td>
+			</tr>
+
+			<tr>
+				<td  style = "padding-left:15px; padding-top:2px;" align="left">
+					<a href = "javascript:OpenTool('tool[1]', '스킨라인')"
+					style="color:#e4ff93; font-size:11px;" onmouseout="this.style.color='#e4ff93'" onmouseover ="this.style.color='#00FF00'">
+					스킨라인
+				</td>
+			</tr>
+
+
+			<tr>
+				<td  style = "padding-left:15px; padding-top:2px;" background = "/html/rm2.gif" align="left">
+					<a href = "javascript:OpenTool('tool[2]', '카페상단')"
+					style="color:#33FFFF; font-size:11px;" onmouseover="this.style.color='#e4ff93'" onmouseout ="this.style.color='#33FFFF'">
+					카페상단
+				</td>
+			</tr>
+
+			<tr>
+				<td  style = "padding-left:15px; padding-top:2px;" background = "/html/rm2.gif" align="left">
+					<a href = "javascript:OpenTool('tool[3]', '카페표식설정')"
+					style="color:#33FFFF; font-size:11px;" onmouseover="this.style.color='#e4ff93'" onmouseout ="this.style.color='#33FFFF'">
+					카페표식설정
+				</td>
+			</tr>
+
+			
+			</table>
+		</TD>
+	</TR>
+	<tr>
+		<td style = "background-image:url(/html/rm3.gif);background-repeat:no-repeat;padding-left:3px" height= 85>
+			<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+			<tr><td colspan = 2 height =10></td></tr>
+			<tr>
+				<td style = "padding:5px">
+
+					<table align="left" width=100% border=0 cellspacing=0 cellpadding=0 >
+					<tr>
+						<td style = "padding-left:2px"><a href="/party.admin.frame?pcode={pcode}&link=2"><img src= "/html/rm_btn1.gif"></a></td>
+						<td  style = "padding-right:2px"><a href="javascript: layoutSetup()" onfocus="this.blur()"><img src= "/html/rm_btn2.gif"></td>
+					</tr>
+ 				   </table>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td height = 20 style = "padding-top:5" >
+					
+
+					<img src = "/html/rm_but2.gif" onclick="$('savePopup').style.display=''" style="cursor: hand">
+
+				</td>
+			</tr>
+			
+			
+			<tr>
+			  <td>
+			  
+				<script language="Javascript">
+				function saveToolView (el){
+				if(el.checked == true) {
+				document.getElementById('skin_save_tool_body').style.display = ""
+				$('savePopup').style.top="15px";	
+				$('savePopup').style.left="70px";	
+				}else{
+				document.getElementById('skin_save_tool_body').style.display = "none"
+				$('savePopup').style.top="190px";	
+				$('savePopup').style.left="0";	
+				}
+
+				}
+				</script>
+
+				<!-- Layer Popup -->
+
+				<div id="savePopup" class="layer_popup" style="top:190px; left:0px; width:255px;z-index:999999;display:none;position:absolute;">
+				<div id = "loding" style = "top:180px;position:absolute;display:none;z-index:999; left:20px;background-color:#ffffff;padding:30px;border:3px solid #38A356" >
+				<center><img src = "/f.php?text=디자인툴 적용중..&font=yg330&size2=10&bg=FFFFFF&color=3EAE24"></center>
+				</div>
+
+					<div class="layer_content">
+						<!-- Layer Content -->
+						<p class="layer_body" style="text-align:left"><strong>현재 디자인을 적용하시겠습니까?</strong></p>
+						<input type="checkbox" name="skinsave" value="Y" onclick="saveToolView(this)" align="absmiddle"> 스킨함에 저장하기
+						
+						
+						<div style = "margin-left:25px;padding:5px 0 20px 0;font-size:11px;display:none" id = "skin_save_tool_body">
+						
+						<div id="saveTool" style = "text-align : left;background-color:#F6F6F6;width:200px;;padding:4px 4 4px 4;">
+						
+						<div style = "padding:3px 0 5px 0px;font-size:11px">스킨명<br><input type="text" name="str_skin_name" id="str_skin_name"  class="saveTool" style = "width:100%"></div>
+						
+						<div style = "padding:3px 0 5px 0px;font-size:11px">스킨이미지<br>
+						<img src = "/html/tmp_skin.gif" width = 191 height = 161 style ="border: 1px solid #C1C1C1;" id="tmp_skin"><br>
+						
+						
+						<input type="file" name="upfile1" style="width:100%;" class="button" onchange ="$('tmp_skin').src=this.value"></div>
+
+				
+						
+						</div>
+						</div>
+						
+
+
+
+						<div class="layer_footer">
+							 <div style = "">
+
+							 <img src="/image/btn_apply_1.gif" alt="적용" onclick  = "$('loding').style.display='';$('layoutForm').submit();" style="cursor:hand;"> <a href="#" onClick="document.getElementById('savePopup').style.display='none'; return false;" style="cursor:hand;"><img src="/image/btn_apply_cancel.gif" alt="적용안함" ></a>
+
+							 </div>
+						</div>
+						<a href="#" class="close_layer" onClick="document.getElementById('savePopup').style.display='none'; return false;"><img src="/image/btn_close_1.gif" alt="레이어닫기" ></a>
+						<!-- //Layer Content -->
+					</div>
+					<span class="shadow shadow1"></span><span class="shadow shadow2"></span><span class="shadow shadow3"></span>
+
+				</div>
+				<!-- //Layer Popup -->
+
+			  
+			  </td>
+			</tr>
+				
+
+			<tr>
+				<td valign = bottom style="padding:0 0 2 3"  valign = bottom >
+
+
+
+					<input id="ANIMATE" type="checkbox" onclick="ToggleAnimate();" style = "border:0px" checked><img src = "/html/chk.gif">
+					<script language="javascript">InitializeStaticMenu();</script>
+
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan = 2 height =45></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</TABLE>
+</TD>
+</TR>
+</TABLE>
+</form>
+
+<!-- 리모컨 페이지 바디 2008-04-16 종태 -->
+<div  style = "top:0px;position:absolute;display:none;; left:197px;;filter:progid:DXImageTransform.Microsoft.Shadow(color=#999999,direction=135,strength=3);" id = "m_body" >
+
+	<TABLE cellpadding="0" cellspacing="0" border="0">
+	<TR>
+		<TD valign = top style = "padding: 3px 0 0 3px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+			<tr valign="top" height="28">
+				<td width="4" ><img src="/images/sj1_t_left.gif"></td>
+				<td background="/images/sj1_t_bg.gif" style="padding:10px 5px 0  5px ">
+					<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+					<tr>
+						<td onmouseDown = 'move_onoff(1,event)'  style="cursor:move;"  align="left"><b><div id = "nname" style = "float:left;width:100%;text-align:left;padding-left:5px"></div></td>
+						<td onmouseDown = 'move_onoff(1,event)' align = right  style="cursor:move;"><img src = "/image/xf_close_icon.gif" onclick="$('m_body').style.display='none'" style="cursor:hand;"></td>
+					</tr>
+					</table>
+				</td>
+				<td width="4" valign="top"><img src="/images/sj1_t_right.gif"></td>
+			</tr>
+			<tr valign="top" height="100%">
+				<td width="4" background="/images/sj1_c_left.gif"></td>
+				<td bgcolor="FFFFFF" valign = top height=80 style="padding:5px" >
+
+
+
+
+
+
+
+
+			<!-- 각종처리용 히든 프레임 -->
+			<iframe name="soketIfr" src="" width="100%" height="150" frameborder=0 style="display:none"></iframe>
+
+
+
+
+				<!--배경설정-->
+				<div style = "width:232px;;display:none" id="tool[0]" >
+					<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+					 <tr>
+					   <td colspan = 2>   
+					   
+				   <div class="tab02" >
+					<ul>
+						<li class="active"><a href="#none" onclick ="javascript:$('bgselecred').style.display='';$('bgselecred_up').style.display='none'">배경선택</a></li>
+						<li ><a href="#none" onclick ="javascript:$('bgselecred').style.display='none';$('bgselecred_up').style.display=''">업로드이미지</a></li>
+					   </ul>
+					</div>
+					
+					</td>
+									 </tr>
+					 <tr id="bgselecred" style="padding-top:5px">
+					   <td  colspan = 2 style="padding-bottom:10px">
+					  <div style = "float:left;width:50px;height:50px;background-image:none;margin:1px;cursor:hand;border: 1px solid #D0D0D0" onclick="document.body.style.backgroundImage='none';
+					   cssCook('0','body{background-image:none}');
+					   " id="bgnone">none</div>
+					   {@ bgselect}
+					   <div style = "float:left;width:50px;height:50px;background-image:url(/background/{.name});margin:1px;cursor:hand;border: 1px solid #D0D0D0" onclick="document.body.style.backgroundImage='url(/background/{.name})';
+					   cssCook('0','body{background-image:url(/background/{.name})}');
+					   " id="{.name}"></div>
+					   {/}
+					   
+					   </td>
+					 </tr>
+					 
+					  <tr id="bgselecred_up" style="display:none;padding-top:5px">
+					   <td  colspan = 2  >
+					   <div style = "width:100%;" id="bgselecred_up_td">
+					   {@ bgselect_up}
+					   <div style = "float:left;width:50px;height:50px;background-image:url(/background/<?=_OID?>/p<?=_PCODE?>/{.name});margin:1px;cursor:hand;;border: 1px solid #D0D0D0" onclick="document.body.style.backgroundImage='url(/background/<?=_OID?>/p<?=_PCODE?>/{.name})';  cssCook('0','body{background-image:url(/background/<?=_OID?>/p<?=_PCODE?>/{.name})}');" id="{.name}"><a href= "/party.del?no=y&name={.name}" style="font-size:9px;color:red" target = "soketIfr" onclick="$('{.name}').style.display='none'">Del</a></div>
+					   {/}
+					   </div>
+						<div style = "float:left;width:100%;text-align:center;padding-top:10px;padding-bottom:5px" id="">
+						
+						<form method=post action="party.file_lib" target="soketIfr" id="backgroundForm" enctype='multipart/form-data'>
+						<input type="file" name="upfile1" id="upfile1" style="width:200;" class=button 
+						onchange ="this.form.submit();document.body.style.backgroundImage='url('+this.value+')';">
+						</form>
+						
+
+						</div>
+					   </td>
+					 </tr>
+
+					 <tr>
+					  <td>
+					  
+					  
+					  
+					   색상 : <INPUT TYPE="text" NAME="body_Color" id="body_Color"   onkeyup="
+					   this.style.backgroundColor=this.value;
+					   document.body.style.backgroundColor=this.value;
+					  cssCook('1','body{background-color:'+this.value+'}');"
+
+					    onfocus="
+						document.body.style.backgroundColor=this.value;
+						this.style.backgroundColor=this.value;
+					   cssCook('1','body{background-color:'+this.value+'}');"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0"  ><input type="button" value="..." onclick="openColor('body_Color',this);" class="button" style = "height:18px;width:15px"> 
+					  </td>
+					   <td>
+					   <select id="body_Repeat"  class="selectBox" onchange = "document.body.style.backgroundRepeat=this.value;
+					   cssCook('2','body{background-repeat:'+this.value+'}');">
+						<option value="repeat" >바둑판</option>
+						<option value="repeat-x" >가로반복</option>
+						<option value="repeat-y" >세로반복</option>
+						<option value="no-repeat" >반복안함</option>
+					  </select>   
+					  
+					   </td>
+					 </tr>
+					</table>
+
+					<script>
+					if($('body_Repeat')) $('body_Repeat').value=document.body.currentStyle.backgroundRepeat;
+					if($('body_Color')) $('body_Color').value=document.body.currentStyle.backgroundColor;
+					
+					</script>
+					<!-- 원래대로 -->
+					<div style = "width:212px;padding-top:10px;text-align:right"  >
+						<img src='/html/party/image/btn_return.gif' onclick = "reset('0');reset('1');reset('2');
+						
+						document.body.style.backgroundRepeat='repeat';
+						document.body.style.backgroundColor='';
+						document.body.style.backgroundImage='none';
+						$('body_Repeat').value='repeat';
+						$('body_Color').value='';
+
+						" style="cursor: hand">
+					</div>
+					<!-- 원래대로 -->
+				</div>
+				<!--배경설정-->
+
+
+
+
+				<!--특별메뉴설정-->
+				<div style = "width:298px;height:100;display:none" id="tool[1]" >
+					<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="table01">
+					 <tr>
+					  <td >
+
+						<style type="text/css" title="">
+						.toolBd{border:1px solid #CACACA;margin:5px;text-align:left;padding:3px}
+						.toolBdTitle{border-bottom:1px solid #CACACA;text-align:left;padding:3px;margin-bottom:5px;color:#0099FF}
+						</style>
+						
+						<div  class="toolBd">
+						<div  class="toolBdTitle">상단타이틀</div>
+						<script language="Javascript">
+						function chanegeBgchangeLinetop_menu(val,obj){
+							if(val =="#") {
+							obj.style.backgroundColor='';
+							$('top_menu').style.backgroundColor='';
+							cssCook('4','#top_menu{background-color:}');	
+							}else{
+							obj.style.backgroundColor=val;
+							$('top_menu').style.backgroundColor=val;
+							cssCook('4','#top_menu{background-color:'+val+'}');
+							}
+						}
+
+						function changeLinetop_menu(val,obj){
+							if(val =="#") {
+								cssValue('str_toptitle_line',"");
+								obj.style.backgroundColor="";
+								$('top_menu').style.border='0px';
+							}else{
+								cssValue('str_toptitle_line',val);
+								obj.style.backgroundColor=val;
+								$('top_menu').style.border='1px solid '+val;
+							}
+						}
+
+
+
+						</script>
+
+						&nbsp;&nbsp;라인색 : <INPUT TYPE="text" NAME="str_toptitle_line" id="str_toptitle_line" value="{str_toptitle_line}" 
+					  
+					    onkeyup="changeLinetop_menu(this.value,this)"
+						onfocus="changeLinetop_menu(this.value,this)"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0;background-color:{str_toptitle_line}"  ><input type="button" value="..." onclick="openColor('str_toptitle_line',this);" class="button" style = "height:18px;width:15px">&nbsp;&nbsp;
+
+					   	배경색 : <INPUT TYPE="text" NAME="body_Color2"  id="body_Color2"    onkeyup="chanegeBgchangeLinetop_menu(this.value,this)"
+						onfocus="chanegeBgchangeLinetop_menu(this.value,this)"
+					   
+					   style = "width:45px;;border:1px solid #CFCCD0"  ><input type="button" value="..." onclick="openColor('body_Color2',this);" class="button" style = "height:18px;width:15px"> 
+					</div>
+
+
+						<div  class="toolBd">
+						<div  class="toolBdTitle">특별메뉴</div>
+	
+						&nbsp;&nbsp;라인색 : <INPUT TYPE="text" NAME="topmenu_lineColor" id="topmenu_lineColor" value="{topmenu_lineColor}" 
+					  
+					    onkeyup="cssValue('topmenu_lineColor',this.value);roundDivRf('cafe_main_menu',this.value,$('topmenu_bgColor').value);this.style.backgroundColor=this.value"
+						
+						onfocus="cssValue('topmenu_lineColor',this.value);;roundDivRf('cafe_main_menu',this.value,$('topmenu_bgColor').value);this.style.backgroundColor=this.value"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0;background-color:{topmenu_lineColor}"  ><input type="button" value="..." onclick="openColor('topmenu_lineColor',this);" class="button" style = "height:18px;width:15px">
+
+					   	&nbsp;배경색 : <INPUT TYPE="text" NAME="topmenu_bgColor" id="topmenu_bgColor"   value="{topmenu_bgColor}"
+					  
+					    onkeyup="cssValue('topmenu_bgColor',this.value);;roundDivRf('cafe_main_menu',$('topmenu_lineColor').value,this.value);this.style.backgroundColor=this.value"
+						onfocus="cssValue('topmenu_bgColor',this.value);;roundDivRf('cafe_main_menu',$('topmenu_lineColor').value,this.value);this.style.backgroundColor=this.value"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0;background-color:{topmenu_bgColor}"  ><input type="button" value="..." onclick="openColor('topmenu_bgColor',this);" class="button" style = "height:18px;width:15px"> <br>
+					
+
+					 
+					   
+
+					   
+					   	
+						&nbsp;&nbsp;폰트색 : <INPUT TYPE="text" NAME="topmenu_fontColor" id="topmenu_fontColor" value="{topmenu_fontColor}" 
+					  
+					    onkeyup="cssValue('topmenu_fontColor',this.value);"
+						onfocus="cssValue('topmenu_fontColor',this.value);
+						$('href1[0]').style.color= this.value;
+						$('href1[1]').style.color= this.value;
+						$('href1[2]').style.color= this.value;
+						$('href1[3]').style.color= this.value;
+						"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0;background-color:{topmenu_fontColor}"  ><input type="button" value="..." onclick="openColor('topmenu_fontColor',this);" class="button" style = "height:18px;width:15px"><br>
+					   
+					</div>
+
+
+
+					   	
+						<div  class="toolBd">
+						<div  class="toolBdTitle">로그인</div>
+	
+						&nbsp;&nbsp;라인색 : <INPUT TYPE="text" NAME="str_login_line" id="str_login_line" value="{str_login_line}" 
+					  
+					    onkeyup="cssValue('str_login_line',this.value);roundDivRf('login',this.value,$('str_login_bg').value);this.style.backgroundColor=this.value"
+						
+						onfocus="cssValue('str_login_line',this.value);;roundDivRf('login',this.value,$('str_login_bg').value);this.style.backgroundColor=this.value"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0;background-color:{str_login_line}"  ><input type="button" value="..." onclick="openColor('str_login_line',this);" class="button" style = "height:18px;width:15px">&nbsp;&nbsp;
+
+					   	배경색 : <INPUT TYPE="text" NAME="str_login_bg" id="str_login_bg"   value="{str_login_bg}"
+					  
+					    onkeyup="cssValue('str_login_bg',this.value);;roundDivRf('login',$('str_login_line').value,this.value);this.style.backgroundColor=this.value"
+						
+						onfocus="cssValue('str_login_bg',this.value);;roundDivRf('login',$('str_login_line').value,this.value);this.style.backgroundColor=this.value"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0;background-color:{str_login_bg}"  ><input type="button" value="..." onclick="openColor('str_login_bg',this);" class="button" style = "height:18px;width:15px"> 
+					
+
+					   
+					</div>
+
+
+
+						<div  class="toolBd">
+						<div  class="toolBdTitle">메뉴</div>
+	
+						&nbsp;&nbsp;라인색 : <INPUT TYPE="text" NAME="str_submenu_line" id="str_submenu_line" value="{str_submenu_line}" 
+					  
+					    onkeyup="cssValue('str_submenu_line',this.value);roundDivRf('priviewsubmenu',this.value,$('str_submenu_bg').value);this.style.backgroundColor=this.value"
+						onfocus="cssValue('str_submenu_line',this.value);;roundDivRf('priviewsubmenu',this.value,$('str_submenu_bg').value);this.style.backgroundColor=this.value"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0;background-color:{str_submenu_line}"  ><input type="button" value="..." onclick="openColor('str_submenu_line',this);" class="button" style = "height:18px;width:15px">&nbsp;&nbsp;
+
+					   	배경색 : <INPUT TYPE="text" NAME="str_submenu_bg" id="str_submenu_bg"   value="{str_submenu_bg}"
+					  
+					    onkeyup="cssValue('str_submenu_bg',this.value);;roundDivRf('priviewsubmenu',$('str_submenu_line').value,this.value);this.style.backgroundColor=this.value"
+						onfocus="cssValue('str_submenu_bg',this.value);;roundDivRf('priviewsubmenu',$('str_submenu_line').value,this.value);this.style.backgroundColor=this.value"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0;background-color:{str_submenu_bg}"  ><input type="button" value="..." onclick="openColor('str_submenu_bg',this);" class="button" style = "height:18px;width:15px"> 
+					</div>
+
+
+
+					
+
+		
+
+					<div  class="toolBd">
+					<div  class="toolBdTitle">그림자 <INPUT TYPE="checkbox" NAME="topmenu_gra" value="y" {? topmenu_gra =='y'} checked {/} 
+					  onclick = "
+					  if(this.checked == true){$('topmenu_gra_tool').style.display='';
+					  $('cafe_main_menu').style.filter='progid:DXImageTransform.Microsoft.Shadow(color='+$('topmenu_fontColorB').value+',direction='+$('topmenu_cke').value+',strength='+$('topmenu_cke_size').value+')';
+					
+					 $('login').style.filter='progid:DXImageTransform.Microsoft.Shadow(color='+$('topmenu_fontColorB').value+',direction='+$('topmenu_cke').value+',strength='+$('topmenu_cke_size').value+')';
+
+					  $('submenu').style.filter='progid:DXImageTransform.Microsoft.Shadow(color='+$('topmenu_fontColorB').value+',direction='+$('topmenu_cke').value+',strength='+$('topmenu_cke_size').value+')';
+
+					  cssValue('topmenu_gra','y');
+
+					  }else{
+					  
+					  $('topmenu_gra_tool').style.display='none';
+					  $('cafe_main_menu').style.filter='';
+					  $('login').style.filter='';
+					  $('submenu').style.filter='';
+					  cssValue('topmenu_gra','n');
+					  
+					  }"
+					  ></div>
+
+					
+					
+
+					  <div style = "display:{? topmenu_gra !='y'}none{/}" id="topmenu_gra_tool">
+					
+					  그림자색 : <INPUT TYPE="text" NAME="topmenu_fontColorB"  id="topmenu_fontColorB"   value="{?topmenu_fontColorB}{topmenu_fontColorB}{:}#999999{/}"
+					  
+					    onkeyup="cssValue('topmenu_fontColorB',this.value);
+						$('cafe_main_menu').style.filter='progid:DXImageTransform.Microsoft.Shadow(color='+this.value+',direction='+$('topmenu_cke').value+',strength='+$('topmenu_cke_size').value+')';
+						this.style.backgroundColor=this.value"
+
+						onfocus="cssValue('topmenu_fontColorB',this.value);
+						$('cafe_main_menu').style.filter='progid:DXImageTransform.Microsoft.Shadow(color='+this.value+',direction='+$('topmenu_cke').value+',strength='+$('topmenu_cke_size').value+')';
+						this.style.backgroundColor=this.value
+						"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0;background-color:{topmenu_fontColorB}"  ><input type="button" value="..." onclick="openColor('topmenu_fontColorB',this);" class="button" style = "height:18px;width:15px"> <br>
+
+					   그림자각 : <INPUT TYPE="text" NAME="topmenu_cke" id="topmenu_cke"   value="{?topmenu_cke}{topmenu_cke}{:}135{/}"					  
+					    onkeyup="cssValue('topmenu_cke',this.value);
+						$('cafe_main_menu').style.filter='progid:DXImageTransform.Microsoft.Shadow(color='+$('topmenu_fontColorB').value+',direction='+this.value+',strength='+$('topmenu_cke_size').value+')'"
+
+						onclick="cssValue('topmenu_cke',this.value);
+						$('cafe_main_menu').style.filter='progid:DXImageTransform.Microsoft.Shadow(color='+$('topmenu_fontColorB').value+',direction='+this.value+',strength='+$('topmenu_cke_size').value+')'"
+
+					    style = "width:50px;;border:1px solid #CFCCD0;"  ><br>
+
+						크기 : <INPUT TYPE="text" NAME="topmenu_cke_size" id="topmenu_cke_size"   value="{?topmenu_cke_size}{topmenu_cke_size}{:}1{/}"					  
+					    onkeyup="cssValue('topmenu_cke_size',this.value);
+						$('cafe_main_menu').style.filter='progid:DXImageTransform.Microsoft.Shadow(color='+$('topmenu_fontColorB').value+',direction='+$('topmenu_cke').value+',strength='+this.value+')'"
+
+						onclick="cssValue('topmenu_cke_size',this.value);
+						$('cafe_main_menu').style.filter='progid:DXImageTransform.Microsoft.Shadow(color='+$('topmenu_fontColorB').value+',direction='+$('topmenu_cke').value+',strength='+this.value+')'"
+					    style = "width:50px;;border:1px solid #CFCCD0;"  >
+					  </div>
+					
+						</div>
+
+					  </td>
+
+					 </tr>
+					</table>
+
+					  <!-- 원래대로 -->
+					<div style = "width:100%;padding-top:10px;text-align:right"  >
+						<img src='/html/party/image/btn_return.gif' onclick = "
+										
+										resetValue('topmenu_gra'); 
+										resetValue('topmenu_fontColorB');
+										resetValue('topmenu_cke'); 
+										resetValue('topmenu_cke_size');
+										resetValue('topmenu_lineColor');
+										resetValue('topmenu_bgColor'); 
+										resetValue('topmenu_fontColor');
+										location.reload();
+										
+										" style="cursor: hand">
+					</div>
+					<!-- 원래대로 -->
+				</div>				
+				<!--특별메뉴설정-->
+
+
+
+
+				<!--카페상단설정-->
+				<div style = "width:212px;height:100;display:none;text-align:left" id="tool[2]" >
+				<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+					
+					<tr style="padding-top:5px">
+					   <td  colspan = 2  style ="border:1px solid #D9D9D9">
+					   
+					   <div style = "width:100%;" id="bgselecred_up_td2">
+					   <div style = "float:left;width:50px;height:50px;margin:1px;cursor:hand;;border: 1px solid #D0D0D0" onclick="$('top_menu').style.backgroundImage='none';  cssCook('3','#top_menu{background-image:none}');" id="non">none</div>
+					   {@ bgselect_up}
+					   <div style = "float:left;width:50px;height:50px;background-image:url(/background/<?=_OID?>/p<?=_PCODE?>/{.name});margin:1px;cursor:hand;;border: 1px solid #D0D0D0" onclick="$('top_menu').style.backgroundImage='url(/background/<?=_OID?>/p<?=_PCODE?>/{.name})';  cssCook('3','#top_menu{background-image:url(/background/<?=_OID?>/p<?=_PCODE?>/{.name})}');" id="{.name}"><a href= "/party.del?no=y&name={.name}" style="font-size:9px;color:red" target = "soketIfr" onclick="$('{.name}').style.display='none'">Del</a></div>
+					   {/}
+					   </div>
+
+						<div style = "float:left;width:100%;text-align:center;padding-top:10px;padding-bottom:5px" id="">
+						
+						<form method=post action="party.file_lib" target="soketIfr" id="backgroundForm2" enctype='multipart/form-data'>
+						<input type="file" name="upfile2" id="upfile2" style="width:200;" class=button 
+						onchange ="this.form.submit();$('top_menu').style.backgroundImage='url('+this.value+')';">
+						<input type="hidden" name="pcode" value="{pcode}">
+						</form>
+						
+
+						</div>
+					   </td>
+					 </tr>
+
+
+					
+					 <tr >
+					  <td style = "padding-top:10px;padding-bottom:10px">
+					  &nbsp;
+			
+					  </td>
+					   <td style = "padding-top:10px;padding-bottom:10px">반복
+					   <select id="body_Repeat2" class="selectBox" onchange = "$('top_menu').style.backgroundRepeat=this.value;
+					   cssCook('5','#top_menu{background-repeat:'+this.value+'}');" style="font-size:11px">
+						<option value="repeat" >바둑판</option>
+						<option value="repeat-x" >가로반복</option>
+						<option value="repeat-y" >세로반복</option>
+						<option value="no-repeat" >반복안함</option>
+					  </select>   
+					  
+					   </td>
+					 </tr>
+					
+
+  <tr>
+					   <td colspan = 2 align =  center style ="border:1px solid #D9D9D9;padding-left:10px">
+					   
+
+						<div id="remote_title" onSelectstart="return false"  >
+							<div id="title_height_box" class="height">
+							<table  width=180 border=0 cellspacing=0 cellpadding=0 align = left>
+							<tr>
+								<td style="padding-top:15px">높이</td>
+								<td>
+									<div class="slide">
+										
+										<input type="text" class="inp" onfocus="this.select();" maxlength="3" onkeydown="if (event.keyCode == 13) PreviewTitle('height');" id="title_height" />
+										<script language="Javascript">
+										if( parseInt($('top_menu').currentStyle.height)) $('title_height').value =  parseInt($('top_menu').currentStyle.height);
+										</script>
+										<input type="image" src="http://blogimgs.naver.com/nblog/admin/remote/btn_appli.gif" title="적용" class="btn" onclick="
+										$('top_menu').style.height = $('title_height').value;
+										cssCook('6','#top_menu{height:'+$('title_height').value+'px}');" />
+									</div>
+									
+								</td>
+							</tr>
+							<tr>
+							  <td colspan = 20 align =right style = "padding:3px">
+							  <INPUT TYPE="checkbox" NAME="top_menu_line" value="y" {? top_menu_line =='y'} checked {/} 
+							  onclick = "
+							  if(this.checked == true){
+							  $('top_menu').style.border='1px solid #D0D0D0';
+							  cssValue('top_menu_line','y');
+
+							  }else{
+							  
+							   $('top_menu').style.border='0px solid #D0D0D0';
+							  cssValue('top_menu_line','n');
+							  
+							  }"
+							  > 테두리 표시
+							  </td>
+							</tr>
+							</table>
+
+							
+									</div>
+						</div>
+
+					   </td>
+					 </tr>
+
+
+
+					 </table>
+
+					 <!-- 원래대로 -->
+					<div style = "width:212px;padding-top:10px;text-align:right"  >
+						<img src='/html/party/image/btn_return.gif' onclick = "reset('3');reset('4');reset('5');
+						
+						$('top_menu').style.backgroundRepeat='repeat';
+						$('top_menu').style.backgroundColor='';
+						$('top_menu').style.backgroundImage='none';
+						$('body_Repeat2').value='repeat';
+						$('body_Color2').value='';
+
+						" style="cursor: hand">
+					</div>
+					<!-- 원래대로 -->
+				</div>
+				<!--카페상단설정-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<!--카페표식설정-->
+				<div style = "width:282px;height:100;display:none;text-align:left" id="tool[3]" >
+				<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+					<!--tr>
+					   <td colspan = 2>   
+					   
+				   <div class="tab08" >
+					<ul>
+						<li class="active"><a href="#none" >문구설정하기</a></li>
+						  </ul>
+					</div>
+					
+					</td>
+					</tr-->
+					
+
+					
+					 <tr >
+					  <td style = "padding-top:10px;padding-bottom:10px">
+					
+					
+					<script language="Javascript">
+					function DisplaySelect(obj){
+			
+					if($(obj).style.display =="none"){
+					$(obj).style.display ="";
+					}else{
+					$(obj).style.display ="none";
+					}
+					}
+
+					function saveB(){
+					if($('cafe_title_box').style.display =="") {
+					cssValue('cafe_title','Y')	;
+					}else{
+					cssValue('cafe_title','N')	;
+					}
+					}
+					</script>
+
+						
+					  <input type="checkbox" name="cafe_title" value="Y" {? cafe_title == "Y"}checked{/}  onclick="DisplaySelect('ctitle_tool');DisplaySelect('cafe_title_box');DisplaySelect('cafeTitleBody');
+
+
+							  if(this.checked == true){
+							  cssValue('cafe_title','Y');
+
+							  }else{
+							 						 
+							  cssValue('cafe_title','N');
+							  
+							  }"> 카페표식 사용
+					  
+					  <div style = "margin-top:10px;padding:5px;width:100%;height:;{? cafe_title != 'Y'}display:none{/}" id="ctitle_tool">
+					  카페 홍보 문구
+					  <INPUT TYPE="text" NAME="cafe_memo" value="{cafe_memo}" style="width:100%" maxlength="100" onkeyup="$('cafe_title_box').innerHTML=this.value;cssValue('cafe_memo',this.value);" >
+					  
+
+					   배경 <INPUT TYPE="text" NAME="cafe_title_color" id="cafe_title_color"  onkeyup="
+					   this.style.backgroundColor=this.value;
+					   $('cafe_title_box').style.backgroundColor=this.value;
+					  cssCook('7','#cafe_title_box{background-color:'+this.value+'}');"
+
+					    onfocus="
+						 this.style.backgroundColor=this.value;
+					   $('cafe_title_box').style.backgroundColor=this.value;
+					  cssCook('7','#cafe_title_box{background-color:'+this.value+'}');"
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0"  ><input type="button" value="..." onclick="openColor('cafe_title_color',this);" class="button" style = "height:18px;width:15px"> 
+
+
+
+					   폰트색 <INPUT TYPE="text" NAME="cafe_title_f_color"  id="cafe_title_f_color"  onkeyup="
+					   this.style.backgroundColor=this.value;
+					   $('cafe_title_box').style.color=this.value;
+					   $('cafeTitleLink').style.color=this.value;
+						cssCook('8','#cafe_title_box{color:'+this.value+'}');
+						cssCook('9','#cafeTitleLink{color:'+this.value+'}');"
+
+					    onfocus="
+						 this.style.backgroundColor=this.value;
+					   $('cafe_title_box').style.color=this.value;
+					    $('cafeTitleLink').style.color=this.value;
+					  cssCook('8','#cafe_title_box{color:'+this.value+'}');
+					  cssCook('9','#cafeTitleLink{color:'+this.value+'}');
+					  "
+					   
+					   style = "width:50px;;border:1px solid #CFCCD0"  ><input type="button" value="..." onclick="openColor('cafe_title_f_color',this);" class="button" style = "height:18px;width:15px"> 
+
+
+				
+					  </div>
+					  
+					   </td>
+					 </tr>
+					</table>
+
+							
+						
+					
+
+
+					 <!-- 원래대로 -->
+					<div style = "width:212px;padding-top:10px;text-align:right"  >
+						<img src='/html/party/image/btn_return.gif' onclick = "reset('3');reset('4');reset('5');
+						
+						$('top_menu').style.backgroundRepeat='repeat';
+						$('top_menu').style.backgroundColor='';
+						$('top_menu').style.backgroundImage='none';
+						$('body_Repeat2').value='repeat';
+						$('body_Color2').value='';
+
+						" style="cursor: hand">
+					</div>
+					<!-- 원래대로 -->
+				</div>
+				<!--카페상단설정-->
+
+
+
+
+
+
+
+
+
+
+
+				</td>
+				<td width="4" background="/images/sj1_c_right.gif"></td>
+			</tr>
+			<tr valign="top" height="4">
+				<td width="4"><img src="/images/sj1_b_left.gif"></td>
+				<td background="/images/sj1_b_bg.gif"></td>
+				<td width="4" valign="top"><img src="/images/sj1_b_right.gif"></td>
+			</tr>
+			</table>
+		</TD>
+	</TR>
+	</TABLE>
+</div>
+
+
+   	
+
+{/}
+  </div>
+</div>
+<!-- 리모컨 쿠키 체크 열기 2008-04-10종태 -->
+
+
+
+
+
+<script>
+function cssCook(number,html){
+//ReadCookie("STATICMENU_v") 
+SaveCookie("cafe_css[{pcode}]["+number+"]", html, 1);
+}
+
+function cssValue(number,html){
+//ReadCookie("STATICMENU_v") 
+SaveCookie("cafe_value[{pcode}]["+number+"]", html, 1);
+}
+
+
+function startRemocon(){
+{? remocon =="Y"}
+SaveCookie("STATICMENU_v[{pcode}]", "true", 1);
+{/}
+remoconSwitch_cookie2();
+
+}
+
+
+
+function remoconSwitch_cookie2() {
+	{? act2 =="/party.main"}
+    if (ReadCookie("STATICMENU_v[{pcode}]") == "true") {
+        $('STATICMENU').style.display =  "";
+        SaveCookie("STATICMENU_v[{pcode}]", "true", 1);
+    }
+    else{
+        $('STATICMENU').style.display =  "none"
+        SaveCookie("STATICMENU_v[{pcode}]", "false", 1);
+    }
+
+	{/}
+
+
+}
+
+
+startRemocon()
+
+
+function remoconSwitch2() {
+
+    if($('STATICMENU').style.display == "none") {
+        SaveCookie("STATICMENU_v[{pcode}]", "true", 1);
+		{?act2 !="/party.main"}location.href='/cafe/{pcode}';{/}
+	    $('STATICMENU').style.display =  "";
+	}else{
+        $('STATICMENU').style.display =  "none"
+        SaveCookie("STATICMENU_v[{pcode}]", "false", 1);
+    }
+
+}
+</script>
+
+<script>
+	var target = ""
+	function openColor(tar,obj){
+	target = tar;
+	//$(target).value = color_pick(target);
+	//$(target).focus();
+	 overlay(obj, 'selectColor', 'lefttbottom');	
+	}
+
+
+function createColor(color){
+//alert(target);
+$(target).value = color;
+$('selectColor').style.display='none';
+$(target).focus();
+}
+
+
+
+function getposOffset(overlay, offsettype){
+    var totaloffset=(offsettype=="left")? overlay.offsetLeft : overlay.offsetTop;
+    var parentEl=overlay.offsetParent;
+    while (parentEl!=null){
+        totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+        parentEl=parentEl.offsetParent;
+    }
+    return totaloffset;
+}
+
+function overlay(curobj, subobjstr, opt_position){
+
+		if (document.getElementById){
+    var subobj=document.getElementById(subobjstr)
+
+	subobj.style.display=(subobj.style.display!="block")? "block" : "none"
+
+    
+	var xpos=getposOffset(curobj, "left")+((typeof opt_position!="undefined" && opt_position.indexOf("right")!=-1)? -(subobj.offsetWidth-curobj.offsetWidth) : 0) 
+    var ypos=getposOffset(curobj, "top")+((typeof opt_position!="undefined" && opt_position.indexOf("bottom")!=-1)? curobj.offsetHeight : 0)
+     
+	
+	   subobj.style.left=xpos+"px"
+       subobj.style.top=ypos+"px"
+    return false
+    }
+    else
+return true
+}
+
+function overlayclose(subobj){
+    document.getElementById(subobj).style.display="none"
+}
+
+</script>
+
+<div style="position:absolute;border:0px solid black;background-color:white;display:none;z-index:99" id="selectColor"  >
+<!-- 칼라 피커-->
+<table border="1" cellpadding="0" cellspacing="0" style="cursor:hand;cursor:pointer;;" bordercolor="000000" bordercolorlight="CCCCCC" >
+                 <tr>
+                    <td bgcolor='' ONCLICK="createColor('#')" height="8px"  colspan="4" style="font-size:10px">none</td>
+							
+                </tr>
+				
+				<tr>
+                    <td bgcolor=000000 ONCLICK="createColor('#000000')" height="8px" width="8px"></td>
+					
+					<td bgcolor=FFF4E2 ONCLICK="createColor('#FFF4E2')" height="8px" width="8px"></td>
+                    <td bgcolor=FFFEE0 ONCLICK="createColor('#FFFEE0')" height="8px" width="8px"></td>
+                    <td bgcolor=EEFAE4 ONCLICK="createColor('#EEFAE4')" height="8px" width="8px"></td>
+                    <td bgcolor=F0F9E4 ONCLICK="createColor('#F0F9E4')" height="8px" width="8px"></td>
+                    <td bgcolor=E6FAFB ONCLICK="createColor('#E6FAFB')" height="8px" width="8px"></td>
+                    <td bgcolor=E5EDFA ONCLICK="createColor('#E5EDFA')" height="8px" width="8px"></td>
+                    <td bgcolor=E4EEFA ONCLICK="createColor('#E4EEFA')" height="8px" width="8px"></td>
+                    <td bgcolor=F1E5F9 ONCLICK="createColor('#F1E5F9')" height="8px" width="8px"></td>
+                    <td bgcolor=FCE5F5 ONCLICK="createColor('#FCE5F5')" height="8px" width="8px"></td>
+                    <td bgcolor=FEE6E4 ONCLICK="createColor('#FEE6E4')" height="8px" width="8px"></td>
+                    <td bgcolor=FDE5E3 ONCLICK="createColor('#FDE5E3')" height="8px" width="8px"></td>
+                    <td bgcolor=FFF4E2 ONCLICK="createColor('#FFF4E2')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                    <td bgcolor=2B2B2B ONCLICK="createColor('#2B2B2B')" height="8px" width="8px"></td>
+					
+					<td bgcolor=FEF7C3 ONCLICK="createColor('#FEF7C3')" height="8px" width="8px"></td>
+                    <td bgcolor=FEF7C3 ONCLICK="createColor('#FEF7C3')" height="8px" width="8px"></td>
+                    <td bgcolor=EBF6CC ONCLICK="createColor('#EBF6CC')" height="8px" width="8px"></td>
+                    <td bgcolor=D5F5CC ONCLICK="createColor('#D5F5CC')" height="8px" width="8px"></td>
+                    <td bgcolor=CDF5F5 ONCLICK="createColor('#CDF5F5')" height="8px" width="8px"></td>
+                    <td bgcolor=D0E3F2 ONCLICK="createColor('#D0E3F2')" height="8px" width="8px"></td>
+                    <td bgcolor=CFD5F7 ONCLICK="createColor('#CFD5F7')" height="8px" width="8px"></td>
+                    <td bgcolor=E3CCF6 ONCLICK="createColor('#E3CCF6')" height="8px" width="8px"></td>
+                    <td bgcolor=F6CDED ONCLICK="createColor('#F6CDED')" height="8px" width="8px"></td>
+                    <td bgcolor=FCC5CA ONCLICK="createColor('#FCC5CA')" height="8px" width="8px"></td>
+                    <td bgcolor=FED5C3 ONCLICK="createColor('#FED5C3')" height="8px" width="8px"></td>
+                    <td bgcolor=FEE3C5 ONCLICK="createColor('#FEE3C5')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                    <td bgcolor=5D5D5D ONCLICK="createColor('#5D5D5D')" height="8px" width="8px"></td>
+					<td bgcolor=FFE9A6 ONCLICK="createColor('#FFE9A6')" height="8px" width="8px"></td>
+                    <td bgcolor=FDFBA6 ONCLICK="createColor('#FDFBA6')" height="8px" width="8px"></td>
+                    <td bgcolor=E3F1B3 ONCLICK="createColor('#E3F1B3')" height="8px" width="8px"></td>
+                    <td bgcolor=BEF0B3 ONCLICK="createColor('#BEF0B3')" height="8px" width="8px"></td>
+                    <td bgcolor=B4F0F0 ONCLICK="createColor('#B4F0F0')" height="8px" width="8px"></td>
+                    <td bgcolor=B3D5F1 ONCLICK="createColor('#B3D5F1')" height="8px" width="8px"></td>
+                    <td bgcolor=B4BEF1 ONCLICK="createColor('#B4BEF1')" height="8px" width="8px"></td>
+                    <td bgcolor=CFB1EF ONCLICK="createColor('#CFB1EF')" height="8px" width="8px"></td>
+                    <td bgcolor=EFB4E4 ONCLICK="createColor('#EFB4E4')" height="8px" width="8px"></td>
+                    <td bgcolor=FEA4AE ONCLICK="createColor('#FEA4AE')" height="8px" width="8px"></td>
+                    <td bgcolor=FFC1A6 ONCLICK="createColor('#FFC1A6')" height="8px" width="8px"></td>
+                    <td bgcolor=FFD5A5 ONCLICK="createColor('#FFD5A5')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                    <td bgcolor=8C8C8C ONCLICK="createColor('#8C8C8C')" height="8px" width="8px"></td>
+					<td bgcolor=FFE184 ONCLICK="createColor('#FFE184')" height="8px" width="8px"></td>
+                    <td bgcolor=FFF987 ONCLICK="createColor('#FFF987')" height="8px" width="8px"></td>
+                    <td bgcolor=D6EE9A ONCLICK="createColor('#D6EE9A')" height="8px" width="8px"></td>
+                    <td bgcolor=A3EB97 ONCLICK="createColor('#A3EB97')" height="8px" width="8px"></td>
+                    <td bgcolor=9BEBEA ONCLICK="createColor('#9BEBEA')" height="8px" width="8px"></td>
+                    <td bgcolor=9CC9EA ONCLICK="createColor('#9CC9EA')" height="8px" width="8px"></td>
+                    <td bgcolor=9AA9EE ONCLICK="createColor('#9AA9EE')" height="8px" width="8px"></td>
+                    <td bgcolor=C099EC ONCLICK="createColor('#C099EC')" height="8px" width="8px"></td>
+                    <td bgcolor=EB9BD6 ONCLICK="createColor('#EB9BD6')" height="8px" width="8px"></td>
+                    <td bgcolor=FA8A96 ONCLICK="createColor('#FA8A96')" height="8px" width="8px"></td>
+                    <td bgcolor=FFAE88 ONCLICK="createColor('#FFAE88')" height="8px" width="8px"></td>
+                    <td bgcolor=FFC887 ONCLICK="createColor('#FFC887')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                   <td bgcolor=BCBCBC ONCLICK="createColor('#BCBCBC')" height="8px" width="8px"></td>
+					<td bgcolor=FFDA68 ONCLICK="createColor('#FFDA68')" height="8px" width="8px"></td>
+                    <td bgcolor=FFFA6A ONCLICK="createColor('#FFFA6A')" height="8px" width="8px"></td>
+                    <td bgcolor=CDE87F ONCLICK="createColor('#CDE87F')" height="8px" width="8px"></td>
+                    <td bgcolor=94E682 ONCLICK="createColor('#94E682')" height="8px" width="8px"></td>
+                    <td bgcolor=82E6E4 ONCLICK="createColor('#82E6E4')" height="8px" width="8px"></td>
+                    <td bgcolor=84BAE6 ONCLICK="createColor('#84BAE6')" height="8px" width="8px"></td>
+                    <td bgcolor=8293E5 ONCLICK="createColor('#8293E5')" height="8px" width="8px"></td>
+                    <td bgcolor=B282E6 ONCLICK="createColor('#B282E6')" height="8px" width="8px"></td>
+                    <td bgcolor=E781CD ONCLICK="createColor('#E781CD')" height="8px" width="8px"></td>
+                    <td bgcolor=F86E7B ONCLICK="createColor('#F86E7B')" height="8px" width="8px"></td>
+                    <td bgcolor=FF9A69 ONCLICK="createColor('#FF9A69')" height="8px" width="8px"></td>
+                    <td bgcolor=FEBA67 ONCLICK="createColor('#FEBA67')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                   <td bgcolor=C2C2C2 ONCLICK="createColor('#C2C2C2')" height="8px" width="8px"></td>
+					<td bgcolor=FED24B ONCLICK="createColor('#FED24B')" height="8px" width="8px"></td>
+                    <td bgcolor=FFFA6A ONCLICK="createColor('#FFFA6A')" height="8px" width="8px"></td>
+                    <td bgcolor=CEE97E ONCLICK="createColor('#CEE97E')" height="8px" width="8px"></td>
+                    <td bgcolor=94E680 ONCLICK="createColor('#94E680')" height="8px" width="8px"></td>
+                    <td bgcolor=7AE6E8 ONCLICK="createColor('#7AE6E8')" height="8px" width="8px"></td>
+                    <td bgcolor=82BBE6 ONCLICK="createColor('#82BBE6')" height="8px" width="8px"></td>
+                    <td bgcolor=8293E5 ONCLICK="createColor('#8293E5')" height="8px" width="8px"></td>
+                    <td bgcolor=B282E6 ONCLICK="createColor('#B282E6')" height="8px" width="8px"></td>
+                    <td bgcolor=E583CC ONCLICK="createColor('#E583CC')" height="8px" width="8px"></td>
+                    <td bgcolor=F86E7B ONCLICK="createColor('#F86E7B')" height="8px" width="8px"></td>
+                    <td bgcolor=FF9A6A ONCLICK="createColor('#FF9A6A')" height="8px" width="8px"></td>
+                    <td bgcolor=FEBA69 ONCLICK="createColor('#FEBA69')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                   <td bgcolor=CECECE ONCLICK="createColor('#CECECE')" height="8px" width="8px"></td>
+					<td bgcolor=FED24B ONCLICK="createColor('#FED24B')" height="8px" width="8px"></td>
+                    <td bgcolor=FFF94D ONCLICK="createColor('#FFF94D')" height="8px" width="8px"></td>
+                    <td bgcolor=C5E465 ONCLICK="createColor('#C5E465')" height="8px" width="8px"></td>
+                    <td bgcolor=7FE168 ONCLICK="createColor('#7FE168')" height="8px" width="8px"></td>
+                    <td bgcolor=69E1E0 ONCLICK="createColor('#69E1E0')" height="8px" width="8px"></td>
+                    <td bgcolor=68AEE1 ONCLICK="createColor('#68AEE1')" height="8px" width="8px"></td>
+                    <td bgcolor=6A7CE2 ONCLICK="createColor('#6A7CE2')" height="8px" width="8px"></td>
+                    <td bgcolor=A469E1 ONCLICK="createColor('#A469E1')" height="8px" width="8px"></td>
+                    <td bgcolor=E169C3 ONCLICK="createColor('#E169C3')" height="8px" width="8px"></td>
+                    <td bgcolor=FA5263 ONCLICK="createColor('#FA5263')" height="8px" width="8px"></td>
+                    <td bgcolor=FE854C ONCLICK="createColor('#FE854C')" height="8px" width="8px"></td>
+                    <td bgcolor=FFAC4C ONCLICK="createColor('#FFAC4C')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                     <td bgcolor=BFBFBF ONCLICK="createColor('#BFBFBF')" height="8px" width="8px"></td>
+					<td bgcolor=FFCB2D ONCLICK="createColor('#FFCB2D')" height="8px" width="8px"></td>
+                    <td bgcolor=FFF82C ONCLICK="createColor('#FFF82C')" height="8px" width="8px"></td>
+                    <td bgcolor=BAE04D ONCLICK="createColor('#BAE04D')" height="8px" width="8px"></td>
+                    <td bgcolor=6ADC50 ONCLICK="createColor('#6ADC50')" height="8px" width="8px"></td>
+                    <td bgcolor=50DCD9 ONCLICK="createColor('#50DCD9')" height="8px" width="8px"></td>
+                    <td bgcolor=3792D8 ONCLICK="createColor('#3792D8')" height="8px" width="8px"></td>
+                    <td bgcolor=3650D9 ONCLICK="createColor('#3650D9')" height="8px" width="8px"></td>
+                    <td bgcolor=8537D8 ONCLICK="createColor('#8537D8')" height="8px" width="8px"></td>
+                    <td bgcolor=D637AE ONCLICK="createColor('#D637AE')" height="8px" width="8px"></td>
+                    <td bgcolor=F6182D ONCLICK="createColor('#F6182D')" height="8px" width="8px"></td>
+                    <td bgcolor=FE5D0F ONCLICK="createColor('#FE5D0F')" height="8px" width="8px"></td>
+                    <td bgcolor=FF8F0F ONCLICK="createColor('#FF8F0F')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                     <td bgcolor=DBDBDB ONCLICK="createColor('#DBDBDB')" height="8px" width="8px"></td>
+					<td bgcolor=EFB400 ONCLICK="createColor('#EFB400')" height="8px" width="8px"></td>
+                    <td bgcolor=F0E801 ONCLICK="createColor('#F0E801')" height="8px" width="8px"></td>
+                    <td bgcolor=A2CB27 ONCLICK="createColor('#A2CB27')" height="8px" width="8px"></td>
+                    <td bgcolor=45C928 ONCLICK="createColor('#45C928')" height="8px" width="8px"></td>
+                    <td bgcolor=28C8C6 ONCLICK="createColor('#28C8C6')" height="8px" width="8px"></td>
+                    <td bgcolor=2784C7 ONCLICK="createColor('#2784C7')" height="8px" width="8px"></td>
+                    <td bgcolor=2843C8 ONCLICK="createColor('#2843C8')" height="8px" width="8px"></td>
+                    <td bgcolor=7527C9 ONCLICK="createColor('#7527C9')" height="8px" width="8px"></td>
+                    <td bgcolor=C9279F ONCLICK="createColor('#C9279F')" height="8px" width="8px"></td>
+                    <td bgcolor=E90419 ONCLICK="createColor('#E90419')" height="8px" width="8px"></td>
+                    <td bgcolor=F04F01 ONCLICK="createColor('#F04F01')" height="8px" width="8px"></td>
+                    <td bgcolor=F18000 ONCLICK="createColor('#F18000')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                     <td bgcolor=E0E0E0 ONCLICK="createColor('#E0E0E0')" height="8px" width="8px"></td>
+					<td bgcolor=D29D00 ONCLICK="createColor('#D29D00')" height="8px" width="8px"></td>
+                    <td bgcolor=D2CB01 ONCLICK="createColor('#D2CB01')" height="8px" width="8px"></td>
+                    <td bgcolor=8DB31F ONCLICK="createColor('#8DB31F')" height="8px" width="8px"></td>
+                    <td bgcolor=3EAE24 ONCLICK="createColor('#3EAE24')" height="8px" width="8px"></td>
+                    <td bgcolor=23AFAE ONCLICK="createColor('#23AFAE')" height="8px" width="8px"></td>
+                    <td bgcolor=2373AE ONCLICK="createColor('#2373AE')" height="8px" width="8px"></td>
+                    <td bgcolor=243BAD ONCLICK="createColor('#243BAD')" height="8px" width="8px"></td>
+                    <td bgcolor=6723AE ONCLICK="createColor('#6723AE')" height="8px" width="8px"></td>
+                    <td bgcolor=AF238C ONCLICK="createColor('#AF238C')" height="8px" width="8px"></td>
+                    <td bgcolor=CB0617 ONCLICK="createColor('#CB0617')" height="8px" width="8px"></td>
+                    <td bgcolor=D24500 ONCLICK="createColor('#D24500')" height="8px" width="8px"></td>
+                    <td bgcolor=D27100 ONCLICK="createColor('#D27100')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                     <td bgcolor=EAEAEA ONCLICK="createColor('#EAEAEA')" height="8px" width="8px"></td>
+					<td bgcolor=967001 ONCLICK="createColor('#967001')" height="8px" width="8px"></td>
+                    <td bgcolor=969101 ONCLICK="createColor('#969101')" height="8px" width="8px"></td>
+                    <td bgcolor=658017 ONCLICK="createColor('#658017')" height="8px" width="8px"></td>
+                    <td bgcolor=2B7D19 ONCLICK="createColor('#2B7D19')" height="8px" width="8px"></td>
+                    <td bgcolor=197D7B ONCLICK="createColor('#197D7B')" height="8px" width="8px"></td>
+                    <td bgcolor=19527F ONCLICK="createColor('#19527F')" height="8px" width="8px"></td>
+                    <td bgcolor=192A7C ONCLICK="createColor('#192A7C')" height="8px" width="8px"></td>
+                    <td bgcolor=49197D ONCLICK="createColor('#49197D')" height="8px" width="8px"></td>
+                    <td bgcolor=78105F ONCLICK="createColor('#78105F')" height="8px" width="8px"></td>
+                    <td bgcolor=910512 ONCLICK="createColor('#910512')" height="8px" width="8px"></td>
+                    <td bgcolor=973101 ONCLICK="createColor('#973101')" height="8px" width="8px"></td>
+                    <td bgcolor=973101 ONCLICK="createColor('#973101')" height="8px" width="8px"></td>
+                </tr>
+                <tr>
+                    <td bgcolor=FFFFFF ONCLICK="createColor('#FFFFFF')" height="8px" width="8px"></td>
+					<td bgcolor=594500 ONCLICK="createColor('#594500')" height="8px" width="8px"></td>
+                    <td bgcolor=5A5600 ONCLICK="createColor('#5A5600')" height="8px" width="8px"></td>
+                    <td bgcolor=3D4D0E ONCLICK="createColor('#3D4D0E')" height="8px" width="8px"></td>
+                    <td bgcolor=194B0E ONCLICK="createColor('#194B0E')" height="8px" width="8px"></td>
+                    <td bgcolor=0F4B49 ONCLICK="createColor('#0F4B49')" height="8px" width="8px"></td>
+                    <td bgcolor=0E304B ONCLICK="createColor('#0E304B')" height="8px" width="8px"></td>
+                    <td bgcolor=0F194C ONCLICK="createColor('#0F194C')" height="8px" width="8px"></td>
+                    <td bgcolor=2C0E4A ONCLICK="createColor('#2C0E4A')" height="8px" width="8px"></td>
+                    <td bgcolor=4A0F3B ONCLICK="createColor('#4A0F3B')" height="8px" width="8px"></td>
+                    <td bgcolor=58020B ONCLICK="createColor('#58020B')" height="8px" width="8px"></td>
+                    <td bgcolor=591D01 ONCLICK="createColor('#591D01')" height="8px" width="8px"></td>
+                    <td bgcolor=5B3302 ONCLICK="createColor('#5B3302')" height="8px" width="8px"></td>
+                </tr>
+            </table>
+</div>
+<!-- 칼라 피커-->
+
+<script language="Javascript">
+<!--
+new Draggable("popup_box");	
+//-->
+</script>

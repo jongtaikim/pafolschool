@@ -1,0 +1,210 @@
+<link rel="STYLESHEET" type="text/css" href="../theme/bk7/css/style.css">
+
+
+<script language="JavaScript"><!--
+function win(url,mode,admin)
+{
+  toolbar_str = toolbar = 'no';
+  menubar_str = menubar = 'no';
+  statusbar_str = statusbar = 'no';
+  scrollbar_str = scrollbar = 'no';
+  resizable_str = resizable = 'no';
+
+  cookie_str = document.cookie;
+  cookie_str.toString();
+
+  pos_start  = cookie_str.indexOf(name);
+  pos_start  = cookie_str.indexOf('=', pos_start);
+  pos_end    = cookie_str.indexOf(';', pos_start);
+ 
+
+
+
+if (mode){ url = url + '&mode=' + mode; }
+if (admin){ url = url + '&admin=' + admin; }
+
+
+
+  window.open(url, '_top', 'left=200,top=200,width=770,height=510,toolbar=no,menubar=no,status=no,scrollbars=no,resizable=no');
+
+}
+
+
+function win2(url,mode,admin)
+{
+  toolbar_str = toolbar = 'no';
+  menubar_str = menubar = 'no';
+  statusbar_str = statusbar = 'no';
+  scrollbar_str = scrollbar = 'no';
+  resizable_str = resizable = 'no';
+
+  cookie_str = document.cookie;
+  cookie_str.toString();
+
+  pos_start  = cookie_str.indexOf(name);
+  pos_start  = cookie_str.indexOf('=', pos_start);
+  pos_end    = cookie_str.indexOf(';', pos_start);
+ 
+
+
+
+if (mode){ url = url + '&mode=' + mode; }
+if (admin){ url = url + '&admin=' + admin; }
+
+
+
+  window.open(url, 'ttt', 'left=200,top=200,width=400,height=300,toolbar=no,menubar=no,status=no,scrollbars=no,resizable=no');
+
+}
+
+// -->
+</script>
+
+
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0" >
+<tr>
+	<td>
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="52%" height="20"></td>
+			<td width="48%" align="right">
+			<img src="./image/icon_total.gif" width="10" height="11" align="absmiddle"> <span class="f-CG8pt">총 {total} 개 강좌가 있습니다 </span>
+			</td>
+		</tr>
+		<tr>
+			<td height="26" colspan="2">
+
+				
+					<table height="3" width="100%" cellpadding="0" cellspacing="0">
+			
+					</table>
+					<table width="100%" cellpadding="0" cellspacing="0" border = 1 bordercolor=#DFDFDF style="border-collapse:collapse;">
+					<thead>
+					<tr bgcolor="#E5F4F7" height = 30 style = "font-size:12px">
+						<th width="7%"><font color = "#50B6CA"><b>순서</b></font></th>
+						<th width="14%"><font color = "#50B6CA"><b>강의종류</th>
+						<th width="7%"><font color = "#50B6CA"><b>년도</th>
+						<th width="49%" ><font color = "#50B6CA"><b>강 좌 명</th>
+						<th width="15%" ><font color = "#50B6CA"><b>보기</th>
+						<th width="7%"><font color = "#50B6CA"><b>조회수</th>
+					</tr>
+					</thead>			
+					<tbody>
+					<!--{@ LIST}-->
+					<tr bgcolor="{bgcolor}">
+						<td width="7%" height="25" align="center">{.t_num}강</td>
+						
+						<td width="14%" align="center">{.c6}</td>
+						
+						<td width="7%" align="center" class="f-d8pt">{.c5}년</td>
+
+						<td width="49%" style = "padding-left:10px">
+							{? env.admin} 
+						<a href="#" onclick = "win('{.readlink}','','a')">{.title}</a>
+						
+						
+				{:}
+												
+					
+						
+
+						<a href="#" onclick = "win('{.readlink}','','')">{.title}</a>
+						
+					
+
+
+					
+				{/}
+
+								
+							
+						
+						</td>
+						<td width="15%" align="center" class="f-d8pt">
+						
+				{? env.admin} 
+						<a href="#" onclick = "win('{.readlink}','','a')"><img src = "./image/N_View.gif"></a>
+						{? .c7 }<a href="#" onclick = "win('{.readlink}','h','a')"><img src = "./image/H_View.gif"></a>{/}
+						
+				{:}
+												
+					
+						
+
+						<a href="#" onclick = "win('{.readlink}','','')"><img src = "./image/N_View.gif"></a>
+						{? .c7 }<a href="#" onclick = "win('{.readlink}','h','')"><img src = "./image/H_View.gif"></a>{/}
+					
+
+
+					
+				{/}
+						
+						
+						</td>				
+						
+						<td width="7%" align="center">{.hit}</td>
+					</tr>
+					<tr>
+						<td height="1" colspan="5" background="./image/dotline01.gif"></td>
+					</tr>
+					<!--{/}-->
+					</tbody>
+					</table>
+				
+			
+				
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr height="4">
+					<td bgcolor="#F5F5F5"></td>
+				</tr>
+				<tr>
+					<td height="35" align="center">
+						<!--<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="./image/btn_prevpage.gif" nexticon="./image/btn_nextpage.gif" firsticon="./image/btn_firstpage.gif" lasticon="./image/btn_lastpage.gif" />-->
+					</td>
+				</tr>
+				<tr>
+					<td height="30">
+						<table width="100%">
+						<tr>
+							<td width="43%" align="left">
+								<!--{? env.writable}-->
+								<a href="{writelink}"><img src="./image/btn_write.gif" width="51" height="19" border="0"></a>
+								<!--{/}-->
+							</td>
+							<td width="57%" align="right">
+								<table width="320" align="right" border="0" cellspacing="0" cellpadding="0">
+								<form method="get" name="searchform">
+								
+								<input type="hidden" name="mcode" value="{mcode}">
+								<tr>
+									<td width="92" align="right" ><img src="./image/text_search.gif" width="47" height="13">&nbsp;</td>
+									<td width="67" align="center"><select name="key" id="key">
+										<option value="str_title">강좌명</option>
+										<option value="str_text1">내용</option>
+									</select></td>
+									<td width="120" align="center"><input name="search" type="text" class="login" id="search" style="width:90%;" value="{search}"></td>
+									<td width="41" align="right"><input type="image" src="./image/btn_search.gif" width="40" height="19"></td>
+								</tr>
+								</form>													
+								</table>
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="30" colspan="2">&nbsp;</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+
+
+
+

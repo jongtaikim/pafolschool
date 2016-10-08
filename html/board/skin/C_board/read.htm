@@ -1,0 +1,213 @@
+<link rel="stylesheet" href="/css/board.css" type="text/css" />
+
+<style type="text/css">
+	.f11 {font-size:11px; color:656565; font-family:돋움;}
+	.f1 {font-size:11px; color:656565	; font-family:돋움;
+</style>
+{? FILE}
+<link rel="stylesheet" type="text/css" href="/css/lightbox.css" media="screen,tv" />
+<script type="text/javascript" charset="UTF-8" src="/js/spica.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/js/lightbox_plus.js"></script>
+{/}
+{? str_scrab == 2}
+<script type="text/javascript">
+document.oncontextmenu = new Function ('return false');
+document.ondragstart = new Function ('return false');
+document.onselectstart = new Function ('return false');
+</script>
+{/}
+
+
+
+<script language="javascript">
+<!--
+function ChkDel(id) {
+	if(confirm("삭제하시겠습니까?")){
+		location.href="{delcommlink}?mcode={mcode}&main={id}&id="+id;
+	}
+}
+
+function ccopy(){
+			
+			window.clipboardData.setData('Text','{URL}');
+			alert('URL이 복사 되었습니다. \nCtrl+V로 붙여넣으세요.')
+			}
+
+function viewFile(){
+	if($('subco').style.display=='none'){
+	$('subco').style.display=''
+	}else{
+	$('subco').style.display='none'
+	}
+	}
+
+
+function keyInputWord3 (val,count){
+	
+	if(strlen(val) > count) {
+	alert('덧글은 '+count+'자 이내로 작성하셔야합니다.') 
+	$('cmt_comment').value = substr(val,0,strlen(val) -1);	
+
+	$('textlimit').innerHTML = '<div id="textlimit">'+strlen($('cmt_comment').value)+'/<span class="textlimit">'+count+'</span>';
+	}else{
+	$('textlimit').innerHTML = '<div id="textlimit">'+strlen(val)+'/<span class="textlimit">'+count+'</span>';
+	}
+		
+	}
+
+//-->
+</script>
+
+	<!-- 게시판 영역 시작 -->
+				<div class="board">
+					
+					<div class="boardRead">	
+					<h4 class="title"><img src="/images/board/boardReadTit.gif" alt="글읽기" /></h4>
+
+
+						<div style="text-align:right;padding:2px">
+						URL : <a href="javascript:ccopy()" style="color:#AAAAAA">{URL} &nbsp;<img src="/image/copy.gif" align = "absmiddle" alt="URL 복사하기" /></a></div>
+						<div class="boardReadHeader">
+
+							<div class="infoArea">
+
+								<dl class="infoPre">
+									<dt>제목</dt>
+									<dd>{str_title}</dd>
+									
+									
+								</dl>
+								<dl class="infoNext">
+									<dt>이름</dt>
+									<dd>{name}</dd>
+									<dt class="ip">작성일(IP)</dt>
+									<dd>{reg_date} ({remote_addr})</dd>
+								</dl>
+
+							</div>
+						</div>
+						
+						
+						
+						<div class="boardReadBody smartOutput"  id="contentBody">
+							{content}
+						</div>
+						
+
+						{? chr_upload == 'Y' && FILE && str_download !='Y'}
+						
+						
+						<div class="boradReadFooter">
+							<dl>
+								<dt style="margin-bottom:{=count(FILE) * 18}px">첨부파일</dt>
+								
+								{@ FILE}
+								<dd><a href="{.file_url}">{? .str_ftype}<img src="/image/icon/{.str_ftype}.gif" onerror="this.src='/image/icon/unknown.gif';" border="0" width="14" alt="{? .str_ftype}{.str_ftype} 파일{:}일반파일{/}"/>{/}  {.str_upfile}</a>&nbsp;({=byte_convert(.num_size)}) &nbsp;</dd>
+								
+								{/}
+							</dl>
+						</div>
+						
+						{:}
+						<div class="boradReadFooter">
+							<dl>
+								<dt style="margin-bottom:10px">첨부파일</dt>
+								첨부파일이 없습니다.
+							</dl>
+						</div>
+						{/}
+						
+						
+						{? chr_comment == 'Y'}
+						
+						
+						<!-- 나도한마디 시작 -->
+						<form class="replyForm" method="post" name="commentform" action="/board.comment" onsubmit="return validate(this);">
+						<input type="hidden" name="num_main" value="{id}"/>
+						<input type="hidden" name="mcode" value="{mcode}"/>
+							<fieldset>
+							<legend>나도한마디</legend>
+							<h4 class="title">나도한마디</h4>
+								<div class="replyFormArea">
+									<div class="replyContent">나도한마디는 공백포함 한글기준 4000자 이내로 작성 가능합니다.</div>
+									
+									<div class="replyInfo">
+										<dl class="info">
+											<dt><label for="cmt_name">이름</label></dt>
+											<dd><input name="cmt_name" hname="이름" type="text" class="inputtxt" id="cmt_name" maxbyte="20" required value="{_SESSION.NAME}" {? _SESSION.NAME}readonly{/} /></dd>
+
+											<dt><label for="cmt_pass">비밀번호</label></dt>
+											<dd>
+											<input name="cmt_pass" hname="비밀번호" type="password" {? _SESSION.PASSWORD} value="{_SESSION.PASSWORD}" readonly{/} class="inputtxt" id="cmt_pass"  maxbyte="30" required />
+											
+											<div id="textlimit">0/<span class="textlimit">4000</span></div>
+											</dd>
+											
+										</dl>
+										
+									</div>
+									
+									<div class="reply">
+										<textarea title="댓글"  name="cmt_comment" hname="나도 한마디 내용" id="cmt_comment" maxbyte="4000" onkeyup="keyInputWord3(this.value,this.maxbyte)" required></textarea> 
+										<span class="replyBtn"><input value="댓글 등록" type="submit" /></span>
+									</div>
+								</div>
+								
+								<!-- 나도한마디 리스트 시작 -->
+								<div class="feedbackList">
+									
+									{@ COMMENT}
+									<dl class="pre">
+										<dt class="title">{.str_name}</dt>
+										<dd class="text">{=nl2br(.str_comment)}</dd>
+										<dd class="date">{.dt_date}</dd>
+										<dd class="date"> {? (.str_user == _SESSION.USERID) || !.str_user || _SESSION.ADMIN || _SESSION.ADMIN_sub}<a href="javascript:ChkDel({.num_serial});"><img src="./image/icon_del.gif" width="11" height="11" border="0" align="absmiddle" alt="삭제하기" /></a>{/}</dd>
+									</dl>
+									{/}
+								</div>
+								<!-- 나도한마디 리스트 끝 -->
+							</fieldset>
+						</form>
+						<!-- 나도한마디 끝 -->
+
+						{/}
+
+						<!-- 페이징 및 버튼 시작 -->		
+						<div class="boardNavigation">
+							<div class="buttonRight">
+								<span class="button01 arrowIcon">
+									<a href="{listlink}"><span>목록</span></a> 
+								</span>
+								{? env.writable}
+								<span class="button01 arrowIcon">
+									<a href="{deletelink}"><span>삭제</span></a> 
+								</span>
+								<span class="button01 arrowIcon">
+									<a href="{modifylink}"><span>수정</span></a>
+								</span>
+								{/}
+								<span class="button01 arrowIcon">
+									<a href="{replylink}"><span>답글</span></a>
+								</span>
+								{? env.writable}
+								<span class="button01 arrowIcon">
+									<a href="{writelink}"><span>글쓰기</span></a>
+								</span>
+								{/}
+							</div>
+						</div>
+						<!-- 페이징 및 버튼 끝 -->
+						
+						<!-- 이전글 및 다음글 시작 -->
+						<div class="prevNext">
+							<div class="prevNextlist">
+								{nextlink}
+								{prevlink}
+
+							</div>
+						</div>
+						<!-- 이전글 및 다음글 끝 -->
+						</div>
+					</div>
+
+				<!-- 게시판 영역 끝 -->

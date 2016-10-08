@@ -1,0 +1,126 @@
+
+
+<form name="basicinfo" method="post" onsubmit="return validate(this);" enctype='multipart/form-data'>
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td colspan="2">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr >
+					<td width="20"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01">부가기능 사용설정</td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" colspan="2">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align = center>
+			<col width="25%"></col><col width="%"></col>
+				<tr>
+					<td colspan="2" width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td colspan="2" width="100%" class="table_top_line02"></td>
+				</tr>
+				<tr height="30">
+					
+					<td class="table_title">온라인 교무실</td>
+					<td class="table_title01">
+							<input type="checkbox" name="onlineOffice" value="Y" {? onlineOffice =="Y"}checked{/}> 사용
+							
+					</td>
+				</tr>
+				<tr><td colspan="2" width="100%" class="table_line"></td></tr>
+
+				<tr height="30">
+					
+					<td class="table_title">온라인 설문조사</td>
+					<td class="table_title01">
+
+							<input type="checkbox" name="onlinePoll" value="Y" {? onlinePoll =="Y"}checked{/}> 사용
+					</td>
+				</tr>
+				<tr><td colspan="2" width="100%" class="table_line"></td></tr>
+
+
+				<tr height="30">
+					
+					<td class="table_title">온라인 신청</td>
+					<td class="table_title01">
+							
+							<input type="checkbox" name="onlineForm" value="Y"  {? onlineForm =="Y"}checked{/}> 사용
+					</td>
+				</tr>
+				<tr><td colspan="2" width="100%" class="table_line"></td></tr>
+
+				
+				<tr height="30">
+					
+					<td class="table_title">온라인 투표</td>
+					<td class="table_title01">
+							<input type="checkbox" name="onlineVote" value="Y" {? onlineVote =="Y"}checked{/}> 사용
+
+					</td>
+				</tr>
+				<tr><td colspan="2" width="100%" class="table_line"></td></tr>
+
+				<tr height="30">
+					
+					<td class="table_title">방과후 수강신청</td>
+					<td class="table_title01">
+							<input type="checkbox" name="onlineAfter" value="Y" {? onlineAfter =="Y"}checked{/}> 사용
+
+					</td>
+				</tr>
+				<tr><td colspan="2" width="100%" class="table_line"></td></tr>
+
+				
+				
+			</table>
+		</td>
+	</tr>
+
+	
+	<tr>
+		<td colspan="2" align =center style="padding:10"><input type="image" src="/html/admin/images/btn_save.gif" value="확인"> <img src="/html/admin/images/btn_cancel.gif"></td>
+	</tr>
+	<tr>
+		<td colspan="2" valign="top">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td><img src="/html/admin/images/tip_icon.gif"></td>
+					<td class="tip_title">도움말</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="6"></td></tr>
+	<tr>
+		<td colspan="2">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr height="14">
+					<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+					<td background="/html/admin/images/bx_tip_top_bg.gif"></td>
+					<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+				</tr>				
+				<tr>
+					<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+					<td class="tip_text">
+						ㆍ학교 기본 정보는 홈페이지 하단에 표출되는 정보입니다. 입력에 신중을 기해주시기 바랍니다.<br>
+						ㆍ홈페이지 기본 정보는  웹브라우저(ie,firefox 등)에서 표출 되는 정보이며, 검색엔진에 등록되는 정보입니다.<br>
+						ㆍ관리자 정보는 항상 최신화되어야 학교홈페이지의  '운영 및 관리’가 수월하게 이루어질 수 있습니다.<br>
+					</td>
+					<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+				</tr>
+				<tr height="14">
+					<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+					<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+					<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>

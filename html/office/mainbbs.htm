@@ -1,0 +1,131 @@
+<table border=0 cellpadding=0 cellspacing=0 width="98%" align=center>
+<tr>
+	<td width="48%" align=center valign=top>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%" style="margin-bottom:5px">
+		<tr height=25>
+			<td><img src="/image/img_board.gif"> <a href="board.list?mcode={officemenus.notice}"><b>{TITLE1}</b></a></span></td>
+			<td width="50" align=right><a href="board.list?mcode={officemenus.notice}"><img src='/image/more.gif'></a></td>
+		</tr>
+		<tr height=1 bgcolor='#e3e3e3'><td colspan=2></td></tr>
+		<tr height=3 bgcolor='#FAFAFA'><td colspan=2></td></tr>
+		</table>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+		<!--{@LIST_notice}-->
+			<tr>
+			  <td style="padding-left:2px;border-bottom:1px dashed #E0E0E0" align=center>
+			   <img src='/image/ico_dot.gif' align=absmiddle>
+			  </td>
+			<td style="padding:5px;border-bottom:1px dashed #E0E0E0"><a href="{.link}">{.str_title} {?.cmt}[{.cmt+0}]{/}</a> {? .is_recent} <img src="/image/ico_new2.gif" >{/}</td>
+			<td width="60" style="border-bottom:1px dashed #E0E0E0">{.str_name}</td>
+			<td width="60" align=right  style="border-bottom:1px dashed #E0E0E0">{.dt_date2}</td></tr>
+		<!--{:}-->
+			<tr><td align = center height = 80>게시글이 없습니다.</td></tr>
+		<!--{/}-->
+		</table>
+	</td>
+	<td width="2%"></td>
+	<td width="48%" align=center valign=top>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%" style="margin-bottom:5px">
+		<tr height=25>
+			<td><img src="/image/img_board.gif"> <a href="board.list?mcode={officemenus.pds}"><b>{TITLE2}</b></a></span></td>
+			<td width="50" align=right><a href="board.list?mcode={officemenus.pds}"><img src='/image/more.gif'></a></td>
+		</tr>
+		<tr height=1 bgcolor='#e3e3e3'><td colspan=2></td></tr>
+		<tr height=3 bgcolor='#FAFAFA'><td colspan=2></td></tr>
+		</table>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+		<!--{@LIST_pds}-->
+			<tr>
+			  <td style="padding-left:2px;border-bottom:1px dashed #E0E0E0" align=center>
+			   <img src='/image/ico_dot.gif' align=absmiddle>
+			  </td>
+			<td style="padding:5px;border-bottom:1px dashed #E0E0E0"><a href="{.link}">{.str_title} {?.cmt}[{.cmt+0}]{/}</a> {? .is_recent} <img src="/image/ico_new2.gif" >{/}</td>
+			<td width="60" style="border-bottom:1px dashed #E0E0E0">{.str_name}</td>
+			<td width="60" align=right  style="border-bottom:1px dashed #E0E0E0">{.dt_date2}</td></tr>
+		<!--{:}-->
+			<tr><td align = center height = 80>게시글이 없습니다.</td></tr>
+		<!--{/}-->
+		</table>
+	</td>
+</tr>
+<tr>
+	<td width="48%" align=center valign=top>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%" style="margin-bottom:5px">
+		<tr height=25>
+			<td><img src="/image/img_gallery.gif"> <a href="board.list?mcode={officemenus.gallery}"><b>{TITLE3}</b></a></span></td>
+			<td width="50" align=right><a href="board.list?mcode={officemenus.gallery}"><img src='/image/more.gif'></a></td>
+		</tr>
+		<tr height=1 bgcolor='#e3e3e3'><td colspan=2></td></tr>
+		<tr height=3 bgcolor='#FAFAFA'><td colspan=2></td></tr>
+		</table>
+		<table border=0 cellpadding=2 cellspacing=0>
+		<tr>
+		<!--{@LIST_gallery}-->
+			<td valign = top>
+				<div style = "border:1px solid #D8D8D8;width:110px;height:100;text-align:center">
+				<table align="center" width=100% height=100% border=0 cellspacing=0 cellpadding=0>
+				 <tr>
+				  <td align =center>
+				   <a href="{.link}"><img src="{.thumb_url}" onerror="this.src='image/noimage.gif';" border="0" style="border:0px solid #E4E4E4;" alt="{.str_title}"></a>
+				  </td>
+				 </tr>
+				</table></div>
+				<div style = "width:110px;text-align:center;padding-top:5px" ><a href="{.readlink}">{.str_title} {?.cmt}[{.cmt+0}]{/}</a></div>
+			</td>
+		<!--{:}-->
+		<td align = center height = 80>게시글이 없습니다.</td>
+		<!--{/}-->
+		</tr>
+		</table>
+	</td>
+	<td width="2%"></td>
+	<td width="48%" align=center valign=top>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%" style="margin-bottom:5px">
+		<tr height=25>
+			<td><img src="/image/img_board.gif"> <a href="poll.list?mcode={officemenus.poll}"><b>{TITLE4}</b></a></span></td>
+			<td width="50" align=right><a href="poll.list?mcode={officemenus.poll}"><img src='/image/more.gif'></a></td>
+		</tr>
+		<tr height=1 bgcolor='#e3e3e3'><td colspan=2></td></tr>
+		<tr height=3 bgcolor='#FAFAFA'><td colspan=2></td></tr>
+		</table>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+		<!--{@LIST_poll}-->
+			<tr>
+			  <td style="padding-left:2px;border-bottom:1px dashed #E0E0E0" align=center>
+			   <img src='/image/ico_dot.gif' align=absmiddle>
+			  </td>
+			<td style="padding:5px;border-bottom:1px dashed #E0E0E0"><a href="{.link}">{.str_title}</a> {? .is_recent} <img src="/image/ico_new2.gif" >{/}</td>
+			<td width="60" align=right  style="border-bottom:1px dashed #E0E0E0">{.dt_date2}</td></tr>
+		<!--{:}-->
+			<tr><td align = center height = 80>게시글이 없습니다.</td></tr>
+		<!--{/}-->
+		</table>
+	</td>
+</tr>
+<tr><td colspan=3 align=center valign=top>
+
+</td></tr>
+<tr><td colspan=3>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%" style="margin-bottom:5px">
+		<tr height=25>
+			<td><img src="/image/img_board.gif"> <b>최근글</b></span></td>
+			<td width="50" align=right></td>
+		</tr>
+		<tr height=1 bgcolor='#e3e3e3'><td colspan=2></td></tr>
+		<tr height=3 bgcolor='#FAFAFA'><td colspan=2></td></tr>
+		</table>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+		<!--{@LIST}-->
+			<tr>
+			  <td style="padding-left:2px;border-bottom:1px dashed #E0E0E0" align=center>
+			   <img src='/image/ico_dot.gif' align=absmiddle>
+			  </td>
+			<td style="padding:5px;border-bottom:1px dashed #E0E0E0"><a href="{.link}">{.str_title} {?.cmt}[{.cmt+0}]{/}</a> {? .is_recent} <img src="/image/ico_new2.gif" >{/}</td>
+			<td width="60" style="border-bottom:1px dashed #E0E0E0">{.str_name}</td>
+			<td width="60" align=right  style="border-bottom:1px dashed #E0E0E0">{.dt_date2}</td></tr>
+		<!--{:}-->
+			<tr><td align = center height = 80>게시글이 없습니다.</td></tr>
+		<!--{/}-->
+		</table>
+</td></tr>
+</table>

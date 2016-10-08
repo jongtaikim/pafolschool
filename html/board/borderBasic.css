@@ -1,0 +1,40 @@
+.boardTopBody {width:100%;text-align:left}
+.boardTopBody #rssBtn{width:50px;padding-top:6px;padding-left:10px;float:left; height:30px}
+.boardTopBody #boardCount{width:49%;padding-top:8px;float:left; height:30px}
+.boardTopBody #boardTool{width:41%;padding-top:8px;float:left;text-align:right; height:30px}
+
+.boardCateBody {width:100%;text-align:left;padding-bottom:5px;clear: both;padding-left:15px; width:97.6%}
+.boardCateBody .menu{margin-top:10px}
+
+.boardCateBody .item{display:inline; padding:10px; background:url(/image/ic_dot.gif) no-repeat left center; margin:0px}
+
+.Topitem{padding:2px ;padding-left:10px;}
+
+.fileBody {border:1px solid #B5B5B5 ;width:99%}
+.fileTitle {float:left;width:15%;text-align:center;padding-top:20px;font-weight:bold }
+.fileModule {float:left;width:79%;padding-top:10px;border-left:1px solid #B5B5B5;background-color:#ffffff}
+.fileLine {border-top:1px solid #B5B5B5; width:100%;clear: both;height:0px}
+
+.btnBody{ width:100%;padding-top:10px;float:left}
+.btnBody .div50{ width:49%;float:left;}
+
+.fspanLeft{padding-left:10px;padding-top:5px}
+.fspanLeft b{padding-right:10px}
+.fspanLeft type{padding-right:10px}
+.fspanRight{padding-right:10px;text-align:right}
+
+.div50{ width:49%;float:left;}
+.div30{ width:29%;float:left;}
+.div60{ width:68%;float:left;}
+
+
+/* table01 */
+
+TABLE.table01 {	border: 1px solid #C0C0C0;	border-collapse: collapse;}
+
+TABLE.table01 TD,TABLE.table01 TH {	border: 1px solid #C0C0C0;	border-left: 1px solid #C0C0C0;	border-right: 1px solid #C0C0C0;	padding: 5px;	font-weight: normal;		color:#666666;}
+
+TABLE.table01 THEAD TH, TABLE.table01 TH.head {	color: #000000;	line-height: 100%;	text-align: left;	padding: 10px;	font-weight:bold;	background-color: #F6F6F6 ; }
+
+TABLE.table01 TH {background-color: #F6F6F6;	padding: 5px;	font-weight:bold;color:#666666;}
+

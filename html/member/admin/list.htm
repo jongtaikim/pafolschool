@@ -1,0 +1,722 @@
+
+<body>
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript">
+function deleteMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 삭제 하시겠습니까?')) return false;
+	if (confirm('선택하신 회원이 작성한 게시물도 같이 삭제하시겠습니까?')) {
+		form.elements['relation'].value = '1';
+	}
+	form.elements['mode'].value = 'delete';
+	form.method="post";
+	form.submit();
+}
+
+function authMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 인증 하시겠습니까?')) return false;
+	form.elements['mode'].value = 'auth';
+	form.method="post";
+	form.submit();
+}
+
+function noauthMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 인증취소 하시겠습니까?')) return false;
+	form.elements['mode'].value = 'noauth';
+	form.method="post";
+	form.submit();
+}
+
+
+function ggMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 졸업생으로 전환 하시겠습니까?')) return false;
+	form.elements['mode'].value = 'gg';
+	form.method="post";
+	form.submit();
+}
+
+function msgInput(){
+fensterPop(2, '쪽지보내기', '',  '10px', '10px', '200px', '200px');
+$('m_body').innerHTML = '제목<input type="text" name="title" id="title"><br><textarea name="msgText"  id="msgText" style="width:190px; height:100px"></textarea><input type="button" value="보내기" onclick="msgMember()">';
+}
+
+function msgMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	form.elements['mode'].value = 'msg';
+	if($('msgText').value){
+	form.elements['mmsg'].value = $('msgText').value;
+	form.elements['str_title'].value = $('title').value;
+	form.method="post";
+	form.submit();
+	}else{
+	alert('내용이 없습니다.');
+	return;
+	}
+}
+
+
+
+
+function checkSelected() {
+	form = document.forms['memberForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('회원을 선택하여 주십시오.');
+		return false;
+	}
+	return true;
+}
+
+function manageGroup(id) {
+	window.open('member.admin.mem_group?id=' + id  + '&f={f}','manageGroup','width=350,height=500');
+}
+
+function viewMember(id) {
+	 self.location='member.admin.view?str_id=' + id + '&f={f}' ;
+}
+
+
+function update(val) {
+
+		//alert(val);
+		var val = val + "&end=";  
+
+		
+		sendRequest("/member.admin.update", val, FromServer, "POST");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				if(str_text =="Y"){
+
+				alert('변경되었습니다.');	
+				}else{
+				//alert(str_text);
+				//alert('데이터를 모두 입력하시기 바랍니다.');
+				}
+			}
+		}
+	}
+	
+
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.memberForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.memberForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.memberForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.memberForm.all.value = "";
+
+ return;
+}
+
+
+
+
+
+
+function SmsMember() {
+	fenster2('sms보내기', 'sms보내기', '',  145, 220, 150, 350);
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	
+	form.elements['mode'].value = 'jak';
+	form.action = '/sms.send_simple';
+	form.target = 'mmenu';
+	form.submit();
+}
+
+
+
+
+function EmailMember() {
+	fenster2('Email보내기', 'Email보내기', '',  45, 250, 150, 380);
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	
+	form.elements['mode'].value = 'jak';
+	form.action = '/member.admin.mail';
+	form.target = 'mmenu';
+	form.submit();
+}
+
+
+function Search_option(frm) {
+	frm.action = "/member.admin.list_sib";
+	frm.submit();
+}
+
+function div_display(div_id) {
+
+	var div_ = document.getElementById(div_id);
+
+	if(div_.style.display == "none") {
+		div_.style.display = "";
+	} else {
+		div_.style.display = "none";
+	}
+}	
+
+</script>
+ 
+
+<form name="memberForm" style="display:inline;margin:0px;">
+<textarea name="mmsg" style="display:none"></textarea>
+<input type="hidden" name="str_title"  id="str_title" value="" class="">
+<input type="hidden" name="noauth" value="{noauth}">
+<!-- 정회원일떄 -->
+
+{? noauth ==1}
+
+<!-- 표1 Start -->	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr>
+		<td width="100%" class="table_top_line01"></td>
+	</tr>
+	<tr>
+		<td width="100%" class="table_top_line02"></td>
+	</tr>			
+</table>
+<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="d5dfe7" >
+	<tr height="29" >
+		<td align="center" class="subtitle01" background="/html/admin/images/bx_bg.gif">회원현황</td>
+		{ @ member_types_count}
+		<td  align="center" background="/html/admin/images/bx_bg.gif">{.name}:{.counter}명</td>
+		{/}
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+	<tr>
+		<td width="100%" class="table_btm_line01"></td>
+	</tr>
+	<tr><td height="18"></td></tr>
+</table>
+<!-- 표1 End -->	
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr valign="top">
+		<td>
+			<select name="search_mtype" onchange="this.form.submit();" style="font-size:11px; font-family:돋움;">
+			<option value="">회원유형</option>
+			
+			<!--{@ MTYPES}-->
+			 {? .key_ !="n"}
+			<option value="{.key_}"{? search_mtype==.key_} selected{/}>{.value_}</option>
+			{/}
+			<!--{/}-->
+			</select> 
+
+			
+			<select name="search_group" onchange="this.form.submit();" style="font-size:11px; font-family:돋움;">
+			<option value="">전체그룹</option>
+			<!--{@ GROUPS}-->
+			<option value="{.str_group}"{? search_group==.str_group} selected{/}>{.str_group_name}</option>
+			<!--{/}-->
+			</select>
+
+		</td>
+		<td align="right">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr valign="top">
+					<td style="font-size:11px; padding:6px 6px 0px 0">목록수</font></td>
+					<td><input type="text" name="listnum"  style ="width: 40px;;" value = "{listnum}" class="fom02"></td>
+					<td style="padding:1px 0px 0px 3px"><input type="image" src="/html/admin/images/btn_refresh.gif"  value="새로고침">
+					<INPUT TYPE="hidden" NAME="f" value = "{f}"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="2"></td></tr>
+</table>
+
+
+<input type="hidden" name="mode" value="">
+<input type="hidden" name="relation" value="">
+
+<INPUT TYPE="hidden" NAME="all" id="all" >
+
+<!-- 표1 Start -->	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr>
+		<td width="100%" class="table_top_line01"></td>
+	</tr>
+	<tr>
+		<td width="100%" class="table_top_line02"></td>
+	</tr>			
+</table>
+<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="d5dfe7">
+	<tr bgcolor="#f3f6f8" height="29">
+		<td width="33" align="center"><input type="checkbox" name="" onclick ="checkall();"></td>
+			
+		<td width="130" class="subtitle01" align="center"><a href = "member.admin.list?align=id&noauth={noauth}&listnum={listnum}&num_fcode={num_fcode}{? search_value}{? search_value}&search_key={search_key}&search_value={search_value}{/}{/}&f={f}" style="color:#285775">아이디</td>
+		
+		<td width="102" class="subtitle01" align="center"><a href = "member.admin.list?align=name&noauth={noauth}&listnum={listnum}&num_fcode={num_fcode}{? search_value}{? search_value}&search_key={search_key}&search_value={search_value}{/}{/}&f={f}" style="color:#285775">이름</td>	
+		
+		
+		<!--
+		<td class="subtitle01" align="center"><a href = "member.admin.list?align=str_nick&listnum={listnum}&num_fcode={num_fcode}{? search_value}{? search_value}&search_key={search_key}&search_value={search_value}{/}{/}&f={f}">닉네임</td>		-->
+		
+		<td width="76" class="subtitle01" align="center"><a href = "member.admin.list?align=login&noauth={noauth}&listnum={listnum}&num_fcode={num_fcode}{? search_value}&search_key={search_key}&search_value={search_value}{/}&f={f}" style="color:#285775">로그인수</td>		
+
+		<td width="96" class="subtitle01" align="center"><a href = "member.admin.list?align=dt_date&noauth={noauth}&listnum={listnum}&num_fcode={num_fcode}{? search_value}&search_key={search_key}&search_value={search_value}{/}&f={f}" style="color:#285775">가입날짜</td>		
+
+		<!-- <td class="subtitle01" align="center"><a href = "member.admin.list?align=auth&listnum={listnum}&num_fcode={num_fcode}{? search_value}&search_key={search_key}&search_value={search_value}{/}&f={f}" style="color:#285775">인증여부</td>		 -->	
+
+		<td width="99" class="subtitle01" align="center"><a href = "member.admin.list?align=mtype&noauth={noauth}&listnum={listnum}&num_fcode={num_fcode}{? search_value}&search_key={search_key}&search_value={search_value}{/}&f={f}" style="color:#285775">회원유형</td>
+		
+		
+		<td class="subtitle01" align="center">그룹관리</td>
+	</tr>
+	
+	<!--{@ LIST}-->
+	<tr bgcolor="#FFFFFF" height="28">
+		<td align="center">{? .chr_mtype !="z"}<input type="checkbox" name="ids[]" value="{.str_id}">{/}</td>
+		
+		<td class="table01_title04"><a href="#" onclick="viewMember('{.str_id}');">{? .num_auth =="0"} {/}{? .chr_mtype =="z"}<b>{/}{.str_id}</a>
+		 {? .is_recent}<img src="html/admin/images/ico_new.gif" >{/}<br>{? .ftypes}{.ftypes}<br>{/}
+		 <!-- {? .str_introduct}
+		<span onclick="div_display('introduct_open{.index_}');" style="cursor:pointer">자기소개보기</span>
+		<div id="introduct_open{.index_}" style="display:none;position:absolute;background:#ffffff;border:1px solid #000000">
+		<table>
+			<tr>
+				<td><a href="#" onclick="viewMember('{.str_id}');">{.str_introduct}</a></td>
+			</tr>
+			<tr>
+				<td><span onclick="div_display('introduct_open{.index_}');" style="cursor:pointer">닫기</span></td>
+			</tr>
+		</table>
+		</div>
+		{/} -->
+		</td>
+		
+		
+		<td class="table01_title04"><a href="#" onclick="viewMember('{.str_id}');">{? .num_auth =="0"} {/}{? .chr_mtype =="z"}<b style="color:blue">{/}{.str_name}</a></td>
+
+		
+		<!-- <td>{.str_nick}</td> -->
+		<td class="table01_title04">{.num_login_cnt} 번</td>
+		
+		<td class="table01_title04">{=date("Y-m-d",.dt_date)}</td>
+
+		<td align="center">
+			{? .chr_mtype =="z"}<b>최고관리자{:}
+			<select name="chr_mtype" onChange="update('chr_mtype=' + this.value + '&mode=update&str_id={.str_id}');"  style = "font-size:11px">
+
+				{@ .mtypes}
+				  {? ..key_ !="z" &&  ..key_ !="n"} 
+				  <option value="{..key_}"{? .chr_mtype==..key_} selected{/}>{..value_}</option>
+				  {/}
+			 {/}						
+			</select>
+			{/}
+		</td>
+
+		
+		
+		<!-- <td align="center">
+		{? .chr_mtype !="a"}<select name="num_auth" onChange="update('num_auth=' + this.value + '&mode=update&str_id={.str_id}');" style = "font-size:11px">
+		<option value="1" {? .num_auth =="1"}selected{/}>인증됨 </option>
+		<option value="0" {? .num_auth =="0"}selected{/}>미인증 </option>	</select>{/}</td> -->
+		
+		
+		
+		
+		<td align="center" style="padding-top:3px"><img src="/html/admin/images/btn_group.gif" value="그룹설정" onclick="manageGroup('{.str_id}');" style="cursor:hand"></td>
+		
+	</tr>
+
+	{/}
+<table>
+<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+	<tr>
+		<td width="100%" class="table_btm_line01"></td>
+	</tr>
+	<tr><td height="13"></td></tr>
+</table>
+
+<!-- 표1 End -->	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr> 
+		<td width="20"><img src="/html/admin/images/btn_excel.gif" onclick="location.href='/member.admin.list_excel?{query_string}'"  style="cursor:hand"></td>
+		<td align="center">
+			<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/image/btn_prevpage.gif" nexticon="/image/btn_nextpage.gif" firsticon="/image/btn_firstpage.gif" lasticon="/image/btn_lastpage.gif" />
+		</td>
+		<td width="20"></td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+</table>
+
+<table align="center" width="100%" height="39" border="0" cellspacing="0" cellpadding="0"  background="/html/admin/images/bx4_bg.gif" >
+	<tr valign="top">
+		<td width="5"><img src="/html/admin/images/bx4_left.gif"></td>
+		<td style="padding-top:10px">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="5"></td>
+					<td style="font-size:11px; padding-top:1px;">선택한 회원을</td>
+					<td width="4"></td>
+					<td width="2"></td>
+					<td><img src="/html/admin/images/btn_bx4_04.gif"  value="쪽지발송" onclick="msgInput()" style="cursor: hand"></td>
+					<td><input TYPE="image" src="/html/admin/images/btn_bx4_01.gif"  value="인증" onclick="authMember();"></td>
+					<td width="2"></td>
+					<td><input TYPE="image" src="/html/admin/images/btn_bx4_02.gif"  value="인증취소" onclick="noauthMember();"></td>
+					<td width="2"></td>
+					
+					<td><input TYPE="image" src="/html/admin/images/btn_bx4_03.gif"  value="강제탈퇴" onclick="deleteMember();"></td>
+				</tr>
+			</table>
+		</td>
+
+		<td align="right" style="padding-top:7px">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td>
+						<select name="search_key">
+						<option value="str_name"{? search_key=='str_name'} selected{/}>이름</option>
+						<option value="str_id"{? search_key=='str_id'} selected{/}>ID</option>
+						<option value="str_email"{? search_key=='str_email'} selected{/}>Email</option>
+						<!--option value="str_nick"{? search_key=='str_nick'} selected{/}>닉네임</option-->
+						</select>
+					</td>
+					<td width="3"></td>
+					<td><input type="text" name="search_value" value="{search_value}" class="fom01"></td>
+					<td width="3"></td>
+					<td style="padding-top:1"><input TYPE="image" src="/html/admin/images/btn_bx4_search.gif" value="검색" ></td>
+					<td width="2"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="5"><img src="/html/admin/images/bx4_right.gif"></td>
+	</tr>
+</table>
+</form>
+
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			ㆍ 정회원관리의 목록에 있는 회원은 학교 홈페이지 회원으로 인증된 회원입니다. <br>
+							ㆍ 이름을 클릭하면 회원에 대한 상세정보를 볼 수 있습니다. <br>
+							ㆍ 그룹등록을 하려면 [그룹설정] 버튼을 클릭해주세요.<br>
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+
+
+
+
+
+<!-- 정회원 끝 -->
+
+
+{:}
+
+
+<!-- 인증대기회원  -->
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr valign="top">
+		<td width="14" style="padding-top:1px;"><img src="/html/admin/images/bu_circle_01.gif"></td>
+		<td class="font12_01" >현재 총 <b>{total3}</b>명 회원중<font color="ef4c7d" style="font-size:11px"> [미인증 {total1}명]</font> <font color="0067f3" style="font-size:11px">[인증 {total2}명]</font></td>
+	</tr>
+	<tr>
+		<td height="8"></td>
+	</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr valign="top">
+		<td width="96">
+			<select name="search_mtype" onchange="this.form.submit();" style="font-size:11px; font-family:돋움;">
+			<option value="">회원유형</option>
+			<!--{@ MTYPES}-->
+			 {? .key_ !="n"}
+			<option value="{.key_}"{? search_mtype==.key_} selected{/}>{.value_}</option>
+			{/}
+			<!--{/}-->
+			</select>
+		</td>
+		<td align="right">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr valign="top">
+					<td style="font-size:11px; padding:6px 6px 0px 0">목록수</font></td>
+					<td><input type="text" name="listnum"  style ="width: 40px;;" value = "{listnum}" class="fom02"></td>
+					<td style="padding:1px 0px 0px 3px"><input type="image" src="/html/admin/images/btn_refresh.gif"  value="새로고침">
+					<INPUT TYPE="hidden" NAME="f" value = "{f}"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="2"></td></tr>
+</table>
+
+
+<input type="hidden" name="mode" value="">
+<input type="hidden" name="relation" value="">
+<INPUT TYPE="hidden" NAME="all" id="all" >
+
+<!-- 표1 Start -->	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr>
+		<td width="100%" class="table_top_line01"></td>
+	</tr>
+	<tr>
+		<td width="100%" class="table_top_line02"></td>
+	</tr>			
+</table>
+<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="d5dfe7">
+	<tr bgcolor="#f3f6f8" height="29">
+		<td width="45" align="center"><input type="checkbox" name="" onclick ="checkall();"></td>
+			
+		<td width="140" class="subtitle01" align="center"><a href = "member.admin.list?align=id&listnum={listnum}&num_fcode={num_fcode}{? search_value}{? search_value}&search_key={search_key}&search_value={search_value}{/}{/}&f={f}" style="color:#285775">아이디</td>
+		
+		<td width="106" class="subtitle01" align="center"><a href = "member.admin.list?align=name&listnum={listnum}&num_fcode={num_fcode}{? search_value}{? search_value}&search_key={search_key}&search_value={search_value}{/}{/}&f={f}" style="color:#285775">이름</td>	
+		
+		<td width="103" class="subtitle01" align="center"><a href = "member.admin.list?align=mtype&listnum={listnum}&num_fcode={num_fcode}{? search_value}&search_key={search_key}&search_value={search_value}{/}&f={f}" style="color:#285775">회원유형</td>
+
+		<!--
+		<td class="subtitle01" align="center"><a href = "member.admin.list?align=str_nick&listnum={listnum}&num_fcode={num_fcode}{? search_value}{? search_value}&search_key={search_key}&search_value={search_value}{/}{/}&f={f}">닉네임</td>		-->
+		
+		<!-- <td class="subtitle01" align="center"><a href = "member.admin.list?align=login&listnum={listnum}&num_fcode={num_fcode}{? search_value}&search_key={search_key}&search_value={search_value}{/}&f={f}" style="color:#285775">로그인수</td>		
+ -->
+		<td width="114" class="subtitle01" align="center"><a href = "member.admin.list?align=dt_date&listnum={listnum}&num_fcode={num_fcode}{? search_value}&search_key={search_key}&search_value={search_value}{/}&f={f}" style="color:#285775">가입날짜</td>		
+
+		<td class="subtitle01" align="center"><a href = "member.admin.list?align=auth&listnum={listnum}&num_fcode={num_fcode}{? search_value}&search_key={search_key}&search_value={search_value}{/}&f={f}" style="color:#285775">인증여부</td>			
+		
+		
+		<!-- <td class="subtitle01" align="center">수강내역보기</td> -->
+	</tr>
+	
+	<!--{@ LIST}-->
+	<tr bgcolor="#FFFFFF" height="28">
+		<td align="center"><input type="checkbox" name="ids[]" value="{.str_id}"></td>
+		
+		<td class="table01_title04"><a href="#" onclick="viewMember('{.str_id}');">{? .num_auth =="0"} {/}{? .chr_mtype =="z"}<b>{/}{.str_id}</a>
+		 {? .is_recent}<img src="html/admin/images/ico_new.gif" >{/}<br>{? .ftypes}{.ftypes}<br>{/}
+		 <!-- {? .str_introduct}
+		<span onclick="div_display('introduct_open{.index_}');" style="cursor:pointer">자기소개보기</span>
+		<div id="introduct_open{.index_}" style="display:none;position:absolute;background:#ffffff;border:1px solid #000000">
+		<table>
+			<tr>
+				<td><a href="#" onclick="viewMember('{.str_id}');">{.str_introduct}</a></td>
+			</tr>
+			<tr>
+				<td><span onclick="div_display('introduct_open{.index_}');" style="cursor:pointer">닫기</span></td>
+			</tr>
+		</table>
+		</div>
+		{/} -->
+		</td>
+		
+		<td class="table01_title04"><a href="#" onclick="viewMember('{.str_id}');">{? .num_auth =="0"} {/}{? .chr_mtype =="z"}<b style="color:blue">{/}{.str_name}</a></td>
+		
+
+		<td align="center">
+			{? .chr_mtype =="z"}<b>최고관리자{:}
+			<select name="chr_mtype" onChange="update('chr_mtype=' + this.value + '&mode=update&str_id={.str_id}');"  style = "font-size:11px">
+
+				{@ .mtypes}
+				  {? ..key_ !="z" && ..key_ !="n"} 
+				  <option value="{..key_}"{? .chr_mtype==..key_} selected{/}>{..value_}</option>
+				  {/}
+			 {/}						
+			</select>
+			{/}
+		</td>
+
+		<!-- <td>{.str_nick}</td> -->
+		<!-- <td class="table01_title04">{.num_login_cnt} 번</td> -->
+		
+		<td class="table01_title04">{=date("Y-m-d",.dt_date)}</td>
+		
+		<td align="center">
+		{? .chr_mtype !="z"}<select name="num_auth" onChange="update('num_auth=' + this.value + '&mode=update&str_id={.str_id}');" style = "font-size:11px">
+		<option value="1" {? .num_auth =="1"}selected{/}>인증됨 </option>
+		<option value="0" {? .num_auth =="0"}selected{/}>미인증 </option>	</select>{/}</td>
+		
+		
+		
+		
+		<!-- <td class="table01_title04"><input type="button" class="button" value="그룹설정" onclick="manageGroup('{.str_id}');" class="button"></td> -->
+		
+	</tr>
+
+	{/}
+<table>
+<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+	<tr>
+		<td width="100%" class="table_btm_line01"></td>
+	</tr>
+	<tr><td height="13"></td></tr>
+</table>
+
+<!-- 표1 End -->	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr> 
+		<td width="20"><img src="/html/admin/images/btn_excel.gif" onclick="location.href='/member.admin.list_excel?{query_string}'"  style="cursor:hand"></td>
+		<td align="center">
+			<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/image/btn_prevpage.gif" nexticon="/image/btn_nextpage.gif" firsticon="/image/btn_firstpage.gif" lasticon="/image/btn_lastpage.gif" />
+		</td>
+		<td width="20"></td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+</table>
+
+<table align="center" width="100%" height="39" border="0" cellspacing="0" cellpadding="0"  background="/html/admin/images/bx4_bg.gif" >
+	<tr valign="top">
+		<td width="5"><img src="/html/admin/images/bx4_left.gif"></td>
+		<td style="padding-top:10px">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="5"></td>
+					<td style="font-size:11px; padding-top:1px;">선택한 회원을</td>
+					<td width="4"></td>
+					<td><input TYPE="image" src="/html/admin/images/btn_bx4_01.gif"  value="인증" onclick="authMember();"></td>
+					<td width="2"></td>
+					<td><input TYPE="image" src="/html/admin/images/btn_bx4_02.gif"  value="인증취소" onclick="noauthMember();"></td>
+					<td width="2"></td>
+					<td><input TYPE="image" src="/html/admin/images/btn_bx4_03.gif"  value="강제탈퇴" onclick="deleteMember();"></td>
+				</tr>
+			</table>
+		</td>
+
+		<td align="right" style="padding-top:7px">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td>
+						<select name="search_key">
+						<option value="str_name"{? search_key=='str_name'} selected{/}>이름</option>
+						<option value="str_id"{? search_key=='str_id'} selected{/}>ID</option>
+						<option value="str_email"{? search_key=='str_email'} selected{/}>Email</option>
+						<!--option value="str_nick"{? search_key=='str_nick'} selected{/}>닉네임</option-->
+						</select>
+					</td>
+					<td width="3"></td>
+					<td><input type="text" name="search_value" value="{search_value}" class="fom01"></td>
+					<td width="3"></td>
+					<td style="padding-top:1"><input TYPE="image" src="/html/admin/images/btn_bx4_search.gif" value="검색" ></td>
+					<td width="2"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="5"><img src="/html/admin/images/bx4_right.gif"></td>
+	</tr>
+</table>
+</form>
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			* 상위 ‘열 레이블(아이디, 이름 등)’을 클릭 하시면 클릭한 항목을 기준으로 정렬 됩니다.</font><br>
+							ㆍ이름을 클릭하면 회원에 대한 상세정보를 볼 수 있습니다. <br>
+							ㆍ인증대기회원 목록에 있는 회원은 홈페이지를 정상적으로 사용할 수 없습니다. <br>
+							ㆍ좌측 체크박스에 체크(v)하고 [회원인증] 또는 [인증취소]를 클릭하여 회원의 인증처리를 해주세요. <br>
+							ㆍ회원인증을 한 회원은 현재 목록에서 회원관리 목록으로 이동됩니다. <br>
+							ㆍ거절은 인증이 거절된 회원으로, 로그인시 인증거절 이라는 메시지와 함께 사유가 보여집니다.<br>
+							ㆍ인증이 거절된 회원은 일정기간이 지나면 정기적으로 삭제(강제탈퇴)해 주는 것이 좋습니다. 
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+
+
+
+
+
+
+<!-- 인증대기회원 끝 -->
+
+{/}
+
+

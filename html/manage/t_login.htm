@@ -1,0 +1,13 @@
+<form method=post action="/member.t_login">
+
+<?
+global $oid, $host_url;
+?>
+<input type="hidden" name="oid" value="<?=$oid?>" >
+<input type="hidden" name="host_url" value="<?=$host_url?>" >
+아이디 : <input type="text" name="userid" value="">
+비번 : <input type="text" name="passwd" value="">
+
+<input type="submit" name="" value="로그인" class="">
+
+</form>

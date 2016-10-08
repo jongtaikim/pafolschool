@@ -1,0 +1,31 @@
+<head>
+<title><?=_ONAME?> 온라인 투표입니다.</title>
+
+</head>
+<link rel="stylesheet" href="/css/onlineVote.css" type="text/css" />
+<body>
+	<div id="wrapper">
+		<div id="onlineVote">
+			<h1 style="display:none">온라인 투표</h1>
+			
+			{@ LIST}
+			<div class="voteBox">
+				<div class="objTop">
+					<div style="font-size:16px;color:#ffffff"><b>{.str_title}</b></div>
+				</div>
+				<div class="objContent">
+					<div class="listTop">
+						<span class="date"><span class="title">날짜:</span><span class="num">{=date("Y.m.d",.num_start_date)}~{=date("Y.m.d",.num_end_date)}</span></span>
+						<span class="applicant"><span class="title">후보자 수:</span><span class="num">{.num_user}</span>명</span>
+					</div>
+					<div class="listContent">
+						<span class="comment">{.str_text}</span>
+					</div>
+					<a href="/vote.use?serial={.num_serial}" class="voteBtn"><img src="/images/onlineVote/voteBtn.gif" alt="투표하기" /></a>
+				</div>
+			</div>
+			{/}
+			</div>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,102 @@
+<head>
+<title>웹문서 내용 수정</title>
+<script type="text/javascript">
+// <![CDATA[
+function copy_url(val) {
+	var el = document.getElementById(val);
+	var tRange = el.createTextRange();
+	tRange.execCommand("Copy");
+	alert("메뉴의 URL이 클립보드에 복사되었습니다.");
+}
+// ]]>
+</script>
+</head>
+ <body>
+
+<div class="tip" style = "text-align:left;padding:3px"><b style="color:blue" >[{title}] 웹문서 편집 </b></div>
+<div >
+<form name="writeForm"  id="writeForm" enctype="multipart/form-data" method="post" >
+<table width="100%">
+<input type="hidden" name="mcode" value="{_GET.mcode}">
+<input type="hidden" name="cate" value="{_GET.cate}">
+<input type="hidden" name="title_decorator" value="{title_decorator}">
+<table width="100%"  >
+ <tr>  
+	<td>    
+	
+	<table width="100%"  class=table01 style = "display:none">
+      		<tr style = "display:none">  
+			<th width="20%">타이틀 형태</th>
+			<td width="80%">
+				<input type="radio" name="title_decorator" value="str" onclick="changeDecorator(this.value);" style="border:0px;"{? title_decorator=='str'} checked{/}> 문자형
+				<input type="radio" name="title_decorator" value="image" onclick="changeDecorator(this.value);" style="border:0px;"{? title_decorator=='image'} checked{/}> 이미지형
+				<input type="radio" name="title_decorator" value="none" onclick="changeDecorator(this.value);" style="border:0px;"{? title_decorator=='none'} checked{/}> 사용하지 않음
+			</td>
+		</tr> 
+		<tr style = "display:none">   
+			<th>타이틀</th>
+			<td id="title_area_str"{? title_decorator!='str'} style="display:none;"{/}>
+				<input type="text" name="title" style="width:100%;" value="{title}" />
+			</td>
+			<td id="title_area_image"{? title_decorator!='image'} style="display:none;"{/}>
+				<input type="file" name="title_image" style="width:100%;"/>
+				<input type="hidden" name="title_image_url" value="{title_image_url}">
+				{? title_image_url}<img src="{title_image_url}" border="0">{/}
+			</td>
+			<!-- <div align="righ t" style="display:none"><button onclick="openTitleDec();">제목꾸미기</button></div> -->
+		</tr>  
+		 
+		</tbody>   
+		</table>   
+  
+<wa:upload part="editor_SE3" sect="menu" code="{code}" name="content" width="100%" height="360px">{content}</wa:upload>	
+
+    
+::CSS 입력<br>   
+<textarea name="css_text" style="width:100%;height:100px">{css_text}</textarea>    
+
+<table align="center" width=100% border=1 cellspacing=0 cellpadding=0 style="margin:5px 0 5px ">
+ 
+<tr> 
+	<th>이미지</th>
+	<th>주소</th>
+	<th>삭제</th>
+</tr>
+
+{@ fLIST}
+ <tr>
+  <td><img src="/hosts/<?=HOST?>/doc/image/{mcode}/{.filename}" border='0'  style="zoom:0.6"></td>
+  <td onclick="copy_url('f{.index_}')" style="cursor: hand">/hosts/<?=HOST?>/doc/image/{mcode}/{.filename}
+     <input type="hidden" id="f{.index_}" value="/hosts/<?=HOST?>/doc/image/{mcode}/{.filename}"></td>
+      <td>
+       <input type="button" name="" value="삭제" class="button" onclick="location.href='/doc.admin.file_del?fname=/hosts/<?=HOST?>/doc/image/{mcode}/{.filename}'">
+      </td> 
+ </tr>
+ {:}
+ <tr>
+	<td colspan="3" align="center" height="30px">등록된 이미지가 없습니다.</td>
+ </tr>
+ {/}
+</table>
+<input type="file" name="upfile1" style="width:400px;"  class="button">
+
+  <br><br>
+	</td>   
+</tr> 
+</table> 
+
+ 
+<table width="100%"  class=table01> 
+ 
+		<tr> 
+					 	
+			<td align="center" colspan="2" >
+		
+			<input type="button" id="submit_btn" value="웹페이지 저장하기"  class="button"  onclick="_onSubmit(this); return false" ></td>
+		</tr>
+		
+		</tbody>
+		</table>
+</form>
+</div>
+</body>     

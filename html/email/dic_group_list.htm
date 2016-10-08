@@ -1,0 +1,117 @@
+<body>
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<script type="text/javascript">
+function selectAll(flag) {
+	form = document.forms['listForm'];
+	el = form.elements['ids[]'];
+	if(!el) return false;
+	if(!el.length) el = new Array(el);
+	cnt = el.length;
+	for(i = 0; i < cnt; i++) {
+		el[i].checked = flag;
+	}
+}
+
+function checkSelect(field) {
+	form = document.forms['listForm'];
+	el = form.elements['ids[]'];
+	if(!el) return false;
+	if(!el.length) el = new Array(el);
+	flag = false;
+	cnt = el.length;
+	for(i = 0; i < cnt; i++) {
+		if(el[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert(field + ' 주소록을 선택하여 주십시오.');
+		return false;
+	}
+	return true;
+}
+
+function confirmDelete() {
+	if(!checkSelect('삭제할')) return false;
+	if(!confirm('선택하신 주소록을 삭제하시겠습니까?')) return false;
+	form = document.forms['listForm'];
+	form.action = 'sms.dic_del';
+	form.target = '_self';
+	form.submit();
+}
+
+function confirmChGroup() {
+	if(!checkSelect('그룹이동할')) return false;
+	win = window.open('about:blank','smsdic_move','width=500,height=200');
+	form = document.forms['listForm'];
+	form.action = 'sms.dic_move';
+	form.target = 'smsdic_move';
+	form.submit();
+}
+
+function confirmSMS() {
+	if(!checkSelect('SMS 발송할')) return false;
+	win = window.open('about:blank','sms_send','width=500,height=500');
+	form = document.forms['listForm'];
+	form.action = 'sms.send';
+	form.target = 'sms_send';
+	form.submit();
+}
+</script>
+<table width="100%" class="table01" style="">
+{? gcode > 0}<form name="modifyForm" method="post" onsubmit="return validate(this);">{/}
+<tr>
+	<td>
+		<div style="float:left;height:25px;line-height:25px;">
+		그룹명
+		<input type="text" name="str_group" hname="그룹명" error_msg="그룹명을 반드시 입력하여 주십시오.\n그룹명은 7자까지 입력 가능합니다." value="{str_group}" maxbyte="14" required>
+		<input type="submit" class="button" value="변경"{? gcode == 0} disabled{/}>
+		</div>
+		<div style="float:right;height:25px;line-height:25px;">
+		그룹인원수 : {LIST.size_} 명
+		</div>
+	</td>
+</tr>
+{? gcode > 0}</form>{/}
+</table>
+
+<table width="100%" class="table01" >
+<form name="listForm" method="post">
+<tr>
+	<th width="10%"><input type="checkbox" name="select_all" onclick="selectAll(this.checked);" style="border:0px;"></th>
+	<th width="30%">이름</th>
+	<th width="30%">핸드폰번호</th>
+	<th width="30%">소속회사</th>
+</tr>
+</table>
+
+<div style="width:100%; height:370px; overflow:auto;">
+<table width="100%" class="table01" >
+<!--{@ LIST}-->
+<tr align="center">
+	<td width="10%"><input type="checkbox" name="ids[]" value="{.num_serial}" style="border:0px;"></td>
+	<td width="30%">{.str_name}</td>
+	<td width="30%">{.str_mobile}</td>
+	<td width="30%">{.str_pos}</td>
+</tr>
+<!--{:}-->
+<tr height="100">
+	<td colspan="4" align="center">그룹에 포함된 주소록이 없습니다.</td>
+</tr>
+<!--{/}-->
+</form>
+</table>
+</div>
+
+<table width="100%" class="table01" style="">
+<tr>
+	<td>
+		선택한 주소를
+		<input type="button" class="button" value="SMS발송" onclick="confirmSMS();">
+		<input type="button" class="button" value="그룹이동" onclick="confirmChGroup();">
+		<input type="button" class="button" value="삭제" onclick="confirmDelete();">
+	</td>
+</tr>
+</table>
+</body>

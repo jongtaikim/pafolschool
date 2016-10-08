@@ -1,0 +1,148 @@
+<link rel="stylesheet" type="text/css" href="/html/board/borderBasic.css">
+
+
+{? act2 == "/board.list" || act2 == "/tong_board.list"}
+
+{str_top}
+
+
+
+{/}
+
+
+
+<!--{? _SESSION.ADMIN && mcode}-->
+	<div style="width:100%;text-align:right">{? chr_hak ==1}<a href="javascript:fenster2('카테고리관리', '카테고리관리', '/board.admin.categorypop?mcode={mcode}',  '20%', '30%', '300', '300',this)"  style="font-size:11px;"><b>+카테고리관리</b></a>{/}</div>	
+<!--{/}-->
+
+
+
+
+
+<div class="boardTopBody">
+	<div id="rssBtn"><a href="/board.xml?mcode={mcode}"><img src='/image/rss.gif' border='0' alt="게시판 RSS보기"></a></div>
+	<div id="boardCount">총 <b>{total}</b> 개 게시물이 있습니다.</div>
+	<div id="boardTool">
+	
+	{? chr_hak ==1}
+	<select name="str_category" onchange = "select1(this.value);" style = "font-size:11px;width:130px" >
+			<option value="">** 카테고리보기 **</option>
+			<option value="일반" {? '일반' == str_category} selected{/}>일반</option>
+			<!--{@ cate_LIST}-->
+			<option value="{.str_category}" {? .str_category == str_category} selected{/}>{.str_category} ({.counter})</option>
+			<!--{/}-->
+	</select>
+	{/}
+	</div>
+</div>
+
+
+<div class="boardCateBody">
+	{? chr_hak ==1}
+	<ul class="menu">
+		<li class="item"><a href="#" onclick="select1();">전체</a></li>
+		{@  cate_LIST}
+		<li class="item" {? .str_category == str_category} style="font-weight: bold"{/}><a href="#" onclick="select1('{.str_category}');">{.str_category} ({.counter})</a></li>
+		{/}
+	</ul>
+	{/}
+</div>
+
+
+<!-- 게시물 개수와 카테고리 부분 End -->
+
+
+<script language="Javascript">
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.listForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.listForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.listForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.listForm.all.value = "";
+
+ return;
+}
+
+function select1(val) { // 코드 입력
+if(val) {
+	location.href='board.list?mcode={mcode}&str_category='+val;
+	}else{
+	location.href='board.list?mcode={mcode}';
+}
+}
+
+</script>
+
+{? _SESSION.ADMIN}
+	<script>
+	function rssFff(){
+	$('str_rss_url').value = str_replace("http://","",$('str_rss_url').value);
+	}
+	</script>
+	<form method=get    action="/board.rss"  class="boardListForm" onsubmit="rssFff()" >
+		<input type="hidden" name="mcode" value="{mcode}" />
+		<table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:10px">
+			<tr>
+				<td class="bu_arrow_bx01" style="padding:4px"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+				<td class="bx1_stitle">RSS 연동 : </td>
+				<td width="4"></td>
+				<td class="bx1_text03">
+				
+				<input type="text" name="str_rss_url" id="str_rss_url" value="{str_rss_url}" class="fom01" style="width:170px">
+				
+				<SELECT name="num_rss_count"  id="num_rss_count" class="bx1_text03" style="width:40px">
+				
+				<option value="10" {? num_rss_count == "10"} selected{/}>10개</option>
+				<option value="20" {? num_rss_count == "20"} selected{/}>20개</option>
+				<option value="30" {? num_rss_count == "30"} selected{/}>30개</option>
+
+				</SELECT>
+				
+				
+				
+
+				<SELECT name="str_iconv"  id="str_iconv" class="bx1_text03" style="width:80px">
+				
+				<option value="UTF-8" {? str_iconv == "UTF-8"} selected{/}>UTF-8</option>
+				<option value="EUC-KR" {? str_iconv == "EUC-KR"} selected{/}>EUC-KR</option>
+				
+				
+				</SELECT>
+				카테고리 : <input type="text" name="str_rss_cate" value="{str_rss_cate}" class="fom01" style="width:50px">
+				
+				<input type="checkbox" name="img_in" value="y"> 이미지
+				<input type="submit" value="RSS가져오기" class="button">
+				
+				</td>
+			</tr>
+		</table>
+	</form>
+
+{/}

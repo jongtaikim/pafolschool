@@ -1,0 +1,107 @@
+<link rel="STYLESHEET" type="text/css" href="css/2004_school_a.css">
+<script language="javaScript">
+<!--
+function validate2(form) {
+	try {
+		if(!validate(form) || form.getAttribute("submited")) return false;
+		form.setAttribute("submited",true);
+		document.all['submit_btn'].style.visibility = "hidden";
+		return true;
+	} catch (e) {
+		return false;
+	}
+}
+//-->
+</script>
+
+<table width="80%" border="0" cellpadding="0" cellspacing="0">
+	<form name="writeform" method="post" enctype="multipart/form-data" onSubmit="return validate(this);">
+		<input type="hidden" name="num_serial" value="{{num_serial}}">
+		<input type="hidden" name="mode" value="new">
+		<tr>
+			<td valign="top">
+				<table width="700" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td>
+							<table width="93%" border="0" align="center" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										<table width="95%" border="0" align="center" cellpadding="3" cellspacing="0">
+											<tr>
+												<td><img src="image/request/icon06.gif" width="15" height="11"> <b>학급문집 상담</b> </td>
+											</tr>
+											<tr>
+												<td>
+													<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#EBEBEB">
+														<tr bgcolor="#FFFFFF">
+															<td width="14%" bgcolor="#3A9BC5"><b><font color="#FFFFFF">학교명</font></b></td>
+															<td colspan="3" bgcolor="#FAFAFA">{{school_name}}</td>
+														</tr>
+														<tr bgcolor="#FFFFFF">
+															<td bgcolor="#3A9BC5"><b><font color="#FFFFFF">관리자 
+																명</font></b></td>
+															<td colspan="3" bgcolor="#FAFAFA">
+																<input type="text" name="str_name" hname="관리자명" value="{{str_name}}" class="login" size="23" maxbyte="20" required>
+															</td>
+														</tr>
+														<tr bgcolor="#FFFFFF">
+															<td bgcolor="#3A9BC5"><b><font color="#FFFFFF">연락처</font></b></td>
+															<td bgcolor="#FAFAFA">
+																<input name="phone1" hname="연락처" type="text" class="login" style="width:35px;" option="phone" span="3" style="vertical-align:middle;" aonfocus="str_replay_method1.checked=true;" required value="{{phone1}}">
+																-
+																<input name="phone2" type="text" class="login" style="width:40px;" style="vertical-align:middle;" aonfocus="str_replay_method1.checked=true;" value="{{phone2}}">
+																-
+																<input name="phone3" type="text" class="login" style="width:40px;" style="vertical-align:middle;" aonfocus="str_replay_method1.checked=true;" onkeyup="if(this.value.length>=4) this.form.str_email.focus();" value="{{phone3}}">
+															</td>
+														</tr>
+														<tr bgcolor="#FFFFFF">
+															<td bgcolor="#3A9BC5"><b><font color="#FFFFFF">이메일</font></b></td>
+															<td bgcolor="#FAFAFA">
+																<input name="str_email" hname="이메일" type="text" class="login" size="23" maxbyte="50" option="email" aonfocus="str_replay_method2.checked=true;" required value="{{str_email}}">
+															</td>
+														</tr>
+														<tr bgcolor="#FFFFFF">
+															<td bgcolor="#3A9BC5"><b><font color="#FFFFFF">제목</font></b></td>
+															<td colspan="3" bgcolor="#FAFAFA">
+																<input name="str_title" hname="제목" type="text" class="login" style="width:100%;" maxbyte="100" required value="{{str_title}}">
+															</td>
+														</tr>
+														<tr bgcolor="#FFFFFF">
+															<td bgcolor="#3A9BC5"><b><font color="#FFFFFF">내용</font></b></td>
+															<td colspan="3" bgcolor="#FAFAFA">
+																<!-- EXECUTE FILE 'module/cafe/admin/skopi_board/fckeditor_config.php?str=abc' -->
+															</td>
+														</tr>
+														<tr bgcolor="#FFFFFF">
+															<td bgcolor="#3A9BC5"><b><font color="#FFFFFF">첨부파일</font></b></td>
+															<td bgcolor="#FAFAFA" colspan="3">
+																<input name="attach" type="file" class="login">
+																<input name="realfilepath" type="hidden" class="login" value="{{str_filepath}}">
+																<input name="realfilename" type="hidden" class="login" value="{{str_filename}}">
+																<br>
+																{{str_upfilename}}&nbsp;&nbsp;
+																<input type="checkbox" name="file_del">
+																파일삭제 </td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+										<input type="image" name="submit_btn" id="submit_btn" src="image/request/bt05.gif" width="72" height="35">
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</form>
+</table>

@@ -1,0 +1,364 @@
+<style>
+.f1 {font-size:11px; color:#787878; font-family:돋움;}
+.f2 {font-size:11px; color:#A0A0A0; font-family:돋움;}
+</style>  
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function viewdiv(divnm) {
+		if($(divnm).style.display=='none') $(divnm).style.display="";
+		else $(divnm).style.display="none";
+	}
+	function ChkDel(serial, id) {
+		if(confirm("삭제하시겠습니까?")){
+			location.href="{delcommlink}?pcode={pcode}&mcode={mcode}&main="+serial+"&id="+id;
+		}
+	}
+//-->
+</SCRIPT>
+
+
+{#BOARD_TOP}
+
+
+
+<form method=post  name="listForm"  id="listForm"  action="/board.copy"  target="d_main">
+<INPUT TYPE="hidden" NAME="all" id="all" >
+<INPUT TYPE="hidden" NAME="mcode" id="mcode" value="{mcode}" >
+
+<div class="boardType1">
+	<div class="objTop">
+		<ul class="menu">
+			<li class="item1" >번호</li>
+			{? _SESSION.ADMIN ||  _SESSION.CAFE_ADMIN}<li class="item2"><input type="checkbox" name="" value="" onclick ="checkall();"></li>{/}
+			<li class="item3">제목</li>
+			<li class="item4">작성자</li>
+			<li class="item5">작성일</li>
+			<li class="item6">조회</li>
+			<li class="item7">추천</li>
+		</ul>
+	</div>
+
+	<div class="objBody">
+	<!--전체공지-->
+	{@ LIST_gong}
+		{? .num_notice == 2}
+		<ul class="menu">
+				<li class="item1">
+				{?id==.num_serial }<img src='/image/arrow.gif' alt='현재글'>{/}
+				{? .num_notice}<img src = "./image/notice_icon.gif" alt=" 전체공지">{:}{.num}{/}</li>
+				{? _SESSION.ADMIN ||  _SESSION.CAFE_ADMIN}<li class="item2">&nbsp;</li>{/}
+				<li class="item3 left">				
+				<img src="./image/notice2.gif"  align="absmiddle" alt="공지"/>
+					<a href="/party.board.read?pcode={.num_pcode}&mcode={.num_mcode}&id={.num_serial}&num={.num_serial}" class="allGong">
+						{.title}
+					</a>
+					{? .cmt }<font color="#990000">({.cmt})</font>{/}
+					&nbsp;{? .is_recent} <img src="/image/icon/new2.gif" alt='신규글입니다.'>{/}
+				</li>
+				<li class="item4">{.name}</li>
+				<li class="item5">{.date}</li>
+				<li class="item6">{.hit}</li>
+				<li class="item7">&nbsp;</li>
+		</ul>
+		{/}
+	{/}
+	<!--전체공지 끝-->
+
+	<!--공지-->
+	{@ LIST_g}
+		{? .num_notice == 1}
+		<ul class="menu">
+				<li class="item1">
+				{?id==.num_serial }<img src='/image/arrow.gif' alt='현재글'>{/}
+				{? .num_notice}<img src = "./image/notice_icon.gif" alt=" 공지">{:}{.num}{/}</li>
+				{? _SESSION.ADMIN ||  _SESSION.CAFE_ADMIN}<li class="item2">&nbsp;</li>{/}
+				<li class="item3 left">
+				<img src="./image/notice1.gif"  align="absmiddle" >
+					<a href="/party.board.read?pcode={.num_pcode}&mcode={.num_mcode}&id={.num_serial}&num={.num_serial}" class="allGong2">
+						{.title}
+					</a>
+					{? .cmt }<font color="#990000">({.cmt})</font>{/}
+					&nbsp;{? .is_recent} <img src="/image/icon/new2.gif" alt='신규글입니다.'>{/}
+				</li>
+				<li class="item4">{.name}</li>
+				<li class="item5">{.date}</li>
+				<li class="item6">{.hit}</li>
+				<li class="item7">&nbsp;</li>
+		</ul>
+		{/}
+	{/}
+	<!--공지 끝-->
+
+
+
+<div class="gallBodyLine">	&nbsp;</div>
+<div class="layout">
+	<!--일반글-->
+	{@ LIST}
+	
+		{? .num_notice == 0}
+		<div class="wgallBody">
+				
+				<div class="item">		
+
+					
+					<div class="title">
+						{? _SESSION.ADMIN ||  _SESSION.CAFE_ADMIN}<input type="checkbox" name="ids[]" value="{.num_serial}"> {/}
+						
+					{? .num_input_pass }
+						{?_SESSION.ADMIN || _SESSION.CAFE_ADMIN}
+						 <a href="/party.board.read?pcode={.num_pcode}&mcode={.num_mcode}&id={.num_serial}&num={.num_serial}" >
+						 {:}
+						 <a href="#" onClick="return overlay(this, 'subcontent2', 'lefttbottom', '{.num_serial}')">
+						 {/}
+					 {:}
+					<a href="/party.board.read?pcode={.num_pcode}&mcode={.num_mcode}&id={.num_serial}&num={.num_serial}" >
+					 {/}
+
+
+						{.title}</a>{? .cmt }&nbsp;&nbsp;<font style = "font-size:11px" color = #FF3333>[{.cmt}]</font>{/}</a>&nbsp;&nbsp;
+						<font style = "font-size:11px;color:#AA9BA0" > 조회수: {.hit} | {.date}</font>
+						
+						<br>
+						
+						<table width="500px" border=0 cellspacing=0 cellpadding=0>
+						 <tr><td style="word-break:break-all;line-height:20px">{.content}</td></tr>
+						</table>
+
+
+						{? .num_input_pass}<img src="/html/secret.gif" alt="비밀 글" align="absmiddle">&nbsp;{/}
+						<font style = "font-size:11px;color:#765B64">작성자: {.name}</font>
+						{? .is_recent}<img src="/image/icon/new2.gif" align="absmiddle" alt='신규글입니다.'>{/}
+					</div>
+				</div>
+
+		</div>
+			{? (.index_ +1) %1 ==0}
+			<div class="wgallBodyLine">	&nbsp;</div>
+			
+
+			{? admin || (.str_user == _SESSION.USERID)}
+						<div id="modcontent{.num_serial}" style="display:none;margin-top:10px;">
+							<table border=0 cellspacing=0 cellpadding=1 width=95% align=center>
+							<form method="post" action="party.board.modify" enctype="multipart/form-data" onsubmit="return validate(this);">
+							<input type="hidden" name="pcode" value="{pcode}">
+							<input type="hidden" name="mcode" value="{mcode}">
+							<input type="hidden" name="id" value="{.num_serial}">
+							<tr><td>
+								제목 <input type=text name="str_title" value="{.str_title}" class=button style="width:50%" hname="제목" required>&nbsp;&nbsp;
+								이름 <input type=text name="str_name" value="{.str_name}" size=10 value="{?!name}{NAME}{:}{name}{/}" class=button hname="이름" required>&nbsp;&nbsp;
+								비밀번호 <input type=password name="str_pass" size=10 class=button value="{?!.str_pass}{PASSWD}{:}{.str_pass}{/}" hname="비밀번호" required>&nbsp;&nbsp;
+								<input type=checkbox name="num_input_pass" value="1" {? .num_input_pass}checked{/}>비밀글
+							</td></tr>
+							<tr><td align=center><textarea name="content" style="width:100%;height:60px;border:1px solid #B9B8BE;background-color:#F0F0F0" hname="내용" required>{.content}</textarea></td></tr>
+							<tr><td align=right><input type=image src="./image/btn_submit.gif"></td></tr>
+							</form>
+							</table>
+						</div>
+						{/}
+					
+					{?.num_comment>0}
+					
+						<div style="width:60%; border:1px dashed grey; padding:2px; margin:10 0 0 20;">
+							<!--{@ .comment}-->
+							<div class="f2" style="padding:5px;">
+							<b>{..name}</b>&nbsp;&nbsp;&nbsp;{..dt_date}<br>
+							{..str_comment} {? (..str_user == _SESSION.USERID) || !..str_user || admin}<a href="javascript:ChkDel({.num_serial},{..num_serial});"><img src="./image/icon_del.gif" width="11" height="11" border="0" align="absmiddle"></a>{/}
+							</div>
+							<!--{/}-->
+						</div>
+					</td></tr>
+					{/}
+					</table>
+					
+					<!--{? env.writable}-->
+					<div id="replycontent{.num_serial}" style="display:none;margin-top:10px;">
+						<table width="100%" border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td class="padding">
+								<table border="0" align="center" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="13%"><img src="./image/comment_img01.gif" width="58" height="11"></td>
+									<td width="68%"><img src="./image/comment_img02.gif" width="58" height="11"></td>
+									<td width="12%"><img src="./image/comment_img03.gif" width="58" height="11"></td>
+									<td width="7%">&nbsp;</td>
+								</tr>
+								<form method="post" action="party.board.comment" onsubmit="return validate(this);">
+								<input type="hidden" name="pcode" value="{pcode}">
+								<input type="hidden" name="mcode" value="{mcode}">
+								<input type="hidden" name="num_main" value="{.num_serial}">
+								<tr>
+									<td valign="top">
+										<input name="cmt_name" hname="이름" type="text" class="button" id="cmt_name" style="width:58px;" maxbyte="20" required value="{_SESSION.NAME}" {? _SESSION.NAME}readonly{/}>
+									</td>
+									<td valign="top">
+										<textarea name="cmt_comment" hname="댓글 내용" class="button" id="cmt_comment" style="width:97%; height:60px;"maxbyte="150" required></textarea>
+									</td>
+									<td valign="top">
+										<input name="cmt_pass" hname="비밀번호" type="password" {? _SESSION.PASSWORD} value="{_SESSION.PASSWORD}" readonly{/} class="button" id="cmt_pass" style="width:58px;"maxbyte="8" required>
+									</td>
+									<td align="right" valign="top">
+										<input type="image" src="./image/btn_submit.gif" width="40" height="19">
+									</td>
+								</tr>
+								</form>
+								</table>
+							</td>
+						</tr>
+						</table>
+					</div>
+					<!--{/}-->
+			
+			
+			<div class="wgallBodyLine">	&nbsp;</div>
+			
+			
+			
+			
+			
+			{/}
+		{/}
+	{:}
+	<div class="noneBoardData">게시된 글이 없습니다.</div>
+	{/}
+	<!--일반글 끝-->
+</div>
+</div>
+</form>
+<div class="gallBodyLine">	&nbsp;</div>
+	<div class="objBottom">
+		<div class="page"><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="./image/btn_prevpage.gif" nexticon="./image/btn_nextpage.gif" firsticon="./image/btn_firstpage.gif" lasticon="./image/btn_lastpage.gif" /></div>
+
+		<div class="btn">
+			<div class="wbtn">
+			
+			{? _SESSION.ADMIN ||  _SESSION.CAFE_ADMIN}
+			<a href="#" onclick = "fenster2('bbs_SETUP', '게시물관리', '',  200, 200, 150, 150);$('listForm').submit()"><img src="/image/btn_ad.gif"></a>
+			{/}
+			<!--{? env.writable}-->
+			<a href="{writelink}"><img src="./image/btn_write.gif"></a>
+			<!--{/}-->
+			</div>
+			
+			<div class="sch">
+					<form method="get" name="searchform" action="/board.list">
+					<input type="hidden" name="mcode" value="{mcode}">
+							
+							<input type="image" src="./image/btn_search.gif" style="float:right" align="absmiddle" alt="검색하기"/>
+							<input name="search" type="text"  id="search" value="{search}" style="border:1 solid dcdcdc;margin:1px 5px 0px 5px;width:200px;float:right">
+							<select name="key" id="key" style="float:right">
+								<option value="str_title">제목</option>
+								<option value="str_name">글쓴이</option>
+							</select>
+							
+
+					</form>					
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="subcontent2" style="position:absolute; display:none; border: 1px solid black; background-color: lightyellow; width: 180px; height: 80px; padding: 8px">
+<input type="hidden" name="idx" id="idx">
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td colspan = 2 >비밀글입니다...<br>비밀번호를 입력해주세요</td>
+	</tr>
+	<tr>
+		<td><input type="password" name="pass" id = "pass"></td>
+		<td><input type="button" value = "확인"   onkeypress = "nameChk();" onclick = "nameChk();" alt="확인" ></td>
+	</tr>
+</table>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript">
+function getposOffset(overlay, offsettype){
+    var totaloffset=(offsettype=="left")? overlay.offsetLeft : overlay.offsetTop;
+    var parentEl=overlay.offsetParent;
+    while (parentEl!=null){
+        totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+        parentEl=parentEl.offsetParent;
+    }
+    return totaloffset;
+}
+
+function overlay(curobj, subobjstr, opt_position, idx){
+  
+	document.getElementById("idx").value = idx ;
+
+	if (document.getElementById){
+    var subobj=document.getElementById(subobjstr)
+        subobj.style.display=(subobj.style.display!="block")? "block" : "none"
+    var xpos=getposOffset(curobj, "left")+((typeof opt_position!="undefined" && opt_position.indexOf("right")!=-1)? -(subobj.offsetWidth-curobj.offsetWidth) : 0) 
+    var ypos=getposOffset(curobj, "top")+((typeof opt_position!="undefined" && opt_position.indexOf("bottom")!=-1)? curobj.offsetHeight : 0)
+        subobj.style.left=xpos+"px"
+        subobj.style.top=ypos+"px"
+    return false
+    }
+    else
+return true
+}
+
+function overlayclose(subobj){
+    document.getElementById(subobj).style.display="none"
+}
+
+
+
+	function nameChk() {
+
+	
+		var val = "mcode={mcode}&pass=" + encodeURIComponent(document.getElementById("pass").value) + "&id=" + 
+		encodeURIComponent(document.getElementById("idx").value);
+
+//		alert(val);
+
+		sendRequest("/board.chk", val, FromServer_bichk, "POST"); 
+
+	}
+	function FromServer_bichk() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText; //받는값을 str_text로 정의
+				//alert(str_text);
+				if(str_text =="Y"){ 
+				var id = document.getElementById("idx").value;
+				self.location = 'board.read?mcode={mcode}&id='+id+'&num='+id+'';
+				//alert('암호맞음..');	
+				}else {
+				alert('비밀번호가 틀립니다.');
+				document.getElementById("pass").value;
+				overlayclose('subcontent2');
+				}
+			}
+		}
+	}
+
+
+</script>
+
+
+
+
+
+

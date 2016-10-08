@@ -1,0 +1,293 @@
+<style type="text/css" title="">
+td{text-align:center}
+</style>
+<script type="text/javascript">
+// <![CDATA[
+
+function checkSelected() {
+	form = document.forms['itemForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('{=_la("항목을 선택하여 주십시오.")}');
+		return false;
+	}
+	return true;
+}
+
+
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.itemForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.itemForm.all.value = "";
+
+ return;
+}
+
+
+function deleteItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 교육을 삭제 하시겠습니까?')) return false;
+
+	form.elements['mode'].value = 'delete';
+	form.method="post";
+	form.submit();
+}
+// ]]>
+</script>
+
+
+<div class="" id="ajax_info"></div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+{#TAB}
+
+
+
+
+<form method="GET" id="sch_from">
+<fieldset>
+		<legend>Legend</legend>
+		<div class="form_table" style="margin-top:5px;">
+		<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요" style="border-top:1px solid #cdcdcd">
+			<tbody>
+				
+				<tr>
+				<th scope="row"  style="text-align:center">패키지 상품</th>
+				<td>
+					<div class="item">
+											
+						<select name="in_pk" onchange="$('#sch_from').submit();">
+							<option value="">-- 패키지 -- </option>
+							<option value="y" {? in_pk =='y'} selected{/}>패키지</option>
+							<option value="" {? in_pk ==''} selected{/}>단품</option>
+						</select>
+					</div>
+				</td>
+				<th scope="row"  style="text-align:center">상태</th>
+				<td>
+					<div class="item">
+											
+						<select name="in_num_st" onchange="$('#sch_from').submit();">
+							<option value="">-- 캠프상태 -- </option>
+			
+							<option value="1" {? in_num_st ==1} selected{/}>접수중</option>
+							<option value="2" {? in_num_st ==2} selected{/}>마감임박</option>
+							<option value="3" {? in_num_st ==3} selected{/}>마감</option>
+							<option value="5" {? in_num_st == "5"} selected{/}>학년별 마감</option>
+					<option value="6" {? in_num_st == "6"} selected{/}>학년별 마감-전화요망</option>
+							
+
+						</select>
+					</div>
+				</td>
+
+				<th scope="row" style="text-align:center" >신청과정</th>
+				<td>
+					<div class="item">
+						<select name="sch_num_ccode" style="font-size:11px"  onchange="$('#sch_from').submit();">
+							<option value="">-- 과정선택 --</option>
+							{@ cate_LIST}
+							<option value="{.num_ccode}" {? sch_num_ccode == .num_ccode} selected{/}>{.str_title}</option>
+							{/}
+						</select>
+					</div>
+				</td>
+
+				<th scope="row" style="text-align:center">기수/시즌</th>
+				<td>
+					<div class="item">
+						<select name="sch_num_serial" onchange="$('#sch_from').submit();">
+							<option value="">-- 기수 선택 -- </option>
+
+							<option value="1" {? sch_num_serial == 1} selected{/}>1기</option>
+							<option value="2" {? sch_num_serial == 2} selected{/}>2기</option>
+							<option value="3" {? sch_num_serial == 3} selected{/}>3기</option>
+							<option value="4" {? sch_num_serial == 4} selected{/}>4기</option>
+							<option value="5" {? sch_num_serial == 5} selected{/}>5기</option>
+							<option value="6" {? sch_num_serial == 6} selected{/}>6기</option>
+							<option value="7" {? sch_num_serial == 7} selected{/}>7기</option>
+							<option value="8" {? sch_num_serial == 8} selected{/}>8기</option>
+							<option value="9" {? sch_num_serial == 9} selected{/}>9기</option>
+							<option value="10" {? sch_num_serial == 10} selected{/}>10기</option>
+							<option value="11" {? sch_num_serial == 11} selected{/}>11기</option>
+							<option value="12" {? sch_num_serial == 12} selected{/}>12기</option>
+							<option value="13" {? sch_num_serial == 13} selected{/}>13기</option>
+							<option value="14" {? sch_num_serial == 14} selected{/}>14기</option>
+							<option value="15" {? sch_num_serial == 15} selected{/}>15기</option>
+							<option value="16" {? sch_num_serial == 16} selected{/}>16기</option>
+							<option value="17" {? sch_num_serial == 17} selected{/}>17기</option>
+							<option value="18" {? sch_num_serial == 18} selected{/}>18기</option>
+							<option value="19" {? sch_num_serial == 19} selected{/}>19기</option>
+							<option value="20" {? sch_num_serial == 20} selected{/}>20기</option>
+							<option value="21" {? sch_num_serial == 21} selected{/}>21기</option>
+							<option value="22" {? sch_num_serial == 22} selected{/}>22기</option>
+							<option value="23" {? sch_num_serial == 23} selected{/}>23기</option>
+							<option value="24" {? sch_num_serial == 24} selected{/}>24기</option>
+							<option value="25" {? sch_num_serial == 25} selected{/}>25기</option>
+							<option value="26" {? sch_num_serial == 26} selected{/}>26기</option>
+							<option value="27" {? sch_num_serial == 27} selected{/}>27기</option>
+							<option value="28" {? sch_num_serial == 28} selected{/}>28기</option>
+
+						</select>
+
+						
+					</div>
+				</td>
+				
+				
+				
+				</tr>
+
+
+				
+				
+
+			
+			</tbody>
+		</table>
+		</div>
+		<div style="text-align:center">
+			<wa:btn size="2" type="submit" id="btn_submit" value="검색"/> 
+			<wa:btn size="2" type="a" href="{act2}" value="검색해제"/> 
+		</div>
+</fieldset>
+</form>
+
+
+<form method="POST" id="itemForm" name="itemForm">
+<input type="hidden" name="all" id="all" >
+<input type="hidden" name="mode" id="mode" >
+<input type="hidden" name="types" id="types" >
+
+	<!--ui object -->
+	<table class="tbl_type" border="1" cellspacing="0" summary="교육 목록리스트" style="margin-top:20px">
+	<caption>등록별 교육목록</caption>
+	<colgroup>
+		<col width="5%">
+		<!--col width="12%"-->
+		<col width="8%">
+		<col>  
+		<col width="17%">
+		<col width="20%">
+		
+		<col width="10%">
+		<col width="8%">
+		<col width="8%">
+		<col width="8%">
+
+		
+	</colgroup>  
+
+	<thead>
+		<tr >
+			<th style="text-align:center"><input type="checkbox" name="" onclick ="checkall();"></th>
+			<!--th style="text-align:center">이미지</th-->
+			<th style="text-align:center">기수</th>
+			<th style="text-align:center">캠프 프로그램</th>
+			<th style="text-align:center">구분(장소)</th>
+			
+			
+			<th style="text-align:center">대상</th>
+			<th style="text-align:center">교육비</th>
+			<th style="text-align:center">숨김</th>
+			<th style="text-align:center">상태</th>
+			<th style="text-align:center">복사</th>
+		</tr>
+	</thead>
+	<tbody>
+		{@ LIST}
+		<tr >
+			<td style="text-align:center"><input type="checkbox" name="ids[]" value="{.num_serial}"></td>
+			<!--td><a href="/lms.admin.add?serial={.num_serial}"><img src="/hosts/<?=HOST?>/lms/{.str_file}_100" width="60px" onerror="this.src='/image/noimage.gif'"  style="border:1px solid #cdcdcd"/></a></td-->
+			
+			<td style="text-align:center">	{? !.str_study}제{.num_serial}기{:}없음{/}</td>
+
+			<td style="text-align:left">
+				<a href="/lms.admin.add?ccode={.num_ccode}&serial={.num_serial}&study={.str_study}">
+					<p>
+						<span style="color:#9933ff">{.str_ccode_text} 	{? !.str_study}제{.num_serial}기{/}</span>
+					</p>
+					{? !.str_study}
+					<p>{.start_date}~{.end_date}</p>
+					{/}
+					
+				</a>
+		 
+			</td>
+			<td style="text-align:center">{.str_camp_area}</td>
+			
+			<td style="text-align:center">{.str_target}</td>
+			<td style="text-align:center">{=number_format(.num_price)}원</td>
+			<td style="text-align:center">
+				{? .str_view == "y"}<span style="color:#0033ff">표출{:}<span style="color:#990033">숨김{/}</span>
+			
+			</td>
+			<td style="text-align:center">
+				{? .num_st == "1"}<span style="color:#0033ff">접수중</span>{/}
+				{? .num_st == "2" }<span style="color:#ff00cc">마감임박</span>{/}
+				{? .num_st == "4" }<span style="color:#ff00cc">마감임박<br>전화요망</span>{/}
+				{? .num_st == "5" }<span style="color:#ff00cc">학년별마감</span>{/}
+				{? .num_st == "6" }<span style="color:#ff00cc">학년별마감<br>전화요망</span>{/}
+				{? .num_st == "3" || num_start_date >= date("Ymd")}<span style="color:#990033">마감</span>{/}
+			</td>
+			<td style="text-align:center">
+				<span class="btn_pack small " ><a href="/lms.admin.add?ccode={.num_ccode}&serial={.num_serial}&study=" >수정</a></span>
+				<span class="btn_pack small " ><a href="/lms.admin.add?ccode={.num_ccode}&serial={.num_serial}&study=&copy=y" >복사</a></span>
+			</td>
+
+		</tr>
+		{/}
+	</tbody>
+	</table>
+
+
+	<div style="margin:10px 0 10px 0;border-bottom:1px solid #cdcdcd">
+		<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" class="paginate_complex"/>
+	</div>
+	<div >
+		<span class="btn_pack medium icon" style="float:left"><span class="delete"></span><a href="#" onclick="deleteItem();">선택 삭제</a></span>
+
+		<span class="btn_pack medium icon" style="float:right"><span class="add"></span><a href="/lms.admin.add?ccode={ccode}&study=y">신규 스터디 등록</a></span>
+		<span class="btn_pack medium icon" style="float:right;margin-right:5px"><span class="add"></span><a href="/lms.admin.add?ccode={ccode}">신규 캠프 등록</a></span>
+	</div>
+
+</form>

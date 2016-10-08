@@ -1,0 +1,76 @@
+<div id="sub_content_area">
+	<!-- IF 'SUB_TITLE' -->
+	<div id="sub_title_area">
+	{{board_title}}
+	</div>
+	<!-- ENDIF 'SUB_TITLE' -->
+	<hr/>
+	<!-- 라이센스 추가 2008.06.24 BY NCS -->
+	<table width="100%">
+		<tr>
+			<td height="10">&nbsp;</td>
+		<tr>
+		<tr>
+			<td>
+				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td align="center">
+					{{LICENCE}}
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<!-- 라이센스 추가 2008.06.24 BY NCS -->
+	<span id="list_total">총 {{total}} 개의 게시물이 있습니다 </span>
+	<table id="board_list"  class="board_top">
+		<tr align="center">
+			<th class="board_num border_bottom_2px border_top_1px border_color_2"><span class="hidden">번호</span></td>
+			<th class="board_title border_bottom_2px border_top_1px border_color_2">제목</td>
+			<th class="board_author border_bottom_2px border_top_1px border_color_2">글쓴이</td>
+			<th class="board_date border_bottom_2px border_top_1px border_color_2">날짜</td>
+			<th class="board_view border_bottom_2px border_top_1px border_color_2">조회</td>
+		</tr>
+		<!-- DYNAMIC AREA 'LIST' -->
+		<tr>
+			<td class="board_num border_bottom_1px border_color_3" align="center">{{num}}</td>
+			<td class="board_title border_bottom_1px border_color_3">{{indent}}{{icon}}<a href="{{readlink}}">{{title}}</a> <font color="#990000">{{cmt}}</font></td>
+			<td class="board_author border_bottom_1px border_color_3" align="center">{{name}}</td>
+			<td class="board_date border_bottom_1px border_color_3" align="center" class="f-d8pt">{{date}}</td>
+			<td class="board_view border_bottom_1px border_color_3" align="center">{{hit}}</td>
+		</tr>
+		<!-- DYNAMIC AREA 'LIST' -->
+	</table>
+	<hr/>
+	<!-- IF 'WRITABLE' -->
+	<a href="{{writelink}}" id="write_btn"><img src="/image/button/bt01/01.gif" alt="글쓰기 버튼" /></a>
+	<!-- ENDIF 'WRITABLE' -->
+	<form method="get" name="searchform" id="search_form">
+		<input type="hidden" name="cafe_id" value="{{cafe_id}}" />
+		<input type="hidden" name="act" value="{{act}}" />
+		<input type="hidden" name="mcode" value="{{mcode}}" />
+			<select name="key" id="key">
+				<option value="str_name" {{search_name}}>글쓴이</option>
+				<option value="str_title" {{search_title}}>제목</option>
+			</select>
+		<input name="search" type="text" class="login" id="search" value="{{search}}" />
+		<input type="image" src="/image/button/bt01/04.gif" alt="검색 버튼" id="search_btn" />
+	</form>
+	<div id="board_page_num">
+		<script src="/js/lib.pagingcafe.js"></script>
+		<script>
+			PG = new Paging({{total}});
+			with(PG.config) {
+				itemPerPage = {{listnum}};
+				prevIcon = "/image/board/orange/btn_prevpage.gif";
+				nextIcon = "/image/board/orange/btn_nextpage.gif";
+				firstIcon = "/image/board/orange/btn_firstpage.gif";
+				lastIcon = "/image/board/orange/btn_lastpage.gif";;
+				thisPageStyle = "font-weight:bold;";
+			}
+			document.write(PG);
+		</script>
+	</div>
+	<hr/>
+</div>

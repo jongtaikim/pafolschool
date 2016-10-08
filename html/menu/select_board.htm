@@ -1,0 +1,67 @@
+						<script language="javaScript" id="dynScript"></script>
+						<script language="javaScript">
+						<!--
+						function selectmcode1(el) {
+
+							var mcode = el.value;
+							var step = el.getAttribute("step");
+							var nextstep = step + 1;
+							if(nextstep == 5) return;
+							var id = 'dynArea'+ step + '_1';
+							document.getElementById(id).innerHTML = "";
+							if(mcode) {
+								document.getElementById('{varname}').value = el.value;
+								document.getElementById('dynScript').src = '/menu.dynselect?type={type}&varname={varname}&step='+step+'&mcode='+mcode+'&id='+id;
+							} else if(step > 1) {
+								var pel = document.getElementById('mcode'+(step-1));
+								document.getElementById('{varname}').value = pel.value;
+							} else {
+								document.getElementById('{varname}').value = '';
+							}
+						 selectevent();
+						}
+
+
+							function selectmcode2(el) {
+
+							var mcode = el.value;
+							var step = el.getAttribute("step");
+
+							if(mcode) {
+							document.getElementById('{varname}').value = el.value;
+							}else if(step > 1) {
+								var pel = document.getElementById('mcode'+(step-1));
+								document.getElementById('{varname}').value = pel.value;
+							} else {
+								document.getElementById('{varname}').value = '';
+							}
+						 selectevent();
+						}
+
+
+						function selectevent() {
+						if(tar_lay){
+						var id = tar_lay;
+						id = explode("[",id);	
+						id = id[0];
+						alert(id);
+						}
+						
+						}
+						//-->
+						</script>
+
+						<input type="hidden" name="{varname}" hname="{hname}" id="{varname}" value="{mcode}" {required}>
+						<!--{@ CATE_LIST}-->
+						<select name="{varname}{.step}" id="{varname}{.step}" step="{.step}" onchange="selectmcode1(this);"  class="selector" style="font-size:11px;width:80px" >
+							<option value="" style="color:#666666;">{.depth_str}</option>
+							<!--{@ OPTIONS}-->
+							{? ..str_type == type || ..str_type == "menu"}
+							<option value="{..num_mcode}"{? ..num_mcode==.cur_mcode} selected{/}>{..str_title}</option>
+							{/}
+							<!--{/}-->
+						</select>
+						
+						<span id="dynArea{.step}_1">
+						<!--{/}-->
+						<!--{= str_repeat('</span>', CATE_LIST.size_) }-->

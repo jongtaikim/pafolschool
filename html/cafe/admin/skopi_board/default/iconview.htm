@@ -1,0 +1,142 @@
+<div id="sub_content_area">
+<style type="text/css">
+<!--
+.style1 {color: #990000}
+-->
+</style>
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tr> 
+		<td><table width="100%" border="0" cellpadding="0" cellspacing="0" background="/image/theme/A/A/sub_title_bg2.gif">
+        	<tr>
+        		<td width="16%" background="/image/theme/A/A/sub_title_bg2.gif"><img src="/image/theme/A/A/sub_title_01.gif" width="104" height="67"></td>
+        		<td width="81%"><table width="100%" height="67" border="0" cellpadding="0" cellspacing="0">
+        				<tr>
+        					<td valign="middle" background="/image/theme/A/A/sub_title_bg.gif" ><span style="background-color: #FFFFFF; padding-top: 22px; padding-right: 20px; height: 59px; font-weight: bold">{{board_title}} </span></td>
+        					</tr>
+        				</table></td>
+        		<td width="3%" align="right" background="/image/theme/A/A/sub_title_bg.gif"><img src="/image/theme/A/A/sub_title_02.gif" width="17" height="67"></td>
+        		</tr>
+        	</table></td>
+	</tr>
+	<tr height="10"><td></td></tr>
+	<tr>
+		<td>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>{{CAPTION}}</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr height="10"><td></td></tr>
+	<tr> 
+		<td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr> 
+					<td width="52%" height="20"><img src="/image/board/default/icon01.gif" width="10" height="11" align="absmiddle"> 
+						Page : <span class="f-CG8pt">총 
+						{{total}} 개의 게시물이 있습니다. </span></td>
+					<td width="48%" align="right"><img src="/image/board/default/icon15.gif" width="13" height="14" align="absmiddle"> 
+						<!-- [ 게시판 관리자 : <font color="#006699"><b>김용진 
+						</b></font>] --></td>
+				</tr>
+				<tr> 
+					<td height="26" colspan="2"> 
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr> 
+								<td height="26"> 
+									<table width="100%" height="26" border="0" cellpadding="0" cellspacing="0" background="/image/board/default/b_top_bg.gif">
+										<tr> 
+											<td><b><font color="#FFFFFF">겔러리 
+												게시판입니다.</font></b></td>
+										</tr>
+									</table></td>
+							</tr>
+							<tr> 
+								<td class="padding"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<!-- DYNAMIC AREA 'ROW' -->
+										<tr align="center"> 
+											<!-- DYNAMIC AREA 'COL' -->										
+											<td>
+											<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+                                            	<tr align="center">
+                                            		<td valign="top"><table border="0" cellpadding="0" cellspacing="3" bgcolor="#F6F6F6" style="width: 106px; height: 106px;">
+                                            				<tr>
+                                            					<td align="center" valign="middle"><a href="{{readlink}}"><img src="{{thumb}}" border="0"></a></td>
+                                            					</tr>
+                                           				</table></td>
+                                            		</tr>
+                                            	<tr>
+                                            		<td height="20" align="center">{{icon}}<span style="width:100px; overflow: hidden;" title="{{title}}"><nobr><a href="{{readlink}}">{{title}}</a></nobr></span> <span class="style1">{{cmt}}</span> </td>
+                                            		</tr>
+                                            	</table></td>
+											<!-- DYNAMIC AREA 'COL' -->												
+										</tr>
+										<tr align="center"> 
+											<td height="10" colspan="4"></td>
+										</tr>
+										<!-- DYNAMIC AREA 'ROW' -->										
+									</table></td>
+							</tr>
+							
+							<tr> 
+								<td height="35" align="center"><!-- <table width="50%" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tr> 
+											<td><img src="img/list_bbs/img/icon09.gif" width="14" height="11"></td>
+											<td><img src="img/list_bbs/img/icon10.gif" width="11" height="11"></td>
+											<td align="center">01 
+												02 
+												<b><font color="#319DC6">03</font></b> 
+												04 
+												05 
+												06 
+												07 
+												08 
+												09 
+												10</td>
+											<td><img src="img/list_bbs/img/icon11.gif" width="11" height="11"></td>
+											<td><img src="img/list_bbs/img/icon12.gif" width="14" height="11"></td>
+										</tr>
+									</table>-->
+									<script src="/js/lib.paging.js"></script>
+								<script>
+										PG = new Paging({{total}});
+										PG.config.itemPerPage = {{listnum}};
+										PG.config.pagePerView = {{navnum}};										
+										document.write(PG);
+									</script>								</td>
+							</tr>
+							<tr> 
+								<td height="2" bgcolor="F8F8F8"></td>
+							</tr>
+							<tr> 
+								<td height="1" bgcolor="A4A4A4"></td>
+							</tr>
+							<tr> 
+								<td height="30" align="right"><table width="320" border="0" cellspacing="0" cellpadding="0">
+                                	<form method="get" name="searchform">
+                                		<input type="hidden" name="act" value="{{act}}">
+                                		<input type="hidden" name="code" value="{{code}}">
+                                		<tr>
+                                			<td width="92" align="right" ><img src="/image/board/default/icon04.gif" width="47" height="13">　</td>
+                                			<td width="67" align="center"><select name="key" id="key">
+                                					<option value="str_name" {{search_name}}>글쓴이</option>
+                                					<option value="str_title" {{search_title}}>제목</option>
+                                					</select></td>
+                                			<td width="120" align="center"><input name="search" type="text" class="login" id="search" style="width:90%;" value="{{search}}"></td>
+                                			<td width="41" align="right"><input type="image" src="/image/button/bt01/04.gif" width="40" height="19"></td>
+                                			</tr>
+                                		</form>
+								</table></td>
+							</tr>
+						</table></td>
+				</tr>
+			</table></td>
+	</tr>
+	<tr> 
+		<td height="25" align="right"><a href="{{writelink}}"><img src="/image/button/bt01/01.gif" width="51" height="19" border="0"></a></td>
+	</tr>
+	<tr> 
+		<td>&nbsp;</td>
+	</tr>
+</table>
+</div>

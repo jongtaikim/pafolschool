@@ -1,0 +1,68 @@
+<div style="position:relative;">
+<div id="STATICMENU3" style="position:absolute; width:128px;top:10px">
+							<div>
+								<table cellpadding="0" cellspacing="0" border="0">
+									<tr>
+										<td style="padding-left:3px"><a href="member.logout"><img src="/html/admin/images/btn_logout.gif"></a></td>
+									</tr>
+									<tr><td height="2"></td></tr>
+									<tr>
+										<td style="padding-left:3px"><a href="/"><img src="/html/admin/images/btn_home.gif"></a></td>
+									</tr>
+									<tr><td height="2"></td></tr>
+								</table>
+							</div>
+							<div style = "width:100%;height:39px;"><img src="/html/admin/images/quick_top.gif"></div>
+							<div style = "width:100%;height:88px; background-image:url(/html/admin/images/quick_bg_01.gif); background-repeat:repeat-x;">
+							<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+								<tr><td height="10"></td></tr>
+								<tr>
+									<td align="center"><a href="/?remocon=Y"><img src="/html/admin/images/quick_menu01.gif"></a></td>
+								</tr>
+								<tr><td height="3"></td></tr>
+								<tr>
+									<td align="center"><img src="/html/admin/images/quick_menu02.gif"></td>
+								</tr>
+								<tr><td height="3"></td></tr>
+								<tr>
+									<td align="center"><img src="/html/admin/images/quick_menu03.gif"></td>
+								</tr>
+							</table>
+							</div>	
+							<div style = "width:100%; position:;" id = "admin_menu_index">
+								<div style = "width:100%;" height="39"><img src="/html/admin/images/quick_mid.gif"></div>	
+
+								<div  id="admin_index;" style=" background-image:url(/html/admin/images/quick_bg.gif);" >
+								<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+									<tr><td height="6"></td></tr>
+									<tr>
+										<td  style="padding-left:10px">{@ MENU_INDEX}	
+											<a href="{.str_url}" style="font-size:11px; font-family:µ¸¿ò; color:#3e3e3e; letter-spacing:-1px;">{.str_title}</a><a href="/menu.plus?mode=del&serial={.num_serial}"><img src='/html/admin/images/btn_x.gif' align="absmiddle" hspace="3"></a><br>
+											
+											{/}</td>
+									</tr>
+									<tr><td height="5"></td></tr>
+								</table>
+								</div>
+								<div style = "width:100%;height:54px; background-image:url(/html/admin/images/quick_btm_bg.gif); background-repeat:repeat-x;text-align:center">
+								<form method=post action="/menu.plus">
+								<input type="hidden" name="act3" value="{act3}" >
+								<input type="hidden" name="pn" value="<?=_PN?>">		
+								<input type="hidden" name="mode" value="plus">
+								<input type = "image" src='/html/admin/images/btn_plus_quick.gif' style="cursor: hand" align=absmiddle width="103">
+								</form>
+								<table cellpadding="0" cellspacing="0" border="0" width="100%">
+									<tr><td height="8"></td></tr>
+									<tr>
+										<td align=center><a href="#"><img src="/html/admin/images/btn_top_quick.gif"></a></td>
+									</tr>
+								</table>
+								</div>
+							</div>
+							
+
+						</div>
+</div>
+<script language="Javascript" type="text/javascript">
+new Floating($('STATICMENU3'),10,5);
+</script>

@@ -1,0 +1,89 @@
+<body topmargin="0" leftmargin="0">
+<script src="/js/prototype.js" type="text/javascript"></script>
+<script src="/js/scriptaculous.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+<link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() {
+
+	//이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+	if(document.body.readyState == "complete") {
+		clearInterval(ifrContentsTimer);
+	}
+	else {
+		resizeFrame();
+	}
+}
+function resizeFrame(){
+	
+	//페이지가 로딩되면 바로 리사이즈..
+	var h = document.body.scrollHeight+60;
+	var w = document.body.scrollWidth;
+
+	//self.resizeTo(w, h);
+	//alert(document.documentElement.scrollWidth);
+	//alert(document.documentElement.scrollHeight);
+
+	parent.$('orderMenu').style.height = h+'px';
+	//parent.$('orderMenu').style.width = w+'px';
+	
+}
+//-->
+
+</script>
+<style type="text/css">
+ul.list {
+}
+ul.list li.item {
+	list-style:none;
+	padding:2px;
+	margin:5px;
+	width:300px;
+	border:1px solid #777777;
+	cursor:'pointer';
+}
+
+div.submit {
+	width:300px;
+	margin-left:20px;
+}
+</style>
+<style type="text/css" title="">
+.qitme{border:1 solid #c7c7c7; background-image:url(/html/admin/images/quick_fom_bg.gif); height:24px; width:100%;padding:3px 0 0 10px;margin:2px 0 2px 0px;cursor: move;text-align:left}
+</style>
+
+
+<body onload="resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',10);" >
+
+<center>
+<form name="listForm" method="post" >
+<input type="hidden" name="cate" value="{cate}">
+<input type="hidden" name="mcode" value="{mcode}">
+
+<p style="padding:3px"><b>{title}</b> 순서변경</p>
+
+	<ul class="list" id="list" style="width:90%;">
+	<!--{@ LIST}-->
+		<li class="qitme" id="list_list{= .index_ + 1}">{.str_title}<input type="hidden" name="cates[]" value="{.num_cate}"></li>
+	<!--{:}-->
+		순서를 변경할 하위메뉴가 없습니다.
+	<!--{/}-->
+	</ul>
+<p style="padding:3px">※ 마우스로 끌어서 순서를 변경하시고 저장하십시오.</p>
+
+	
+
+<input type=image src="/html/admin/images/btn_save.gif"  border="0" >
+</form>
+</center>
+<script type="text/javascript">
+resizeFrame();
+
+// <![CDATA[
+Sortable.create("list", {dropOnEmpty:true,containment:["list"],constraint:'vertical'});
+// ]]>
+
+</script>
+</body>

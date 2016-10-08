@@ -1,0 +1,28 @@
+
+<!-- 스코피 영역 -->
+<div id="skopi">
+	<img src="cafe/skin/images/skopi/01.gif" alt="우리반 추억문집">
+	<div id="skopi_content">
+		
+		<div id="skopi_maker" >
+		<img src="cafe/skin/images/skopi/02.gif" alt="우리반 추억문집 만들기" onclick="open_popup();" style="cursor:pointer">
+		</div>
+		<div id="skopi_qna">
+		<img src="cafe/skin/images/skopi/03.gif" alt="우리반 추억문집 만들기" onclick="open_qna();" style="cursor:pointer;" />
+		</div>
+		<!-- <div id="skopi_view">
+		<a href="cafe.php?cafe_id=<?=$cafe_id?>&act=cafe.skopi.view"><img src="cafe/skin/images/skopi/skopiViewBtn.gif" alt="우리반 추억문집 보기"></a>
+		</div> -->
+	</div>
+</div>
+
+<script type="text/javascript">
+function open_popup(){
+	var skn = window.open('/?act=cafe.skopi.maker&cafe_id=<?=$cafe_id?>','skopi','width=1013,height=677,resizable=yes');
+	skn.focus();
+}
+function open_qna(){
+	window.open('/?act=skopi_board.list_new&cafe_id=<?=$cafe_id?>','','width=800, height=600, scrollbars=yes');
+}
+</script>
+<!-- 스코피 끝 -->

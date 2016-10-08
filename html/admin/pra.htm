@@ -1,0 +1,199 @@
+<form name="orderForm" method="post" enctype="multipart/form-data" >
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" >
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" >
+				<tr >
+					<td width="20"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01">개인정보보호방침 작성 및 관리</td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+	<!-- 작성 및 관리 Start -->
+		
+			<wa:upload part="editor_basic" sect="main" code="pra" name="content" width="99.5%" height="300px">{content}</wa:upload>
+	<!-- 작성 및 관리 End -->
+		</td>
+	</tr>
+	<tr>
+		<td height="1" bgcolor="#efefef"></td>
+	</tr>
+
+	<tr><td height="20"></td></tr>
+
+	<tr>
+		<td >
+	<!-- 당담자 입력 Start -->
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<!-- 상단 Start -->
+				<tr>
+					<td width="11px" background="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif" >
+							<tr>
+								<td width="12px" height="28px" background="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">담당자 입력</td>
+								<td width="14px" background="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11px" align="right" background="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+			<!-- 상단 End -->
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF" style="padding:19px 0px 13px 0px">
+					
+					<!-- 개인정보관리 담당부서 Start -->						
+						<div>
+							<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_top_line01"></td>
+							</tr>
+							<tr>
+								<td width="100%" class="table_top_line02"></td>
+							</tr>
+						</table>
+						
+						<table cellpadding="0" cellspacing="1" border="0" width="96%" align="center" bgcolor="d5dfe7">
+						<col width="25%"></col><col width="%"></col>
+							<tr height="33" bgcolor="FFFFFF">
+								<td rowspan="3" class="table01_title" width="106">개인정보관리<br>담당부서</td>
+								<td class="table01_title02" width="72">부서명</td>
+								<td class="table01_title01">
+									<input type="text" name="dept_name" value="{dept_name}" size="25" class="fom01">
+								</td>
+								<td class="table01_title02" width="72">개인정보<br>파일명</td>
+								<td class="table01_title01">
+									<input type="text" name="dept_file_name" value="{dept_file_name}" size="25" class="fom01">
+								</td>
+							</tr>
+							<tr height="33" bgcolor="FFFFFF">
+								<td class="table01_title02" width="72">열람장소</td>
+								<td class="table01_title01">
+									<input type="text" name="dept_area" value="{dept_area}" size="25" class="fom01">
+								</td>
+								<td class="table01_title02" width="72">연락처</td>
+								<td class="table01_title01">
+									<input type="text" name="dept_tel" value="{dept_tel}" size="25" class="fom01">
+								</td>
+							</tr>
+							<tr height="33" bgcolor="FFFFFF">
+								<td class="table01_title02" width="72">FAX</td>
+								<td class="table01_title01" colspan="3">
+									<input type="text" name="drct_fax" value="{drct_fax}" size="25" class="fom01">
+								</td>
+							</tr>
+						</table>
+							
+						<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_btm_line01"></td>
+							</tr>
+						</table>
+						</div>
+					<!-- 개인정보관리 담당부서 End -->						
+
+					<!-- 개인정보관리 책임관 Start -->						
+						<div style="padding-top:14px">
+							<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_top_line01"></td>
+							</tr>
+							<tr>
+								<td width="100%" class="table_top_line02"></td>
+							</tr>
+						</table>
+						
+						<table cellpadding="0" cellspacing="1" border="0" width="96%" align="center" bgcolor="d5dfe7">
+						<col width="25%"></col><col width="%"></col>
+							<tr height="33" bgcolor="FFFFFF">
+								<td rowspan="3" class="table01_title" width="106">개인정보관리<br />책임관</td>
+								<td class="table01_title02" width="72">부서명</td>
+								<td class="table01_title01">
+									<input type="text" name="drct_dept" value="{drct_dept}" size="25" class="fom01">
+								</td>
+								<td class="table01_title02" width="72">성명</td>
+								<td class="table01_title01">
+									<input type="text" name="drct_name" value="{drct_name}" size="25" class="fom01">
+								</td>
+							</tr>
+							<tr height="33" bgcolor="FFFFFF">
+								<td class="table01_title02" width="72">이메일</td>
+								<td class="table01_title01">
+									<input type="text" name="drct_email" value="{drct_email}" size="25" class="fom01">
+								</td>
+								<td class="table01_title02" width="72">전화번호</td>
+								<td class="table01_title01">
+									<input type="text" name="drct_tel" value="{drct_tel}" size="25" class="fom01">
+								</td>
+							</tr>
+						</table>
+							
+						<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_btm_line01"></td>
+							</tr>
+						</table>
+						</div>
+					<!-- 개인정보관리 책임관 End -->	
+
+						<div style="padding-top:15px">
+							
+							<div style="text-align:center">
+									<span class="btn_pack medium icon"><span class="add"></span><input type="submit" value="저장"></span>
+								</div>
+						</div>
+
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+	<!-- 당담자 입력 End -->
+		</td>
+	</tr>
+	
+<!-- 도움말 End -->
+</table>
+
+<br>
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			ㆍ홈페이지는 '개인정보보호방침'을 작성하고, 사용자에게 고지할 의무가 있습니다.
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+
+  </form>

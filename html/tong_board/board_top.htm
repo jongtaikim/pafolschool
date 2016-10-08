@@ -1,0 +1,113 @@
+<!-- 게시물 개수와 카테고리 부분 Start -->
+<table cellpadding="0" cellspacing="0" border="0" width="{? str_width}{str_width}{?str_width <= 100}%{/}{:}100%{/}">
+	<tr>
+	
+	 <td   width="42" style = "padding-top:4px">
+  <a href="/board.xml?mcode={mcode}"><img src='/image/rss.gif' border='0' alt=''></a>
+  </td>
+		
+		<td width="58%" height="20" class="f11" style="padding-left:8">총 <b>{total}</b> 개 게시물이 있습니다.</td>
+		<td align = right class="f11" style="padding-right:8"> 	
+			<script>
+			function select1(val) { // 코드 입력
+			location.href='board.list?mcode={mcode}&str_category='+val;
+			}
+			</script>
+		</td>
+
+ 
+		
+		<td align="right">
+		<!--{? _SESSION.IN_ADMIN && mcode}-->
+		<div style="padding-left:10px;padding-top:2px;"><a href="#" onClick="fenster2('카테고리관리', '카테고리관리', '/board.admin.categorypop?mcode={mcode}',  '20%', '30%', '100', '100')" style="font-size:11px;"><b>+카테고리관리</b></a></div>	
+		<!--{/}-->
+			
+			
+			
+			<SELECT NAME="str_category" onchange = "select1(this.value);" style = "font-size:11px;width:130px" >
+			<OPTION VALUE="">** 카테고리보기 **</option>
+			<OPTION VALUE="일반" {? '일반' == str_category} selected{/}>일반</option>
+			<!--{@ cate_LIST}-->
+			<OPTION VALUE="{.str_category}" {? .str_category == str_category} selected{/}>{.str_category} ({.counter})</option>
+			<!--{/}-->
+			</SELECT>
+		</td>
+
+
+
+
+	</tr>
+	<tr>
+		<td height="5"></td>
+	</tr>
+	{?  cate_LIST}
+	<tr><td bgcolor="#EBEBEB" height = 1 colspan =20></td>	</tr>
+	<tr>
+	  <td colspan = 20 style = "padding-top:5px;padding-bottom:5px;">
+	  
+	  <table  border=0 cellspacing=0 cellpadding=0  >
+			 <tr>
+			    <td style="padding-left:5px" width="5" width=100><img src='/image/ic_dot.gif' align=absmiddle></td>
+			   <td style="padding:3px">
+			   {? !str_category}<b>{/} <a href="javascript:select1('');">전체</a>
+			  </td>
+			 <!--{@ cate_LIST}-->
+			   <td style="padding-left:5px" width="5"><img src='/image/ic_dot.gif' align=absmiddle></td>
+			  <td style="padding:3px" width=110>
+			   {? .str_category == str_category}<b>{/} <a href="javascript:select1('{.str_category}');">{.str_category} ({.counter})</a>
+			  </td>
+			  {? (.index_ + 1) %4 == 0}
+			  </tr><tr>
+			  {/}
+			  {/}
+			 </tr>
+			</table>
+	  
+	  </td>
+	</tr>
+	<tr><td bgcolor="#EBEBEB" height = 1  colspan =20></td>	</tr>
+	<tr><td  height = 10  colspan =20></td>	</tr>
+	{/}
+</table>
+<!-- 게시물 개수와 카테고리 부분 End -->
+
+
+<script language="Javascript">
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.listForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.listForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.listForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.listForm.all.value = "";
+
+ return;
+}
+
+</script>

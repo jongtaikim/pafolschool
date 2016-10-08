@@ -1,0 +1,51 @@
+
+<table  cellpadding="0" cellspacing="0" border="0" width=100% >
+
+<tr>
+	<td ><table cellpadding="0" cellspacing="0" border="0" width=100% height="45" background="/html/admin2/images/sub_title_bg.gif" align = center>
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545"><b>게시판 데이터 이동</b></td>
+				
+				</tr>
+			</table>
+
+
+<div class="tab01">
+	<ul>
+		<li><a href="menu.admin.option?mcode={mcode}">메뉴옵션</a></li>	
+		<li><a href="menu.admin.rights?mcode={mcode}">권한설정</a></li>
+		<li><a href="board.admin.manage.basic?mcode={mcode}">기본설정</a></li>
+	
+		<li class="active"><a href="board.admin.manage.move?mcode={mcode}">데이터 이동</a></li>
+	</ul>
+</div>
+
+
+<br>
+<FORM METHOD=POST >
+	<br>
+
+<TABLE width="98%" class="table11" align =center>
+<tbody>
+<TR>
+	<Th colspan = 2 class="head">게시물 데이터 및 권한 이동</Th>
+	
+</TR>
+</tbody>
+<TR>
+	<Th>원본게시판</Th>
+	<TD><INPUT TYPE="text" NAME="a_bbs" value = "{mcode}" readonly></TD>
+</TR>
+
+<TR>
+	<Th>대상게시판</Th>
+	<TD><INPUT TYPE="text" NAME="b_bbs" ></TD>
+</tr>
+<tr><td colspan = 2 align = center><INPUT TYPE="submit" value = "실행하기">
+<br><br><font style = "color:red">※ 게시판을 이동하실때 신중하시기 바랍니다.
+</td></tr>
+</TABLE>
+<br>
+
+</FORM>

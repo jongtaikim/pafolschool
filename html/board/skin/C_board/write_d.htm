@@ -1,0 +1,206 @@
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<link rel="stylesheet" type="text/css" href="./style.css">
+<link rel="stylesheet" type="text/css" href="/html/board/borderBasic.css">
+<form name="writeForm" method="post" enctype="multipart/form-data" onsubmit="return validate(this);">
+<input type="hidden" name="id" value="{id}">
+<input type="hidden" name="str_thumb" value="{str_thumb}">
+<input type="hidden" name="origin_num_file" value="{num_file}">
+
+   
+<div class="{str_skin}" >
+
+	<div class="writeTop">
+		<div class="title">
+		<b>| {? _act=='board.write'} <b>글쓰기</b>
+				 {? _SESSION.USERID  }<font color = "#CC3333">※ 비밀번호는 로그인암호입니다.</font>{/}
+				 {/} 
+				 {? _act=='board.modify'} <b>수정</b> 
+				 {? _SESSION.USERID != str_user }<font color=red> ※ 본인이 작 성한 글이 아닙니다. </font> {/}{/} 
+				 {? _act=='board.reply'} <b>답글</b>{/} 
+		</b>            
+		</div>
+	</div>
+
+	 <div class="writeBody">
+		<!--회원정보입력-->
+		{? !_SESSION.USERID }
+		<div class="titleText">
+				<div class="text1 bgcolor bcolor">작성자</div>
+				<div class="text2"><input name="str_name" type="text" class="text50" id="str_name"  value="{? !name}{NAME}{:}{name}{/}" hname="작성자" required maxbyte="20"/></div>
+		</div>
+		
+		<div class="titleText">
+				<div class="text1 bgcolor bcolor">비밀번호</div>
+				<div class="text2"><input name="str_pass" type="password" class="text50" id="str_pass"  value="{? _act!='board.modify'}{? ! pass}{PASSWD}{:}{pass}{/}{/}" required hname="비밀번호" maxbyte="20"/></div>
+		</div>
+
+		<div class="titleText">
+				<div class="text1 bgcolor bcolor">E-mail</div>
+				<div class="text3"><input name="str_email" type="text" class="text100" id="str_email" style="width:78%;background-color:#FFFFFF;border:1 solid #DCDCDC;font-size:12px;font-family:돋움,Dotum;" value="{? !email}{EMAIL}{:}{email}{/}" option="email" hname="E-mail" maxbyte="30"/></div>
+		</div>
+		{:}
+		<input type="hidden" name="str_name" value = "{? !name}{NAME}{:}{name}{/}"/>
+		<input type="hidden" name="str_pass" value = "{? ! pass}{PASSWD}{:}{pass}{/}"/>
+		<input type="hidden" name="str_email" value = "{? !email}{EMAIL}{:}{email}{/}"/>
+		<input type="hidden" name="str_nick" value="{_SESSION.NICKNAME}"/>
+		{/}
+		<!--회원정보입력 끝-->
+	
+
+		<div class="titleText"> 
+				<div class="text1 bgcolor bcolor">제목</div>
+				<div class="text3 paddingLeft">
+
+				
+				<div id="category">
+				{? chr_hak ==1}	<select name="str_category" onchange = "select1(this.value);" style = "font-size:11px;" size=1>
+					<option value="일반">--카테고리--</option>
+					<option value="일반">일반</option>
+					<!--{@ cate_LIST}-->
+					<option value="{.str_category}" {? .str_category == str_category} selected{/}>{.str_category}</option>
+					<!--{/}-->
+					</select>
+					{/}
+				</div>
+				<div> 
+				<input name="str_title" type="text" class="text50" id="str_title2"  value="{str_title}" hname="제목" required  maxbyte="100">
+				&nbsp;<input type="hidden" name="num_input_pass" value="1">
+				
+				<INPUT TYPE="checkbox" NAME="str_view" value = "Y" style = "border:0px;" {? !str_view || str_view == "Y"}checked{/}> 리스트 표출
+				</div>
+
+
+				
+				</div>
+		</div>
+
+
+		<div class="titleText">
+				<div class="text1 bgcolor bcolor">관리자기능</div>
+				<div class="text3 paddingLeft">
+
+				<input type="radio" name="num_notice" value=""{? !num_notice} checked{/} style = "border:0px">일반
+				&nbsp;&nbsp;
+				<input type="radio" name="num_notice" value="2"{? num_notice == 2} checked{/} style = "border:0px">전체공지
+				&nbsp;&nbsp;
+				<input type="radio" name="num_notice" value="1"{? num_notice == 1} checked{/} style = "border:0px"> 
+				공지
+				&nbsp;&nbsp;
+				날짜<wa:datepicker name="dt_date" value="{dt_date}"/>  
+				&nbsp;&nbsp;
+				조회수<input type="text" name="num_hit" value="{num_hit}" style = "width:40px" class = "button">  
+				</div>
+		</div>
+
+
+	
+	
+	</div>
+
+
+<br><br><br><br>
+
+
+
+	<div class="editBody" >
+	<wa:upload part="script" sect="menu" code="{mcode}"></wa:upload>
+	<wa:upload part="editor_SE" sect="menu" code="{mcode}" name="content" width="99.5%" height="300px">{content}</wa:upload>
+	</div>
+
+ 
+ 
+
+
+</div>
+<br>
+
+{? _SESSION.USERID}
+
+<div class="fileBody bgcolor" >
+	{? chr_upload == 'Y'}
+		<div class="fileTitle bcolor"> 첨부파일</div>
+		<div class="fileModule">
+						<div class="fspanLeft">
+						{? maxfilesize > 1 }
+						<wa:upload part="component" sect="menu" code="{mcode}" allowtype="{str_file_type}" maxfilesize="{maxfilesize}"></wa:upload>
+						{:}
+							업로드 가능한 디스크공간을 초과했습니다. 관리자에게 문의해주세요.
+						{/}
+						</div>
+
+		</div>
+		
+	<div class="fileLine">&nbsp;</div>
+
+		<div class="fileTitle bcolor"> 안내</div>
+		<div class="fileModule">
+
+			<div class="fspanLeft">
+
+				&nbsp;&nbsp;{?_SESSION.ADMIN}<img src="./image/up_icon.gif" align="absmiddle"> 
+				디스크용량:<b>{=byte_convert(num_disk)}중 {=byte_convert(use_size)} 남음<br></b>{/}
+				<img src="./image/up_icon.gif" align="absmiddle"> 첨부파일은 {=byte_convert(maxfilesize)} 이상 올리실 수 없습니다.
+			
+			</div>
+
+		</div>
+
+	
+	<div class="fileLine">&nbsp;</div>
+
+
+		{? FILE_LIST }
+		<div class="fileTitle bcolor"> 첨부된파일</div>
+		<div class="fileModule">
+				<div class="fspanLeft">
+						<wa:upload part="filelist" sect="menu" code="{mcode}" allowtype="{str_file_type}" maxfilesize="{maxfilesize}"></wa:upload>
+				</div>
+
+		</div>
+
+		<div class="fileLine">&nbsp;</div>
+		{/}
+
+		<div class="fileTitle bcolor"> 컨텐츠 설정</div>
+		<div class="fileModule">
+		
+		
+						<div class="fspanLeft">
+						<b>복사</b><input type="radio" name="str_scrab" value="1"  {? str_scrab_use =="1"}checked{/}>허용 <input type="radio" name="str_scrab" value="2" {? str_scrab_use =="2"}checked{/}>허용안함 </div>
+						
+						<div class="fspanLeft">
+						<b>RSS공개</b><input type="radio" name="str_rss" value="Y" {? str_rss_use =="Y"}checked{/} >허용 <input type="radio" name="str_rss" value="N" {? str_rss_use =="N"}checked{/}>허용안함 </div>
+
+						<div class="fspanRight">
+						<input type="checkbox" name="str_setup" value="Y"> 현재설정을 계속유지합니다. <br>
+						</div>
+		</div>
+		<div class="fileLine">&nbsp;</div>
+		
+</div>
+{/}
+
+
+{/} 
+
+
+
+<div class="btnBody">
+	<div class="div50">
+	<input type="image" src="./image/btn_submit.gif" id="submit_btn" alt="글 등록" onclick="_onSubmit(this)">
+	<a href="#"><img src="./image/btn_cancel.gif" onclick="history.go(-1);" alt="취소"></a>
+	</div>
+	<div class="div50" style="text-align:right"><a href="{listlink}"><img src="./image/btn_list.gif" alt="목록으로 가기"></a></div>
+	
+	<div class="">&nbsp;</div>
+</div>
+
+
+
+
+
+</form>
+
+
+ 
+

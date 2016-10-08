@@ -1,0 +1,171 @@
+<style type="text/css" title="">
+td{text-align:center}
+</style>
+<script type="text/javascript">
+// <![CDATA[
+
+function checkSelected() {
+	form = document.forms['itemForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('{=_la("항목을 선택하여 주십시오.")}');
+		return false;
+	}
+	return true;
+}
+
+
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.itemForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.itemForm.all.value = "";
+
+ return;
+}
+
+
+function deleteItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 뉴스레터 구독 회원을 삭제 하시겠습니까?')) return false;
+
+	form.elements['mode'].value = 'delete';
+	form.method="post";
+	form.submit();
+}
+
+function addItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 뉴스레터 회원을 [구독] 상태로 변경 하시겠습니까?')) return false;
+
+	form.elements['mode'].value = 'up_add';
+	form.method="post";
+	form.submit();
+}
+
+function cnItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 뉴스레터 회원을 [해지] 상태로 변경 하시겠습니까?')) return false;
+
+	form.elements['mode'].value = 'up_cn';
+	form.method="post";
+	form.submit();
+}
+// ]]>
+</script>
+
+
+<div class="" id="ajax_info"></div>
+
+
+
+<form method="POST" id="itemForm" name="itemForm">
+<input type="hidden" name="all" id="all" >
+<input type="hidden" name="mode" id="mode" >
+<input type="hidden" name="types" id="types" >
+
+	<!--ui object -->
+	<p class="buTitle17" >총{total + 0}명이 등록되있습니다.</p>
+	
+	<table class="tbl_type" border="1" cellspacing="0" summary="교육 목록리스트" style="margin-top:10px">
+	<caption>등록별 교육목록</caption>
+	<colgroup>
+		<col width="5%">
+		
+		<col>  
+		<col width="18%">
+		<col width="18%">
+		<col width="18%">
+		<col width="18%">
+
+		
+	</colgroup>  
+
+	<thead>
+		<tr >
+			<th style="text-align:center"><input type="checkbox" name="" onclick ="checkall();"></th>
+			<th style="text-align:center">이름</th>
+			<th style="text-align:center">연락처</th>
+			<th style="text-align:center">이메일</th>
+			
+			<th style="text-align:center">회사 및 소속</th>
+			<th style="text-align:center">신청경로</th>
+			<th style="text-align:center">구독여부</th>
+		</tr>
+	</thead>
+	<tbody>
+		{@ LIST}
+		<tr>
+			<td ><input type="checkbox" name="ids[]" value="{.num_serial}"></td>
+			
+			<td ><a href="/news.admin.member_add?serial={.num_serial}">{.str_name}</a></td>
+
+			<td>{.str_phone}</td>
+			<td>{.str_email}</td>
+			<td>{.str_compay}</td>
+			<td>{? .str_voll}{.str_voll}{:}-{/}</td>
+			<td>{? .str_mailing == 'y'}<span style="color:blue">구독</span>{:}<span style="color:red">해지</span>{/}</td>
+
+		</tr>
+		{/}
+	</tbody>
+	</table>
+
+
+	<div style="margin:10px 0 10px 0;border-bottom:1px solid #cdcdcd">
+		<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" class="paginate_complex"/>
+	</div>
+	<div >
+		<span class="btn_pack medium icon" style="float:left"><span class="delete"></span><a href="#" onclick="deleteItem();">선택삭제</a></span>
+		
+		<span class="btn_pack medium " style="float:left;margin-left:5px"><a href="#" onclick="addItem();">선택구독</a></span>
+		
+
+		<span class="btn_pack medium " style="float:left;margin-left:5px"><a href="#" onclick="cnItem();">선택해지</a></span>
+		<span class="btn_pack medium " style="float:left;margin-left:5px"><a href="/news.admin.member_list_excel" >엑셀다운로드</a></span>
+		
+
+		<span class="btn_pack medium icon" style="float:right"><span class="add"></span><a href="/news.admin.member_add">신규등록</a></span>
+	</div>
+
+</form>

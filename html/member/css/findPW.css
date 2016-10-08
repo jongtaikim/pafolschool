@@ -1,0 +1,75 @@
+@charset "euc-kr";
+
+/* ÀÌ¿ô´åÄÄ(e-wut.com) 
+À¥ ÆÛºí¸®½Ì 
+ÀÛ¾÷ÀÚ:±èÀºÁ¤ */
+
+/*·¹ÀÌ¾Æ¿ô*/
+#wrapper {
+	float:left;
+	width:746px;
+	height:361px;
+	background:url(../images/popupRB.gif) no-repeat right bottom;
+	}
+#findPW{
+	float:left;
+	height:361px;
+	padding-right:20px;
+	background:url(../images/popupRT.gif) no-repeat right top;
+	}
+
+
+#findPW .objTop {
+	width:702px;
+	height:56px;
+	padding-left:24px;
+	padding-top:23px;
+	background:url(../images/popupLT.gif) no-repeat left top;
+	}
+#findPW .objContent {
+	width:680px;
+	height:269px;
+	padding-left:33px;
+	padding-top:13px;
+	background:url(../images/popupLB.gif) no-repeat left bottom;
+	}
+	#findPW .objContent .subTit {
+		float:left;
+		margin-right:10px;
+		}
+	#findPW .objContent fieldset {
+		width:409px;
+		height:166px;
+		background:url(../images/findIDFieldsetBg.gif) no-repeat left top;
+		}
+		#findPW fieldset .title {
+			display:block;
+			height:35px;
+			padding-top:25px;
+			margin-bottom:7px;
+			text-align:center;
+			}
+			#findPW fieldset .title strong {
+			padding-left:10px;
+			background:url(../images/bu1.gif) no-repeat left 3px;
+				}
+		#findPW fieldset p {
+			width:270px;
+			margin:0 auto;
+			padding:3px 0;
+			}
+		#findPW fieldset label {
+			float:left;
+			width:80px;
+			padding-left:10px;
+			padding-top:5px;
+			font-weight:bold;
+			background:url(../images/bu1.gif) no-repeat left 8px;
+			}
+	#findPW .objContent .btnArea {
+		float:left;
+		width:100%;
+		padding-top:33px;
+		text-align:center;
+		}
+

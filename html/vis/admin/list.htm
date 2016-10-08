@@ -1,0 +1,112 @@
+<style type="text/css" title="">
+.texta1{ width:280px;height:16px}
+</style>
+
+<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo">
+	
+
+	
+	
+	<p class="buTitle17" style="margin-bottom:10px">비주얼 설정</p>
+
+	<table width="100%" cellspacing="0" border="1" summary="커리큘럼 교육 입력/수정" class="tbl_type">
+	<caption>커리큘럼 교육 입력/수정</caption>
+
+	<tbody>
+		
+		<tr>
+			<th scope="row"  width="80px">1번</th>
+			<td width="90px" align="center">
+				<img src="@/vis/{vis1.str_file}" alt="{vis1.str_alt}" height="100px" onerror="this.style.display='none'" style="border:1px solid #cdcdcd"/>
+			</td>
+			<td  width="300px">
+				제목 : <input type="text" name="str_alt1" value="{vis1.str_alt}" class=""  style="width:200px;"><br>
+				링크 : <input type="text" name="str_link1" value="{vis1.str_link}" class=""  style="width:200px;"><br>
+				파일 : <input type="file" name="upfile1" style="width:200px;" ><br>
+				표출 : <select name="str_view1">
+							<option value="y" {? vis1.str_view == 'y'} selected{/} >표출</option>
+							<option value="n" {? vis1.str_view == 'n'} selected{/} >미표출</option>
+					   </select>
+				
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row"  width="80px">2번</th>
+			<td width="90px" align="center">
+				<img src="@/vis/{vis2.str_file}" alt="{vis2.str_alt}" height="100px" onerror="this.style.display='none'" style="border:1px solid #cdcdcd"/>
+			</td>
+			<td  width="300px">
+				제목 : <input type="text" name="str_alt2" value="{vis2.str_alt}" class=""  style="width:200px;"><br>
+				링크 : <input type="text" name="str_link2" value="{vis2.str_link}" class=""  style="width:200px;"><br>
+				파일 : <input type="file" name="upfile2" style="width:200px;" ><br>
+				표출 : <select name="str_view2">
+							<option value="y" {? vis2.str_view == 'y'} selected{/} >표출</option>
+							<option value="n" {? vis2.str_view == 'n'} selected{/} >미표출</option>
+					   </select>
+				
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row"  width="80px">3번</th>
+			<td width="90px" align="center">
+				<img src="@/vis/{vis3.str_file}" alt="{vis3.str_alt}" height="100px" onerror="this.style.display='none'" style="border:1px solid #cdcdcd"/>
+			</td>
+			<td  width="300px">
+				제목 : <input type="text" name="str_alt3" value="{vis3.str_alt}" class=""  style="width:200px;"><br>
+				링크 : <input type="text" name="str_link3" value="{vis3.str_link}" class=""  style="width:200px;"><br>
+				파일 : <input type="file" name="upfile3" style="width:200px;" ><br>
+				표출 : <select name="str_view3">
+							<option value="y" {? vis3.str_view == 'y'} selected{/} >표출</option>
+							<option value="n" {? vis3.str_view == 'n'} selected{/} >미표출</option>
+					   </select>
+				
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row"  width="80px">4번</th>
+			<td width="90px" align="center">
+				<img src="@/vis/{vis4.str_file}" alt="{vis4.str_alt}" height="100px" onerror="this.style.display='none'" style="border:1px solid #cdcdcd"/>
+			</td>
+			<td  width="300px">
+				제목 : <input type="text" name="str_alt4" value="{vis4.str_alt}" class=""  style="width:200px;"><br>
+				링크 : <input type="text" name="str_link4" value="{vis4.str_link}" class=""  style="width:200px;"><br>
+				파일 : <input type="file" name="upfile4" style="width:200px;" ><br>
+				표출 : <select name="str_view4">
+							<option value="y" {? vis4.str_view == 'y'} selected{/} >표출</option>
+							<option value="n" {? vis4.str_view == 'n'} selected{/} >미표출</option>
+					   </select>
+				
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row"  width="80px">5번</th>
+			<td width="90px" align="center">
+				<img src="@/vis/{vis5.str_file}" alt="{vis5.str_alt5}" height="100px" onerror="this.style.display='none'" style="border:1px solid #cdcdcd"/>
+			</td>
+			<td  width="300px">
+				제목 : <input type="text" name="str_alt5" value="{vis5.str_alt}" class=""  style="width:200px;"><br>
+				링크 : <input type="text" name="str_link5" value="{vis5.str_link}" class=""  style="width:200px;"><br>
+				파일 : <input type="file" name="upfile5" style="width:200px;" ><br>
+				표출 : <select name="str_view5">
+							<option value="y" {? vis5.str_view == 'y'} selected{/} >표출</option>
+							<option value="n" {? vis5.str_view == 'n'} selected{/} >미표출</option>
+					   </select>
+				
+			</td>
+		</tr>
+		
+	</tbody>
+	</table>
+	
+	
+	<div style="text-align:center;margin-top:20px">
+		<span class="btn_pack medium icon"><span class="check"></span><input type="submit" value="저장하기"></span>
+		<span class="btn_pack medium icon"><span class="refresh"></span><a href="javascript:history.go(-1)">취소</a></span>
+	</div>
+
+</form>
+

@@ -1,0 +1,260 @@
+<center>
+<script type="text/javascript" src="/js/ieemu.js"></script>
+<script type="text/javascript">
+if (moz) {
+emulateAllModel();
+}
+</script>
+
+<form name="writeForm" method="post" enctype="multipart/form-data"  onsubmit="return validate(this);" >
+<input type="hidden" name="id" value="{id}">
+<input type="hidden" name="str_thumb" value="{str_thumb}">
+<input type="hidden" name="origin_num_file" value="{num_file}">
+
+
+<style>
+.f11 {font-size:11px; color:#656565; font-family:돋움; padding-top:3px}
+.f1 {font-size:11px; color:#656565	; font-family:돋움; padding-top:3px}
+.up {font-family:돋움; font-weight:bold; text-align:center; color:#464444}
+
+</style>  
+
+<Table border=0 width="100%"  cellspacing=0 cellpadding=0  style=margin-bottom:1 >
+<tr>
+<td  height="30" bgcolor="#ffffff" class=color3 align="left">
+<b>| 
+{? _act=='tong_board.write'} <b>글쓰기</b>
+ {? _SESSION.USERID  }<font color = "#CC3333">※ 비밀번호는 로그인암호입니다.</font>{/}
+{/} 
+{? _act=='tong_board.modify'} <b>수정</b> {? _SESSION.USERID != str_user }<font color=red> ※ 본인이 작성한 글이 아닙니다. </font> {/}{/} 
+{? _act=='tong_board.reply'} <b>답글</b>{/} 
+</b>            
+</td> 
+</tr>           
+
+</table>
+
+<input type="hidden" name="str_tmp10" value="<?=_OID?>">
+
+{? _act=='tong_board.modify'} 
+ 
+<input type="hidden" name="str_tmp1" value="{str_tmp1}">
+<input type="hidden" name="str_tmp2" value="{str_tmp2}">
+{:}
+<input type="hidden" name="str_tmp1" value="{str_tmp1_s}">
+<input type="hidden" name="str_tmp2" value="{str_tmp2_s}">
+
+{/}
+
+<Table border=0 width="100%"  cellspacing=1 cellpadding=0 bgColor=#dcdcdc>
+
+{? !_SESSION.USERID }
+<tr>  
+<td height=27 width=15% align=center bgColor=#f3f3f3 class="f1">작성자</td>
+<td bgcolor=ffffff width = 35%>&nbsp;&nbsp;<input name="str_name" type="text" class="login" id="str_name" style="width:50%;background-color:#FFFFFF;border:1px solid  #DCDCDC;font-size:12px;font-family:돋움,Dotum;" value="{? !name}{NAME}{:}{name}{/}" hname="작성자" required maxbyte="20"></b></td>
+
+<td height=27 width=10% align=center bgColor=#f3f3f3 class="f1">비밀번호</td>
+<td bgcolor=ffffff>&nbsp;&nbsp;<input name="str_pass" type="password" class="login" id="str_pass"  style="width:50%;background-color:#FFFFFF;border:1px solid #DCDCDC;font-size:12px;font-family:돋움,Dotum;" value="{? _act!='board.modify'}{? ! pass}{PASSWD}{:}{pass}{/}{/}" required hname="비밀번호" maxbyte="20"></td>
+
+</tr>
+<tr>
+<td height=27 width =10% align=center bgColor=#f3f3f3 class="f1">E-mail</td>
+<td bgcolor=ffffff colspan = 3>&nbsp;&nbsp;<input name="str_email" type="text" class="login" id="str_email" style="width:78%;background-color:#FFFFFF;border:1px solid #DCDCDC;font-size:12px;font-family:돋움,Dotum;" value="{? !email}{EMAIL}{:}{email}{/}" option="email" hname="E-mail" maxbyte="30"></td>
+
+
+</tr>
+{:}
+<input type="hidden" name="str_name" value = "{? !name}{NAME}{:}{name}{/}">
+<input type="hidden" name="str_pass" value = "{? ! pass}{PASSWD}{:}{pass}{/}">
+<input type="hidden" name="str_email" value = "{? !email}{EMAIL}{:}{email}{/}">
+<input type="hidden" name="str_nick" value="{_SESSION.NICKNAME}">{/}
+
+
+
+
+
+{? _SESSION.IN_ADMIN}   
+
+
+<tr>
+<td height=27 width=10% align=center bgColor=#f3f3f3 class="f1">관리자기능</td>
+<td bgcolor=ffffff colspan = 3 align="left">
+&nbsp;&nbsp;
+<input type="radio" name="num_notice" value=""{? !num_notice} checked{/} style = "border:0px">
+일반
+
+&nbsp;&nbsp;
+<input type="radio" name="num_notice" value="2"{? num_notice == 2} checked{/} style = "border:0px"><font style = "sfont01">
+전체공지
+
+
+&nbsp;&nbsp;
+<input type="radio" name="num_notice" value="1"{? num_notice == 1} checked{/} style = "border:0px"><font style = "sfont01"> 
+공지
+
+&nbsp;&nbsp;날짜<wa:datepicker name="dt_date" value="{dt_date}"/> <font style = "sfont01"> 
+&nbsp;&nbsp;조회수<input type="text" name="num_hit" value="{num_hit}" style = "width:40px" class = "button">  
+
+</td>
+
+
+</tr>
+{/}   
+ 
+
+<tr>         
+
+<td height=27 width=10% align=center bgColor=#f3f3f3 class="f1">제목</td>
+<td bgcolor=ffffff colspan = 3>
+
+<script>
+
+function select1(idx) { // 코드 입력
+if (idx == 'input')	{
+document.getElementById('category').innerHTML = ' <input type="text" name="str_category_text" style = "width:80px;font-size:11px;background-color:#FFFFFF;border:1 solid #DCDCDC;font-size:12px;font-family:돋움,Dotum;" >'
+}
+}
+</script>
+<div id="category" style="float:left;padding-right:5px;padding-left:10px;padding-top:1px">
+<SELECT NAME="str_category" onchange = "select1(this.value);" style = "font-size:11px;" size=1>
+<OPTION VALUE="일반">--카테고리--</option>
+<OPTION VALUE="일반">일반</option>
+<!--{@ cate_LIST}-->
+<OPTION VALUE="{.str_category}" {? .str_category == str_category} selected{/}>{.str_category}</option>
+<!--{/}-->
+<OPTION VALUE="일반">---------------</option>
+<OPTION VALUE="input">직접입력</option>
+</SELECT>
+</div>
+<div style="float:left;width:auto">
+<input name="str_title" type="text" class="login" id="str_title2" style="width:300px;background-color:#FFFFFF;border:1px solid #DCDCDC;font-size:12px;font-family:돋움,Dotum;" value="{str_title}" hname="제목" required  maxbyte="100">
+&nbsp;<input type="hidden" name="num_input_pass" value="1">  </div>
+
+
+
+</td>
+
+
+</tr> 
+</table>
+
+
+<table align="center" width="100%" border=0 cellspacing=0 cellpadding=0>
+<tr>     
+<td bgcolor=ffffff colspan = 4 height = 100 valign = top style = "padding:2px;border:0px">
+
+<wa:upload part="editor_SE3" sect="menu" code="{mcode}" name="content" width="100%" height="250px">{content}</wa:upload>
+
+</td>
+</tr> 
+<tr><td height="10"></td></tr>
+</table>
+
+{? _SESSION.USERID}
+<table align="center" width="100%" border=0 cellspacing=0 cellpadding=0 style="border:1px solid #d4d4d4" background="./image/up_bg.gif">
+	<tr><td height="5"></td></tr>
+	{? chr_upload == 'Y'}
+	<tr> 
+		<td class="up" align="left">첨부파일</td>
+		<td style="padding:5px" align="left">
+			{? maxfilesize > 1 }
+				<wa:upload part="component_img" sect="menu" code="{mcode}" allowtype="{str_file_type}" maxfilesize="{maxfilesize}"></wa:upload>
+			{:}
+				업로드 가능한 디스크공간을 초과했습니다. 관리자에게 문의해주세요.
+			{/}
+		</td>
+	</tr>
+	<!--{? FILE_LIST}-->
+	<tr> 
+		<td class="up" align="left">첨부된 파일</td>
+		<td style="padding:5" align="left">
+			<wa:upload part="filelist" sect="menu" code="{mcode}" allowtype="{str_file_type}" maxfilesize="{maxfilesize}"></wa:upload>
+		</td>
+	</tr>
+	<!--{/}-->  
+ 
+	<tr>
+	  <td class="up">안내</td>
+	  <td colspan =10 style="padding:5px;line-height:25px" align="left">
+	    <font color="464444" >
+		{?_SESSION.IN_ADMIN}<img src="./image/up_icon.gif" align="absmiddle"> 
+			<!--업로드용량:{=byte_convert(num_disk)}, 
+			사용:{=byte_convert(db_num_size)}, -->
+		디스크용량:<b>{=byte_convert(num_disk)}중 {=byte_convert(use_size)} 남음<br></b>{/}
+		<img src="./image/up_icon.gif" align="absmiddle"> 첨부파일은 {=byte_convert(maxfilesize)} 이상 올리실 수 없습니다.
+		</font>
+	  </td>
+	</tr>
+	<!--{/}-->
+	<tr><td height="5"></td></tr>
+</table>
+
+
+{?_SESSION.IN_ADMIN}
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr><td height="10"></td></tr>
+
+
+<tr>
+  <td style = "padding:3"><b>컨텐츠설정</td>
+  <td>
+
+<div style = "float:left;border:1px solid #EEEEEE;width:100%;height:;" style = "padding:5px">
+		<table border=0 cellspacing=0 cellpadding=0 width="100%">
+		 <tr>
+		  <td  width = 18% style = "padding:5px"><b>덧글설정</td> <td ><input type="radio" name="str_coment" value="Y" {? str_coment_use =="Y"}checked{/}>허용 <input type="radio" name="str_coment" value="N" {? str_coment_use =="N"}checked{/}>허용안함</td>
+		 </tr>
+ 		 <tr>
+		  <td style = "padding:5px"><b>복사</td> <td ><input type="radio" name="str_scrab" value="1"  {? str_scrab_use =="1"}checked{/}>허용 <input type="radio" name="str_scrab" value="2" {? str_scrab_use =="2"}checked{/}>허용안함</td>
+		 </tr>
+		  <td style = "padding:5px" ><b>RSS공개</td> <td ><input type="radio" name="str_rss" value="Y" {? str_rss_use =="Y"}checked{/} >허용 <input type="radio" name="str_rss" value="N" {? str_rss_use =="N"}checked{/}>허용안함</td>
+		 </tr>
+
+		<tr>
+		  <td align=right colspan =10><input type="checkbox" name="str_setup" value="Y"> 현재설정을 계속유지합니다.</td>
+		</tr>
+		</table>
+</div>
+
+
+</td>
+</tr>
+</table>
+{/} 
+
+{:}
+<input type="hidden" name="str_coment" value="Y">
+<input type="hidden" name="str_scrab" value="Y">
+<input type="hidden" name="str_rss" value="Y">
+
+{/}
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr>
+<td height="10"></td>
+</tr>
+<tr>
+<td>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+
+<td><input type="image" src="./image/btn_submit.gif" id="submit_btn" onclick="_onSubmit(this)" ></td>
+<td width="5"></td>
+<td><a href="#"><img src="./image/btn_cancel.gif" onclick="history.go(-1);"></a></td>
+
+
+</tr>
+</table>
+</td>
+<td align="right"><a href="{listlink}"><img src="./image/btn_list.gif"></a></td>
+</tr>
+</table>
+
+ 
+
+
+</form>
+
+
+</center>

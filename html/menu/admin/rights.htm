@@ -1,0 +1,368 @@
+<link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+<body>
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<script type="text/javascript" event="onload" for="window">
+el = document.forms['rightsForm'].elements;
+{@ LIST}
+if(el['rights[{.str_group}][{.right}]']) el['rights[{.str_group}][{.right}]'].checked = true;
+{/}
+
+</script>
+<body>
+<div class="tab19" width="100%">
+				<ul>
+					<li ><a href="menu.admin.option?mcode={mcode}">메뉴옵션</a></li>
+					<!--{? rights}-->
+					<li class="active"><a href="#">권한설정</a></li>
+					<!--{/}-->
+					<!--{? sub_cnt > 1}-->
+					<li><a href="menu.admin.listorder?mcode={mcode}">하위메뉴 순서변경</a></li>
+					<!--{/}-->
+					<!--{@ TABS}-->
+					<li>
+					<a 
+					{? .key_ == "첨부파일 관리"}
+					href="javascript:winOpen('/manage.file_view?mcode={mcode}','800','600','yes','fileWidth')"
+					{: .key_ == "내용편집"}
+					href="javascript:winOpen('/doc.admin.edit?mcode={mcode}&no=y','800','600','yes','fileWidth')"
+					{:} href="{.value_}"{/}>{.key_}</a>  
+					</li>
+					<!--{/}-->
+				</ul>
+			</div>
+		<!-- 메뉴기본정보 start -->
+
+<br><br>
+	<form name="rightsForm" method="post" onsubmit="return validate(this);">
+	
+	
+	
+	
+	<!-- 기본그룹 start -->							
+			<div>
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">기본그룹</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+								<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">메뉴 위치 :</td>
+											<td width="4"></td>
+											<td class="bx1_text">{menu_location} &gt; {str_title}</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:14">
+									<table cellpadding="0" cellspacing="0" border="0">
+											{@ TYPES}
+										
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle" width="85">{.name}</td>
+											<td >{@ RIGHTS}<input type="checkbox" name="rights[{.code}][{RIGHTS.key_}]" value="1" > {RIGHTS.value_}&nbsp;&nbsp;
+											{/}
+											</td>
+										</tr>
+										{/}
+									</table>
+								</td>
+							</tr>
+							<tr><td height="7"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+		<!-- 기본그룹 end -->
+	
+	
+	<br>
+
+			{? GROUPS}
+	<!-- 추가그룹 start -->							
+			<div>
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">추가그룹</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding-top:14">
+									<table cellpadding="0" cellspacing="0" border="0">
+										
+											
+											{@ GROUPS}
+										
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle" width="85">{.str_group_name}</td>
+											<td >{@ RIGHTS}
+												<input type="checkbox" name="rights[{.str_group}][{RIGHTS.key_}]" value="1" style="border:0px;" > {RIGHTS.value_}&nbsp;&nbsp;
+												{/}
+											</td>
+										</tr>
+										{/}
+									</table>
+								</td>
+							</tr>
+							<tr><td height="7"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+		<!-- 추가그룹 end -->
+		{/}
+		<br>
+		<div style="text-align:center">
+		<span class="btn_pack medium icon"><span class="add"></span><input type="submit" value="저장"></span>
+	</div>
+		
+		
+
+	</form>
+
+			<br><br>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td colspan="3" valign="top">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><img src="/html/admin/images/tip_icon.gif"></td>
+								<td class="tip_title">안내</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td height="6"></td></tr>
+				<tr>
+					<td colspan="2">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr height="14">
+								<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+								<td background="/html/admin/images/bx_tip_top_bg.gif"></td>
+								<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+							</tr>				
+							<tr>
+								<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+								<td class="tip_text">
+									ㆍ본 권한 설정은 각 메뉴에 대한 접근 및 사용 권한을 부여하는 기능입니다.<br>
+									ㆍ대외비 성격이나 학교 내부자들만 보아야 하는 메뉴는 신중하게 권한설정을 <br>&nbsp;&nbsp;&nbsp;해야합니다.<br>
+									ㆍ추가그룹은 “회원관리><font color="#c52547">회원그룹관리</font>”에서 수정할 수 있습니다.
+								</td>
+								<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+							</tr>
+							<tr height="14">
+								<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+								<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+								<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+
+
+		</td>
+	</tr>
+	
+	<tr><td height="20"></td></tr>
+
+</table>
+<script language="Javascript">
+var ifrContentsTimer;
+function resizeRetry() {
+
+	//이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+	if(document.body.readyState == "complete") {
+		clearInterval(ifrContentsTimer);
+	}
+	else {
+		resizeFrame();
+	}
+}
+function resizeFrame(){
+	
+	//페이지가 로딩되면 바로 리사이즈..
+	var h = parseInt(document.body.scrollHeight);
+	var w = parseInt(document.body.scrollWidth);
+	self.resizeTo(w, h);
+
+
+}
+
+resizeFrame();
+ifrContentsTimer = setInterval('resizeRetry()',400);
+
+
+
+function setingRight(idx){
+
+	el = document.forms['rightsForm'].elements;
+	
+
+	if(el['rights[a][l]']) el['rights[a][l]'].checked = false;
+	if(el['rights[a][r]']) el['rights[a][r]'].checked = false;
+	if(el['rights[a][w]']) el['rights[a][w]'].checked = false;
+	if(el['rights[a][a]']) el['rights[a][a]'].checked = false;
+	if(el['rights[g][l]']) el['rights[g][l]'].checked = false;
+	if(el['rights[g][r]']) el['rights[g][r]'].checked = false;
+	if(el['rights[g][w]']) el['rights[g][w]'].checked = false;
+	if(el['rights[g][a]']) el['rights[g][a]'].checked = false;
+	if(el['rights[n][l]']) el['rights[n][l]'].checked = false;
+	if(el['rights[n][r]']) el['rights[n][r]'].checked = false;
+	if(el['rights[n][w]']) el['rights[n][w]'].checked = false;
+	if(el['rights[n][a]']) el['rights[n][a]'].checked = false;
+	if(el['rights[p][l]']) el['rights[p][l]'].checked = false;
+	if(el['rights[p][r]']) el['rights[p][r]'].checked = false;
+	if(el['rights[p][w]']) el['rights[p][w]'].checked = false;
+	if(el['rights[p][a]']) el['rights[p][a]'].checked = false;
+	if(el['rights[s][l]']) el['rights[s][l]'].checked = false;
+	if(el['rights[s][r]']) el['rights[s][r]'].checked = false;
+	if(el['rights[s][w]']) el['rights[s][w]'].checked = false;
+	if(el['rights[s][a]']) el['rights[s][a]'].checked = false;
+	if(el['rights[t][l]']) el['rights[t][l]'].checked = false;
+	if(el['rights[t][r]']) el['rights[t][r]'].checked = false;
+	if(el['rights[t][w]']) el['rights[t][w]'].checked = false;
+	if(el['rights[t][a]']) el['rights[t][a]'].checked = false;
+	if(el['rights[z][l]']) el['rights[z][l]'].checked = false;
+	if(el['rights[z][r]']) el['rights[z][r]'].checked = false;
+	if(el['rights[z][w]']) el['rights[z][w]'].checked = false;
+	if(el['rights[z][a]']) el['rights[z][a]'].checked = false;
+
+
+
+	if(idx == 1){
+	
+	if(el['rights[a][l]']) el['rights[a][l]'].checked = true;
+	if(el['rights[a][r]']) el['rights[a][r]'].checked = true;
+	if(el['rights[a][w]']) el['rights[a][w]'].checked = true;
+	if(el['rights[g][l]']) el['rights[g][l]'].checked = true;
+	if(el['rights[g][r]']) el['rights[g][r]'].checked = true;
+	if(el['rights[g][w]']) el['rights[g][w]'].checked = true;
+	if(el['rights[n][l]']) el['rights[n][l]'].checked = true;
+	if(el['rights[n][r]']) el['rights[n][r]'].checked = true;
+	if(el['rights[p][l]']) el['rights[p][l]'].checked = true;
+	if(el['rights[p][r]']) el['rights[p][r]'].checked = true;
+	if(el['rights[p][w]']) el['rights[p][w]'].checked = true;
+	if(el['rights[s][l]']) el['rights[s][l]'].checked = true;
+	if(el['rights[s][r]']) el['rights[s][r]'].checked = true;
+	if(el['rights[s][w]']) el['rights[s][w]'].checked = true;
+	if(el['rights[t][l]']) el['rights[t][l]'].checked = true;
+	if(el['rights[t][r]']) el['rights[t][r]'].checked = true;
+	if(el['rights[t][w]']) el['rights[t][w]'].checked = true;
+	if(el['rights[z][l]']) el['rights[z][l]'].checked = true;
+	if(el['rights[z][r]']) el['rights[z][r]'].checked = true;
+	if(el['rights[z][w]']) el['rights[z][w]'].checked = true;
+	}
+
+
+	if(idx == 2){
+	
+	if(el['rights[a][l]']) el['rights[a][l]'].checked = true;
+	if(el['rights[a][r]']) el['rights[a][r]'].checked = true;
+	if(el['rights[g][l]']) el['rights[g][l]'].checked = true;
+	if(el['rights[g][r]']) el['rights[g][r]'].checked = true;
+	if(el['rights[n][l]']) el['rights[n][l]'].checked = true;
+	if(el['rights[n][r]']) el['rights[n][r]'].checked = true;
+	if(el['rights[p][l]']) el['rights[p][l]'].checked = true;
+	if(el['rights[p][r]']) el['rights[p][r]'].checked = true;
+	if(el['rights[s][l]']) el['rights[s][l]'].checked = true;
+	if(el['rights[s][r]']) el['rights[s][r]'].checked = true;
+	if(el['rights[t][l]']) el['rights[t][l]'].checked = true;
+	if(el['rights[t][r]']) el['rights[t][r]'].checked = true;
+	if(el['rights[t][w]']) el['rights[t][w]'].checked = true;
+	if(el['rights[z][l]']) el['rights[z][l]'].checked = true;
+	if(el['rights[z][r]']) el['rights[z][r]'].checked = true;
+	if(el['rights[z][w]']) el['rights[z][w]'].checked = true;
+
+	}
+
+	if(idx==3){
+	
+	if(el['rights[t][l]']) el['rights[t][l]'].checked = true;
+	if(el['rights[t][r]']) el['rights[t][r]'].checked = true;
+	if(el['rights[t][w]']) el['rights[t][w]'].checked = true;
+	if(el['rights[z][l]']) el['rights[z][l]'].checked = true;
+	if(el['rights[z][r]']) el['rights[z][r]'].checked = true;
+	if(el['rights[z][w]']) el['rights[z][w]'].checked = true;
+
+
+	}
+
+	if(idx==4){
+	if(el['rights[p][l]']) el['rights[p][l]'].checked = true;
+	if(el['rights[p][r]']) el['rights[p][r]'].checked = true;
+	if(el['rights[p][w]']) el['rights[p][w]'].checked = true;
+	if(el['rights[t][l]']) el['rights[t][l]'].checked = true;
+	if(el['rights[t][r]']) el['rights[t][r]'].checked = true;
+	if(el['rights[t][w]']) el['rights[t][w]'].checked = true;
+	if(el['rights[z][l]']) el['rights[z][l]'].checked = true;
+	if(el['rights[z][r]']) el['rights[z][r]'].checked = true;
+	if(el['rights[z][w]']) el['rights[z][w]'].checked = true;
+
+	}
+
+	if(idx==5){
+	
+	if(el['rights[s][l]']) el['rights[s][l]'].checked = true;
+	if(el['rights[s][r]']) el['rights[s][r]'].checked = true;
+	if(el['rights[s][w]']) el['rights[s][w]'].checked = true;
+	if(el['rights[t][l]']) el['rights[t][l]'].checked = true;
+	if(el['rights[t][r]']) el['rights[t][r]'].checked = true;
+	if(el['rights[t][w]']) el['rights[t][w]'].checked = true;
+	if(el['rights[z][l]']) el['rights[z][l]'].checked = true;
+	if(el['rights[z][r]']) el['rights[z][r]'].checked = true;
+	if(el['rights[z][w]']) el['rights[z][w]'].checked = true;
+
+
+	}
+el.submit();
+}
+</script>
+</body>

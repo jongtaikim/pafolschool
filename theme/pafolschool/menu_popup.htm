@@ -1,0 +1,35 @@
+<script type="text/javascript">
+// <![CDATA[
+function openPopupMenu(){
+	if($('totalPopup').style.display=='none'){
+		$('modalBg').style.display='block';
+		$('totalPopup').style.display='block';
+	}else{
+		$('modalBg').style.display='none';
+		$('totalPopup').style.display='none';
+	}
+}
+// ]]>
+</script>
+
+<div id="modalBg" onclick="openPopupMenu()"></div>
+
+<!-- 전체보기 popup -->
+	<div  id="totalPopupBody">
+		<div id="totalPopup" style="display:none">
+			<img class="popupTit" src="./images/popupTit.gif" alt="web total contents" />
+			<a href="#none" onclick="openPopupMenu()" class="close"><img src="./images/closeBtn.gif" alt="창닫기" /></a>
+			<ul class="depth1">
+				<wa:applet module="top_menu.main">
+				{@ LIST_topmenu}
+				<li class="depth1Li"><a class="title" href="{.str_link}"><img src="/font_2.php/ygo540/13/EEEEEE/5B5B5B/?text={.str_title}" alt="{.str_title}" /></a>
+					<ul class="depth2">
+						{@ .MENUITEM}
+						<li><a href="{..str_link}">{..str_title}</a></li>
+						{/}
+					</ul>
+				</li>
+				{/}
+			</ul>
+		</div>
+	</div>

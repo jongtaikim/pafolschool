@@ -1,0 +1,778 @@
+<style>select{behavior: url('/selectbox.htc');}</style>
+<style>
+ .f1{padding:11 0 5 10; background-color:edf8fd;font-size:11px;color:#1c59a0;}
+ .f2{padding:5 0 5 10;font-size:11px;color:#666666; line-height:20px}
+ .f3{padding:11 0 5 20; background-color:edf8fd;font-size:11px;color:#1c59a0;}
+ .f4{padding:0 0 5 20; background-color:edf8fd;font-size:11px;color:#1c59a0;}
+  .f5{padding:10 20 10 20; background-color:edf8fd;font-size:11px;color:#1c59a0;}
+</style>
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript" src="/js/dynamic.js"></script>
+<script type="text/javascript" src="/js/JSON.js"></script>
+<script type="text/javascript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight);
+         var w = parseInt(document.body.scrollWidth); 
+	self.resizeTo(w, h); 
+
+document.getElementById('loding').style.left =  10;
+document.getElementById('loding').style.top = 80;
+
+} 
+//-->
+function cchk(jumin1, jumin2) {
+		
+var jumin1 = document.joinForm.num_jumin1.value;
+var jumin2 = document.joinForm.num_jumin2.value;
+
+//var set = parseInt(date("Y")) - parseInt("19"+strstr(jumin1,0,2));
+
+var jumin  = jumin1+'-'+jumin2;
+ 
+ var sexCode = jumin.charAt(7);
+ var code;
+ var  birth;
+ 
+ if(sexCode==1){
+ 
+  birth   = "19"+jumin.substring(0,2);
+ }else if(sexCode==2){
+  birth   = "19"+jumin.substring(0,2);
+ }else if(sexCode==3){
+  birth   = "20"+jumin.substring(0,2);
+ }else if(sexCode==4){
+  birth   = "20"+jumin.substring(0,2);
+ }
+
+ var now           = new Date();
+ var set     = eval(now.getYear()-birth+1);
+//alert(set);
+{?min}
+if(parseInt(set) < 19) {
+	alert('19세 미만은 가입하실 수 없습니다.');	
+	$('num_jumin1').value='';
+	$('num_jumin2').value=''
+
+	return false;	
+}
+{/}
+var jjum = jumin1 + '-' + jumin2; 
+
+//alert(jjum);	
+
+var pattern = new Array(); 
+
+pattern["jumin"] =/^[0-9]{6}-[0-9]{7}$/;       
+
+if( !jjum.match( pattern["jumin"] ) ){
+	alert('주민번호 형식이 맞지않습니다.');	
+	return false;
+}
+		var jumin1 = "jumin1=" + document.joinForm.num_jumin1.value;
+		var jumin2 = "&jumin2=" + document.joinForm.num_jumin2.value;
+		var params = jumin1 +  jumin2  + '&mode=juminchk';  
+		sendRequest("/lms_member.update", params, FromServer, "POST");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				if(str_text =="N"){
+				alert('등록가능한 주민번호입니다.');
+				document.joinForm.juminchk.value='Y'; // 주민번호 체크됩
+				}else{
+				alert('이미 사용중인 주민번호입니다.\n재인증 받으시기 바랍니다.');
+				document.joinForm.juminchk.value=''; // 주민번호 체크됩
+				$('num_jumin1').value='';
+				$('num_jumin2').value=''
+				$('str_name').value=''
+				
+				$('body1').style.display='none';$('body2').style.display=''
+				$('ssik').style.display = '';
+
+				$('hi_dong').style.display = '';
+				$('hi_name').style.display = '';
+				
+
+				}
+			}
+		}
+	}
+
+
+
+function emailSelect(idx){
+	$('email2').value=idx;
+}
+
+		function checkId(id) {
+		form = document.forms['joinForm'];
+	
+		if(!id) return false;
+		ret = dynamic.load('member.check_masterid?id=' + id);
+		//jo = JSON.decode(ret);
+		//cknum=jo.Code;
+		cknum=ret;
+
+		if(cknum == '00'||cknum == '0') {
+			form.str_id_prev.value = id;
+			$('id_pr').innerHTML = '<font color=#0099FF>사용 가능한 ID 입니다.</font>';
+			
+			//form.str_passwd.focus();
+		} else if(cknum == '99') {
+			form.str_id_prev.value = '';
+			$('id_pr').innerHTML = '<font color=#FF0099>이미 존재하는 ID 입니다.</font>';
+			//form.str_id.focus();
+		} else if(cknum == '98' ) {
+			form.str_id_prev.value = '';
+			$('id_pr').innerHTML = '<font color=#996699>영문 소문자나 숫자 5자리 이상 10자리 이하로 입력하여주십시오.</font>';
+			//form.str_id.focus();
+		}
+	}
+
+
+		function checkNick(id) {
+				form = document.forms['joinForm'];
+				if(!id) return false;
+				if(strlen(id) <2) {
+					$('nick_pr').innerHTML = '<font color=#996699>2자리 이상 작성해주세요.(영어 4자)</font>';
+					return false;
+				}
+				ret = dynamic.load('member.check_masternick?id=' + id);
+				cknum2=ret;
+
+				if(cknum2 == '00'||cknum2 == '0') {
+					form.str_nick_prev.value = id;
+					$('nick_pr').innerHTML = '<font color=#0099FF>사용 가능한 닉네임 입니다.</font>';
+				
+				} else if(cknum2 == '99') {
+					form.str_nick_prev.value ='';
+					$('nick_pr').innerHTML = '<font color=#FF0099>이미 존재하는 닉네임 입니다.</font>';
+				
+				} else if(cknum2 == '98' ) {
+					form.str_nick_prev.value = '';
+					$('nick_pr').innerHTML = '<font color=#996699>사용할 수 없는 닉네임입니다.(특수문자)</font>';
+				
+				}
+			}
+
+              function checkPass(){
+                  return true;
+              }
+
+function fsubmit(){
+if(checkPass()==true)
+  joinForm.submit();
+}
+
+
+function popup_zip() {
+			form = 'joinForm';
+			wZip = window.open('core.zipcode?el_addr=str_addr1&el_zip=str_zipcode&el_focus=str_addr2&form='+form,'zipsearch','width=400, height=200');
+		}
+
+function yak(){
+if($('chk1').checked != true) {
+	alert('이용약관에 동의해주십시요.');
+	return;
+}
+if($('chk2').checked != true) {
+	alert('수집하는 개인정보 항목에 동의해주십시요.');
+	return;
+}
+
+if($('chk3').checked != true) {
+	alert('개인정보 수집 및 이용목적에 동의해주십시요.');
+	return;
+}
+
+if($('chk4').checked != true) {
+	alert('이용약관에 동의해주십시요.');
+	return;
+}
+
+
+
+
+var result = confirm("약관을 모두 읽고 동의 하십니까?");
+if(result){
+$('hi_dong').value="y";
+$('ssik').style.display = '';
+$('userNm').focus();
+}
+}
+
+function nameOk(){
+
+$('hi_name').value="y";
+$('num_jumin1').value = $('userNo1').value;
+$('num_jumin2').value = $('userNo2').value;
+$('str_name').value = $('userNm').value;
+
+vview();
+
+}
+
+function vview(){
+if(!$('hi_name').value) {
+	alert('실명인증을 실시해주세요.');
+	return;
+}
+
+if(!$('hi_dong').value) {
+	alert('약관을 읽고 동의해주세요.');
+	return;
+}
+
+$('body1').style.display='';$('body2').style.display='none'
+$('ssik').style.display = 'none';
+}
+
+function JoinFrm() {
+	if($('in_number_idx').value && ($('in_number').value != $('in_number_idx').value)){
+		alert('인증번호 형식이 맞지 않습니다. ');
+
+	}else{
+		if(validate(document.joinForm)){
+			document.joinForm.submit();
+		}
+	}
+
+}
+
+
+</script>
+<body  >
+
+<table align="center" width=90% border=0 cellspacing=0 cellpadding=0>
+ <tr>
+  <td>
+   
+
+<input type="hidden" id="hi_dong" value="">
+<input type="hidden" id="hi_name" value="">
+
+
+<div style = "display:none" id="body1">
+<div id="body1">
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<form name="joinForm" method="post"  enctype="multipart/form-data">
+
+<input type="hidden" name="mode" value="join">
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr><td style="padding-left:4" height=10><!--img src="/host_img/stock/join_img3.gif"--></td></tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="648" align = center>
+<col width="15%"></col><col width="%"></col>
+	<tr><td colspan="2" height="2" bgcolor="5e91c4"></td></tr>
+	<tr height="32" valign="top">
+		<td class="f1"><font color="#1c59a0">*&nbsp;</font>이름</td>
+		<td class="f2">
+		
+		<input name="str_name" value="이현민" hname="이름" type="text" maxbyte="50" style="width:100px; border:1px solid #D1D1D1;" style="ime-mode:active" readonly class="button" required></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+
+	<tr height="32" valign="top">
+		<td class="f1"><font color="#1c59a0">*&nbsp;</font>주민등록번호</td>
+		<td class="f2">
+		
+		<input name="num_jumin1" value="781025" class="button"  hname="주민등록번호" type="text" maxbyte="6" style="width:50px; border:1px solid #D1D1D1;" style="ime-mode:active" readonly  required>
+		&nbsp;-&nbsp;
+		<input name="num_jumin2" value="2178211"  hname="주민등록번호" type="password" maxbyte="7" style="width:50px; border:1px solid #D1D1D1;" style="ime-mode:active" readonly  required class="button">&nbsp;
+		
+		<input type="button" value="중복확인" style="cursor:hand;width:61;height:21;font-size:11px;" class="button" onclick="cchk();">
+		* 주민등록번호는 암호화되어 관리자도 확인할 수 없습니다.
+		<INPUT TYPE="hidden" NAME="juminchk" ></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+
+	<tr height="32" valign="top">
+		<td class="f1"><font color="#1c59a0">*&nbsp;</font>아이디</td>
+		<td class="f2">
+
+			<div style = "float:left;">
+			<input name="str_id" id="str_id" maxlength="10"   type="text"  style="width:100px; border:1px solid #D1D1D1;" class="button" onkeyup="checkId(this.value);"  hname="아이디" maxbyte="10" minbyte="5" required>
+			
+			<input type="hidden" name="str_id_prev" hname="아이디" errmsg="사용할 수 없는 아이디입니다."  value="" nofocus required>&nbsp;
+			</div>
+			<div  id="id_pr" style = "float:left;padding-top:0px;font-size:11px">(영문소문자나 숫자로 5문자 이상 10자리 이하)</div></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+
+	<tr height="32" valign="top">
+		<td class="f1"><font color="#1c59a0">*&nbsp;</font>비밀번호</td>
+		<td class="f2">
+		<input name="str_passwd" hname="비밀번호" maxlength="10" pattern="^([a-zA-Z0-9]{4,10})?$" match="str_passwd2" type="password"  class="button" style="width:100px; border:1px solid #D1D1D1;" required>&nbsp; (영문자나 숫자로 10자리 이하)</td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+
+	<tr height="32" valign="top">
+		<td class="f1"><font color="#1c59a0">*&nbsp;</font>비밀번호확인</td>
+		<td class="f2"><input name="str_passwd2" hname="비밀번호 확인" type="password" maxlength="10" style="width:100px; border:1px solid #D1D1D1;"  class="button" required></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+
+	<tr height="32" valign="top">
+		<td class="f1"><font color="#1c59a0">*&nbsp;</font>닉네임</td>
+		<td class="f2">
+			<div style = "float:left;">
+			<input name="str_nick" id="str_nick" hname="닉네임" maxlength="10" maxbyte="14" minbyte="2" type="text"  style="width:100px; border:1px solid #D1D1D1;" class="button" onkeyup="checkNick(this.value);" required>
+			
+			<input type="hidden" name="str_nick_prev" hname="닉네임" errmsg="닉네임이 잘못되었습니다." value="" nofocus required>&nbsp;
+			</div>
+			<div  id="nick_pr"  style = "float:left;padding-top:4px;;font-size:11px">(10자리 이하)</div></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+
+{? addr}
+
+	<tr height="32">
+		<td class="f4" >주소</td>
+		<td class="f2">
+		
+							우편번호
+							<input name="str_zipcode" hname="우편번호" size="7" maxlength="7" type="text"  style="border:1px solid #D1D1D1;"  onclick="popup_zip();"  class="button"  readonly>
+							<input type="button" value="우편번호검색" style="cursor:hand;width:75;height:19;font-size:11px;" onclick="popup_zip();" class="button">
+							<br><input name="str_addr1" class="button" hname="기본주소" type="text" style="width:313px; border:1px solid #D1D1D1;" maxbyte="100" onclick="popup_zip();"   readonly>
+							<br><input name="str_addr2" class="button" hname="상세주소" type="text" style="width:313px; border:1px solid #D1D1D1;" maxbyte="100" >
+							
+							</td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+
+{/}
+
+
+	<tr height="32">
+		<td class="f1"><font color="#1c59a0">*&nbsp;</font>이메일</td>
+		<td class="f2">
+		
+		<input name="email1" hname="이메일" type="text"  maxbyte="50" style="width:100px; border:1px solid #D1D1D1;"  required class="button">
+		@
+		<input name="email2" hname="이메일" type="text"  maxbyte="50" style="width:100px; border:1px solid #D1D1D1;"  required class="button">
+
+		<select name="emailSelect1" onchange = "emailSelect(this.value)">
+			<option value="">Email 주소 선택</option>
+			<option value="">직접입력</option>
+			<option value="gmail.com">구글(G메일)</option>
+			<option value="naver.com">네이버</option>
+			<option value="nate.com">네이트</option>
+			<option value="dreamwiz.com">드림위즈</option>
+			<option value="yahoo.co.kr">야후</option>
+			<option value="empal.com">엠파스</option>
+			<option value="paran.com">파란</option>
+			<option value="hanmail.net">한메일</option>
+		</select>
+		<INPUT TYPE="radio" NAME="str_mailring" value="Y" checked>매일링 수신  <INPUT TYPE="radio" NAME="str_mailring" value="N">수신 거부
+		<br>
+		다음(daum.net, hanmail.net) 메일계정을 사용하시면 정상적으로 받으실 수 없습니다.
+		</td>
+	</tr>
+
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+
+{? tel1use}
+
+	
+	<tr height="32" valign="top">
+		<td class="f1"><font color="#1c59a0">*&nbsp;</font>핸드폰</td>
+		<td class="f2">
+		
+		<input name="tel11" hname="핸드폰" type="text" maxbyte="50" style="width:30px; border:1px solid #D1D1D1;" class="button"style="ime-mode:active" >
+		&nbsp;-&nbsp;
+		<input name="tel22" class="button"  hname="핸드폰" type="text" maxbyte="50" style="width:30px; border:1px solid #D1D1D1;" style="ime-mode:active" >
+		&nbsp;-&nbsp;
+		<input name="tel33" class="button"  hname="핸드폰" type="text" maxbyte="50" style="width:30px; border:1px solid #D1D1D1;" style="ime-mode:active" >
+		
+<script language="Javascript">
+var tel ='';
+function inFuncTel (){
+	if($('in_number_idx').value) {
+		alert('이미 인증번호를 발송하였습니다.');
+		return;
+	}
+
+	if($('tel11').value == "" || $('tel22').value == "" || $('tel33').value == "" ) {
+		alert('핸드폰 번호가 올바르지 않습니다.');
+		return;
+	}
+
+
+	tel = $('tel11').value+$('tel22').value+$('tel33').value;
+	chkHp(tel);
+}
+
+
+
+function chkHp(tel) {
+		
+		var params = 'str_hp=' + tel ;  
+
+		//alert(params);
+		sendRequest("/tel_chk", params, FromServerTelchk, "POST");
+	}
+function FromServerTelchk() {
+	if (httpRequest.readyState == 4) {
+		if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			//alert(str_text);
+			str_text = explode("|",str_text);
+				
+			if(str_text[0] == "Y"){
+			//alert('인증번호를 입력해주세요.');					
+			$('in_number_idx').value = str_text[1];
+			//alert(tel);
+			SmsSend(tel,'<?=_OPHONE?>','[<?=_ONAME?>]\n인증번호알림\n'+str_text[1]+'');
+			$('inCrroen').style.display='';
+			}else{
+			alert('등록되어있는 핸드폰 번호 입니다.');
+			}
+		}
+	}
+}
+
+function outFuncTel() {
+	$('in_number_idx').value="";
+	$('inCrroen').style.display="none";
+
+}
+
+</script>
+
+
+		<input type="button" name="" value="인증받기" class="button" onclick = "inFuncTel()">
+		<INPUT TYPE="radio" NAME="str_sms" value="Y" checked> SMS 수신  <INPUT TYPE="radio" NAME="str_sms" value="N"> SMS 수신 거부
+		
+
+		
+		<div style = "display:none" id="inCrroen">
+		인증번호 : <input type="text" name="in_number" value="인증번호를 입력하세요." class="button" onclick="this.value=''" errmsg="인증번호를 확인해 주시기 바랍니다.">
+		<input type="button" name="" value="인증취소" class="button" onclick = "outFuncTel()">
+		<input type="hidden" name="in_number_idx" value="" class="">
+		</div>
+		<div>＊ 인증을 하시면 추후 이벤트 혜택을 받으실 수 있습니다.</div>
+
+		
+		</td>
+	</tr>
+
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+{/}
+
+{? tel2use}
+	
+	<tr height="32" valign="top">
+		<td class="f3">연락처</td>
+		<td class="f2">
+		<input name="tel1"  hname="연락처" type="text" maxbyte="50" style="width:30px; border:1px solid #D1D1D1;" style="ime-mode:active" class="button">
+		&nbsp;-&nbsp;
+		<input name="tel2"  hname="연락처" type="text" maxbyte="50" style="width:30px; border:1px solid #D1D1D1;" style="ime-mode:active" class="button">
+		&nbsp;-&nbsp;
+		<input name="tel3"  hname="연락처" type="text" maxbyte="50" style="width:30px; border:1px solid #D1D1D1;" style="ime-mode:active" class="button"></td>
+	</tr>
+
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+{/}
+	
+
+
+{? img }
+	
+	<tr height="32" valign="top">
+		<td class="f3">대표이미지</td>
+		<td class="f2"><div style="float:left;">
+									<input type="file" name="upfile1" hname="대표이미지" pattern="\.(gif|jpg|jpeg|png)$" class="button"><br>
+									※ 사진은 gif, jpg, png 형식으로 올려주시기 바랍니다.<br>
+									※ 사진의 넓이는 100픽셀로 고정됩니다. <br>
+									※ 사이즈를 맞춰서 올려주시면 이미지가 깨지지 않습니다.
+								</div>
+								</td>
+	</tr>
+<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+
+{/}
+
+
+
+{? mypr }
+	
+	<tr height="32" valign="top">
+		<td class="f3">자기소개</td>
+		<td class="f2"><textarea cols="56" rows="5" name="str_introduct"></textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+
+{/}
+
+{? plus1_use}
+
+
+	<tr height="32" valign="top">
+		<td class="f3">{plus1}</td>
+		<td class="f2"><input type="text" name="str_plus1" value="{str_plus1}" class="button" style = "width:400"></td>
+	</tr>	
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+{/}	
+
+{? plus2_use}
+
+	
+	<tr height="32" valign="top">
+		<td class="f3">{plus2}</td>
+		<td class="f2"><input type="text" name="str_plus2" value="{str_plus2}" class="button" style = "width:400"></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+{/}	
+
+{? plus3_use}
+
+	
+	<tr height="32" valign="top">
+		<td class="f3">{plus3}</td>
+		<td class="f2"><input type="text" name="str_plus3" value="{str_plus3}" class="button" style = "width:400"></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+{/}	
+
+
+{? plus4_use}
+
+	
+	<tr height="32" valign="top">
+		<td class="f3">{plus4}</td>
+		<td class="f2"><input type="text" name="str_plus4" value="{str_plus4}" class="button" style = "width:400"></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+{/}	
+
+
+{? plus5_use}
+
+	
+	<tr height="32" valign="top">
+		<td class="f3">{plus5}</td>
+		<td class="f2"><input type="text" name="str_plus5" value="{str_plus5}" class="button" style = "width:400"></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+{/}	
+
+<tr><td colspan="2" height="1" bgcolor="5e91c4"></td></tr>
+	</table>
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="95%" align = center>
+	<col width="20%"></col><col width="%"></col>
+
+	<tr align="center" style = "padding-top:20">
+		<td height="30" colspan="2"><br><img src="/host_img/stock/join_btn_03.gif" onclick="JoinFrm()" style="cursor:hand">&nbsp;<img src="/host_img/stock/join_btn_02.gif" onclick = "reset();" style="cursor:hand"></td>
+	</tr>
+</table>
+
+</form>
+</div>
+
+<div style = "" id="body2">
+<table cellpadding="0" cellspacing="0" border="0">
+	
+	<tr>
+		<td height="20"></td>
+	</tr>
+	<tr>
+		<td style="padding-right:8"><img src="/host_img/stock/join_img2.gif"></td>
+	</tr>
+	<tr>
+		<td style="padding-right:8">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr><td><img src="/host_img/stock/join_box_top.gif"></td></tr>
+				<tr><td width="637" background="/host_img/stock/join_box_bg.gif" style="padding:7 0 7 15"><div style = "padding:10 ;float:left;border:1px solid #5faacf;width:97%;height:200;overflow:auto;background-color:#ffffff" id="">{content2}</div>
+				<INPUT TYPE="checkbox" id="chk1" value = "Y"> 이용약관에 동의 합니다. 
+				</td></tr>
+				<tr><td><img src="/host_img/stock/join_box_bot.gif"></td></tr>
+			</table>
+		</td>
+	</tr>
+
+
+
+
+<tr>
+		<td height="20"></td>
+	</tr>
+	<tr>
+		<td style="padding-right:8"><img src="/host_img/stock/join_img33.gif"></td>
+	</tr>
+	<tr>
+		<td style="padding-right:8">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr><td><img src="/host_img/stock/join_box_top.gif"></td></tr>
+				<tr><td width="637" background="/host_img/stock/join_box_bg.gif" style="padding:7 0 7 15">
+				
+				<div style = "padding:10 ;float:;border:1px solid #5faacf;width:97%;height:120;overflow:auto;background-color:#ffffff;" id="">{content1}</div>
+				<INPUT TYPE="checkbox" id="chk2" value = "Y"> 수집하는 개인정보 항목에 동의합니다.<br><br>
+				
+				<div style = "padding:10 ;border:1px solid #5faacf;width:97%;height:120;overflow:auto;background-color:#ffffff" id="">{content3}</div>
+				<INPUT TYPE="checkbox" id="chk3" value = "Y"> 개인정보 수집 및 이용목적에 동의합니다. <br><br>
+
+
+				<div style = "padding:10 ;float:;border:1px solid #5faacf;width:97%;height:120;overflow:auto;background-color:#ffffff" id="">{content4}</div>
+				<INPUT TYPE="checkbox" id="chk4" value = "Y"> 개인정보 보유 및 이용기간에 동의합니다.
+				
+				</td></tr>
+				<tr><td><img src="/host_img/stock/join_box_bot.gif"></td></tr>
+			</table>
+		</td>
+	</tr>
+
+
+
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align = center>
+
+<input type="hidden" name="end" value="">
+<tr>
+  <td colspan = 2 align =center style="padding:10"><a href = "javascript:yak()" > <img src="/host_img/stock/join_btn_01.gif" border='0' alt=''></a> &nbsp;<a href = "#" onclick = "self.close();"> <img src="/host_img/stock/join_btn_02.gif" border='0' alt=''></a></td>
+</tr>
+</table>
+
+
+<br>		
+  </td>
+ </tr>
+</table>
+
+
+<!-- 실명인증 -->
+<script type="text/javascript" src="http://secure.nuguya.com/nuguya/nice.nuguya.oivs.crypto.js"></script>
+<script type="text/javascript" src="http://secure.nuguya.com/nuguya/nice.nuguya.oivs.msg.js"></script>
+<script type="text/javascript" src="http://secure.nuguya.com/nuguya/nice.nuguya.oivs.util.js"></script>
+
+<script language="javascript">
+		document.onkeydown = onKeyDown;
+
+		function onKeyDown( event )
+		{
+			var e = event;
+			if ( event == null ) e = window.event;
+
+			if ( e.keyCode == 13 ) goIDCheck();
+		}
+
+		function lengthCheck( checkTag )
+		{
+			if ( checkTag.name == "userNo1" )
+			{
+				if ( checkTag.value.length >= 6 )
+				{
+					checkTag.blur();
+					document.all.userNo2.focus();
+				}
+			}
+		}
+
+		function loadAction()
+		{
+			document.pageForm.userNm.focus();
+		}
+
+		
+
+		function goIDCheck()
+		{
+		
+				if(!document.pageForm.userNm.value) {
+					alert('이름을 적어 주세요.');
+					return;
+				}
+
+				if(!document.pageForm.userNo1.value) {
+					alert('주민등록번호를 적어 주세요.');
+					return;
+				}
+
+				if(!document.pageForm.userNo2.value) {
+					alert('주민등록번호를 적어 주세요.');
+					return;
+				}
+
+				var strNm = document.pageForm.userNm.value;
+				var strNo = document.pageForm.userNo1.value + document.pageForm.userNo2.value;
+				var strRsn = document.pageForm.inqRsn.value;
+				var strForeigner = document.pageForm.foreigner.value;
+				document.inputForm.SendInfo.value = makeSendInfo( strNm, strNo, strRsn, strForeigner );
+
+				var form = document.inputForm;
+				form.submit();
+		
+
+			return;
+		}
+
+</script>
+
+
+<FORM name="inputForm" method="POST" action="./RNCheckRequest.php" target="hidden_ifr">
+<input type="hidden" id="SendInfo" name="SendInfo"></input>
+</FORM>
+
+<form name="pageForm" method="POST">
+<!--	내/외국인 구분을 설정하십시오. ( '1'-내국인, '2'-외국인 )	-->
+<input type="hidden" id="foreigner" name="foreigner" value="1"></input>
+<!--	조회사유를 설정하십시오. ( '10'-회원가입, '20'-기존회원 확인, '30'-성인인증, '40'-비회원 확인, '90'-기타 사유 )	-->
+<input type="hidden" id="inqRsn" name="inqRsn" value="10"></input>
+
+
+<div style = "display:none" id="ssik">
+<table cellpadding="0" cellspacing="0" border="0" width="648">
+	<tr>
+		<td style="padding-left:4"><img src="/host_img/stock/join_img4.gif"></td>
+	</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="647">
+<col width="20%"></col><col width="80%"></col>	
+	<tr><td height="8"></td></tr>
+	<tr><td colspan="2" height="2" bgcolor="5e91c4"></td></tr>
+	<tr height="32">
+		<td bgcolor="edf8fd" style="padding-left:25">이름</td>
+		<td>&nbsp; <input type="text" id="userNm" name="userNm"  hname="이름" required></td>
+	</tr>
+	<tr><td colspan="2" height="1" bgcolor="b8cfda"></td></tr>
+	<tr height="32">
+		<td bgcolor="edf8fd" style="padding-left:25">주민등록번호</td>
+		<td>&nbsp; <input type="text" id="userNo1" name="userNo1"  hname="주민등록번호" maxbyte="6" minbyte="6" onKeyUp="javascript:lengthCheck( this );"> - <input type="password" id="userNo2" name="userNo2"   hname="주민등록번호" maxbyte="7" minbyte="7" onKeyUp="javascript:lengthCheck( this );"></td>
+	</tr>
+	<tr><td colspan="2" height="2" bgcolor="5e91c4"></td></tr>
+	<tr><td height="15"></td></tr>
+	<tr><td colspan="2" align="center">
+	<a href="javascript:goIDCheck()"><img src="/host_img/stock/find_btn_01.gif"></a></td></tr>
+	<tr><td height="30"></td></tr>
+</form>
+</table>
+
+
+<iframe name="hidden_ifr" src="" width="0	" height="0" scrolling="no" frameborder=0></iframe>
+</div>
+</div>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+$('body1').style.display='';$('body2').style.display='none'
+$('ssik').style.display = 'none';
+//-->
+</SCRIPT>

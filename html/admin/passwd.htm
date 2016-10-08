@@ -1,0 +1,55 @@
+
+<form name="basicinfo" method="post" onsubmit="return validate(this);" enctype='multipart/form-data'>
+
+<fieldset>
+		<legend>Legend</legend>
+		<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center" >
+			<tr >
+				<td width="20px" style="padding-top:3px"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+				<td class="subtitle01"> 관리자 암호 변경</td>
+			</tr>
+		</table>
+
+		<div class="form_table" style="margin-top:5px;">
+		<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+			<tbody>
+				<tr>
+				<th scope="row" width="130px">기존암호 입력</th>
+				<td>
+					<div class="item">
+						<input type="password" size="30" name="def_passwd"  id="def_passwd" hname="기존암호입력"  class="fom01" required trim="trim"  pattern="^([a-zA-Z0-9]{4,10})?$"  />
+					</div>
+				</td>
+				</tr>
+
+				<tr>
+				<th scope="row" width="130px">새로운 암호입력</th>
+				<td>
+					<div class="item">
+						<input type="password" size="30" name="str_passwd" id="str_passwd" hname="새로운 암호" class="fom01"  trim="trim" pattern="^([a-zA-Z0-9]{4,10})?$" match="str_passwd2" required/>
+					</div>
+				</td>
+				</tr>
+
+				<tr>
+				<th scope="row" width="130px">새로운 암호 확인</th>
+				<td>
+					<div class="item">
+						<input type="password" size="30" name="str_passwd2" id="str_passwd2" hname="새로운 암호 확인" class="fom01"  trim="trim" required/>
+					</div>
+				</td>
+				</tr>
+
+				<tr>
+					<td colspan="2" align="center">
+						<span class="btn_pack medium icon"><span class="add"></span><input type="submit" value="변경하기"></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+</fieldset>
+
+
+</form>
+

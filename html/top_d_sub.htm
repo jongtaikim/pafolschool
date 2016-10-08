@@ -1,0 +1,60 @@
+<?
+include _DOC_ROOT.'/admin_menu.php';
+$hhh2 = {act3};
+$hhh = {act2};
+
+if(_PN) {
+	$pn = _PN;
+}
+
+
+$pn_1 = substr(_PN,1,1);
+$pn_2 = substr(_PN,3,1);
+
+//#13b200
+
+?>
+
+<div class="top_gnb_sub">
+	<div class="gnb_logo">
+		
+		<div class="gnb_logo_img" ><a href="/admin.main"><img src="/html/admin//logo.gif" alt="NOW CMS" /></a></div>
+	
+	</div>
+	<div class="gnb_menu">
+		 <a href="/main">홈페이지 바로가기</a> | <a href="/member.logout">관리자 로그아웃 </a> | <a href="http://h132x108.giouser.net/phpMy_Admin/" target="blank">phpMyAdmin</a>
+		 
+		 | <a href="http://ecredit.uplus.co.kr/ " target="blank">LGu+ 인터넷지불관리</a>
+	</div>
+
+</div>
+
+<div class="top_menu">
+	<ul>
+		<? 	for($ii=0; $ii<count($menu); $ii++) {
+		 $iaa = $ii+1;
+		 ?>
+		<li>
+			<a href="<?=$menu[$ii]['link'].$menu[$ii]['pn']?>">
+				<div class="top_menu_icon"><img src="/images/admin/menu_icon<?=$iaa?>_sub.gif" alt="" /></div>
+				<div class="top_menu_text <? if($pn_1 == $iaa) {?> selected<? } ?>"><?=$menu[$ii]['title']?></div>
+			</a>
+		</li>
+		<li style="margin-top:2px">
+			<img src="/images/admin/sub_menu_bar.gif" alt="" style="margin-right:10px"/>
+		</li>
+		<? } ?>
+		<li>
+			<a href="/admin.main"><img src="/images/admin/sub_home.gif" alt="" style="margin-right:10px"/></a>
+		</li>
+
+	</ul>
+</div>
+
+
+
+
+
+	
+
+	

@@ -1,0 +1,269 @@
+<script type="text/javascript">
+function calByte(str) {
+	var len = 0;
+    str = this != window ? this : str;
+    for (j=0; j<str.length; j++) {
+        var chr = str.charAt(j);
+        len += (chr.charCodeAt() > 128) ? 2 : 1;
+    }
+    return len;
+}
+
+function checkMsg(el, id) {
+	str = el.value;
+	len = calByte(str);
+	document.getElementById(id).innerHTML = len;
+}
+</script>
+<table cellpadding="0" cellspacing="0" border="0" width="90%" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 200><b>
+					
+					자동 발송 관리
+					</b></td>
+				<td  style="padding:3 0 0 0; color:454545">&nbsp; </td>
+				</tr>
+			</table>
+<br>
+<table width="725" class="table01">
+<tr>
+	<td>
+		SMS 자동발송은 쇼핑몰 운영시 회원가입부터 상품주문, 발송, 취소까지 고객과 관리자에게 
+		처리상황을 핸드폰문자로 발송해 드리는 서비스입니다. <font color="#009900">(※ SMS서비스는 충전후 사용 가능한 유료서비스입니다.)</font><br>
+		&nbsp;&nbsp;- 고객 : 구매한 회원의 핸드폰번호로 발송<br>
+		&nbsp;&nbsp;- 관리자 : 온라인서점 관리자의 핸드폰번호로 발송<br>
+		&nbsp;&nbsp;- 영업자 : 회원의 담당직원의 핸드폰번호로 발송 (단, 담당직원이 미지정일경우 발송되지 않습니다.)<br><br>
+		<b>[자동 발송 메세지 변경 방법]</b><br>
+		SMS 메시지에 변동되는 메시지는 아래와 같이 적용하시기 바랍니다.<br>
+		&nbsp;&nbsp;- 회원ID : {\USERID}<br>
+		&nbsp;&nbsp;- 회원이름(기관명) : {\USERNAME}<br>
+		&nbsp;&nbsp;- 주문번호 : {\ORDERNUM}<br>
+		&nbsp;&nbsp;ex) {\USERNAME}님 주문이 확인되었습니다. 주문번호 : {\ORDERNUM}<br>
+		※{\USERNAME} 이나 {\USERID} 는 길이가 불분명 하므로 80byte 이내로 적절히 조절하시기 바랍니다.
+	</td>
+</tr>
+</table>
+
+<table width="98%" class="table01">
+<form name="manageForm" method="post">
+<thead>
+<tr>
+	<th>발송시점</th>
+	<th>고객</th>
+	<th>관리자</th>
+	<th>담당직원</th>
+</tr>
+</thead>
+<tbody>
+<tr align="center">
+	<th>회원가입 ▼</th>
+	<th><input type="checkbox" name="num_use_memj_m" value="1" style="border:0px;"{? num_use_memj_m} checked{/}></th>
+	<th><input type="checkbox" name="num_use_memj_a" value="1" style="border:0px;"{? num_use_memj_a} checked{/}></th>
+	<th></th>
+</tr>
+<tr align="center">
+	<td></td>
+	<td>
+		<textarea name="str_msg_memj_m" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'memj_m_byte');">{str_msg_memj_m}</textarea><br>
+		<span id="memj_m_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_memj_a" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'memj_a_byte');">{str_msg_memj_a}</textarea><br>
+		<span id="memj_a_byte">0</span>byte / 80byte
+	</td>
+	<td></td>
+</tr>
+<tr align="center">
+	<th>회원탈퇴 ▼</th>
+	<th><input type="checkbox" name="num_use_memw_m" value="1" style="border:0px;"{? num_use_memw_m} checked{/}></th>
+	<th><input type="checkbox" name="num_use_memw_a" value="1" style="border:0px;"{? num_use_memw_a} checked{/}></th>
+	<th></th>
+</tr>
+<tr align="center">
+	<td></td>
+	<td>
+		<textarea name="str_msg_memw_m" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'memw_m_byte');">{str_msg_memw_m}</textarea><br>
+		<span id="memw_m_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_memw_a" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'memw_a_byte');">{str_msg_memw_a}</textarea><br>
+		<span id="memw_a_byte">0</span>byte / 80byte
+	</td>
+	<td></td>
+</tr>
+<tr align="center">
+	<th>주문완료 ▼</th>
+	<th><input type="checkbox" name="num_use_ordc_m" value="1" style="border:0px;"{? num_use_ordc_m} checked{/}></th>
+	<th><input type="checkbox" name="num_use_ordc_a" value="1" style="border:0px;"{? num_use_ordc_a} checked{/}></th>
+	<th><input type="checkbox" name="num_use_ordc_b" value="1" style="border:0px;"{? num_use_ordc_b} checked{/}></th>
+</tr>
+<tr align="center">
+	<td></td>
+	<td>
+		<textarea name="str_msg_ordc_m" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ordc_m_byte');">{str_msg_ordc_m}</textarea><br>
+		<span id="ordc_m_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_ordc_a" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ordc_a_byte');">{str_msg_ordc_a}</textarea><br>
+		<span id="ordc_a_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_ordc_b" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ordc_b_byte');">{str_msg_ordc_b}</textarea><br>
+		<span id="ordc_b_byte">0</span>byte / 80byte
+	</td>
+</tr>
+
+<tr align="center">
+	<th>
+		{? __OID == __HOID}
+		결제 ▼
+		{:}
+		주문확인 ▼
+		{/}
+	</th>
+	<th><input type="checkbox" name="num_use_ordo_m" value="1" style="border:0px;"{? num_use_ordo_m} checked{/}></th>
+	<th><input type="checkbox" name="num_use_ordo_a" value="1" style="border:0px;"{? num_use_ordo_a} checked{/}></th>
+	<th><input type="checkbox" name="num_use_ordo_b" value="1" style="border:0px;"{? num_use_ordo_b} checked{/}></th>
+</tr>
+<tr align="center">
+	<td></td>
+	<td>
+		<textarea name="str_msg_ordo_m" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ordo_m_byte');">{str_msg_ordo_m}</textarea><br>
+		<span id="ordo_m_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_ordo_a" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ordo_a_byte');">{str_msg_ordo_a}</textarea><br>
+		<span id="ordo_a_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_ordo_b" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ordo_b_byte');">{str_msg_ordo_b}</textarea><br>
+		<span id="ordo_b_byte">0</span>byte / 80byte
+	</td>
+</tr>
+{? __OID == __HOID}
+<tr align="center">
+	<th>입금확인 ▼</th>
+	<th><input type="checkbox" name="num_use_payo_m" value="1" style="border:0px;"{? num_use_payo_m} checked{/}></th>
+	<th><input type="checkbox" name="num_use_payo_a" value="1" style="border:0px;"{? num_use_payo_a} checked{/}></th>
+	<th><input type="checkbox" name="num_use_payo_b" value="1" style="border:0px;"{? num_use_payo_b} checked{/}></th>
+</tr>
+<tr align="center">
+	<td></td>
+	<td>
+		<textarea name="str_msg_payo_m" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'payo_m_byte');">{str_msg_payo_m}</textarea><br>
+		<span id="payo_m_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_payo_a" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'payo_a_byte');">{str_msg_payo_a}</textarea><br>
+		<span id="payo_a_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_payo_b" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'payo_b_byte');">{str_msg_payo_b}</textarea><br>
+		<span id="payo_b_byte">0</span>byte / 80byte
+	</td>
+</tr>
+{/}
+<tr align="center">
+	<th>발송완료 ▼</th>
+	<th><input type="checkbox" name="num_use_sndc_m" value="1" style="border:0px;"{? num_use_sndc_m} checked{/}></th>
+	<th><input type="checkbox" name="num_use_sndc_a" value="1" style="border:0px;"{? num_use_sndc_a} checked{/}></th>
+	<th><input type="checkbox" name="num_use_sndc_b" value="1" style="border:0px;"{? num_use_sndc_b} checked{/}></th>
+</tr>
+<tr align="center">
+	<td></td>
+	<td>
+		<textarea name="str_msg_sndc_m" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'sndc_m_byte');">{str_msg_sndc_m}</textarea><br>
+		<span id="sndc_m_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_sndc_a" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'sndc_a_byte');">{str_msg_sndc_a}</textarea><br>
+		<span id="sndc_a_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_sndc_b" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'sndc_b_byte');">{str_msg_sndc_b}</textarea><br>
+		<span id="sndc_b_byte">0</span>byte / 80byte
+	</td>
+</tr>
+<tr align="center">
+	<th>취소요청 ▼</th>
+	<th><input type="checkbox" name="num_use_ccrq_m" value="1" style="border:0px;"{? num_use_ccrq_m} checked{/}></th>
+	<th><input type="checkbox" name="num_use_ccrq_a" value="1" style="border:0px;"{? num_use_ccrq_a} checked{/}></th>
+	<th><input type="checkbox" name="num_use_ccrq_b" value="1" style="border:0px;"{? num_use_ccrq_b} checked{/}></th>
+</tr>
+<tr align="center">
+	<td></td>
+	<td>
+		<textarea name="str_msg_ccrq_m" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ccrq_m_byte');">{str_msg_ccrq_m}</textarea><br>
+		<span id="ccrq_m_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_ccrq_a" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ccrq_a_byte');">{str_msg_ccrq_a}</textarea><br>
+		<span id="ccrq_a_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_ccrq_b" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ccrq_b_byte');">{str_msg_ccrq_b}</textarea><br>
+		<span id="ccrq_b_byte">0</span>byte / 80byte
+	</td>
+</tr>
+<tr align="center">
+	<th>취소완료 ▼</th>
+	<th><input type="checkbox" name="num_use_ccco_m" value="1" style="border:0px;"{? num_use_ccco_m} checked{/}></th>
+	<th><input type="checkbox" name="num_use_ccco_a" value="1" style="border:0px;"{? num_use_ccco_a} checked{/}></th>
+	<th><input type="checkbox" name="num_use_ccco_b" value="1" style="border:0px;"{? num_use_ccco_b} checked{/}></th>
+</tr>
+<tr align="center">
+	<td></td>
+	<td>
+		<textarea name="str_msg_ccco_m" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ccco_m_byte');">{str_msg_ccco_m}</textarea><br>
+		<span id="ccco_m_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_ccco_a" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ccco_a_byte');">{str_msg_ccco_a}</textarea><br>
+		<span id="ccco_a_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_ccco_b" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'ccco_b_byte');">{str_msg_ccco_b}</textarea><br>
+		<span id="ccco_b_byte">0</span>byte / 80byte
+	</td>
+</tr>
+<tr align="center">
+	<th>반품 ▼</th>
+	<th><input type="checkbox" name="num_use_back_m" value="1" style="border:0px;"{? num_use_back_m} checked{/}></th>
+	<th><input type="checkbox" name="num_use_back_a" value="1" style="border:0px;"{? num_use_back_a} checked{/}></th>
+	<th><input type="checkbox" name="num_use_back_b" value="1" style="border:0px;"{? num_use_back_b} checked{/}></th>
+</tr>
+<tr align="center">
+	<td></td>
+	<td>
+		<textarea name="str_msg_back_m" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'back_m_byte');">{str_msg_back_m}</textarea><br>
+		<span id="back_m_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_back_a" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'back_a_byte');">{str_msg_back_a}</textarea><br>
+		<span id="back_a_byte">0</span>byte / 80byte
+	</td>
+	<td>
+		<textarea name="str_msg_back_b" rows="4" style="width;100%;" onkeyup="return checkMsg(this,'back_b_byte');">{str_msg_back_b}</textarea><br>
+		<span id="back_b_byte">0</span>byte / 80byte
+	</td>
+</tr>
+</tbody>
+</table>
+
+<table width="98%" style="margin-left:15px;">
+<tr>
+	<td align="center"><input type="submit" class="button2" value="저장"></td>
+</tr>
+</form>
+</table>
+<br>
+
+<script type="text/javascript">
+form = document.forms['manageForm'];
+for(i = 0, cnt=form.elements.length; i < cnt; i++) {
+	if(form.elements[i].tagName == 'TEXTAREA') {
+		form.elements[i].onkeyup();
+	}
+}
+</script>

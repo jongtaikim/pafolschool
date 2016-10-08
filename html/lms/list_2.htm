@@ -1,0 +1,77 @@
+<!-- 공개교육 -->
+						<div id="training">
+							<!-- 상단공통 -->
+							<ul class="tabArea">
+						
+								<li class="selected"><a href="/lms.list_2?types={types}&mcode={mcode}&cate={cate}"><img src="./images/sub1/liBtn3.gif" alt="공개교육 리스트" style="border-left:1px solid #cdcdcd"/></a></li>
+								
+
+
+							</ul>
+							
+							<h4><img src="./images/sub1/trainingTit.gif" alt="교육소개" /> <span>
+							{@ cate2_LIST}
+								{? ccode2 == .num_ccode}{.str_title}{/}
+							{/}
+							</span></h4>
+							<!-- 상단공통 끝 -->
+
+							<!-- 공개교육리스트 -->
+							<div class="eduList">
+								
+								<div class="location">
+									
+									<p>
+									<label for="ccode2">과정명</label>
+									<select id="ccode2" name="ccode2" onchange="location.href='/lms.list_2?types={types}&mcode={mcode}&cate={cate}&ccode2='+$('ccode2').value">
+										{@ cate2_LIST}
+										<option value="{.num_ccode}" {? ccode2 == .num_ccode} selected{/}>{.str_title}</option>
+										{/}
+									</select>
+									</p>
+								</div>
+								<table border="1" cellpadding="0" cellspacing="0" summary="교육과정 리스트입니다. 교육명, 기간(시간), 교육비, 교육일정(월)로 구성되어있습니다. ">
+									<caption>교육과정 리스트</caption>
+									<thead>
+										<tr>
+											<th class="title" scope="col">교육명</th>
+											<th scope="col">기간(시간)</th>
+											<th scope="col">교육비</th>
+											
+										</tr>
+										
+									</thead>
+									<tbody>
+										{@ LIST}
+										
+										<tr>
+											<td class="title"><a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}">{.str_title}</a></td>
+											<td>{.str_time}</td>
+											<td>￦{=number_format(.num_price)}</td>
+											
+										</tr>
+
+										{:}
+
+										<tr>
+											<td colspan="3" height="50px" align="center">데이터가 없습니다.</td>
+										</tr>
+										{/}
+										
+									</tbody>
+								</table>
+								<h5><img src="./images/sub1/processTit.gif" alt="교육신청절차" /></h5>
+								<ul class="list">
+									<li>교육참가를 희망하시는 분께서는 원하시는 교육명을 클릭하시고 해당교육 페이지로 이동 후
+
+  교육신청 탭을 선택하셔서 해당교육 신청화면으로 이동하십시오.
+
+  이 후, 각 항목을 기입하시면 저희 컨설턴트가 연락을 드리고 상세한 사항에 대해
+
+  말씀 드리겠습니다. 
+
+</li>
+								</ul>
+							</div>
+							<!-- 공개교육리스트 끝 -->
+						</div>

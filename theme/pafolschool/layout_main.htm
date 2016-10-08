@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"  xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<title>PAFOLSCHOOL 파폴스쿨</title>
+<meta name="viewport" content="width=device-width, initial-scale=0.38, maximum-scale=1, minimum-scale=0.38, user-scalable=yes, target-densitydpi=medium-dpi" />
+<meta property="og:title" content="PAFOLSCHOOL 파폴스쿨"/>
+<meta property="og:image" content="/theme/pafolschool/pgschool2.gif"/>
+<meta property="og:description" content="{? !title_text}파폴스쿨 입니다.{:}{title_text}{/}"/>
+<meta property="og:site_name" content="PAFOLSCHOOL 파폴스쿨"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://<?=$_SERVER[HTTP_HOST]?><?=getenv('REQUEST_URI')?>"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" href="/css/common.css" type="text/css" />
+<link rel="stylesheet" href="./css/default_style.css" type="text/css" />
+<link rel="stylesheet" href="./css/content_style.css" type="text/css" />
+<link rel="stylesheet" href="./css/main_style.css" type="text/css" />
+<link rel="stylesheet" href="./css/popup_style.css" type="text/css" />
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/now_core.js"></script>
+<script type="text/javascript" src="/js/lib.validate2.js"></script>
+<script type="text/javascript" src="/js/Floating.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/js/jquery-plug.js"></script>
+<style type="text/css" title="">
+#layerIfr{border:1px solid #6a6a6a}
+</style>
+</head>
+<body>
+{#LAYER}
+{#TOP_TOOL}
+<div class="page_container">
+	<div class="content-container">
+		{#TOP}
+
+		<!-- visual-area -->
+		<div class="visual_area">
+			<div class="visual"><a href="/doc.view?mcode=1010&cate=1010"><img src="./img/main/visual.jpg" alt="미래교육의 새로운 대안 파폴스쿨이 만들어갑니다." /></a></div>
+		</div>
+		<!-- //visual-area -->
+
+		<!-- primary-area -->
+		<div class="primary_area" style="margin-top:-1px">
+
+			<!-- content01 -->
+			<div class="main_content01" >
+				<div class="inner_content01 m3slider topBanner" >
+					
+					
+					<div class="cont_box1 m3slider-panels">
+						<a href="#" class="btn_prev m3slider-btn m3slider-go-btn m3slider-go-prev">이전보기</a>
+						<div class="ban_box " >
+							<a href="/doc.view?mcode=1110&cate=1110"  class="m3slider-panel"><img src="./img/main/rolling_img1.png" alt="관점이 달라지면 세상을 보는 눈이 달라집니다. 인문학 멘토링스쿨 +자세히보기" /></a>
+							<a href="/doc.view?mcode=1210&cate=1210"  class="m3slider-panel"><img src="./img/main/rolling_img2.png" alt="관점이 달라지면 세상을 보는 눈이 달라집니다. 공부법 멘토링스쿨 +자세히보기" /></a>
+							<a href="/doc.view?mcode=2510&cate=2510"  class="m3slider-panel"><img src="./img/main/rolling_img3.png" alt="IT/SW 멘토링스쿨" /></a>
+							<a href="/doc.view?mcode=2210&cate=2210"  class="m3slider-panel"><img src="./img/main/rolling_img4.png" alt="특목(중)고 멘토링 +자세히보기" /></a>
+							<!--a href="/doc.view?mcode=4010&cate=4010"  class="m3slider-panel"><img src="./img/main/rolling_img5.png" alt="파폴스포츠" /></a-->
+						</div>
+						<a href="/doc.view?mcode=1210&cate=1210" class="btn_next m3slider-btn m3slider-go-btn m3slider-go-next">다음보기</a>
+					</div>
+					
+
+
+					<div class="cont_box2 hidden_pop_m">
+						<div class="" id="" style="width:332px;height:250px;background:url(./img/main/main_tab_bbs_bg.gif) no-repeat center top;">
+
+						<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0"  summary="">
+							<tbody>
+								<tr>
+									<td style="text-align:center;padding-top:28px">
+										<a href="/board.list?mcode=1510&cate=1510">
+											<img src="./img/main/main_tab_bbs.gif" alt="" />
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<wa:applet module="out_bbs.main" code="1510" len="100" mou_name="out_bbs1">
+									<div style="margin:10px auto;width:296px">
+										<ul >
+											{@ LIST_lsat}
+											{@ .tab_data}
+											<li style="margin:12px"><a href="{..link}">{? ..num_notice == "2"}[전체공지]{: ..num_notice=='1'}[공지]{:}{/} {..str_title11}</a>
+											{?..is_recent || ..num_serial ==121}<img src="/image/icon/new2.gif" alt="" />{/}
+											</li>
+											{/}
+											{/}
+										</ul>
+									</div>
+									</wa:applet>	
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						&nbsp;
+						</div>
+
+					
+					
+					</div>
+
+					
+
+					<div class="cont_box2 hidden_pop_m" >
+						<h3>사후 관리 프로그램</h3>
+						<img src="./img/main/mian_cont01-03.jpg" alt="파폴스쿨의 관리시스템을 통해 지속적 관리가 가능합니다.(참가자 전원 대상)" />
+						
+						<!--div class="hidden_pop">
+							<div class="menu1"><a href="/doc.view?mcode=1117&cate=1117">인문학 멘토링스쿨</a></div>
+							<div class="menu2"><a href="/doc.view?mcode=1217&cate=1217">공부법 멘토링스쿨</a></div>
+						</div-->
+
+					</div>
+
+				</div>
+				<div class="cont01_bg"></div>
+
+				<!-- quick -->
+				<div class="quick_area" style="margin-top:-1px;_margin-top:0px">
+					<div class="quick">
+						<!--a href="http://cafe.naver.com/pafolschool" target="_blank">
+							<img src="./img/qmenu/qmenu1.gif" alt="NAVER 카페 파폴스쿨" />
+						</a-->
+						<a href="http://cafe.naver.com/pafolschool.cafe" target="_blank" >
+							<img src="./img/qmenu12.png" alt="후기" />
+						</a>
+						<!--a href="http://www.pafol.net" target="_blank">
+							<img src="./img/qmenu13.png" alt="" />
+						</a-->
+						<a href="https://www.facebook.com/pafolschool" target="_blank">
+							<img src="./img/qmenu14.png" alt="" />
+						</a>
+						<a href="http://pafolsports.pafolschool.com/" target="_blank">
+							<img src="./img/qmenu15.png" alt="" />
+						</a>
+						
+					</div>
+					
+				</div>
+				<!-- //quick -->
+
+			</div>
+			<!-- //content01 -->
+			<!-- content02 -->
+			<div class="main_content02">
+				<div class="inner_content02">
+					<div class="cont_box1">
+						<h3>주요강사진</h3>
+						<a href="/doc.view?mcode=1113&cate=1113"><img src="./img/main/mian_cont02-01.jpg" alt="대한민국 최고의 지식인이 여러분의 자녀와 함께합니다." /></a>
+					</div>
+					<div class="cont_box2">
+						<h3>프로그램 참가신청</h3>
+						<a href="/lms.order?mcode=1311&cate=1311&ccode=21"><img src="./img/main/mian_cont02-02.jpg" alt="파폴스쿨만의 공부와 진로를 연계한 능동적 교육 프로젝트를 지금 시작합니다./" /></a>
+					</div>
+					<div class="cont_box3">
+						<iframe  width="334" height="248" src="//www.youtube.com/embed/7Klm5PkbP8c" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+			<!-- //content02 -->
+			<!-- content03 -->
+			<div class="main_content03">
+				<div class="inner_content03">
+					<div class="cont_box1">
+						<div class="grallery">
+							<h3>PafolSchool Gallery</h3>
+							<a href="/board.list?mcode=1516&cate=1516">파폴스쿨 참가자들의 생생한 현장사진을 볼 수 있습니다.</a>
+						</div>
+						<div class="center">
+							<h3>온라인상담 센터</h3>
+							<a >02.714.0206</a>
+						</div>
+					</div>
+					<div class="cont_box2">
+						<h3>파폴스쿨 참가자를 위한 안내사항 들입니다.</h3>
+						<ul>
+							<li><a href="/doc.view?mcode=1310&cate=1310" class="link01">등록안내</a></li>
+							<li><a href="/doc.view?mcode=1312&cate=1312" class="link02">결제안내</a></li>
+							<li><a href="/doc.view?mcode=1410&cate=1410" class="link03">장소소개</a></li>
+							<li><a href="/doc.view?mcode=1412&cate=1412" class="link04">참가준비물</a></li>
+							<li><a href="/doc.view?mcode=1411&cate=1411" class="link05">입퇴소 안내</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- //content03 -->
+			<!-- content_foorer -->
+			<div class="main_content_footer">
+				<div class="inner_content_footer">
+					<div class="cont_foot">
+						<div class="link_box">
+							<a href="/doc.view?mcode=1414&cate=1414" class="link01">생활관리</a>
+							<a href="/doc.view?mcode=1313&cate=1313" class="link02">입금/환불</a>
+							<a href="/board.list?mcode=1315&cate=1315" class="link03">등록FAQ</a>
+							<a href="/qna.list?mcode=1314&cate=1314" class="link04">상담게시판</a>
+						</div>
+						<div class="notice">
+							<h3>Notice</h3>
+							
+							<div class="notice_box">
+								<ul class="noti_flow">
+									<li class="noticeLi"><a href="http://cafe.naver.com/pafolschool" target="_blank">2013년 겨울방학부터 2016년 여름방학까지 “파폴스쿨 네이버카페”에서 확인 가능
+
+</a></li>
+								</ul>
+							</div>
+							
+							<script type="text/javascript">
+							// <![CDATA[
+							//공지사항 텍스트 롤링
+							/*function notice_rolling() {
+								var notice_text = $('.noti_flow');
+								notice_text.animate({ marginTop: '-20px' }, 200, null, function() {
+									notice_text.css('marginTop', '0px').append(notice_text.find('> li:first'));
+								});
+								setTimeout("notice_rolling()",3000);
+							};
+							notice_rolling() ;*/
+							// ]]>
+							</script>
+							<a href="http://cafe.naver.com/pafolschool" target="_blank" class="btn_noticeview">자세히보기</a>
+						</div>
+					</div>
+				</div>
+				<div class="notice_bg"></div>
+			</div>
+			<!-- //content_foorer -->
+		</div>
+		<!-- //primary-area -->
+
+		{#FOOT}
+
+	</div>
+</div>
+<wa:applet module="popup.open"/>
+<script type="text/javascript">
+// <![CDATA[
+$(document).ready(function(){
+
+	$(".topBanner").sliderkit({
+			auto: true,
+			circular: true,
+			panelfx: "none"
+		});
+	
+	//$('.hidden_pop_m').hover(
+	//	function() { $(this).find('.hidden_pop').slideDown(200).show(); },
+	//	function() { $(this).find('.hidden_pop').slideUp(200); }
+	//);
+	$('#layer_popup_title').hide();
+});
+// ]]>
+</script>
+
+</body>
+</html>

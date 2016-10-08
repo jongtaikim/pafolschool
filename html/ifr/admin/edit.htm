@@ -1,0 +1,71 @@
+<script type="text/javascript">
+	function done(form) {
+		returnValue = form.elements['str_title'].value;
+		self.close();
+		//return false;
+	}
+
+	function onaction(el) {
+		var extend = document.getElementById('openoption');
+		extend.style.display = el.value == '#window' ? 'block' : 'none';
+	}
+</script>
+</head>
+<body style="overflow: hidden">
+
+<table  cellpadding="0" cellspacing="0" border="0" width=98% >
+
+<tr>
+	<td ><table cellpadding="0" cellspacing="0" border="0" width=98% height="45" background="/html/admin2/images/sub_title_bg.gif" align = center>
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545"><b>링크변경</b></td>
+				
+				</tr>
+			</table>
+<div class="tab01" >
+	<ul>
+		<li><a href="menu.admin.option?mcode={num_mcode}">메뉴옵션</a></li>
+		<li class="active"><a href="#">링크변경</a></li>
+	</ul>
+</div>
+<form name="menuform" method="post">
+<br>
+<table width="98%" border="0" class="table01" align = center>
+<tr>
+	<th width="100">아이프래임명</th>
+	<td><input type="text" name="str_title" value="{str_title}" size="20"></td>
+</tr>
+<tr>
+	<th width="100">URL</th>
+	<td><input type="text" name="str_url" value="{str_url}" size="45">
+	<input type="hidden" name="str_target" value="_top">
+	</td>
+</tr>
+
+<tr>
+	<th width="100">세로길이</th>
+	<td><input type="text" name="str_height" value="{str_height}" size="45">
+	
+	</td>
+</tr>
+
+<tr>
+	<td align="center" colspan="2"><input type="submit" target="menu_option" value="확  인" class="button"></td>
+</tr>
+<tr>
+  <td colspan = 2>
+  
+  <div class="tip" style="width:450px;margin-left:15px;">
+NOTE: 외부 URL은 <font color="#0000FF">http://</font> 를 포함한 전체 주소를 모두 넣으세요.<br> 다른 메뉴 주소를 붙여넣기 하실때는 <font color="#0000FF">http://주소/</font> 를 제외한 나머지 부분만 넣는것이 속도가 빠릅니다<br>
+<font color="#0000FF">"mailto:메일주소"</font> 를 이용하여 이메일보내기 링크로 사용할 수도 있습니다.
+</div>
+  
+  </td>
+</tr>
+</table>
+
+
+
+</form>
+</body>

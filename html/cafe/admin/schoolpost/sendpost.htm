@@ -1,0 +1,62 @@
+
+<script language="javascript">
+function check(el) {
+	if(!el.partcode.checked && !el.rank.checked) {
+		alert("받는 사람을 선택해주세요.");
+		return false;
+	}
+	/* 뭔가 좀 이상한데?
+	if(!el.content.value) {
+		alert("편지 내용을 입력해주세요");
+		return false;
+	}
+	*/
+
+}
+</script>
+
+<div id="sub_content_area">
+	<div id="admin_sub_content">
+	<h3 id="admin_sub_title">학급 공지편지 보내기</h3>
+	<div id="help_top_area">
+		<ul id="help_top_content">
+			<li>- 학급 공지편지는 학급회원 전체에게 보내집니다.</li>
+			<li>- 보낸편지 및 답장은 담임선생님 및 학급운영자의 개인 편지함에 저장됩니다.</li>
+			<li>- 자세한 사항은 메뉴얼을 참고해주시기 바랍니다.  <a href="http://e-wut.com/help/schoolpost/class_post_manual.pdf" target="_blank"><img src="/image/schoolpost/manual_view.gif" alt="학급공지편지보내기 메뉴얼 보기" /></a> <a href="http://e-wut.com/help/schoolpost/class_post_manual.zip" target="_blank"><img src="/image/schoolpost/manual_down.gif" alt="학급공지편지보내기 메뉴얼 다운로드" /></a><br />
+					<span style="font-size:11px;">( 메뉴얼이 열리지 않는경우는 다음의 Adobe Reader(프리웨어)를 다운받아 설치하시면됩니다. )</span> <a href="http://get.adobe.com/kr/reader/" target="_blank"><img src="/image/schoolpost/readerDown.gif" alt="어도비 리더 다운로드" /></a>
+			</li>
+		</ul>
+	</div>
+	<form name="sendpost" method="post"  onsubmit="return check(this)">
+	<strong style="margin-right:10px;">받는사람</strong>
+	<input type="checkbox" id="sendPostStudent" name="partcode" value="{{cafe_id}}"> <label for="sendPostStudent">우리반 학생</label> 
+	<input type="checkbox" id="sendPostParents" name="rank" value="p" > <label for="sendPostParents">우리반 학부모</label>
+	<br />
+	<br /><br /><br /><br />
+
+	<img src="/image/schoolpost/selectskin.gif" border=0 style="cursor:pointer" onclick="window.open('/?act=schoolpost.selectskin','','width=610,height=500')"> <span id="skin_title"></span><br>
+	<textarea type="text" name="content" ></textarea>
+	<script type="text/javascript" src="/util/FCKeditor_2.4.2/fckeditor.js"></script>
+	<script type="text/javascript">
+		var oFCKeditor = new FCKeditor('content', '600', 400, 'Board');
+		oFCKeditor.ToolbarSet="BigSimple";
+		oFCKeditor.ReplaceTextarea() ;
+	</script>
+
+
+	<br>
+
+
+	<input type="checkbox" name="save_send_box" value="Y"> 보낸편지함에 저장
+
+
+	<input type="hidden" name="cafe_id" value="{{cafe_id}}">
+	<input type="hidden" name="sendMode" value="class_t">
+	<input type="hidden" name="selectedSkin" value=1>
+	<div style="margin-left:500px;">
+	<img src="/image/admin/main/popup/button/preview.gif" border=0 style="cursor:pointer" onclick="window.open('/?act=schoolpost.preview&mode=admin&skin='+document.all.selectedSkin.value,'','width=675,height=675')"> 
+	<input type="image" src="/image/schoolpost/submit.gif">
+	</div>
+	</form>
+	</div>
+</div>

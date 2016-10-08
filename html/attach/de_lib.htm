@@ -1,0 +1,923 @@
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() {
+
+	//이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+	if(document.body.readyState == "complete") {
+		clearInterval(ifrContentsTimer);
+	}
+	else {
+		resizeFrame();
+	}
+}
+function resizeFrame(){
+	
+	//페이지가 로딩되면 바로 리사이즈..
+	var h = document.documentElement.scrollHeight;
+	var w = document.documentElement.scrollWidth;
+	//self.resizeTo(w, h);
+	//alert(document.documentElement.scrollWidth);
+	//alert(document.documentElement.scrollHeight);
+	
+	parent.$('d_main').style.height ='10px';
+	parent.$('d_main').style.width = '10px';
+
+	parent.$('d_main').style.height = h+'px';
+	parent.$('d_main').style.width = w+'px';
+	
+}
+//-->
+
+
+
+	function CallLib(classNames) {
+
+		var params = '&mcode={mcode}&code={mcode}&key={key}&r_layout={r_layout}' ;  
+	
+		if(classNames) {
+			params = params + '&theme='+classNames
+	
+			}
+		//alert(params);
+	
+		if($('type_t')){
+			params = params + '&type_t='+$('type_t').value;
+
+		}else{
+			if($('type1') ){
+				params = params + '&type_t='+$('type1').value+',';
+			}
+			
+			
+			if($('type1') && $('type2') && $('type3') && $('type4') && $('type5')){
+				params = params + '&type_t='+$('type1').value+','+$('type2').value+','+$('type3').value+','+$('type4').value+','+$('type5').value+',';
+			}
+
+			
+		}
+
+		
+		if($('bbs_title1') ){
+			params = params + '&bbs_title='+encodeURIComponent($('bbs_title1').value+',');
+			
+		}
+
+
+		if($('bbs_title1') && $('bbs_title2') && $('bbs_title3') && $('bbs_title4') && $('bbs_title5')){
+			params = params + '&bbs_title='+encodeURIComponent($('bbs_title1').value+','+$('bbs_title2').value+','+$('bbs_title3').value+','+$('bbs_title4').value+','+$('bbs_title5').value+',');
+
+		}
+
+
+
+		if($('listnum1') ){
+			params = params + '&listnum_t='+$('listnum1').value+',';
+		
+		}
+
+
+		if($('listnum1') && $('listnum2') && $('listnum3') && $('listnum4') && $('listnum5')){
+			params = params + '&listnum_t='+$('listnum1').value+','+$('listnum2').value+','+$('listnum3').value+','+$('listnum4').value+','+$('listnum5').value+',';
+		
+		}
+
+		
+
+		if($('bbs_code1') && $('bbs_code2') && $('bbs_code3') && $('bbs_code4') && $('bbs_code5')){
+			
+			 var bbs_code1  = $('bbs_code1').value.split("|"); 
+				  bbs_code1 = bbs_code1[0];
+
+			 var bbs_code2  = $('bbs_code2').value.split("|"); 
+				  bbs_code2 = bbs_code2[0];
+
+			 var bbs_code3  = $('bbs_code3').value.split("|"); 
+				  bbs_code3 = bbs_code3[0];
+
+			 var bbs_code4  = $('bbs_code4').value.split("|"); 
+				  bbs_code4 = bbs_code4[0];
+
+			 var bbs_code5  = $('bbs_code5').value.split("|"); 
+				  bbs_code5 = bbs_code5[0];
+
+			
+			params = params + '&bbs_code='+bbs_code1+','+bbs_code2+','+bbs_code3+','+bbs_code4+','+bbs_code5+',';
+			
+		}
+		
+
+		
+		
+		if($('len_t')) params = params + '&len_t='+$('len_t').value;
+		if($('col_t')) params = params + '&col_t='+$('col_t').value;
+		if($('listnum_t')) params = params + '&listnum_t='+$('listnum_t').value;
+		if($('img_w_t')) params = params + '&img_w_t='+$('img_w_t').value;
+		if($('img_h_t')) params = params + '&img_h_t='+$('img_h_t').value;
+		
+
+		if($('color1_t')) params = params + '&color1_t='+$('color1_t').value;
+		if($('color2_t')) params = params + '&color2_t='+$('color2_t').value;
+		if($('width_t')) params = params + '&width_t='+$('width_t').value;
+		if($('height_t')) params = params + '&height_t='+$('height_t').value;
+		//if($('font_t')) params = params + '&font_t='+$('font_t').value;
+		if($('font_size_t')) params = params + '&font_size_t='+ encodeURIComponent($('font_size_t').value);
+		if($('text_len_t')) params = params + '&text_len_t='+ encodeURIComponent($('text_len_t').value);
+
+		if($('title2_t')) params = params + '&title2_t='+ encodeURIComponent($('title2_t').value);
+
+		sendRequest("/{?key_ == 'new_bbs'}out_bbs{:}{key_}{/}.lib", params, FromServer, "POST");
+	}
+		function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			
+			
+			if(str_text) {
+				html = str_text.split("|||");
+			}else{
+				html = "|||";
+			}
+			//alert(html[1]);
+			
+			if(parent.$(html[1])) parent.document.getElementById(html[1]).innerHTML = html[0];
+			if(strstr(html[1], "out_bbs") ) {
+			
+			setTimeout("parent.tabLeftSetup(html[1],2,html[2])", 10);
+			
+			}
+
+			if( html[1]== "new_bbs") {
+		
+			setTimeout("parent.tabLeftSetup(html[1],2,html[2])", 10);
+			
+			}
+			//document.getElementById('loding').style.display = 'none';
+			}
+		}
+	}
+
+	function chengeUi(idx){
+		if(idx == "1") {
+			$('ui1').className='active';
+			$('ui2').className='';
+			$('ui3').className='';
+			if($('remoconSkin')) $('remoconSkin').style.display="none";
+			if($('remoconSetup')) $('remoconSetup').style.display="";
+			if($('csstool')) $('csstool').style.display="none";
+		}else if(idx == "2"){
+			$('ui1').className='';
+			$('ui2').className='active';
+			$('ui3').className='';
+			if($('remoconSkin')) $('remoconSkin').style.display="";
+			if($('remoconSetup')) $('remoconSetup').style.display="none";
+			if($('csstool')) $('csstool').style.display="none";
+		}else{
+			$('ui1').className='';
+			$('ui2').className='';
+			$('ui3').className='active';
+			if($('remoconSkin')) $('remoconSkin').style.display="none";
+			if($('remoconSetup')) $('remoconSetup').style.display="none";
+			if($('csstool')) $('csstool').style.display="";
+		}
+		resizeFrame();
+	}
+
+
+
+//=======================================*/
+var jsNumericsteper = function(textbox,button1,button2,configSetting){
+	var config = {
+			'min':null
+			,'max':null
+			,'step':1
+			,'delay':300
+			,'outRange':true
+			,'decimalPoint':0
+	};
+	if(configSetting){
+		for(x in configSetting){
+			config[x] = configSetting[x];
+		}
+	}
+	var mouseDown = false;
+	var ta0 = textbox;
+	var ta1 = button1;
+	var ta2 = button2;
+
+	if(!ta0 || !ta1 || !ta2){alert('대상지정이 잘못되었습니다'); return false;}
+
+	//==== 체크
+	var val =parseFloat(ta0.value); 
+	if(isNaN(val)){
+	}else{
+		if(config['decimalPoint']){
+				val = val.toFixed(config['decimalPoint']); //IE5이상전용
+		}
+		ta0.value = val.toString();
+	}
+	
+
+	//===== 이벤트,함수 설정
+	var thisC = this;
+	var timer = null;
+
+	var fnPlus = function(){
+		var val =parseFloat(ta0.value); 
+		
+		if(isNaN(val)){alert('숫자형식의 값이 아닙니다'); return false;}
+		val += config['step']
+		if(config['max']!=null && val > config['max'] ){ 
+			if(!config['outRange']) return;		
+			val = config['max'] ; 
+		}
+		if(config['decimalPoint']){
+				val = val.toFixed(config['decimalPoint']);//IE5이상전용
+		}		
+		ta0.value = val.toString();
+
+		if(ta0.id == "conWidth") {
+		changeWidthInput(val.toString());			
+		}else if(ta0.id == "conHeight"){
+		changeHeightInput(val.toString());			
+		}else if(ta0.id == "height_t"){
+		changeH(ta0.code,val.toString());
+		}else if(ta0.id == "width_t"){
+		changeW(ta0.code,val.toString());			
+		}else if(ta0.id == "main_layout_width2"){
+		setMainLayout();			
+		}
+
+
+	}
+	var fnMinus = function(){
+		var val =parseFloat(ta0.value); 
+		if(isNaN(val)){alert('숫자형식의 값이 아닙니다'); return false;}
+		val -= config['step'];
+		if(config['min']!=null && val < config['min'] ){ 
+			if(!config['outRange']) return;		
+			val = config['min'] ; 
+		}
+		if(config['decimalPoint']){
+				val = val.toFixed(config['decimalPoint']); //IE5이상전용
+		}
+		ta0.value = val.toString();
+
+		if(ta0.id == "conWidth") {
+		changeWidthInput(val.toString());			
+		}else if(ta0.id == "conHeight"){
+		changeHeightInput(val.toString());			
+		}else if(ta0.id == "height_t"){
+		changeH(ta0.code,val.toString());
+		}else if(ta0.id == "width_t"){
+		changeW(ta0.code,val.toString());			
+		}else if(ta0.id == "main_layout_width2"){
+		setMainLayout();			
+		}
+
+
+	}	
+	
+	var eventMouseDownP = function(){
+		mouseDown = true;
+		timer = setInterval(fnPlus,config['delay']);
+		fnPlus();
+	}
+	var eventMouseDownM = function(){
+		mouseDown = true;
+		timer = setInterval(fnMinus,config['delay']);
+		fnMinus();
+	}	
+	var eventMouseUp = function(){
+		if(timer != null){
+			clearInterval(timer);
+			if(mouseDown && ta0.onchange){ mouseDown = false; ta0.onchange();}
+		}
+		mouseDown = false;
+	}
+	
+	ta1.onmousedown = eventMouseDownP;
+	ta2.onmousedown = eventMouseDownM;
+	
+	ta1.onmouseup = eventMouseUp;
+	ta2.onmouseup =eventMouseUp;
+	ta1.onmouseout = eventMouseUp;
+	ta2.onmouseout =eventMouseUp;
+		
+}
+
+
+function changeW(target,total_size){
+	if(!target) target = "{key}";
+	parent.document.getElementById(target).style.width =  total_size;
+
+}
+
+function changeH(target,total_size){
+	if(!target) target = "{key}";
+	parent.document.getElementById(target).style.height =  total_size;
+}
+
+
+</script>
+
+<style type="text/css" title="">
+.remoconBody2{float:left;width:375px;height:342px; border:1px solid #D7D7D7; overflow:auto;padding:0px}
+.remoconBody2 .reItem{float:left;border:2px solid #D7D7D7;width:102px;height:76px;cursor: hand;margin:3px;filter:progid:DXImageTransform.Microsoft.Shadow(color=#D9D9D9,direction=135,strength=2);}
+
+.remoconBody2 .reItem2{width:102px;height:55px;cursor: hand;}
+
+.remoconSetup{float:left;width:360px;; border:1px solid #D7D7D7; overflow:auto;padding:0px}
+.remoconSetup .reItem{float:left;width:98%;cursor: hand;margin:2px;margin-bottom:10px}
+
+.remoconSetup .reItem .on{float:left;width:98%;cursor: hand;margin:2px;margin-bottom:10px}
+
+.remoconSetup .reItem .title{ border-bottom:1px solid #D7D7D7;padding:2px;font-weight:bold;color:#848484 }
+.remoconSetup .reItem .setupBody{ padding:2px;height:20px;width:98%;}
+
+.colorBtn {height:18px;width:18px}
+.colorBox { ;border:1px solid #CFCCD0;width:50px;}
+
+.remoconBottom{float:left;width:135px;height:20px; padding-top:5px;}
+.remoconBottomText{float:left;width:200px;height:20px; padding-top:5px;text-align:right}
+
+.selectBox {font-size:11px}
+.pro {width:80%}
+
+.border{border:1px solid #C5C5C5; font-size:11px;}
+</style>
+
+<body >
+
+
+
+<div class="tab08">
+	<ul>
+		<li id="ui1" class="active"><a href="javascript:chengeUi('1')">기본설정</a></li>
+		<li id="ui2"><a href="javascript:chengeUi('2')" >스킨선택</a></li>
+		<li id="ui3"><a href="javascript:chengeUi('3')" >CSS 설정</a></li>
+	</ul>
+</div>
+
+<script language="Javascript">
+function titleChange(val,idx){
+
+	if(val) {
+		 var title_val  = val.split("|");    	
+		$('bbs_title'+idx).value = title_val[1];
+		
+		}else{
+		$('bbs_title'+idx).value = '';
+		}
+	CallLib();
+
+}
+</script>
+{? key_ =="out_bbs"}
+<!-- 게시판영역 세팅 -->
+<div id="remoconSetup" class="remoconSetup" style="height:405px;overflow:hidden">
+	<div class="reItem">
+		<div class="title">
+		<img src='/image/m1.gif' alt="게시판 설정" align="absmiddle"> 1번 게시판 설정
+		</div>
+			<div class="setupBody">
+			타이틀 <input type="text" name="bbs_title1" id="bbs_title1"  value="{bbs_title1}" class="border" onchange="CallLib();">
+			형태
+			<select name="type1" id = "type1" class="selectBox border" onchange="CallLib();">
+				<option value="recentBoard" {? type1 == "recentBoard"} selected{/}>게시판형</option>
+				<option value="recentGallery" {? type1 == "recentGallery"} selected{/}>겔러리형</option>
+				<option value="recentWebzine" {? type1 == "recentWebzine"} selected{/}>웹진형</option>
+			</select>
+			</div>
+
+			<div class="setupBody">
+				<select id = "bbs_code1" class="selectBox pro border" onchange="titleChange(this.value,1)">
+				<option value="">-- 선택하세요 --</option>
+				{@ bbs_LIST_}
+					<option value="{.num_mcode}|{.str_title}"  {?.num_mcode == bbs_code1} selected{/}>{.stitle} > {.str_title} {.counter}</option>
+				{/}
+				</select>
+
+				<select name="listnum1" id="listnum1" onchange="CallLib();" class="selectBox">
+					<option value="1" {? listnum1 == 1} selected{/}>1개</option>
+					<option value="2" {? listnum1 == 2} selected{/}>2개</option>
+					<option value="3" {? listnum1 == 3} selected{/}>3개</option>
+					<option value="4" {? listnum1 == 4} selected{/}>4개</option>
+					<option value="5" {? listnum1 == 5} selected{/}>5개</option>
+					<option value="6" {? listnum1 == 6} selected{/}>6개</option>
+					<option value="7" {? listnum1 == 7} selected{/}>7개</option>
+					<option value="8" {? listnum1 == 8} selected{/}>8개</option>
+					<option value="9" {? listnum1 == 9} selected{/}>9개</option>
+					<option value="10" {? listnum1 == 10} selected{/}>10개</option>
+				</select>
+			</div>
+	</div>
+
+
+	<div class="reItem">
+		<div class="title">
+		<img src='/image/m1.gif' alt="게시판 설정" align="absmiddle"> 2번 게시판 설정
+		</div>
+			<div class="setupBody">
+			타이틀 <input type="text" name="bbs_title2" id="bbs_title2" value="{bbs_title2}" class="border" onchange="CallLib();">
+			형태
+			<select name="type2" id = "type2" class="selectBox border" onchange="CallLib();">
+				<option value="recentBoard" {? type2 == "recentBoard"} selected{/}>게시판형</option>
+				<option value="recentGallery" {? type2 == "recentGallery"} selected{/}>겔러리형</option>
+				<option value="recentWebzine" {? type2 == "recentWebzine"} selected{/}>웹진형</option>
+			</select>
+			</div>
+
+			<div class="setupBody">
+				<select id = "bbs_code2" class="selectBox pro border"  onchange="titleChange(this.value,2)">
+				<option value="">-- 선택하세요 --</option>
+				{@ bbs_LIST_}
+					<option value="{.num_mcode}|{.str_title}"  {?.num_mcode == bbs_code2} selected{/}>{.stitle} > {.str_title} {.counter}</option>
+				{/}
+				</select>
+				<select name="listnum2" id="listnum2" onchange="CallLib();" class="selectBox">
+					<option value="1" {? listnum2 == 1} selected{/}>1개</option>    
+					<option value="2" {? listnum2 == 2} selected{/}>2개</option>    
+					<option value="3" {? listnum2 == 3} selected{/}>3개</option>    
+					<option value="4" {? listnum2 == 4} selected{/}>4개</option>    
+					<option value="5" {? listnum2 == 5} selected{/}>5개</option>    
+					<option value="6" {? listnum2 == 6} selected{/}>6개</option>    
+					<option value="7" {? listnum2 == 7} selected{/}>7개</option>    
+					<option value="8" {? listnum2 == 8} selected{/}>8개</option>    
+					<option value="9" {? listnum2 == 9} selected{/}>9개</option>    
+					<option value="10" {? listnum2 == 10} selected{/}>10개</option>
+				</select>
+
+			</div>
+	</div>
+
+	
+	<div class="reItem">
+		<div class="title">
+		<img src='/image/m1.gif' alt="게시판 설정" align="absmiddle"> 3번 게시판 설정
+		</div>
+			<div class="setupBody">
+			타이틀 <input type="text" name="bbs_title3" id="bbs_title3" value="{bbs_title3}" class="border" onchange="CallLib();">
+			형태
+			<select name="type3" id = "type3" class="selectBox border" onchange="CallLib();">
+				<option value="recentBoard" {? type3 == "recentBoard"} selected{/}>게시판형</option>
+				<option value="recentGallery" {? type3 == "recentGallery"} selected{/}>겔러리형</option>
+				<option value="recentWebzine" {? type3 == "recentWebzine"} selected{/}>웹진형</option>
+			</select>
+			</div>
+
+			<div class="setupBody">
+				<select id = "bbs_code3" class="selectBox pro border"  onchange="titleChange(this.value,3)">
+				<option value="">-- 선택하세요 --</option>
+				{@ bbs_LIST_}
+					<option value="{.num_mcode}|{.str_title}"  {?.num_mcode == bbs_code3} selected{/}>{.stitle} > {.str_title} {.counter}</option>
+				{/}
+				</select>
+
+
+				<select name="listnum3" id="listnum3" onchange="CallLib();" class="selectBox">
+					<option value="1" {? listnum3 == 1} selected{/}>1개</option>    
+					<option value="2" {? listnum3 == 2} selected{/}>2개</option>    
+					<option value="3" {? listnum3 == 3} selected{/}>3개</option>    
+					<option value="4" {? listnum3 == 4} selected{/}>4개</option>    
+					<option value="5" {? listnum3 == 5} selected{/}>5개</option>    
+					<option value="6" {? listnum3 == 6} selected{/}>6개</option>    
+					<option value="7" {? listnum3 == 7} selected{/}>7개</option>    
+					<option value="8" {? listnum3 == 8} selected{/}>8개</option>    
+					<option value="9" {? listnum3 == 9} selected{/}>9개</option>    
+					<option value="10" {? listnum3 == 10} selected{/}>10개</option>
+				</select>
+
+			</div>
+	</div>
+
+
+
+	<div class="reItem">
+		<div class="title">
+		<img src='/image/m1.gif' alt="게시판 설정" align="absmiddle"> 4번 게시판 설정
+		</div>
+			<div class="setupBody">
+			타이틀 <input type="text" name="bbs_title4" id="bbs_title4" value="{bbs_title4}" class="border" onchange="CallLib();">
+			형태
+			<select name="type4" id = "type4" class="selectBox border" onchange="CallLib();">
+				<option value="recentBoard" {? type4 == "recentBoard"} selected{/}>게시판형</option>
+				<option value="recentGallery" {? type4 == "recentGallery"} selected{/}>겔러리형</option>
+				<option value="recentWebzine" {? type4 == "recentWebzine"} selected{/}>웹진형</option>
+			</select>
+			</div>
+
+			<div class="setupBody">
+				<select id = "bbs_code4" class="selectBox pro border"  onchange="titleChange(this.value,4)">
+				<option value="">-- 선택하세요 --</option>
+				{@ bbs_LIST_}
+					<option value="{.num_mcode}|{.str_title}"  {?.num_mcode == bbs_code4} selected{/}>{.stitle} > {.str_title} {.counter}</option>
+				{/}
+				</select>
+
+				<select name="listnum4" id="listnum4" onchange="CallLib();" class="selectBox">
+					<option value="1" {? listnum4 == 1} selected{/}>1개</option>    
+					<option value="2" {? listnum4 == 2} selected{/}>2개</option>    
+					<option value="3" {? listnum4 == 3} selected{/}>3개</option>    
+					<option value="4" {? listnum4 == 4} selected{/}>4개</option>    
+					<option value="5" {? listnum4 == 5} selected{/}>5개</option>    
+					<option value="6" {? listnum4 == 6} selected{/}>6개</option>    
+					<option value="7" {? listnum4 == 7} selected{/}>7개</option>    
+					<option value="8" {? listnum4 == 8} selected{/}>8개</option>    
+					<option value="9" {? listnum4 == 9} selected{/}>9개</option>    
+					<option value="10" {? listnum4 == 10} selected{/}>10개</option>
+				</select>
+
+			</div>
+	</div>
+
+
+
+	<div class="reItem">
+		<div class="title">
+		<img src='/image/m1.gif' alt="게시판 설정" align="absmiddle"> 5번 게시판 설정
+		</div>
+			<div class="setupBody">
+			타이틀 <input type="text" name="bbs_title5"  id="bbs_title5" value="{bbs_title5}" class="border" onchange="CallLib();">
+			형태
+			<select name="type5" id = "type5" class="selectBox border" onchange="CallLib();">
+				<option value="recentBoard" {? type5 == "recentBoard"} selected{/}>게시판형</option>
+				<option value="recentGallery" {? type5 == "recentGallery"} selected{/}>겔러리형</option>
+				<option value="recentWebzine" {? type5 == "recentWebzine"} selected{/}>웹진형</option>
+			</select>
+			</div>
+
+			<div class="setupBody">
+				<select id = "bbs_code5" class="selectBox pro border"  onchange="titleChange(this.value,5)">
+				<option value="">-- 선택하세요 --</option>
+				{@ bbs_LIST_}
+					<option value="{.num_mcode}|{.str_title}"  {?.num_mcode == bbs_code5} selected{/}>{.stitle} > {.str_title} {.counter}</option>
+				{/}
+				</select>
+
+				<select name="listnum5" id="listnum5" onchange="CallLib();" class="selectBox">
+					<option value="1" {? listnum5 == 1} selected{/}>1개</option>    
+					<option value="2" {? listnum5 == 2} selected{/}>2개</option>    
+					<option value="3" {? listnum5 == 3} selected{/}>3개</option>    
+					<option value="4" {? listnum5 == 4} selected{/}>4개</option>    
+					<option value="5" {? listnum5 == 5} selected{/}>5개</option>    
+					<option value="6" {? listnum5 == 6} selected{/}>6개</option>    
+					<option value="7" {? listnum5 == 7} selected{/}>7개</option>    
+					<option value="8" {? listnum5 == 8} selected{/}>8개</option>    
+					<option value="9" {? listnum5 == 9} selected{/}>9개</option>    
+					<option value="10" {? listnum5 == 10} selected{/}>10개</option>
+				</select>
+
+			</div>
+		</div>
+<!-- 게시판영역 끝 -->
+</div>
+{/}
+
+
+{? key_ =="new_bbs"}
+<!-- 게시판영역 세팅 -->
+<div id="remoconSetup" class="remoconSetup" style="height:405px;overflow:hidden">
+	<div class="reItem">
+		<div class="title">
+		<img src='/image/m1.gif' alt="최근글" align="absmiddle"> 최근글 설정
+		</div>
+			<div class="setupBody">
+			타이틀 <input type="text" name="bbs_title1" id="bbs_title1"  value="{bbs_title1}" class="border" onchange="CallLib();">
+			형태
+			<select name="type1" id = "type1" class="selectBox border" onchange="CallLib();">
+				<option value="recentBoard" {? type1 == "recentBoard"} selected{/}>게시판형</option>
+				<option value="recentGallery" {? type1 == "recentGallery"} selected{/}>겔러리형</option>
+				<option value="recentWebzine" {? type1 == "recentWebzine"} selected{/}>웹진형</option>
+			</select>
+			</div>
+
+			<div class="setupBody">
+				
+
+				<select name="listnum1" id="listnum1" onchange="CallLib();" class="selectBox">
+					<option value="1" {? listnum1 == 1} selected{/}>1개</option>
+					<option value="2" {? listnum1 == 2} selected{/}>2개</option>
+					<option value="3" {? listnum1 == 3} selected{/}>3개</option>
+					<option value="4" {? listnum1 == 4} selected{/}>4개</option>
+					<option value="5" {? listnum1 == 5} selected{/}>5개</option>
+					<option value="6" {? listnum1 == 6} selected{/}>6개</option>
+					<option value="7" {? listnum1 == 7} selected{/}>7개</option>
+					<option value="8" {? listnum1 == 8} selected{/}>8개</option>
+					<option value="9" {? listnum1 == 9} selected{/}>9개</option>
+					<option value="10" {? listnum1 == 10} selected{/}>10개</option>
+				</select>
+			</div>
+	</div>
+	</div>
+
+<!-- 게시판영역 끝 -->
+</div>
+{/}
+
+
+{? key_ =="birth"}
+<!-- 생일축하 세팅 -->
+<div id="remoconSetup" class="remoconSetup" style="height:155px;overflow:hidden">
+
+
+<div class="reItem">
+		<div class="title">
+		생일 축하 문구 설정
+		</div>
+			<div class="setupBody" style="text-align:right">
+			<textarea name="title2_t"  id = "title2_t" style="width:100%;height:80px;margin-bottom:10px;">{title2}</textarea>
+			<a href = "javascript:CallLib()"><img src='/image/btn_confirm.gif' border='0' alt='확인' align="absmiddle"></a>
+			</div>
+		
+
+	</div>
+
+</div>
+<!-- 생일축하 끝 -->
+{/}
+
+{? key_ =="banner"}
+<!-- 배너존 -->
+<div id="remoconSetup" class="remoconSetup" style="height:85px;overflow:hidden">
+
+
+<div class="reItem">
+		<div class="title">
+		학교 주요 배너 노출 개수 설정
+		</div>
+			<div class="setupBody" >
+
+			<div style="width:49%;float:left">
+			<img src='/image/bannerView.gif' border='0' alt='배너 노출 개수 를 설정하세요.'>
+			</div>
+			
+			<div style="width:50%;float:left;padding-top:10px">
+			배너 노출 개수를 설정하세요.<br>
+			<select name="type_t" id="type_t" onchange="CallLib()">
+				<option value="1" {?type == 1} selected{/}>1개 노출</option>
+				<option value="2" {?type == 2} selected{/}>2개 노출</option>
+				<option value="3" {?type == 3} selected{/}>3개 노출</option>
+				<option value="4" {?type == 4} selected{/}>4개 노출</option>
+				<option value="5" {?type == 5} selected{/}>5개 노출</option>
+				<option value="6" {?type == 6} selected{/}>6개 노출</option>
+				<option value="7" {?type == 7} selected{/}>7개 노출</option>
+				<option value="8" {?type == 8} selected{/}>8개 노출</option>
+				<option value="9" {?type == 9} selected{/}>9개 노출</option>
+				<option value="10" {?type == 10} selected{/}>10개 노출</option>
+				<option value="11" {?type == 11} selected{/}>11개 노출</option>
+				<option value="12" {?type == 12} selected{/}>12개 노출</option>
+				<option value="13" {?type == 13} selected{/}>13개 노출</option>
+				<option value="14" {?type == 14} selected{/}>14개 노출</option>
+				<option value="15" {?type == 15} selected{/}>15개 노출</option>
+			</select>
+			</div>
+		
+			</div>
+		
+
+	</div>
+
+</div>
+<!-- 배너존 끝 -->
+{/}
+
+
+{? key_ =="ani_text"}
+<!-- 배너존 -->
+<div id="remoconSetup"  style="width:380px;overflow:hidden">
+<iframe  src="/ani_text.admin.list_mini" width="380px" height="360px" scrolling="auto" frameborder=0></iframe>
+
+</div>
+<!-- 배너존 끝 -->
+{/}
+
+
+<div id="remoconSkin" style="display:none">
+{? LIST}
+	<div  class="remoconBody2">
+		{@LIST}
+			<div class="reItem" onmouseover="this.style.border='2px solid red'" onmouseout="this.style.border='2px solid #D7D7D7'">
+				<div  class="reItem2" style="background-image:url('/object/{? key_=='new_bbs'}out_bbs{:}{key_}{/}/thumb/{.name}.gif');" onclick="CallLib('{.name}');" >
+				
+				</div>
+				<div style="padding:2px;background-color:#F6F6F6;text-align:right;color:#8C8C8C;border-top:1px solid #CACACA">
+				{.name}
+				</div>
+			</div>
+		{/}
+
+
+	</div>
+
+
+
+{/}
+
+
+
+
+
+</div>
+
+
+<div id="csstool" style="display:none">
+<form method=post name="layoutform" id="layoutform" enctype='multipart/form-data'>
+	<input type="hidden" name="mmode" value="cssupdate">
+	<input type="hidden" name="key" value="{key}">
+	<input type="hidden" name="layout" value="{r_layout}">
+	모듈 CSS 적용 
+	<textarea name="obj_css" id="obj_css" style="width:370px;display:;height:250px;margin-bottom:5px" onchange="testss(this.value)" >{?obj_css}{obj_css}{:}/*CSS 속성을 작성하세요.*/{/}</textarea><br>
+	
+	<script>
+	function testss(cssText){
+	var styleSheet = parent.document.styleSheets; 
+    var changed = false; 
+	var selector = "#{key}";
+	var newStyle = parent.document.createElement("style"); 
+       newStyle.type = "text/css"; 
+	   parent.document.getElementsByTagName("head")[0].appendChild(newStyle); 
+	
+
+	var tmps = cssText.split("\n");
+	for (var ii=0, tmp_len=tmps.length ; ii<tmp_len ; ii++ ){
+		
+		var tt = tmps[ii].split(":");
+	
+		if(tt[0] && tt[1]){
+			for(var i=0, style_len=styleSheet.length ; i<style_len ; i++) { 
+			var rule = styleSheet[i].cssRules?styleSheet[i].cssRules:styleSheet[i].rules; 
+			for(var j=0, rule_len=rule.length ; j<rule_len ; j++) { 
+				if(rule[j].selectorText.toLowerCase() == selector.toLowerCase()) { 
+		
+					rule[j].style[tt[0]] = tt[1]; 
+					
+					changed = true; 
+				} 
+			} 
+		} 
+	}
+		
+	}
+
+
+
+
+	 
+	 }
+	</script>
+
+	
+	<center>
+
+	<input type="button" onclick="$('obj_css').value= $('obj_css').value + '\nmargin: 0px 0px 0px 0px;'" value=" margin 속성 " class="button"/>
+	<input type="button" onclick="$('obj_css').value= $('obj_css').value + '\npadding: 0px 0px 0px 0px;'" value=" padding 속성 " class="button"/>
+	<input type="button" onclick="$('obj_css').value= $('obj_css').value + '\nborder: 1px solid #cdcdcd;'" value=" border 적용 " class="button"/>
+	<input type="button" onclick="$('obj_css').value= $('obj_css').value + '\nposition:absolute;top:0px;left:0px'" value=" position 적용 " class="button"/>
+	<input type="button" onclick="$('obj_css').value= $('obj_css').value + '\nbackground-image:url(\'\');\nbackground-repeat:repeat-x;\nbackground-color:'" value=" 배경관련 속성 " class="button"/>
+
+	<br>
+	<input type="image" src="/font_bg.php/ygo340/12/ffffff/5/20/?text=적용하기&trim=y&imga=/object/login/images/type01_logoutBtn.gif" style="margin-top:10px" >
+	
+	{? strstr(key,"part_")}
+	<a href="#" onclick="parent.fenster2('HTML 편집', 'HTML 편집', '/attach.admin.edit_part?name={key}',  '20%', '30%', '780px', '480px');parent.closew('{key}');" ><img src="/font_bg.php/ygo340/12/ffffff/5/20/?text=편집하기&trim=y&imga=/object/login/images/type01_logoutBtn.gif" style="margin-top:10px"></a>
+	{/}
+	</center>
+</form>
+</div>
+
+
+
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+			<tr>
+
+				<td style = "padding-top:7px;border:0px" colspan=10  >
+
+					<table align="center" width=100%  border=0 cellspacing=0 cellpadding=0 >
+					<tr>
+						<td width = 1 height = 1><img src="./1.gif" ></td>
+						<td background="./2.gif" align = center><b style = "color:#ffffff;font-size:11px">모듈 가로세로 사이즈 조절</b></td>
+						<td width = 1><img src="./3.gif" ></td>
+					</tr>
+					<tr>
+						<td background="./4.gif"></td>
+						<td>
+
+
+
+
+							<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="tableNo3">
+							<tr>
+								<td align = center>
+
+
+									<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+									<tr>
+										<td>
+
+
+											<table align="center"  border=0 cellspacing=0 cellpadding=0 style = "padding:0px;border:0px">
+											<tr>
+												<td rowspan = 2 style = "padding:0px;border:0px">넓이 : <INPUT TYPE="text" id="width_t"  name="width_t"  value="{width}" style = "width : 30px;font-size:11px;height:15px" maxlength="4" onchange="CallLib()" onkeyup="changeW('{key}',this.value+'px')"></td>
+												<td style = "padding:0px 0px 0px 5px;border:0px"><button  value="+" id="conWidthPlus" style = "border:0px;height:12px;width:15px;background-color:none"><img src="/image/+.gif"></button>
+												<script>
+												$('width_t').value = parent.$('{key}').currentStyle.width</script>
+												</td>
+											</tr>
+											<tr>
+												<td style = "padding:0px 0px 0px 5px;border:0px"><button value="-" id="conWidthMin" style = "border:0px;height:12px;width:15px;background-color:none"><img src="/image/-.gif" ></button></td>
+											</tr>
+											</table>
+										</td>
+										<td>
+
+
+
+											<table align="center"  border=0 cellspacing=0 cellpadding=0 style = "padding:0px;border:0px">
+											<tr>
+												<td rowspan = 2 style = "padding:0px;border:0px">높이 : <INPUT TYPE="text" id="height_t"  name="height_t"  value="{height}" style = "width : 30px;font-size:11px;height:15px" maxlength="4" onchange="CallLib()" onkeyup="changeH('{key}',this.value+'px')"></td>
+												<td style = "padding:0px 0px 0px 5px;border:0px"><button  value="+" id="conHeightPlus" style = "border:0px;height:12px;width:15px;background-color:none"><img src="/image/+.gif"></button></td>
+											</tr>
+											<tr>
+												<td style = "padding:0px 0px 0px 5px;border:0px"><button value="-" id="conHeightMin" style = "border:0px;height:12px;width:15px;background-color:none"><img src="/image/-.gif" ></button>
+												
+												<script>
+												$('height_t').value = parent.$('{key}').currentStyle.height</script>
+												</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+									</table>
+
+
+								<script language="JavaScript">
+								//<[CDATA[
+
+								var steper02 = new jsNumericsteper($('width_t')	,$('conWidthPlus')	,$('conWidthMin')	,{'min':10,'max':1200,'step':1,'delay':10});
+								var steper03 = new jsNumericsteper($('height_t')	,$('conHeightPlus')	,$('conHeightMin')	,{'min':10,'max':1200,'step':1,'delay':10})
+
+								//]]>
+
+								</script>
+
+
+				</td>
+							</tr>
+						
+							</table>
+
+
+						</td>
+						<td background="./6.gif"></td>
+					</tr>
+					<tr>
+						<td height = 1><img src="./7.gif"></td><td background="./8.gif"></td><td><img src="./9.gif"></td>
+					</tr>
+					</table>
+
+				</td>
+			</tr>
+
+			</table>
+
+
+
+
+
+
+
+<script language="Javascript">
+parent.lineReset('{key}');
+
+	
+
+/*parent.$('{key}').style.borderTop='1px dashed blue';
+parent.$('{key}').style.borderBottom='1px dashed blue';*/
+parent.$('{key}').focus();
+
+if(!$('remoconSetup')){
+	{? strstr(key,"part_")}
+		chengeUi('3')
+	{:}
+		chengeUi('2')
+	{/}
+}
+{? key =="ani_text"}
+parent.scroll_stop();
+{/}
+resizeFrame();
+</script>
+
+<div id = "loding" style = "top:0px;position:absolute;display:none;z-index:999; left:0px;background-color:#ffffff;padding:30px;border:3px solid #38A356" >
+<center><img src = "/module/btn/mk.php?text=디자인 적용중입니다...&w=190&h=200&size=15&color=009933"/></center>
+</div>
+
+
+
+
+
+</body>

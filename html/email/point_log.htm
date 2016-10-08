@@ -1,0 +1,86 @@
+<table cellpadding="0" cellspacing="0" border="0" width="90%" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 200><b>
+					
+					SMS 충전내역 조회
+					</b></td>
+				<td  style="padding:3 0 0 0; color:454545">&nbsp; </td>
+				</tr>
+			</table>
+<br>
+
+<table width="725" class="table01">
+<form name="searchForm" method="get">
+<tr>
+	<td>
+		<div style="float:left;">
+		기간
+		<wa:datepicker name="search_sdate" value="{search_sdate}" /> ~
+		<wa:datepicker name="search_edate" value="{search_edate}" />
+		<input type="submit" class="button" value="검색">
+		<input type="button" class="button" value="전체" onclick="location.href='bs.admin.sms.point_log';">
+		</div>
+		<div style="float:right;">
+		
+		</div>
+	</td>
+</tr>
+</form>
+</table>
+
+<table width="725" style="margin-left:15px;">
+<tr>
+	<td>
+		현재 사용가능한 포인트 : <b>{= number_format(num_point)}</b> Point
+		<input type="button" class="button" value="충전신청" onclick="location.href='bs.admin.sms.req_point';">
+	</td>
+</tr>
+</table>
+
+<table width="725" class="table01">
+<tr>
+	<th width="5%">번호</th>
+	<th width="15%">충전일</th>
+	<th width="20%">충전포인트</th>
+	<th width="20%">결제금액(원)</th>
+	<th width="20%">입금자</th>
+	<th width="15%">처리여부</th>
+</tr>
+<!--{@ LIST}-->
+<tr align="center">
+	<td>{= total - ((page - 1) * listnum) - .index_}</td>
+	<td>{.dt_date}</td>
+	<td align="right">{= number_format(.num_point)}</td>
+	<td align="right">{= number_format(.num_price)}</td>
+	<td>{.str_payer}</td>
+	<td>
+		{? .num_payment}
+			충전완료
+		{:}
+			입금대기
+		{/}
+	</td>
+</tr>
+<!--{:}-->
+<tr height="100">
+	<td colspan="6" align="center">검색된 충전내역이 없습니다.</td>
+</tr>
+<!--{/}-->
+</table>
+
+<table width="725" style="margin-left:15px;">
+<tr>
+	<td align="center"><wa:paging total="{total}" listnum="{listnum}" /></td>
+</tr>
+</table>
+
+<table width="725" class="table01">
+<tr>
+	<td>
+		※ 입금 후 하루가 지나도 충전이 되지 않은 경우 본사로 문의주시기 바랍니다.<br>
+		※ 포인트 충전은 무통장 입금으로만 가능합니다. {sms_account}<br>
+		※ 포인트는 충전 후, 환불되지 않습니다.
+	</td>
+</tr>
+</table>

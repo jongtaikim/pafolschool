@@ -1,0 +1,268 @@
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<script language="Javascript" type="text/javascript">
+function emailSelect(idx){
+	$('email2').value=idx;
+}
+
+function popup_zip() {
+	form = 'joinForm';
+	wZip = window.open('core.zipcode?el_addr=str_addr1&el_zip=str_zipcode&el_focus=str_addr2&form='+form,'zipsearch','width=400, height=200,scrollbars=yes');
+}
+
+
+function cchk() {
+	var params = "&mode=email&email1="+$$('email1').value+"&email2="+$$('email2').value;
+	if($$('email1').value=='' || $$('email2').value==''){
+		alert('{=_la('이메일을 정확하게 입력해주세요.')}');
+		return false;
+	}
+	sendRequest("/member.emailchk", params, FromServer, "POST");
+}
+function FromServer() {
+	if (httpRequest.readyState == 4) {
+		if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			if(str_text =="N"){
+				alert('{=_la('등록가능한 이메일입니다.')}');
+				document.joinForm.emailchk.value='Y'; // 이메일 체크됩
+			}
+			else{
+				alert('{=_la('이미 사용중인 이메일입니다.')}');
+				document.joinForm.emailchk.value=''; // 이메일 체크됩
+				$$('email1').value='';
+				$$('email2').value=''
+			}
+		}
+	}
+}
+
+</script>
+
+<body>
+
+
+<form method='post'  name = "joinForm" enctype="multipart/form-data" onsubmit="return validate(this);" >
+<input type="hidden" name="mode" value = "update" />
+<input type="hidden" name="str_id" value = "{str_id}" />
+<input type="hidden" name="emailchk" id="emailchk" required="false"/>
+<p class="buTitle02">회원 정보 입력</p>
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+<tr>
+	<th scope="row" width="100px">이름</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<b>{str_name}</b>
+		</div>
+	</td>
+</tr>
+<tr>
+	<th scope="row" width="100px">아이디</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<b>{str_id}</b>
+		</div>
+	</td>
+</tr>
+<tr>
+	<th scope="row" width="100px">기존 비밀번호</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<input  name="old_passwd" hname="기존 비밀번호" type="password"  maxlength="10" pattern="^([a-zA-Z0-9]{4,10})?$"  type="password" match="str_passwd_2" class="i_text" style="width:100px" /> 
+			<input type="hidden" name="password" id="str_passwd_2" value="{str_passwd}">
+		</div>
+	</td>
+</tr>
+<tr>
+	<th scope="row" width="100px">새 비밀번호</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<input  name="str_passwd" type="password"  id="str_passwd" hname="비밀번호" maxlength="10" pattern="^([a-zA-Z0-9]{4,10})?$" match="str_passwd2" type="password"  class="i_text" style="width:100px"/> 
+		</div>
+	</td>
+</tr>
+<tr>
+	<th scope="row" width="100px">새 비밀번호 확인</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<input name="str_passwd2" type="password"  id="str_passwd2" hname="새비밀번호 확인" type="password" maxlength="10"  class="i_text" style="width:100px" >
+		</div>
+	</td>
+</tr>
+{? chr_mtype == "s"}
+<tr>
+	<th scope="row">{=_la('학교/학년')}</th>
+	<td>
+		<div class="item">
+			
+			<input class="i_text" title="학교명" type="text" name="str_school" id="str_school" hname="{=_la('학교명')}"  required> 
+
+			<select  name="str_class" id="str_class" hname="학년정보" required>
+				<option value="">-- {=_la('학년정보')} --</option>
+				
+				<optgroup label="초등학교">
+					
+					<option value="초등학교 1학년">1학년</option>
+					<option value="초등학교 2학년">2학년</option>
+					<option value="초등학교 3학년">3학년</option>
+					<option value="초등학교 4학년">4학년</option>
+					<option value="초등학교 5학년">5학년</option>
+					<option value="초등학교 6학년">6학년</option>
+					
+				</optgroup>
+
+				<optgroup label="중학교">
+					
+					<option value="중학교 1학년">1학년</option>
+					<option value="중학교 2학년">2학년</option>
+					<option value="중학교 3학년">3학년</option>
+					
+				</optgroup>
+
+				<optgroup label="고등학교">
+					
+					<option value="고등학교 1학년" {? str_class =='고등학교 1학년'} selected{/}>1학년</option>
+					<option value="고등학교 2학년" {? str_class =='고등학교 2학년'} selected{/}>2학년</option>
+					<option value="고등학교 3학년" {? str_class =='고등학교 3학년'} selected{/}>3학년</option>
+					
+				</optgroup>
+
+			</select>
+		</div>
+	</td>
+</tr>
+{/}
+<tr>
+	<th scope="row" width="100px">이메일</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="email1" id="email1" hname="{=_la('이메일')}" value="{email1}" type="text" class="i_text"  maxbyte="50" style="width:100px"  required >@<input name="email2" id="email2" hname="이메일" type="text"  maxbyte="50" required class="i_text"  style="width:120px" value="{email2}"  />
+										
+										<select name="emailSelect1" onchange = "emailSelect(this.value)" required="false" class="i_text"  style="width:130px;height:31px" >
+											<option value="">Email 주소 선택</option>
+											<option value="">직접입력</option>
+											<option value="gmail.com">구글(G메일)</option>
+											<option value="naver.com">네이버</option>
+											<option value="nate.com">네이트</option>
+											<option value="dreamwiz.com">드림위즈</option>
+											<option value="yahoo.co.kr">야후</option>
+											<option value="empal.com">엠파스</option>
+											<option value="paran.com">파란</option>
+											<option value="hanmail.net">한메일</option>
+										</select>
+		
+		
+		<wa:btn size="3" type="button" js="cchk();" event="onclick" value="이메일중복 확인" style="margin-top:2px"/>
+		
+		
+		</div>
+	</td>
+</tr>
+<tr>
+	<th scope="row">{=_la('주소')}</th>
+	<td>
+		<div class="item">
+
+						<input type="text" id="sample6_postcode" name="chr_zip" value="{chr_zip}" placeholder="우편번호" class="i_text" style="width:80px">
+						<wa:btn size="2" type="a" href="javascript:sample6_execDaumPostcode();" value="우편번호 찾기" style="margin-top:5px"/><br>
+						<input type="text" id="sample6_address" name="str_addr1" placeholder="주소" value="{str_addr1}" required maxbyte="100" readonly class="i_text" style="width:400px"><br>
+						<input type="text" id="sample6_address2" name="str_addr2" placeholder="상세주소" value="{str_addr2}" required maxbyte="100" trim="trim" class="i_text" style="width:400px">
+
+						<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+						<script>
+						    function sample6_execDaumPostcode() {
+							  new daum.Postcode({
+								oncomplete: function(data) {
+								    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+								    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+								    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+								    var fullAddr = ''; // 최종 주소 변수
+								    var extraAddr = ''; // 조합형 주소 변수
+
+								    // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+								    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+									  fullAddr = data.roadAddress;
+
+								    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+									  fullAddr = data.jibunAddress;
+								    }
+
+								    // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+								    if(data.userSelectedType === 'R'){
+									  //법정동명이 있을 경우 추가한다.
+									  if(data.bname !== ''){
+										extraAddr += data.bname;
+									  }
+									  // 건물명이 있을 경우 추가한다.
+									  if(data.buildingName !== ''){
+										extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+									  }
+									  // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+									  fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+								    }
+
+								    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+								    document.getElementById('sample6_postcode').value = data.zonecode; //5자리 기초구역번호 사용
+								    document.getElementById('sample6_address').value = fullAddr;
+
+								    // 커서를 상세주소 필드로 이동한다.
+								    document.getElementById('sample6_address2').focus();
+								}
+							  }).open();
+						    }
+						</script>
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('전화번호')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="tel1" id="tel1"  hname="{=_la('연락처')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4" value="{tel1}" required>
+		-<input class="i_text"  name="tel2" id="tel2" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4" value="{tel2}" required>
+		-<input class="i_text"  name="tel3" id="tel3" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4"value="{tel3}"  required>
+		
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('휴대폰')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="tel11" id="tel11"  hname="{=_la('핸드폰')}"  value="{tel11}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4" required>
+		-<input class="i_text"  name="tel22" id="tel22" hname="{=_la('핸드폰')}"  value="{tel22}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4" required>
+		-<input class="i_text"  name="tel33" id="tel33" hname="{=_la('핸드폰')}"  value="{tel33}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4" required>
+		
+		</div>
+	</td>
+</tr>
+
+<tr>  
+	<th scope="row">{=_la('본인 소개')}</th>  
+	<td>  
+		<div class="item">  
+		 <textarea  class="i_text" cols="50" rows="10" name="str_introduct" id="str_introduct" hname="{=_la('자기소개')}" required="false">{str_introduct}</textarea> 
+		</div>  
+	</td>  
+</tr>  
+</tbody>
+</table>
+
+
+<div id="btnArea" style="text-align:center;margin-top:20px">
+
+	<wa:btn size="3" type="submit" icon="check" value="회원정보수정"/>
+	&nbsp;
+	<wa:btn size="3" type="button" value="취소"/>
+	
+
+</div>
+</div>
+</form>
+

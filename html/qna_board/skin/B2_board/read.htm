@@ -1,0 +1,239 @@
+<style>
+	.f11 {font-size:11px; color:656565; font-family:돋움;}
+	.f1 {font-size:11px; color:656565	; font-family:돋움;
+</style>
+<link rel="stylesheet" type="text/css" href="/css/lightbox.css" media="screen,tv" />
+<script type="text/javascript" charset="UTF-8" src="/js/spica.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/js/lightbox_plus.js"></script>
+{? _SESSION.ADMIN == true}
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td align="right" class="f1" valign="top">메인대문으로 지정&nbsp;<INPUT TYPE="checkbox" NAME="str_main" {? str_main == "Y"} checked onclick = "location.href='/board.bbs_update?str_main=&mcode={mcode}&id={serial}'"{:}onclick = "location.href='/board.bbs_update?str_main=Y&mcode={mcode}&id={serial}'" {/}> 서브대문으로 지정&nbsp;<INPUT TYPE="checkbox" NAME="str_main" {? str_main == "T"} checked onclick = "location.href='/board.bbs_update?str_main=&mcode={mcode}&id={serial}'"{:}onclick = "location.href='/board.bbs_update?str_main=T&mcode={mcode}&id={serial}'" {/}></td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+</table> 
+{/}
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1 solid e5e5e5">
+	<tr>
+		<td align="center">
+			
+			<table cellpadding="0" cellspacing="0" border="0" width="96%">
+				<tr>
+					<td height="5"></td>
+				</tr>
+				<tr>
+					<td  height="30" style="border-bottom:1px dotted">{? gon}<b style = "color:#FF0033">[전체공지글] {/}<b>{str_title}</b></td>
+					<td class="f11" align="right"style="border-bottom:1px dotted">{reg_date}</td>
+				</tr>
+				<tr>
+					<td height="10"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td class="f11" colspan = 2 ><b>{name}</b></b></td>
+								<script language="Javascript">
+								function viewFile(){
+								if($('subco').style.display=='none'){
+								$('subco').style.display=''
+								}else{
+								$('subco').style.display='none'
+								}
+								}
+								</script>
+								<!--{? env.use_upload == 'Y' && FILE}-->
+								<td align="right" class="f1" ><a href="javascript:viewFile();"><b>첨부파일(<font color=#663333>{FILE_COUNT}</font>)</b></a>
+								
+							
+								
+								<div style = "position:relative;" id="">
+								<div style = "left:-210px;border:3px solid #B0B0B0;position:absolute;background-color:#FFFFFF;display:none" id="subco">
+								<table align="center" width=200 border=0 cellspacing=0 cellpadding=0>
+								 <!--{@ FILE}-->
+								 <tr>
+								  <td bgcolor = #C4C7D5 style = "padding:3px">
+								   	
+								<a href="{.file_url}"><img src="/image/icon/{.str_ftype}.gif" align="absmiddle" onerror="this.src='/image/icon/unknown.gif';" border="0"> {.str_upfile}</a>
+								
+								  </td>
+								 </tr><!--{/}-->
+								</table>
+								</div>
+								</div>
+
+
+								</td>
+								<!--{/}-->
+							</tr>
+						</table>
+					</td>
+					
+				</tr>
+				<tr>
+					<td height="10"></td>
+				</tr>
+
+				
+			
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 style = "table-layout:fixed">
+		 <tr>
+		  <td>
+		   <div style = " padding:10px 10px 30px 10px ;height :180" align="">{content}</div>	
+		  </td>
+		 </tr>
+		</table>
+				
+		
+		<center>	
+		<table cellpadding="0" cellspacing="0" border="0" width="96%" bgcolor="f9f9f9">
+			<tr>
+				<td bgcolor="FFFFFF" align="right" class="f1"><img src = "/image/rebtn.gif"> 이글의 추천수 ({num_rank}) |  <a href="#" onclick = "location.href='/board.rank_update?str_main=Y&mcode={mcode}&id={serial}&user_id={str_user}'">추천하기</a></td>
+			</tr>
+			<tr>
+				<td height="5" bgcolor="FFFFFF"></td>
+			</tr>
+			<!--{? env.use_comment == 'Y'}-->
+			{? COMMENT}
+			<tr>
+				<td colspan = 4 style = "padding-top:10px;padding-bottom:10px">
+					<table width= 98% border = 0 align = center> 
+					<!--{@ COMMENT}-->
+						<tr>
+							<td width="10">{?.str_icon}<img src = "/dot/{.str_icon}.jpg" >{/}	</td>
+							<td width="5"></td>
+							<td height = 25    align = left width = 10% class="f11">{.name} </td>
+							<td width = % style = "padding:5px;font-size:11px">{= nl2br(.str_comment)} <a href="{.del_link}"><img src="./image/icon_del.gif" width="11" height="11" border="0" align="absmiddle"></a> </td>
+							<td width = 18% align="right"><font class = "f11">{.dt_date}</td>
+						</tr>
+						<tr>
+							<td colspan = 6  height = 1 background ="./image/line.gif"></td>
+						</tr>
+						<tr>
+							<td height="2"></td>
+						</tr>
+						<!--{/}-->
+					</table>
+				</td>
+			</tr>
+
+			{:}
+			<tr>
+				<td height = 10 colspan = 4></td>
+			</tr>
+			{/}
+		
+		<!--{? env.writable}-->
+			<tr>
+				<td colspan = 4>
+					<table width="100%" border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td class="padding">
+								<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">								
+									<script language="javaScript" src="js/lib.validate.js"></script>
+									<form method="post" name="commentform" action="/board.comment" onsubmit="return validate(this);">
+									<tr>
+										<td colspan = 4 bgcolor="FFFFFF" style="border:1 solid e5e5e5">
+										<div style = "width:100%px;	height:65px;	overflow: auto;padding:10px">
+										<? 
+										for($ii=1; $ii<50; $ii++) {
+										?>
+										<div style="float:left;padding:5px">
+											<table>
+												<tr>
+													<td><img src = "/dot/<?=$ii?>.jpg" ></td>
+												</tr>
+												<tr>
+													<td align = center><input type="radio" name="str_icon" value = "<?=$ii?>" style = "border:0px" <? if($ii==1) echo "checked"; ?>></td>
+												</tr>
+											</table>
+										</div>
+										<? } ?>
+										</div>
+										</td>
+									</tr>									
+									<tr>
+										<td height="15"></td>
+									</tr>
+									<tr>
+										<td width="13%"><img src="./image/comment_img01.gif" width="58" height="11"></td>
+										<td width="78%"><img src="./image/comment_img02.gif" width="58" height="11"></td>
+										<td width="12%"><img src="./image/comment_img03.gif" width="58" height="11"></td>
+										<td width="7%">&nbsp;</td>
+									</tr>
+
+									<input type="hidden" name="num_main" value="{id}">
+									<input type="hidden" name="mcode" value="{mcode}">
+									<tr>
+										<td valign="top">
+											<input name="cmt_name" hname="이름" type="text" class="login" id="cmt_name" style="width:58px; border:1 solid e5e5e5" maxbyte="20" required value="{_SESSION.NAME}" {? _SESSION.NAME}readonly{/}>
+										</td>
+										<td valign="top">
+											<textarea name="cmt_comment" hname="나도 한마디 내용" class="sroll" id="cmt_comment" style="width:97%; height:80px; border:1 solid e5e5e5"maxbyte="1000" required></textarea>
+										</td>
+										<td valign="top">
+											<input name="cmt_pass" hname="비밀번호" type="password" class="login" id="cmt_pass" style="width:58px; border:1 solid e5e5e5"maxbyte="8" required>
+											<br><input type="image" src="./image/btn_submit.gif">
+										</td>
+									</tr>
+									<tr>
+										<td height="10"></td>
+									</tr>
+									</form>													
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<!--{/}-->
+				<!--{/}-->
+			</table>
+			</center>
+		</td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td height="10"></td>
+	</tr>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<!--{? env.writable}-->
+					<td>{hidden_s}<a href="{writelink}"><img src="./image/btn_write.gif"></a>{hidden_e}</td>
+					<td width="5"></td>
+					<td>{hidden_s}{hidden_s2}<a href="{replylink}"><img src="./image/btn_reply.gif"></a>{hidden_s2}{hidden_e}</td>
+					<td width="5"></td>
+					<td>{hidden_s}<a href="{modifylink}"><img src="./image/btn_modify.gif"></a>{hidden_e}</td>
+					<td width="5"></td>
+					<td>{hidden_s}<a href="{deletelink}"><img src="./image/btn_delete.gif" ></a>{hidden_e}</td>
+					<!--{/}-->
+
+				</tr>
+			</table>
+		</td>
+		<td align="right"><a href="{listlink}"><img src="./image/btn_list.gif"></a></td>
+	</tr>
+</table>
+<script>
+	if (username = getCookie('NAME')) {
+		var el = document.forms['commentform'].elements['cmt_name'];
+		if (!el.value || el.value == username) {
+			el.value = username;
+			el.onkeydown = el.onkeyup = el.onselectstart = el.oncontextmenu =  function() { return false; }
+			el.readOnly = true;
+		}
+	}
+</script>

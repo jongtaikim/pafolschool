@@ -1,0 +1,33 @@
+<!--모듈들을 싸고있는 레이어 제어 2008-03-10 종태-->
+<!--디자인에디터 모드 2008-03-10 종태-->
+<div style="float:left;padding-bottom:0px;border: 0px solid #FFCC33">
+<div style=" width:182;height:;x-overflow: " id = "news">
+<wa:applet module="news.main">
+
+		<div id="gong_content_layout">
+				<div id="gong_content">
+				
+		<div id="gong_title">공지사항</div>
+		
+		
+		
+
+						{@ LIST_com }
+					  <div id="gong_roop"> 
+					  <img src="/theme/SH1/images/dot1.gif" align="absmiddle"><a href="{.link}">[{.dt_date2}]&nbsp;{.str_title3}&nbsp;</a>{? .is_recent}<img src="/theme/IP1/image/main_notice_newdot.gif" width="12" height="11" border="0" alt="" align="absmiddle">{/}
+					   </div>
+				
+							{:}
+					  <div id="gong_roop_no"> 등록된 공지사항이 없습니다</div>
+							{/}
+							
+							
+						
+		
+
+
+
+				</div>
+		</div>  
+</wa:applet></div>
+</div>

@@ -1,0 +1,83 @@
+<style>
+
+</style>
+
+<script language="Javascript">
+
+function vvie(idx){
+	imgdiv = 'img'+idx;
+	if($$(idx).style.display=="none"){
+		$$(idx).style.display="";
+		$$(imgdiv).src="./images/icon-04.gif";
+	}else{
+		$$(idx).style.display="none";
+		$$(imgdiv).src="./images/icon-03.gif";
+	}
+}
+
+	function select1(val) { // 코드 입력
+				if(val) {
+					location.href='board.list?mcode={mcode}&str_category='+val;
+					}else{
+					location.href='board.list?mcode={mcode}';
+				}
+				}
+
+
+</script>
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" class="tbl_type_board">
+
+
+<!--{@ LIST}-->
+<tr>
+	<td width="34px">Q.</td>
+	<td style="text-align:left">
+	
+		<a href="javascript:vvie('{.num_serial}')">{.str_title}</a>&nbsp;&nbsp;
+		<!--{? env.writable}-->
+		<a href="/board.modify?mcode={.num_mcode}&id={.num_serial}&num={.num_serial}"><img src="/image/iicon/ico-btn-write.gif" align=absmiddle></a>
+		<a href="/board.delete?mcode={.num_mcode}&id={.num_serial}&num={.num_serial}"><img src="/image/icon/delete_.gif"  align=absmiddle></a>
+		<!--{/}-->
+	</td>
+	<td align="center" width="40">
+		<a href="javascript:vvie('{.num_serial}')"><img id="img{.num_serial}" src="./images/icon-03.gif" width="11" height="11" /></a>
+	</td>
+	
+</tr>
+<tr id = "{.num_serial}"  style="display:none">
+	<td valign="top">A.</td>
+	<td colspan="2" style="text-align:left">
+		{.str_text_full}
+	</td>
+</tr>
+
+
+{:}
+
+<tr>
+  <td align="center" colspan="3">등록된 FAQ가 없습니다.</td>
+</tr>
+
+{/}
+
+
+</table>
+
+<br>
+<br>
+
+<div style="text-align:center">
+	<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}"/>
+
+</div>
+<br>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+<tr>
+	<td align = center><!--{? env.writable}--><a href="{writelink}"><img src="./image/btn_write.gif"></a><!--{/}--></td>
+</tr>
+</table>
+
+

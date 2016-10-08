@@ -1,0 +1,431 @@
+<script type="text/javascript" src="/js/ajax.js"></script>
+
+<script type="text/javascript">
+var mcode = "";
+var ajax_target = "";
+	function update(str_title,str_type) {
+	str_title = explode("(",str_title);
+	str_title = str_title[0];
+		
+		var params = 'pcode={pcode}&str_title=' + encodeURIComponent(str_title) + '&str_type='+str_type;  
+		sendRequest("/party.menu.admin.add_ajax", params, FromServer, "POST");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				mcode = str_text;
+				
+				tmp_sssd = $('using_components[]').options[$('using_components[]').options.length-1]
+				
+				if(tmp_sssd.value != "separator") {
+				pageCall('party.menu.admin.option','&pcode={pcode}&mcode=' + mcode);					
+				}
+
+				tmp_sssd.value = mcode+"|"+ tmp_sssd.value;
+				 reloadMenu();
+			}
+		}
+	}
+
+
+	function pageCall(url,query,mey,target) {
+		if(!mey) mey = "GET";
+		//query = encodeURIComponent(query);
+		var params = query;  
+		//alert(params);
+		if(target) ajax_target = target;
+		sendRequest(url, params, pageFromServer, mey);
+	}
+
+	function pageFromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				//alert(str_text);
+				if(ajax_target) {
+					//alert(str_text);
+					$(ajax_target).innerHTML = str_text;	
+				}else{
+					$('data_ajax').innerHTML = str_text;
+				
+				}
+				
+			}
+		}
+	}
+
+	function ajaxFrom(obj){
+		obj = $('using_components');
+		var val = new Array();
+
+		for(ii=0; ii<obj.options.length; ii++) {
+
+		val[ii] = obj.options[ii].value;
+		//alert(val[ii]);
+
+		}
+		pageCall('party.menu.admin.menutool','&pcode={pcode}&mode=auto&using_components=' + val,'POST');
+		setTimeout("reloadMenu()", 1000); 	    
+	}
+
+	function reloadMenu(){
+		//pageCall2('party.menu.sub','pcode={pcode}','GET','submenu_view' );	
+		$('submenu_view').src='/party.menu.sub?pcode={pcode}&mode=lib';
+	}
+
+	function copy_url() {
+		var form = document.forms['basicinfo']
+		var el = form.elements['menu_url'];
+		var tRange = el.createTextRange();
+		tRange.execCommand("Copy");
+		alert("메뉴의 URL이 클립보드에 복사되었습니다.");
+	}
+
+	function del_menu() {
+		if(!confirm('정말 삭제하시겠습니까?')) return false;
+		location.href = "party.menu.admin.del?pcode={pcode}&mcode={mcode}";
+	}
+
+	function reset_menu() {
+		if(!confirm('내용을 삭제하여 비어있는 메뉴로 만듭니다. 계속하시겠습니까?')) return false;
+		location.href = "party.menu.admin.reset?pcode={pcode}&mcode={mcode}";
+	}
+</script>
+
+<script type="text/javascript">
+	
+	function go_component() {
+		var form = document.forms['componentform'];
+		var el = form.elements['using_components[]'];
+		var opt = el.options[el.selectedIndex].value;
+		if (href = component_admin_urls[opt]) {
+			location.href = href;
+		}
+	}
+
+	function is_select_single(el) {
+		var n = 0;
+		for(var i=0; i<el.options.length; i++) {
+			n += el.options[i].selected ? 1 : 0;
+		}
+		return n == 1;
+	}
+
+	function component_onchange() {
+		return;
+		var el = document.forms['componentform'].elements['using_components[]'];
+		var output_div = document.getElementById('component_name');
+		var b_perm = document.getElementById('b_perm');
+		var b_edit = document.getElementById('b_edit');
+		var single = is_select_single(el);
+		b_perm.disabled = b_edit.disabled = !single;
+		var selected_label = single ? el.options[el.selectedIndex].text : '${[Multiple select]}';
+		output_div.innerHTML = selected_label;
+	}
+
+	/**
+	* 원하는 방향으로 option을 옮겨줌
+	* @param : where:String {'right'|'left'} (이동할 방향)
+	*/
+	function add_component() {
+
+		var form = document.forms['componentform'];
+		var oAll = form.elements['all_components'];
+		var oSel = form.elements['using_components[]'];
+		if (oAll.selectedIndex == -1) return;
+		if (!oAll.options) oAll.options.length = 1;
+		var firstItem = oAll.selectedIndex;
+		for (var i=firstItem; i<oAll.options.length; i++) {
+			if (oAll.options[i].selected) {
+
+				switch (oAll.options[i].value) {
+					case "board#B":
+					var tmp_name = "새로운 게시판 (통합게시판)";
+					break;
+
+					case "board#A":
+					var tmp_name = "새로운 스탭게시판 (스탭게시판)";
+					break;
+
+					case "link":
+					var tmp_name = "새로운 링크 (링크)";
+					break;
+
+
+					case "title":
+					var tmp_name = "새로운 타이틀 (메뉴타이틀)";
+					break;
+
+
+					case "separator":
+					var tmp_name = "------------------";
+					break;
+
+					case "empty":
+					return;
+					break;
+
+				}
+				
+				update(tmp_name, oAll.options[i].value);
+				
+				opt = new Option(tmp_name, oAll.options[i].value);
+				opt.mcode = mcode;
+				oSel.add(opt);	// HTMLSelectElement.add method is different at IE and FF
+				reloadMenu();
+				if(tmp_name != "separator") {
+					$('str_title').focus();
+				}
+				
+			}
+		}	
+	}
+
+	function remove_component() {
+		var form = document.forms['componentform'];
+		var target = form.elements['using_components[]'];
+		for (var i=target.options.length-1; i >= 0; --i) {
+			var value = target.options[i].value;
+			if (target.options[i].selected) {
+				target.options[i] = null; //if (value != 'a' && value != 'b') target.options[i] = null;
+			}
+		}
+	}
+
+	/**
+	* 중복되는 값을 삭제해줌
+	* @param obj:Object (클린업할 select 엘리먼트)
+	*/
+	function cleanUp(obj) {
+
+	}
+
+	function submit_all(el) {
+		for (var i=0; i<el.options.length; i++) {
+			el.options[i].selected = true;
+		}
+	}
+
+	function submit_no_all() {
+		for (var i=0; i<$('using_components[]').options.length; i++) {
+			$('using_components[]').options[i].selected = false;
+		}
+			
+	}
+
+
+
+
+var menuIntroductionMap = {
+  "board#B" : "※ 통합게시판은 용도에 따라<br> &nbsp; &nbsp; 다양한 형태로 사용가능합니다. <br> &nbsp; &nbsp; 공지게시판으로 사용하려면 <br> &nbsp; &nbsp; 글쓰기 권한을 스탭 이상으로 <br> &nbsp; &nbsp; 설정하세요",
+
+ "board#A" : "※ 스탭게시판은 매니저만<br> &nbsp; &nbsp; 쓸 수 있는 게시판입니다",
+
+  "separator" : "※  메뉴를 사용하기 쉽게 그룹별로 <br> &nbsp; &nbsp; 구분합니다",
+ "title" : "※  카페메뉴에 소제목을 붙입니다.",
+  "link" : "※  카페에 유용한 링크주소를 소개<br> &nbsp; &nbsp; 합니다",
+  "empty" : ""
+}
+
+function showMenuIntroduction(menuFactory){
+  var introductionKey = menuFactory.value;
+  if("empty" == introductionKey){
+    menuFactory.selectedIndex = -1;
+  }    
+  
+  document.getElementById("menuIntroduction").innerHTML = menuIntroductionMap[introductionKey];
+}
+
+
+
+/** 
+* 선택한 옵션 아이템을 바로위 아이템과 자리바꿈
+* @param obj:Object (적용할 select 엘리먼트)
+*/
+function moveUp(obj) {
+	if (obj.selectedIndex == -1) return alert("순서 변경하실 메뉴를 선택하세요.");
+	if (obj.selectedIndex == 0 ) return;
+	var tmpVal = obj.options[obj.selectedIndex].value;
+	var tmpTxt = obj.options[obj.selectedIndex].text;
+	var swapVal = obj.options[obj.selectedIndex-1].value;
+	var swapTxt = obj.options[obj.selectedIndex-1].text;
+	obj.options[obj.selectedIndex].value = swapVal;
+	obj.options[obj.selectedIndex].text = swapTxt;
+	obj.options[obj.selectedIndex-1].value = tmpVal;
+	obj.options[obj.selectedIndex-1].text = tmpTxt;
+	obj.selectedIndex = obj.selectedIndex -1;
+	listOrderModified = true;
+
+	ajaxFrom();
+
+}
+
+/** 
+* 선택한 옵션 아이템을 바로아래 아이템과 자리바꿈
+* @param obj:Object (적용할 select 엘리먼트)
+*/
+function moveDown(obj) {
+	if (obj.selectedIndex == -1) return alert("순서 변경하실 메뉴를 선택하세요.");
+	if (obj.selectedIndex == obj.options.length-1) return;
+	var tmpVal = obj.options[obj.selectedIndex].value;
+	var tmpTxt = obj.options[obj.selectedIndex].text;
+	var swapVal = obj.options[obj.selectedIndex+1].value;
+	var swapTxt = obj.options[obj.selectedIndex+1].text;
+	obj.options[obj.selectedIndex].value = swapVal;
+	obj.options[obj.selectedIndex].text = swapTxt;
+	obj.options[obj.selectedIndex+1].value = tmpVal;
+	obj.options[obj.selectedIndex+1].text = tmpTxt;
+	obj.selectedIndex = obj.selectedIndex +1;
+	listOrderModified = true;
+	//document.forms['componentform'].elements['order_btn'].style.visibility = 'visible';
+	ajaxFrom();
+	
+}
+
+
+function moveUpMax(obj) {
+	if (obj.selectedIndex == -1) return alert("순서 변경하실 메뉴를 선택하세요.");
+	if (obj.selectedIndex == 0 ) return;
+	var tmpVal = obj.options[obj.selectedIndex].value;
+	var tmpTxt = obj.options[obj.selectedIndex].text;
+	var swapVal = obj.options[0].value;
+	var swapTxt = obj.options[0].text;
+	obj.options[obj.selectedIndex].value = swapVal;
+	obj.options[obj.selectedIndex].text = swapTxt;
+	obj.options[0].value = tmpVal;
+	obj.options[0].text = tmpTxt;
+	obj.selectedIndex = 0;
+	listOrderModified = true;
+	//document.forms['componentform'].elements['order_btn'].style.visibility = 'visible';
+	ajaxFrom();
+	
+}
+
+
+
+function moveDownMax(obj) {
+	if (obj.selectedIndex == -1) return alert("순서 변경하실 메뉴를 선택하세요.");
+	if (obj.selectedIndex == obj.options.length-1) return;
+	//alert(obj.options.length-1);
+	var tmpVal = obj.options[obj.selectedIndex].value;
+	var tmpTxt = obj.options[obj.selectedIndex].text;
+	var swapVal = obj.options[obj.options.length-1].value;
+	var swapTxt = obj.options[obj.options.length-1].text;
+
+	obj.options[obj.selectedIndex].value = swapVal;
+	obj.options[obj.selectedIndex].text = swapTxt;
+	obj.options[obj.options.length-1].value = tmpVal;
+	obj.options[obj.options.length-1].text = tmpTxt;
+	obj.selectedIndex = obj.options.length;
+	listOrderModified = true;
+	//document.forms['componentform'].elements['order_btn'].style.visibility = 'visible';
+	ajaxFrom();
+	
+}
+
+function selectOption(obj){
+	var a = explode("|",obj.options[obj.selectedIndex].value);
+	if(a[1] != "separator") {
+		pageCall('party.menu.admin.option','&pcode={pcode}&mcode=' +a[0] );	
+	}else{
+		$('data_ajax').innerHTML = '';
+	}
+}
+
+function selectOptionDel(obj){
+	var a = explode("|",obj.options[obj.selectedIndex].value);
+	pageCall('party.menu.admin.del','&pcode={pcode}&mcode=' + a[0],'POST');
+	ajaxFrom();
+}
+
+function selectOptionLine(obj){
+	var a = explode("|",obj.options[obj.selectedIndex].value);
+	if(a[1] != "separator") {
+		if(strstr(obj.options[obj.selectedIndex].text,'ㄴ')) {
+		
+			obj.options[obj.selectedIndex].text = str_replace("ㄴ","",obj.options[obj.selectedIndex].text);
+			obj.options[obj.selectedIndex].value = str_replace("|in","",obj.options[obj.selectedIndex].value);
+		}else{
+			obj.options[obj.selectedIndex].text = "ㄴ"+obj.options[obj.selectedIndex].text ;
+			obj.options[obj.selectedIndex].value = obj.options[obj.selectedIndex].value + "|in";
+		
+		}
+	}
+	ajaxFrom();
+}
+</script>
+
+<form name="componentform" id ="componentform" method="post" onSubmit="submit_all(this.elements['using_components[]'])" target="optionIfr">
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="59" background="/html/image/title_bg.gif" style="margin-bottom:10px">
+	<tr><td height="20"></td></tr>
+	<tr valign="top">
+		<td width="33"><img src="/html/image/title_icon.gif"></td>
+		<td class="stitle"><img src='/f.php?text=메뉴관리&font=-윤고딕330&size2=10&bg=ffffff&color=423c2b'></td>
+	</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" align = center  border=0>
+<tr>
+	<td valign="top" >
+		<select name="all_components" size="13" id="menuFactory" class="fl" style="width:130px;font-size:12px" onchange="showMenuIntroduction(this);">
+		<option value="board#B">통합게시판</option>
+		<option value="board#A">스탭게시판</option>
+		<option value="empty"></option>
+		<option value="title">메뉴타이틀</option>
+		<option value="separator">구분선</option>
+		<option value="link">링크</option>
+		</select>
+	</td>
+	<td style = "padding:15px"><a href="javascript:add_component()"><img src="/image/party/btn_add.gif" width="44" height="20" alt="추가" class="btn_add"></a><br><br></td>
+	<td  width="320" valign="top">
+		<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 style="margin-top:5px">
+		<tr><td colspan=2>
+			<select name="using_components[]" id="using_components"  multiple="multiple" style="width:320px;font-size:12px" size="20" onchange = "selectOption(this)">
+			{@ LIST}
+			<option value="{.num_mcode}|{.str_type}{?.str_in == 'Y'}|in{/}" >
+			{?.str_in == 'Y'}ㄴ{/}{.str_title}&nbsp;  
+			({? .str_type == "board#B"}통합게시판{/}
+			{? .str_type == "board#A"}스텝게시판{/}
+			{? .str_type == "separator"}구분선{/}
+			{? .str_type == "link"}링크{/}
+			{? .str_type == "title"}메뉴타이틀{/})
+			</option>
+			{/}
+			</select>
+		</td></tr>
+		<tr>
+			<td>
+				<a href="javascript:moveDownMax($('using_components'))"><img src="/image/party/btn_bestdown.gif" width="18" height="18" alt=""></a>
+				<a href="javascript:moveUp($('using_components'))"><img src="/image/party/btn_up.gif" width="18" height="18" alt=""></a>
+				<a href="javascript:moveDown($('using_components'))"><img src="/image/party/btn_down.gif" width="18" height="18" alt=""></a>
+				<a href="javascript:moveUpMax($('using_components'))"><img src="/image/party/btn_bestup.gif" width="18" height="18" alt=""></a>
+			</td>
+			<td align=right>
+				<img src="/image/party/btn_innerwrite.gif" id="indentImg" width="65" height="20" alt="들여쓰기" style="cursor:hand" onclick="selectOptionLine($('using_components'))">
+				<img src="/image/party/btn_del.gif" id="deleteImg" width="42" height="20" alt="삭제" style="cursor:hand" onclick="selectOptionDel($('using_components'));remove_component();">
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td width=10> &nbsp; </td>
+	<td valign = top style="padding:5px">
+		<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+		<tr><td>미리보기</td></tr>
+		<tr><td><iframe name="submenu_view" id ='submenu_view'  src="/party.menu.sub?mode=lib&pcode={pcode}" width="180" height="300" scrolling="no" frameborder=0></iframe></td></tr>
+		</table>
+	</td>
+</tr>
+<tr><td   valign="top" colspan = 5 valign = top><br><p class="txt_01" id="menuIntroduction"></p><br></td></tr>
+</table>
+
+</form>
+
+<table align="center" width=80% border=0 cellspacing=0 cellpadding=0 >
+<tr><td id = "data_ajax"></td></tr>  
+</table>  
+
+
+<iframe name="optionIfr" id="optionIfr" src="" width="100%" height="0" scrolling="no" frameborder=0></iframe>

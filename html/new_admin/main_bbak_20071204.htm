@@ -1,0 +1,417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>솔류션 관리 인트라넷</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<link rel="STYLESHEET" type="text/css" href="./css/2005_admin.css">
+<style>
+body {margin:0px;}
+
+a:link {
+	color: #336699;
+	text-decoration:none;
+}
+
+a:visited {
+	color: #336699;
+	text-decoration:none;
+}
+
+a:active {
+	color:red;
+	text-decoration:none;
+}
+
+a:hover {
+	color:red;
+	text-decoration:none;
+}
+</style>
+
+
+
+<style>
+td.mtDropdown{ FONT-SIZE: 12px; COLOR: #333333; FONT-FAMILY:verdana;  letter-spacing:-1; }
+.mtDropdownMenu {
+    LEFT: -1000px; OVERFLOW: hidden; POSITION: absolute; TOP: -1000px
+}
+.mtDropdownMenu .content {
+    POSITION: absolute
+}
+.mtDropdownMenu .items {
+    BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; Z-INDEX: 2; LEFT: 0px; BORDER-LEFT: #999999 1px solid; BORDER-BOTTOM: #999999 1px solid; POSITION: relative; TOP: 0px
+}
+.top .items {
+    BORDER-TOP: medium none
+}
+.mtDropdownMenu .item {
+    BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 12px; BORDER-LEFT: medium none; CURSOR: hand; COLOR: #4a4b4b; BORDER-BOTTOM: medium none; FONT-FAMILY: 굴림; TEXT-DECORATION: none
+}
+.mtDropdownMenu .background {
+    Z-INDEX: 1; LEFT: 0px; POSITION: absolute; TOP: 0px; moz-opacity: .8
+}
+.mtDropdownMenu .shadowRight {
+    Z-INDEX: 3; FILTER: alpha(opacity=40); WIDTH: 2px; POSITION: absolute; TOP: 3px; moz-opacity: .4
+}
+.mtDropdownMenu .shadowBottom {
+    Z-INDEX: 1; FILTER: alpha(opacity=40); LEFT: 3px; POSITION: absolute; HEIGHT: 2px; moz-opacity: .4
+}
+.mtDropdownMenu .hover {
+    BACKGROUND: #F5F5F5; font-weight: bold; 
+}
+</style>
+
+
+
+
+
+
+<script language=javascript src="/js/drop_menu_sc22.js" ></script>
+
+<script>
+	function endselect(){
+	 result = confirm("에디터모드로 홈페이지를 보시겠습니까?");
+	if (result){
+	top.location="/?def=1";
+	}else{
+	top.location="/?def=2";
+	}
+}
+			</script>
+
+
+<script language=javascript>
+var preloaded = [];
+function init() {
+        mtDropDown.initialize();
+}
+
+
+</script>
+
+
+
+
+
+<script language="javascript">
+var Tmenuov = "";
+var Tmenuou = "";
+
+function msover(num) {
+  
+}
+
+function msout(num) {
+  
+    Tmenuov = num;
+}
+
+function divmsover() {
+    
+    Tmenuou = Tmenuov;
+}
+
+function divmsout() {
+   
+}
+</script>
+<script  language=javascript  type="text/javascript">
+
+
+function menuHidden(idx){
+if (idx == "1")
+{
+document.getElementById("menu").style.display = '';
+document.getElementById("view2").style.display = '';
+document.getElementById("view1").style.display = 'none';
+}else{
+document.getElementById("menu").style.display = 'none';
+document.getElementById("view1").style.display = '';
+document.getElementById("view2").style.display = 'none';
+}
+
+
+}
+
+</script>
+</head>
+
+<body style = "font-size:12px" onload=init();>
+
+
+
+
+
+
+<table cellpadding="0" cellspacing="0" width="100%" height="100%">
+<tr>
+<td colspan = 3 >
+
+
+
+
+
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" height="98" background="./images/top_bg.gif">
+	<tr valign="top">
+		<td rowspan="5" width="160"><a href="/admin.main" ><img src="./images/logo.gif" border = 0></a></td>
+		<td height="30">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td height="10"></td>
+				</tr>
+				<tr>
+					<td style = "font-size:12px" >
+					<?php
+					{weekdayArr} = array('일','월','화','수','목','금','토','일');
+					{weekday} = {weekdayArr}[date('w')].'요일';
+					?>
+
+					{__OBRANCH} - {= date('Y년 n월 j일')} {weekday}  관리자 인트라넷 <b><font color = red></td>
+					<td align="right"><a href="#" onclick = "endselect();"><img src="./images/top1.gif" border="0"></a><img src="./images/top_line.gif"><a href="bs.admin.help.list" target="admin_content"><img src="./images/top2.gif" border="0"></a><img src="./images/top_line.gif"><a href="admin.logout"><img src="./images/top3.gif" border="0"></a></td>
+				</tr>
+			</table>
+		</td>
+		<td rowspan="5" width="10"></td>
+	</tr>
+	<tr>
+		<td valign="top">
+		
+		<script>
+function gogo(url){
+
+if (document.getElementById("menu").style.display == 'none')
+{
+window.open(url,'admin_menu');
+}
+}
+function gogo2(url){
+
+
+window.open(url,'admin_menu');
+
+}
+</script>
+			
+			
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<!-- 버튼 -->	
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" background="./images/b_bg.gif">
+							<tr>
+								<td><img src="./images/b_left.gif"></td>
+								<td  id=menu1 onclick = "gogo2('bs.admin.menu?part=1','admin_menu');window.open('/bs.admin.main','admin_content');menuHidden('1');"  style = "color : #ffffff;font-size:12px;CURSOR: hand;padding-top:2"><b ><a href="#"  ><font color = #ffffff>홈페이지관리</td>
+								<td><img src="./images/b_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<!-- 끝 -->
+					<td width="4"></td>
+					<!-- 버튼 -->	
+				
+					<!-- 버튼 -->	
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" background="./images/b_bg.gif">
+							<tr>
+								<td><img src="./images/b_left.gif"></td>
+								<td  id=menu2 onclick = "gogo2('/bs.admin.menu?part=11','admin_menu');window.open('/manage.organ','admin_content');menuHidden('1');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#"  ><font color = #ffffff>서비스현황</b></td>
+								<td><img src="./images/b_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<!-- 끝 -->
+					<td width="4"></td>
+					<!-- 버튼 -->	
+					
+					<!-- 버튼 -->	
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" background="./images/b_bg.gif">
+							<tr>
+								<td><img src="./images/b_left.gif"></td>
+								<td id=menu4 onclick = "gogo2('/bs.admin.menu?part=10','admin_menu');window.open('/bs.admin.stock.check_bcode','admin_content');menuHidden('1');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#"><font color = #ffffff>사이트회원현황</b></td>
+								<td><img src="./images/b_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<!-- 끝 -->
+					<td width="4"></td>
+					<!-- 버튼 -->	
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" background="./images/b_bg.gif">
+							<tr>
+								<td><img src="./images/b_left.gif"></td>
+								<td  id=menu5 onclick = "gogo2('/bs.admin.menu?part=4','admin_menu');window.open('/bs.admin.order.list','admin_content');menuHidden('2');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#" ><font color = #ffffff>고객관리</b></td>
+								<td><img src="./images/b_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<!-- 끝 -->
+					<td width="4"></td>
+					<!-- 버튼 -->	
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" background="./images/b_bg.gif">
+							<tr>
+								<td><img src="./images/b_left.gif"></td>
+								<td  id=menu6 onclick = "gogo2('/bs.admin.menu?part=5','admin_menu');window.open('/member.admin.list','admin_content');menuHidden('1');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#" ><font color = #ffffff>SMS관리</b></td>
+								<td><img src="./images/b_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<!-- 끝 -->
+					<td width="4"></td>
+					<!-- 버튼 -->	
+					
+					<!-- 끝 -->
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="5"></td>
+	</tr>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0" width="1080" background="./images/text_bg.gif">
+				<tr>
+					<td width="13"><img src="./images/text_left.gif"></td>
+					<td style="padding-top : 3;font-size:12px"  >안녕하세요? {__OBRANCH} 운영자님 *^^*  | </td>
+					<td align = left></td>
+					<td width="13" align="right"><img src="./images/text_right.gif"></td>
+				</tr>
+			</table>
+
+
+		</td>
+	</tr>
+	<tr>
+		<td height="9"></td>
+	</tr>
+  </table>
+
+
+
+
+
+</td>
+</tr>
+<tr>
+<td colspan = 3 bgcolor = #ffffff height = 100% >
+
+
+<TABLE cellpadding="0" cellspacing="0" width="100%" height="100%">
+<TR style="font-size:11px">
+	<TD id = "menu" style = "display:"><iframe name="admin_menu" src="new_admin.menu?part=1" width="165" height="100%" frameborder="0" scrolling="no"></iframe></TD>
+	
+	<td  id = "view1" style = "display:none" bgcolor=#E0E0E0 width = 15><a href = "#" onclick = "menuHidden('1');" >▶ 왼쪽 메뉴 보이기▶</td>
+		<td id = "view2" width = 15 ><a href = "#" onclick = "menuHidden('2');" >◁ 왼쪽 메뉴 숨기기◁ </td>
+	
+	</td>
+
+	<TD width = 99% ><iframe name="admin_content" src="/bs.admin.main" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe></TD>
+</TR>
+</TABLE>
+
+
+
+
+</td></tr>
+
+</table>
+	
+
+
+
+
+
+
+
+<!--------------------------------메뉴데이터입니다 ------------------------------------------------>
+<script language="javascript">
+
+
+if (mtDropDown.isSupported()) {
+	var ms = new mtDropDownSet(mtDropDown.direction.down, 0, 0, mtDropDown.reference.bottomLeft);
+	
+	
+	var menu1 = ms.addMenu(document.getElementById("menu1"));
+
+
+		menu1.addItem("전체현황", "/bs.admin.main" ,'1'); 
+		
+			
+			var subMenu0 = menu1.addMenu(menu1.items[0]);
+				subMenu0.addItem("사이트정보", "/admin.common" ,'1');
+				subMenu0.addItem("서비스정책", "/bs.admin.main.agreement?part=claus" ,'1');
+				subMenu0.addItem("입금계좌", "/bs.admin.main.banklist" ,'1');
+
+
+
+
+
+
+	var menu2 = ms.addMenu(document.getElementById("menu2"));
+		menu2.addItem("EASY SCHOOL 현황", "/manage.organ?code=SCHOOL" ,'2'); 
+		menu2.addItem("EASY HOME현황", "/manage.organ?code=HOME" ,'2'); 
+		menu2.addItem("EASY SHOP현황", "/manage.organ?code=SHOP" ,'2'); 
+		menu2.addItem("FSP현황", "/manage.organ?code=FSP" ,'2'); 
+
+		menu2.addItem("B-MART현황", "http://jjbook.mythotech.net/manage.organ" ,'2'); 
+
+	
+
+
+	var menu4 = ms.addMenu(document.getElementById("menu4"));
+
+menu4.addItem("학교전체회원", "#" ,'4'); 
+menu4.addItem("학교전체인증회원", "#"  ,'4'); 
+menu4.addItem("학교전체미인증회원", "#" ,'4'); 
+menu4.addItem("B-MART회원", "#" ,'4'); 
+menu4.addItem("B-MART개인회원", "#" ,'4'); 
+menu4.addItem("B-MART기관회원", "#" ,'4'); 
+
+
+
+	var menu5 = ms.addMenu(document.getElementById("menu5"));
+
+menu5.addItem("고객목록", "/lms_member.admin.list",'5'); 
+	
+
+menu5.addItem("회원등록", "member.admin.add" ,'5'); 
+	var subMenu5_2 = menu5.addMenu(menu5.items[1]);
+	    
+			subMenu5_2.addItem("개인회원등록", "/member.admin.add" ,'5'); 
+			subMenu5_2.addItem("기관회원등록", "/member.admin.add?type=B" ,'5'); 
+
+menu5.addItem("직원목록", "/member.admin.staff" ,'5'); 
+
+	
+	
+var menu6 = ms.addMenu(document.getElementById("menu6"));
+
+menu6.addItem("SMS발송", "/bs.admin.sms.send" ,'6'); 
+menu6.addItem("자동발송관리", "/bs.admin.sms.mng_auto" ,'6'); 
+menu6.addItem("주소록관리", "/bs.admin.sms.dic_list" ,'6'); 
+var subMenu6_3 = menu6.addMenu(menu6.items[2]);
+	    
+			subMenu6_3.addItem("개별관리", "/bs.admin.sms.dic_list" ,'6'); 
+			subMenu6_3.addItem("그룹별관리", "/bs.admin.sms.dic_group" ,'6'); 
+
+
+menu6.addItem("발송내역조회", "/bs.admin.sms.send_log" ,'6'); 
+menu6.addItem("충전내역조회", "/bs.admin.sms.point_log" ,'6'); 
+
+
+	
+
+
+
+	mtDropDown.renderAll();
+}
+
+
+
+</script>
+<!--------------------------------메뉴데이터입니다 ------------------------------------------------>
+
+
+</html>

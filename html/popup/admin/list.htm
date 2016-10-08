@@ -1,0 +1,262 @@
+<script type="text/javascript" src="/js/scriptaculous_bak.js"></script>
+ <link rel="stylesheet" type="text/css" href="/css/admin.css">
+ <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+ <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+<script language="javaScript" src="js/JSON.js"></script>
+<script language="javaScript" src="js/dynamic.js"></script>
+<script language="javaScript">
+<!--
+function deletePopup(id) {
+	var el = document.forms['orderForm'].elements['delete[]'];
+	if(el == undefined) return ;
+	if(!el.length) el = new Array(el);
+	var cnt = el.length;
+	var chk_ids = new Array();
+	for(var i=0;i<cnt;i++) {
+		if(el[i].checked) chk_ids[chk_ids.length] = el[i].value;
+	}
+	if(!chk_ids.length) {
+	 alert('삭제할 항목을 선택하여 주십시오.');
+	return; 
+	}
+	if(!confirm('정말 삭제하시겠습니까?')) return;
+	var ids = chk_ids.join(',');
+	location.href = 'popup.admin.delete?ids='+ids;
+}
+
+
+function skinLoad(page){
+$$('popupSkinContent').innerHTML = ajaxLoad("/popup.skin_list?area=zone_skin&page="+page);
+}
+
+
+function expPopup(btn) {
+	stat = explode("|",btn.value);
+		
+	if(stat[2] =="B"){
+	var text = "선택하신 팝업을 독립팝업으로 변경합니다. 변경하시겠습니까?";
+	}else{
+	var text = "선택하신 팝업을 팝업존에 포함합니다\n변경하시겠습니까?\n(팝업존 순서변경을 통해 팝업존의 순서를 변경하실 수 있습니다.)";
+	}
+		
+	if(!confirm(text)) return false;
+
+	result = ajaxLoad("/popup.express?ids="+btn.value);
+	if(result){
+	tstat = explode("|",result);
+	btn.value = result;
+
+		if(	tstat[2] =="B"){
+			btn.innerHTML = '<img src="/html/admin/images/btn_popup_popupjone.gif">';
+		}else{
+			btn.innerHTML = '<img src="/html/admin/images/btn_popup_inde.gif">';
+		}
+
+	}
+	
+}
+
+
+function expPopup2(btn) {
+
+	stat = explode("|",btn.value);
+		
+	if(stat[2] =="Y"){
+	var text = "선택하신 팝업을 사용안함 상태로 변경합니다 변경하시겠습니까?";
+	}else{
+	var text = "선택하신 팝업을 사용중 상태로 변경합니다.\n변경하시겠습니까?";
+	}
+		
+	if(!confirm(text)) return false;
+
+	result = ajaxLoad("/popup.express2?ids="+btn.value);
+	if(result){
+	tstat = explode("|",result);
+	btn.value = result;
+
+		if(	tstat[2] =="Y"){
+			btn.innerHTML = '<img src="/html/admin/images/btn_popup_ov.gif">';
+		}else{
+			btn.innerHTML = '<img src="/html/admin/images/btn_popup_off.gif">';
+		}
+
+	}
+	
+}
+
+
+function expPopup3(btn) {
+	stat = explode("|",btn.value);
+		
+	if(stat[2] =="Y"){
+	var text = "선택하신 팝업을 사용안함 상태로 변경합니다 변경하시겠습니까?";
+	}else{
+	var text = "선택하신 팝업을 사용중 상태로 변경합니다.\n변경하시겠습니까?";
+	}
+		
+	if(!confirm(text)) return false;
+
+	result = ajaxLoad("/popup.express3?ids="+btn.value);
+	if(result){
+	tstat = explode("|",result);
+	btn.value = result;
+
+		if(	tstat[2] =="Y"){
+			btn.innerHTML = '<img src="/html/admin/images/btn_popup_ov.gif">';
+		}else{
+			btn.innerHTML = '<img src="/html/admin/images/btn_popup_off.gif">';
+		}
+
+	}
+	
+}
+//-->
+
+function popup_view(st,ids){
+	result = ajaxLoad("/popup.express2?ids="+ids);
+	alert('변경되었습니다.');
+}
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.orderForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.orderForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.memberForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.orderForm.all.value = "";
+
+ return;
+}
+
+</script>
+
+
+
+<style type="text/css">
+.title {height:29px; text-align:center; padding-top:1px; color:red}
+.title1 {color:#464444;font-family:돋움; font-weight:bold; padding-top:1}
+.menu {color:#555555; font-family:돋움; padding:8px 0 0 17px}
+.menu1 {color:#555555; font-family:돋움; padding:8px 0 0 15px}
+
+</style>
+
+
+	
+
+			
+<br><br>
+
+<!-- 표1 Start -->	
+
+
+			<form method="post" name="orderForm">
+			<INPUT TYPE="hidden" NAME="all" id="all" >
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="#d5dfe7">
+				<tr height="28" bgcolor="FFFFFF">
+					<td width="33" class="table01_title"><input type="checkbox" name="" onclick ="checkall();"></td>
+					<td width="360" class="table01_title">팝업명</td>
+					
+					<td width="86" class="table01_title">현재상태</td>
+					<td width="60" class="table01_title">수정</td>
+				</tr>
+				
+
+				
+				
+
+
+
+				{@ LIST}
+
+				<tr height="28" bgcolor="FFFFFF" valign="top">
+					<td class="table01_text05"><input type="checkbox" name="delete[]" id="delete[]" value="{.num_serial}" style="border:0px;"></td>
+					<td class="table01_text06">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="42" align="center">
+								{.num_serial}
+								</td>
+								<td width="10"></td>
+								<td class="table01_text07"><a href="/popup.admin.write?id={.num_serial}{?.str_url}&ifr=y{/}">{.str_title}</a></td>
+							</tr>
+						</table>
+					</td>
+					
+					<td class="table01_text05" >
+					
+					<select name="" class="popupss" idx="{.num_serial}" onchange="popup_view(this.value,{.num_serial})">
+						<option value="Y" {? .str_view=='Y'} selected{/}>노출</option>
+						<option value="N" {? .str_view=='N'} selected{/}>노출안함</option>
+					</select>
+
+					
+
+					</td>
+					<td class="table01_text05"><a href="/popup.admin.write?id={.num_serial}{?.str_url}&ifr=y{/}"><img src="/html/admin/images/btn_popup_modify.gif"></a></td>
+				</tr>
+				{/}
+				
+
+
+			</table>
+			
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td colspan="3" width="100%" class="table_btm_line01"></td>
+				</tr>
+				<tr><td height="10"></td></tr>
+				<tr valign="top">
+					<td>
+					<span class="btn_pack medium "><a href="javascript:deletePopup();">삭제</a></span>
+					
+					</td>
+					
+					
+					<td align="center" style="padding-top:10px">
+					
+					<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/image/btn_prevpage.gif" nexticon="/image/btn_nextpage.gif" firsticon="/image/btn_firstpage.gif" lasticon="/image/btn_lastpage.gif" />
+						
+					</td>
+
+
+					<td align="right">
+					<span class="btn_pack medium "><a href="/popup.admin.write">새 팝업 등록</a></span>
+					</td>
+				</tr>
+			</table>
+
+			</form>
+		<!-- 표1 End -->	
+
+
+
+
+
+					
+					

@@ -1,0 +1,46 @@
+<script language="javascript" src="/js/popupZone.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./{skin_name}/popupZoneStyle.css" />
+	
+	
+	<div id="popupZone" class="{skin_name}_popupZone">
+
+		<div class="popupZoneSkin">
+
+			<div class="popupZoneTop" style="cursor: move">
+				<h2>{__TITLE} 팝업존</h2>
+				<p>학교의 공지사항 및 팝업을 모아놓은 팝업존입니다.</p>
+				<p>제목을 클릭하시면 내용이 새 창으로 열립니다.</p>
+				<span class="popupZoneSkip"><a href="#topArea">팝업존 건너뛰기</a></span>
+			</div>
+
+			<div class="popupZoneList" id="popupList">
+				
+			</div>
+
+			<div class="popupZoneFooter">
+				
+				<div class="popupZoneRefusal">
+					<input type="checkbox" id="refusalCheck" name="popup" value="" onclick="closeWin('{popup_kill}');" /><label for="refusalcheck">{popup_kill}일간 팝업존을 열지않음</label>
+				</div>
+				
+				<div class="popupZoneClose">
+					<a href="#"><img src="./images/popupZoneCloseBtn.gif" alt="팝업존 닫기" /></a>
+				</div>
+
+			</div>
+
+		</div>
+		
+	</div>
+
+	<script language="Javascript" type="text/javascript">
+	var scrollLeft = Math.max(document.documentElement.scrollLeft,document.body.scrollLeft) + 100;
+	var scrollTop = Math.max(document.documentElement.scrollTop,document.body.scrollTop) + 100;
+	
+	$('popupZone').style.top = scrollTop;
+	$('popupZone').style.left = scrollLeft;
+	
+	$('popupList').innerHTML = ajaxLoad('/popup.list');
+	new Draggable("popupZone");	
+	</script>

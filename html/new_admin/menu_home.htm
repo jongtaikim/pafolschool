@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>B-MART  - 온라인 관리시스템</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<base target="admin_content">
+<style type="text/css">
+td.submenu {
+	font-size:9pt;
+	color:#4A4A4A;
+	font-weight:bold;
+	background-image:url('./image/submenu_line.gif');
+	background-repeat:no-repeat;
+	background-position:bottom left;
+}
+
+td.submenu a:link {color:#4A4A4A;text-decoration:none;}
+td.submenu a:hover {color:#4A4A4A;text-decoration:underline;}
+td.submenu a:visited {color:#4A4A4A;text-decoration:none;}
+td.submenu a:active {color:#4A4A4A;text-decoration:none;}
+
+div.submenu2 {
+	width:110px;
+	background-color:#F4F3F0;
+	margin:10 0 10 0px;
+	padding:7px;
+	line-height:20px;
+	font-size:11px;
+	letter-spacing:-1px;
+	font-family:'dotum';
+	color:#087692;
+}
+
+div.submenu2 a:link {color:#087692;text-decoration:none;}
+div.submenu2 a:hover {color:#087692;text-decoration:underline;}
+div.submenu2 a:visited {color:#087692;text-decoration:none;}
+div.submenu2 a:active {color:#087692;text-decoration:none;}
+</style>
+<script type="text/javascript">
+<!--
+function displayDiv(id) {
+	document.getElementById(id).style.display = (document.getElementById(id).style.display == 'none' ? 'block' : 'none');
+}
+//-->
+</script>
+</head>
+
+<body leftmargin="0" topmargin="0">
+
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr height="11"><td></td></tr>
+<tr height="61">
+	<td background="./image/submenu_title.gif" style="font-size:10pt;color:#000000;font-weight:bold;padding-right:10px;" align="center">홈페이지 관리</td>
+</tr>
+<tr height="*" valign="top">
+	<td style="padding-left:20px;" background="./image/submenu_bg.gif">
+		<table width="138" cellpadding="0" cellspacing="0">
+		<tr height="30">
+			<td width="15"><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td width="123" class="submenu"><a onclick="javascript:displayDiv('MENU04');" style="cursor:hand;">관리정보</a></td>
+		</tr>
+		<tr id="MENU04" style="display:none;">
+			<td></td>
+			<td>
+				<div class="submenu2">
+					- <a href="bs.admin.main.copyright">온라인서점정보</a><br>
+					- <a href="bs.admin.main.agreement?part=claus">서비스정책</a><br>
+					- <a href="bs.admin.main.banklist">입금계좌</a>
+				</div>
+			</td>
+		</tr>
+		<tr height="30">
+			<td width="15"><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td width="123" class="submenu"><a onclick="javascript:displayDiv('MENU01');" style="cursor:hand;">메인화면 관리</a></td>
+		</tr>
+		<tr id="MENU01" style="display:none;">
+			<td></td>
+			<td>
+				<div class="submenu2">
+					- <a href="admin.main.compose">메인화면 표출설정</a><br>
+					- <a href="bs.admin.main.issue">서브중앙 디자인</a><br>
+					- <a href="setUp.setup">메인플래시디자인</a><br>
+          - <a href="attach.admin.manage?layout=main">메인레이아웃관리</a><br>
+					- <a href="news.admin.list?code=com">공지사항</a><br>
+          - <a href="news.admin.list?code=pds">자료실</a><br>
+          - <a href="news.admin.list?code=best">Today베스트셀러</a><br>
+          - <a href="banner.admin.list">배너관리</a><br>
+				<!-- <a href="poll.admin.list">설문조사</a><br> -->
+					- <a href="popup.admin.list">팝업창</a><br>
+					- <a href="bs.admin.main.main_hot">메인표출 시선집중</a><br>
+					- <a href="bs.admin.main.maineve_hot">메인표출 이벤트</a><br>
+					- <a href="bs.admin.main.main_book?code=new">메인표출 신간도서</a><br>
+					- <a href="bs.admin.main.main_book?code=pop">메인표출 인기도서</a><br>
+					- <a href="bs.admin.main.main_book?code=spec">메인표출 기획도서</a>
+				</div>
+			</td>
+		</tr>
+<tr height="30">
+			<td><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td class="submenu"><a href="menu.admin.frame">홈페이지메뉴 관리</a></td>
+		</tr>
+		<tr height="30">
+			<td><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td class="submenu"><a href="bs.bmenu.admin.list">하단메뉴 관리</a></td>
+		</tr>
+		<tr height="30">
+			<td><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td class="submenu"><a href="bs.cate.admin.main">도서 분류 관리</a></td>
+		</tr>
+		<tr height="30">
+			<td><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td class="submenu"><a onclick="javascript:displayDiv('MENU02');" style="cursor:hand;">도서 관리</a></td>
+		</tr>
+		<tr id="MENU02" style="display:none;">
+			<td></td>
+			<td>
+				<div class="submenu2">
+					- <a href="bs.admin.main.book">전체도서</a><br>
+					- <a href="bs.admin.main.book?part=new">신간도서</a><br>
+					- <a href="bs.admin.main.book?part=pop">인기도서</a><br>
+					- <a href="bs.admin.main.book?part=spec">기획도서</a><br>
+					- <a href="bs.admin.main.hot">시선집중</a><br>
+				</div>
+			</td>
+		</tr>
+		<tr height="30">
+			<td><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td class="submenu"><a onclick="displayDiv('MENU03');" style="cursor:hand;">고객센터</a></td>
+		</tr>
+		<tr id="MENU03" style="display:none;">
+			<td></td>
+			<td>
+				<div class="submenu2">
+					- <a href="bs.inf.admin.cate_list">이용안내</a><br>
+					- <a href="bs.faq.admin.cate_list">자주묻는 질문</a><br>
+				  - <a href="news.admin.list?code=pds">자료실</a><br>
+         - <a href="bs.fp.admin.list">입금자찾기</a><br>
+					- <a href="bs.consult.admin.list">1:1 상담</a><br>
+				</div>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</body>
+</html>

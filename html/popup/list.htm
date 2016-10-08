@@ -1,0 +1,17 @@
+			<ul>
+			<!--{@ LIST_g}-->
+				{?( .dt_start_date <= mk &&  .dt_end_date >= mk) || (!.dt_start_date && !.dt_end_date)}
+					<li class="noticePopup"><span class="popupZoneNum"><img src="/html/popup/zone_skin/{skin_name}/images/{skin_name}_noticePopupIco.gif" alt="±³À°Ã» °øÁöÆË¾÷" /></span><span class="popupZoneTitle"><a href="popup.view?boid={.num_oid}&id={.num_serial}" onclick="win(this.href,'{.num_width}','{.num_height}','{.num_left}','{.num_top}' ,'pop{.num_serial}'); return false;" onkeypress="win(this.href,'{.num_width}','{.num_height}','{.num_left}','{.num_top}' ,'pop{.num_serial}'); return false;">{.str_title}</a></span></li>
+				{/}
+			<!--{/}-->
+				
+			<!--{@ LIST}-->
+				{? .dt_start_date <= mk &&  .dt_end_date >= mk  || (!.dt_start_date && !.dt_end_date)}
+				<li class="normalPopup"><span class="popupZoneNum">{.index_ +1}</span><span class="popupZoneTitle"><a href="popup.view?boid={.num_oid}&id={.num_serial}" onclick="win(this.href,'{.num_width}','{.num_height}','{.num_left}','{.num_top}' ,'pop{.num_serial}'); return false;" onkeypress="win(this.href,'{.num_width}','{.num_height}','{.num_left}','{.num_top}','pop{.num_serial}'); return false;">{.str_title}</a></span>
+				</li>
+					
+				
+				{/}
+			<!--{/}-->
+
+			</ul>

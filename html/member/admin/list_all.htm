@@ -1,0 +1,303 @@
+<body>
+<script type="text/javascript">
+function deleteMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 삭제 하시겠습니까?')) return false;
+	if (confirm('선택하신 회원이 작성한 게시물도 같이 삭제하시겠습니까?')) {
+		form.elements['relation'].value = '1';
+	}
+	form.elements['mode'].value = 'delete';
+	form.submit();
+}
+
+function authMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 인증 하시겠습니까?')) return false;
+	form.elements['mode'].value = 'auth';
+	form.submit();
+}
+
+function noauthMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 인증취소 하시겠습니까?')) return false;
+	form.elements['mode'].value = 'noauth';
+	form.submit();
+}
+
+function checkSelected() {
+	form = document.forms['memberForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('회원을 선택하여 주십시오.');
+		return false;
+	}
+	return true;
+}
+
+function manageGroup(id) {
+	window.open('member.admin.mem_group?id=' + id,'manageGroup','width=350,height=500');
+}
+
+function viewMember(id) {
+	 top.location='member.admin.view?str_id=' + id;
+}
+</script>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" height="45" background="/html/admin2/images/sub_title_bg.gif">
+				<tr>
+					<td style="padding:0 6 0 2" width="6"><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545"><b>{? noauth2  }미인증 {/} {? noauth ==1  }인증 {/} {? !noauth && !noauth2  }전체 {/}회원관리</b></td>
+			<td>이자료는 집계용 회원리스트입니다.<br>
+</td>
+				</tr>
+			</table>
+			<br>
+
+
+
+
+
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+
+<script type="text/javascript">
+	function update(val) {
+
+		//alert(val);
+		var val = val + "&end=";  
+
+		
+		sendRequest("/member.admin.update", val, FromServer, "POST");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				if(str_text =="Y"){
+
+				alert('변경되었습니다.');	
+				}else{
+				//alert(str_text);
+				//alert('데이터를 모두 입력하시기 바랍니다.');
+				}
+			}
+		}
+	}
+	
+</script>
+
+
+<script language="javascript">
+<!--
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.memberForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.memberForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.memberForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.memberForm.all.value = "";
+
+ return;
+}
+//-->
+</script>
+
+
+
+
+
+<table width="98%" border="0" cellspacing="0" cellpadding="0" >
+      <tr>
+        <td width="29%" height="27" >
+        
+        
+        <form name="searchForm3" method="get" style="display:inline;margin:0px;">
+			<INPUT TYPE="hidden" NAME="listnum" value = "{listnum}">
+			<select name="search_mtype" onchange="this.form.submit();">
+			<option value="">전체회원</option>
+			<!--{@ MTYPES}-->
+			<option value="{.key_}"{? search_mtype==.key_} selected{/}>{.value_}</option>
+			<!--{/}-->
+			</select>
+			</form>
+			<!--{? !noauth}-->
+				<form name="searchForm4" method="get" style="display:inline;margin:0px;">
+				<INPUT TYPE="hidden" NAME="listnum" value = "{listnum}">
+				<select name="search_group" onchange="this.form.submit();">
+				<option value="">전체 기관</option>
+				<!--{@ GROUPS}-->
+				<option value="{.num_oid}"{? search_group==.num_oid} selected{/}>{.str_organ}</option>
+				<!--{/}-->
+				</select>
+				</form>
+			<!--{/}-->
+
+        
+        
+        </td>
+       </tr><tr>
+		<td width="60%">현재 총 <b>{total3}</b>명 회원중 <font color = "red">미인증{total1}명</font> , <font color = "blue"> 인증{total2}명</font> 
+		<INPUT TYPE="button" value = "인증자" onclick = "location.href='member.admin.list_all?noauth=1&listnum={listnum}'" >
+		<INPUT TYPE="button" value = "미인증자" onclick = "location.href='member.admin.list_all?noauth=0&listnum={listnum}'">
+		
+		</td>
+        
+		
+		
+		<td width="20%" align = right>  <FORM METHOD=get >표시 
+        
+
+		  <label>
+		  <input type="text" name="listnum"  style ="width: 30px" value = "{listnum}">
+		  </label>
+	      </FORM>		  </td>
+      </tr>
+
+</table>
+
+
+<table width="98%" height="84" border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" bordercolor = "#676767"  class="table01">
+
+    
+
+
+	<form name="memberForm" method="post" style="margin:0px;">
+	<input type="hidden" name="mode" value="">
+	<input type="hidden" name="relation" value="">
+	<INPUT TYPE="hidden" NAME="all" id="all" >
+
+  <tr align="center" bgcolor = "#E6F2EE">
+    <th width="40" height="26">
+	<a href = "#" onclick ="checkall();"><b>선택</a>
+	
+	</th>
+  
+    <th width="162"><b>학교</td>
+	<th width="69" ><b>
+	<a href = "member.admin.list_all?align=name&listnum={listnum}">
+	이름
+	</a>
+	</th>
+    <th width="84"><b><a href = "member.admin.list_all?align=id&listnum={listnum}">ID</th>
+  
+	<th width="99"><b><a href = "member.admin.list_all?align=mtype&listnum={listnum}">회원권한</th>
+  
+    <th width="130"><b><a href = "member.admin.list_all?align=auth&listnum={listnum}">인증여부</th>
+  
+  </tr>
+  <!--{@ LIST}-->
+  <tr align="center">
+    <td height="28"><input type="checkbox" name="ids[]" value="{.str_id}" style="border:0px;"></td>
+    
+	<td>{.str_organ}</td>
+	<td>
+	
+	{? .num_auth =="0"} <font color = "red">{/}{.str_name}</a></td>
+    <td>
+	
+	{? .num_auth =="0"} <font color = "red">{/}{.str_id}</a></td>
+    <td>
+	
+
+ {? .chr_mtype =="g"}일반{/}
+{? .chr_mtype =="s"}학생{/}
+ {? .chr_mtype =="t"}선생님{/}
+{? .chr_mtype =="p"}학부모{/}
+ {? .chr_mtype =="a"}졸업생{/}
+
+
+
+
+	</td>
+  
+    <td>	
+	
+	
+{? .num_auth =="1"}인증됨{/}
+{? .num_auth =="0"}미인증{/}
+
+
+	</td>
+    
+  </tr>
+{:}
+
+<tr align="center">
+    <td height="200" colspan="7"  >회원이 없습니다.</td>
+  </tr>
+  <!--{/}-->
+  
+</table>
+<br>
+<table width="98%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;" bordercolor = "#B7B7B7">
+      <tr>
+        <td height="28" colspan="3" align = center><wa:paging runat="server" total="{total}" listnum="{listnum}" /></td>
+        </tr>
+      <tr>
+        <td height="34" style = "padding-left : 10px">선택한 회원을
+		
+			<input type="button" class="button" value="인증" onclick="authMember();">
+		
+		
+			<input type="button" class="button" value="인증취소" onclick="noauthMember();">
+			<input type="button" class="button" value="삭제" onclick="deleteMember();">
+		</td>
+        <td style = "padding-left:20px">
+		
+</form>
+
+
+		<form name="searchForm" method="get" style="margin:0px;">
+				<INPUT TYPE="hidden" NAME="listnum" value = "{listnum}">
+			<select name="search_key">
+				<option value="str_name"{? search_key=='str_name'} selected{/}>이름</option>
+				<option value="str_id"{? search_key=='str_id'} selected{/}>ID</option>
+				<option value="str_email"{? search_key=='str_email'} selected{/}>Email</option>
+			</select>
+			<input type="text" name="search_value" value="{search_value}">
+			<input type="submit" class="button" value="검색" >
+			</form>
+			
+			
+			</td>
+        
+      </tr>
+    </table>

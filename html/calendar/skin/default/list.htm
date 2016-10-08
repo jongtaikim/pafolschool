@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/css/calendarPage.css" type="text/css" />
+
+
+				<div id="calendarArea">
+					<div class="objTop">
+						<ul class="moveBtn">
+							<li><a href="calendar.list?ym={prev_ym}">[이전달]</a></li>
+							<li><a href="calendar.list?ym={next_ym}">[다음달]</a></li>
+						</ul>
+						<p class="date"><span>{year}년 {month}월</span></p>
+						
+						{? _SESSION.ADMIN || cal_admin}<span class="admin"><a href="calendar.admin.list?f=no" onClick="fenster2('학사일정관리', '학사일정관리', this.href,  '10%', '10%', '650px', '510px'); return false">[관리자]</a></span>{/}
+					</div>
+					<table cellpadding="0" cellspacing="0" summary="{prev_y}년 {prev_m}월의 행사일정 표">
+						<caption>{prev_y}년 {prev_m}월</caption>
+						<thead>
+							<tr>
+								<th class="sun">일</th>
+								<th>월</th>
+								<th>화</th>
+								<th>수</th>
+								<th>목</th>
+								<th>금</th>
+								<th class="sat">토</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							
+							
+							{@ LIST_cal}
+								{? .index_ % 7 == 0}<tr>	{/}
+							
+									{? .event}
+									<td class="{.type}">
+											<span>{.day}</span>
+											<ul>
+											{@ event}
+												<li><a href="/calendar.view?date={..num_date}&id={..num_serial}" title="{..str_title}" onclick="window.open(this.href,'calendar','width=760,height=600,scrollbars=1'); return false" onkeypress="window.open(this.href,'calendar','width=760,height=600,scrollbars=1'); return false">{?..num_icon}<img src="/image/calendar/{..num_icon}.gif" alt="	{? ..num_icon ==1}개교기념{/}{? ..num_icon ==2}채육대회{/}{? ..num_icon ==3}발표회{/}{? ..num_icon ==4}축제{/}{? ..num_icon ==5}방학{/}{? ..num_icon ==6}축하행사{/}{? ..num_icon ==7}입학졸업{/}{? ..num_icon ==8}특별행사{/}{? ..num_icon ==9}소풍{/}{? ..num_icon ==10}기타{/}{? ..num_icon ==11}시험{/}"/>{/}{..str_title}</a></li>
+												
+												{/}
+											</ul>
+										</td>
+									{:}
+									<td class="{.type}"><span>{.day}</span></td>	
+									{/}
+
+							{? .index_ % 7 == 6}</tr>{/}
+						{/}
+					</tbody>
+					</table>
+				</div>
+
+

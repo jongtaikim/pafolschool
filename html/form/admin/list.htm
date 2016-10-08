@@ -1,0 +1,317 @@
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+<link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+<script type="text/javascript">
+
+
+function authMember() {
+form = document.forms['editForm'];
+if (!checkSelected()) return false;
+if (!confirm('선택하신 데이터를 삭제 하시겠습니까?')) return false;
+form.elements['mode'].value = 'delete';
+form.submit();
+}
+
+
+
+function checkSelected() {
+form = document.forms['editForm'];
+ids = form.elements['ids[]'];
+if (!ids) return false;
+if (!ids.length) ids = [ids];
+flag = false;
+for (i = 0,cnt=ids.length; i<cnt; i++) {
+if (ids[i].checked) {
+flag = true;
+break;
+}
+}
+if(!flag) {
+alert('데이터를 선택하여 주십시오.');
+return false;
+}
+return true;
+}
+
+
+
+function update(val) {
+
+//alert(val);
+var val = val + "&end=";  
+
+
+sendRequest("/member.admin.update", val, FromServer, "POST");
+}
+function FromServer() {
+if (httpRequest.readyState == 4) {
+if (httpRequest.status == 200) {
+var str_text = httpRequest.responseText;
+if(str_text =="Y"){
+
+alert('변경되었습니다.');	
+}else{
+//alert(str_text);
+//alert('데이터를 모두 입력하시기 바랍니다.');
+}
+}
+}
+}
+
+
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+return;
+
+}else{
+var form = document.editForm;
+for (i=0; i < form.elements.length; i++) {
+if (form.elements[i].name =="ids[]") {
+form.elements[i].checked = true;
+
+}
+}
+document.editForm.all.value = "Y";
+
+
+return;
+}
+}
+
+function uncheckall() {
+var form = document.editForm;
+for (i=0; i < form.elements.length; i++) {
+if (form.elements[i].name =="ids[]") {
+form.elements[i].checked = false;
+}
+}
+document.editForm.all.value = "";
+
+return;
+}
+
+</script>
+
+ <p class="buTitle02" >신청폼 데이터확인 안내</p>
+<div style="border:2px solid #cdcdcd;padding:5px">
+ㆍ 온라인 신청의 데이터를 확인하실 수 있는 곳입니다.<br>
+						ㆍ 엑셀다운로드를 이용하시면 데이터 내역을 파일로 저장하실 수 있습니다.
+</div>
+
+
+<br>
+<br>
+
+<div class="tab01" width="100%">
+		<ul>
+			<li ><a href="/form.admin.setup?code={code}&admin={admin}" >입력폼 편집</a></li>
+			<li ><a href="/form.admin.setup?code={code}&mode=edit&admin={admin}" >문구 편집</a></li>
+			<li class="active"><a href="/form.admin.list?code={code}&admin={admin}" >데이터 확인</a></li>
+		</ul>
+	</div>
+
+
+	<table  width=100% border=0 cellspacing=0 cellpadding=0>
+				<tr>
+					<td>총 {total} 개의 데이터가 입력되어있습니다.</td>
+					<td align="right">
+						<a href= "/form.admin.xls?code={code}" ><img src='/image/icon/xls.gif' border='0' alt='' align=absmiddle>엑셀로 다운받기</a>
+					</td>
+					<td align="right">
+						<FORM METHOD=get >
+						<label>
+						
+						<table align="right"  border=0 cellspacing=0 cellpadding=0>
+							<tr>
+								<td align = right>
+									<font style="font-size:11px" height= 100>표시</font> 
+									<input type="text" name="listnum"  style ="width: 30px" value = "{listnum}" >
+									
+									<INPUT TYPE="hidden" NAME="f" value = "{f}">
+									
+								</td>
+								<td style = "padding:3 0 0 3">
+									<input type="image" src="/html/member/admin/image/btn_refresh.gif"  value="새로고침">
+								</td>
+							</tr>
+						</table>
+
+						</label>
+						</FORM>
+					</td>
+				</tr>
+			</table>
+
+
+
+<br />
+<form name="editForm" method="post" style="margin:0px;">
+			<input type="hidden" name="mode" value="">
+			<input type="hidden" name="relation" value="">
+			<INPUT TYPE="hidden" NAME="all" id="all" >
+
+
+
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" class="tableTemp05">
+				<tbody>
+				<tr height="28" bgcolor="FFFFFF">
+					<th class="table01_title">번호</th>
+					<th class="table01_title"><input type="checkbox" name="" onclick ="checkall();"></th>
+					{@ form_data}
+					
+					<th class="table01_title">{.str_col_name}</th>
+					
+					{/}
+				</tr>
+			<tbody>
+			<!--{@ LIST}-->
+				<tr bgcolor="#FFFFFF" height="29">
+					<td class="table01_text05">
+						{.num_serial}
+					</td>
+					
+					<td align="center">
+						<input type="checkbox" name="ids[]" value="{.num_serial}">
+					</td>
+					
+					{? form_total >=1}
+					<td class="table01_text05">
+						{? .str_value1}
+						<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+							{.str_value1}{:}&nbsp;{/}
+					</td>		
+					{/}
+						
+						
+					{? form_total >=2}
+					<td class="table01_text05">
+						{? .str_value2}
+						<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+							{.str_value2}{:}&nbsp;{/}
+					</td>		
+					{/}
+					{? form_total >=3}
+
+					<td class="table01_text05">
+					{? .str_value3}
+					<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+						{.str_value3}{:}&nbsp;{/}
+					</td>	
+					{/}
+					{? form_total >=4}
+					<td class="table01_text05">
+					{? .str_value4}
+					<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+						{.str_value4}{:}&nbsp;{/}
+					</td>			
+					{/}
+					{? form_total >=5}
+					<td class="table01_text05">
+					{? .str_value5}
+					<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+						{.str_value5}{:}&nbsp;{/}
+					</td>
+					{/}
+					{? form_total >=6}
+					<td class="table01_text05">
+					{? .str_value6}
+					<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+						{.str_value6}{:}&nbsp;{/}
+					</td>	
+					{/}
+					{? form_total >=7}
+					<td class="table01_text05">
+					{? .str_value7}
+					<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+						{.str_value7}{:}&nbsp;{/}
+					</td>	
+					{/}
+					
+					{? form_total >=8}
+					<td class="table01_text05">
+					{? .str_value8}
+					<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+						{.str_value8}{:}&nbsp;{/}
+					</td>	
+					{/}
+
+					{? form_total >=9}
+					<td class="table01_text05">
+					{? .str_value9}
+					<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+						{.str_value9}{:}&nbsp;{/}
+					</td>	
+					{/}
+
+					{? form_total >=10}
+					<td class="table01_text05">
+					{? .str_value10}
+					<a href="/form.admin.view?code={code}&num_serial={.num_serial}&admin={admin}" style = "font-size:11px">
+						{.str_value10}{:}&nbsp;{/}
+					</td>	
+					{/}
+				
+				{:}
+				
+				<tr bgcolor="#FFFFFF">
+					<td colspan="8" width="100%" height="30"  align=center bgcolor=#ffffff>데이터가 없습니다.</td>
+				</tr>
+				{/}
+					
+			</table>
+
+
+
+
+			
+		<!-- 표1 End -->
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr><td height="8"></td></tr>
+				<tr>
+					<td align="center" colspan="2"><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}"/></td>
+				</tr>
+				<tr><td height="8"></td></tr>
+				<tr>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" >
+							<tr>
+								<td style="padding:0 4 0 4"><img src="/html/image/ico_triangle.gif"></td>
+								<td style="padding-top:4">선택한 데이터를</td>
+								<td width="4"></td>
+								
+								<td style="padding-top:2px"><input TYPE="button" src="./image/btn_delete.gif"  value="삭제" onclick="authMember();" class="button" style="padding:2px"> 합니다.</td>
+							</tr>
+						</table>
+					</td>
+					<td align = right>
+						<form name="searchForm" method="get" style="margin:0px;">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>
+									<INPUT TYPE="hidden" NAME="listnum" value = "{listnum}">
+									
+									<INPUT TYPE="hidden" NAME="f" value = "{f}">
+									<select name="search_key">
+									{@ form_data}
+									<option value="str_value{.index_ + 1}"{? search_key== (.index_ + 1)} selected{/}>{.str_col_name}</option>
+									{/}
+									</select>
+								</td>
+								<td width="3"></td>
+								<td><input type="text" name="search_value" value="{search_value}" style="border:1 solid #c0c0c0; height:20"></td>
+								<td width="3"></td>
+								<td style="padding-top:1"> <input TYPE="image" src="/html/member/admin/image/btn_search.gif" value="검색" ></td>
+							</td>
+						</tr>
+					</table>
+					</form>
+				</td>
+				</tr>
+			</table>

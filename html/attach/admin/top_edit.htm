@@ -1,0 +1,28 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 120><b>퀵메뉴 편집
+					</b></td>
+				<td  style="padding:3 0 0 0; color:454545">&nbsp; </td>
+				</tr>
+			</table>
+
+<br>
+<FORM METHOD=POST name="editorForm">
+	
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%"  >
+<tr>
+<td>
+  
+
+<wa:upload part="script" sect="menu_top" code="{mcode}"></wa:upload>
+<wa:upload part="editor2" sect="menu_top" code="{mcode}" name="str_text" width="100%" height="335" form="editorForm">{str_text}</wa:upload>
+</td>
+
+</tr>
+<tr>
+  <td align = center><INPUT TYPE="submit" class="button" value = "저장하기"></td>
+</tr>
+</table>
+</FORM>        

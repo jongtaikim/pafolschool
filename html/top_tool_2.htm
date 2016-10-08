@@ -1,0 +1,98 @@
+{? _SESSION.ADMIN}
+
+<? {_OID} = _OID?>
+<? {_AOID} = _AOID?>
+<? If(_AOID == _OID) {iadmin} = "y"?>
+
+<script>document.body.style.backgroundPosition ='0 26px';</script>
+<style>
+.f1_ttool { font-size:11px; color:#FFFFFF; padding:5px 5px 0px 6px}
+.f2_ttool { font-size:11px; color:#FFFFFF; padding:5px 0px 0px 6px}
+.fom1 {width:110px; height:18px; border:1px solid #9c9c9c; font-size:11px; }
+.fom2 {width:30px; height:18px; border:1px solid #9c9c9c; font-size:11px; }
+.radio1 { font-size:11px; color:#fbffca; padding:6px 4px 0px 0px}
+.btn1 {padding:1px 0px 0px 5px;color:#ffffff}
+
+
+DIV.topToolBody {width:100%;height:25px;background-color:#444444;float:left;border-bottom:1px solid #0A0A0A}
+DIV.topToolBody .Title{color:#ffffff;padding:5px 5px 0px 6px;float:left;}
+DIV.topToolBody .itemss{padding:3px 0px 0px 5px;color:#ffffff;float:left;}
+
+</style>
+<div style="height:28px;background-color:#444444;">
+<div style="margin:0px auto;width:1000px">
+{?!mcode}
+
+<form name="basicinfo" method="post" action="/menu.admin.option_mini?mcode={mcode}">
+<input type="hidden" name='etop' value='Y'>
+
+
+	<div class="topToolBody">
+		<div class="Title">
+		:: NOW CMS 관리자 툴바&nbsp;&nbsp;<img src="/image/dot.gif" align="absmiddle" alt='NOW CMS 관리자 툴바' />
+		</div>
+
+		{? !iadmin}
+		<!--div class="itemss">
+		<a href="/attach.admin.manage_new?layout=main&amp;PageNum=050100"><img src="/image/btn10.gif" style="cursor:hand" alt="레이아웃관리"/></a>
+		</div-->
+		{/}
+		<div class="itemss"><a href="/member.admin.list?PageNum=040100"><img src="/image/btn09.gif" style="cursor:hand"  alt="회원관리"/></a>
+		</div>
+
+		
+		
+		
+		<div class="itemss"><a href="/admin?PageNum=010100"><img src="/image/btn03.gif" alt="관리자버튼" /></a>
+		</div>
+
+		 <div class="itemss" id="">[OID:<?=_OID?> / TYPE:<?=_THEME?>]</div>
+		 <div class="itemss" id=""><a href="/cache_del" style="color:#ffffff">| 메인캐시초기화</a></div>
+	</div>
+
+
+</form>
+
+
+
+
+{:}
+
+<form name="basicinfo" id="basicinfo" method="post" action="/menu.admin.option_mini?mcode={mcode}">
+<input type=hidden name='etop' value='Y'>
+
+
+	<div class="topToolBody">
+		<div class="Title">
+		:: NOW CMS 관리자 툴바&nbsp;&nbsp;<img src="/image/dot.gif" align="absmiddle" alt='NOW CMS 관리자 툴바' />
+		</div>
+		
+		
+		
+		{? !iadmin}
+		<!--div class="itemss">
+		<a href="/attach.admin.manage_new?layout={layout_r}&amp;PageNum=050100"><img src="/image/btn10.gif" style="cursor:hand" alt="레이아웃관리"/></a>
+		</div-->
+		{/}
+						
+		<div class="itemss"><a href="javascript:layer_popup('/menu.admin.option?mcode={mcode}', '550', '500','y','메뉴옵션')"><img src="/image/btn06.gif"  alt="메뉴옵션"></a></div>
+		<div class="itemss"><a href="/member.admin.list?PageNum=040100"><img src="/image/btn09.gif" style="cursor:hand"  alt="회원관리"/></a>
+		</div>
+		
+		<div class="itemss"><a href="/admin?PageNum=010100"><img src="/image/btn03.gif" alt="관리자버튼" /></a>
+		</div>
+
+		
+
+		<div class="itemss" id="">[OID:<?=_OID?> / TYPE:<?=_THEME?>]</div>
+		 <div class="itemss" id=""><a href="/cache_del" style="color:#ffffff">| 캐시초기화</a></div>
+	</div>
+
+
+</form>
+
+{/}
+
+</div>
+</div>
+{/}

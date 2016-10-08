@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title> [<?=_OID?>] <?=_ONAME?> -  관리자 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+<link rel="stylesheet" type="text/css" href="/css/table.silver.css">
+<link rel="stylesheet" type="text/css" href="/css/nowcms_admin.css">
+<link rel="stylesheet" type="text/css" href="/css/doc_style.css">
+
+	<link rel="stylesheet" href="/css/common.css" type="text/css" />
+	<script type="text/javascript" src="/js/lib.validate2.js"></script>
+
+<script language="Javascript" type="text/javascript">
+
+	function setPng24(obj) { 
+	    obj.width=obj.height=1; 
+	    obj.className=obj.className.replace(/\bpng24\b/i,''); 
+	    obj.style.filter = 
+	    "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+ obj.src +"',sizingMethod='image');" 
+	    obj.src='images/1pixel.gif';  
+	    return ''; 
+	} 
+
+	</script>
+
+</head>
+
+
+<body style="background:url(/images/admin/admin_bg_sub.gif) repeat-x;">
+<? 
+include 'admin_menu.php';
+
+$pn_1 = substr(_PN,1,1)-1;
+$pn_2 = substr(_PN,3,1)-1;
+$pn_3 = substr(_PN,5,1)-1;
+$pn_33 = substr(_PN,5,1);
+
+?>
+
+
+{#TOP}
+
+
+
+<div class="content_body_sub" style="min-width:980px">
+	<div class="content_body_menu">
+		{#LEFT_1}
+	</div>
+	<div class="content_body_text" style="width:80%;">
+		<div  id="contents">
+			<div class="titleBar">
+			<? if($pn_33 >0) {
+			echo $menu[$pn_1][submenu][$pn_2 ][submenu_sub][$pn_3][title];
+			}else{
+			echo $menu[$pn_1][submenu][$pn_2 ][title];	
+			}
+			?>
+			{? sub_title} > {sub_title}{/}
+		</div>
+			<div style="width:98%;margin:0 auto">
+				{#CONTENT}
+			</div>
+		</div>
+	</div>
+</div>	
+
+<div class="footer_sub">
+	Copyright ⓒ NOWCORE Corp. All Rights Reserved.
+</div>
+
+
+
+
+ <div  id="modalBg"></div>
+ <div class="section" id="layerPopupBody">  
+	<h2 class="hx" style="display:block" id="layerPopupTitle" style="cursor: move" draggable="true" dragelement="document.getElementById('layerPopupBody')">제목</h2>  
+	<div class="tx" id="layerPopup">내용</div>  
+	<a class="section_more" href="#" onclick="layerPopupClose();">  
+	<span>x</span> 닫기</a> 
+ </div>  
+
+
+</body>
+
+</html>
+
+
+
+

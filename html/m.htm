@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<title>{_ONAME} 이지스쿨 관리자</title>
+<meta name='license' content='Distributed under the terms of the GNU LGPL (gnu.org)'>
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<script type='text/javascript' src='/js/x_core.js'></script>
+<script type='text/javascript' src='/js/x_event.js'></script>
+<script type='text/javascript' src='/js/xenabledrag.js'></script>
+<script type='text/javascript' src='/js/xfenster.js'></script>
+<script type='text/javascript'>
+
+function fenster(id, title, url,  x, y, w, h,max)
+{
+
+ 
+
+ var cw, ch, fw, fh, n, fx, fy, xf2 = xFenster.instances;
+  if (xf2[id]) { // if it already exists
+    xf2[id].show();
+    //if (url) xf2[id].href(url);
+    if (title) xf2[id].title(title);
+  }
+  else { // it doesn't yet exist so create it
+   
+   fw = parseInt(w);
+   fh = parseInt(h);
+   
+   fx = parseInt(x);
+
+
+   fy = parseInt(y);
+
+    new xFenster(id, title, url, fx, fy, fw, fh, 120, null, 0, 1, 0,
+                 true, true, true, id!='xf0', id!='xf0', true, true,
+                 null, null, null, null, null, null, null, null,
+                'xfCon', 'xfClient', 'xfTBar', 'xfTBarF', 'xfSBar', 'xfSBarF',
+                   'xfRIco', 'xfNIco', 'xfMIco', 'xfOIco', 'xfCIco',
+                   'Resize', 'Minimize', 'Maximize', 'Restore', 'Close');
+
+  if(max=="y") {
+	xf2[id].maximize();
+  }
+  }
+}
+
+function fenster2(id, title, url,  x, y, w, h)
+{
+
+ 
+  var cw, ch, fw, fh, n, fx, fy, xf = xFenster.instances;
+  if (xf[id]) { // if it already exists
+    xf[id].show();
+    //if (url) xf[id].href(url);
+    if (title) xf[id].title(title);
+  }
+  else { // it doesn't yet exist so create it
+   
+   cw = xClientWidth();
+   ch = xClientHeight();
+   fw = 200;
+   fh = xClientHeight()-20;
+   fx = xClientWidth() - 200;
+   fy = 0;
+
+
+	
+    new xFenster(id, title, url, fx, fy, fw, fh, 120, null, 0, 1, 0,
+                 true, true, true, id!='xf0', id!='xf0', true, true,
+                 null, null, null, null, null, null, null, null,
+                 'xfCon', 'xfClient', 'xfTBar', 'xfTBarF', 'xfSBar', 'xfSBarF',
+                   'xfRIco', 'xfNIco', 'xfMIco', 'xfOIco', 'xfCIco',
+                   'Resize', 'Minimize', 'Maximize', 'Restore', 'Close');
+  }
+
+  
+}
+</script>
+<body bgcolor = #D2D2D2>
+<script>
+fenster2('menu', '관리메뉴', '/admin.chet2','0','0','200','865');
+
+fenster('main', '관리자모드', '/admin2.main','0','0','1030','815');
+
+</script>
+
+</body>
+

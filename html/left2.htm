@@ -1,0 +1,104 @@
+<style type="text/css" title="">
+.dtree {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666666;	
+	white-space: nowrap;	
+}
+.dtree img {
+	border: 0px;
+	vertical-align: middle;
+}
+.dtree a {
+	color: #333333;
+	text-decoration: none;
+}
+.dtree a.node, .dtree a.nodeSel {
+	white-space: nowrap;
+	padding: 1px 2px 1px 2px;
+}
+.dtree a.node:hover, .dtree a.nodeSel:hover {
+	color: #333333;
+	text-decoration: underline;
+}
+.dtree a.nodeSel {
+	background-color: #EBF3F3;
+}
+.dtree .clip {
+	overflow-y:hidden;
+	overflow-x:scroll;
+}
+</style>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+ <tr>
+  <td height=70>
+  
+  </td>
+ </tr>
+
+ <tr>
+   <td>
+   <br>
+   <script type="text/javascript" src="/js/dtree.js"></script>
+<div class="dtree">
+	<script type="text/javascript">
+		<!--
+
+		//id, pid, name, url, title, target, icon, iconOPne, open,
+
+		d = new dTree('d');
+		d.config.target="right";		
+		d.config.folderLinks = false;
+		
+// ----------------- INTRODUCTION ------------------//
+		d.add(0,-1,'<B>UCC관리자</B>','http://uccop.hkedu.co.kr/uadmin/index.php','ucc_main');
+		
+		d.add(1,0,'동영상관리','/lms.admin.order_m_list','','ucc_main');
+		d.add(101,1,'폴더관리','http://uccop.hkedu.co.kr/uadmin/category_man.php','','ucc_main');
+		d.add(102,1,'동영상올리기','http://uccop.hkedu.co.kr/uadmin/content_upload.php','','ucc_main');
+		d.add(103,1,'동영상관리','http://uccop.hkedu.co.kr/uadmin/content_manager_th.php','','ucc_main');
+		d.add(104,1,'플래이어설정','http://uccop.hkedu.co.kr/uadmin/player_config.php','','ucc_main');
+
+		
+
+// --------------- SAMPLE CHARTS -------------------- //
+		d.add(2,0,'사용현황');
+		d.add(201,2,'전송통계','http://uccop.hkedu.co.kr/uadmin/report_man.php','','ucc_main');
+		d.add(202,2,'파일통계','','','ucc_main');
+			d.add(2001,202,'일별파일통계','http://uccop.hkedu.co.kr/uadmin/report_file_day.php','','ucc_main');
+			d.add(2002,202,'월별파일통계','http://uccop.hkedu.co.kr/uadmin/report_file_month.php','','ucc_main');
+			d.add(2003,202,'파일별통계','http://uccop.hkedu.co.kr/uadmin/report_file.php','','ucc_main');
+		
+		d.add(203,2,'디스크통계','','','ucc_main');
+			d.add(3001,203,'일별디스크통계','http://uccop.hkedu.co.kr/uadmin/report_disk_day.php','','ucc_main');
+			d.add(3002,203,'월별디스크통계','http://uccop.hkedu.co.kr/uadmin/report_disk_month.php','','ucc_main');
+		
+		d.add(203,2,'트래픽통계','','','ucc_main');
+			d.add(3001,203,'일별트래픽통계','http://uccop.hkedu.co.kr/uadmin/report_traffic_day.php','','ucc_main');
+			d.add(3002,203,'월별트래픽통계','http://uccop.hkedu.co.kr/uadmin/report_traffic_month.php','','ucc_main');
+
+
+// --------------- SAMPLE CHARTS -------------------- //
+
+// --------------- SAMPLE CHARTS -------------------- //
+		d.add(3,0,'고객관리');
+		d.add(301,3,'업체정보','http://uccop.hkedu.co.kr/uadmin/member_info.php','','ucc_main');
+		d.add(302,3,'사용내역','http://uccop.hkedu.co.kr/uadmin/biz_manager.php','','ucc_main');
+		d.add(303,3,'Q&A','http://uccop.hkedu.co.kr/uadmin/qna_man.php','','ucc_main');
+
+
+
+
+		
+
+					
+		
+		document.write(d);
+
+		//-->
+	</script>
+	<br>
+	<p style="text-align:center"><a href="javascript: d.openAll();">모두펼침</a> | <a href="javascript: d.closeAll();">닫기</a></p>
+   </td>
+ </tr>
+</table>

@@ -1,0 +1,59 @@
+				<div id="content_area">
+					<!-- IF 'HAS_MOTTO' -->
+					<div id="motto">
+						<div id="motto_content">
+							<h3 id="motto_title">실천사항</h3>
+							<p id="motto_text">{{motto}}</p>
+						</div>
+					</div>
+					<!-- ENDIF 'HAS_MOTTO' -->
+					<div id="mstory">
+						<div id="mstroy_top"></div>
+						<div id="mstroy_content">
+							<!-- IF 'HAS_IMAGE' -->
+							<table>
+								<tr>
+									<td id="mstory_img">
+										<center>
+										<a href="{{storylink}}"><img src="{{refile}}"  onLoad="if(this.width>200)this.width=250" alt="메인스토리 이미지"></a>
+										</center>
+									</td>
+									<td id="mstory_text">
+							<!-- ENDIF 'HAS_IMAGE' -->
+										<p id="mstory_subject"><strong>{{title}}</strong></p>
+										<p id="mstory_contents"><a href="{{storylink}}">{{content}}</a></p>
+							<!-- IF 'HAS_IMAGE' -->
+									</td>
+								</tr>
+							</table>
+							<!-- ENDIF 'HAS_IMAGE' -->
+						</div>
+						<div id="mstroy_bottom"></div>
+					</div>
+					
+					<!-- 최근 게시물 Start -->
+					<div id="lboard">
+						<div id="lboard_top"></div>
+						<div id="lboard_content">
+							<h3 id="lboard_title" class="mt_bar"><span>최근 게시물</span></h3>
+							<!-- INCLUDE FILE '@files/cafe/{{cafe_id}}/board/inc.main.cafe.board.htm' -->
+						</div>		
+						<div id="lboard_bottom"></div>
+					</div>
+					<!-- 최근 게시물 End -->
+
+					<!-- 최근 앨범 Start -->
+					<div id="lalbum">
+						<div id="lalbum_top"></div>
+						<div id="lalbum_content">
+							<h3 id="lalbum_title"  class="mt_bar"><span class="mt_text">우리반 앨범</span></h3>
+							<!-- INCLUDE FILE '@files/cafe/{{cafe_id}}/board/inc.main.cafe.gallery.htm' -->
+						</div>
+						<div id="lalbum_bottom"></div>
+					</div>
+					<!-- 최근 앨범 End -->
+					
+					<!-- IF 'HAS_SCHOOLZEM' -->
+					<script type="text/javascript" src="http://widget.schoolzem.com/schoolzet.js?type=cafeNews&prefix={{prefix}}&grade={{grade}}"></script>
+					<!-- ENDIF 'HAS_SCHOOLZEM' -->
+				</div>

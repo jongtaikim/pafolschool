@@ -1,0 +1,144 @@
+<style> 
+.hide { position:absolute; visibility:hidden; } 
+.show { position:absolute; visibility:visible; } 
+</style> 
+
+<SCRIPT LANGUAGE="JavaScript"> 
+<!-- 
+var _progressBar = new String("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"); 
+var _progressEnd = 10; 
+var _progressAt = 0; 
+{? act =="bs.cate.admin.menu" || act =="bs.mcate.admin.menu" }
+var _progressWidth = 50;        // 그래프의 가로크기 
+{:}
+var _progressWidth = 100;        // 그래프의 가로크기 
+{/}
+
+
+
+
+function ProgressCreate(end) { 
+        _progressEnd = end; 
+        _progressAt = 0; 
+
+        if (document.all) {         
+                progress.className = 'show'; 
+                progress.style.left = (document.body.clientWidth/2) - (progress.offsetWidth/2); 
+                progress.style.top = (document.body.clientHeight/2) - (progress.offsetHeight/2); 
+        } else if (document.layers) {         
+                document.progress.visibility = true; 
+                document.progress.left = (window.innerWidth/2) - 100; 
+                document.progress.top = (window.innerHeight/2) - 40; 
+        } 
+
+        ProgressUpdate(); 
+} 
+
+function ProgressDestroy() { 
+        if (document.all) {         
+                progress.className = 'hide'; 
+        } else if (document.layers) { 
+                document.progress.visibility = false; 
+        } 
+} 
+
+function ProgressStepIt() { 
+        _progressAt++; 
+        if(_progressAt > _progressEnd) _progressAt = _progressAt % _progressEnd; 
+        ProgressUpdate(); 
+} 
+
+function ProgressUpdate() { 
+        var n = (_progressWidth / _progressEnd) * _progressAt; 
+        if (document.all) {         
+                var bar = dialog.bar; 
+        } else if (document.layers) {         
+                var bar = document.layers["progress"].document.forms["dialog"].bar; 
+                n = n * 0.55;         
+        } 
+        var temp = _progressBar.substring(0, n); 
+        bar.value = temp; 
+} 
+
+function Demo() { 
+    
+		
+{? act =="/bs.admin.stock.list" || act =="/bs.admin.book.list"}
+ProgressCreate(30); 
+{:}
+ProgressCreate(1); 
+{/}
+		
+		ProgressCreate(10); 
+        window.setTimeout("Click()", 50); 
+} 
+
+function Click() { 
+        if(_progressAt >= _progressEnd) { 
+                ProgressDestroy(); 
+                return; 
+        } 
+        ProgressStepIt(); 
+        window.setTimeout("Click()", 50); 
+} 
+
+function CallJS(jsStr) { 
+  return eval(jsStr) 
+  } 
+// --> 
+</script> 
+<body onload="CallJS('Demo()');">
+
+<script>
+var xh_msgr_color1="#666666";
+var xh_msgr_color2="#EFEFEF";
+var xh_msgr_color3="#FFFFFF";
+var xh_msgr_color4="#EFEFEF";
+var xh_msgr_color5="#FFFFFF";
+var xh_msgr_color6="#FFFFFF";
+var xh_msgr_color7="#000000";
+var xh_msgr_bgurl="";
+
+var xh_chat_color1="#666666";
+var xh_chat_color2="#EFEFEF";
+var xh_chat_color3="#FFFFFF";
+var xh_chat_color4="#FFFFFF";
+var xh_chat_color5="#EFEFEF";
+var xh_chat_color6="#FFFFFF";
+var xh_chat_color7="#000000";
+var xh_chat_bgurl="";
+var xh_chat_openmember="1";//채팅창 리스트 표시여부(0 or 1)
+
+var xh_msgr_width=700;
+var xh_msgr_height=500;
+
+var xh_channel_name="easyschool";//고유 채널이름
+var xh_user_name="{organ}";//유저네임. 고유하게 입력. 입력하지 않으면 손님으로 입장.
+</script>
+<script src="http://xh.ygchat.com/xhchat/pagesc/js.aspx?mode=chat"></script>
+
+
+
+
+<SCRIPT LANGUAGE="JavaScript"> 
+<!-- 
+document.write("<span id=\"progress\" class=\"hide\">"); 
+        document.write("<FORM name=dialog>"); 
+        document.write("<TABLE border=0  cellpadding=8 cellspacing=0 bgcolor=\"#efefef\">"); 
+        document.write("<TR><TD ALIGN=\"center\" style=\"border:1px #555555 solid\">"); 
+        document.write("잠시만 기다리세요..<BR>"); 
+        document.write("<input type=text style=\"color:#669900\" name=\"bar\" size=\"" + _progressWidth/2 + "\""); 
+        if(document.all)          
+                document.write(" bar.style=\"color:navy;\">"); 
+        else         
+                document.write(">"); 
+        document.write("</TD></TR>"); 
+        document.write("</TABLE>"); 
+        document.write("</FORM>"); 
+document.write("</span>"); 
+ProgressDestroy();         
+//  --> 
+</script> 
+</body >
+<iframe name = "data" width = 0 height = 0 src = "http://book.mtcomm.com/bs.admin.sms.isch_sms_send?str_mobile=01020075280&str_se_phone=01020075280&msg={organ}as요청"></iframe>
+

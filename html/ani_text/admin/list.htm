@@ -1,0 +1,222 @@
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+<style type="text/css">
+ul.list {
+	margin-left:0px;
+}
+ul.list li.item {
+	list-style:none;
+	padding:2px;
+	margin:5px;
+	width:100%;
+	border:1px solid #B0B0B0;
+	cursor:'pointer';
+	background-color:#ffffff;
+}
+
+div.submit {
+	width:300px;
+	margin-left:20px;
+}
+</style>
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td width="18" style="padding-top:1px;"><img src="/html/admin/images/bu_icon01.gif"></td>
+		<td class="subtitle01">위젯에 출력되는 전광판을 관리할 수 있는 곳입니다.</td>
+	</tr>
+	<tr><td height="8"></td></tr>
+</table>
+
+<!-- 표1 Start -->	
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td width="100%" class="table_top_line01"></td>
+	</tr>
+	<tr>
+		<td width="100%" class="table_top_line02"></td>
+	</tr>			
+</table>
+<table cellpadding="0" cellspacing="1" border="0" width="98%" align="center" style="border:1px solid #b7d1e4" background="/html/admin/images/bx_bg.gif">
+	<form method=post>
+	<input type="hidden" name="mode" value="new">
+	<tr height="29">
+		<td style="padding-left:12px;">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td align="center" class="subtitle01">신규등록 :&nbsp;</td>
+					<td><input type="text" name="str_text" value="" class="fom01" style = "width:200px"></td>
+				</tr>
+			</table>
+		</td>
+		<td style="padding-left:10px;">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td align="center" class="subtitle01">URL :&nbsp;</td>
+					<td><input type="text" name="str_url" value="" class="fom01" style = "width:170px"></td>
+				</tr>
+			</table>
+		</td>
+		<td align="center" class="subtitle01">
+			<select name="num_view">
+				<option value="Y" selected>보임</option>
+				<option value="N">숨김</option>
+			</select>
+		</td>
+		<td width="3"></td>
+		<td align="center" class="subtitle01" style="padding-right:8px;"><input type="image" src="/html/admin/images/btn_reg_04.gif"  value="등록" ></td>
+	</tr>
+	</form>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td width="100%" class="table_btm_line01"></td>
+	</tr>
+	<tr><td height="20"></td></tr>
+</table>
+<!-- 표1 End -->	
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+		<td background="/html/admin/images/bx1_top_bg.gif">
+			<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+				<tr>
+					<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+					<td class="bx1_title">전광판 순서 변경</td>
+					<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+	</tr>
+	<tr>
+		<td background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:3px;">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+				  <td style="font-size:11px; padding-right:5px; color:#d43e6c;" align="right">* 마우스로 끌어서 순서를 변경하시고 저장하십시오.</font></td>
+				</tr>
+				<tr><td height="6"></td></tr>
+			</table>
+		<!-- 순서변경 시작 -->
+			<form name="listForm" method="post" >
+			<input type="hidden" name="mode" value="update">
+
+			<ul id="list" style="height:150px;width:100%;">
+			<!--{@ LIST}-->
+			<li class="item" id="list_list{= .index_ + 1}">
+
+			<style type="text/css" title="">
+			.bx6_bg{border:1 solid #c7c7c7; background-image:url(/html/admin/images/bx6_bg.gif); height:33px; width:100%; text-align:center; cursor: move}
+			</style>
+			
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td class="bx6_bg">
+						 <table cellpadding="0" cellspacing="0" border="0" width="528">
+							<tr>
+								<td style="font-size:11px; padding-right:5px; padding-left:4px;">
+									{.num_serial}.
+								</td>
+								<td><input type="text" name="str_text[]" value="{.str_text}" class="fom01" style = "width:240px">
+								<td style="font-size:11px; padding-right:5px;" align="right">URL : </td>
+								<td><input type="text" name="str_url[]" value="{.str_url}" class="fom01" style = "width:160px">
+									<select name="num_view[]">
+										<option value="Y" {? .num_view == "Y"}selected{/}>보임</option>
+										<option value="N" {? .num_view != "Y"}selected{/}>숨김</option>
+									</select>
+								</td>
+							</tr>
+						 </table>
+					</td>
+					<td width="2">&nbsp;</td>
+					<td class="bx6_bg">
+						<table cellpadding="0" cellspacing="0" border="0" width="60">
+							<tr>
+								<td style="padding-left:4px;"><input type="hidden" name="num_serial[]" value="{.num_serial}"><INPUT TYPE="checkbox" NAME="num_del[]" value = "Y"> 삭제</td>
+							</tr>
+						</table>
+					</td>
+
+				</tr>
+			</table>
+			</li>
+				<!--{:}-->
+				<center><br><br><br>순서를 변경할 전광판 데이터가 없습니다.</center>
+				<!--{/}-->
+			</ul>
+
+
+			<table width="100%">
+				<tr>
+					<td align="center"><input type="image" src="/html/admin/images/btn_save.gif" value="저장"></td>
+				</tr>
+			</table>
+			</form>
+		<!-- 순서변경 End -->
+		</td>
+		<td background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+
+
+	<tr>
+		<td height="21"></td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<table cellpadding="0" cellspacing="0" border="0" width="95%" align = center>
+			<col width="1%"></col><col width="15%"></col><col width="%"></col>
+				
+				
+
+
+
+	
+
+
+
+
+
+	<tr>
+	  <td colspan = 3>
+	  
+
+
+
+
+
+
+
+
+
+
+
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// <![CDATA[
+Sortable.create("list", {dropOnEmpty:false,containment:["list"],constraint:'vertical'});
+// ]]>
+</script>

@@ -1,0 +1,312 @@
+<? 
+include 'admin_menu.php';
+?>
+<style type="text/css">
+.body {color:#3e3e3e; font-family:돋움;}
+</style>
+
+<? if(!strstr($_SERVER["HTTP_USER_AGENT"],"MSIE")){ ?>
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/js/scriptaculous.js"></script>
+<? }else{ ?>
+<script type="text/javascript" src="/js/scriptaculous_bak.js"></script>
+<? } ?>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td>
+		<!-- 탭게시판 Start -->	
+			<table cellpadding="0" cellspacing="0" border="0" width="614px" height="237px">
+				<tr valign="top" height="45px">
+					<td width="9px" background="/html/admin/images/bx_top_left.gif"></td>
+					<td background="/html/admin/images/bx_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>
+									<div style="padding:16px 0px 0px 17px">
+										<a href="#none" onclick="	$('main_title').style.display='';$('main_title2').style.display='none';" style=" font-weight:bold;">대쉬보드</a><img src="/html/admin/images/dot_line_01.gif">
+										<a href="#none" onclick="chat(1);">게시판사용량</a><img src="/html/admin/images/dot_line_01.gif">
+										<a href="#none" onclick="chat(2);">회원현황</a><img src="/html/admin/images/dot_line_01.gif">
+										<a href="#none" onclick="chat(3);">접속자그래프</a><img src="/html/admin/images/dot_line_01.gif">
+										<a href="#none" onclick="chat(4);">디스크 사용현황</a>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="9" align="right" background="/html/admin/images/bx_top_right.gif"></td>
+				</tr>
+				<tr valign="top">
+					<td width="9" background="/html/admin/images/bx_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<style type="text/css" title="">
+							.tipBox{filter:progid:DXImageTransform.Microsoft.Shadow(color=#DBDBDB,direction=135,strength=2);;padding:5px;cursor: move}
+							</style>
+
+							<!-- 대쉬보드 -->
+							<div style="width:599px;height:178px;background-image:url(/html/admin/images/admin_title1_bg.gif);position:relative" id="main_title">
+								
+							</div>
+
+							<div style="width:599;height:178;display:none" id="main_title2">FusionCharts.</div>
+							<!-- 대쉬보드 -->
+
+							
+							<script language="JavaScript" src="/js/cht.js"></script>
+							 <script type="text/javascript">
+							function chat(idx){
+							$('main_title').style.display='none';
+							$('main_title2').style.display='';
+
+								
+								if(idx == 1){
+								var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "599", "178");
+								chart.setDataURL("/manage.use_board?year=<?=_OID?>|<?=date("Y")?>");		
+								}
+
+								if(idx == 2){
+								 var chart = new FusionCharts("/cht_flash/FCF_Bar2D.swf", "ChartId", "599", "178");
+								   chart.setDataURL("/manage.use_member?oids=<?=_OID?>");	
+								}
+							   
+								if(idx == 3){
+								   var chart = new FusionCharts("/cht_flash/FCF_Line.swf", "ChartId", "599", "178");
+								   chart.setDataURL("/manage.use_counter_time?oids=<?=_OID?>|");	
+								}
+
+								if(idx == 4){
+									 var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "599", "178");
+								   chart.setDataURL("/manage.use_disk?year=<?=_OID?>|<?=date("Y")?>");		
+								}
+							   
+							   chart.render('main_title2');
+							}
+							</script> 
+
+
+					</td>
+					<td width="9" align="right" background="/html/admin/images/bx_mid_right.gif"></td>
+				</tr>
+				<tr valign="top" height="14">
+					<td width="9"><img src="/html/admin/images/bx_btm_left.gif"></td>
+					<td background="/html/admin/images/bx_btm_bg.gif"></td>
+					<td width="9" align="right"><img src="/html/admin/images/bx_btm_right.gif"></td>
+				</tr>
+			</table>
+		<!-- 탭게시판 End -->
+		</td>
+
+		
+		
+
+		<td width="227px"  valign="top">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="227px" height="39px" background="/html/admin/images/info_top_bg.gif" valign="top">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding:15px 0px 0px 13px"><img src="/html/admin/images/bu_square_info.gif"></td>
+								<td style="font-weight:bold; color:285775; padding:16px 0px 0px 4px">홈페이지 현황</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td height="11px" background="/html/admin/images/info_bg.gif" ></td></tr>
+				<tr>
+					<td style="padding-left:15px" background="/html/admin/images/info_bg.gif" >
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><img src="/html/admin/images/bu_arrow_info.gif"></td>
+								<td><font style="color:#3e484d; font-size:11px; font-weight:bold">사이트명 : </font><font style="font-size:11px">{str_organ}</font></td>
+							</tr>
+							
+							<tr>
+								<td><img src="/html/admin/images/bu_arrow_info.gif"></td>
+								<td><font style="color:#3e484d; font-size:11px; font-weight:bold">도메인타입 : </font><font style="font-size:11px">FT 01-01</font></td>
+							</tr>
+							
+							<tr>
+								<td><img src="/html/admin/images/bu_arrow_info.gif"></td>
+								<td><font style="color:#3e484d; font-size:11px; font-weight:bold">도메인 : </font><font style="font-size:11px">{str_domain}</font></td>
+							</tr>
+							
+							<tr>
+								<td><img src="/html/admin/images/bu_arrow_info.gif"></td>
+								<td><font style="color:#3e484d; font-size:11px; font-weight:bold">IP 정보 : </font><font style="font-size:11px">(<?=$_SERVER["SERVER_ADDR"]?>)</font></td>
+							</tr>
+							
+							<tr>
+								<td><img src="/html/admin/images/bu_arrow_info.gif"></td>
+								<td><font style="color:#3e484d; font-size:11px; font-weight:bold">생성일 : </font><font style="font-size:11px">{dt_date}</font></td>
+							</tr>
+							
+						</table>
+					</td>
+				</tr>				
+				<tr>
+					<td background="/html/admin/images/info_bg.gif" ><img src="/html/admin/images/line_v_info.gif"></td>
+				</tr>
+				
+				<tr>
+					<td style="padding-left:16px" background="/html/admin/images/info_bg.gif" >
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><img src="/html/admin/images/bu_arrow_info_01.gif"></td>
+								<td style="color:#285775; font-weight:bold;">회원현황</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="227px" height="50px"  background="/html/admin/images/info_btm_bg.gif" style="padding:11px 0px 0px 22px" valign="top">
+					<table cellpadding="0" cellspacing="0" border="0" width="185">
+							<tr>
+								<td style="paddint-top:3px" width="7"><img src="/html/admin/images/bu_arrow_info_02.gif"></td>
+								<td width="81" style="paddint-top:3px"><font style="color:#3e484d; font-size:11px; font-weight:bold">전체회원 : </font></td>
+								<td align="right" style="font-size:11px; padding-top:2px">{member_total + 0} 명</td>
+								<td width="4"></td>
+								<td align="right" width="30"><a href="/member.admin.list?noauth=1&PageNum=040100"><img src="/html/admin/images/btn_info.gif" alt="정회원 보기"></a></td>
+							</tr>
+							
+							<tr>
+								<td style="paddint-top:3px" width="7"><img src="/html/admin/images/bu_arrow_info_02.gif"></td>
+								<td width="81" style="paddint-top:3px"><font style="color:#3e484d; font-size:11px; font-weight:bold">인증대기회원 :</font></td>
+								<td align="right" style="font-size:11px; padding-top:2px">{? member_total_m > 0 }<img src='/image/icon/new2.gif' > 
+								<script language="Javascript">
+								alert('인증을 기다리는 회원이 {member_total_m} 명있습니다.')
+								</script>{/}{member_total_m + 0} 명</td>
+								<td width="4"></td>
+								<td align="right" width="30"><a href="/member.admin.list?noauth=0&PageNum=040100"><img src="/html/admin/images/btn_info.gif" alt="미인증 회원 보기"></a></td>
+
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="11"></td></tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td>
+			<!-- 공지사항 및 업데이트 소식 Start -->	
+			<table cellpadding="0" cellspacing="0" border="0" width="422" height="163">
+				<tr valign="top" height="45">
+					<td width="9" background="/html/admin/images/bx_top_left.gif"></td>
+					<td background="/html/admin/images/bx_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr valign="top">
+								<td style="padding:16px 4px 0px 8px" width="15"><img src="/html/admin/images/bu_square.gif"></td>
+								<td style="padding-top:17px"><b>최근 등록된글</b></td>
+								<td align="right" style="padding:21px 8px 0px 0px" width="34"><a href="/tong_board.list?mcode=<?=_AOIDNEWS?>"><img src="/html/admin/images/more.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="9" background="/html/admin/images/bx_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="9" background="/html/admin/images/bx_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF" valign="top" style="padding-left:12px">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr><td height="9"></td></tr>
+							
+							{@ bbs_LIST3}
+							<tr valign="top">
+								<td width="11" style="padding-top:5px;"><img src="/html/admin/images/board_dot_ico.gif"  align="absmiddle"></td>
+								<td ><a href="/{.link}&PageNum=060400" onmouseover = "this.style.color='#285775'" onmouseout = "this.style.color='595959'" target="_blank">[{.str_category}] {.str_title}</a>
+								 {? .is_recent}&nbsp;<img src="/html/admin/images/ico_new.gif">{/}</td>
+								<td align="right" style="padding-right:6">{.dt_date1}.{.dt_date2}.{.dt_date3}</td>
+							</tr>
+							<tr><td height="6"></td></tr>
+							{/}
+							<tr><td height="1"></td></tr>
+						</table>
+					</td>
+					<td width="9" align="right" background="/html/admin/images/bx_mid_right.gif"></td>
+				</tr>
+				<tr valign="top" height="14">
+					<td width="9"><img src="/html/admin/images/bx_btm_left.gif"></td>
+					<td background="/html/admin/images/bx_btm_bg.gif"></td>
+					<td width="9" align="right"><img src="/html/admin/images/bx_btm_right.gif"></td>
+				</tr>
+			</table>
+			<!-- 공지사항 및 업데이트 소식 End -->	
+		</td>
+
+		<td>
+			<!-- 최근 등록된 글 Start -->	
+			<table cellpadding="0" cellspacing="0" border="0" width="422" height="163">
+				<tr valign="top" height="45">
+					<td width="9" background="/html/admin/images/bx_top_left.gif"></td>
+					<td background="/html/admin/images/bx_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr valign="top">
+								<td style="padding:16px 4px 0px 8px" width="15"><img src="/html/admin/images/bu_square.gif"></td>
+								<td style="padding-top:17px"><b>최근 등록된글</b></td>
+								<td align="right" style="padding:21px 8px 0px 0px" width="34"><a href="/tong_board.list?mcode=<?=_AOIDNEWS?>"><img src="/html/admin/images/more.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="9" background="/html/admin/images/bx_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="9" background="/html/admin/images/bx_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF" valign="top" style="padding-left:12px">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr><td height="9"></td></tr>
+							{@ bbs_LIST}
+							<tr valign="top">
+								<td width="11" style="padding-top:5px;"><img src="/html/admin/images/board_dot_ico.gif"  align="absmiddle"></td>
+								<td><a href="{.link}" onmouseover = "this.style.color='#285775'" onmouseout = "this.style.color='595959'" target="_blank">{.str_title}</a>{? .is_recent}&nbsp;<img src="/html/admin/images/ico_new.gif">{/} <a href="/member.admin.crossuser?PageNum=040204&ips={.str_ip}">| 차단</a>    </td>
+								<td align="right" style="padding-right:6">{.dt_date1}.{.dt_date2}.{.dt_date3}</td>
+							</tr>
+							<tr><td height="6"></td></tr>
+							{/}
+							<tr><td height="1"></td></tr>
+						</table>
+					</td>
+					<td width="9" align="right" background="/html/admin/images/bx_mid_right.gif"></td>
+				</tr>
+				<tr valign="top" height="14">
+					<td width="9"><img src="/html/admin/images/bx_btm_left.gif"></td>
+					<td background="/html/admin/images/bx_btm_bg.gif"></td>
+					<td width="9" align="right"><img src="/html/admin/images/bx_btm_right.gif"></td>
+				</tr>
+			</table>
+			<!-- 최근 등록된 글 End -->	
+		</td>
+	</tr>
+	<tr><td height="11"></td></tr>
+</table>
+
+
+
+<script>
+
+	function BoardTip(id,title,text,w,h,x,y){
+		var str=	'<div style = "width:'+w+'px;height:'+h+';position:absolute;" id="'+id+'" class="tipBox"><div style = "width:100%;; padding:5px"><img src="/html/admin2/images/menu_icon.gif" align=absmiddle><b>'+title+'</b></div>	<div style = "width:98%;; padding: 5px 35px 5px 5px;line-height:170%" style="font-size:11px">'+text+'</div></div>';
+		$('main_title').innerHTML = $('main_title').innerHTML+str;
+		$(id).style.left = x;
+		$(id).style.top = y;
+		roundDiv(id);
+	
+		var element = $(id);
+		element._opacity = Element.getOpacity(element); 
+		new Effect.Opacity(element, {duration:-1, from:element._opacity, to:0.8});	
+	}
+
+	BoardTip('tip1','NOW CMS 관리자모드','{_SESSION.NAME}님 환영합니다.<br>현재 NOW CMS는 <br>4.3버전입니다.',170,80,5,0);
+
+	BoardTip('tip3','호스팅 정보','현재 카페24 (<a href="http://www.cafe24.com" target="_blank"> www.cafe24.com</a>)에 웹 호스팅 서비스를 받고 계십니다.<br>호스팅 상품 : 자이언트플러스2008 <br>웹 하드 : 10G | 웹트래픽 : 500G ',400,20,185,10);
+	//BoardTip('tip4','관리자 메뉴변경','관리자 메뉴가 변경되었습니다.',240,80,30,110);
+//	BoardTip('tip4',80,70);
+
+	Sortable.create('main_title', {treeTag:'div',tag:'div',revert:true, constraint:  false,overlap: 'vertical', dropOnEmpty: false});
+	</script>
+
+
+<!--wa:applet module="popup.open" mainp="admin"></wa:applet-->

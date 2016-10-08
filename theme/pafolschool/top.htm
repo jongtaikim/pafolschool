@@ -1,0 +1,135 @@
+<!-- header -->
+		<div class="header" >
+
+			<div class="global_area" >
+				
+				<div class="global_link" style="position:relative;">
+
+	
+
+					<div class="link_list" >
+						
+						<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0"  summary="">
+						
+							<tbody>
+								<tr>
+									<!--td style="background-color:#4e4d5f"><a href="http://pafolsports.pafolschool.com" class="big_text">파폴스포츠</a></td-->
+									<!--td style="background-color:#4e4d5f"><a href="/doc.view?mcode=1119&cate=2910" class="big_text">서울대특강스쿨(10월25일)</a></td-->
+									<td style="background-color:#4e4d5f"><a href="/doc.view?mcode=1320&cate=1320" class="big_text" >캠프동영상 모음</a></td>
+									<td style="background-color:#4e4d5f"><a href="/menu.blank?mcode=29&cate=29" class="big_text" >공부콘서트(서울대투어)</a></td>
+									<!--td style="background-color:#4e4d5f;"><a href="/doc.view?mcode=1219&cate=1219" class="big_text">신학기 공부스쿨(봄)</a></td-->
+									<!--td style="background-color:#4e4d5f;padding-right:20px"><a href="/menu.blank?mcode=15&cate=15" class="big_text">자료실</a></td-->
+									<td style="background-color:#4e4d5f;padding-right:20px"><a href="http://cafe.naver.com/pafolschool" class="big_text" target="_blank">파폴스쿨 카페(캠프후기)
+</a></td>
+									<td >
+									
+									<a href="/main" class="link_03">HOME</a>
+									{? !_SESSION.USERID}
+									<a href="/member.join_step" class="link_04">회원가입</a>
+									<a href="javascript:login()" class="link_05">로그인</a>
+									{:}
+									<a href="/member.mypage" class="link_042">회원정보</a>
+									<a href="/member.logout" class="link_052">로그아웃</a>
+									{/}
+									<a href="#" onclick="window.external.AddFavorite('http://www.pafolschool.com', '파폴스쿨')" class="link_06">즐겨찾기</a>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						
+					</div>
+				</div>
+				<div class="global_bg"></div>
+			</div>
+			
+			<wa:applet module="top_menu.main">
+			<div class="navigation_area">
+				<h1><a href="/main"><img src="./img/common/top_logo.gif" alt="PAFOLSCHOOL 파폴스쿨" /></a></h1>
+				<div class="navigation">
+					<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0" style="width:860px;margin-top:20px">
+						<colgroup> 
+						<? 
+						$col_group='
+							
+								<col width="114"/>
+								<col width="130"/>
+								<col width="80"/>
+								<col width="90"/>
+								<col width="126"/>
+								<col width="100"/>
+								<col width="100"/>
+								<col width="80"/>
+							
+						';
+						echo $col_group;
+						?>
+						</colgroup> 
+						<tbody>
+							<tr>
+								{@ SUBMENU}
+								<td class="tsub" style="position: relative"><a href="{.str_link}" style="margin-top:-20px;;color:#{? substr(_GET.cate,0,2) == .num_cate}f37053{:}666666{/};font-size:16px;text-align:center" target="{.str_target}" >
+								{?.num_mcode ==41}<strong><img src="/images/hot_icon.gif" style="position: absolute;top:-15px;left:-14px" alt="" />'16년 여름방학</strong>{:}<strong>{.str_title}</strong>{/}</a></td>
+								{/}
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>
+			
+			<!-- dep2 -->
+			<div class="layer_dep2" id="sgnb" style=";margin-left:280px;display:none;border:1px solid #eaeaea;border-top:0px;;height:260px;top:94px;padding:0px;width:860px;padding-left:20px;padding-bottom:10px">
+			<div style=";clear:left;position:relative;">
+				<table  border="0" cellspacing="0" cellpadding="0" style="width:860px;;" id="toptoptop">
+							<colgroup> 
+							<?=$col_group?>
+							</colgroup> 
+							<tbody>
+								<tr>
+									
+									{@ SUBMENU}
+									<td valign="top">
+										{@ SUBMENU_SUB}
+										<div style="padding:5px 0 5px 0"><a href="{..str_link}" target="{..str_target}" style="color:{? substr(_GET.cate,0,4) == ..num_cate}#f37053{/};">{..str_title}</a></div>
+										{/}
+									</td>
+									{/}
+								</tr>
+							</tbody>
+						</table>
+				</div>
+				<span class="bg_dep2"></span>
+			</div>
+			
+			<!-- //layer_dep2 -->
+			</wa:applet>
+			</div>
+		</div>
+		<!-- //header -->
+
+		<script type="text/javascript">
+		// <![CDATA[
+			/*$('.tsub').hover(
+				function() { $('#sgnb').show(); },
+				function() {$('#sgnb').hide(); }
+			);*/
+			setTimeout(function(){
+				$('.tsub').mouseenter(function(){
+					$('#sgnb').show();
+					//$('#sgnb').slideDown(50);
+					
+				});
+				$('.navi_dep2,.layer_dep2').mouseleave(function(){
+					$('#sgnb').slideUp(100);
+					//$('#sgnb').hide();
+				});
+			},200);
+			$('.global_area').mouseenter(function(){
+				$('#sgnb').slideUp(100);
+				//$('#sgnb').hide();
+			});
+			
+		// ]]>
+		</script>
+

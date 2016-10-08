@@ -1,0 +1,163 @@
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+<!-- 타이틀 Start -->
+	<tr>
+		<td height="59">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="59" background="/html/image/title_bg.gif">
+				<!--tr>
+				  <td align = center><div class="tip" style = "width : 98%;text-align:left">※ 선택하신 스킨중에는 홈페이지 타이틀(플래시부분)을 따로 주문하시는 형태도 있습니다.<br><font color="#FF0066">※ 스킨변경후 메인이미지 플래시 사이즈가 틀릴경우 메인이미지는 다시 등록하셔야 합니다.</font></div></td>
+				</tr-->	
+				<tr valign="top">
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td height="24"></td>
+							</tr>
+							<tr>
+								<td><a href="/skin.select?mode=basic" >{? mode=="basic"}<img src ="./image/skin_menu0_ov.gif">{:}<img src ="./image/skin_menu0.gif">{/}</a></td>
+								<td><a href="/skin.select?mode=my" >{? mode=="my"}<img src ="./image/skin_menu1_ov.gif">{:}<img src ="./image/skin_menu1.gif">{/}</a></td>
+								<td><a href="/skin.select?mode=gong" >{? mode=="gong"}<img src ="./image/skin_menu2_ov.gif">{:}<img src ="./image/skin_menu2.gif">{/}</a></td>
+							</tr>
+						</table>
+					</td>
+					<td align="right"><img src="/html/image/skin_title.gif"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+<!-- 타이틀 End -->
+	
+	<tr>
+		<td height="21"></td>
+	</tr>
+
+<!-- 사용중인 스킨 Start -->
+	<tr>
+		<td valign="top" height="54">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="54" background="./image/skinbar_bg.gif">
+				<tr valign="top">
+					<td width="4"><img src="./image/skinbar_left.gif"></td>
+					<td valign>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="15"></td>
+								<td style="padding-top:18"><img src="./image/skinbar_title.gif"></td>
+								
+								<td style="padding-top:19"><b style="font-size:14px; color:4c4c4c;" 
+								onmouseover="new jsTooltip(event,this,tip('{str_title}','<img src = /skin_img/{str_img}  width = 50 align=absmiddle >{str_memo}'),config12);">{str_title}</b></td>
+								<td style="padding-top:15"><img src="./image/skinbar_line.gif"></td>
+								<td style="padding-top:19; color:4c4c4c;"><a href="/attach.admin.manage?layout=main">레이아웃관리</a>  > <a href="/?remocon=Y"> 디자인툴 실행</a></td>
+							</tr>
+						</table>
+					</td>
+					<td width="4" align="right"><img src="./image/skinbar_right.gif"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+<!-- 사용중인 스킨 End -->
+	
+	<tr>
+		<td height="21"></td>
+	</tr>
+
+	<tr valign="top">
+		<td>
+		  <FORM METHOD=POST name="skin" action = "/skin.comit">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					{@ LIST}
+
+					<td height="168" valign = top>
+						<table align="center" border=0 cellspacing=0 cellpadding=0 width="225">
+							<tr>
+								<td align="center">
+									<div style = "{? .num_css == CSS_def }{/}" id="">
+									<table cellpadding="0" cellspacing="0" border="0" width="209" height="168" background="./image/theme_bg.gif">
+										<tr>
+											<td align="center"><img src = "/skin_img/{.str_img}" onerror = "this.src='/image/noimg2.gif'" width = "201" height = 160></td>
+										</tr>
+									</table>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td height="10"></td>
+							</tr>
+							<tr>
+								<td align=center><b style="color:4b5c7d">{.str_title}</td>
+							</tr>
+							<tr>
+								<td align=center style = "color : #4e4e4e;font-size:11px;padding: 5 0 5 0 "><b style="color:4b5c7d">by</b> : {.str_host2} | <b style="color:4b5c7d">적용</b> : {.num_set_count } | <b style="color:4b5c7d">추천</b> : {.num_voll}</td>
+							</tr>
+							<tr>
+								<td align=center>
+									<table cellpadding="0" cellspacing="0" border="0" width="210" style="table-layout:fixed">
+										<tr>
+											<td style = "color:#4e4e4e;font-size:11px;" align=center>{= nl2br(.str_memo)}</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align=center>
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td><INPUT TYPE="radio" NAME="idx" value= "{.num_css}" {? .num_css == CSS_def }checked{/}> </td>
+											<td style="color:666666; font-size:11px; padding:3 0 0 0">선택</td>
+											<td style="color:666666; font-size:11px; padding:3 4 0 4">l</td>
+											<td style="padding-top:3"><b style="color:666666; font-size:11px">삭제하기</b></td>
+										    {? _OID == .num_oid}
+											<td style="padding-left:3px"><a href="/skin.del?oid={.num_oid}&css={.num_css}"><img src='/image/editor/bg_transparent.gif' ></td>
+											{:}
+											{? sadmin}
+											<td style="padding-left:3px"><a href="/skin.del?oid={.num_oid}&css={.num_css}"><img src='/image/editor/bg_transparent.gif' ></td>
+											{/}
+											{/}
+										</tr>
+									</table>
+								</td>
+							</tr>
+
+						</table>
+					</td>
+
+					{? (.index_ + 1) %4 == 0 }
+				</tr>
+				<tr>
+					<td height="15"></td>
+				</tr>
+				<tr>
+					<td colspan = 10 height = 1 width="100%" background="/html/image/line_h_dot1.gif"></td>
+				</tr>
+				<tr>
+					<td height="15"></td>
+				</tr>
+				<tr>
+				{/}
+
+				{/}
+
+				</tr>
+				
+				<tr>
+					<td height="20"></td>
+				</tr>
+				<tr valign="top">
+					<td align  = center colspan = 10>
+						<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="./image/btn_prevpage.gif" nexticon="./image/btn_nextpage.gif" firsticon="./image/btn_firstpage.gif" lasticon="./image/btn_lastpage.gif" />
+					</td>
+				</tr>
+				<tr>
+					<td height="15"></td>
+				</tr>
+				<tr>
+					<td align  = center colspan = 10 ><input type = "image" src = "./image/btn_skin_theme.gif"></td>
+				</tr>
+			</form>
+				
+			</table>
+		</td>
+	</tr>
+
+	
+</table>

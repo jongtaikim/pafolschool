@@ -1,0 +1,501 @@
+/*boardType1*/
+.f11 {font-size:12px; color:656565; font-family:돋움; padding-top:3}
+.f1 {font-size:12px; color:565656; font-family:돋움; padding-top:3}
+
+/* 리스트 */
+DIV.boardType1 {width:100%}
+DIV.boardType1 li{list-style-type:none;float:left;font-size:12px;text-align:center}
+
+DIV.boardType1 .objTop{width:100%}
+DIV.boardType1 .objTop .menu{width:100%;padding:10px 0px 25px 0px;border-top:3px solid #EFEFEF;background-color:#F9F9F9;border-bottom:2px solid #EDEDED;}
+
+DIV.boardType1 .item1{width:6%;}
+DIV.boardType1 .item2{width:5%;}
+DIV.boardType1 .item3{width:53%;}
+DIV.boardType1 .item4{width:12%;}
+DIV.boardType1 .item5{width:12%;}
+DIV.boardType1 .item6{width:6%;}
+DIV.boardType1 .item7{width:5%;}
+DIV.boardType1 .item{width:8%;clear: both;}
+
+
+
+DIV.boardType1 .objBody{width:100%}
+DIV.boardType1 .objBody .menu{width:100%;padding:10px 0px 25px 0px;border-bottom:1px solid #EDEDED}
+
+
+DIV.boardType1 .objBottom{width:100%}
+DIV.boardType1 .objBottom .page{width:100%;padding:10px 0px 10px 0px;text-align:center;margin-top:2px;border-top:2px solid #DCDCDC;margin-bottom:25px}
+DIV.boardType1 .objBottom .btn{width:100%;padding:10px 0px 5px 0px;}
+DIV.boardType1 .objBottom .btn .wbtn{float:left;width:30%;}
+DIV.boardType1 .objBottom .btn .sch{float:left;width:69%;}
+
+
+
+DIV.boardType1 .allGong {color:#5887B8;font-weight: bold}
+DIV.boardType1 .allGong2 {color:#009D6D;font-weight: bold}
+DIV.boardType1 .left{text-align:left}
+DIV.boardType1 .noneBoardData{padding-top:50px;width:100%;height:100px;text-align:center}
+
+
+
+/* 겔러리리스트 */
+DIV.boardType1 .gallBodyLine{width:100%;text-align:center;clear: both; }
+DIV.boardType1 .gallBody{width:25%;float:left; text-align:center;}
+DIV.boardType1 .gallBody .item{padding:3px;width:100%;text-align:center;clear: both;}
+DIV.boardType1 .gallBody .item .imageLine{border:1px solid #DDDDDD; width:80%;height:90px;padding-top:12px;margin: 0px 5px 0px 5px}
+DIV.boardType1 .gallBody .item .image{width:100px;}
+DIV.boardType1 .gallBody .item .title{word-break:break-all;width:100%;clear: both;text-align:left ;padding-left:10px}
+
+/* 겔러리리스트 끝 */
+
+/* 웹진형 */
+DIV.boardType1 .wgallBodyLine{width:100%;text-align:center;clear: both; border-bottom:1px dotted #D9D9D9;margin-bottom:10px}
+DIV.boardType1 .wgallBody{width:100%;float:left; text-align:center;}
+DIV.boardType1 .wgallBody .item{padding:3px;width:100%;text-align:center;height:60px}
+
+DIV.boardType1 .wgallBody .item .imageLine{border:1px solid #DDDDDD; margin: 0px 5px 0px 5px;float:left}
+DIV.boardType1 .wgallBody .item .image{width:100px;}
+DIV.boardType1 .wgallBody .item .title{word-break:break-all;;float:left;text-align:left ;padding-left:10px}
+
+
+/* 웹진형 끝 */
+
+
+/* 글쓰기 */
+DIV.boardType1 .writeTop{width:100% }
+DIV.boardType1 .writeTop .title{width:100%; padding:10px 0px 10px 0px}
+
+DIV.boardType1 .writeBody{width:100%;}
+DIV.boardType1 .writeBody .titleText{width:100%;}
+
+DIV.boardType1 .writeBody .titleText .text1 {width:15%;border:1px solid #DCDCDC; float:left;text-align:center;  padding: 7px 0px 7px 0px; height:15px;border-right:0px;font-weight:bold }
+
+DIV.boardType1 .writeBody .titleText .text2 {width:34.5%;float:left;border:1px solid #DCDCDC; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType1 .writeBody .titleText .text3 {width:84.5%;float:left;border:1px solid #DCDCDC; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType1 .editBody {margin-top:10px;padding-top:10px}
+
+
+.text50{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #DCDCDC;font-size:12px;}
+.text100{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #DCDCDC;font-size:12px;}
+
+.center{text-align:center}
+.paddingLeft{padding-left:10px}
+
+#category {float:left;padding-right:5px;padding-left:10px;padding-top:1px}
+.noborder{border:0px}
+
+.bgcolor{ background-color:#F3F3F3;}
+.bcolor{ color:#463D35}
+/* 글쓰기 끝*/
+
+
+
+/* 글 읽기 */
+
+DIV.boardType1 .readTop{width:100% }
+
+DIV.boardType1 .readTop .title{padding:10px 0px 10px 10px;font-size:12px}
+DIV.boardType1 .readTop .date{padding:10px 0px 10px 0px ; text-align:right}
+DIV.boardType1 .readTop .date a{color:#A4A4A4}
+DIV.boardType1 .readLine {border-top:1px dashed #B5B5B5; width:95%;clear: both;height:0px;margin-left:1%}
+
+DIV.boardType1 .readBody {padding:20px 10px 50px 10px ;clear: both;}
+
+DIV.boardType1 .readBodyFile2 {border:1px solid #B7B7B7; float:left; width:97%}
+
+DIV.boardType1 .readBodyFile2 .readBodyFileTitle{float:left;border:1px dotted #BEBEBE;margin:3px; 10px; 3px; 3px;width:100px;text-align:center;padding:25px 0 25px 0;}
+
+DIV.boardType1 .readBodyFile2 .readBodyFileItem{float:left;;margin:3px;border-bottom:1px dotted #BEBEBE;}
+
+/*  글 읽기  끝*/
+
+
+
+/*boardType1*/
+
+
+
+
+
+
+
+/*boardType2*/
+
+
+.f11 {font-size:12px; color:656565; font-family:돋움; padding-top:3}
+.f1 {font-size:12px; color:565656; font-family:돋움; padding-top:3}
+
+/* 리스트 */
+DIV.boardType2 {width:100%}
+DIV.boardType2 li{list-style-type:none;float:left;font-size:12px;text-align:center}
+
+DIV.boardType2 .objTop{width:100%}
+DIV.boardType2 .objTop .menu{width:100%;padding:10px 0px 25px 0px;border-top:3px solid #89BDE9;background-color:#EDF4FB;border-bottom:2px solid #CEE3F7;}
+
+DIV.boardType2 .item1{width:6%;}
+DIV.boardType2 .item2{width:5%;}
+DIV.boardType2 .item3{width:53%;}
+DIV.boardType2 .item4{width:12%;}
+DIV.boardType2 .item5{width:12%;}
+DIV.boardType2 .item6{width:6%;}
+DIV.boardType2 .item7{width:5%;}
+DIV.boardType2 .item{width:8%;clear: both;}
+
+
+
+DIV.boardType2 .objBody{width:100%}
+DIV.boardType2 .objBody .menu{width:100%;padding:10px 0px 25px 0px;border-bottom:1px solid #CEE3F7}
+
+
+DIV.boardType2 .objBottom{width:100%}
+DIV.boardType2 .objBottom .page{width:100%;padding:10px 0px 10px 0px;text-align:center;margin-top:2px;border-top:2px solid #CEE3F7;margin-bottom:25px}
+DIV.boardType2 .objBottom .btn{width:100%;padding:10px 0px 5px 0px;}
+DIV.boardType2 .objBottom .btn .wbtn{float:left;width:30%;}
+DIV.boardType2 .objBottom .btn .sch{float:left;width:69%;}
+
+
+
+DIV.boardType2 .allGong {color:#5887B8;font-weight: bold}
+DIV.boardType2 .allGong2 {color:#009D6D;font-weight: bold}
+DIV.boardType2 .left{text-align:left}
+DIV.boardType2 .noneBoardData{padding-top:50px;width:100%;height:100px;text-align:center}
+
+
+
+/* 겔러리리스트 */
+DIV.boardType2 .gallBodyLine{width:100%;text-align:center;clear: both; }
+DIV.boardType2 .gallBody{width:25%;float:left; text-align:center;}
+DIV.boardType2 .gallBody .item{padding:3px;width:100%;text-align:center;clear: both;}
+DIV.boardType2 .gallBody .item .imageLine{border:1px solid #CEE3F7; width:80%;height:90px;padding-top:12px;margin: 0px 5px 0px 5px}
+DIV.boardType2 .gallBody .item .image{width:100px;}
+DIV.boardType2 .gallBody .item .title{word-break:break-all;width:100%;clear: both;text-align:left ;padding-left:10px}
+
+/* 겔러리리스트 끝 */
+
+/* 웹진형 */
+DIV.boardType2 .wgallBodyLine{width:100%;text-align:center;clear: both; border-bottom:1px dotted #CEE3F7;margin-bottom:10px}
+DIV.boardType2 .wgallBody{width:100%;float:left; text-align:center;}
+DIV.boardType2 .wgallBody .item{padding:3px;width:100%;text-align:center;height:60px}
+
+DIV.boardType2 .wgallBody .item .imageLine{border:1px solid #DDDDDD; margin: 0px 5px 0px 5px;float:left}
+DIV.boardType2 .wgallBody .item .image{width:100px;}
+DIV.boardType2 .wgallBody .item .title{word-break:break-all;;float:left;text-align:left ;padding-left:10px}
+
+
+/* 웹진형 끝 */
+
+
+/* 글쓰기 */
+DIV.boardType2 .writeTop{width:100% }
+DIV.boardType2 .writeTop .title{width:100%; padding:10px 0px 10px 0px}
+
+DIV.boardType2 .writeBody{width:100%;}
+DIV.boardType2 .writeBody .titleText{width:100%;}
+
+DIV.boardType2 .writeBody .titleText .text1 {width:15%;border:1px solid #DCDCDC; float:left;text-align:center;  padding: 7px 0px 7px 0px; height:15px;border-right:0px;font-weight:bold }
+
+DIV.boardType2 .writeBody .titleText .text2 {width:34.5%;float:left;border:1px solid #DCDCDC; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType2 .writeBody .titleText .text3 {width:84.5%;float:left;border:1px solid #DCDCDC; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType2 .editBody {margin-top:10px;padding-top:10px}
+
+
+.text50{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #DCDCDC;font-size:12px;}
+.text100{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #DCDCDC;font-size:12px;}
+
+.center{text-align:center}
+.paddingLeft{padding-left:10px}
+
+#category {float:left;padding-right:5px;padding-left:10px;padding-top:1px}
+.noborder{border:0px}
+
+.bgcolor{ background-color:#F3F3F3;}
+.bcolor{ color:#463D35}
+/* 글쓰기 끝*/
+
+
+
+/* 글 읽기 */
+
+DIV.boardType2 .readTop{width:100% }
+
+DIV.boardType2 .readTop .title{padding:10px 0px 10px 10px;font-size:12px}
+DIV.boardType2 .readTop .date{padding:10px 0px 10px 0px ; text-align:right}
+DIV.boardType2 .readTop .date a{color:#A4A4A4}
+DIV.boardType2 .readLine {border-top:1px dashed #B5B5B5; width:95%;clear: both;height:0px;margin-left:1%}
+
+DIV.boardType2 .readBody {padding:20px 10px 50px 10px ;clear: both;}
+
+DIV.boardType2 .readBodyFile2 {border:1px solid #B7B7B7; float:left; width:97%}
+
+DIV.boardType2 .readBodyFile2 .readBodyFileTitle{float:left;border:1px dotted #BEBEBE;margin:3px; 10px; 3px; 3px;width:100px;text-align:center;padding:25px 0 25px 0;}
+
+DIV.boardType2 .readBodyFile2 .readBodyFileItem{float:left;;margin:3px;border-bottom:1px dotted #BEBEBE;}
+
+/*  글 읽기  끝*/
+
+/*boardType2*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*boardType3*/
+
+.f11 {font-size:12px; color:656565; font-family:돋움; padding-top:3}
+.f1 {font-size:12px; color:565656; font-family:돋움; padding-top:3}
+
+/* 리스트 */
+DIV.boardType3 {width:100%}
+DIV.boardType3 li{list-style-type:none;float:left;font-size:12px;text-align:center}
+
+DIV.boardType3 .objTop{width:100%}
+DIV.boardType3 .objTop .menu{width:100%;padding:10px 0px 25px 0px;border-top:3px solid #FBE5D0;background-color:#FDF5EC;border-bottom:2px solid #FBE2CA;}
+
+DIV.boardType3 .item1{width:6%;}
+DIV.boardType3 .item2{width:5%;}
+DIV.boardType3 .item3{width:53%;}
+DIV.boardType3 .item4{width:12%;}
+DIV.boardType3 .item5{width:12%;}
+DIV.boardType3 .item6{width:6%;}
+DIV.boardType3 .item7{width:5%;}
+DIV.boardType3 .item{width:8%;clear: both;}
+
+
+
+DIV.boardType3 .objBody{width:100%}
+DIV.boardType3 .objBody .menu{width:100%;padding:10px 0px 25px 0px;border-bottom:1px solid #FBE2CA}
+
+
+DIV.boardType3 .objBottom{width:100%}
+DIV.boardType3 .objBottom .page{width:100%;padding:10px 0px 10px 0px;text-align:center;margin-top:2px;border-top:2px solid #FBE5D0;margin-bottom:25px}
+DIV.boardType3 .objBottom .btn{width:100%;padding:10px 0px 5px 0px;}
+DIV.boardType3 .objBottom .btn .wbtn{float:left;width:30%;}
+DIV.boardType3 .objBottom .btn .sch{float:left;width:69%;}
+
+
+
+DIV.boardType3 .allGong {color:#CB5C5B;font-weight: bold}
+DIV.boardType3 .allGong2 {color:#007611;font-weight: bold}
+DIV.boardType3 .left{text-align:left}
+DIV.boardType3 .noneBoardData{padding-top:50px;width:100%;height:100px;text-align:center}
+
+
+
+/* 겔러리리스트 */
+DIV.boardType3 .gallBodyLine{width:100%;text-align:center;clear: both; }
+DIV.boardType3 .gallBody{width:25%;float:left; text-align:center;}
+DIV.boardType3 .gallBody .item{padding:3px;width:100%;text-align:center;clear: both;}
+DIV.boardType3 .gallBody .item .imageLine{border:1px solid #FBE2CA; width:80%;height:90px;padding-top:12px;margin: 0px 5px 0px 5px}
+DIV.boardType3 .gallBody .item .image{width:100px;}
+DIV.boardType3 .gallBody .item .title{word-break:break-all;width:100%;clear: both;text-align:left ;padding-left:10px}
+
+/* 겔러리리스트 끝 */
+
+/* 웹진형 */
+DIV.boardType3 .wgallBodyLine{width:100%;text-align:center;clear: both; border-bottom:1px dotted #FBE2CA;margin-bottom:10px}
+DIV.boardType3 .wgallBody{width:100%;float:left; text-align:center;}
+DIV.boardType3 .wgallBody .item{padding:3px;width:100%;text-align:center;height:60px}
+
+DIV.boardType3 .wgallBody .item .imageLine{border:1px solid #FBE2CA; margin: 0px 5px 0px 5px;float:left}
+DIV.boardType3 .wgallBody .item .image{width:100px;}
+DIV.boardType3 .wgallBody .item .title{word-break:break-all;;float:left;text-align:left ;padding-left:10px}
+
+
+/* 웹진형 끝 */
+
+
+/* 글쓰기 */
+DIV.boardType3 .writeTop{width:100% }
+DIV.boardType3 .writeTop .title{width:100%; padding:10px 0px 10px 0px}
+
+DIV.boardType3 .writeBody{width:100%;}
+DIV.boardType3 .writeBody .titleText{width:100%;}
+
+DIV.boardType3 .writeBody .titleText .text1 {width:15%;border:1px solid #FBE5D0; float:left;text-align:center;  padding: 7px 0px 7px 0px; height:15px;border-right:0px;font-weight:bold }
+
+DIV.boardType3 .writeBody .titleText .text2 {width:34.5%;float:left;border:1px solid #FBE5D0; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType3 .writeBody .titleText .text3 {width:84.5%;float:left;border:1px solid #FBE5D0; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType3 .editBody {margin-top:10px;padding-top:10px}
+
+
+.text50{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #FBE5D0;font-size:12px;}
+.text100{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #FBE5D0;font-size:12px;}
+
+.center{text-align:center}
+.paddingLeft{padding-left:10px}
+
+#category {float:left;padding-right:5px;padding-left:10px;padding-top:1px}
+.noborder{border:0px}
+
+.bgcolor{ background-color:#F3F3F3;}
+.bcolor{ color:#463D35}
+/* 글쓰기 끝*/
+
+
+
+/* 글 읽기 */
+
+DIV.boardType3 .readTop{width:100% }
+
+DIV.boardType3 .readTop .title{padding:10px 0px 10px 10px;font-size:12px}
+DIV.boardType3 .readTop .date{padding:10px 0px 10px 0px ; text-align:right}
+DIV.boardType3 .readTop .date a{color:#A4A4A4}
+DIV.boardType3 .readLine {border-top:1px dashed #B5B5B5; width:95%;clear: both;height:0px;margin-left:1%}
+
+DIV.boardType3 .readBody {padding:20px 10px 50px 10px ;clear: both;}
+
+DIV.boardType3 .readBodyFile2 {border:1px solid #B7B7B7; float:left; width:97%}
+
+DIV.boardType3 .readBodyFile2 .readBodyFileTitle{float:left;border:1px dotted #BEBEBE;margin:3px; 10px; 3px; 3px;width:100px;text-align:center;padding:25px 0 25px 0;}
+
+DIV.boardType3 .readBodyFile2 .readBodyFileItem{float:left;;margin:3px;border-bottom:1px dotted #BEBEBE;}
+
+/*  글 읽기  끝*/
+
+
+
+/*boardType3*/
+
+
+
+
+
+
+
+
+
+
+
+/*boardType4*/
+
+
+.f11 {font-size:12px; color:656565; font-family:돋움; padding-top:3}
+.f1 {font-size:12px; color:565656; font-family:돋움; padding-top:3}
+
+/* 리스트 */
+DIV.boardType4 {width:100%}
+DIV.boardType4 li{list-style-type:none;float:left;font-size:12px;text-align:center}
+
+DIV.boardType4 .objTop{width:100%}
+DIV.boardType4 .objTop .menu{width:100%;padding:10px 0px 25px 0px;border-top:3px solid #F7D3F0;background-color:#FBEDF8;border-bottom:2px solid #F7CEF0;}
+
+DIV.boardType4 .item1{width:6%;}
+DIV.boardType4 .item2{width:5%;}
+DIV.boardType4 .item3{width:53%;}
+DIV.boardType4 .item4{width:12%;}
+DIV.boardType4 .item5{width:12%;}
+DIV.boardType4 .item6{width:6%;}
+DIV.boardType4 .item7{width:5%;}
+DIV.boardType4 .item{width:8%;clear: both;}
+
+
+
+DIV.boardType4 .objBody{width:100%}
+DIV.boardType4 .objBody .menu{width:100%;padding:10px 0px 25px 0px;border-bottom:1px solid #F7CEF0}
+
+
+DIV.boardType4 .objBottom{width:100%}
+DIV.boardType4 .objBottom .page{width:100%;padding:10px 0px 10px 0px;text-align:center;margin-top:2px;border-top:2px solid #F7CEF0;margin-bottom:25px}
+DIV.boardType4 .objBottom .btn{width:100%;padding:10px 0px 5px 0px;}
+DIV.boardType4 .objBottom .btn .wbtn{float:left;width:30%;}
+DIV.boardType4 .objBottom .btn .sch{float:left;width:69%;}
+
+
+
+DIV.boardType4 .allGong {color:#A464C18;font-weight: bold}
+DIV.boardType4 .allGong2 {color:#6C5C0A;font-weight: bold}
+DIV.boardType4 .left{text-align:left}
+DIV.boardType4 .noneBoardData{padding-top:50px;width:100%;height:100px;text-align:center}
+
+
+
+/* 겔러리리스트 */
+DIV.boardType4 .gallBodyLine{width:100%;text-align:center;clear: both; }
+DIV.boardType4 .gallBody{width:25%;float:left; text-align:center;}
+DIV.boardType4 .gallBody .item{padding:3px;width:100%;text-align:center;clear: both;}
+DIV.boardType4 .gallBody .item .imageLine{border:1px solid #F7CEF0; width:80%;height:90px;padding-top:12px;margin: 0px 5px 0px 5px}
+DIV.boardType4 .gallBody .item .image{width:100px;}
+DIV.boardType4 .gallBody .item .title{word-break:break-all;width:100%;clear: both;text-align:left ;padding-left:10px}
+
+/* 겔러리리스트 끝 */
+
+/* 웹진형 */
+DIV.boardType4 .wgallBodyLine{width:100%;text-align:center;clear: both; border-bottom:1px dotted #D9D9D9;margin-bottom:10px}
+DIV.boardType4 .wgallBody{width:100%;float:left; text-align:center;}
+DIV.boardType4 .wgallBody .item{padding:3px;width:100%;text-align:center;height:60px}
+
+DIV.boardType4 .wgallBody .item .imageLine{border:1px solid #F7CEF0; margin: 0px 5px 0px 5px;float:left}
+DIV.boardType4 .wgallBody .item .image{width:100px;}
+DIV.boardType4 .wgallBody .item .title{word-break:break-all;;float:left;text-align:left ;padding-left:10px}
+
+
+/* 웹진형 끝 */
+
+
+/* 글쓰기 */
+DIV.boardType4 .writeTop{width:100% }
+DIV.boardType4 .writeTop .title{width:100%; padding:10px 0px 10px 0px}
+
+DIV.boardType4 .writeBody{width:100%;}
+DIV.boardType4 .writeBody .titleText{width:100%;}
+
+DIV.boardType4 .writeBody .titleText .text1 {width:15%;border:1px solid #DCDCDC; float:left;text-align:center;  padding: 7px 0px 7px 0px; height:15px;border-right:0px;font-weight:bold }
+
+DIV.boardType4 .writeBody .titleText .text2 {width:34.5%;float:left;border:1px solid #DCDCDC; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType4 .writeBody .titleText .text3 {width:84.5%;float:left;border:1px solid #DCDCDC; padding: 6px 0px 6px 0px;height:17px;}
+
+DIV.boardType4 .editBody {margin-top:10px;padding-top:10px}
+
+
+.text50{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #DCDCDC;font-size:12px;}
+.text100{margin-left:10px;width:50%;background-color:#FFFFFF;border:1px solid  #DCDCDC;font-size:12px;}
+
+.center{text-align:center}
+.paddingLeft{padding-left:10px}
+
+#category {float:left;padding-right:5px;padding-left:10px;padding-top:1px}
+.noborder{border:0px}
+
+.bgcolor{ background-color:#F3F3F3;}
+.bcolor{ color:#463D35}
+/* 글쓰기 끝*/
+
+
+
+/* 글 읽기 */
+
+DIV.boardType4 .readTop{width:100% }
+
+DIV.boardType4 .readTop .title{padding:10px 0px 10px 10px;font-size:12px}
+DIV.boardType4 .readTop .date{padding:10px 0px 10px 0px ; text-align:right}
+DIV.boardType4 .readTop .date a{color:#A4A4A4}
+DIV.boardType4 .readLine {border-top:1px dashed #B5B5B5; width:95%;clear: both;height:0px;margin-left:1%}
+
+DIV.boardType4 .readBody {padding:20px 10px 50px 10px ;clear: both;}
+
+DIV.boardType4 .readBodyFile2 {border:1px solid #B7B7B7; float:left; width:97%}
+
+DIV.boardType4 .readBodyFile2 .readBodyFileTitle{float:left;border:1px dotted #BEBEBE;margin:3px; 10px; 3px; 3px;width:100px;text-align:center;padding:25px 0 25px 0;}
+
+DIV.boardType4 .readBodyFile2 .readBodyFileItem{float:left;;margin:3px;border-bottom:1px dotted #BEBEBE;}
+
+/*  글 읽기  끝*/
+
+
+
+/*boardType4*/

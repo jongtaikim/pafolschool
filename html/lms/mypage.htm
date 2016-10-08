@@ -1,0 +1,240 @@
+
+<script type="text/javascript">
+// <![CDATA[
+
+function checkSelected() {
+	form = document.forms['itemForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('{=_la("항목을 선택하여 주십시오.")}');
+		return false;
+	}
+	return true;
+}
+
+
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.itemForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.itemForm.all.value = "";
+
+ return;
+}
+
+
+function deleteItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 신청건을 삭제 하시겠습니까?')) return false;
+
+	form.elements['mode'].value = 'delete';
+	form.method="post";
+	form.submit();
+}
+
+function selectItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 신청건 작업을 실행 하시겠습니까?')) return false;
+	
+	if(!$('mode')){
+		alert('작업을 선택하여 주세요.');
+		return false;
+	}
+
+	//form.elements['mode'].value = 'delete';
+	form.method="post";
+	form.submit();
+}
+// ]]>
+</script>
+
+
+
+<p class="buTitle02" >안내</p>
+<div style="border:2px solid #cdcdcd;padding:5px">
+기수변경, 정보변경, 및 취소 관련 문의는 유선 연락바랍니다.
+</div>
+
+<br>
+
+<form method="POST" id="itemForm" name="itemForm">
+<input type="hidden" name="all" id="all" >
+<input type="hidden" name="mode" id="mode" >
+<input type="hidden" name="types" id="types" >
+
+
+	<p class="buTitle17" >총{total + 0}개의 캠프 신청건이 있습니다.</p>
+
+	<table class="tbl_type" border="1" cellspacing="0" summary="캠프 목록리스트" style="margin-top:20px">
+	<caption>등록별 캠프목록</caption>
+	<colgroup>
+	
+		<col width="12%">
+		<col >  
+		<col width="16%">
+		
+		<col width="16%">
+	
+		<col width="13%">
+		<col width="13%">
+	</colgroup>  
+
+	<thead>
+		<tr >
+			
+			<th style="text-align:center">신청일</th>
+			
+			<th style="text-align:center">신청과정</th>
+
+			<th style="text-align:center">학교/학년</th>
+			
+			<th style="text-align:center">학생명/보호자</th>
+			
+			<th style="text-align:center">결제방법</th>
+			<th style="text-align:center">상태</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		{@ LIST}
+		<tr>
+			
+			<td style="text-align:center">{=date("Y.m.d",.dt_date)}</td>
+			<td style="text-align:left">
+				
+					<p>
+						<a href="/member.mypage_view?order_code={.str_order_code}"><span style="color:#9933ff">{.str_ccode_text} 제{.camp.num_serial}기</span></a>
+					</p>
+					<p>{.camp.start_date}~{.camp.end_date}</p>
+				
+			</td>
+
+			<td style="text-align:center">
+				{.str_school}<br>
+				{.str_class}
+			</td>
+			
+			<td style="text-align:center">
+				학생:{.str_st_name}<br>
+				부:{.str_pr_name1}<br>
+				모:{.str_pr_name2}
+			</td>
+			
+			<td style="text-align:center">
+				{? .str_pay_mes == "bank"}
+				무통장입금
+				{: .str_pay_mes == "bank2"}
+				계좌이체
+				{:}
+				신용카드
+				{/}
+			</td>
+
+			<td style="text-align:center">
+				{? .str_order_st == "0"}
+				<span style="color:red">입금확인전</span>
+				{: .str_order_st == "1"}
+				<span style="color:blue">입금확인</span>
+				{: .str_order_st == "5"}
+				<span style="color:blue">카드승인</span>
+				{: .str_order_st == "2"}
+				<span style="color:#808080">취소</span>
+				{: .str_order_st == "3"}
+				<span style="color:#73758c">회원취소</span>
+				{/}
+			</td>
+			
+			
+
+		</tr>
+		{/}
+	</tbody>
+	</table>
+
+
+</form>
+
+	<div style="margin:10px 0 10px 0;border-bottom:1px solid #cdcdcd;width:100%">
+		<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" class="paginate_complex"/>
+	</div>
+
+
+<!--div style=";border-bottom:1px solid #cdcdcd;float:left;width:100%;padding-bottom:10px;width:100%;float:left">
+		
+		<div style="float:left;width:48%">
+		
+		<span style="float:left">
+		선택한 건을 
+		<select name="modes" onchange="$('mode').value=this.value">
+			<option value="">-- 작업선택--</option>
+	
+			<option value="price_can">취소 처리</option>
+	
+		</select>
+		</span>
+		<span class="btn_pack small icon" style="margin-left:10px;float:left"><span class="refresh"></span><a href="#" onclick="selectItem();">적용하기</a></span>
+			
+		</div>
+
+		<div style="float:right;text-align:right;width:48%">
+			<form method="get">
+			
+			
+			<select name="search_key">
+				<option value="str_st_name">학생명</option>
+				<option value="str_school">학교명</option>
+				<option value="num_serial">기수</option>
+				<option value="str_class">학년</option>
+			</select>
+			<input type="text" name="search_value" value="{search_value}" class="">
+			<span class="btn_pack small"><input type="submit"  value="검색하기"></span>
+			</form>
+		</div>
+			
+		
+		
+	</div-->
+
+<br>
+<br>
+
+{doc1}

@@ -1,0 +1,35 @@
+<public:component>
+<public:attach event="onload" onevent="doFix()" />
+
+<script type="text/javascript">
+var blankImg = "http://static.naver.com/common/iepngfix/blank.gif";
+var flt      = "DXImageTransform.Microsoft.AlphaImageLoader";
+
+function filt(s) {
+	var f = filters[flt];
+
+	if (f) {
+		f.enabled = !!s;
+		if(s) {
+			f.src = src;
+			f.sizingMethod = "scale";
+		}
+	} else if(s) {
+		style.filter = 'progid:'+flt+'(src="'+s+'",sizingMethod=scale)';
+	}
+}
+
+function doFix() {
+	if (tagName != "IMG" || !/MSIE (5\.5|6)/.test(navigator.userAgent) || src == blankImg) return;
+	if (!/\.png$/i.test(src)) return filt();
+
+	if (currentStyle.width == "auto" && currentStyle.height == "auto") style.width = offsetWidth + "px";
+	
+	filt(src);
+	src = blankImg;
+}
+
+doFix();
+</script>
+
+</public:component>

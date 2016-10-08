@@ -1,0 +1,18 @@
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="table02">
+ <tr>
+   <th>일시</th>
+   <th>사이트</th>
+   <th>접근아이피</th>
+   <th>요약</th>
+   <th>referer</th>
+ </tr>
+ {@ LIST}
+ <tr>
+  <td>{=date("md H:i:s",.num_date)}</td>
+  <td>{.str_organ}</td>
+  <td>{.str_ip}</td>
+  <td>{.str_re_name}</td>
+  <td width="500"><a href="{.str_http_referer}" target="_blank">{.str_http_referer}</a></td>
+ </tr>
+ {/}
+</table>

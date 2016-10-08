@@ -1,0 +1,40 @@
+<body>
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<form name="basicinfo" method="post" onsubmit="return validate(this);">
+{? !f}
+<table cellpadding="0" cellspacing="0" border="0" width="670" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 180><b>
+					홈페이지 문구 플래시 설정</b></td>
+				<td>&nbsp;</td>
+				</tr>
+			</table>
+<br>{/}
+<table class="table01"  width = 670>
+	<tbody>
+
+<tr align = center><th>미리보기</th></tr>
+<tr>
+			<td>			<iframe src ="http://<?=$_SERVER[HTTP_HOST]?>/main_fla/sh4.swf" width="600" height="200"  frameborder =  0 name=lastboard scrolling="no"></iframe>
+			</td></tr>
+			
+			<tr>
+			  <th>문구설정</th>
+			</tr>
+			<tr>
+			<td>
+				<input type="text" name="s_title" hname="말풍선" size="50" maxbyte="90" value="{s_title}"><br>
+				※ 홈페이지 메인플래시 말풍선의 문구를 관리합니다.
+			</td>
+		</tr>
+
+	
+		<tr>
+			<td colspan="2" align="center"><input class="button2" type="submit" value="확인"  {? f} onclick = "parent.location.reload();" {/} /></td>
+		</tr>
+	</tbody>
+</table>
+</form>
+<br>
+</body>

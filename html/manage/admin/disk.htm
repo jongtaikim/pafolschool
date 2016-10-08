@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+ </head>
+
+<style type="text/css">
+.title {height:29; text-align:center; padding-top:1; color:red}
+.title1 {color:#464444;font-family:돋움; font-weight:bold; padding-top:1}
+.menu {color:#555555; font-family:돋움; padding:8 0 0 17}
+.menu1 {color:#555555; font-family:돋움; padding:8 0 0 15}
+
+</style>
+
+<script language="JavaScript" src="/js/cht.js"></script>
+ <body>
+
+
+<!--홈페이지 기본통계 start -->		
+	<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	
+	<div class="tab19" width="100%">
+		<ul>
+			<li class="active"><a href="#">첨부파일 사용량</a></li>
+			<li><a href="/manage.admin.organ_view?mode=board&PageNum=020402">게시판 사용 현황</a></li>
+			
+		</ul>
+	</div>
+	<tr>
+		<td width="11" background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:19px 0px 13px 0px">
+		<!-- 표1 Start -->
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr >
+					<td width="20"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01">디스크 사용 현황</td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="96%" align="center" bgcolor="d5dfe7">
+				<tr height="28" bgcolor="FFFFFF">
+					<td width="150" class="table01_title"><strong>총용량</strong></td>
+					<td width="190" class="table01_text01"><strong>{num_disk}</strong></td>
+					<td style="padding-top:4px; padding-left:10px; font-size:11px;"><b>ㆍ</b><strong> 1회 업로드 가능 용량 : {num_upload_size}</strong></td>
+				</tr>
+				<tr height="28" bgcolor="FFFFFF">
+					<td width="150" class="table01_title"><strong>사용용량</strong></td>
+					<td width="190"  class="table01_text01"><strong>{db_num_size} (00%)</strong></td>
+					<td style="padding-top:4px; padding-left:10px"></td>
+				</tr>
+				<tr height="28" bgcolor="FFFFFF">
+					<td width="150" class="table01_title"><strong>남은 용량</strong></td>
+					<td width="190" class="table01_text01"><strong>{use_size} (00%)</strong></td>
+					<td style="padding-top:4px; padding-left:10px"></td>
+				</tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+				<tr>
+					<td width="100%" class="table_btm_line01"></td>
+				</tr>
+				<tr><td height="20"></td></tr>
+			</table>
+		<!-- 표1 End -->	
+
+		<!-- 표2 Start -->
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr >
+					<td width="20"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01">월별 디스크 사용 현황</td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="96%" align="center" bgcolor="d5dfe7">
+				<tr height="34" bgcolor="FFFFFF">
+					<td width="70" class="table01_title"><b>연도</b></td>
+					<td width="541" class="table01_sel01" colspan="12">
+						<SELECT name="year" onchange="location.href='/manage.admin.organ_view?mode=disk&PageNum=020401&year='+this.value" class=select size=1 name="year" onchange="chatr(this.value)">  
+
+						<option value=2008 {?year=="2008"} selected {/}>2008</option> 
+						<option value=2009 {?year=="2009"} selected {/}>2009</option> 
+						<option value=2010 {?year=="2010"} selected {/}>2010</option> 
+						<option value=2011 {?year=="2011"} selected {/}>2011</option> 
+						<option value=2012 {?year=="2012"} selected {/}>2012</option> 
+						<option value=2013 {?year=="2013"} selected {/}>2013</option> 
+						<option value=2014 {?year=="2014"} selected {/}>2014</option> 
+						<option value=2015 {?year=="2015"} selected {/}>2015</option> 
+						<option value=2016 {?year=="2016"} selected {/}>2016</option> 
+
+						</SELECT>년
+					</td>
+				</tr>
+				
+				<tr height="30" bgcolor="FFFFFF">
+					<td class="table01_title"><b>월</b></td>
+					<td width="45" class="table01_text01">1월</td>
+					<td width="45" class="table01_text02">2월</td>
+					<td width="45" class="table01_text01">3월</td>
+					<td width="45" class="table01_text02">4월</td>
+					<td width="45" class="table01_text01">5월</td>
+					<td width="45" class="table01_text02">6월</td>
+					<td width="45" class="table01_text01">7월</td>
+					<td width="45" class="table01_text02">8월</td>
+					<td width="45" class="table01_text01">9월</td>
+					<td width="45" class="table01_text02">10월</td>
+					<td width="45" class="table01_text01">11월</td>
+					<td width="45" class="table01_text02">12월</td>
+				</tr>
+				<tr height="30" bgcolor="FFFFFF">
+					<td class="table01_title"><b>사용량</b></td>
+					{@ fLIST}
+					<td width="45" class="table01_text01">{.file_size}</td>
+					{/}
+					
+				</tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+				<tr>
+					<td width="100%" class="table_btm_line01"></td>
+				</tr>
+				<tr><td height="20"></td></tr>
+			</table>
+		<!-- 표2 End -->	
+
+
+
+		
+
+		<div id="chartdiv2" align="center"> FusionCharts. </div>
+				<script type="text/javascript">
+				   var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "590", "400");
+				   chart.setDataURL("/manage.use_disk?year={OID}|{year}");		
+				   
+					  
+				   chart.render("chartdiv2");
+
+				   function chatr(ye){
+					var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "590", "400");
+				   chart.setDataURL("/manage.use_disk?year={OID}|"+ye);		
+				   chart.render("chartdiv2");
+				   
+				   }
+				</script> 
+
+
+
+
+
+
+		</td>
+		<td width="11" background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+	<tr>
+		<td height="19" colspan="3">&nbsp;</td>
+	</tr>
+	
+</table>
+<!-- 홈페이지 기본통계 end -->
+
+
+ </body>
+</html>

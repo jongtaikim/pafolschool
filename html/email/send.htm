@@ -1,0 +1,441 @@
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+<style>
+ .ico{padding:0 0 0 15; background-color:f9f9f9;}
+ .f1{padding:3 0 0 6; background-color:f9f9f9;font-size:12px;color:#4a4a4a;}
+ .f2{padding:0 0 2 10; font-size:11px;color:#666666;}
+ .f3{padding:11 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+ .f4{padding:0 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+</style>
+
+<FORM METHOD=POST >
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+<!-- 타이틀 Start -->
+<tr valign="top">
+  <td height="59">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" height="59" background="/html/image/title_bg.gif">
+    <tr><td height="20"></td></tr>
+    <tr valign="top">
+      <td width="33"><img src="/html/image/title_icon.gif"></td>
+      <td class="stitle"><img src='/f.php?text=Email발송&font=-윤고딕330&size2=10&bg=ffffff&color=423c2b'></td>
+    </tr>
+    </table>
+  </td>
+</tr>
+<!-- 타이틀 End -->
+<tr>
+  <td height="21"></td>
+</tr>
+<tr>
+  <td valign="top">
+    <table cellpadding="0" cellspacing="0" border="0" width="95%" align = center>
+    <col width="1%"></col><col width="15%"></col><col width="%"></col>
+    <tr>
+      <td colspan="3">
+
+        <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="padding:0 5 4 0"><img src="/html/image/ico_box02.gif"></td>
+          <td style="font-size:12; color:e9084d"><!-- e57700 -->일정조건의 회원들은 대상으로 Email문자를 발송 합니다.</td>
+        </tr>
+        <tr>
+          <td height="4"></td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+    </tr>
+
+
+
+
+    <tr height="50">
+
+      <td class="f2"  colspan = 3 style = "padding:5px">
+
+
+
+
+
+
+
+
+
+        <script type="text/javascript" src="js/lib.validate.js"></script>
+        <script type="text/javascript" id="dynScript" onload="alert('ok');"></script>
+<script type="text/javascript">
+var searchResult = false;
+var searchData = new Array();
+function bindSearch(method) {
+	form = document.forms['EmailForm'];
+		el = form.elements[method];
+	el.options.length = 0;
+
+	if(searchResult) {
+		for(i = 0, cnt = searchData.length; i < cnt; i++) {
+			el.options.add(new Option(searchData[i].text, searchData[i].value));
+		}
+	}
+	else {
+		el.options.add(new Option('-- 검색된 데이터가 없습니다. --', ''));
+	}
+}
+
+function searchName() {
+	initSearch();
+
+	form = document.forms['EmailForm'];
+	search_key = form.elements['search_key'].value;
+	search_value = form.elements['search_value'].value;
+	document.getElementById('dynScript').src = 'email._search?part=name&search_key=' + search_key +  '&search_value=' + search_value;
+}
+
+function chageSearchMethodAll() {
+	chageSearchMethod("all");
+	searchAll('total');
+}
+
+function searchAll(s) {
+	initSearch();
+	document.getElementById('dynScript').src = 'email._search?part=all&limD='+s;
+}
+
+function initSearch() {
+	searchResult = false;
+	searchData = new Array();
+
+	form = document.forms['EmailForm'];
+		el = form.elements['search_result'];
+	el.options.length = 0;
+	el.options.add(new Option('-- 검색중입니다. --', ''));
+}
+
+function checkMsg(el) {
+	str = el.value;
+	len = calByte(str);
+	if(len > 80) {
+		tlen = 0;
+		for (i=0; i<80; i++) {
+			if(str.charAt(i).charCodeAt() > 128) {
+				tlen += 2;
+			}
+			else {
+				tlen++;
+			}
+			if(tlen>=80) break;
+		}
+		if(tlen > 80) i--;
+		alert('80바이트 까지 입력가능합니다.(한글 40자)');
+		str = str.substring(0,i+1);
+		len = calByte(str);
+		document.getElementById('Email_byte').innerHTML = len;
+		el.value = str;
+	}
+	else {
+		document.getElementById('Email_byte').innerHTML = len;
+	}
+}
+
+function calByte(str) {
+	var len = 0;
+	str = this != window ? this : str;
+	for (j=0; j<str.length; j++) {
+		var chr = str.charAt(j);
+		len += (chr.charCodeAt() > 128) ? 2 : 1;
+	}
+	return len;
+}
+
+function chTab(id) {
+	switch (id) {
+		case '1':
+		document.forms['EmailForm'].elements['mode'].value = 'regular';
+		document.getElementById('tabbtn2').setAttribute('className','');
+		document.getElementById('tabarea2').style.display = 'none';
+		document.getElementById('tabbtn1').setAttribute('className','active');
+		document.getElementById('tabarea1').style.display = 'block';
+		break;
+		case '2':
+		document.forms['EmailForm'].elements['mode'].value = 'member';
+		document.getElementById('tabbtn1').setAttribute('className','');
+		document.getElementById('tabarea1').style.display = 'none';
+		document.getElementById('tabbtn2').setAttribute('className','active');
+		document.getElementById('tabarea2').style.display = 'block';
+		break;
+	}
+
+}
+
+function addEmail() {
+	form = document.forms['EmailForm'];
+		el = form.elements['re_phone'];
+	if(!el.value) {
+		alert('번호를 입력하여 주십시오.');
+		return false;
+	}
+	if(checkEmail(el, el.value) !== true) {
+		alert('핸드폰 번호 형식이 올바르지 않습니다.');
+		return false;
+	}
+	if(!isOverlap(el.value, 'str_Email[]')) return false;
+	opt = new Option(el.value, el.value);
+	WebApp.ie ? form.elements['str_Email[]'].add(opt) : form.elements['str_Email[]'].add(opt,null);
+		el.value = '';
+}
+
+function moveEmail(selectFrm, moveFrm) {
+	form = document.forms['EmailForm'];
+		el = form.elements[selectFrm].options;
+	el2 = form.elements[moveFrm].options;
+
+	if(!el.length) return false;
+	is_selected = false;
+	cmove = true;
+
+	cnt = el.length;
+	cnt2 = el2.length;
+
+	for(i=cnt-1 ; i>=0 ; i--){
+
+		if(el[i].selected) {
+
+			if(isOverlap(el[i].value, moveFrm)){
+				el2.add(new Option(el[i].text, el[i].value));
+				el.remove(i);
+			}
+			is_selected = true;
+		}
+	}
+
+	if(!is_selected) alert('추가하실 번호를 선택하여 주십시오.');
+}
+
+function isOverlap(Email, moveFrm) {
+	form = document.forms['EmailForm'];
+		el2 = form.elements[moveFrm].options;
+	cnt2 = el2.length;
+
+	if(!cnt2) return true;
+	if(!Email) return false;
+
+	for (ii = 0;  ii < cnt2 ; ii++) {
+		if(el2[ii].value == Email) {
+			return false;
+			break;
+		}
+	}
+
+	return true;
+}
+
+function removeEmail() {
+	form = document.forms['EmailForm'];
+		el = form.elements['str_Email[]'].options;
+	if(!el.length) return false;
+	seleted_list = new Array();
+	for (i = 0; i < el.length; i++) {
+		if(el[i].selected) {
+			el[i] = null;
+			i--;
+		}
+	}
+}
+
+function checkEmail(el, value) {
+	var pattern = /^(010|011|016|017|018|019)-?([1-9]{1}[0-9]{2,3})-?([0-9]{4})$/;
+	var num = value ? value : el.value;
+	if (pattern.exec(num)) {
+		if(RegExp.$1 == "011" || RegExp.$1 == "016" || RegExp.$1 == "017" || RegExp.$1 == "018" || RegExp.$1 == "019") {
+			if(!el.getAttribute("span"))
+				el.value = RegExp.$1 + "-" + RegExp.$2 + "-" + RegExp.$3;
+		}
+		return true;
+	}
+	else {
+		return "invalid";
+	}
+}
+
+function chageSearchMethod(method) {
+	switch(method) {
+		case 'name':
+		document.getElementById('search_name_area').style.display = 'block';
+		document.getElementById('search_free_all').style.display = 'none';
+		break;
+		case 'all':
+		document.getElementById('search_name_area').style.display = 'none';
+		document.getElementById('search_free_all').style.display = 'block';
+		break;
+	}
+}
+
+function prepare(form) {
+	FormCheckerObject = new FormChecker;
+	if(!validate(form)) return false;
+	if(form.elements['mode'].value == 'regular') {
+		el = form.elements['str_Email[]'].options;
+		if(!el.length) {
+			alert('받는 사람에 핸드폰 번호를 추가하여 주십시오.');
+			return false;
+		}
+
+	}
+	if(!confirm('Email 발송하시겠습니까?')) return false;
+	if(form.elements['mode'].value == 'regular') {
+		for(i = 0, cnt = el.length; i < cnt; i++) {
+			el[i].selected = true;
+		}
+		;
+	}
+	return true;
+}
+
+function addAlbunm() {
+	form = document.forms['albunmForm'];
+		form.elements['str_msg'].value = document.forms['EmailForm'].elements['str_msg'].value;
+			if(!validate(form)) return false;
+			win = window.open('about:blank','Email_albunm','width=750,height=500');
+	form.submit();
+}
+</script>
+<form name="albunmForm" method="post" action="Email.albunm" target="Email_albunm" style="margin:0px;">
+<input type="hidden" name="mode" value="add">
+<input type="hidden" name="str_msg" hname="Email 메시지" errmsg="Email 메시지를 작성하여 주십시오." value="" nofocus required>
+</form>
+
+
+        <table width="679" cellspacing="0" cellpadding="0" style="margin:0px;">
+        <form name="EmailForm" method="post" onSubmit="return prepare(this);">
+        <input type="hidden" name="mode" value="regular">
+        <tr valign="top">
+          <td width="675" style="padding-left:10px;">
+            <div class="tab01">
+              <ul>
+                <li id="tabbtn1" class="active"><a href="#" onClick="chTab('1');">일반발송</a></li>
+              </ul>
+            </div>
+            <div id="tabarea1">
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+              <tr valign="top">
+                <td width="45%">
+                  [받는사람]<br>
+                  <input type="text" name="to_email" style="width:65%;" onKeyDown="if(event.keyCode == 13) { addEmail(); return false; }">
+                  <input type="button" class="button" value="추가" style="width:15%;" onClick="addEmail();">
+                  <input type="button" class="button" value="제거" onClick="removeEmail();"  style="width:15%;">
+                </td>
+                <td width="10%"></td>
+                <td width="45%">
+                  <input type="radio" name="search_method" id="search_method_all" value="all" style="border:0px;" onClick="chageSearchMethodAll();" checked>
+                  <label for="search_method_all">전채</label>
+                  <input type="radio" name="search_method" id="search_method_name" value="name" style="border:0px;" onClick="chageSearchMethod('name');">
+                  <label for="search_method_name">이름별</label>
+                  <br>
+                  <div id="search_name_area" style="display:none;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <select name="search_key">
+                        <option value="str_name">이름</option>
+
+                        <option value="str_handphone">핸드폰</option>
+                        </select>
+                      </td>
+                      <td><input type="text" name="search_value" size="21" maxlength="14" onKeyDown="if(event.keyCode == 13) { searchName(); return false; }"></td>
+                      <td><input type="button" class="button" value="검색" onClick="searchName();"></td>
+                      <!--td><input type="button" class="button" value="전체" onclick="searchAll();"></td-->
+                    </tr>
+                    </table>
+                  </div>
+                  <div id="search_free_all">
+                    <select name="Alimit" onChange="searchAll(this.value);">
+                    <option value="">- 검색수 -</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td valign="top" align="center">
+                  <select name="str_Email[]" hname="받는사람" errmsg="받는 사람에 핸드폰 번호를 추가하여 주십시오." multiple size="15" style="width:100%;">
+                  <!--{@ DIC_LIST}-->
+                  <option value="{.str_Email}">{.str_name}({.str_Email})</option>
+                  <!--{/}-->
+                  </select>
+                </td>
+                <td align="center">
+                  <!--input type="button" class="button" value=" ▶ " style="height:50px;" onclick="moveEmail('str_Email[]', 'search_result');"><br-->
+                  <input type="button" class="button" value=" ◀ " style="height:50px;" onClick="moveEmail('search_result', 'str_Email[]');">
+                </td>
+                <td valign="top">
+                  <select name="search_result" multiple size="15" style="width:100%;" ondblclick="moveEmail('search_result', 'str_Email[]');">
+                  </select>
+                  ※ 중복된 이메일은 추가되지 않습니다.
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <wa:upload part="editor_new" sect="menu" code="{mcode}" name="content" width="100%" height="600">{content}</wa:upload>
+                </td>
+              </tr>
+              </table>
+              <br>
+              <table width="100%" class="table01" style="margin:0px;">
+              <tr>
+                <td align="left">
+                  <UL>
+                    <LI>
+                    추후 추가
+                  </UL>
+                </td>
+              </tr>
+              </table>
+            </div>
+          </td>
+        </tr>
+        </form>
+        </table>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+    </tr>
+
+
+
+
+
+
+    <tr>
+      <td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+    </tr>
+
+
+
+    <tr>
+      <td colspan="3" align =center style="padding:10"><input type="image" src="/html/image/btn_save.gif" value="저장하기"></td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+
+
+
+<input type="hidden" name="end" value="">
+</FORM>

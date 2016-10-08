@@ -1,0 +1,164 @@
+<style>
+.text01 {
+	font-family: verdana;
+	font-size: 12px;
+	line-height: 20px;
+	padding-right: 12px;
+	padding-left: 13px;
+	padding-top: 7px;
+	padding-bottom: 5px;	
+}
+.title01 {
+	padding-top: 2px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+</style>
+
+<script language="Javascript">
+
+function vvie(idx){
+	imgdiv = 'img'+idx;
+	if($(idx).style.display=="none"){
+		$(idx).style.display="";
+		$(imgdiv).src="./images/icon-04.gif";
+	}else{
+		$(idx).style.display="none";
+		$(imgdiv).src="./images/icon-03.gif";
+	}
+}
+
+</script>
+<script type="text/JavaScript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+
+{#BOARD_TOP}
+
+<table border="0" cellspacing="0" cellpadding="0" width="{? str_width}{str_width}{?str_width <= 100}%{/}{:}100%{/}" >
+<tr>
+	<td><img src="./images/04.gif"></td>
+</tr>
+<tr>
+	<td height="8"></td>
+</tr>
+<? if(_OID == 20252){ ?>
+<tr>
+	<Td>
+		<table width="667" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><a href="/qna_board.list?mcode={mcode}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image1','','./images/01_01.gif',1)"><img src="./images/{?str_category == ''}01{:}02{/}_01.gif" alt="전체보기" name="Image1" border="0" id="Image1" /></a></td>
+			<td><a href="/qna_board.list?mcode={mcode}&str_category=회원정보" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('회원정보','','./images/01_02.gif',1)"><img src="./images/{?str_category == '회원정보'}01{:}02{/}_02.gif" alt="회원정보" name="회원정보" border="0" id="회원정보" /></a></td>
+			<td><a href="/qna_board.list?mcode={mcode}&str_category=증권방송" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('증권방송','','./images/01_03.gif',1)"><img src="./images/{?str_category == '증권방송'}01{:}02{/}_03.gif" alt="증권방송" name="증권방송" border="0" id="증권방송" /></a></td>
+			<td><a href="/qna_board.list?mcode={mcode}&str_category=결제관련" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('결제관련','','./images/01_04.gif',1)"><img src="./images/{?str_category == '결제관련'}01{:}02{/}_04.gif" alt="결제관련" name="결제관련" border="0" id="결제관련" /></a></td>
+			<td><a href="/qna_board.list?mcode={mcode}&str_category=기타문의" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('기타문의','','./images/01_05.gif',1)"><img src="./images/{?str_category == '기타문의'}01{:}02{/}_05.gif" alt="기타문의" name="기타문의" border="0" id="기타문의" /></a></td>
+		</tr>
+		</table>
+	</Td>
+</tr>
+<Tr>
+	<Td height="8"></Td>
+</Tr>
+<? } ?>
+<tr>
+	<td height="2" background="./images/line-04.gif"></td>
+</tr>
+<!--{@ LIST}-->
+<tr>
+	<td>
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+			<td align="center" width="32" height="34"><img src="./images/icon-01.gif" width="16" height="16" /></td>
+			<td class="title01">
+				<a href="javascript:vvie('{.num_serial}')" style="font-size:12px;	font-family:돋움;">{.str_title}</a>&nbsp;&nbsp;
+				<!--{? env.writable}-->
+				<a href="/qna_board.modify?mcode={.num_mcode}&id={.num_serial}&num={.num_serial}"><img src="/image/iicon/ico-btn-write.gif" align=absmiddle></a>
+				<a href="/qna_board.delete?mcode={.num_mcode}&id={.num_serial}&num={.num_serial}"><img src="/html/class/img/memo_delete_bt.gif"  align=absmiddle></a>
+				<!--{/}-->
+			</td>
+			<td align="center" width="40"><a href="javascript:vvie('{.num_serial}')"><img id="img{.num_serial}" src="./images/icon-03.gif" width="11" height="11" /></a></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr id = "{.num_serial}" style="display:none">
+	<td>
+		<table width="667" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td valign="top" align="center" style="vertical-align:top" width="32" height="34"><img src="./images/icon-02.gif" width="16" height="16" /></td>
+			<td>
+				<table width="635" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="3" width="3"><img src="./images/table-01.gif" width="3" height="3" /></td>
+					<td width="629" height="3" background="./images/table-02.gif"></td>
+					<td width="3"><img src="./images/table-03.gif" width="3" height="3" /></td>
+				</tr>
+				<tr>
+					<td background="./images/table-07.gif"></td>
+					<td class="text01" bgcolor="#f8f8f8">{.content}</td>
+					<td background="./images/table-08.gif"></td>
+				</tr>
+				<tr>
+					<td height="3" width="3"><img src="./images/table-04.gif" width="3" height="3" /></td>
+					<td height="3" background="./images/table-05.gif"></td>
+					<td width="3"><img src="./images/table-06.gif" width="3" height="3" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+		<br>
+	</td>
+</tr>
+
+{? .index_+1 != .size_}
+<tr>
+	<td height="1" background="./images/line-03.gif"></td>
+</tr>
+{/}
+
+{:}
+
+<tr>
+  <td align =center height = 37>등록된 FAQ가 없습니다.</td>
+</tr>
+
+{/}
+
+<tr>
+	<td height="2" background="./images/line-04.gif"></td>
+</tr>
+</table>
+
+<br><br>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+<tr>
+	<td align = center><!--{? env.writable}--><a href="{writelink}"><img src="./image/btn_write.gif"></a><!--{/}--></td>
+</tr>
+</table>
+
+

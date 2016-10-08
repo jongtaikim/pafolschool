@@ -1,0 +1,122 @@
+<link rel="stylesheet" href="/css/board.css" type="text/css" />
+
+<img src="./image/newsletter_topimg01.gif" alt="ECOSIAN NEWLETTER 뉴스레터 - 뉴스레터를 모아둔 곳으로 ECOSIAN의 지난 발자취 뿐 아니라, 발행 당시의 이슈화였던 사회/환경문제들을 열람 가능합니다." />
+
+
+<div style="margin:10px">
+
+	ECOSIAN에서는 Report, 행사참가후기, 국내외 행사일, 북클럽 등 환경관련 정보를 뉴스레터로 격주 제공합니다.
+</div>
+
+
+
+
+
+
+<div class="board">
+					
+				{#BOARD_TOP2}
+
+
+						<div class="inforight search" style="width:255px;float:right;margin-bottom:5px">
+							<form class="boardSearchForm" name="searchform" action="/news.list">
+								<fieldset>
+									<legend>게시물 검색</legend>
+									<img src="/images/board/boardSearchFormTit.gif" alt="검색" method="get" />
+									<input type="hidden" name="mcode" value="{mcode}"/>
+									<input type="hidden" name="cate" value="{cate}"/>
+									<input type="hidden" name="code" value="{code}"/>
+									<select name="key" id="key" style="float:right">
+										<option value="str_title" {? key =="str_title"} selected{/}>제목</option>
+										<option value="num_serial" {? key =="num_serial"} selected{/}>번호</option>
+									</select>
+
+
+
+									<input class="inputtxt" type="text" title="검색"  id="search" name="search"  value="{search}"/>
+									
+									<span class="button02 smallarrowIcon">
+										<span><input type="submit" value="검색" /></span>
+									</span>
+									
+								</fieldset>
+							</form>
+						</div>
+
+				
+						<form method=post  name="listForm"  id="listForm"  action="/board.copy"  target="d_main" class="boardListForm" >
+						<input type="hidden" name="all" id="all" />
+						<input type="hidden" name="mcode" id="mcode" value="{mcode}" />
+			
+						<fieldset>
+						<legend>{title_text} 목록</legend>
+							<table class="boardList" border="1" cellspacing="0" summary="{title_text} 공지사항 목록입니다..">
+								<caption>{title_text} 목록</caption>
+								<thead>
+									<tr class="top">
+									
+										<th scope="col" class="num">발행번호</th>
+										<th scope="col" class="title">제목</th>
+										
+										<th scope="col" class="date">등록일</th>
+										
+
+										
+									</tr>
+								</thead>
+								<tbody>
+								
+									
+									{@ LIST}
+									<tr class="{?(.index_ +1) %2 == 0}bg2{:}bg1{/}">
+										
+										<td>{.num_serial}</td>
+										<td class="title">
+
+										
+										 <a href="#" onclick="winOpen('/news.read?mcode={mcode}&code={code}&id={.num_serial}',800,800,'yes'); return false">{.str_title}</a>
+										
+										
+
+										</td>
+										<td>{.dt_date}</td>
+										
+									</tr>
+									{:}
+									
+									<tr>
+									  <td colspan="7" align="center" height="100px" style="padding-top:50px">게시물이 없습니다.</td>
+									</tr>
+
+									{/}
+									
+								
+								</tbody>
+							</table>
+						</fieldset>
+					</form>
+
+					<!-- 페이징 및 버튼 시작 -->
+					<div class="boardNavigation">
+						
+						<div class="pagination">
+							
+							<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/images/board/boardPrevBtn.gif" nexticon="/images/board/boardNextBtn.gif" firsticon="/images/board/boardFirstBtn.gif" lasticon="/images/board/boardLastBtn.gif" />
+
+						</div>
+					</div>
+					
+
+				</div>
+
+
+
+<!--//ui object -->
+
+
+
+
+
+
+
+

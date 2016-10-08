@@ -1,0 +1,224 @@
+
+<style type="text/css" title="">
+.texta1{ width:280px;height:16px}
+</style>
+<script type="text/javascript">
+// <![CDATA[
+function selectCate(idx){
+	if($('str_type').value == "1"){
+		$('ccodes').style.display = 'block';
+		$('ccodes2').style.display = 'none';
+		$('num_ccode').value = '10';
+	}else{
+		$('ccodes').style.display = 'none';
+		$('ccodes2').style.display = 'block';
+		$('num_ccode').value = '100';
+	}
+}
+
+
+function checkSelected() {
+	form = document.forms['itemForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('{=_la("항목을 선택하여 주십시오.")}');
+		return false;
+	}
+	return true;
+}
+
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.itemForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.itemForm.all.value = "";
+
+ return;
+}
+
+
+function deleteItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 인원의 상태를 변경처리 하시겠습니까?')) return false;
+	form.submit();
+}
+// ]]>
+</script>
+
+
+<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="itemForm">
+	<input type="hidden" name="all" id="all" >
+	<input type="hidden" name="mode" id="mode" >
+	<input type="hidden" name="lms_code" value="{lms_code}">
+
+	
+	<p class="buTitle17" style="margin-bottom:10px">신청 교육 정보</p>
+
+	<table width="100%" cellspacing="0" border="1" summary="신청 기본 정보 입력/수정" class="tbl_type">
+	<caption>신청 기본 정보 입력/수정</caption>
+		<colgroup>
+			<col width="140"><col><col width="120"><col>
+		</colgroup>
+	<tbody>
+		
+		<tr>
+			<th scope="row">교육명</th>
+			<td colspan="3">{str_title}</td>
+		</tr>
+		<tr>
+			<th scope="row">교육구분</th>
+			<td colspan="3">
+				{? str_type =="1"}공개교육{/}
+				{? str_type =="100"}위탁교육{/}
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">교육일자</th>
+			<td colspan="3">
+				{? str_type =="1"}{num_year}.{num_month}.{num_start_day}~{num_end_day} : {/}{str_time}
+			</td>
+		</tr>
+
+	</tbody>
+	</table>
+	
+	<br/>
+	<br/>
+
+	<p class="buTitle17" style="margin-bottom:10px">수료 현황</p>
+
+	
+
+	<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0" class="tableTemp02" summary="">
+					<thead>
+						<tr>
+							<th style="text-align:center"><input type="checkbox" name="" onclick ="checkall();"></th>
+							<th style="text-align:center">회사</th>
+							<th style="text-align:center">이름</th>
+							<th style="text-align:center">부서</th>
+							<th style="text-align:center">직급</th>
+							<th style="text-align:center">연락처</th>
+							<th style="text-align:center">e-mail</th>
+							<th style="text-align:center">수료상태</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						{@ human_LIST}
+						<tr>
+							<td style="border:1px solid #c6c6c6"><input type="checkbox" name="ids[]" value="{.num_serial}"></td>
+							<td style="border:1px solid #c6c6c6">{.str_compay}</td>
+							<td style="border:1px solid #c6c6c6">{.str_name}</td>
+							<td style="border:1px solid #c6c6c6">{.str_term}</td>
+							<td style="border:1px solid #c6c6c6">{.str_ups}</td>
+							<td style="border:1px solid #c6c6c6">{.str_phone}</td>
+							<td style="border:1px solid #c6c6c6">{.str_email}</td>
+							<td style="border:1px solid #c6c6c6">{?.str_commit == "y"}수료{:}-{/}</td>
+						</tr>
+						{/}
+					</tbody>
+				</table>
+
+	<div style=";border-bottom:1px solid #cdcdcd;float:left;width:100%;padding-bottom:10px;margin-top:20px">
+		<span style="float:left">
+		선택한 인원을 
+		<select name="mode">
+			<option value="access">수료 처리</option>
+			<option value="not_access">미수료 처리</option>
+		</select>
+		</span>
+		<span class="btn_pack small icon" style="margin-left:10px;float:left"><span class="refresh"></span><a href="#" onclick="deleteItem();">적용하기</a></span>
+		
+	</div>
+
+	<div style="float:left;width:100%;padding-bottom:10px;margin-top:20px">
+		
+		
+		
+		
+		
+		
+		<span style="float:left">
+		<input type="checkbox" name="all_commit" value="y" id="all_commit" {? str_lms_st == 'y'} checked{/}><label for="all_commit">
+		{? str_lms_st == 'n'} 이 교육의 수료처리를 마감처리하기 (완료처리)
+		{:}
+
+		<span style="color:blue">해당 교육건은 마감처리되었습니다.</span>
+		{/}
+		
+		</label> 
+		</span>
+		<span class="btn_pack small icon" style="margin-left:20px"><span class="check"></span><input type="submit" name="" value="적용하기" class=""></span>
+	</div>
+
+</form>
+
+<br>
+<br>
+
+<table cellpadding="0" cellspacing="0" border="0" style="margin-top:20px;float:left">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			ㆍ체크박스를 선택하여 수료처리할 인원을 선택 후 [수료처리]를 변경해주시기 바랍니다.<br>
+			ㆍ해당 교육를 신청한 모든 인원이 표시됩니다. (회사 구분없음)<br/>
+			ㆍ해당교육을 마감처리해야만 각 인원들이 수료증을 출력할 수 있습니다.<br/>
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+

@@ -1,0 +1,155 @@
+<style type="text/css" title="">
+/*서브로그인영역*/
+#memberLogin {
+	width:613px;
+	margin:0 auto;
+	}
+	#memberLogin .objTop img {
+		display:block;
+		}
+		#memberLogin .objContent form {
+			position:relative;
+			padding-bottom:12px;
+			background:url(/html/member/images/loginBtmBg.gif) no-repeat left bottom; 
+			}
+			#memberLogin .objContent fieldset {
+				height:95px;
+				padding-left:155px;
+				padding-top:49px;
+				background:url(/html/member/images/loginCenterBg.gif) repeat-y left top;
+				}
+				#memberLogin .objContent fieldset p {
+					margin:0;
+					}
+					#memberLogin .objContent fieldset label {
+						vertical-align:-2px;
+						}
+
+					/*ie6, ie7핵*/
+					*+html #memberLogin .objContent fieldset label {
+						vertical-align:1px;
+						}
+					*html #memberLogin .objContent fieldset label {
+						vertical-align:2px;
+						}
+
+					#memberLogin #idInput, #memberLogin #pwInput {
+						width:185px;
+						height:16px;
+						margin-bottom:2px;
+						}
+
+					/*ie6, ie7핵*/
+					*+html #memberLogin #idInput, *+html #memberLogin #pwInput {
+						width:183px;
+						}
+					*html #memberLogin #pwInput {
+						width:183px;
+						margin-top:-2px;
+						}
+					*html #memberLogin #idInput {
+						width:183px;
+						}
+		#memberLogin .objContent .loginBtn {
+			position:absolute;
+			left:393px;
+			top:48px;
+			}
+		#memberLogin #joinBtnArea {
+			margin-top:10px;
+			padding-left:5px;
+			}
+		#memberLogin #joinBtnArea li {
+			display:inline;
+			float:left;
+			margin-right:14px;
+			}
+			#memberLogin #joinBtnArea .massage {
+				vertical-align:4px;
+				}
+		
+
+
+</style>
+<script type="text/javascript">
+// <![CDATA[
+function httpsLoginMain(obj){
+	if(obj.checked == true){
+	alert('SSL이 적용된 로그인을 실시합니다. \n로그인 오류시 체크를 해제하고 로그인하시기 바랍니다.');
+	
+	$('loginFormMain').action = 'member.join';
+	}else{
+	alert('SSL이 적용된 로그인해제합니다.');
+	$('loginFormMain').action = 'member.login';
+	}
+}
+// ]]>
+</script>
+<script type="text/javascript">
+		// <![CDATA[
+		function memberMod(){
+		 var url = "https://login.<?=DOMAIN_?>/member.modify_ses?themeset=<?=HOST?>&baseurl=<?=$_SERVER[HTTP_HOST]?>&ssid=<?=$_REQUEST[PHPSESSID]?>";
+		 
+		 winOpen(url,"600px",'600px','y','member');
+
+		}
+		// ]]>
+		</script>
+
+<!-- 로그인 페이지 영역 시작 -->
+		<div id="memberLogin">
+			<!-- 로그인 타이틀 시작 -->
+			<div class="objTop">
+				<h3>멤버 로그인</h3>
+				<img src="./images/loginTop.gif" alt="멤버 로그인:우리학교 홈페이지를 방문해 주신 여러분을 진심으로 환영합니다" />
+			</div>
+			<!-- 로그인 타이틀 끝 -->
+			<!-- 로그인 폼 시작 -->
+			<div class="objContent">
+					
+
+					<? if(_T_LOGIN == "Y"){ ?>
+					  <form name="loginFormMain" id="loginFormMain" method="post" action="https://login.<?=DOMAIN_?>/t_login" onsubmit="return validate(this);" >
+					 <? }else{?>
+					 <form name="loginFormMain"  id="loginFormMain" method="post" action="member.login" onsubmit="return validate(this);" >
+					 <? } ?>
+
+						<input type="hidden" name="oid" value="<?=_OID?>"/>
+						<input type="hidden" name="r_url" value="<?=$_SERVER[HTTP_HOST]?>"/>
+						<input type="hidden" name="re_url" value="<?=$_SERVER[HTTP_HOST]?>{? reurl}{reurl}{:}{act3}{/}"/>
+						<input type="hidden" name="redir" value="{? reurl}{reurl}{:}{act3}{/}"/>
+						<input type="hidden" name="ssid" name="ssid2" value="<?=$_REQUEST[PHPSESSID]?>"/>
+						<fieldset>
+						<legend>로그인</legend>
+						<p class="id">
+							<label for="idInput" title="아이디"><img src="./images/idImg.gif" alt="아이디" /></label>
+							<input id="idInput" name="userid" type="text" />
+						</p>
+						<p class="password">
+							<label for="pwInput" title="비밀번호"><img src="./images/pwImg.gif" alt="비밀번호" /></label>
+							<input id="pwInput" name="passwd" type="password" />
+						</p>
+						<? if(_OID){?>
+						<p class="password">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" title="보안로그인"  name="https_login_main" id="https_login_main" onclick = "httpsLoginMain(this);" onkeypress="httpsLoginMain(this);" checked="true" />
+							<label for="https_login_main" title="보안로그인체크">보안로그인 적용</label>
+						</p>
+						<? } ?>
+						<input type="image" src="./images/loginBtn.gif" class="loginBtn" alt="로그인" />
+					</fieldset>
+				</form>
+				<ul id="joinBtnArea">
+					<li class="join">
+						<img src="./images/joinMassage.gif" class="massage" alt="아직회원이 아니신가요?" />
+						<a href="member.join_step"><img src="./images/joinBtn.gif" alt="회원가입" /></a>
+					</p>
+					<li class="idpwSearch">
+						<img src="./images/idpwSearchMassage.gif" class="massage" alt="아이디/비밀번호가 생각나지 않으세요?" />
+						<a href="/member.findid"><img src="./images/idpwSearchBtn.gif" alt="아이디/비밀번호 찾기" /></a>
+					</p>
+				</ul>
+			</div>
+			
+		</div>
+ <!-- 로그인 페이지 영역 끝 -->

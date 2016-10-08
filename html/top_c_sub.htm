@@ -1,0 +1,76 @@
+<?
+include _DOC_ROOT.'/admin_menu.php';
+$hhh2 = {act3};
+$hhh = {act2};
+
+if(_PN) {
+	$pn = _PN;
+}
+
+
+$pn_1 = substr(_PN,1,1);
+$pn_2 = substr(_PN,3,1);
+
+
+?>
+<script type="text/javascript" src="/js/lib.validate2.js"></script>
+
+<div id="contentAllWrap" style="height:100%">
+<div class="bodyDiv">
+	<h6 class="popTitle" style="background-color:#0878c2">NOW CMS 관리자 모드</h6>
+		
+
+	
+
+
+	
+	
+	<div class="header" style="min-width:880px">
+	
+
+	<h1>css naviagation bar.</h1>
+	
+	<div id="menu" class="menu mc_violet">
+		<!--class="mc_purple | mc_violet | mc_orange | mc_green | mc_gray"-->
+		<div class="inset">
+		<div class="major">
+		<!--class="major + (m1~m12)"-->
+		<ul>
+			<? for($ii=0; $ii<count($menu); $ii++) { ?>
+			<li class="m<?=($ii+1)?>">
+				<a href="<?=$menu[$ii][link]?><?=$menu[$ii][pn]?>">
+					<span ><?=$menu[$ii][title]?></span>
+				</a> 
+			</li>
+			<? } ?>
+		</ul>
+	</div>
+	<div class="aside" >
+	<ul >
+		<li class="m1" >
+			<a href="/info" target="_blank">
+				<span>PHP INFO</span>
+			</a>
+		</li>
+		<li class="m2">
+			<a href="http://ugp-023.cafe24.com/WebMysql" target="blank">
+				<span>PhpMyAdmin</span>
+			</a> 
+		</li>
+	</ul>
+	</div>
+
+	<span class="gradient"></span>
+	</div>
+	<span class="shadow"></span>
+</div>
+
+<div style="border-bottom:1px solid #cdcdcd;background-color:#f3f3f3;padding:4px;text-align:right;padding-right:10px;padding-top:7px;height:14px">
+	<div style="width:65%;float:left;text-align:left;padding-left:10px">
+		<strong>{_SESSION.NAME}</strong> 님 이 로그인 중입니다.
+	</div>
+	<div style="width:29%;float:right"><a href="/main">홈페이지 바로가기</a> | <a href="/member.logout">관리자 로그아웃 </a></div>
+</div>
+	
+
+	

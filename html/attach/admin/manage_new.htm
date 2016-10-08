@@ -1,0 +1,578 @@
+<link rel="stylesheet" type="text/css" href="/theme/{_THEME}/css/{layout}.css">
+<link rel="stylesheet" type="text/css" href="@/custom_layout_{layout}.css">
+
+<script type="text/javascript" src="/js/scriptaculous_bak.js"></script>
+<script type="text/javascript" src="/js/Resize_attach.js"></script> 
+<script type="text/javascript" src="/js/attach_core_new.js"></script> 
+<script type="text/javascript">
+<!-- // function blockError(){return true;}  window.onerror = blockError; //--> 
+	new Resize("resizable","resizedistance","resizemaxwidth","resizemaxheight","resizedefaultcursor"); 
+	var ta_layout = "";
+	var ta_width = "";
+	var x = (document.body.clientWidth / 2) - (785 / 2 ) - 20 ; 
+	var tar_lay = "";
+	var tar_id = "";
+	var left_offset_x ="";
+	var top_offset_x ="";
+
+
+			function copyLayout(){
+			var result = confirm("기존 설정이 초기화 됩니다. 실행하시겠습니까?");
+			 if (result){
+			location.href="/attach.admin.copy?a={layout}&b=" + $('targt_layout').value;
+			}
+			}
+
+
+
+//=======================================*/
+var jsNumericsteper = function(textbox,button1,button2,configSetting){
+	var config = {
+			'min':null
+			,'max':null
+			,'step':1
+			,'delay':300
+			,'outRange':true
+			,'decimalPoint':0
+	};
+	if(configSetting){
+		for(x in configSetting){
+			config[x] = configSetting[x];
+		}
+	}
+	var mouseDown = false;
+	var ta0 = textbox;
+	var ta1 = button1;
+	var ta2 = button2;
+
+	if(!ta0 || !ta1 || !ta2){alert('대상지정이 잘못되었습니다'); return false;}
+
+	//==== 체크
+	var val =parseFloat(ta0.value); 
+	if(isNaN(val)){
+	}else{
+		if(config['decimalPoint']){
+				val = val.toFixed(config['decimalPoint']); //IE5이상전용
+		}
+		ta0.value = val.toString();
+	}
+	
+
+	//===== 이벤트,함수 설정
+	var thisC = this;
+	var timer = null;
+
+	var fnPlus = function(){
+		var val =parseFloat(ta0.value); 
+		
+		if(isNaN(val)){alert('숫자형식의 값이 아닙니다'); return false;}
+		val += config['step']
+		if(config['max']!=null && val > config['max'] ){ 
+			if(!config['outRange']) return;		
+			val = config['max'] ; 
+		}
+		if(config['decimalPoint']){
+				val = val.toFixed(config['decimalPoint']);//IE5이상전용
+		}		
+		ta0.value = val.toString();
+
+		if(ta0.id == "conWidth") {
+		changeWidthInput(val.toString());			
+		}else if(ta0.id == "conHeight"){
+		changeHeightInput(val.toString());			
+		}else if(ta0.id == "height_t"){
+		changeH(ta0.code,val.toString());
+		}else if(ta0.id == "width_t"){
+		changeW(ta0.code,val.toString());			
+		}else if(ta0.id == "main_layout_width2"){
+		setMainLayout();			
+		}
+
+
+	}
+	var fnMinus = function(){
+		var val =parseFloat(ta0.value); 
+		if(isNaN(val)){alert('숫자형식의 값이 아닙니다'); return false;}
+		val -= config['step'];
+		if(config['min']!=null && val < config['min'] ){ 
+			if(!config['outRange']) return;		
+			val = config['min'] ; 
+		}
+		if(config['decimalPoint']){
+				val = val.toFixed(config['decimalPoint']); //IE5이상전용
+		}
+		ta0.value = val.toString();
+
+		if(ta0.id == "conWidth") {
+		changeWidthInput(val.toString());			
+		}else if(ta0.id == "conHeight"){
+		changeHeightInput(val.toString());			
+		}else if(ta0.id == "height_t"){
+		changeH(ta0.code,val.toString());
+		}else if(ta0.id == "width_t"){
+		changeW(ta0.code,val.toString());			
+		}else if(ta0.id == "main_layout_width2"){
+		setMainLayout();			
+		}
+
+
+	}	
+	
+	var eventMouseDownP = function(){
+		mouseDown = true;
+		timer = setInterval(fnPlus,config['delay']);
+		fnPlus();
+	}
+	var eventMouseDownM = function(){
+		mouseDown = true;
+		timer = setInterval(fnMinus,config['delay']);
+		fnMinus();
+	}	
+	var eventMouseUp = function(){
+		if(timer != null){
+			clearInterval(timer);
+			if(mouseDown && ta0.onchange){ mouseDown = false; ta0.onchange();}
+		}
+		mouseDown = false;
+	}
+	
+	ta1.onmousedown = eventMouseDownP;
+	ta2.onmousedown = eventMouseDownM;
+	
+	ta1.onmouseup = eventMouseUp;
+	ta2.onmouseup =eventMouseUp;
+	ta1.onmouseout = eventMouseUp;
+	ta2.onmouseout =eventMouseUp;
+		
+}
+</script>
+
+
+<body topmargin="0" leftmargin="0"   >
+
+
+<div  id="bbsSetup" style = "display:none;position:absolute;padding-left:5px;display:none;z-index:9999;">
+<div id="bbsPopup" class="layer_popup" style="top:240px; left:0px; width:355px;z-index:999999;display:">
+
+<div class="layer_content"><p class="layer_body" ><strong>연결할 게시판을 선택하세요.</strong>
+
+<select id = "bbs_list1" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<select id = "bbs_list2" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<select id = "bbs_list3" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<select id = "bbs_list4" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<select id = "bbs_list5" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<div id="bbsBody" style="padding:10px;z-index:999999999" >
+
+<table align="center" border=0 cellspacing=0 cellpadding=0 width=210>
+ <tr align=center>
+  <td style="padding:5px"><img src="/html/attach/image/ico_list01.gif" ></td> 
+  <td  style="padding:5px"><img src="/html/attach/image/ico_list02.gif"></td> 
+  <td  style="padding:5px"><img src="/html/attach/image/ico_list03.gif"></td>
+  <td  style="padding:5px"><img src="/html/attach/image/ico_list04.gif" ></td>
+ </tr>
+
+  <tr align=center style = "padding:3px;font-size:11px">
+  <td>웹진</td> 
+  <td>겔러리</td> 
+  <td>게시판</td>
+  <td>포털</td>
+ </tr>
+
+  <tr align=center style = "padding:3px;font-size:11px">
+  <td><INPUT TYPE="radio" NAME="bbs_type" value="webnews" id="webnews" onclick = "$('selectTypeTmp').value=this.value"></td> 
+  <td><INPUT TYPE="radio" NAME="bbs_type" value="gall"  id="gall" onclick = "$('selectTypeTmp').value=this.value"></td>   
+  <td><INPUT TYPE="radio" NAME="bbs_type" value="board"  id="board" onclick = "$('selectTypeTmp').value=this.value"></td>  
+  <td><INPUT TYPE="radio" NAME="bbs_type" value="potal" id="potal" onclick = "$('selectTypeTmp').value=this.value"></td>  
+  </tr>
+</table>
+
+<input type="hidden" id="selectTypeTmp" >
+
+
+
+</div>
+
+<div class="layer_footer"> 
+	<div style = ""> <img src="/image/btn_apply_1.gif" alt="적용" onclick  = "upBbsTrick();document.getElementById('bbsSetup').style.display='none'; return false;" style="cursor:hand;">
+	</div>
+</div>
+<a href="#" class="close_layer" onClick="document.getElementById('bbsSetup').style.display='none'; return false;"><img src="/image/btn_close_1.gif" alt="레이어닫기" ></a></div>
+<span class="shadow shadow1"></span><span class="shadow shadow2"></span><span class="shadow shadow3"></span>
+</div></div>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr><td height="12"></td></tr>
+	<tr valign="top">
+		<td width="21"><img src="/html/admin/images/subtitle_icon.gif"></td>
+		<td width="99%" class="subtitle">디자인 및 화면관리</td>
+	</tr>
+	<tr><td colspan="2" height="14"></td></tr>
+	<tr><td colspan="2" class="subtitle_line01"></td></tr>
+	<tr><td colspan="2" class="subtitle_line02"></td></tr>
+	<tr><td colspan="2" height="20"></td></tr>
+</table>
+<!-- 타이틀 Start -->
+
+<!-- 타이틀 End -->	
+
+<!-- <table cellpadding="0" cellspacing="0" border="0" width="100%" height="45" background="" align = center>
+		<tr>
+			<td style="padding:0 6 0 2" width="30" align = right  height = 45><img src="/html/admin2/images/icon4.gif" ></td>
+			<td style="padding:3 0 0 0; color:454545" width="100"  ><b>레이아웃관리</b></td>
+		<td >
+		※ 마우스로 끌어서(드래그 & 드랍) HTML 위치를 조정 하십시오.
+		</td>
+		</tr>
+
+	</table>
+ -->
+
+
+
+
+
+<style type="text/css">
+.t_handle { cursor:move;position:absolute;top:0px; }
+
+</style>
+<form name="layoutForm" method="post"  >
+<div id = "left_rtool">
+	<div style = "" id="asas6"></div>
+	<div style = "" id="asas3"></div>
+	<div style = "" id="asas4"></div>
+	<div style = "" id="asas5"></div>
+
+	<div style = "" id="asas2"></div>
+	<div style = "" id="asas7"></div>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+	<td style="padding-right:10px" align="right">
+	<table cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td><a href="/attach.admin.manage_new?layout=main" >{? layout == "main"}<img src ="./image/tab00_ov.gif">{:}<img src ="./image/tab00.gif">{/}</a></td>
+			<td><a href="/attach.admin.manage_new?layout=sub" >{? layout == "sub"}<img src ="./image/tab01_ov.gif">{:}<img src ="./image/tab01.gif">{/}</a></td>
+
+			<td><a href="/attach.admin.manage_new?layout=sub2" >{? layout == "sub2"}<img src ="./image/tab02_ov.gif">{:}<img src ="./image/tab02.gif">{/}</a></td>
+			
+		</tr>
+	</table>
+	</td>
+</tr>
+	<tr valign="top">
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0" width="655" height="620" bgcolor="#616d77">
+				<tr height="5">
+					<td width="5"><img src="/html/admin/images/bx5_top_left.gif"></td>
+					<td background="/html/admin/images/bx5_top_bg.gif"></td>
+					<td width="5" align="right"><img src="/html/admin/images/bx5_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx5_mid_left.gif"></td>
+					<td onmousedown = "ToolbarView();" id = "center_f" style="color:#FFFFFF" align="center" valign=top>
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr><td height="7"></td></tr>
+							<tr>
+								<td align="right" style="padding-right:9px;"><img src="/html/admin/images/by_ewut.gif"></td>
+							</tr>
+							<tr>
+								<td align="center"><b style="color:#FFFFFF">{str_text}</b></td>
+							</tr>
+						</table>
+
+						<div id="help" style = "padding:5px"></div>	
+							
+						<table align="center"  border=0 cellspacing=0 cellpadding=0>
+
+							<tr>
+								<td ><div style = "padding:5px 0 5px 0;position: " id=""  oncontextmenu='return false' onselectstart='return false'>{#MANAGE}</div>
+								</td>
+
+							</tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx5_mid_right.gif"></td>
+				</tr>
+				<tr height="5">
+					<td width="5"><img src="/html/admin/images/bx5_btm_left.gif"></td>
+					<td background="/html/admin/images/bx5_btm_bg.gif"></td>
+					<td width="5" align="right"><img src="/html/admin/images/bx5_btm_right.gif"></td>
+				</tr>
+			</table>
+		</td>
+
+		<td width="184px" style = "padding-left:9px;">
+
+		<div style="float:left" {? lock =="y"} style="display:none;"{/}>
+		<input type="hidden" name="tmp[]">
+			<!-- 1 start -->	
+			<table cellpadding="0" cellspacing="0" border="0" width="184px"  id = "def_stool">
+				<tr>
+					<td width="6"><img src="/html/admin/images/bx2_top_left.gif"></td>
+					<td background="/html/admin/images/bx2_top_bg.gif" class="bx2_title ">컨텐츠 사이즈조절</td>
+					<td width="6" align="right"><img src="/html/admin/images/bx2_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="6" background="/html/admin/images/bx2_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF" valign="top">
+						<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+							<tr><td height="10"></td></tr>
+							<tr>
+								<td style="height:80px;text-align:center">설정할 컨텐츠을 선택하세요.</td>
+							</tr>
+							<tr><td height="5"></td></tr>
+						</table>
+					</td>
+					<td width="6" align="right" background="/html/admin/images/bx2_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="6"><img src="/html/admin/images/bx2_btm_left.gif"></td>
+					<td background="/html/admin/images/bx2_btm_bg.gif"></td>
+					<td width="6" align="right"><img src="/html/admin/images/bx2_btm_right.gif"></td>
+				</tr>
+			</table>
+			<!-- 1 end -->	
+
+
+
+			<!-- 2 start -->	
+			<table cellpadding="0" cellspacing="0" border="0"  width="184px" style = "display:none"  id = "style_size" >
+				<tr>
+					<td width="6"><img src="/html/admin/images/bx2_top_left.gif"></td>
+					<td background="/html/admin/images/bx2_top_bg.gif" class="bx2_title "><div id="size_title">컨텐츠 사이즈조절</div></td>
+					<td width="6" align="right"><img src="/html/admin/images/bx2_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="6" background="/html/admin/images/bx2_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF" valign="top">
+						<table align="center" width="100%"  border=0 cellspacing=0 cellpadding=0 >
+							<tr><td height="10"></td></tr>
+							<tr>
+								<td align = center>		
+								<div><button name="conHeightPlus" id="conHeightPlus" value="+" style="padding:0px;border:0px;background-color:#ffffff;"><img src="/html/admin/images/btn_up.gif"  /></button></div><div><button name="conWidthMin" id="conWidthMin" value="-" style="padding:0px;border:0px;background-color:#ffffff;"><img src="/html/admin/images/btn_left.gif"  /></button><a href= "javascript:changeWidth();"><img src = "/html/admin/images/btn_width.gif" alt="가로길이 조절" ></a><button name="conWidthPlus" id="conWidthPlus" value="+" style="padding:0px;border:0px;background-color:#ffffff;"><img src="/html/admin/images/btn_right.gif"  /></button></div><div><button name="conHeightMin" id="conHeightMin" value="-" style="padding:0px;border:0px;background-color:#ffffff;"><img src="/html/admin/images/btn_down.gif"  /></button></div>
+								</td>
+							</tr>
+							<tr><td height="8"></td></tr>
+							<tr>
+								<td align = center style="font-size:11px;">
+									넓이 <input name="conWidth" id="conWidth" type="text" style="text-align:right; width:33"  value="15" size="8" onkeyup = "changeWidthInput(this.value)" class="fom01"/>
+
+									X
+									높이 <input name="conHeight" id="conHeight" type="text" style="text-align:right; width:33"   value="15" size="8" onkeyup = "changeHeightInput(this.value)" class="fom01" />
+
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="6" align="right" background="/html/admin/images/bx2_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="6"><img src="/html/admin/images/bx2_btm_left.gif"></td>
+					<td background="/html/admin/images/bx2_btm_bg.gif"></td>
+					<td width="6" align="right"><img src="/html/admin/images/bx2_btm_right.gif"></td>
+				</tr>
+			</table>
+			<!-- 2 end -->	
+			
+
+			
+		</div>
+
+			<script type="text/javascript">
+			//<[CDATA[
+			var steper03 = new jsNumericsteper($('conHeight')	,$('conHeightPlus')	,$('conHeightMin')	,{'min':10,'max':1200,'step':1,'delay':3});
+			var steper02 = new jsNumericsteper($('conWidth')	,$('conWidthPlus')	,$('conWidthMin')	,{'min':10,'max':1200,'step':1,'delay':3});
+			//]]>
+			</script>
+		
+	
+		
+		
+		<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:10px;float:left">
+			<tr>
+				<td width="6"><img src="/html/admin/images/bx2_top_left.gif"></td>
+				<td background="/html/admin/images/bx2_top_bg.gif" class="bx2_title ">대기목록</td>
+				<td width="6" align="right"><img src="/html/admin/images/bx2_top_right.gif"></td>
+			</tr>
+			<tr>
+				<td width="6" background="/html/admin/images/bx2_mid_left.gif"></td>
+				<td bgcolor="#FFFFFF" valign="top">
+					<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+						<div id="none" style="cursor:move; width:100%;overflow:;display:">
+						<INPUT TYPE="hidden" NAME="lay_be[]" value="none" >
+						</div>
+					</table>
+				</td>
+				<td width="6" align="right" background="/html/admin/images/bx2_mid_right.gif"></td>
+			</tr>
+			<tr>
+				<td width="6"><img src="/html/admin/images/bx2_btm_left.gif"></td>
+				<td background="/html/admin/images/bx2_btm_bg.gif"></td>
+				<td width="6" align="right"><img src="/html/admin/images/bx2_btm_right.gif"></td>
+			</tr>
+		</table>
+		
+		<div style = "float:left; width : 100%;padding:5px;text-align :center" id="">
+		<button style="border:0px; background-color:#FFFFFF" onclick="addPart();"><img src="/html/admin/images/btn_html.gif"></button>
+
+		<!-- <input type=image src="/html/admin/images/btn_html.gif"  onclick="addPart();"> -->
+		</div>	
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<!-- 저장 버튼 있는곳 -->	
+			<table width="100%" cellpadding="0" cellspacing="0" border="0" width="655">
+			<!-- <tr>
+				<td style="width:655px; background-color:616d77;color:#FFFFFF" valign=top  align = center height = 620  onmousedown = "ToolbarView();" id = "center_f" ></td>				
+			</tr> -->
+
+			<tr>
+			  <td style="text-align:center;padding:5">
+			  
+				{? lock !="y"}
+					<input type = "image" src = "/html/admin/images/btn_save.gif">
+				{:}
+					<img src = "/html/skin/image/btn_skin_theme.gif" onclick="alert('레이아웃이 잠겨있습니다.')">
+				{/}
+					
+
+				{? sadmin}
+				<br>
+				<input type="hidden" name="lock_mode" value="t">
+				<select name="lock" onchange="location.href='/attach.admin.lock?layout={layout}&mo='+this.value">
+					<option value="n" selected>해제</option>
+					<option value="y" {? lock=="y"} selected{/}>잠금</option>
+				</select> 
+
+				{:}
+					<input type="hidden" name="lock" value="{lock}">
+				{/}
+				
+				</td>
+			</tr>
+			</table>
+		<!-- 저장 버튼 있는곳 -->
+		</td>
+	</tr>
+</table>
+
+<?
+$useLay = {LayerAlign};
+?>
+
+
+<?
+	for($ii=0; $ii<count($useLay); $ii++) {
+?>
+<input type="hidden" name="<?=$useLay[$ii][name]?>_width" id="<?=$useLay[$ii][name]?>_width">
+<script>
+if(navigator.appName == "Netscape") {
+
+$('<?=$useLay[$ii][name]?>_width').value = parseInt(document.defaultView.getComputedStyle($('<?=$useLay[$ii][name]?>'),null).width); 
+}else{
+$('<?=$useLay[$ii][name]?>_width').value = parseInt($('<?=$useLay[$ii][name]?>').currentStyle.width);
+}
+</script>
+<? } ?>
+
+
+
+</form>
+
+<iframe width="0" height="0" frameborder="0" name="hidden_frame"></iframe>
+
+
+<script>
+
+
+//Sortable.create('left_rtool', {treeTag:'div',tag:'div',revert:false});
+//setLayer();
+
+$('main_layout').style.borderRight="1px solid #c0c5c9";
+$('main_layout').style.position="static";
+
+
+
+{@ LIST}
+MAIN_to_width = $('{.layer}').style.width;MAIN_to_width = parseInt(MAIN_to_width)-2;	appendPanel('{.layer}','{.name}','{.title}','{.width}',['cont1','cont2','cont3','cont4','cont5','cont6','cont7','cont8'],[MAIN_to_width],{.removable},{.is_part}, '{.avail_bg}', '{.height}','{.type}','{.line}','{.max}','{.len}','{.line_c}','{.subject}','{.img_w}','{.img_h}','{.index_}','{.Ptop}','{.Pleft}','{.Pright}','{.Pbottom}','{.bbs_title}','{.bbs_code}','{.str_lock}');
+conTable('{.name}','','{lock}');
+
+{/}
+
+
+
+//$('submenu').disabled = "true";
+//$('sub_top').disabled = "true";
+
+
+
+
+
+function resizeing(id,setup ,lock){ 
+		if($('cont1')) var cont1 = $('cont1');
+		if($('cont2')) var cont2 =$('cont2');
+		if($('cont3')) var cont3 = $('cont3');
+		if($('cont4')) var cont4 = $('cont4');
+		if($('cont5')) var cont5 = $('cont5');
+		if($('cont6')) var cont6 = $('cont6');
+		if($('cont7')) var cont7 = $('cont7');
+		if($('cont8')) var cont8 = $('cont8');
+
+		if(!setup) {setup = "Y";}if(setup =="Y") {
+		$('help').innerHTML = '<font  color="FFFFFF" style="font-size:11px; line-height:16px;"><font color="#fffd4c">마우스로 컨텐츠를 원하는 위치에 드래그 하십시요.</font><br>레이아웃영역을 마우스로 드래그하면 영역 사이즈를 변경할 수 있습니다.<br>모듈이 배치되지 않은 영역은 표출 되지 않습니다.</font>';
+
+<?
+	for($ii=0; $ii<count($useLay); $ii++) {
+?>
+	if($('<?=$useLay[$ii][name]?>')){
+	Sortable.create("<?=$useLay[$ii][name]?>", {dropOnEmpty:true,overlap:'vertical',treeTag:'div',tag:'div',containment:["cont1","cont2","cont3","cont4","cont5","cont6","cont7","cont8","none"],accept:["<?=$useLay[$ii][name]?>"],constraint:'horizontal',handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect,reverteffect:OnReverteffect});
+	}
+<? } ?>
+
+Sortable.create("none", {dropOnEmpty:true,overlap:'vertical',treeTag:'div',tag:'div',containment:["cont1","cont2","cont3","cont4","cont5","cont6","cont7","cont8","none"],accept:["none"],handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect,reverteffect:OnReverteffect});
+	
+
+}
+}
+
+
+resizeing('main_layout','Y' ,'{lock}');
+	
+
+</script>
+
+
+
+</body>

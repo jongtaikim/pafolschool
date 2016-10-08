@@ -1,0 +1,101 @@
+<script type="text/javascript" src="/js/now_core.js"></script>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class=table01>
+ <tr>
+
+<td>
+     
+	 <table  width='500'  border=1 cellspacing=0 cellpadding=0>
+
+		{@ LIST}
+		<tr>
+		  <th >
+		   {.name}
+		  </th>
+		  <td width = 300>
+		  <table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+		   <tr>
+		    <td>값대로</td>
+		  <td>
+
+		  {size}pt <img src='/f_test.php?mk_btn=Y&text={textval}&font={.name}&size2={size}&bg=ffffff&color={color}' border='0' alt='' align = absmiddle>  </td>
+		   </tr>
+		  
+		   <tr>
+		    <td>적용</td>
+		  <td>
+		  
+		  13pt <img src='/f_test.php?mk_btn=Y&text={textval}&font={.name}&size2=13&bg=ffffff&color={color}&jp={jp}' border='0' alt='' align = absmiddle ><br>
+		  14pt <img src='/f_test.php?mk_btn=Y&text={textval}&font={.name}&size2=14&bg=ffffff&color={color}&jp={jp}' border='0' alt='' align = absmiddle ><br>
+		  15pt <img src='/f_test.php?mk_btn=Y&text={textval}&font={.name}&size2=15&bg=ffffff&color={color}&jp={jp}' border='0' alt='' align = absmiddle ><br>
+		  16pt <img src='/f_test.php?mk_btn=Y&text={textval}&font={.name}&size2=16&bg=ffffff&color={color}&jp={jp}' border='0' alt='' align = absmiddle ><br>
+		  
+		  
+		  </td>
+		   </tr>
+		  </table>
+
+		  </td>
+		</tr>
+
+		{/}
+
+	</table>
+
+    </td>
+
+  <td valign=top>
+   
+    <div id="STATICMENU" style="position:absolute;padding-left:20px;padding-top:80px;left:510 ">
+
+	<form >
+	
+	
+	<table align="center"  border=0 cellspacing=0 cellpadding=0>
+		 <tr>
+		 <th>텍스트입력</th>
+		  <td>
+		    <input type="text" name="textval" value="{textval}" id=textval > 
+		  </td>
+		    <td rowspan = 3>
+		     <input type="submit" name="" value="적용" class="button">
+		    </td>
+		 </tr>
+
+		 <tr>
+		 <th>장편입력</th>
+		  <td>
+		     <input type="text" name="jp" value="{jp}" id=jp > 
+		  </td>
+		 </tr>
+
+		 <th>크기조절</th>
+		  <td>
+		     <input type="text" name="size" value="{size}" id=jp > 
+		  </td>
+		 </tr>
+
+		 <th>칼라조절</th>
+		  <td>
+		     <input type="text" name="color" value="{color}" id=jp > 
+		  </td>
+		 </tr>
+
+		</table>
+		</form>
+
+		<div style="display:none" >
+			<input id="ANIMATE" type="checkbox" onclick="ToggleANIMATE();" style = "border:0px">
+			이동켜기
+			<script language="javascript">InitializeStaticMenu();</script>
+		</div>
+		</div>
+
+   		
+
+  </td>
+
+
+    
+ </tr>
+</table>
+

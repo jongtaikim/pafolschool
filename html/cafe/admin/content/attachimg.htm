@@ -1,0 +1,71 @@
+<html id="container">
+<head><title>학급홈피 :: 이미지 업로드</title>
+<style> 
+body, td, font, div, label {
+	font-size: 9pt;
+}
+
+body {
+	background : buttonface; margin: 5; margin-top: 2;
+	border-top: 1 solid buttonhighlight;
+	border-left: 1 solid buttonhighlight;
+	border-right: 1 solid buttonshadow;
+	border-bottom: 1 solid buttonshadow;
+}
+</style>
+<script>
+	function updatePreview(align) {
+		var img = document.getElementById('preview');
+		img.setAttribute('align', align);
+		//img.align = align;
+	}
+
+	function updateImage(src) {
+		var img = document.getElementById('preview');
+		img.setAttribute('src', src);
+	}
+
+	function updateAlt(text) {
+		var img = document.getElementById('preview');
+		img.setAttribute('alt', text);
+	}
+</script>
+</head>
+<body>
+<form name="fileup" method="post" enctype="multipart/form-data" target="process_frame"><!--  action="?act=cafe.admin.content.attach" -->
+	<input type="hidden" name="act" value="cafe.admin.content.attach">
+	<input type="hidden" name="cafe_id" value="{{cafe_id}}">
+	<input type="hidden" name="mcode" value="{{mcode}}">
+	<input type="hidden" name="showpic" value="1">
+	<fieldset>
+		<legend>파일 업로드</legend>
+		<table width="100%">
+			<tr>
+				<td width="100">그림찾아보기</td>
+				<td><input type="file" name="img" onChange="updateImage(this.value)"></td>
+			</tr>
+			<tr>
+				<td>대체문자</td>
+				<td><input type="text" name="alt" onChange="updateAlt(this.value)" onKeyUp="updateAlt(this.value)"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				<hr>
+				<input type="radio" name="align" onClick="updatePreview(this.value)" value="left" checked>글 왼쪽
+				<input type="radio" name="align" onClick="updatePreview(this.value)" value="right">글 오른쪽
+				<input type="radio" name="align" onClick="updatePreview(this.value)" value="absmiddle">가운데
+				<input type="radio" name="align" onClick="updatePreview(this.value)" value="top">위로
+				<input type="radio" name="align" onClick="updatePreview(this.value)" value="bottom">아래로
+				<div id="doc">
+					<img id="preview" width="50" height="50" align="left"> 안녕하세요 이웃닷컴입니다.<br> 맨위에 있는 '찾아보기' 버튼을 누르고 하드디스크에 있는 그림 파일을
+					찾아서 선택하세요..<br> 첨부하신 이미지는 문서에서 이렇게 보입니다. 변경하시려면 바로 위에 있는 정렬 방식을 바꿔보세요<br><br>
+					대체문자열이란 그림에 마우스를 올렸을때 보이는 글을 말합니다. 대체문자열을 입력하고 옆에 있는 그림에 마우스를 가져가보세요
+				</div></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" value="확    인" onClick="self.close()"></td>
+			</tr>
+		</table>
+	</fieldset>
+</form>
+</body></html>

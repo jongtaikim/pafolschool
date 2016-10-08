@@ -1,0 +1,72 @@
+<!-- 회원가입 -->
+					<div class="join_wrap">
+						
+						<h4><img src="/font_2.php/ygo340/27/ffffff/284a91/?text={=urlencode('파폴스쿨(PafolSchool)회원가입을 환영합니다.')}" alt="파폴스쿨(PafolSchool)회원가입을 환영합니다." /></h4>
+						<h6 class="join_info"><img src="/font_2.php/nanumgodic/20/ffffff/2d2d2d/?text={=urlencode('웹사이트 이용은 실명제를 원칙으로 운영중입니다.')}" alt="웹사이트 이용은 실명제를 원칙으로 운영중입니다." /></h5>
+						<div class="info">
+							<p>올바른 웹사이트 사용을 위해 정확한 정보를 입력해 주세요.</p>
+							<p>입력하신 정보가 허위일 경우 사전통보 없이 가입이 취소됩니다.</p>
+						</div>
+						<form method="post" id="checkOverlap" onsubmit="return validate(this);">
+							<div class="form_area">
+								<div class="gray_box">
+									<p>자녀의 프로그램 참가를 원하시는 학부모님께서는 학생회원(자녀)로 가입하시면, 신청하기에서 미성년자이므로,<br />관계법령상 신청하기를 하실 수 없습니다. 자녀의 참가를 희망하시는 경우, 반드시 학부모회원으로 가입하여 주시기 바랍니다.</p>
+								</div>
+								<div class="gray_box">
+									<dl class="mem_type">
+										<dt><img src="/font_2.php/nanumgodic/17/ffffff/8e8170/?text={=urlencode('회원유형선택')}" alt="회원유형선택" /><strong></strong></dt>
+										<dd>
+											<span><input type="radio" name="chr_type" id="memtype1" class="rd_type" checked="checked" value="g" checked/><label for="memtype1">학부모회원</label></span>
+											<span><input type="radio" name="chr_type" id="memtype2" class="rd_type" value="s" onclick="$('chr_type').value=this.value" /><label for="memtype2">학생회원</label></span>
+											<span><input type="radio" name="chr_type" id="memtype3" class="rd_type" value="m" /><label for="memtype3">멘토</label></span>			
+										</dd>
+									</dl>
+								</div>
+								<p>파폴스쿨(PafolSchool)웹사이트에서는 주민등록번호를 사용하지 않고 있으며, 회원식별을 위해서 반드시<br /> 본인의 정확한 이름(실명)과 생년월일을 입력해 주세요.</p>
+								<div class="mem_info">
+									<dl>
+										<dt class="dt_name"><label for="uname">이름</label></dt>
+										<dd class="name"><input type="text" name="str_name" id="uname" class="txt_type" /></dd>
+										<dt class="dt_sex"><span>성별</span></dt>
+										<dd class="sex">
+											<input type="radio" name="str_sex" id="sex1" value="1" class="rd_type" checked/><label for="sex1">남자</label>
+											<input type="radio" name="str_sex" id="sex2" value="2" class="rd_type" /><label for="sex2">여자</label>
+										</dd>
+										<dt class="dt_date"><label for="ubirth1">생년월일</label></dt>
+										<dd class="date">
+										
+										<select name="str_y" id="str_y" hname="생년"  class=" txt_year"  style="width:60px" required>
+											<option value="">생년</option>
+											<? for($ii=1930; $ii<date("Y")+1; $ii++) { ?>
+											<option value="<?=$ii?>"><?=$ii?></option>
+											<? } ?>
+										</select>
+									
+										 <select name="str_m" id="str_m" hname="월" class=" txt_month"  style="width:60px" required>
+											<option value="">월</option>
+											<? for($ii=1; $ii<13; $ii++) { ?>
+											<option value="<?=$ii?>"><?=$ii?></option>
+											<? } ?>
+										</select>
+									
+										<select name="str_d" id="str_d" hname="일" class=" txt_day"   style="width:60px" required>
+											<option value="">일</option>
+											<? for($ii=1; $ii<32; $ii++) { ?>
+											<option value="<?=$ii?>"><?=$ii?></option>
+											<? } ?>
+										</select>
+									
+										</dd>
+										<dd class="date2"><input type="radio" name="chr_birthday" id="solar" class="rd_type" value="s" checked /><label for="solar">양력</label><input type="radio" name="chr_birthday" id="lunar" value="m" class="rd_type"/><label for="lunar">음력</label></dd>
+									</dl>
+									<p>* 반드시 본인의 이름과 생년월일 및 성별을 정확히 입력하여 주시기 바랍니다.</p>
+									<p>* 다른 사람의 개인정보를 도용할 경우에는 개인정보보호법에 따라 3년 이하의 징역 또는 1천만원 이하의 벌금에 처해질 수 있습니다.</p>
+								</div>
+							</div>
+							<div class="btn_box">
+								<input type="submit" value="" class="btn_confrm" title="확인" />
+							</div>
+						</form>
+					</div>
+					<!-- //회원가입 -->
+

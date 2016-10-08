@@ -1,0 +1,238 @@
+<link rel="stylesheet" href="/css/board.css" type="text/css" />
+
+
+<div class="board">
+					
+					<div class="onlineView">	
+					
+					{? str_top}<div id="str_top" style="padding:5px;border:1px solid #EAEAEA;margin:5px 0">{str_top}</div>{/}
+
+					
+				
+				 <p class="buTitle02">신청하기</p>
+				 <form name="editForm" method="post" onsubmit="return validate(this);"  enctype="multipart/form-data" class="onlineViewForm" >
+							<fieldset>
+							<legend>온라인신청 보기</legend>
+								<table class="boardList" border="1" cellspacing="0" summary="{학교홈페이지} 온라인신청 보기입니다.." >
+									<caption>온라인신청 보기</caption>
+									
+					
+
+
+									{@ LIST }
+									
+									<tr>
+
+										{?.str_col_type == "textarea"}
+
+										<th colspan="2"><label for="str_value{.index_+1}">{? .str_not_null == "N"}<span class="star" title="필수항목">*</span>{/} {.str_col_name} </label></th>
+										</tr>
+										<tr>
+										{:}
+										<th><label for="str_value{.index_+1}">{? .str_not_null == "N"}<span class="star" title="필수항목">*</span>{/} {.str_col_name} </label></th>
+										
+										
+										{/}
+										
+										<td {?.str_col_type == "textarea"} colspan="2"{/}><input type="hidden" name="type[]" value="{.str_col_type}"/>
+											
+										   {?.str_col_type == "text"}
+												<input type="text" name="str_value{.index_+1}" id="str_value{.index_+1}" class="inputtxt"  {? .str_not_null == "N"} hname="{.str_col_name}" required{/}>
+										   {/}
+										
+
+											{?.str_col_type == "radio"}
+											&nbsp;
+											{?.str_value1} <input type="radio" name="str_value{.index_+1}" id="str_value{.index_+1}_1" value ="{.str_value1}" {? .str_not_null == "n"} hname="{.str_col_name}" required{/} checked><label for="str_value{.index_+1}_1">{.str_value1}</label>&nbsp;&nbsp;{/}
+											{?.str_value2} <input type="radio" name="str_value{.index_+1}" value ="{.str_value2}"  id="str_value{.index_+1}_2" {? .str_not_null == "n"} hname="{.str_col_name}" required{/}><label for="str_value{.index_+1}_2">{.str_value2}</label>&nbsp;&nbsp;{/}
+											{?.str_value3} <input type="radio" name="str_value{.index_+1}" value ="{.str_value3}"   id="str_value{.index_+1}_3" {? .str_not_null == "n"} lhname="{.str_col_name}" required{/}><label for="str_value{.index_+1}_3">{.str_value3}</label>&nbsp;&nbsp;{/}
+											{?.str_value4} <input type="radio" name="str_value{.index_+1}" value ="{.str_value4}"  id="str_value{.index_+1}_4" {? .str_not_null == "n"} hname="{.str_col_name}" required{/}><label for="str_value{.index_+1}_4">{.str_value4}</label>&nbsp;&nbsp;{/}
+											{?.str_value5} <input type="radio" name="str_value{.index_+1}" value ="{.str_value5}"  id="str_value{.index_+1}_5" {? .str_not_null == "n"} hname="{.str_col_name}" required{/}><label for="str_value{.index_+1}_5">{.str_value5}</label>&nbsp;&nbsp;{/}
+										   {/}
+
+										    {?.str_col_type == "email"}
+											<input type="text" name="str_value{.index_+1}" class="inputtxt"  {? .str_not_null == "N"} hname="{.str_col_name}" required{/}>
+										   {/}
+											
+
+												{?.str_col_type == "zipcode"}
+
+
+												<script language="Javascript">
+
+												function popup_zip{.index_+1}(){
+												window.open('core.zipcode?el_addr=str_addr1{.index_+1}&el_zip=str_zipcode{.index_+1}&el_focus=str_addr2{.index_+1}&form=editForm','zipsearch','width=400, height=200');
+												}
+												
+												function inText{.index_+1}(){
+												
+												$$('str_value{.index_+1}').value = $$('str_zipcode{.index_+1}').value + " " + $$('str_addr1{.index_+1}').value + " " + $$('str_addr2{.index_+1}').value
+
+												}
+												</script>
+																		
+															
+												<table border="0" cellspacing="0" class="address">
+												<tr>
+													<td><input name="str_zipcode{.index_+1}" id ="str_zipcode{.index_+1}" hname="우편번호" size="7" maxlength="7" type="text"  style="border:1px solid #D1D1D1;"  onclick="popup_zip{.index_+1}();"  class="inputtxt"  readonly>
+												
+												<a href="javascript:popup_zip{.index_+1}();"><img src="/images/board/findPost.gif" alt="우편번호찾기" class="epost" /></a></td>
+												</tr>
+												<tr>
+													<td><em class="title">기본주소 :</em> <input name="str_addr1{.index_+1}"  id="str_addr1{.index_+1}" class="inputtxt" hname="기본주소" type="text"  maxbyte="100" onclick="popup_zip{.index_+1}();" maxlength="30" size="30"    readonly></td>
+												</tr>
+												<tr>
+													<td><em class="title">상세주소 :</em> <input name="str_addr2{.index_+1}" id="str_addr2{.index_+1}" class="inputtxt" hname="상세주소" type="text"  maxbyte="100" maxlength="30" size="30"   onchange = "inText{.index_+1}()"></td>
+												</tr>
+											</table>
+												
+																														
+								   <input type="hidden" name="str_value{.index_+1}"  id="str_value{.index_+1}" value="" {? .str_not_null == "N"} hname="{.str_col_name}" required{/}>
+
+								   {/}
+									
+
+									{?.str_col_type == "phone"}
+
+									<script language="Javascript">
+										function inTextPhone{.index_+1}(){
+
+										$$('str_value{.index_+1}').value = $$('tel1{.index_+1}').value + "-" + $$('tel2{.index_+1}').value + "-" + $$('tel3{.index_+1}').value
+
+										}
+									</script>
+
+									<input name="tel1{.index_+1}" id="tel1{.index_+1}"  type="text" maxbyte="4" style="width:30px; border:1px solid #D1D1D1;" class="inputtxt"style="ime-mode:active" {? .str_not_null == "N"} hname="{.str_col_name}" required{/} onchange = "inTextPhone{.index_+1}()">
+											-
+											<input name="tel2{.index_+1}" class="inputtxt"   id="tel2{.index_+1}" type="text" maxbyte="4" style="width:30px; border:1px solid #D1D1D1;" style="ime-mode:active" {? .str_not_null == "N"} hname="{.str_col_name}" required{/}  onchange = "inTextPhone{.index_+1}()">
+											-
+											<input name="tel3{.index_+1}" class="inputtxt"  id="tel3{.index_+1}" type="text" maxbyte="4" style="width:30px; border:1px solid #D1D1D1;" style="ime-mode:active" {? .str_not_null == "N"} hname="{.str_col_name}" required{/}  onchange = "inTextPhone{.index_+1}()">
+
+
+									<input type="hidden" name="str_value{.index_+1}" id="str_value{.index_+1}" value="" {? .str_not_null == "N"} hname="{.str_col_name}" required{/}>
+
+									   {/}
+									
+									   {?.str_col_type == "select"}
+
+										<select name="str_value{.index_+1}" {? .str_not_null == "N"} hname="{.str_col_name}" required{/}>
+											
+
+											{?.str_value1} <option value ="{.str_value1}" > {.str_value1}</option>{/}
+											{?.str_value2} <option value ="{.str_value2}" > {.str_value2}</option>{/}
+											{?.str_value3} <option value ="{.str_value3}" > {.str_value3}</option>{/}
+											{?.str_value4} <option value ="{.str_value4}" > {.str_value4}</option>{/}
+											{?.str_value5} <option value ="{.str_value5}" > {.str_value5}</option>{/}
+
+										</select>
+										   
+										  {/}
+
+										     {?.str_col_type == "textarea"}
+											<textarea name="str_value{.index_+1}" {? .str_not_null == "N"} hname="{.str_col_name}" required{/}   style="width:100%" rows="5" ></textarea>
+										   {/}
+									</td>
+									</tr>
+								
+									{/}
+									  
+								</table>
+						
+							</fieldset>
+						<br>
+						
+						{? str_foot}<div id="str_foot" style="padding:5px;border:1px solid #EAEAEA;margin:5px 0">{str_foot}</div>{/}
+
+						<div class="buttonRight" style="text-align:center">
+						
+						{? _SESSION.ADMIN} 
+							
+							<wa:btn size="2" type="a" href="javascript:layer_popup('/form.admin.list?code={code}', '850', '600','y','신청데이터 확인')" value="신청데이터 확인"/>
+							
+						{/}
+		
+							
+						{? end_date2 >= mk  }
+						{? form_data }
+
+						<wa:btn size="2" type="submit" value="신청하기" />
+						
+						{:}
+							
+						
+						{/}
+						{/}
+
+							
+							
+							<!--span class="button01 arrowIcon">
+								<a href="/form.list?code={code}"><span>목록</span></a>
+							</span-->
+						</div>
+					</form>	
+					
+
+
+
+					
+					{? form_data }	
+					
+						<table class="onlineViewList" border="0" cellspacing="0" summary="<?=_ONAME?> 온라인신청 보기 리스트입니다." style="margin-bottom:10px">
+							<caption>온라인신청 보기 리스트</caption>
+							<thead>
+								<tr class="top">
+									<th scope="col">번호</th>
+									{@ form_data}
+									{? .index_ < 2}
+											<th scope="col">{.str_col_name}</th>
+									{/}
+									{/}
+									<th scope="col">날짜</th>
+									
+									
+								</tr>
+							</thead>
+							<tbody>
+							<!--{@ LIST_data}-->
+								<tr>
+									<td>{.num_serial}</td>
+									<td>{? .str_value1 && _SESSION.ADMIN}<a href="/form.admin.list?admin=y&code={code}&num_serial={.num_serial}&PageNum=020100" onclick = "winOpen(this.href,1200,600,'yes'); return false" style = "font-size:11px">{.str_value1}</a>{:}{=substr(.str_value1,0,2)}**&nbsp;{/}</td>
+									<td>{? .str_value2 && _SESSION.ADMIN}<a href="/form.admin.list?admin=y&code={code}&num_serial={.num_serial}&PageNum=020100" onclick = "winOpen(this.href,1200,600,'yes'); return false" style = "font-size:11px">{.str_value2}</a>{:}***-****-{=substr(.str_value2,9,4)}&nbsp;{/}</td>
+									<td>{=date("Y.m.d",.dt_date)}</td>
+								</tr>
+								{:}
+								<tr>
+								  <td colspan = "4" align="center" height="100px">
+								
+								  {? end_date2 >= mk && end_date2}
+								  {? form_data}신청내역이 없습니다.{:}신청항목이 아직 준비 되지 않았습니다.{/}
+								  {:}
+								  신청 만료
+								  {/}
+								  
+								  </td>
+								</tr>
+
+								{/}
+								
+							</tbody>
+						</table>
+						
+						<div class="boardNavigation">
+						
+								<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}"/>
+			
+						</div>
+					{/}
+
+					</div>
+
+
+			
+					
+
+				</div>
+
+
+
+

@@ -1,0 +1,179 @@
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<script type="text/javascript">
+function selectAll(flag) {
+	form = document.forms['listForm'];
+	el = form.elements['ids[]'];
+	if(!el) return false;
+	if(!el.length) el = new Array(el);
+	cnt = el.length;
+	for(i = 0; i < cnt; i++) {
+		el[i].checked = flag;
+	}
+}
+
+function checkSelect(field) {
+	form = document.forms['listForm'];
+	el = form.elements['ids[]'];
+	if(!el) return false;
+	if(!el.length) el = new Array(el);
+	flag = false;
+	cnt = el.length;
+	for(i = 0; i < cnt; i++) {
+		if(el[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert(field + ' 주소록을 선택하여 주십시오.');
+		return false;
+	}
+	return true;
+}
+
+function getChecked() {
+	form = document.forms['listForm'];
+	el = form.elements['ids[]'];
+	if(!el) return false;
+	if(!el.length) el = new Array(el);
+	list = new Array();
+	cnt = el.length;
+	for(i = 0; i < cnt; i++) {
+		if(el[i].checked) {
+			list[list.length] = el[i].value;
+		}
+	}
+	if(list.length == 0) {
+		alert('SMS 발송할 주소록을 선택하여 주십시오.');
+		return false;
+	}
+	return list.join(',');
+}
+
+function confirmDelete() {
+	if(!checkSelect('삭제할')) return false;
+	if(!confirm('선택하신 주소록을 삭제하시겠습니까?')) return false;
+	form = document.forms['listForm'];
+	form.action = 'sms.dic_del';
+	form.target = '_self';
+	form.submit();
+}
+
+function confirmChGroup() {
+	if(!checkSelect('그룹이동할')) return false;
+	win = window.open('about:blank','smsdic_move','width=500,height=200');
+	form = document.forms['listForm'];
+	form.action = 'sms.dic_move';
+	form.target = 'smsdic_move';
+	form.submit();
+}
+
+function confirmSMS() {
+	ids = getChecked();
+	if(!ids) return false;
+	form = document.forms['listForm'];
+	form.elements['dic_ids'].value = ids;
+	form.action = 'sms.send';
+	form.target = '_self';
+	form.method = 'get';
+	form.submit();
+}
+</script>
+<table cellpadding="0" cellspacing="0" border="0" width="680%" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 200><b>
+					
+					모바일 알림장 주소록관리
+					</b></td>
+				<td  style="padding:3 0 0 0; color:454545"><font color = red>※ 아직개발중인 기능입니다. </td>
+				</tr>
+			</table>
+<br>
+
+<div class="tab01">
+	<ul>
+		<li class="active"><a href="sms.dic_list">개별관리</a></li>
+		<li><a href="sms.dic_group">그룹별관리</a></li>
+	</ul>
+</div>
+<br><br>
+<table width="680" class="table01">
+<form name="searchForm" method="get">
+<tr>
+	<td>
+		<select name="search_key">
+			<option value="str_name">이름</option>
+			<option value="str_pos">소속회사</option>
+			<option value="str_mobile">핸드폰번호</option>
+		</select>
+		<input type="text" name="search_value" value="{search_value}">
+		<input type="button" class="button" value="검색">
+	</td>
+</tr>
+</form>
+</table>
+<script type="text/javascript">
+document.forms['searchForm'].values = {'search_key':'{search_key}'};
+</script>
+
+<table width="680" class="table01">
+<form name="listForm" method="post">
+<input type="hidden" name="dic_ids" value="">
+<tr>
+	<th width="5%"><input type="checkbox" name="select_all" onclick="selectAll(this.checked);" style="border:0px;"></th>
+	<th width="25%">이름</th>
+	<th width="20%">핸드폰번호</th>
+	<th width="25%">소속회사</th>
+	<th width="25%">그룹</th>
+</tr>
+<!--{@ LIST}-->
+<tr align="center">
+	<td><input type="checkbox" name="ids[]" value="{.num_serial}" style="border:0px;"></td>
+	<td>{.str_name}</td>
+	<td>{.str_mobile}</td>
+	<td>{.str_pos}</td>
+	<td>
+		{? .str_group}
+			{.str_group}
+		{:}
+			미지정
+		{/}
+	</td>
+</tr>
+<!--{:}-->
+<tr height="100">
+	<td colspan="5" align="center">검색된 주소록이 없습니다.</td>
+</tr>
+<!--{/}-->
+</form>
+</table>
+
+<table width="680" class="table01">
+<tr>
+	<td align="center">
+		<wa:paging total="{total}" listnum="{listnum}" />
+	</td>
+</tr>
+</table>
+
+<table width="98%" style="margin:0px;">
+<tr>
+	<td>
+
+			<table class="table01" style="margin:0px;">
+			<tr>
+				<td>
+					선택한 주소를
+					<input type="button" class="button" value="SMS발송" onclick="confirmSMS();">
+					<input type="button" class="button" value="그룹이동" onclick="confirmChGroup();">
+					<input type="button" class="button" value="삭제" onclick="confirmDelete();">
+				</td>
+				  <td>
+			<input type="button" class="button" value="주소록 추가" style="height:25px;" onclick="window.open('sms.dic_add','dic_add','width=500,height=250');">				   
+				  </td>
+			</tr>
+			</table>
+	</td>
+</tr>
+</table>

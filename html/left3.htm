@@ -1,0 +1,183 @@
+<style type="text/css">
+.title {height:29; text-align:center; padding-top:1}
+.title1 {color:#464444;font-family:돋움; font-weight:bold; padding-top:1}
+.menu {color:#464444; font-family:돋움; padding:5 0 0 10}
+</style>
+
+<table cellpadding="0" cellspacing="0" border="0"  width="100%" background="/html/image/leftmenu_bg.gif">
+	<tr><td><img src="/html/image/leftmenu_top.gif"></td></tr>
+	<tr>
+		<td valign="top" width="100%" background="/html/image/leftmenu_topbg.gif" class="title"><img src='/f.php?text=회원관리&font=-윤고딕330&size2=7.5&bg=80b4d4&color=ffffff'></td>
+	</tr>
+<!-- 회원목록 시작 -->	
+	<tr>
+		<td style="padding:6 10 5 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/member.admin.list">회원목록</a></td>
+				</tr>
+			</table>
+		</td>
+		<tr>
+			<td style="padding:0 10 0 10">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="f7f7f7">
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+					<tr><td height="3"></td></tr>
+					<tr><td class="menu"><a href="/member.admin.list">{? act2 == "/member.admin.list" }<b style="color:#000099">{/}전체목록</a></td></tr>
+					<tr><td class="menu"><a href="/member.admin.list?noauth=1">인증자</a></td></tr>
+					<tr><td class="menu"><a href="/member.admin.list?noauth=0">미인증자</a></td></tr>
+					<tr><td class="menu"><a href="/member.admin.del_list">{? act2 == "/member.admin.del_list" }<b style="color:#000099">{/}회원탈퇴명단</a></td></tr>
+					<tr><td class="menu"><a href="/member.admin.group_list">{? act2 == "/member.admin.group_list" }<b style="color:#000099">{/}추가그룹설정</a></td></tr>
+					<tr><td class="menu"><a href="/member.admin.mtype">{? act2 == "/member.admin.mtype" }<b style="color:#000099">{/}등급별 명칭설정</a></td></tr>
+					
+					<? if(_OID == 20247 || _OID == 20258) { ?> 
+					<tr><td class="menu"><a href="/class.manage.frame">학급홈페이지편성</a></td></tr>					
+					<? } ?>
+
+					<? if(_OID == 20252) { ?> 
+					<tr><td class="menu"><a href="/member.admin.lims_list">서비스신청회원</a></td></tr>
+					<? } ?>
+					
+					<tr><td height="6"></td></tr>
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</tr>
+<!-- 회원목록 끝 -->
+
+<!-- SMS관리 시작 -->	
+	<tr>
+		<td style="padding:10 10 5 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/sms.send">SMS관리</a></td>
+				</tr>
+			</table>
+		</td>
+		<tr>
+			<td style="padding:0 10 0 10">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="f7f7f7">
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+					<tr><td height="3"></td></tr>					
+					<tr><td class="menu"><a href="/sms.send">{? act2 == "/sms.send" }<b style="color:#000099">{/}SMS발송</a></td></tr>
+					<tr><td class="menu"><a href="/sms.send_log">{? act2 == "/sms.send_log" }<b style="color:#000099">{/}발송내역조회</a></td></tr>
+					<tr><td height="6"></td></tr>
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</tr>
+<!-- SMS관리 끝 -->
+
+<!-- 전채 쪽지 보내기 시작 -->	
+	<tr>
+		<td style="padding:10 10 5 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/memo.all_send">쪽지관리</a></td>
+				</tr>
+			</table>
+		</td>
+		<tr>
+			<td style="padding:0 10 0 10">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="f7f7f7">
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+					<tr><td height="3"></td></tr>					
+					<tr><td class="menu"><a href="/memo.all_send">{? act2 == "/memo.all_send" }<b style="color:#000099">{/}쪽지발송</a></td></tr>
+					<tr><td class="menu"><a href="/memo.all_send_log">{? act2 == "/memo.all_send_log" }<b style="color:#000099">{/}발송내역조회</a></td></tr>
+					<tr><td height="6"></td></tr>
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</tr>
+<!-- 전채 쪽지 보내기 끝 -->
+
+<!-- 회원가입설정 시작 -->	
+	<tr>
+		<td style="padding:7 10 0 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/member.admin.setup">{? act2 == "/member.admin.setup" }<b style="color:#000099">{/}회원가입설정</a></td>
+				</tr>
+				<tr><td height="5"></td></tr>
+				<tr><td colspan="2" height="1" bgcolor="#eaeaea"></td></tr>
+			</table>
+		</td>	
+	</tr>
+<!-- 회원가입설정 끝 -->
+
+<!-- 정책 및 이용약관 시작 -->	
+	<tr>
+		<td style="padding:7 10 0 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/member.admin.info">{? act2 == "/member.admin.info" }<b style="color:#000099">{/}정책 및 이용약관</a></td>
+				</tr>
+				<tr><td height="5"></td></tr>
+				<tr><td colspan="2" height="1" bgcolor="#eaeaea"></td></tr>
+			</table>
+		</td>	
+	</tr>
+<!-- 정책 및 이용약관 끝 -->
+
+<!-- 회원 활동포인트 시작 -->	
+	<tr>
+		<td style="padding:7 10 0 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/member.admin.point_list">{? act2 == "/member.admin.point_list" }<b style="color:#000099">{/}회원 활동포인트</a></td>
+				</tr>
+				<tr><td height="5"></td></tr>
+				<tr><td colspan="2" height="1" bgcolor="#eaeaea"></td></tr>
+			</table>
+		</td>	
+	</tr>
+<!-- 회원 활동포인트 끝 -->
+
+<!-- 등업조건설정 시작 -->	
+	<tr>
+		<td style="padding:7 10 0 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/member.admin.up">{? act2 == "/member.admin.up" }<b style="color:#000099">{/}등업조건설정</a></td>
+				</tr>
+				<tr><td height="5"></td></tr>
+				<tr><td colspan="2" height="1" bgcolor="#eaeaea"></td></tr>
+			</table>
+		</td>	
+	</tr>
+<!-- 등업조건설정 끝 -->
+
+<!-- 전체 메세지 보내기 시작 -->	
+	<tr>
+		<td style="padding:10 10 5 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/member.admin.all_mail">전체 메세지보내기</a></td>
+				</tr>
+			</table>
+		</td>
+		<tr>
+			<td style="padding:0 10 0 10">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="f7f7f7">
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+					<tr><td height="3"></td></tr>					
+					<tr><td class="menu"><a href="/member.admin.all_mail">{? act2 == "/member.admin.all_mail" }<b style="color:#000099">{/}전체 메일보내기</a></td></tr>
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</tr>
+<!-- 전체 메세지 보내기 끝 -->
+	<tr><td><img src="/html/image/leftmenu_bot.gif"></td></tr>
+</table>

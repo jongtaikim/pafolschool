@@ -1,0 +1,189 @@
+<style type="text/css" title="">
+#index_body{border:0px solid #D0D0D0;;width:100%;;}
+
+#index_left{border:0px solid #D0D0D0;float:left;width:270px;}
+
+#main_title{border:0px solid #D0D0D0;width:100%;;filter:progid:DXImageTransform.Microsoft.Shadow(color=#DBDBDB,direction=135,strength=2);}
+
+#index_right_main{border:0px solid #D0D0D0;float:left;width:210px;;padding:0	0 0 5 px;filter:progid:DXImageTransform.Microsoft.Shadow(color=#DBDBDB,direction=135,strength=2);}
+
+
+#index_right{border:0px solid #D0D0D0;float:left;width:190px;;padding:0	0 0 5 px;;filter:progid:DXImageTransform.Microsoft.Shadow(color=#DBDBDB,direction=135,strength=2);}
+
+
+</style>
+<div  id="index_body" >
+
+	<div  id="index_left">
+	
+	<div ></div>
+		<div id="main_title">
+			<div style="height:153px;width:100%;padding:10">
+			
+			<div style = "float:left;border-bottom:1px solid #CCCCCC;width:100%;text-align:left;font-size:14px;padding:5px;color:#333333;" ><b>{str_title}</b> </div>
+			
+			<div style = "width:100%;height:80px;text-align:left;line-height:21px;padding-left:10px" id="">
+			<span style="color:#005DAF;width:110px" >개발 상태</span> {str_st} <br>
+			
+			<span style="color:#005DAF;width:110px">사용자 인터페이스</span> {str_int}  <br>
+			<span style="color:#005DAF;width:110px">프로그래밍 언어</span> {str_lang}
+
+			</div>
+
+			</div>
+		</div>
+		<script>roundDiv('main_title','#E3E3E3','#FAFAFA')</script>
+
+	</div>
+	
+	
+
+
+	<div  id="index_right" >
+		<div style="height:115px;width:100%;border-bottom:1px dashed #E3E3E3;overflow:hidden">
+		<img src='/project/{mcode}/main.gif' border='0' alt='' onerror="this.src='/b.gif'">
+		</div>
+		
+		<div style="height:34px;width:100%;padding:3">
+		{str_memo}<br>
+		{? num_start_date }시작일 : {=date("Y.m.d",num_start_date)}{/}
+		
+		</div>
+	</div>
+	<script>roundDiv('index_right')</script>
+
+
+
+
+	<div  id="index_right2" >
+		<div style="height:76px;width:100%;">
+
+		<table cellpadding="0" cellspacing="0" border="0" width="100%"  style="margin-bottom:5px">
+		<tr valign="top" height="28">
+			<td width="4" ><img src="/images/sj1_t_left.gif"></td>
+			<td background="/images/sj1_t_bg.gif" style="padding:10px 5px 0  5px ">
+				<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+				<tr>
+					<td ><b>프로젝트 정보</b></td>
+					<td align = right  ></td>
+				</tr>
+				</table>
+			</td>
+			<td width="4" valign="top"><img src="/images/sj1_t_right.gif"></td>
+		</tr>
+		<tr valign="top" height="100%">
+			<td width="4" background="/images/sj1_c_left.gif"></td>
+			<td bgcolor="FFFFFF" valign = top height=280 style="padding:5px"  >
+
+			<div style="height:30px;width:100%;">
+
+			<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+			 <tr>
+			  <td width=100 height=20>작업건수</td><td>{pro_count+0}건</td>
+			 </tr>
+ 			
+			</table>
+
+
+			</div>
+
+			</td>
+			<td width="4" background="/images/sj1_c_right.gif"></td>
+		</tr>
+		<tr valign="top" height="4">
+			<td width="4"><img src="/images/sj1_b_left.gif"></td>
+			<td background="/images/sj1_b_bg.gif"></td>
+			<td width="4" valign="top"><img src="/images/sj1_b_right.gif"></td>
+		</tr>
+		</table>
+
+		</div>
+		<div style="height:76px;width:100%;padding:">
+
+		<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="table01">
+		 <tr>
+		  <th>개발자</th><th>디자이너</th>
+		 </tr>
+		 <tr>
+		  <td height = 50>
+		  {str_pm1}<br>
+		  {str_pm2}<br>
+		  {str_pm3}<br>
+		  </td><td>
+		  {str_dm1}<br>
+		  {str_dm2}<br>
+		  {str_dm3}<br>
+		</td>
+		 </tr>
+		</table>
+
+		</div>
+	</div>
+
+<div style = "float:left;border-top:1px solid #EBEBEB;width:100%;margin-top:10px;padding-bottom:10px" id="">
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+ <tr>
+  <td>
+   
+
+	{? num_board_mcode1}
+	<wa:applet code="{num_board_mcode1}" module="/list_wa_all" listnum="5" titlelen="24">
+	<div style = "float:left;border:0px solid #000;width:100%px;margin-top:10px;" id="">
+	
+	<table align="center" width=98% border=0 cellspacing=0 cellpadding=0 class=table01>
+	 <tr>
+	  <td background="/image/tt_bg.gif" >
+		<div style = "float:left;width:80%;"><b>{B_title}</b></div>
+		<div style = "float:left;width:20%;text-align:right;padding-top:3px"> <a href="/tong_board.list?mcode={num_board_mcode1}"><img src='/theme_lib/out_bbs/A_1/more.gif' border='0' alt=''></div>
+	 </td>
+  	</tr>
+
+	{@ LIST}
+	<tr>
+	  <td style="padding:15px">
+
+	  <div style = "float:left;width:80%;"><b><A href="{.readlink}">{.title}</A><font color=#993333 style = "letter-spacing: 0px;">[{.num_comment}]</font>&nbsp;{? .is_recent}<img src="/image/iicon/ico_new2.gif"  border="0" alt="" align="absmiddle">{/}</b></div>
+	  <div style = "float:left;width:20%;text-align:right;padding-top:3px">{? .str_nick}{.str_nick}{:}{.str_name}{/}</div>
+	
+	<div  style="font-size:11px;color:#B7B7B7">{.str_user} | {.dt_date}</div>
+	  <div style = "margin-top:10px;" >
+	 {.str_text1}
+	  </div>	
+	  
+	  <div style = "border-bottom:1px dashed #E8E8E8;margin-top:5px;padding-bottom:10px;text-align:right" >
+	  <span style="color:#005DAF;width:110px" >{.str_tmp6}</span>
+	  </div>	
+
+	  </td>
+	</tr>
+	{:}
+	<tr>
+	  <td height=145 align = center> 데이터가 없습니다.</td>
+	</tr>
+	{/}
+
+
+
+
+	</table>
+
+	
+	</div>
+	</wa:applet>
+
+
+{/}
+
+  </td>
+ </tr>
+</table>
+
+
+
+	</div>
+
+
+{? _SESSION.ADMIN}<a href="/manage.mk_module_m?mcode={mcode}"><img src='/image/project_add_btn.gif' border='0' alt=''></a>{/}
+
+</div>

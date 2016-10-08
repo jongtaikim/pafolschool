@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+	<TITLE> 회원졸업 </TITLE>
+	<STYLE>
+	body,td,input,textarea,select,button{font-size:12px;}
+	</STYLE>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+	function chkIn(){
+		
+		var obj_t=orderform.formation.options[orderform.formation.selectedIndex].text;
+
+		if( !confirm('선택하신 ▷'+obj_t+'◁에 속하는 학생을 졸업생으로 전환합니다!!') ) return false;
+
+		orderform.submit();
+	}
+	//-->
+	</SCRIPT>
+
+
+<BODY>
+<TABLE cellspacing=0 cellpadding=0 border=0>
+<TR>
+	<TD colspan=2 style='line-height:25px;padding:5 5 5 5;' bgcolor='#EFEFEF'>
+	졸업시킬 학년을 선택하셔서 졸업생으로 전환합니다.<br>
+	현재를 기준으로 해당 학년에 속한 학생을 전부 전환합니다.<br>
+	전환이 잘 못 된 학생은 탈퇴 후 재가입하셔야 합니다.
+	</TD>
+</TR>
+<TR><TD colspan=2 height='20'>&nbsp;</TD></TR>
+<TR>
+<form name='orderform' method='post' onSubmit='chkIn(); return false;'>
+	<TD align='right'>
+		<select name='formation'>
+		<!-- DYNAMIC AREA 'LOOP' -->
+		<option value='{{num_serial}}'>{{str_title}}</option>
+		<!-- DYNAMIC AREA 'LOOP' -->
+		</select>
+	</TD>
+	<TD><input type='submit' value='을 졸업시킵니다'></TD>
+</form>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

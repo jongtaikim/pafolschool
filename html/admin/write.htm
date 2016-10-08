@@ -1,0 +1,61 @@
+ 
+<wa:upload part="script" sect="main" code="news.{code}"></wa:upload>
+<form name="writeForm" method="post" onsubmit="return prepare(this);">
+<input type="hidden" name="code" value="{code}">
+<input type="hidden" name="id" value="{id}">
+<Input type="hidden" name="str_thumb" value="{str_thumb}">
+
+<table cellpadding="0" cellspacing="0" border="0" width="850" height="45" background="/html/admin2/images/sub_title_bg.gif" align = center>
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 180><b>솔류션공지사항 작성</b></td>
+				<td>&nbsp; </td>
+				</tr>
+			</table>
+			<br>
+
+
+<table width="800" class="table01" align = center>
+<tr>
+	<th><b>제목</b></th>
+	<td colspan="3">
+		<input type="text" name="str_title" hname="제목" value="{str_title2}" maxlength="30" style="width:100%;" required="true" />
+	</td>
+</tr>
+<tr>
+	<th><b>날짜</b></th>
+	<td>
+		<wa:datepicker type="text" name="dt_date" hname="날짜" value="{dt_date2}" size="10" maxlength="10" required="true"></wa:datepicker>
+	</td>
+	<th><b>조회수</b></th>
+	<td>
+		<input type="text" name="num_hit" hname="조회수" value="{num_hit}" size="5" maxlength="5" option="number" required="true" />
+	</td>
+</tr>
+</table>
+
+
+
+
+ 
+
+<TABLE align = center>
+<TR>
+	<TD><wa:upload part="editor_xml" sect="main" code="news.{code}" height="550" codet="{code}" modet="news" width="800">{content}</wa:upload></TD>
+</TR>
+</TABLE>
+
+
+
+
+
+
+<table width="800" align = center>
+<tr>
+	<td align="center">
+		<input type="submit" class="button2" value=" 저장 " name="submit_btn" id="submit_btn"  >
+		<input type="button" class="button2" value=" 취소 " onclick="history.go(-1);">
+	</td>
+</tr>
+</table>
+</form>

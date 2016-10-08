@@ -1,0 +1,147 @@
+{? file}
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=KSC5601">
+<title>이미지파일 첨부하기</title>
+<script language="Javascript">
+<!--
+
+
+ function _onSubmit(elClicked){
+	if($('alt').value){
+		$('loding').style.display='';
+		inImg($('alt').value)
+	}else {
+	alert('이미지 설명 (대체 텍스트) 는 반드시 입력해주세요');
+	return false;
+	}
+	
+
+}
+
+-->
+</script>
+
+<style type="text/css"> 
+<!--
+/* Default Type Selector */
+*{ margin:0; padding:0; font-size:12px; font-family:돋움, Dotum, 굴림, Gulim, AppleGothic, Sans-serif;}
+a{ color:#004790;}
+img,
+fieldset{ border:none;}
+legend{ display:none;}
+em{ font-style:normal; color:#258102;}
+strong{ color:#258102;}
+li{ list-style:none;}
+h1{ font:bold 13px 굴림, Gulim, 돋움, Dotum, AppleGothic, Sans-serif; color:#ffffff; padding:11px 0 0 24px; background:url(/image/bu_h1.gif) no-repeat 15px 13px;}
+/* Layout */
+#wrap{ position:relative; overflow:hidden;}
+#header{ background:url(/image/bg_h_green.gif) no-repeat; height:35px;}
+#content{ width:360px; padding:20px 0 1px; margin:0 0 0 20px; auto; border-bottom:1px solid #e4e4e4;}
+#footer{ border-top:3px solid #f9f9f9; text-align:center; padding:7px 0 15px 0; margin:0 20px;}
+#footer * { vertical-align:top;}
+#footer input,
+#footer a{ margin:0 1px 0 0;}
+/* Solo Style */
+.w400{ width:100%;}
+.w330,
+.w330_2{ width:330px; margin:0 0 0 15px; auto; overflow:hidden;}
+/* Common */
+.bx1{ border:1px solid #e3e3e3; margin:0 0 19px;}
+.bx1_shadow{ border:1px solid #f1f1f1; background:#f8f8f8; margin:0;  padding:14px 0 12px 50px;}
+.bx1 *{ color:#282828; vertical-align:middle;}
+.bx1 a{ margin:0 0 0 1px;}
+.input_text{border:1px solid #9a9a9a; border-right-color:#d8d8d8; border-bottom-color:#d8d8d8; padding:2px 3px 2px 3px; color:#676767;}
+.inputarea{position:relative;}
+.file {position:relative; text-align:right; -moz-opacity:0; -ms-filter:"alpha(opacity:0)"; filter:alpha(opacity:0); opacity:0; z-index:2; width:270px; height:22px;}
+.fakefile {position:absolute !important; top:0; left:0; padding:0; _padding:0 2px 2px; z-index:1; text-align:left; overflow:hidden;}
+.fakefile img{margin-left:4px;}
+/* Content */
+.desc1{ color:#666666; font-size:11px; letter-spacing:-1px; margin:4px 0 0;}
+.desc1 em{ font-size:11px; color:#333333;}
+.w330 dt{ float:left; width:78px; height:73px;}
+.w330 dd{ float:left; width:237px; background:url(/image/bu_1x139_ef.gif) 0 0 no-repeat; margin-top:13px; padding:1px 0 25px 13px; color:#888888; font-size:11px; letter-spacing:-1px; line-height:1.4em;}
+.w330 dd .st{ font-weight:bold; font-size:12px; color:#DA272F; padding-bottom:3px; }
+.w330 dd .btn{ vertical-align:top; margin:3px 0 16px;}
+.w330 dd .btn a{ background:url(/image/bu_arrow_46.gif) right 2px no-repeat; padding-right:8px; font-size:11px; color:#464646; }
+.line1{ background:url(/image/bu_1x12_dot_c2.gif) bottom left repeat-x; margin-bottom:14px;}
+.lineText{border:1px solid #D8D8D8;width:250px}
+-->
+</style>
+</head>
+ 
+ 
+<body >
+<div id="wrap" class="w400">
+	<form name="frmAttach" id="frmAttach" method="post" enctype="multipart/form-data">
+		<fieldset>
+			<legend>웹에디터에 이미지 삽입</legend>
+			<div id="header">
+				<div style="font-size:14px;color:#fff;margin:10px 0 0 20px;font-weight:  bold">웹에디터에 이미지 삽입</div>
+			</div>
+			<div id="content">
+				<div class="bx1">
+					<div class="bx1_shadow">
+						
+						<div class="inputarea">
+							<input type="text" name="alt" id="alt" value="" class="lineText" />
+							<p class="desc1"><em>이미지설명(대체 텍스트)</em> 를 반드시 넣어주세요.</p>
+						</div> 
+					</div>
+				</div>
+				<dl class="w330">
+					<dt><img src="/image/ico_copyright_img.gif" width="66" height="73" alt=""></dt>
+					<dd><p class="st">저작권을 보호합시다</p>
+					저작권 침해로 인해 발생할 수 있는<br>이용자 피해 방지 및 권리자 보호를 위해<br>저작권 침해가 우려되는 파일에 대한 사용을<br>일부 제한하고 있음을 알려드립니다.
+					
+					건강하고 깨끗한 인터넷을 위한<br>여러분의 관심과 참여를 부탁드립니다.
+					</dd>
+				</dl>
+			</div>
+			<div id="footer">
+				<img src="/image/btn_confirm.gif" id="sbtn" onclick="_onSubmit(this)"> <a href="javascript:self.close()"><img src="/image/btn_cancel.gif" alt="취소" width="40" height="23"></a>
+			</div>
+		</fieldset>
+	</form>
+</div>
+<div id = "loding" style = "left:65px;top:90px;position:absolute;display:none;z-index:999; ;background-color:#ffffff;padding:10px;;border:3px solid #4C9F11" >
+<center>파일을 처리하고 있습니다....</center>
+</div>
+<script language="Javascript">
+document.getElementById('attachfile').focus();
+</script>
+</body>
+</html>
+
+
+
+
+<script type="text/javascript" language="javascript"> 
+	function inImg(alt){
+	 if(!alt) alt = "웹에디터 삽입한 편집 이미지";
+	opener.parent.pasteHTMLDemo('<img src="{file}" border="0" {? width > 600} width="600px"{/} alt="'+alt+'"/>', '<?=$ifrmObjId?>'); 
+	self.close();
+	}
+	//parent.closewPop(2)
+
+	self.resizeTo("400", "450");
+</script> 
+
+
+
+<? exit; ?>
+{:}
+<form action="http://s.lab.naver.com/pe/service" method="get" enctype="multipart/form-data" name="frmAttach" id="frmAttach">
+	<input type="hidden" name="exportTo" value="http://<?=$_SERVER[HTTP_HOST]?>/pedit"/>
+	<input type="hidden" name="exportMethod" value="BROWSER"/>
+	<input type="hidden" name="exportField" value="file"/>
+	<input type="hidden" name="exportTitle" value="Add WebEditor.."/>
+
+</form>
+<script>
+$('frmAttach').submit();
+</script>
+{/}

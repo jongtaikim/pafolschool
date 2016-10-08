@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/css/onlinePoll.css" type="text/css" />
+
+
+
+
+			<div id="onlinePoll">
+					<div class="objTop">
+						<span class="comment">총 {total}개의 설문조사가 있습니다.</span>
+						<a href="#"><img src="/images/foodList/adminBtn.gif" alt="관리자버튼" /></a>
+					</div>
+					<table cellspacing="0" cellpadding="0" summary="설문조사목록 표, 설문내용, 투표하기">
+						<caption>설문조사 목록 표</caption>
+						<thead>
+							<tr>
+								<th class="num">번호</th>
+								<th class="title">설문내용</th>
+								<th class="btn">투표하기</th>
+								<th class="position">상태</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							<!--{@ LIST}-->
+							<tr>
+								<td class="num">{.num_serial}</td>
+								<td class="title">{.str_title}</td>
+								<td class="btn"><a href="/poll.view?id={.num_serial}&mcode={mcode}&cate={cate}" class="pollBtn">투표하기</a></td>
+								<td class="position">{.state}</td>
+							</tr>
+							<!--{:}-->
+							<tr bgcolor="#FFFFFF" align="center" height="100">
+								<td colspan="4">등록된 설문이 없습니다.</td>
+							</tr>
+							<!--{/}-->
+							
+
+						</tbody>
+					</table>
+					
+					
+				</div>
+
+				<div style="text-align:center;padding-top:10px"><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/images/board/boardPrevBtn.gif" nexticon="/images/board/boardNextBtn.gif" firsticon="/images/board/boardFirstBtn.gif" lasticon="/images/board/boardLastBtn.gif" /></div>
+
+
+

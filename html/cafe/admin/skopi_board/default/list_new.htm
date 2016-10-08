@@ -1,0 +1,72 @@
+<div id="sub_content_area">
+	<!-- IF 'SUB_TITLE' -->
+	<div id="sub_title_area">
+	학급문집 Q&A
+	</div>
+	<!-- ENDIF 'SUB_TITLE' -->
+	<hr/>
+
+	<!-- 라이센스 추가 21008.06.24 BY NCS -->
+	<table width="100%">
+		<tr>
+			<td>
+				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td align="center">
+					{{LICENCE}}
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<!-- 라이센스 추가 21008.06.24 BY NCS -->
+
+	<span id="list_total">총 {{total}} 개의 게시물이 있습니다 </span>
+	<table id="board_list"  class="board_top">
+		<tr align="center">
+			<th class="board_num border_bottom_2px border_top_1px border_color_2"><span class="hidden">번호</span></td>
+			<th class="board_title border_bottom_2px border_top_1px border_color_2">제목</td>
+			<th class="board_author border_bottom_2px border_top_1px border_color_2">글쓴이</td>
+			<th class="board_date border_bottom_2px border_top_1px border_color_2">날짜</td>
+			<th class="board_view border_bottom_2px border_top_1px border_color_2">답변</td>
+		</tr>
+		<!-- DYNAMIC AREA 'LIST' -->
+		<tr>
+			<td class="board_num border_bottom_1px border_color_3" align="center">{{num}}</td>
+			<td class="board_title border_bottom_1px border_color_3"><a href="{{ReadLink}}">{{str_title}}</a></td>
+			<td class="board_author border_bottom_1px border_color_3" align="center">{{str_name}}</td>
+			<td class="board_date border_bottom_1px border_color_3" align="center" class="f-d8pt">{{dt_wdate}}</td>
+			<td class="board_view border_bottom_1px border_color_3" align="center">{{chr_state}}</td>
+		</tr>
+		<!-- DYNAMIC AREA 'LIST' -->
+	</table>
+	<hr/>
+	<a href="cafe.php?cafe_id=20080101&act=cafe.admin.skopi_board.write_new" id="write_btn"><img src="/image/button/bt01/01.gif" alt="글쓰기 버튼" /></a>
+	<form method="get" name="searchform" id="search_form">
+		<input type="hidden" name="cafe_id" value="{{cafe_id}}" />
+		<input type="hidden" name="act" value="{{act}}" />
+			<select name="key" id="key">
+				<option value="str_name" {{search_name}}>글쓴이</option>
+				<option value="str_title" {{search_title}}>제목</option>
+			</select>
+		<input name="search" type="text" class="login" id="search" value="{{search}}" />
+		<input type="image" src="/image/button/bt01/04.gif" alt="검색 버튼" id="search_btn" />
+	</form>
+	<div id="board_page_num">
+		<script src="/js/lib.pagingcafe.js"></script>
+		<script>
+			PG = new Paging({{total}});
+			with(PG.config) {
+				itemPerPage = {{listnum}};
+				prevIcon = "/image/board/orange/btn_prevpage.gif";
+				nextIcon = "/image/board/orange/btn_nextpage.gif";
+				firstIcon = "/image/board/orange/btn_firstpage.gif";
+				lastIcon = "/image/board/orange/btn_lastpage.gif";;
+				thisPageStyle = "font-weight:bold;";
+			}
+			document.write(PG);
+		</script>
+	</div>
+	<hr/>
+</div>

@@ -1,0 +1,136 @@
+@charset "euc-kr";
+
+/* ÀÌ¿ô´åÄÄ(e-wut.com) 
+À¥ ÆÛºí¸®½Ì 
+ÀÛ¾÷ÀÚ:±èµ¿¿ì, ±èÀºÁ¤ */
+
+/*·¹ÀÌ¾Æ¿ô*/
+body {
+	background:url(../images/step1BodyBg.gif) repeat-x left top;
+	}
+#wrapper {
+	width:760px;
+	margin:0 auto;
+	}
+
+
+/*º»¹® ¿µ¿ª*/
+
+h1 {
+	float:left;
+	position:static;
+	visibility:visible;
+	line-height:130%;
+	font-size:14px;
+	width:auto;
+	height:20px;
+	padding-top:3px;
+	padding-left:25px;
+	color:#0178aa;
+	background:url(../images/titleIcon2.gif) no-repeat left top;
+	
+	}
+ .gnb {
+	height:24px;
+	padding-top:31px;
+	margin-bottom:23px;
+	}
+.gnb ul {
+		overflow:hidden;
+		float:right;
+		}
+ .gnb ul li {
+			float:left;
+			margin-right:-1px;
+			padding:0 10px;
+			font-size:0.92em;
+			background:url(../images/bar.gif) no-repeat right 1px;
+			}
+#joinStep1 {
+	float:left;
+	}
+	#joinStep1 .contentArea {
+		margin-top:26px;
+		padding:0 14px;
+		}
+		#joinStep1 .contentArea h2 {
+			visibility:visible;
+			line-height:130%;
+			font-size:14px;
+			width:auto;
+			height:29px;
+			padding-left:20px;
+			position:static;
+			background:url(../images/titleIcon.gif) no-repeat left top;
+			}
+	#joinStep1 .agreeBox {
+		width:692px;
+		height:248px;
+		padding:0 10px;
+		margin-bottom:20px;
+		background:url(../images/agreeBoxBg.gif) no-repeat left bottom;
+		}
+		#joinStep1 .agreeBox legend {
+			display:block;
+			position:static;
+			visibility:visible;
+			font-size:12px;
+			line-height:130%;
+			width:auto;
+			height:auto;
+			margin-bottom:9px;
+			font-weight:bold;
+			padding-left:20px;
+			background:url(../images/legendIcon.gif) no-repeat left top;
+			}
+		#useAgreeContent, #secureAgreeContent {
+			float:left;
+			overflow:hidden;
+			height:200px;
+			margin:12px 0;
+			}
+			
+	#joinStep1 #btnArea {
+		text-align:center;
+		}
+	#joinStep1 .checkComment {
+		display:block;
+		height:30px;
+		padding-left:27px;
+		margin-bottom:16px;
+		text-align:left;
+		background:url(../images/joinInfoIcon.gif) no-repeat 12px 8px;
+		}
+		#joinStep1 .checkComment em {
+			font-weight:bold;
+			font-style:normal;
+			margin-right:20px;
+			}
+	#joinStep1 #btnArea img {
+		display:inline;
+		
+		}
+	
+
+	#joinStep1 .footerArea {
+	float:left;
+	width:100%;
+	padding-top:25px;
+	margin-top:30px;
+	background:url(../images/introFooterAreaBg.gif) no-repeat left top;
+	}
+	#joinStep1 .footerMenu {
+		display:inline;
+	overflow:hidden;
+		float:left;
+		width:500px;
+		margin-left:250px;
+		}
+	#joinStep1 .footerMenu li {
+		display:inline;
+		float:left;
+		margin-left:-1px;
+		padding:0 8px;
+		font-size:0.92em;
+		background:url(../images/bar.gif) no-repeat left 1px;
+		}

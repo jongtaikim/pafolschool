@@ -1,0 +1,185 @@
+<!--모듈들을 싸고있는 레이어 제어 2008-03-10 종태-->
+<!--디자인에디터 모드 2008-03-10 종태-->
+<div style="float:left;padding-bottom:0px;border: 0px solid #FFCC33">
+<div style=" width:180;height:;x-overflow: " id = "login">
+<wa:applet module="login.main">
+<style>
+
+.min {
+	font-family: "돋움", "돋움체";
+	font-size: 11px;
+	letter-spacing:-1;
+	color: #888888;
+	text-decoration: none;
+}
+.min
+	A:link {FONT-SIZE:11px; COLOR: #888888; TEXT-DECORATION: none}
+.min
+    A:active {FONT-SIZE:11px; COLOR: #888888; TEXT-DECORATION: none}
+.min
+    A:visited {FONT-SIZE:11px; COLOR: #888888; TEXT-DECORATION: none}
+.min
+    A:hover {FONT-SIZE:11px; COLOR: #888888;  TEXT-DECORATION: underline}
+	
+.mins {
+	font-family: "돋움", "돋움체";
+	font-size: 11px;
+	color: #C0C0C0;
+	text-decoration: none;
+ }
+
+#login_layout{ border:1px solid #D8D8D8;float:left }
+#login_body{ border:5px solid #F5F5F5}
+</style>
+
+{? str_type !="h"}
+
+<!--{? !_SESSION.AUTH}-->
+
+
+			
+<div id="login_body" >
+<form name="loginForm" method="post" action="member.login" style="margin:0px;">
+<!-- 로그인 시작 -->
+
+<table border="0" cellspacing="0" cellpadding="0" width="150" align = center>
+    <tbody>
+    <tr>
+      <td height="15">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+        <tr>
+          <td width="98">
+           <input type = "text" name="userid" hname="아이디" style="width:98; height:17; border:1px solid #dcdcdc; background-color:f6f6f6">
+          </td>
+          <td width="22" align="center">
+            <!-- 아이디 저장 -->
+
+          </td>
+          <td width="98"><INPUT TYPE="checkbox" NAME="" style = "width:15px"><span class="min">ID저장 </span></td>
+        </tr>
+        </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="4"><img src="/b.gif" alt="" width="1" height="1" /></td>
+    </tr>
+    <tr>
+      <td>
+        <input  type = "password" name="passwd" hname="패스워드" style="width:98; height:17; border:1px solid #dcdcdc; background-color:f6f6f6">
+        <input type="image" src="/theme/SH1/image/btn_login.gif" alt="" width="47" height="21" align="absMiddle" /></a>
+      </td>
+    </tr>
+    <tr>
+      <td height="9"><img src="/b.gif" alt="" width="1" height="1" /></td>
+    </tr>
+    <tr>
+      <td>
+	  
+	  <a href="member.join"><img src="/theme/SH1/image/member_in.gif" alt="" width="48" height="10" /></a><a href="member.findid"><img src="/theme/SH1/image/id_pass.gif" alt="" width="102" height="10" /></a></td>
+    </tr>
+    <tr>
+      <td height="14">&nbsp;</td>
+    </tr>
+    <tr>
+      <td><img src="/theme/SH1/image/bu_line.gif" alt="" width="150" height="1" /></td>
+    </tr>
+    <tr>
+      <td height="14">&nbsp;</td>
+    </tr>
+   
+    </tbody>
+    </table>
+
+
+</form>
+</div>
+			{:}
+
+	<div id = "login_layout" >
+
+
+			<div id="login_title">
+			회원 로그인중
+			</div>
+
+			<div id="login_body">
+														<b style="color:003c69">{_SESSION.NAME}</b>님이 로그인했습니다.
+			</div>
+																	
+						
+			<div id = "login_button">			
+													
+													<a href="member.modify"><img src="./images/login1_but1.gif"></a>&nbsp;&nbsp;<a href="member.logout"><img src="./images/login1_but2.gif"></a>
+
+			</div>	
+	</div>
+			{/}
+
+
+{:}
+
+
+
+
+
+
+
+<!--{? !_SESSION.AUTH}-->
+
+
+			
+
+<form name="loginForm" method="post" action="member.login" style="margin:0px;">
+<!-- 로그인 시작 -->
+
+<TABLE align = right >
+<TR>
+
+
+  <td style="padding-top:5px">ID</td>
+   
+	<TD><input type = "text" name="userid" hname="아이디" style="width:98; height:17; border:1px solid #dcdcdc; background-color:f6f6f6"></TD>
+
+	<td style="padding-top:5px">PW</td>	
+
+	<TD><input  type = "password" name="passwd" hname="패스워드" style="width:98; height:17; border:1px solid #dcdcdc; background-color:f6f6f6"></TD>
+	<TD><input type="image" src="/theme/SH1/image/btn_login.gif" alt="" width="47" height="21" align="absMiddle" /></TD>
+	 <td style="padding-top:5px">
+	   
+	    <a href="member.join"><img src="/theme/SH1/image/member_in.gif" alt="" width="48" height="10" /></a> <a href="member.findid"><img src="/theme/SH1/image/id_pass.gif" alt="" width="102" height="10" /></a>
+	 </td>
+</TR>
+</TABLE>
+
+</form>
+
+			{:}
+
+<TABLE align = right >
+<TR>
+	<TD><b style="color:003c69">{_SESSION.NAME}</b>님이 로그인했습니다.</TD>
+	<TD>	<a href="member.modify"><img src="./images/login1_but1.gif"></a>&nbsp;&nbsp;<a href="member.logout"><img src="./images/login1_but2.gif"></a></TD>
+</TR>
+</TABLE>
+
+				
+												
+
+			{/}
+
+
+
+
+
+
+
+
+{/}
+
+	</wa:applet></div>
+</div>

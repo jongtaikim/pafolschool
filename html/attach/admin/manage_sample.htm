@@ -1,0 +1,272 @@
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/js/scriptaculous.js"></script>
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+<script type="text/javascript">
+function OnLayerChange (element) {
+	try {
+		if(element.hasChildNodes) {
+			layer = element.id;
+			len = element.childNodes.length;
+			for(j = 0; j<len; j++) {
+				el = element.childNodes[j];
+				var sel = $(el.id + '[layer]');
+				if(sel.options[sel.selectedIndex].value == layer) continue;
+				if(sel.options.length) {
+					for(i = 0; i<sel.options.length; i++) {
+						if(sel.options[i].value == layer) {
+							sel.options[i].selected = true;
+							break;
+						}
+					}
+				}
+			}
+		}
+	} catch(e) {
+		window.status = 'Change Layer Error';
+	}
+}
+</script>
+
+<body topmargin="0" leftmargin="0">
+
+<table cellpadding="0" cellspacing="0" border="0" width="680" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right  height = 45><img src="/html/admin2/images/icon4.gif" ></td>
+					<td style="padding:3 0 0 0; color:454545" ><b>레이아웃관리</b></td>
+				<td >
+				※ 마우스로 끌어서(드래그 & 드롭) 컨텐츠 위치를 조정 하십시오.<br>
+				※ 사용하지 않는 모듈에 배치하시면 홈페이지에 나타나지 않습니다.</td>
+				</tr>
+			
+		
+			</table>
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="680" height="45" >
+
+<tr><td >
+<div class="tab01">
+	<ul>
+
+		<!--{@ LAYOUTS}-->
+		<li{? .key_==layout} class="active"{/}><a href="attach.admin.manage?layout={.key_}">{.value_} 레이아웃 변경</a></li>
+		<!--{/}-->
+	</ul>
+</div>
+
+</td></tr>
+			</table>
+
+
+
+
+
+
+
+
+
+
+
+
+{#MANAGE}
+<iframe width="0" height="0" frameborder="0" name="hidden_frame"></iframe>
+<script type="text/javascript">
+	function moveLayout (id, layer) {
+		document.getElementById(layer).appendChild(document.getElementById(id));
+		selectOneLayer($(id));
+	}
+
+	function changeWidth(id, width) {
+		document.getElementById(id).style.width = width;
+	}
+
+	function addPart() {
+		window.open('attach.admin.add_part','part_editor','width=785,height=620');
+	}
+
+	function editPart(name) {
+		window.open('attach.admin.edit_part?name=' + name,'part_editor','width=785,height=620');
+	}
+
+	function deletePart(name) {
+		if(!confirm('정말 삭제하시겠습니까?')) return false;
+		document.frames['hidden_frame'].location.reload('attach.admin.delete_part?name=' + name);
+	}
+
+	function appendPart(serial, title) {
+		name = 'part_' + serial;
+		appendPanel('NONE', name, title, '100%', ['LEFT','MAIN','RIGHT'], ['100%','50%'], 1, 1 , '', '80');
+	}
+
+	function removePart(name) {
+		el = document.getElementById(name);
+		layer = el.parentNode;
+		layer.removeChild(el);
+	}
+
+	function OnDragStartEffect(element) {
+		element._opacity = Element.getOpacity(element); 
+		new Effect.Opacity(element, {duration:0.2, from:element._opacity, to:0.7});
+		Element.classNames(element).each(function(layer) { $(layer).parentNode.style.backgroundColor = '#F0F0F0'; });
+	}
+
+	function OnDragEndEffect(element) {
+		var toOpacity = typeof element._opacity == 'number' ? element._opacity : 1.0
+        new Effect.Opacity(element, {duration:0.2, from:0.7, to:toOpacity}); 
+		Element.classNames(element).each(function(layer) { $(layer).parentNode.style.backgroundColor = '#FFFFFF'; });
+	}
+
+	function appendPanel(layer, name, title, width, avail_layer, avail_width, removable, is_part, bg, h) {
+		html_layers = '';
+		if(removable) html_layers += '<option value="NONE">NONE</option>';
+		for(i=0, cnt = avail_layer.length; i<cnt; i++) {
+			html_layers += '<option value="' + avail_layer[i] + '"' + 
+							(layer == avail_layer[i] ? ' selected' : '') +
+							'>' + avail_layer[i] + '</option>';
+		}
+		html_widths = '';
+		for(i=0, cnt = avail_width.length; i<cnt; i++) {
+			html_widths += '<option value="' + avail_width[i] + '"' + 
+							(width == avail_width[i] ? ' selected' : '') +
+							'>' + avail_width[i] + '</option>';
+		}
+
+if (h == "")
+{
+var h = "80";
+}
+
+
+if(width !='100%' && width !='50%') {
+var width2 = parseInt(width) + 8;	
+}else{
+//alert(width);
+var width2 = width;
+}
+
+
+
+if (bg =="")
+{
+	html = 
+		'<TABLE  cellpadding="0" cellspacing="0"    width = 100%  border =0 align = center  class= "table04" background = "'+ bg +'" style =	"border-top: 1px solid #828282;border-right: 1px solid #828282;border-left: 1px solid #828282;border-bottom: 0px solid #828282; border-collapse: collapse;">' +
+
+		'<TR class="t_handle">' +
+		'	<TD width = 2 height = 30></TD>' +
+		'	<TD  width = 100%  height = 30   align = center bgcolor = #E8E8E8 ><b>' + title +
+		'	</TD>' +
+
+			'<TR >' +
+		'	<TD width = 2></TD>' +
+		'	<TD  width = 100%  height = '+  h +'   align = center >미리보기가 없습니다.'+
+		'	</TD>' +
+	
+		'	<TR >' +
+		'	<TD  width = 3></TD>' +
+		'</TR>' +
+		'</TABLE>' +
+
+		'	<TABLE cellpadding="0" cellspacing="0" border =0  bgcolor = #ffffff   style =	"border-right: 1px solid #828282; border-left:1px solid #828282; border-bottom: 1px solid #828282; border-top: 0px solid #828282; border-collapse: collapse; " width = 100% >' +
+	
+	
+		'	<TR>' +
+		'<td style = "padding-left : 10px;padding-bottom : 3px;padding-top : 3px" align = center><input type="hidden" name="pannels[]" value="' + name + '">' +
+
+		'<select name="' + name + '[layer]" id="' + name + '[layer]" onchange="moveLayout(\'' + name + '\',this.value);" style="font-size:11px">' 
+		+ html_layers + 
+		'</select> ' +
+		
+		
+		'<select name="' + name + '[width]" onchange="changeWidth(\'' + name + '\',this.value);" style="font-size:11px">' + html_widths + '</select><br>'  +
+
+		
+			(is_part ? '<button onclick="editPart(\'' + name + '\');">편집</button> <button onclick="deletePart(\'' + name + '\');">삭제</button>' : '') +
+			'</td>' +
+		'	</TR>' +
+	
+		'	</TABLE>';
+
+}else{
+	html = 
+		'<TABLE  cellpadding="0" cellspacing="0"    border =0 align = center  class= "table04" background = "'+ bg +'" style =	"border-top: 1px solid #828282;border-right: 1px solid #828282;border-left: 1px solid #828282;border-bottom: 1px solid #828282; ; border-collapse: collapse;" width = 100%>' +
+
+		'<TR class="t_handle">' +
+		'	<TD width = 2></TD>' +
+		'	<TD  width = 100%  height = '+  h +'   align = right valign = bottom>' +
+		'<TABLE bgcolor = #ffffff><TR><TD style = "padding-top:3px;color:#ed448f;font-size:11px">'+ title +'</TD>'+
+		
+		
+		'<td style = "padding-right:2px"><input type="hidden" name="pannels[]" value="' + name + '">'+
+		'<select name="' + name + '[layer]" id="' + name + '[layer]" onchange="moveLayout(\'' + name + '\',this.value);" style="font-size:11px">' + html_layers + '</select> ' +
+				'<select name="' + name + '[width]" onchange="changeWidth(\'' + name + '\',this.value);" style = "display:none">' + html_widths + '</select><br>'  +
+			(is_part ? '<button onclick="editPart(\'' + name + '\');">편집</button> <button onclick="deletePart(\'' + name + '\');">삭제</button>' : '') + '</td>' +
+
+
+		'</TR></TABLE>' +
+		
+		
+
+		'	</TD>' +
+	
+		'	<TR >' +
+		'	<TD  width = 3></TD>' +
+		'</TR>' +
+		'</TABLE>' ;
+}
+		html_fixed = 
+	'<TABLE  cellpadding="0" cellspacing="0"    border =0 align = center  class= "table04" background = "'+ bg +'" style =	"border-top: 1px solid #828282;border-right: 1px solid #828282;border-left: 1px solid #828282; border-collapse: collapse;" width = 100%>' +
+
+		'<TR class="t_handle">' +
+		'	<TD width = 2></TD>' +
+		'	<TD  width = 100%  height = '+  h +'   align = center bgcolor = #E8E8E8 ><b>' + title +
+		'	</TD>' +
+	
+		'	<TR >' +
+		'	<TD  width = 3></TD>' +
+		'</TR>' +
+		'</TABLE>' +
+
+		'	<TABLE cellpadding="0" cellspacing="0" border =1    class= "table05" bgcolor = #ffffff   style =	"border-right: 1px solid #828282; border-left:1px solid #828282; border-bottom: 1px solid #828282; border-collapse: collapse;" width = 100% >' +
+	
+	
+		'	<TR>' +
+		'<td style = "padding-left : 10px;padding-bottom : 3px;padding-top : 3px" align = center><input type="hidden" name="pannels[]" value="' + name + '">이동 : ' +
+				'<select name="' + name + '[layer]" id="' + name + '[layer]" onchange="moveLayout(\'' + name + '\',this.value);">' + html_layers + '</select> ' +
+				'넓이 : <select name="' + name + '[width]" onchange="changeWidth(\'' + name + '\',this.value);">' + html_widths + '</select><br>'  +
+				(is_part ? '<button onclick="editPart(\'' + name + '\');">편집</button> <button onclick="deletePart(\'' + name + '\');">삭제</button>' : '') +
+			'</td>' +
+		'	</TR>' +
+	
+		'	</TABLE>';
+
+  
+		el = document.createElement('DIV');
+		el.id = name;
+		el.className = avail_layer.join(' ') + (removable ? ' NONE' : '');
+		el.style.styleFloat = 'left';
+		el.style.width = width2;
+		el.style.padding = '2px';
+
+    <!-- theme:IP3는 attach:login 고정 2007-05-07 (주)아이노크 김미희-->
+    <!--{? theme=='IP3'}-->
+    if(name=='login') el.innerHTML = html;
+    else el.innerHTML = html;
+    <!--{:}-->
+    el.innerHTML = html;
+    <!--{/}-->
+
+    document.getElementById(layer).appendChild(el);
+		new Draggable(name, {revert:true,handle:'t_handle',starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+	}
+
+	<!--{@ LIST}-->
+	appendPanel('{.layer}','{.name}','{.title}','{.width}',[{.avail_layer}],[{.avail_width}],{.removable},{.is_part}, '{.avail_bg}', '{.avail_height}');
+	<!--{/}-->
+	<!--{? theme=='IP3'}-->
+		//login.disabled = "true";
+	<!--{/}-->
+
+</script>
+</body>

@@ -1,0 +1,175 @@
+<script type="text/javascript" src="/js/ajax.js"></script>
+
+<script type="text/javascript">
+	function oid_a(val,mode) {
+
+	var params = 'a_oid=' + encodeURIComponent(val) + '&mode=a_oid';  
+
+		//alert(params);
+		sendRequest("/oid_copy.update", params, oid_a_FromServer, "POST");
+	}
+	function oid_a_FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				if(str_text !="N"){
+				document.oidForm.a_oid_site.value = str_text ;
+				}else{
+				document.oidForm.a_oid_site.value = '없는OID' ;
+				}
+			}
+		}
+	}
+
+
+
+function oid_b(val,mode) {
+
+	var params = 'b_oid=' + encodeURIComponent(val) + '&mode=b_oid';  
+
+		//alert(params);
+		sendRequest("/oid_copy.update", params, oid_b_FromServer, "POST");
+	}
+	function oid_b_FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				if(str_text !="N"){
+				document.oidForm.b_oid_site.value = str_text ;
+				}else{
+				document.oidForm.b_oid_site.value = '없는OID' ;
+				}
+			}
+		}
+	}
+
+</script>
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<FORM METHOD=POST name="oidForm" target = "data" onsubmit="return validate(this)">
+	
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 120><b>
+					OID 데이터 복사</b></td>
+				<td  style="padding:3 0 0 0; color:454545">hosts/원본도메인 폴더를 hosts/대상도메인 복사하시기바랍니다. <br>			isch_file/hosts/원본도메인를 isch_file/hosts/대상 로 복사하시기 바랍니다.</td>
+				</tr>
+			</table>
+
+<TABLE width = 100%>
+<TR>
+	<TD><div class="tab01" >
+				<ul>
+					<li class="active"><a href="http://main.hkedu.co.kr/oid_copy.copy">ISCH</a></li>
+					<li ><a href="http://jjbook.jjbook.net/oid_copy.copy">B-MART</a></li>
+					
+				</ul>
+			</div></TD>
+</TR>
+</TABLE>
+
+<br>
+<table cellpadding="0" cellspacing="0" border="0" width="98%"  class= "table01">
+<tr>
+<th>
+원본 사이트 OID
+</th>
+
+<th>
+복사할 사이트 OID
+</th>
+
+</tr>
+
+<tr>
+  <td>
+  
+  
+		  <table align="center" width=98% border=0 cellspacing=0 cellpadding=0 >
+		   <tr>
+			<td colspan = 4>
+			 디비를 복사할 원본 OID 를 입력하세요
+			</td>
+		   </tr>
+		   <tr>
+			  <td> OID : </td>	<td>	<INPUT TYPE="text" NAME="a_oid" value = "{a_oid}" style = "width:60px" onkeyup = "oid_a(this.value);"></td>
+			  <td>도메인 </td>	<td>	<INPUT TYPE="text"  name ="a_oid_site"    hname="원본OID" required></td>
+		   </tr>
+		  </table>
+		  
+  
+  </td>  
+  <td>
+  
+
+
+		<table align="center" width=98% border=0 cellspacing=0 cellpadding=0 >
+		   <tr>
+			<td colspan = 4>
+			 디비를 복사할 원본 OID 를 입력하세요
+			</td>
+		   </tr>
+		    <tr>
+			  <td> OID : </td>	<td>	<INPUT TYPE="text" NAME="b_oid" value = "{b_oid}" style = "width:60px" onkeyup = "oid_b(this.value);"></td>
+			  <td>도메인 </td>	<td>	<INPUT TYPE="text"  name ="b_oid_site"    hname="원본OID"  required></td>
+		   </tr>
+		  </table>
+
+  
+  </td>
+</tr>
+
+
+<tr>
+  <td colspan =2>
+  
+  
+
+<table align="center" width=98% border=0 cellspacing=0 cellpadding=0>
+ <tr>
+  <th width = 120 rowspan = 5>
+   복사할 테이블 선택
+  </th>
+ <tr>
+<td>
+
+
+<table width = 99% align = center>
+
+{@ LIST}
+{? 
+.table_name != "LMS_LECTURE" && 
+.table_name != "LMS_LECTURE_LIST" &&
+.table_name != "LMS_MEMBER" &&
+.table_name != "LMS_ORGAN" &&
+.table_name != "PLAN_TABLE" &&
+.table_name != "TAB_MEMBER1" &&
+.table_name != "QUEST_SL_TEMP_EXPLAIN1" &&
+.table_name != "TAB_MENU_HIST_BACK" &&
+.table_name != "TAB_ORGAN" 
+}
+<tr>
+<td>
+<INPUT TYPE="checkbox" NAME="table[]" value = "{.table_name}" style = "border:0px" checked>{.table_name}  </td>
+</tr>
+{/}
+{/}
+</table>
+
+</td></tr>
+</table>
+
+
+
+
+
+  </td>
+</tr>
+
+<tr>
+  <td colspan = 2 align = center><INPUT TYPE="submit" value = "실행하기"></td>
+</tr>
+</table>
+</FORM>
+<iframe  name="data"  frameborder = 0   noresize  height = 0 width = 0></iframe>

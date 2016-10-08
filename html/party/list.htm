@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/css/club.css" type="text/css" />
+
+
+
+<!-- 중앙 컨텐츠 영역 시작 -->
+
+ 
+				<div id="clubList">
+					<h4>동아리</h4>
+					
+					<!--{@ CafeLIST}-->
+					<div class="clubListContent">
+						
+						<dl>
+							<dt><a href="/cafe/{.num_pcode}">{.str_pname}</a></dt>
+							<dd><a href="/cafe/{.num_pcode}">{?.cafe_memo}{.cafe_memo}{:}우리는 {.str_pname} 클럽입니다{/}</a></dd>
+						
+						</dl>
+						<dl><dd>개설일:{=date("Y.m.d",.str_date)}, 회원수:{=number_format(.num_user)}, 총게시물:{=number_format(.num_board)}</dd></dl>
+
+			
+						<div class="moreBtn">
+							<a href="/cafe/{.num_pcode}">more</a>
+						</div>
+					</div>
+					<!--{/}-->
+					
+ 
+					
+				</div>
+						
+
+	<!-- 중앙 컨텐츠 영역 끝 -->
+
+
+
+
+<br><br>
+
+<div style="text-align:center;margin:10px;float:left;width:95%">
+<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/image/btn_prevpage.gif" nexticon="/image/btn_nextpage.gif" firsticon="/image/btn_firstpage.gif" lasticon="/image/btn_lastpage.gif" />
+</div>
+
+{? _SESSION.USERID }
+
+<p style="text-align:center"><a href="/party.cafe_add">  <img src='/image/btn_cafe_make.gif' ></p>
+
+{/}

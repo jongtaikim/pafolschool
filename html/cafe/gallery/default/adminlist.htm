@@ -1,0 +1,113 @@
+<div id="sub_content_area">
+<script type="text/javascript">
+	function deleteConfirm(form) {
+		el = form.elements['del_ids[]'];
+		if(!el) return;
+		if(!el.length) el = new Array(el);
+		flag = false;
+		for(i=0, cnt=el.length; i<cnt; i++) {
+			if(el[i].checked) flag = true;
+		}
+		if(flag) {
+			if(!confirm('선택하신 항목을 삭제하시겠습니까? /n * 삭제후 복구가 불가능합니다. ')) return false;
+		}else {
+			alert('선택하신 항목이 없습니다');
+			return false;
+		}
+		if(!validate(form)) return false;
+		form.submit();
+	}
+</script>
+	<!-- IF 'SUB_TITLE' -->
+	<div id="sub_title_area">
+	{{board_title}}
+	</div>
+	<!-- ENDIF 'SUB_TITLE' -->
+	<hr/>
+	<!-- 라이센스 추가 2008.06.24 BY NCS -->
+	<table width="100%">
+		<tr>
+			<td height="10">&nbsp;</td>
+		<tr>
+		<tr>
+			<td>
+				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td align="center">
+					{{LICENCE}}
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<!-- 라이센스 추가 2008.06.24 BY NCS -->
+	<span id="list_total">총 {{total}} 개의 게시물이 있습니다 </span>
+	<!-- IF 'NEV_TITLE' -->
+	<b>&nbsp;갤러리 게시판입니다.</b>
+	<!-- ENDIF 'NEV_TITLE' -->
+	<form method='post' action='/cafe.php?act=cafe.gallery.list_modify' onsubmit="return deleteConfirm(this);">
+		<input type='hidden' name='cafe_id' value='{{cafe_id}}' />
+		<input type='hidden' name='mcode' value='{{mcode}}' />
+		<input type='hidden' name='page' value='{{page}}' />
+		<div id="gallery_list"  class="border_bottom_2px border_color_2">
+			<table  class="gallery_top">
+				<tr>
+					<th colspan="5" class="border_bottom_1px border_top_2px border_color_2">갤러리</th>
+				</tr>
+		<!-- IF 'NOTICE' -->
+		<!-- DYNAMIC AREA 'LIST' -->
+				<tr>
+					<td class="board_num border_bottom_1px border_color_3" align="center"><input type="checkbox" name="del_ids[]" value="{{num_serial}}"></td>
+					<td class="board_title border_bottom_1px border_color_3"><a href="{{readlink}}">{{title}}</a> <font color="#990000">{{cmt}}</font></td>
+					<td class="board_author border_bottom_1px border_color_3" align="center">{{name}}</td>
+					<td class="board_date border_bottom_1px border_color_3" align="center" class="f-d8pt">{{date}}</td>
+					<td class="board_view border_bottom_1px border_color_3" align="center">{{hit}}</td>
+				</tr>
+		<!-- DYNAMIC AREA 'LIST' -->
+		<!-- ENDIF 'NOTICE' -->
+			</table>
+		<!-- DYNAMIC AREA 'ROW' -->
+		<!-- DYNAMIC AREA 'COL' -->		
+			<dl class="gallery_element">
+				<dt class="border_3px border_color_3"><a href="{{readlink}}"><img src="{{thumb}}" alt="{{title}}의 작은이미지" /></a></dt>
+				<dd class="gallery_element_title"><span title='{{title}}'><a href="{{readlink}}">{{title}}</a></span></dd>
+				<dd class="gallery_element_comment">{{cmt}}</dd>
+				<dd class="gallery_element_name">이름: {{str_name}}</dd>
+				<dd class="gallery_element_date">날짜: {{dt_date}}</dd>
+				<dd class="gallery_element_view">조회: {{hit}}</dd>
+				<dd class="gallery_element_delete">삭제<input type="checkbox" name="del_ids[]" value="{{num_serial}}" /></dd>
+			</dl>
+		<!-- DYNAMIC AREA 'COL' -->												
+		<!-- DYNAMIC AREA 'ROW' -->	
+			<div id="gallery_page_num">
+				<script src="/js/lib.pagingcafe.js"></script>
+				<script>
+					PG = new Paging({{total}});
+					with(PG.config) {
+						itemPerPage = {{listnum}};
+						prevIcon = "/image/board/orange/btn_prevpage.gif";
+						nextIcon = "/image/board/orange/btn_nextpage.gif";
+						firstIcon = "/image/board/orange/btn_firstpage.gif";
+						lastIcon = "/image/board/orange/btn_lastpage.gif";
+						thisPageStyle = "font-weight:bold;";
+					}
+					document.write(PG);
+				</script>
+			</div>
+		</div>
+		<a href="{{writelink}}" id="write_btn"><img src="/image/button/bt01/01.gif" width="51" height="19" border="0" alt="글쓰기" /></a>
+		<input type="image" src="/image/button/bt01/07.gif" id="delete_btn" alt="삭제 버튼" />
+	</form> 
+	<form method="get" name="searchform" id="admin_search_form">
+		<input type="hidden" name="act" value="{{act}}" />
+		<input type="hidden" name="cafe_id" value="{{cafe_id}}" />
+		<input type="hidden" name="mcode" value="{{mcode}}" />
+		<select name="key" id="key">
+			<option value="str_name">글쓴이</option>
+			<option value="str_title">제목</option>
+		</select>
+		<input name="search" type="text" class="login" id="search" value="{{search}}" />
+		<input type="image" src="/image/button/bt01/04.gif" width="40" height="19" alt="검색 버튼" />
+	</form>
+</div>

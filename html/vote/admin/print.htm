@@ -1,0 +1,50 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<TITLE> 유권자 프린트 페이지 </TITLE>
+	<link href="/css/admin_ver2006_2.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+table th, table td{
+	font-size:12px;
+	color:gray;
+}
+table td strong{
+	font-size:16px;
+	font-weight:bold;
+	font-family:arial, dotum, 돋움;
+	color:black;
+}
+</style>
+</head>
+<body topmargin='0' leftmargin='0' border='0'>
+<br>
+<table width="100%" >
+<tr>
+	<td align="left"><img src="/image/admin/button/print.gif" border="0" style="cursor:hand" onClick="print();"></td>
+	<td align="right">총 {total} 명&nbsp;</td>
+</tr>
+</table>
+<div style="float:left;"></div>
+<div style="float:right;"></div>
+<br>
+
+<table width="100%" ALIGN='CENTER' border="1" cellpadding="15" cellspacing="1" bgcolor="333333" cellspacing="0" cellpadding="0">
+<tr bgcolor="eeeeee" height="25px">
+	<th align='center'>이&nbsp;&nbsp;&nbsp;름</th>
+	<th align='center'>학&nbsp;&nbsp;년</th>
+	<th align='center'>학&nbsp;&nbsp;급</th>
+	<th align='center'>번&nbsp;&nbsp;호</th>
+	<th align='center'>코&nbsp;&nbsp;드</th>
+</tr>
+{@LIST}
+<tr bgcolor="FFFFFF" align=center height="20px">
+	<td>성명 : <strong>{.str_name}</strong></td>
+	<td>학년 : <strong>{.str_grade}</strong></td>
+	<td>학급 : <strong>{.str_class}</strong></td>
+	<td>번호 : <strong>{.str_jumin}</strong></td>
+	<td style="padding:4px">인증코드 : <strong>{.str_code}</strong></td>
+</tr>
+{/}
+</table>
+</body>
+</html>

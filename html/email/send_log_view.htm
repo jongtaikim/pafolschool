@@ -1,0 +1,52 @@
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="90%" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545" width = 200><b>
+					
+					SMS 발송내역 조회 자세히
+					</b></td>
+				<td  style="padding:3 0 0 0; color:454545">&nbsp; </td>
+				</tr>
+			</table>
+<br>
+
+<table width="725" class="table01">
+<tr>
+	<th width="15%">핸드폰</th>
+	<th width="35%">메시지</th>
+	<th width="10%">전송상태</th>
+	<th width="10%">전송결과</th>
+	<th width="15%">작성시간</th>
+	<th width="15%">받은시간</th>
+</tr>
+<!--{@ LIST}-->
+<tr align="center">
+	<td>{.tran_phone}</td>
+	<td align="left"><a title="{.tran_msg}">{.tran_msg_short}</a></td>
+	<td>
+		{? .tran_status == 3}
+			전송완료
+		{: .tran_status == 2}
+			전송중
+		{: .tran_status == 1}
+			전송대기
+		{/}
+	</td>
+	<td>{.str_result}</td>
+	<td>{.tran_idate}</td>
+	<td>{.tran_rsltdate}</td>
+</tr>
+<!--{:}-->
+<tr height="100">
+	<td colspan="6" align="center">발송내역이 없습니다.</td>
+</tr>
+<!--{/}-->
+</table>
+
+<table width="725" style="margin-left:15px;">
+<tr>
+	<td><input type="button" class="button2" value="목록" onclick="location.href='{listlink}';"></td>
+</tr>
+</table>

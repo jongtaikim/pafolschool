@@ -1,0 +1,107 @@
+#popupZone {
+			position:absolute;
+			width:330px;
+			height:400px;
+			z-index:2;
+			}
+			#popupZone h2 {
+				visibility:visible;
+				position:static;
+				width:auto;
+				height:auto;
+				margin-bottom:10px;
+				font-size:14px;
+				font-family:dotum, "µ¸¿ò";
+				line-height:1.2;
+				}
+			#popupZone p {
+				padding:0;
+				margin:0;
+				font-size:11px;
+				font-family:dotum, "µ¸¿ò";
+				}
+			#popupZone .popupZoneSkip {
+				visibility:hidden;
+				position:absolute;
+				width:0;
+				height:0;
+				font-size:0;
+				}
+			#popupZone .popupZoneTop {
+				height:71px;
+				padding:12px 0 0 17px;
+				}
+			#popupZone .popupZoneList {
+				overflow:auto;
+				width:279px;
+				height:254px;
+				margin:8px 0 28px 27px;
+				}
+			#popupZone .popupZoneList ul {
+				display:block;
+				width:252px;
+				}
+				#popupZone .popupZoneList ul li {
+					display:block;
+					float:left;
+					clear:both;
+					width:100%;
+					line-height:2;
+					border-top:#aad0eb 1px solid;
+					}
+				#popupZone .popupZoneList ul li span.popupZoneNum {
+					display:block;
+					float:left;
+					width:60px;
+					text-align:center;
+					}
+					#popupZone .popupZoneList ul li span.popupZoneNum img {
+						margin-top:3px;
+						}
+				#popupZone .popupZoneList ul li span.popupZoneTitle {
+					display:block;
+					overflow:hidden;
+					float:left;
+					width:185px;
+					padding-left:3px;
+					white-space:nowrap;
+					text-overflow:ellipsis;
+					}
+				#popupZone .popupZoneFooter {
+					padding-left:10px;
+					}
+				#popupZone .popupZoneFooter .popupZoneRefusal {
+					float:left;
+					width:245px;
+					}
+				#popupZone .popupZoneFooter .popupZoneClose {
+					float:left;
+					margin-top:3px;
+					}
+
+			/*½ºÅ²½ÃÀÛ*/
+			.type01_popupZone {
+				background:url(./images/type01_popupZoneBg.gif) no-repeat left top;
+				}
+				.type01_popupZone .popupZoneTop h2 {
+					color:#fff;
+					}
+				.type01_popupZone .popupZoneTop p {
+					color:#f4ff7e;
+					}
+				.type01_popupZone .popupZoneList ul {
+					border-top:#cbdbee 2px solid;
+					border-bottom:#aad0eb 1px solid;
+					}
+					.type01_popupZone .popupZoneList ul li {
+						border-top:#aad0eb 1px solid;
+						}
+					.type01_popupZone .popupZoneList ul li.noticePopup {
+						background:#f3f6f8;
+						}
+					.type01_popupZone .popupZoneList ul li.noticePopup a {
+						color:#0b4982;
+						}
+					.type01_popupZone .popupZoneFooter {
+						color:#fff;
+						}

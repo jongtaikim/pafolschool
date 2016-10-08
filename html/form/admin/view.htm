@@ -1,0 +1,179 @@
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+
+<body style="margin:0" bgcolor="#FFFFFF"  >
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+ <table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td colspan="2">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr height="14">
+					<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+					<td background="/html/admin/images/bx_tip_top_bg.gif"></td>
+					<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+				</tr>				
+				<tr>
+					<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+					<td class="tip_text">
+						ㆍ 입력받을 폼을 편집하는 곳입니다.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㆍ 입력된 데이터 확인도 가능합니다. 
+					</td>
+					<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+				</tr>
+				<tr height="14">
+					<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+					<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+					<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="10"></td></tr>
+ </table>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	
+	<div class="tab19" width="100%">
+		<ul>
+			<li ><a href="/form.admin.setup?code={code}&admin={admin}" >입력폼 편집</a></li>
+			<li><a href="/form.admin.setup?code={code}&mode=edit&admin={admin}" >문구 편집</a></li>
+			<li class="active"><a href="/form.admin.list?code={code}&admin={admin}" >데이터 확인</a></li>
+		</ul>
+	</div>
+
+	<tr>
+		<td width="11" background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:19px 0px 13px 0px">
+			
+			<!-- 표1 Start -->				
+			
+		
+			
+			<form method=post name = "editForm">
+			<input type="hidden" name="num_serial" value="{num_serial}">
+
+			{@ LIST}
+			<div style = "float:left; width:98%" >
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr><td height="3"></td></tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>
+			</table>
+
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="d5dfe7">
+			 <tr bgcolor="#FFFFFF" height="28">
+			 <th class="table01_title" width = "110" {? (.index_ +1) < total} style = "border-bottom:0px"{/}>{.str_col_name}</th>
+			   <td style = "padding-left:10px;{? (.index_ +1) < total}border-bottom:0px{/}">
+			   <input type="hidden" name="type[]" value="{.str_col_type}">
+
+			   {?.str_col_type == "text"}
+					<input type="text" name="str_value{.index_+1}" class="fom01"  value = "{.value}">
+				   {/}
+				   
+					  {?.str_col_type == "class"}
+						{.value}
+				   {/}
+
+				   {?.str_col_type == "radio"}
+
+					{?.str_value1} <INPUT TYPE="radio" NAME="str_value{.index_+1}" value ="{.str_value1}"  {? .str_value1 == .value}checked{/}> {.str_value1}{/}
+					{?.str_value2} <INPUT TYPE="radio" NAME="str_value{.index_+1}" value ="{.str_value2}"  {? .str_value2 == .value}checked{/}> {.str_value2}{/}
+					{?.str_value3} <INPUT TYPE="radio" NAME="str_value{.index_+1}" value ="{.str_value3}"  {? .str_value3 == .value}checked{/}> {.str_value3}{/}
+					{?.str_value4} <INPUT TYPE="radio" NAME="str_value{.index_+1}" value ="{.str_value4}"  {? .str_value4 == .value}checked{/}> {.str_value4}{/}
+					{?.str_value5} <INPUT TYPE="radio" NAME="str_value{.index_+1}" value ="{.str_value5}"  {? .str_value5 == .value}checked{/}> {.str_value5}{/}
+
+				   
+				   {/}
+
+
+				   {?.str_col_type == "email"}
+
+					<input type="text" name="str_value{.index_+1}" class="fom01" style = "width: 60%"  value="{.value}">
+
+				   
+				   {/}
+
+
+				   {?.str_col_type == "zipcode"}
+
+					
+						<input type="text" name="str_value{.index_+1}" class="fom01" style = "width: 60%"  value="{.value}">
+
+
+				   {/}
+
+				   {?.str_col_type == "phone"}
+
+				<input type="text" name="str_value{.index_+1}" class="fom01" style = "width: 60%"  value="{.value}">
+				   
+				   {/}
+
+
+				   {?.str_col_type == "select"}
+
+				<select name="str_value{.index_+1}" >
+					
+
+					{?.str_value1} <option value ="{.str_value1}"  {? .str_value1 == .value}selected{/}> {.str_value1}</option>{/}
+					{?.str_value2} <option value ="{.str_value2}" {? .str_value2 == .value}selected{/}> {.str_value2}</option>{/}
+					{?.str_value3} <option value ="{.str_value3}" {? .str_value3 == .value}selected{/}> {.str_value3}</option>{/}
+					{?.str_value4} <option value ="{.str_value4}" {? .str_value4 == .value}selected{/}> {.str_value4}</option>{/}
+					{?.str_value5} <option value ="{.str_value5}" {? .str_value5 == .value}selected{/}> {.str_value5}</option>{/}
+
+				</select>
+				   
+				   {/}
+
+
+
+				   {?.str_col_type == "textarea"}
+
+
+				<TEXTAREA name="str_value{.index_+1}"  style = "width:100%;height:100" >{.value}</TEXTAREA>
+
+				   {/}
+
+
+				   </td>
+				 </tr>
+			</table>
+
+			</div>
+			{/}
+			
+
+			<table cellpadding="0" cellspacing="0" border="0" width="98%">
+				<tr>
+					<td colspan="3" width="100%" class="table_btm_line01"></td>
+				</tr>
+			</table>
+			
+		<!-- 표1 End -->	
+		</td>
+		<td width="11" background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>
+	
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="95%" align = center>
+
+	<tr>
+	  <td colspan="3" align =center style="padding:10"><input type="image" src="/html/admin/images/btn_save.gif" value="저장하기"></td>
+	</tr>
+</table>
+</form>
+</body>
+
+ 
+
+ 

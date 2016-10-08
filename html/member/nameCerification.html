@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+	<meta name="description" content="<?=_ONAME?> 홈페이지" />
+	<meta name="keywords" content="<?=_ONAME?>, 학교홈페이지" />
+	<meta name="author" content="이웃닷컴, 김동우, 김은정, 이승희" />
+	<meta name="language" content="ko" />
+	<title><?=_ONAME?></title>
+	<link rel="stylesheet" href="./css/common.css" type="text/css" />
+	<link rel="stylesheet" href="./css/nameCertification.css" type="text/css" />
+	<script type="text/javascript">
+// <![CDATA[
+	function testAuth() {
+		wWidth = 360;
+		wHight = 120;
+		
+		wX = (window.screen.width - wWidth) / 2;
+		wY = (window.screen.height - wHight) / 2;
+		
+		// Request Page Call
+		var w = window.open("https://login.<?=DOMAIN_?>/g-pin.auth?re_url=<?=$_SERVER[HTTP_HOST]?>&g_oid=<?=_OID?>&board=y", "gPinLoginWin", "directories=no,toolbar=no,left="+wX+",top="+wY+",width="+wWidth+",height="+wHight);
+	}
+// ]]>
+</script>
+</head>
+<body>
+
+	<div id="wrapper">
+		<h1>실명인증 확인페이지</h1>
+		<div id="nameCertification">
+			
+				<div class="objContent">
+						<ul>
+							<li>{학교} 홈페이지에서는 비회원 글쓰기시 본인인증을 거쳐야 글을 작성할 수 있습니다..</li>
+							<li>본인인증(I-PIN)서비스는 행정안전부 공공I-PIN센터에서 제공되며, <?=_ONAME?>에서는 별도의 주민번호를 저장하지 않습니다.</li>
+							<li>본인확인을 하시면, 홈페이지를 좀더 편리하고 안전하게 이용할 수 있습니다.</li>
+						</ul>
+						<p class="caution">* 중복 ID를 보유한 회원은 본인인증 후에는 1개의 ID만 사용가능합니다. 이점 유의하시기 바랍니다.</p>
+						<a href="/member.findid"><img src="./images/myIDFindBtn.gif" alt="내 아이디 찾기" /></a>
+						<p><strong>공공 I-PIN을 처음 사용하시는 분은 공공I-PIN에 회원가입을 먼저 하시기 바랍니다.</strong></p>
+						<div id="infoBtnArea">
+							<a href="https://www.g-pin.go.kr/center/join/join.gpin" target="_blank"><img src="./images/ipinNewBtn2.gif" alt="공공 I-PIN 신규발급 및 확인" /></a>
+							<a href="javascript:testAuth();"><img src="./images/ipinConfirmBtn2.gif" alt="공공 I-PIN 인증" /></a>
+							
+						</div>
+						<p>
+							<span>행정안전부 공공I-PIN센터에서 발급받은 식별ID 및 비밀번호를 이용하여 본인확인을 하는 주민번호 대체수단 서비스 입니다.<span><br />
+							<span class="link">공공I-PIN: <a href="http://www.g-pin.go.kr" target="_blank">http://www.g-pin.go.kr</a></span>
+							<a href="http://www.g-pin.go.kr/center/pic/sub_01.gpin" target="_blank"><img src="./images/ipinHelpBtn.gif" alt="공공 I-PIN 자세히 알아보기" /></a>
+						</p>
+				</div>
+			
+		</div>		
+
+	</div>
+</body>
+</html>

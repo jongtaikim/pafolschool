@@ -1,0 +1,100 @@
+<body>
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<script type="text/javascript" event="onload" for="window">
+el = document.forms['rightsForm'].elements;
+{@ LIST}
+	{? .code != 'b' && .code != 'a'} 
+		if(el['rights[{.str_group}][{.right}]']) el['rights[{.str_group}][{.right}]'].checked = true;
+	{/}
+{/}
+
+
+</script>
+<body >
+<div style="width:100%">
+
+
+
+
+	<form name="rightsForm" method="post" onsubmit="return validate(this);">
+	<table width="100%" class="table01">
+	<thead>
+	<tr>
+		<th colspan="2"><div style="float:left;line-height:13px">권한설정</div> <input type="button" value="모두쓰기" style="float:right" onclick="checkedsd(2)"><input type="button" value="모두읽기" style="float:right" onclick="checkedsd(1)"></th>
+	</tr>
+	</thead>
+	<tbody>
+	{@ TYPES}
+		{? .code != 'b' && .code != 'a'} 
+		<tr>
+			<th width="20%">{.name}</th>
+			<td width="80%">
+				{@ RIGHTS}
+				
+						<input type="checkbox" name="rights[{.code}][{RIGHTS.key_}]" value="1" style="border:0px;"> {RIGHTS.value_}&nbsp;&nbsp;
+
+				{/}
+			</td>
+		</tr>
+		{/}
+	{/}
+	</tbody>
+	</table>
+	<br>
+
+	<table width="90%">
+	<tr>
+		<td align="center"><input type="submit" class="button2" value="저장"></td>
+	</tr>
+	</table>
+	</form>
+
+<script language="Javascript" type="text/javascript">
+<!--
+function checkedsd(idx){
+	el = document.forms['rightsForm'].elements;
+
+
+
+	if(idx =="1"){
+		if(el['rights[s][l]']) el['rights[s][l]'].checked = true;
+		if(el['rights[s][r]']) el['rights[s][r]'].checked = true;
+		if(el['rights[t][l]']) el['rights[t][l]'].checked = true;
+		if(el['rights[t][r]']) el['rights[t][r]'].checked = true;
+		if(el['rights[u][l]']) el['rights[u][l]'].checked = true;
+		if(el['rights[u][r]']) el['rights[u][r]'].checked = true;
+		if(el['rights[v][l]']) el['rights[v][l]'].checked = true;
+		if(el['rights[v][r]']) el['rights[v][r]'].checked = true;
+		if(el['rights[w][l]']) el['rights[w][l]'].checked = true;
+		if(el['rights[w][r]']) el['rights[w][r]'].checked = true;
+		if(el['rights[x][l]']) el['rights[x][l]'].checked = true;
+		if(el['rights[x][r]']) el['rights[x][r]'].checked = true;
+
+	}
+
+	if(idx =="2"){
+		if(el['rights[s][l]']) el['rights[s][l]'].checked = true;
+		if(el['rights[s][r]']) el['rights[s][r]'].checked = true;
+		if(el['rights[s][w]']) el['rights[s][w]'].checked = true;
+		if(el['rights[t][l]']) el['rights[t][l]'].checked = true;
+		if(el['rights[t][r]']) el['rights[t][r]'].checked = true;
+		if(el['rights[t][w]']) el['rights[t][w]'].checked = true;
+		if(el['rights[u][l]']) el['rights[u][l]'].checked = true;
+		if(el['rights[u][r]']) el['rights[u][r]'].checked = true;
+		if(el['rights[u][w]']) el['rights[u][w]'].checked = true;
+		if(el['rights[v][l]']) el['rights[v][l]'].checked = true;
+		if(el['rights[v][r]']) el['rights[v][r]'].checked = true;
+		if(el['rights[v][w]']) el['rights[v][w]'].checked = true;
+		if(el['rights[w][l]']) el['rights[w][l]'].checked = true;
+		if(el['rights[w][r]']) el['rights[w][r]'].checked = true;
+		if(el['rights[w][w]']) el['rights[w][w]'].checked = true;
+		if(el['rights[x][l]']) el['rights[x][l]'].checked = true;
+		if(el['rights[x][r]']) el['rights[x][r]'].checked = true;
+		if(el['rights[x][w]']) el['rights[x][w]'].checked = true;
+
+	}
+
+}
+//-->
+</script>
+</body>

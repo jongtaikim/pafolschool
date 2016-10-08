@@ -1,0 +1,214 @@
+<style>
+body {margin:0px;font-size:12px}
+
+a:link {
+	color: #336699;
+	text-decoration:none;
+}
+
+a:visited {
+	color: #336699;
+	text-decoration:none;
+}
+
+a:active {
+	color:red;
+	text-decoration:none;
+}
+
+a:hover {
+	color:red;
+	text-decoration:none;
+}
+</style>
+<body>
+<IMG SRC="blank.gif" NAME="holdspace" ID="holdspace" WIDTH="100%" HEIGHT="12" STYLE="visibility:hidden; position:relative;">
+</body>
+
+
+
+
+
+<!--------------------------------스크롤 공지사항입메다--------------------------------------------->
+
+
+<Script Language="Javascript">
+<!--
+// bannerconfig.js
+
+var NS4 = (document.layers) ? true : false;
+var IE4 = (document.all) ? true : false;
+
+var interval = 10;
+var increment = 1;
+var pause = 3000;
+var bannerColor = "ffffff";
+var leftPadding = 2;
+var topPadding = 1;
+
+var bannerLeft = (NS4) ? document.images.holdspace.x :
+  holdspace.offsetLeft;
+var bannerTop = (NS4) ? document.images.holdspace.y :
+  holdspace.offsetTop;
+var bannerWidth = (NS4) ? document.images.holdspace.width :
+  holdspace.width;
+var bannerHeight = (NS4) ? document.images.holdspace.height :
+  holdspace.height;
+
+var ar = new Array(
+  '<b><font color = #009900>이 라인은 관리자 님들에게 신속한 정보전달을 위해 제작되었습니다.</font></b>',
+  '현재 사용중이신 관리자모드는 <font color = red>2007년 12월 05일</font> 마지막 업데이트가 되었습니다. ',
+  '<font color = #00CCFF>관리자모드에 새로운 접근방식이 현재 개발중입니다. </font>',
+  '<font color = #0033FF>왼쪽매뉴숨기기를 클릭하시면 관리자모드를 보다 넒게 사용하실 수 있습니다.</font> '
+
+);
+// banner.js
+
+onload = startBanner;
+
+function showMessage(n, show) {
+  var whichEl = (NS4) ? eval("message" + n) :
+                        eval("message" + n + ".style");
+  whichEl.visibility = (show) ? ((NS4) ? "show" : "visible") :
+                                ((NS4) ? "hide" : "hidden");
+}
+
+function nextMessage() {
+  var fromInd = current;
+  current = (fromInd == ar.length - 1) ? 0 : fromInd + 1;
+  scrollBanner(fromInd, current);
+}
+
+function moveUp() {
+  if (NS4) {
+    fromEl.top -= increment;
+    if (toEl.top - increment <= toElTarget) {
+      toEl.top = toElTarget;
+      clearInterval(intervalID);
+      fromEl.visibility = "hide";
+      timeoutID = setTimeout("nextMessage()", pause);
+    } else {
+      toEl.top -= increment;
+    }
+  } else {
+    fromEl.pixelTop -= increment;
+    if (toEl.pixelTop - increment <= toElTarget) {
+      toEl.pixelTop = toElTarget;
+      clearInterval(intervalID);
+      fromEl.visibility = "hidden";
+      timeoutID = setTimeout("nextMessage()", pause);
+    } else {
+      toEl.pixelTop -= increment;
+    }
+  }
+}
+
+function scrollBanner(from, to) {
+  if (NS4) {
+    fromEl = eval("message" + from);
+    toEl = eval("message" + to);
+    toEl.top = fromEl.top + bannerHeight;
+    toElTarget = fromEl.top;
+  } else {
+    fromEl = eval("message" + from + ".style");
+    toEl = eval("message" + to + ".style");
+    toEl.pixelTop = fromEl.pixelTop + bannerHeight;
+    toElTarget = fromEl.pixelTop;
+  }
+  showMessage(to, true); // show the upcoming message
+  intervalID = setInterval("moveUp()", interval);
+}
+
+function makeIE() {
+  // assign the necessary code to a variable
+  var text = '<DIV ID="banner" STYLE="position:absolute">';
+  for (var i = ar.length - 1; i >= 0; i--) {
+    text += '<DIV ID="message' + i + 
+            '" STYLE="position:absolute"></DIV>';
+  }
+  text += '</DIV>';
+
+  // insert the code before the end of the document
+  document.body.insertAdjacentHTML("BeforeEnd", text);
+
+  // define the main element's properties
+  with (banner.style) {
+    width = bannerWidth;
+    height = bannerHeight;
+    clip = "rect(0 " + bannerWidth + " " + bannerHeight + " 0)";
+    backgroundColor = bannerColor;
+    pixelLeft = bannerLeft;
+    pixelTop = bannerTop;
+  }
+
+  // define the child elements' properties
+  for (i = 0; i < ar.length; i++) {
+    with (eval("message" + i + ".style")) {
+      visibility = "hidden";
+      pixelLeft = leftPadding;
+      pixelTop = topPadding;
+      width = bannerWidth - leftPadding;
+      backgroundColor = bannerColor;
+    }
+  }
+}
+
+function makeNS() {
+  // create the main element
+  banner = new Layer(bannerWidth);
+
+  // define the main element's properties
+  with (banner) {
+    clip.right = bannerWidth;
+    clip.bottom = bannerHeight;
+    document.bgColor = bannerColor;
+    left = bannerLeft;
+    top = bannerTop;
+    visibility = "show";
+  }
+
+  // define the child elements' properties
+  for (var i = 0; i < ar.length; i++) {
+    // create a child element
+    eval("message" + i + " = " + 
+         "new Layer(bannerWidth - leftPadding, banner)");
+    with(eval("message" + i)) {
+      visibility = "hide";
+      left = leftPadding;
+      top = topPadding;
+      document.bgColor = bannerColor;
+    }
+  }
+}
+
+function fillBanner() {
+  var whichEl;
+  if (NS4) {
+    for (var i = 0; i < ar.length; i++) {
+      whichEl = eval("message" + i);
+      whichEl.document.write(ar[i]);
+      whichEl.document.close();
+    }
+  } else {
+    for (var i = 0; i < ar.length; i++) {
+      whichEl = eval("message" + i);
+      whichEl.innerHTML = ar[i];
+    }
+  }
+}
+
+function startBanner() {
+  if (NS4)
+    makeNS()
+  else
+    makeIE();
+  fillBanner();
+  showMessage(0, true);
+  current = 0;
+  timeoutID = setTimeout("nextMessage()", pause);
+}
+// done hiding -->
+</Script>
+
+
+<!--------------------------------스크롤 공지사항입메다--------------------------------------------->

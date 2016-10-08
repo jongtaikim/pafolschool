@@ -1,0 +1,106 @@
+<script language='javascript' src='/js/flash.js'></script>
+
+<table cellpadding="1" cellspacing="1" border="0" width="100%">
+
+
+<tr>
+		<td><img src="/theme/bk7/images/icon1.gif" align="absmiddle">
+		{? code=='SCHOOL'}
+		<script language="javascript">flash('/title1.swf','300',20,'','transparent','&title_text=학교홈페이지','..')</script>{:}
+		<script language="javascript">flash('/title1.swf','300',20,'','transparent','&title_text=B-MART','..')</script>{/}</td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+
+
+	<tr>
+		<td align="center">
+
+<TABLE width = 100%>
+<TR>
+	<TD><div class="tab01" >
+				<ul>
+					<li{? code=='SCHOOL'} class="active"{/}><a href="manage.order_poto_list?mcode=1310&code=SCHOOL">학교홈페이지</a></li>
+					<li{? code=='B-MART'} class="active"{/}><a href="manage.order_poto_list?mcode=1311&code=B-MART">B-MART</a></li>
+				
+			
+				</ul>
+			</div></TD>
+</TR>
+</TABLE>
+<br>
+<TABLE class="table004" style="" width = 100%>
+
+
+
+<TR align = center style = "font-weight:bold">
+{@ LIST_organ}	
+
+<TD>
+
+
+<TABLE class ="table00">
+
+<TR>
+	<Th align = center><a href="http://{.ORGAN_i}" target="_blank"><b>{.str_organ}</Th>
+
+</TR>
+
+<TR>
+	<TD><a href="http://{.ORGAN_i}" target="_blank"><img src = '/data/poto/poto{.num_step}.gif' onError="this.src='/b.gif'" ></TD>
+</TR>
+<TR>
+	<TD align = center style = "color:#CC6600" >{.str_design}</TD>	
+</TR>
+</TABLE>
+
+</td>
+
+{?(.index_ +1) % 2 ==0 }
+</tr>
+<tr>
+  <td height = 20></td>
+</tr>
+<TR align = center style = "font-weight:bold">
+{/}
+{/}
+</tr>
+</TABLE>
+
+
+	
+		<td></tr>
+
+		<tr>
+		  <td align = center style="padding-top:10px"><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/html/board/skin/newskin/image/btn_prevpage.gif" nexticon="/html/board/skin/newskin/image/btn_nextpage.gif" firsticon="/html/board/skin/newskin/image/btn_firstpage.gif" lasticon="/html/board/skin/newskin/image/btn_lastpage.gif" /></td>
+		</tr>
+
+		<tr>
+		  <td style="padding-top:10px">
+		  
+		  <table width="320" align="right" border="0" cellspacing="0" cellpadding="0">
+								<form method="get" name="searchform">
+								<input type="hidden" name="mcode" value="{mcode}">
+								<tr>
+									<td width="92" align="right" ><img src="/html/board/skin/newskin/image/text_search.gif" width="47" height="13">&nbsp;</td>
+									<td width="67" align="center"><select name="key" id="key">
+										<option value="str_organ">기관명</option>
+										<option value="str_name">신청자</option>
+									</select></td>
+									<td width="120" align="center"><input name="search" type="text" class="login" id="search" style="width:90%;" value="{search}"></td>
+									<td width="41" align="right"><input type="image" src="/html/board/skin/newskin/image/btn_search.gif" width="40" height="19"></td>
+								</tr>
+								</form>		
+		  </table>
+		  </td>
+		</tr>
+
+
+
+			<tr>
+		<td height="10"></td>
+	</tr>
+
+</table>
+

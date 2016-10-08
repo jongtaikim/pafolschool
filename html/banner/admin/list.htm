@@ -1,0 +1,360 @@
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+
+
+<script language="javaScript" src="js/lib.validate.js"></script>
+<script language="javaScript">
+<!--
+function prepare(form) {
+	if(!validate(form)) {
+		document.getElementById('submit_btn').style.visibility = "visible";
+		return false;
+	}
+	form.elements['str_text'].value = oFCKeditor.GetValue();
+	if(document.getElementById('xEditFileCtrl').GetCount()) {
+		document.getElementById('xEditFileCtrl').UpLoad();
+		return false;
+	}
+	return true;
+}
+-->
+</script>
+
+<script language="javascript">
+<!--
+function entryLogic() {
+	form = document.forms['entryForm'];
+	if(!validate(form)) return false;
+	if(form.elements['mode'].value == 'modify') {
+		if(!modifyLogic()) return false;
+	}
+	form.submit();
+}
+
+function viewLogic(num)
+{
+	var order_els = document.forms['orderForm'].elements;
+	var entry_els = document.forms['entryForm'].elements;
+	//document.getElementById('submit_btn').style.visibility = 'hidden';
+
+	var link_form = order_els['dbh_link'+num];
+	var open_form = order_els['dbh_open'+num];
+	var file_form = order_els['dbh_file'+num];
+	var p_from = order_els['dbh_p'+num];
+	
+	entry_els['str_title'].value = order_els['choice'].options[order_els['choice'].selectedIndex].text;
+	entry_els['str_link'].value = link_form.value;
+	entry_els['prevFile'].value = file_form.value;
+	document.getElementById('prevImage').src = 'hosts/{_HOST}/files/banner/' + file_form.value;
+
+	( open_form.value=="_blank") ? entry_els['chr_open'][0].checked=true : entry_els['chr_open'][1].checked=true ;
+	
+	$('str_p').value = p_from.value
+	//( p_from.value=="bannerZone") ? entry_els['str_p'][0].checked=true : entry_els['str_p'][1].checked=true ;
+	
+	entry_els['id'].value = num;
+
+	//
+	entry_els['submit_btn'].value = '수정';
+	entry_els['mode'].value = 'modify';
+	entry_els['cancel_btn'].style.visibility = 'visible';
+	order_els['delete_btn'].style.visibility = 'visible';
+}
+
+function modifyLogic()
+{
+	var entry_els = document.forms['entryForm'].elements;
+
+	if( !entry_els['id'].value )
+	{
+		alert("등록 리스트에서 수정할 대상을 선택하시고 수정 후 버튼을 클릭하세요 !!");
+		return false;
+	}
+	//savesort(document.forms['orderForm']);
+	return true;
+}
+
+function deleteLogic()
+{
+	var order_els = document.forms['orderForm'].elements;
+	var entry_els = document.forms['entryForm'].elements;
+
+	if( !entry_els['id'].value )
+	{
+		alert("사이트 바로가기 등록 리스트에서 삭제할 대상을 선택하시고 삭제 버튼을 클릭하세요 !!");
+		return false;
+	}
+	var str = order_els['choice'].options[order_els['choice'].selectedIndex].text;
+	if(!confirm( "선택하신 "+str+"을 삭제합니다. 계속 진행 하시겠습니까?"))return false;
+	entry_els['mode'].value = "delete";
+	document.forms['entryForm'].submit();
+}
+
+function orderLogic()
+{
+	savesort(document.forms['orderForm']);
+	document.forms['entryForm'].elements['mode'].value = 'listorder';
+	document.forms['entryForm'].submit();
+}
+
+function clearForm() {
+	var entry_els = document.forms['entryForm'].elements;
+	var order_els = document.forms['orderForm'].elements;
+	document.forms['entryForm'].reset();
+	document.getElementById('prevImage').src = '';
+	entry_els['str_title'].setAttribute('required','');
+	entry_els['str_link'].setAttribute('required','');
+	entry_els['submit_btn'].value = '등록';
+	entry_els['cancel_btn'].style.visibility = 'hidden';
+	order_els['delete_btn'].style.visibility = 'hidden';
+	order_els['order_btn'].style.visibility = 'hidden';
+	order_els['choice'].selectedIndex = -1;
+}
+
+// 순서 변경되었는지 체크
+var listOrderModified;
+
+function savesort(form) {
+	if(!listOrderModified) return true;
+	var order = new Array();
+	var capsule = document.forms['entryForm'].elements['listorder'];
+	var sel = form.elements['choice'];
+	for (var i=0; i<sel.options.length; i++) {
+		order[order.length] = sel.options[i].value;
+	}
+	capsule.value = order.join(';');
+	return true;
+}
+
+/** 
+* 선택한 옵션 아이템을 바로위 아이템과 자리바꿈
+* @param obj:Object (적용할 select 엘리먼트)
+*/
+function moveUp(obj) {
+	if (obj.selectedIndex == -1) return alert("순서 변경하실 배너를 선택하세요.");
+	if (obj.selectedIndex == 0 ) return;
+	var tmpVal = obj.options[obj.selectedIndex].value;
+	var tmpTxt = obj.options[obj.selectedIndex].text;
+	var swapVal = obj.options[obj.selectedIndex-1].value;
+	var swapTxt = obj.options[obj.selectedIndex-1].text;
+	obj.options[obj.selectedIndex].value = swapVal;
+	obj.options[obj.selectedIndex].text = swapTxt;
+	obj.options[obj.selectedIndex-1].value = tmpVal;
+	obj.options[obj.selectedIndex-1].text = tmpTxt;
+	obj.selectedIndex = obj.selectedIndex -1;
+	listOrderModified = true;
+	document.forms['orderForm'].elements['order_btn'].style.visibility = 'visible';
+}
+
+/** 
+* 선택한 옵션 아이템을 바로아래 아이템과 자리바꿈
+* @param obj:Object (적용할 select 엘리먼트)
+*/
+function moveDown(obj) {
+	if (obj.selectedIndex == -1) return alert("순서 변경하실 배너를 선택하세요.");
+	if (obj.selectedIndex == obj.options.length-1) return;
+	var tmpVal = obj.options[obj.selectedIndex].value;
+	var tmpTxt = obj.options[obj.selectedIndex].text;
+	var swapVal = obj.options[obj.selectedIndex+1].value;
+	var swapTxt = obj.options[obj.selectedIndex+1].text;
+	obj.options[obj.selectedIndex].value = swapVal;
+	obj.options[obj.selectedIndex].text = swapTxt;
+	obj.options[obj.selectedIndex+1].value = tmpVal;
+	obj.options[obj.selectedIndex+1].text = tmpTxt;
+	obj.selectedIndex = obj.selectedIndex +1;
+	listOrderModified = true;
+	document.forms['orderForm'].elements['order_btn'].style.visibility = 'visible';
+}
+//-->
+</SCRIPT>
+
+	
+
+<div class="tab" style="margin-bottom:20px">
+	<ul>
+		<li {? !types} class="on"{/}>
+			<a href="/banner.admin.list?PageNum=020400">주요사이트</a>
+		</li>
+
+		<li {? types == "banner2"} class="on"{/}>
+			<a href="/banner.admin.list?PageNum=020400&types=banner2">고객사</a>
+		</li>
+
+	</ul>
+</div>
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<!-- 상단 Start -->
+				<tr>
+					<td width="11px" background="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif" >
+							<tr>
+								<td width="12px" height="28px" background="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">사이트에 표출되는 배너를 업로드 합니다</td>
+								<td width="14px" background="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11px" align="right" background="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+			<!-- 상단 End -->
+	<tr>
+		<td background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:15px;">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td>
+						<table cellpadding="0" cellspacing="1" border="0" align='center' width="100%" bgcolor="#c4d4e7">
+						<form name="entryForm" method="post" enctype='multipart/form-data'>
+						<input type="hidden" name="types" value="{types}">
+						<input type="hidden" name="mode" value="write">
+						<input type="hidden" name="id">
+						<input type="hidden" name="prevFile">
+						<input type="hidden" name="listorder">
+							
+							<tr><td height="30" class="table02_title05">제목 입력</td></tr>
+							<tr bgcolor="#FFFFFF"><td height="36" align="center"><input type="text" name="str_title" hname="제목" style="width:230;" requried class="fom01"></td></tr>
+							<tr><td height="30" class="table02_title05">URL 입력</td></tr>
+							<tr bgcolor="#FFFFFF"><td height="36" align="center"><input type="text" name="str_link" hname="URL" style="width:230;" value="http://" requried class="fom01" width=154></td></tr>
+							<tr><td height="30" class="table02_title05">이미지 첨부</td></tr>
+							<tr bgcolor="#FFFFFF"><td height="36" align="center" style="padding-top:8px; padding-bottom:8px;"><input type="file" name="upfile" style="width:230;" onchange="document.getElementById('prevImage').src=this.value;" class="fom01"><br><img id="prevImage" src="" border="0" onload="this.style.visibility='visible';" onerror="this.style.visibility='hidden';"></td></tr>
+							<tr><td height="30" class="table02_title05">오픈방법 선택</td></tr>
+							<tr bgcolor="#FFFFFF">
+								<td height="36" align="center">
+									<input type="radio" name="chr_open" value="_blank" id="openYes" checked>
+									<label for="openYes" title="새창에서 선택한 사이트를 엽니다">새 창</label> 
+									<input type="radio" name="chr_open" value="_self" id="openNon">
+									<label for="openNon" title="현재창에서 선택한 사이트를 엽니다">현재창</label>
+								</td>
+							</tr>
+
+							<tr><td height="30" class="table02_title05">위치 선택</td></tr>
+							<tr bgcolor="#FFFFFF">
+								<td height="36" align="center">
+									<select name="str_p" id="str_p">
+										<option value="banner1">정부 및 공공기관</option>
+										<option value="banner2">학계 및 관련모임</option>
+										<option value="banner3">산업계</option>
+										<option value="banner4">언론</option>
+										<option value="banner5">해외기관</option>
+										<option value="banner6">기타</option>
+										<option value="banner7">고객사</option>
+									</select>
+									
+								</td>
+							</tr>
+							<tr bgcolor="#FFFFFF">
+								<td height="40" align="center">
+									<input type="button" class="button" name="submit_btn" id="submit_btn" value="등록" style="width:80px;height:22px;" onclick="entryLogic();">
+									<input type="button" class="button" name="cancel_btn" id="cancel_btn" value="취소" style="width:80px;height:22px;visibility:hidden;" onclick="clearForm();">
+								</td>
+							</tr>
+						</form>
+						</table>
+						
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td colspan="3" width="100%" class="table_btm_line01"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="20"></td>
+					<td width="50%" style="padding:0px;" valign="top">
+						<table cellpadding="0" cellspacing="1" border="0" align='center' width="100%" bgcolor="#c4d4e7">
+						<form name="orderForm" method="post">
+						<input type="hidden" name="mode" value="delete">
+						<input type="hidden" name="types" value="{types}">
+						<!--{@ LIST}-->
+						<input type='hidden' name='dbh_link{.num_serial}' value='{.str_link}'>
+						<input type='hidden' name='dbh_open{.num_serial}' value='{.chr_open}'>
+						<input type='hidden' name='dbh_file{.num_serial}' value='{.str_file}'>
+						<input type='hidden' name='dbh_p{.num_serial}' value='{.str_p}'>
+						<!--{/}-->
+						<tr>
+							<td colspan="2" style="padding:10" bgcolor="#FFFFFF">
+								<select multiple style="width:100%;" size="17" onChange="viewLogic(this.value);" name="choice">
+								<!--{@ LIST}-->
+								<option value="{.num_serial}">{.str_title}</option>
+								<!--{/}-->
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" bgcolor="#FFFFFF">
+								<table cellpadding="0" cellspacing="0" border="0">
+									<tr><td height="10"></td></tr>
+									<tr>
+										<td>순서변경 :&nbsp;</td>
+										<td><a href="#" onclick="moveUp(orderForm.choice);"><img src="/html/admin/images/btn_up.gif"></a>
+											<a href="#" onclick="moveDown(orderForm.choice);"><img src="/html/admin/images/btn_down.gif"></a></td>
+									</tr>
+								</table>
+								<table cellpadding="0" cellspacing="0" border="0">
+									<tr>
+										<td>
+											<input type="button" class="button" name="delete_btn" value="삭제" style="width:80px;height:22px;visibility:hidden;" onClick="deleteLogic();">
+
+											<input type="button" class="button" name="order_btn" value="순서변경" style="width:80px;height:22px;visibility:hidden;" onClick="orderLogic();">
+										</td>
+									</tr>
+									<tr>
+										<td height="10"></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						</form>
+						</table>
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td colspan="3" width="100%" class="table_btm_line01"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td height="5"></td></tr>
+			</table>
+		</td>
+		<td background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			<b style="color:#d43e6c;">등록 : </b>배너 이미지는 gif, jpg, png 파일만 업로드 가능합니다. <br>
+			<b style="color:#d43e6c;">사이즈 : </b>배너 이미지 143px * 36px 사이즈로 제작하신다음 업로드해주시기 바랍니다.<br>
+			<b style="color:#d43e6c;">수정 : </b>우측 리스트의 제목을 선택 하시고 내용 변경 하신 후 하단 수정 버튼을 클릭 하세요.
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+
+

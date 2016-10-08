@@ -1,0 +1,82 @@
+
+<link href="/css/sangin.css" rel="stylesheet" type="text/css">
+<script>
+
+function ope_find()	{
+	if( !orderForm.str_name.value )	{
+		alert("회원 이름을 입력하세요.");
+		orderForm.str_name.focus();
+		return;
+	}
+	document.all.result.src = "/?act=cafe.admin.user.ope_ins2&cafe_id={{cafe_id}}&str_name="+orderForm.str_name.value;
+}
+
+function re_parent() {
+	opener.location.reload();
+}
+</script>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table width="340" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="17"><img src="/image/cafe/admin/popup_top_left.gif" width="17" height="44"></td>
+          <td background="/image/cafe/admin/popup_top_bg.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td height="28"><img src="/image/cafe/admin/popup_icon.gif" width="11" height="11" align="absmiddle"> 
+                  <strong> 운영진 추가</strong></td>
+              </tr>
+              <tr> 
+                <td height="14"></td>
+              </tr>
+            </table></td>
+          <td width="17"><img src="/image/cafe/admin/popup_top_right.gif" width="17" height="44"></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr> 
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="17" background="/image/cafe/admin/popup_middle_left_bg.gif">&nbsp;</td>
+          <td><table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr> 
+                <td><div align="justify">추가할 학급홈피회원을 검색하세요<br>
+                  </div></td>
+              </tr>
+              <tr> 
+                <td height="6"></td>
+              </tr>
+              <tr> 
+                <td height="1" bgcolor="#CCCCCC"></td>
+              </tr>
+              <tr> 
+                <td height="7"></td>
+              </tr>
+              <form name="orderForm" method="post" onSubmit="ope_find(); return false;">
+			  <tr> 
+                <td height="10"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr> 
+                      <td><input name="str_name" type="text" size="20"> <input type="image" src="/image/cafe/admin/search.gif" width="47" height="21" align="absmiddle"> 
+                      </td>
+                    </tr>
+                  </table></td>
+              </tr>
+			  </form>
+               <tr> 
+                <td height="7"></td>
+              </tr>
+              <tr> 
+                <td height="1" background="/image/cafe/admin/line_bg.gif"></td>
+              </tr>
+              <tr>
+				<td><iframe name="result" width="90%" height="187" frameborder=0></iframe></td>
+			  </tr>
+		  </td>
+		</tr>
+		</table>
+	</td>
+  </tr>
+</table>
+</body>
+</html>

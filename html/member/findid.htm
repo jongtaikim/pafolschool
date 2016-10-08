@@ -1,0 +1,110 @@
+<link rel="stylesheet" type="text/css" href="/css/type01_IdPwSearch.css" />
+
+<div id="idPwSearch" class="obj">
+			<!-- 로그인 타이틀 시작 -->
+			<div class="objTop">
+				<h3>아이디 비밀번호 찾기</h3>
+				
+			</div>
+			<!-- 로그인 타이틀 끝 -->
+			<!-- 컨텐트 시작 -->
+			<div class="objContent">
+				<form method=post onsubmit="return validate(this);">
+					<input type="hidden" name="mode" value="id">
+					<!-- 아이디 찾기 시작 -->
+					<div id="idSearch">
+						
+						<fieldset>
+							<legend>아이디 찾기</legend>
+							<span class="comment">아래의 항목을 입력하시면 고객님의 ID를 확인하실 수 있습니다.</span>
+								<div id="name" class="row">
+
+									<div class="leftCol">
+										<label for="nameInput" title="이름">이름</label>
+									</div>
+
+									<div class="rightCol">
+										<input type="text" id="nameInput"   hname="이름" required name="str_name"  />
+									</div>
+
+								</div>
+								<div id="email" class="row last">
+
+									<div class="leftCol">
+										<label for="emailInput" title="이메일">이메일</label>
+									</div>
+
+									<div class="rightCol">
+										<input type="text" id="emailInput" name="str_email"  hname="이메일" required/>
+										<span class="caution">가입당시 입력한 이메일주소를 입력해 주세요.</span>
+									</div>
+
+								</div>
+							<div class="btnArea">
+								<input type="image" src="/images/commitBtn.gif" alt="확인, 아이디를 검색합니다." />
+							</div>
+						</fieldset>
+					</div>
+					</form>
+					<!-- 아이디 찾기 끝 -->
+					<!-- 비밀번호 찾기 시작 -->
+					<div id="pwSearch">
+					<form method=post onsubmit="return validate(this);">
+					<input type="hidden" name="mode" value="pw">	
+					
+						<fieldset>
+							<legend>비밀번호 찾기</legend>
+							<span class="comment">아래의 항목을 입력하시면 고객님의 ID를 확인하실 수 있습니다.</span>
+								<div id="id" class="row">
+
+									<div class="leftCol">
+										<label for="idInput" title="아이디">아이디</label>
+									</div>
+
+									<div class="rightCol">
+										<input type="text" id="idInput" name="str_id"  hname="아이디" required />
+									</div>
+
+								</div>
+								<div id="pwName" class="row">
+
+									<div class="leftCol">
+										<label for="pwNameInput" title="이름">이름</label>
+									</div>
+
+									<div class="rightCol">
+										<input type="text" id="pwNameInput"   name="str_name"  hname="이름" required/>
+									</div>
+
+								</div>
+								<div id="pwEmail" class="row last">
+
+									<div class="leftCol">
+										<label for="pwEmailInput" title="이메일">이메일</label>
+									</div>
+
+									<div class="rightCol">
+										<input type="text" id="pwEmailInput" name="str_email"  hname="이메일" required/>
+									</div>
+
+								</div>
+							<div class="btnArea">
+								<input type="image" src="/images/commitBtn.gif" alt="확인, 비밀번호를 검색합니다." />
+							</div>
+						</fieldset>
+					</div>
+					<!-- 비밀번호 찾기 끝 -->
+				</form>
+				
+			</div>
+			<!-- 컨텐트 끝 -->
+		</div>
+
+
+
+
+
+
+
+
+

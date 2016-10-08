@@ -1,0 +1,92 @@
+<!-- for xLoadTree -->
+<script type="text/javascript" src="/js/xtree.js"></script>
+<script type="text/javascript" src="/js/xmlextras.js"></script>
+<script type="text/javascript" src="/js/xloadtree.js"></script>
+<link type="text/css" rel="stylesheet" href="/css/xtree.css" />
+
+<!-- for coolbtn -->
+<link type="text/css" rel="StyleSheet" href="/css/cb2.css">
+<style>
+	body, td, span, div {
+		font-size: 9pt;
+	}
+</style>
+<script type="text/javascript" language="JavaScript1.5" src="/js/ieemu.js"></script>
+<script type="text/javascript" src="/js/cb2.js"></script>
+<script>
+	var gSelectedNode = '';
+
+	function add_menu() {
+		node = tree.getSelected;
+		if (node() == null) return;
+		var menuname = showModalDialog('menu.admin.add?parent='+parent,'create','dialogHeight: 367px; dialogWidth: 580px;');
+		if (!menuname) return;
+	}
+
+	function setSelected(mcode) {
+		gSelectedNode = mcode;
+	}
+
+	function del_menu() {
+		if (!confirm('메뉴를 삭제하면 저장된 문서 또는 게시물이 모두 삭제됩니다.\n정말삭제하시겠습니까?')) return;
+		node = tree.getSelected;
+		if (node() == null) return;
+		parent.frames['content'].location.href='menu.admin.del?mcode=' + gSelectedNode;
+	}
+
+	function add_node(menuname,mcode) {
+		node = tree.getSelected;
+		node().add(new WebFXTreeItem(menuname,'javascript:detail('+mcode+')'));
+		node().expand();
+	}
+
+	function detail(node,type) {
+		gSelectedNode = node;
+		status = "선택된 노드:" + gSelectedNode;
+		s = tree.getSelected();
+		parent.frames['content'].location.href= 'menu.admin.option?mcode=' + node;
+		document.getElementById('btnDel').disabled = (s.childNodes.length > 1 || s.src) ? true : false;
+		document.getElementById('btnAdd').disabled = (String(node).length > 4) ? true : false; 
+	}
+
+	function edit_menu() {
+		parent.frames['menu_option'].location.href='http://e-wut.com';
+	}
+</script>
+</head>
+<body bgcolor="#F7F8F3" leftmargin="0" topmargin="0">
+<script type="text/javascript">
+
+/// XP Look
+webFXTreeConfig.blankIcon		= "/image/icon/blank.png";
+webFXTreeConfig.rootIcon		= "/image/icon/folder.png";
+webFXTreeConfig.openRootIcon	= "/image/icon/openfolder.png";
+webFXTreeConfig.folderIcon		= "/image/icon/folder.png";
+webFXTreeConfig.openFolderIcon	= "/image/icon/openfolder.png";
+webFXTreeConfig.fileIcon		= "/image/icon/file.png";
+webFXTreeConfig.lMinusIcon		= "/image/icon/Lminus.png";
+
+webFXTreeConfig.lPlusIcon		= "/image/icon/Lplus.png";
+webFXTreeConfig.tMinusIcon		= "/image/icon/Tminus.png";
+webFXTreeConfig.tPlusIcon		= "/image/icon/Tplus.png";
+webFXTreeConfig.iIcon			= "/image/icon/I.png";
+webFXTreeConfig.lIcon			= "/image/icon/L.png";
+webFXTreeConfig.tIcon			= "/image/icon/T.png";
+
+// var tree = new WebFXLoadTree("main", "/html/testmenu.xml","","explorer");
+var tree = new WebFXLoadTree("${Main}", "menu.admin.xml","javascript:detail('')","explorer");
+</script>
+<table style="background-color: buttonface" width="100%">
+	<tr>
+		<td id="btnAdd" onAction="add_menu()" title="${Add Child Menu of Seleted Menu}" disabled><img src="/image/icon/add_menu.gif" border="0" align="absmiddle">${Add}</td>
+		<td id="btnDel" onAction="del_menu()" title="${Delete Selected Menu}" disabled><img src="/image/icon/del_menu.gif" border="0" align="absmiddle">${Del}</td>
+		<td id="btnRefresh" onAction="tree.reload()" title="${Reload}"><img src="/image/icon/reload.gif" border="0" align="absmiddle">${Reload}</td>
+		<td width="99%"></td>
+	</tr>
+</table>
+<script>
+createButton(document.getElementById('btnAdd'));
+createButton(document.getElementById('btnDel'));
+createButton(document.getElementById('btnRefresh'));
+</script>
+<div ><script>document.write(tree);</script></div>

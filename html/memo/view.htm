@@ -1,0 +1,103 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function deleteMemo() {
+		form = document.forms['MemoFrm'];
+		if (!confirm('선택하신 쪽지를 삭제 하시겠습니까?')) return false;
+
+		form.elements['mode'].value = 'delete';
+		form.method="post";
+		form.submit();
+	}
+
+	function saveMemo() {
+		form = document.forms['MemoFrm'];
+		if (!confirm('선택하신 쪽지를 보관함으로 옮기시겠습니까?')) return false;
+
+		form.elements['mode'].value = 'save';
+		form.method="post";
+		form.submit();
+	}
+//-->
+</SCRIPT>
+
+
+
+<style>
+.memo1 {font-weight:bold; color:b83873; text-align:center; background-color:#ffeaf5; padding-top:4px}
+.memo3 {color:464444; padding-top:4px}
+
+</style>
+<table cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="#fef6fa" width="650" height="600">
+	<tr valign="top" height="50"><td>{#MEMO_TOP}</td></tr>
+	<tr>
+		<td valign="top" style="padding:5 8 8 8">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+				<tr height="9">
+					<td width="9"><img src="./images/t_left.gif"></td>
+					<td background="./images/t_bg.gif"></td>
+					<td width="9"><img src="./images/t_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="9" background="./images/c_left.gif"></td>
+					<form method=post>
+					<INPUT TYPE="hidden" NAME="mode" id="mode" >
+					<INPUT TYPE="hidden" NAME="id" id="{num_serial}" >
+					<td height="100%" bgcolor="#FFFFFF" valign="top" style="padding:10">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr valign="top">
+								<td width="10" style="padding-top:5" align="center"><img src="./images/icon_pink.gif"></td>
+								<td style="color:b83873; padding-left:2; font-size:13px; font-family:돋움"><b>쪽지확인</b></td>
+								<td align="right"><img src="./images/icon1.gif"></td>
+								<td align="right" width="152" style="color:#464444; font-size:11px; font-family:돋움">쪽지 보관기간은 1개월입니다.</td>
+							</tr>
+							<tr><td height="8"></td></tr>
+						</table>
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+							<tr><td colspan="2" height="1" bgcolor="#f0a2c6"></td></tr>
+							<tr><td colspan="2" height="2" bgcolor="#f9e1ee"></td></tr>
+							<tr height="30" bgcolor="#fffbfe">
+								<td width="20%" class="memo1">쪽지확인</td>
+								<td style="padding-left:10" class="memo3">{? str_send_nick }{str_send_nick}{:}{str_send_name}{/} ({str_send_id})</td>
+							</tr>
+							<tr><td colspan="2" height="1" bgcolor="#f5c0dd"></td></tr>
+							<tr height="30" bgcolor="#fffbfe">
+								<td class="memo1">제목</td>
+								<td style="padding-left:10" class="memo3">{str_title}</td>
+							</tr>
+							<tr><td colspan="2" height="1" bgcolor="#f5c0dd"></td></tr>
+							<tr bgcolor="#fffbfe" height="314">
+								<td class="memo1">내용</td>
+								<td style="padding-left:10" class="memo3"><div style = "width:100%;height:350;overflow:auto;padding:6 10 10 0" >{str_text}</div></td>
+							</tr>
+							<tr><td colspan="2" height="2" bgcolor="#f9e1ee"></td></tr>
+							<tr><td colspan="2" height="1" bgcolor="#f0a2c6"></td></tr>
+							<tr><td colspan="2" height="10"></td></tr>
+							<tr>
+								<td colspan="2" align="center">
+									<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+									 <tr>
+									  <td>
+										{? str_save == 'N' }<input  type="image" src="./images/btn_trust.gif" value="보관" onclick="return saveMemo();">{/}
+										<input type="image" src="./images/btn_delete.gif" value="삭제" onclick="return deleteMemo();">
+									  </td>
+										<td align = right>
+										 <a href="javascript:history.back();"><img src="./images/btn_list.gif"></a>
+										</td>
+									 </tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="9" background="./images/c_right.gif"></td>
+				</tr>
+				<tr height="9">
+					<td width="9"><img src="./images/b_left.gif"></td>
+					<td background="./images/b_bg.gif"></td>
+					<td width="9"><img src="./images/b_right.gif"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>

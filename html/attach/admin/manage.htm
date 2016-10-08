@@ -1,0 +1,597 @@
+<link rel="stylesheet" type="text/css" href="/theme/{_THEME}/css/main.css">
+{CSS2}
+
+<script type="text/javascript" src="/js/scriptaculous_bak.js"></script>
+<script type="text/javascript" src="/js/Resize_attach.js"></script> 
+<script type="text/javascript" src="/js/attach_core5.js"></script> 
+<script type="text/javascript">
+<!-- // function blockError(){return true;}  window.onerror = blockError; //--> 
+	new Resize("resizable","resizedistance","resizemaxwidth","resizemaxheight","resizedefaultcursor"); 
+	var ta_layout = "";
+	var ta_width = "";
+	var x = (document.body.clientWidth / 2) - (785 / 2 ) - 20 ; 
+	var tar_lay = "";
+	var tar_id = "";
+	var left_offset_x ="";
+	var top_offset_x ="";
+
+
+			function copyLayout(){
+			var result = confirm("기존 설정이 초기화 됩니다. 실행하시겠습니까?");
+			 if (result){
+			location.href="/attach.admin.copy?a={layout}&b=" + $('targt_layout').value;
+			}
+			}
+
+
+
+</script>
+
+
+<body topmargin="0" leftmargin="0"   >
+
+
+<div  id="bbsSetup" style = "display:none;position:absolute;padding-left:5px;display:none;z-index:9999;">
+<div id="bbsPopup" class="layer_popup" style="top:240px; left:0px; width:355px;z-index:999999;display:">
+
+<div class="layer_content"><p class="layer_body" ><strong>연결할 게시판을 선택하세요.</strong>
+
+<select id = "bbs_list1" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<select id = "bbs_list2" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<select id = "bbs_list3" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<select id = "bbs_list4" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<select id = "bbs_list5" style = "font-size:11px;width:90%" >
+<option value="">게시판을 선택하세요.</option>
+{@ bbs_LIST}
+	<option value="{.num_mcode}|{.str_title}" >{.stitle} > {.str_title}{.counter}</option>
+{/}
+</select>
+
+<div id="bbsBody" style="padding:10px;z-index:999999999" >
+
+<table align="center" border=0 cellspacing=0 cellpadding=0 width=210>
+ <tr align=center>
+  <td style="padding:5px"><img src="/html/attach/image/ico_list01.gif" ></td> 
+  <td  style="padding:5px"><img src="/html/attach/image/ico_list02.gif"></td> 
+  <td  style="padding:5px"><img src="/html/attach/image/ico_list03.gif"></td>
+  <td  style="padding:5px"><img src="/html/attach/image/ico_list04.gif" ></td>
+ </tr>
+
+  <tr align=center style = "padding:3px;font-size:11px">
+  <td>웹진</td> 
+  <td>겔러리</td> 
+  <td>게시판</td>
+  <td>포털</td>
+ </tr>
+
+  <tr align=center style = "padding:3px;font-size:11px">
+  <td><INPUT TYPE="radio" NAME="bbs_type" value="webnews" id="webnews" onclick = "$('selectTypeTmp').value=this.value"></td> 
+  <td><INPUT TYPE="radio" NAME="bbs_type" value="gall"  id="gall" onclick = "$('selectTypeTmp').value=this.value"></td>   
+  <td><INPUT TYPE="radio" NAME="bbs_type" value="board"  id="board" onclick = "$('selectTypeTmp').value=this.value"></td>  
+  <td><INPUT TYPE="radio" NAME="bbs_type" value="potal" id="potal" onclick = "$('selectTypeTmp').value=this.value"></td>  
+  </tr>
+</table>
+
+<input type="hidden" id="selectTypeTmp" >
+
+
+
+</div>
+
+<div class="layer_footer"> 
+	<div style = ""> <img src="/image/btn_apply_1.gif" alt="적용" onclick  = "upBbsTrick();document.getElementById('bbsSetup').style.display='none'; return false;" style="cursor:hand;">
+	</div>
+</div>
+<a href="#" class="close_layer" onClick="document.getElementById('bbsSetup').style.display='none'; return false;"><img src="/image/btn_close_1.gif" alt="레이어닫기" ></a></div>
+<span class="shadow shadow1"></span><span class="shadow shadow2"></span><span class="shadow shadow3"></span>
+</div></div>
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<!-- 타이틀 Start -->
+	<tr valign="top">
+		<td height="59">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="59" background="/html/image/title_bg.gif">
+				<tr valign="top">
+					 <td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td height="31"></td>
+							</tr>
+							<tr>
+								<td><a href="/attach.admin.manage?layout=main" >{? layout == "main"}<img src ="./image/tab00_ov.gif">{:}<img src ="./image/tab00.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub">{? layout == "sub"}<img src ="./image/tab01_ov.gif">{:}<img src ="./image/tab01.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub2">{? layout == "sub2"}<img src ="./image/tab02_ov.gif">{:}<img src ="./image/tab02.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub3">{? layout == "sub3"}<img src ="./image/tab03_ov.gif">{:}<img src ="./image/tab03.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub4">{? layout == "sub4"}<img src ="./image/tab04_ov.gif">{:}<img src ="./image/tab04.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub5">{? layout == "sub5"}<img src ="./image/tab05_ov.gif">{:}<img src ="./image/tab05.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub6">{? layout == "sub6"}<img src ="./image/tab06_ov.gif">{:}<img src ="./image/tab06.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub7">{? layout == "sub7"}<img src ="./image/tab07_ov.gif">{:}<img src ="./image/tab07.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub8">{? layout == "sub8"}<img src ="./image/tab08_ov.gif">{:}<img src ="./image/tab08.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub9">{? layout == "sub9"}<img src ="./image/tab09_ov.gif">{:}<img src ="./image/tab09.gif">{/}</a></td>
+								<td><a href="/attach.admin.manage?layout=sub10">{? layout == "sub10"}<img src ="./image/tab10_ov.gif">{:}<img src ="./image/tab10.gif">{/}</a></td>
+							</tr>
+						</table>
+					  </td>
+					<td align="right"><img src="/html/image/layout_title.gif"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+<!-- 타이틀 End -->	
+	<tr>
+		<td height="21"></td>
+	</tr>
+</table>
+
+<!-- <table cellpadding="0" cellspacing="0" border="0" width="100%" height="45" background="" align = center>
+		<tr>
+			<td style="padding:0 6 0 2" width="30" align = right  height = 45><img src="/html/admin2/images/icon4.gif" ></td>
+			<td style="padding:3 0 0 0; color:454545" width="100"  ><b>레이아웃관리</b></td>
+		<td >
+		※ 마우스로 끌어서(드래그 & 드랍) HTML 위치를 조정 하십시오.
+		</td>
+		</tr>
+	
+
+	</table>
+ -->
+
+
+
+
+
+<style type="text/css">
+.t_handle { cursor:move;position:absolute;top:0px; }
+
+</style>
+<form name="layoutForm" method="post" style = "padding-left:3px"  >
+
+<TABLE width="99%" cellpadding="0" cellspacing="0" border=0  >
+<TR>
+
+
+  <td valign = top style = "padding-right:5px" width = 150>
+  
+<div id = "left_rtool">
+	<div style = "" id="asas6"></div>
+	<div style = "" id="asas3"></div>
+	<div style = "" id="asas4"></div>
+	<div style = "" id="asas5"></div>
+
+	<div style = "" id="asas2"></div>
+	<div style = "" id="asas7"></div>
+
+<div style="float:left"  style="padding-top:5px" {? lock =="y"} style="display:none"{/}>
+<input type="hidden" name="tmp[]">
+<TABLE cellpadding="0" cellspacing="0" border="0" width="100%"   id = "def_stool" class=zizibe02>
+	<tr>
+	  <th style ="cursor: hand;" style="padding-top:3px" >컨텐츠 사이즈조절</th>
+	</tr>
+	<TR>
+		<TD style="height:80px;text-align:center">설정할 컨텐츠을 선택하세요.</TD>
+	</TR>
+	</TABLE>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0  style = "display:none" class=zizibe02 id = "style_size"  >
+
+
+<tr>
+	  <th align = center style ="cursor: hand;"><div id="size_title">컨텐츠 사이즈조절</div></th>
+	</tr>
+	<tr>
+	  <td align = center>		
+		<div><button name="conHeightPlus" id="conHeightPlus" value="+" style="padding:0px;border:0px;background-color:#ffffff"><img src="/html/attach/admin/btn_up.gif"  /></button></div><div><button name="conWidthMin" id="conWidthMin" value="-" style="padding:0px;border:0px;background-color:#ffffff"><img src="/html/attach/admin/btn_left.gif"  /></button><a href= "javascript:changeWidth();"><img src = "/html/attach/admin/btn_width.gif" alt="가로길이 조절" onmouseover="new jsTooltip(event,this,tip('가로조정','컨텐츠를 구역의 1/4단위로 변경합니다.'),config12);"></a><button name="conWidthPlus" id="conWidthPlus" value="+" style="padding:0px;border:0px;background-color:#ffffff"><img src="/html/attach/admin/btn_right.gif"  /></button></div><div ><button name="conHeightMin" id="conHeightMin" value="-" style="padding:0px;border:0px;background-color:#ffffff"><img src="/html/attach/admin/btn_down.gif"  /></button></div>
+
+	
+
+	</td>
+	</tr>
+	<tr>
+	  <td align = center>
+	  
+	  넓이<input name="conWidth" id="conWidth" type="text" style="text-align:right; width:30"  value="15" size="8" onkeyup = "changeWidthInput(this.value)" class="button"/>
+     
+      X
+	  	높이<input name="conHeight" id="conHeight" type="text" style="text-align:right; width:30"   value="15" size="8" onkeyup = "changeHeightInput(this.value)" class="button" />
+
+      
+      
+
+
+
+	  </td>
+	</tr>
+
+</table>
+</div>
+
+
+			<div style="float:left" id="module_tool1" style="padding-top:5px"  {? lock =="y"} style="display:none"{/}>
+			<table width="100%" cellpadding="0" cellspacing="0" class=zizibe02  bgcolor= "#ffffff" align =right >
+			
+			<tr>
+			  <th style ="cursor: hand;" onmouseover="new jsTooltip(event,this,tip('전체정렬','사이트에 가로 정렬을 설정합니다.'),{'gapLeft':-40,'gapTop':8},config12);">전체 정렬 <input type="hidden" name="tmp[]"></th>
+			</tr>
+			<tr>
+			  <td  style="padding:5" align = center>정렬 : 
+			  <INPUT TYPE="radio" NAME="layer_align" value="center" onclick = "modify_style('#main_frame','textAlign',this.value)" {? BODY_ALIGN == 'center'} checked{/} > 중앙 
+			  <INPUT TYPE="radio" NAME="layer_align" value="left" onclick = "modify_style('#main_frame','textAlign',this.value)" {? BODY_ALIGN == 'left'} checked{/}> 좌측</td>
+						</tr>
+			
+			<tr>
+			  <td align = center>
+			  <script language="Javascript">
+			  function setMainLayout(){
+			 var r_size =  parseInt($('main_layout_width2').value) /2;
+				$('main_layout').style.zIndex= 999999999999;
+				
+				$('main_layout').style.width= r_size;
+				$('main_layout_width').value= r_size;
+				
+			  }
+			  
+			  </script>
+			  전체 레아아웃 사이즈  <br>
+			  
+  			  <button name="conWidthMin2" id="conWidthMin2" value="-" style="padding:0px;border:0px;background-color:#ffffff"><img src="/html/attach/admin/btn_left.gif"  /></button><INPUT TYPE="text" NAME="main_layout_width2"  id="main_layout_width2" class="button" style="width:40" ><button name="conWidthPlus2" id="conWidthPlus2" value="+" style="padding:0px;border:0px;background-color:#ffffff"><img src="/html/attach/admin/btn_right.gif"  /></button>
+			  
+			  </td>
+			</tr>
+
+			</table>
+		
+		</div>		
+	<script type="text/javascript">
+	//<[CDATA[
+	var steper03 = new jsNumericsteper($('conHeight')	,$('conHeightPlus')	,$('conHeightMin')	,{'min':10,'max':1200,'step':1,'delay':3})
+	var steper02 = new jsNumericsteper($('conWidth')	,$('conWidthPlus')	,$('conWidthMin')	,{'min':10,'max':1200,'step':1,'delay':3});
+	var steper04 = new jsNumericsteper($('main_layout_width2')	,$('conWidthPlus2')	,$('conWidthMin2')	,{'min':10,'max':1200,'step':1,'delay':3});
+	//]]>
+	</script>
+
+<div style="float:left"  style="padding-top:5px"  {? lock =="y"} style="display:none"{/}>
+	<table width="100%" cellpadding="0" cellspacing="0" class=zizibe02  bgcolor= "#ffffff" align =right >
+		<tr>
+		  <th style ="cursor: hand;" onmouseover="new jsTooltip(event,this,tip('레이아웃 편집','다른 레이아웃설정을 복사해 적용합니다.<br>ex) 메인->서브1 '),{'gapLeft':-40,'gapTop':8},config12);">레이아웃 편집 <input type="hidden" name="tmp[]"></th>
+		</tr>
+			<tr>
+			  <td>
+			 <div style="padding:5 5 5 5 ;font-size:11px" > 
+			  <select name="targt_layout" style = "font-size:11px">
+				{? layout != "main"}<option value="main">메인</option>{/}
+				{? layout != "sub"}<option value="sub">서브1</option>{/}
+				{? layout != "sub2"}<option value="sub2">서브2</option>{/}
+				{? layout != "sub3"}<option value="sub3">서브3</option>{/}
+				{? layout != "sub4"}<option value="sub4">서브4</option>{/}
+				{? layout != "sub5"}<option value="sub5">서브5</option>{/}
+				{? layout != "sub6"}<option value="sub6">서브6</option>{/}
+				{? layout != "sub7"}<option value="sub7">서브7</option>{/}
+				{? layout != "sub8"}<option value="sub8">서브8</option>{/}
+				{? layout != "sub9"}<option value="sub9">서브9</option>{/}
+				{? layout != "sub10"}<option value="sub10">서브10</option>{/}
+
+
+			  </select> 설정 가져오기</div>
+
+
+
+			  <center><button style="width:60px;border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onclick="{? lock =='y'}alert('레이아웃이 잠겨있습니다.\n울트라웹 본사에 문의하세요.'); return false;{/}copyLayout(); ">실행</button></center>
+			  
+			  </td>
+			</tr>
+			</table>
+</div>
+
+
+
+
+<div style="float:left"  style="padding-top:5px"  {? lock =="y"} style="display:none"{/}>
+	<table width="100%" cellpadding="0" cellspacing="0" class=zizibe02  bgcolor= "#ffffff" align =right >
+		<tr>
+		  <th style ="cursor: hand;" onmouseover="new jsTooltip(event,this,tip('레이어 숨기기','불필요한 레이어를 숨길 수 있습니다.'),{'gapLeft':-40,'gapTop':8},config12);">사용레이어 <input type="hidden" name="tmp[]"></th>
+		</tr>
+			<tr>
+			  <td>
+
+			  
+<INPUT TYPE="checkbox" NAME="LEFT_chk_layer" code = "LEFT" value = "y" onclick = "setLayerset(this)"  >1번layer
+<INPUT TYPE="checkbox" NAME="LOGO_TOP_chk_layer"  code = "LOGO_TOP" value = "y" onclick = "setLayerset(this)" onclick = "setLayerset(this)"  >2번layer
+<br>
+<INPUT TYPE="checkbox" NAME="TOP_BUTTON_chk_layer"  code = "TOP_BUTTON" value = "y" onclick = "setLayerset(this)" onclick = "setLayerset(this)"  >3번layer
+<INPUT TYPE="checkbox" NAME="TOP_chk_layer"  code = "TOP" value = "y" onclick = "setLayerset(this)" onclick = "setLayerset(this)"  >4번layer
+<br>
+<INPUT TYPE="checkbox" NAME="RIGHT_chk_layer"  code = "RIGHT" value = "y" onclick = "setLayerset(this)" onclick = "setLayerset(this)"  >5번layer
+<INPUT TYPE="checkbox" NAME="MAIN_chk_layer" code = "MAIN" value = "y" onclick = "setLayerset(this)" onclick = "setLayerset(this)"  >6번layer
+<br>
+<INPUT TYPE="checkbox" NAME="FOOT_chk_layer" code = "FOOT" value = "y" onclick = "setLayerset(this)" onclick = "setLayerset(this)"  >7번layer
+
+
+			  
+			  </td>
+			</tr>
+
+
+
+
+			</table>
+
+
+		
+
+</div>
+
+
+
+
+<div style="float:left"  style="padding-top:5px">
+	<table width="100%" cellpadding="0" cellspacing="0" class=zizibe02  bgcolor= "#ffffff" align =right >
+		<tr>
+		  <th style ="cursor: hand;" onmouseover="new jsTooltip(event,this,tip('레이아웃백업','백업본이 같이 저장되며 언제든 돌릴 수 있습니다.'),{'gapLeft':-40,'gapTop':8},config12);">레이아웃설정 백업<input type="hidden" name="tmp[]"></th>
+		</tr>
+			<tr>
+			  <td align = center>
+
+			  <script language="Javascript">
+			  function layoutBackup(datea){
+			 
+			  var result = confirm("백업본으로 돌리적용하시겠습니까?");
+				  if(result){
+				
+				  location.href='/attach.admin.backup?date='+datea+'&layout={layout}';
+				  }
+			  }
+			  </script>
+
+<div style = "float:left;width:100%;height:100px;overflow:auto;padding:0px" id="">
+{@ BACKUP}
+<div  id="{.dt_date}"><a href="javascript: {? lock =='y'}alert('레이아웃이 잠겨있습니다.\n울트라웹 본사에 문의하세요.');{:}layoutBackup('{.dt_date}'){/}">{.str_title}</a><a href="/attach.admin.backup?date={.dt_date}&layout={layout}&mode=del" target="hidden_dt" onclick="$('{.dt_date}').style.display='none'"><img src='/image/xf_close_icon.gif'></a></div>
+{/}
+</div>
+<iframe src ="" frameborder="0" width="0" height="0" name="hidden_dt" scrolling=""></iframe>
+			  </td>
+			</tr>
+
+
+
+
+			</table>
+
+
+		
+
+</div>
+
+
+
+
+<div style="float:left"  style="padding-top:5px">
+	<table width="100%" cellpadding="0" cellspacing="0" class=zizibe02  bgcolor= "#ffffff" align =right >
+		<tr>
+		  <th style ="cursor: hand;" onmouseover="new jsTooltip(event,this,tip('퀵메뉴편집','퀵메뉴 이용과 내용 편집을 할 수 있습니다.'),{'gapLeft':-40,'gapTop':8},config12);">퀵메뉴 설정 <input type="hidden" name="tmp[]"></th>
+		</tr>
+			<tr>
+			  <td align = center>
+<script language="Javascript">
+function qmenu(){
+if($('str_qmenu').checked == true){
+$('qmenu').style.display='';
+$('qmenu_body')._opacity = Element.getOpacity($('qmenu_body')); 
+new Effect.Opacity($('qmenu_body'), {duration:-1, from:$('qmenu_body')._opacity, to:0.8});
+
+}else{
+$('qmenu').style.display='none';
+}
+}
+
+	function qmenuEdit() {
+		
+		var x = (document.body.clientWidth / 2) - (785 / 2 ) - 20 ; 
+		
+		fenster2('퀵메뉴편집', '퀵메뉴편집','attach.admin.qmenu?layout=main',x,'130','785','630');
+	}
+</script>
+			  
+<INPUT TYPE="checkbox" NAME="str_qmenu"  id="str_qmenu"  value = "Y" onclick = "qmenu()" {? str_qmenu == "Y"}checked{/} >퀵메뉴 사용<br>
+
+가로넓이:<input type="text" name="str_qmenu_w" value="{str_qmenu_w}" class="button" style = "width:30px"><br>
+위쪽간격:<input type="text" name="str_qmenu_top_p" value="{str_qmenu_top_p}" class="button" style = "width:30px"><br>
+왼쪽간격:<input type="text" name="str_qmenu_left_p" value="{str_qmenu_left_p}" class="button" style = "width:30px"><br>
+
+<input type="button"  value="편집하기" class="button" onclick="qmenuEdit()">
+
+			  
+			  </td>
+			</tr>
+
+
+
+
+			</table>
+
+
+		
+
+</div>
+
+<div style = "float:left; width : 100%;padding:5px;text-align :center" id="">
+<center><button style="width:80px;border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onclick="addPart(); ">HTML추가</button></center>
+
+</div>
+
+
+
+
+
+
+  </td>
+
+	<TD  style="padding-top:5px;width:595;border:1px solid #A7A7A7 ;background-color:82848D;color:#FFFFFF" valign=top  align = center height = 620  onmousedown = "ToolbarView();" id = "center_f" >
+
+
+
+	
+	<table align="center" width=240 border=0 cellspacing=0 cellpadding=0>
+	 <tr>
+	  <td align = center style ="color:#ffffff">
+	    <div style = "float:left;width:110px" onmouseover="new jsTooltip(event,this,tip('컨텐츠 이동모드','레이어 구역안에 컨텐츠를 이동할 수 있습니다.'),{'gapLeft':-40,'gapTop':8},config12);"><INPUT TYPE="radio" NAME="resizeing_btn" value = "Y" ONCLICK="resizeing('main_layout',this.value,'{lock}')" checked > 컨텐츠이동  </div>
+	 <div style = "float:left;width:110px" onmouseover="new jsTooltip(event,this,tip('레이어 이동모드','레이어 전체를 컨텐츠와 같이 이동할 수 있습니다.'),{'gapLeft':-40,'gapTop':8},config12);"> <INPUT TYPE="radio" NAME="resizeing_btn" value = "T"  ONCLICK="resizeing('main_layout',this.value,'{lock}')" > 레이아웃 이동</div>
+	  </td>
+	   
+	</tr>
+	<tr>
+		<td style="padding-top:5px">
+			<input type = "text" NAME="str_text" style="width:100%;height:16px;border:1px solid #A7A7A7 ;background-color:82848D;color:#FFFFFF;text-align:center" value="{str_text}">
+		</td>
+	</tr>
+
+	</table>
+
+
+<div id="help" style = "padding:5px"></div>	
+
+
+
+
+	<div style = "width:595;height:20px;border-bottom:1px solid #9FA1A7" id="MAIN_TOP"><INPUT TYPE="hidden" NAME="lay_be2[]" value="MAIN_TOP" ></div>
+	
+	<table align="center"  border=0 cellspacing=0 cellpadding=0>
+	 <tr>
+	  <td>
+	   <div style = "padding:5 0 5 0;position: " id="" >{#MANAGE}</div>
+	  </td>
+	  
+		<td width = 50 id="qmenu" style="display:none;padding:5px" valign = top>
+
+ <table cellpadding="0" cellspacing="0" border="0" width=50 height="130" align = center id="qmenu_body" ><tr height="1"><td width="1"   ><img src="/images/attach/t_left.gif"width=8 height=8 ></td><td width="100" bgcolor="f6f6f6" ></td>		<td width="1" align="right" ><img src="/images/attach/t_right.gif"width=8 height=8 ></td></tr><tr valign="top" ><td width="8" bgcolor="f6f6f6"></td><td bgcolor="f6f6f6"  width=100% align =center>
+
+<img src="/f.php?text=퀵메뉴&font=yg330&size2=4&bg=f6f6f6&color=#5B5B5B&mk_btn=Y" align=absmiddle>
+
+<a href = "javascript:qmenuEdit()"><img src="/edit.gif" ></a>
+
+</td><td width="8" bgcolor="f6f6f6" ></td></tr><tr height="1"><td width="1"><img src="/images/attach/b_left.gif"width=8 height=8></td><td  bgcolor="f6f6f6" ></td>	<td width="1" ><img src="/images/attach/b_right.gif"width=8 height=8></td></tr></table>
+
+	    </td>
+	 </tr>
+	</table>
+
+
+	<div style = "width:595;height:20px;border-top:1px solid #9FA1A7" id="MAIN_FOOT"><INPUT TYPE="hidden" NAME="lay_be2[]" value="MAIN_FOOT" ></div>
+
+	</TD>
+
+
+	
+
+	<TD valign = top width = 180 style = "padding-left:5" >
+
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class=zizibe02>
+ <tr>
+  <th>
+   대기 목록 <img src='/jil.gif' onmouseover="new jsTooltip(event,this,tip('배치 안된 위젯목록','원하는 레이어에 마우스로 드레그하세요.'),{'gapLeft':-40,'gapTop':8},config12);" align=absmiddle>
+  </th>
+ </tr>
+</table>
+
+<div id="NONE" style="cursor:move;border:0px solid #E1E1E1;height:620;width:100%;overflow:;display:" ><INPUT TYPE="hidden" NAME="lay_be[]" value="NONE" ></div>
+
+	
+	</TD>
+</TR>
+
+<tr>
+  <td colspan = 3 style="text-align:center;padding:5">
+  
+<INPUT TYPE="hidden" NAME="main_layout_width" id="main_layout_width"><INPUT TYPE="hidden" NAME="main_layout_height">
+	<INPUT TYPE="hidden" NAME="LEFT_width" > <INPUT TYPE="hidden" NAME="LEFT_height">	<INPUT TYPE="hidden" NAME="LOGO_TOP_width" > <INPUT TYPE="hidden" NAME="LOGO_TOP_height">	<INPUT TYPE="hidden" NAME="MAIN_width" > <INPUT TYPE="hidden" NAME="MAIN_height">	<INPUT TYPE="hidden" NAME="TOP_BUTTON_width" > <INPUT TYPE="hidden" NAME="TOP_BUTTON_height">	<INPUT TYPE="hidden" NAME="TOP_width" > <INPUT TYPE="hidden" NAME="TOP_height">	<INPUT TYPE="hidden" NAME="RIGHT_width" > <INPUT TYPE="hidden" NAME="RIGHT_height">	<INPUT TYPE="hidden" NAME="FOOT_width" > <INPUT TYPE="hidden" NAME="FOOT_height"><input type = "image" src = "/html/skin/image/btn_skin_theme.gif">
+	</td>
+</tr>
+</TABLE>
+
+
+
+{? sadmin}
+<input type="hidden" name="lock_mode" value="t">
+<select name="lock" onchange="location.href='/attach.admin.lock?layout={layout}&mo='+this.value">
+	<option value="n" selected>해제</option>
+	<option value="y" {? lock=="y"} selected{/}>잠금</option>
+</select> 
+
+<a href="/makeW_pro" target="_blank">신규위젯 만들기</a>
+{:}
+<input type="hidden" name="lock" value="{lock}">
+{/}
+
+
+
+</form>
+
+<iframe width="0" height="0" frameborder="0" name="hidden_frame"></iframe>
+
+
+<script>
+	def_css('main_layout', '2' ,'N','Y');
+	def_css('LEFT', '2' ,'N' ,'Y');def_css('LOGO_TOP', '2' ,'N' ,'Y');def_css('MAIN', '2' ,'N' ,'Y');def_css('TOP_BUTTON', '2' ,'N' ,'Y');def_css('TOP', '2' ,'N' ,'Y');def_css('RIGHT', '2' ,'N' ,'Y');def_css('FOOT', '2' ,'N' ,'Y');def_css('NONE', '2' ,'N' ,'Y');
+
+
+
+
+
+//Sortable.create('left_rtool', {treeTag:'div',tag:'div',revert:false});
+setLayer();
+
+$('main_layout').style.borderRight="1px solid #C0A8C6";
+$('main_layout').style.position="static";
+$('main_layout_width2').value = parseInt($('main_layout').currentStyle.width) * 2;
+
+
+{@ LIST}
+MAIN_to_width = $('{.layer}').style.width;MAIN_to_width = parseInt(MAIN_to_width)-2;	appendPanel('{.layer}','{.name}','{.title}','{.width}',["LEFT","MAIN","RIGHT","LOGO_TOP","TOP","FOOT","MAIN_TOP","MAIN_FOOT","TOP_BUTTON"],[MAIN_to_width],{.removable},{.is_part}, '{.avail_bg}', '{.height}','{.type}','{.line}','{.max}','{.len}','{.line_c}','{.subject}','{.img_w}','{.img_h}','{.index_}','{.Ptop}','{.Pleft}','{.Pright}','{.Pbottom}','{.bbs_title}','{.bbs_code}','{.str_lock}');
+conTable('{.name}','','{lock}');
+
+{/}
+
+
+
+//$('submenu').disabled = "true";
+//$('sub_top').disabled = "true";
+
+
+resizeing('main_layout','Y' ,'{lock}');
+	
+	{? lock == "y"}
+
+	{/}
+
+	qmenu()
+
+
+
+</script>
+
+</body>

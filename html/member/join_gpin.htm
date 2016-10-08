@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="/css/joinStep1.css" type="text/css" />
+
+
+<!--회원가입 영역 시작-->
+				<div id="joinStep">
+					<h3>현재 회원가입 절차 - 회원선택,중복확인</h3>
+					<img src="/images/join/joinStep1.gif" alt="회원가입 절차 첫번째, 회원구분 및 중복확인 절차 안내 이미지" />
+				</div>
+				
+				
+				
+				
+		
+				<div id="joinDivide">
+					{? return !="N"}
+					<h4>회원 가입 구분</h4>
+					<div id="joinWelcome">
+						<p class="ppid"><?=_ONAME?></p>
+						<img src="/images/join/joinWelcome.gif" alt="<?=_ONAME?>홈페이지에 오신것을 환영합니다." />
+					</div>
+
+				
+					<div id="joinChoice">
+						<h5 class="icon">해당되는 회원의 종류를 선택해 주세요</h5>
+						<p>회원의 종류에 따라서 가입절차에 차이가 있으니, 반드시 본인이 해당하는 유형을 선택해 주시기 바랍니다.</p>
+						<ul>
+							<li class="student"><label for="student">학생회원</label><input name="joinChoice" id="student" type="radio" value="s" onclick="$('chr_type').value=this.value" onkeypress="$('chr_type').value=this.value" checked/></li>
+							<li class="teacher"><label for="teacher">교직원회원</label><input name="joinChoice" id="teacher" type="radio" value="t" onclick="$('chr_type').value=this.value" onkeypress="$('chr_type').value=this.value"/></li>
+							<li class="parents"><label for="parents">학부모회원</label><input name="joinChoice" id="parents" type="radio" value="p" onclick="$('chr_type').value=this.value" onkeypress="$('chr_type').value=this.value"/></li>
+							<li class="graduate"><label for="graduate">졸업생회원</label><input name="joinChoice" id="graduate" value="a" type="radio"  onclick="$('chr_type').value=this.value" onkeypress="$('chr_type').value=this.value"/></li>
+							<li class="normal"><label for="normal">일반회원</label><input name="joinChoice" id="normal" type="radio" value="g"  onclick="$('chr_type').value=this.value" onkeypress="$('chr_type').value=this.value"/></li>
+						</ul>
+					</div>
+
+					
+					<form method="post" id="checkOverlap" onsubmit="return validate(this);">
+						<input type="hidden" name="chr_type" id="chr_type" value="s" />
+						
+						<script type="text/javascript">
+						// <![CDATA[
+							function testAuth() {
+								wWidth = 360;
+								wHight = 120;
+								
+								wX = (window.screen.width - wWidth) / 2;
+								wY = (window.screen.height - wHight) / 2;
+								
+								// Request Page Call
+								var w = window.open("https://login.<?=DOMAIN_?>/g-pin.auth?re_url=<?=$_SERVER[HTTP_HOST]?>&g_oid=<?=_OID?>&chr_mtype="+$('chr_type').value, "gPinLoginWin", "directories=no,toolbar=no,left="+wX+",top="+wY+",width="+wWidth+",height="+wHight);
+							}
+						// ]]>
+						</script>
+
+						<h5 class="icon">가입여부 확인</h5>
+						<p>우리학교 홈페이지에서는 주민등록번호를 사용하지 않고 있습니다.<br />회원식별을 위해서 반드시 <em>본인의 정확한 이름(실명)과 생년월일을 입력해 주세요.</em></p>
+						
+
+						<center><input type="button" name="gpinJoin" value="G-PIN 으로 본인 인증" onclick="testAuth()"></center>
+						<br><br>
+
+					</form>
+					
+
+					{:}
+					
+					<script language="Javascript" type="text/javascript">
+					function linkTar(){
+					 var val = $('ifval').value;
+				
+						if(val == "findId") {
+							location.href='/member.findid'
+						}else{
+							location.href='/member.join_step2'
+						}
+					}
+					</script>
+
+					<form id="checkOverlapResult">
+						<input type="hidden" id="ifval" value="findId">
+						<h3 class="title bullet">가입여부 확인</h3>
+						<div id="resultArea">
+							<div id="resultInputTop"></div>
+							<div id="resultInputArea">
+								<p class="title"><span>이미 가입된 아이디가 있습니다</span></p>
+								<p class="input"><span>가입된 아이디 :</span><input type="radio" name="checkOverlap" id="findId" value="fildid" checked onclick="$('ifval').value=this.value" onkeypress="$('ifval').value=this.value"/><label for="findId">{str_id}</label></p>
+								<p class="input"><input type="radio" name="checkOverlap" id="newId" value="newId" onclick="$('ifval').value=this.value" onkeypress="$('ifval').value=this.value"/><label for="newId">새로운 아이디 만들기</label></p>
+							</div>
+							<div id="resultInputBtm"></div>
+							<div id="resultBtnArea">
+								<a href="javascript:linkTar()"><img src="/images/join/submitBtn.gif" alt="확인버튼, 다음 단계로 이동합니다" /></a>
+								<a href="/"><img src="/images/join/cancelBtn.gif" alt="취소버튼" /></a>
+							</div>
+						</div>
+					</form>
+
+					{/}
+
+
+					<div id="caution">
+						<ul>
+							<li><em><span class="star">*</span><span class="comment">반드시 본인의 이름과 생년월일 및 성별을 정확히 입력하여 주시기 바랍니다.</span></em></li>
+							<li><em><span class="star">*</span><span class="comment">다른 사람의 개인정보를 도용할 경우에는 정보 통신망 법에 따라 3년 이하의 징역 또는 1천만원 이하의 벌금에 처해질 수 있습니다.</span></em></li>
+						</ul>
+					</div>
+				</div>
+				
+		
+
+				<!-- 회원가입 영역 끝 -->

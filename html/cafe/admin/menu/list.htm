@@ -1,0 +1,84 @@
+	<SCRIPT LANGUAGE="javascript" SRC="/js/seo.default.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript">
+	function abledParse(){
+		var len, count = 0;
+		len = orderForm.elements.length;
+
+		for( var i=0; i < len; i++ ){
+			if( orderForm.elements[i].checked == true ) count++; 
+		}
+		//orderForm.elements['delete'].disabled = true;
+		//orderForm.elements['publishing'].disabled = true;
+		if( 0 < count ){
+			//orderForm.elements['delete'].disabled = false;
+			//orderForm.elements['publishing'].disabled = false;
+		}
+	}
+	
+	function del_menu(url) {	
+	
+		if(confirm('메뉴삭제시 하위메뉴의 자료도 초기화 됩니다')==true) {
+			document.location.replace(url);
+		}		
+	}
+	
+	
+	function actionTo(mode,num_mcode,num_parent_mcode){	
+		
+		url = "cafe.php?cafe_id={{cafe_id}}&act={{act}}&num_mcode="+num_mcode+"&num_parent_mcode="+num_parent_mcode+"&mode=";
+			
+		if(mode=='up'){			
+			if(num_mcode)document.location.replace(url+mode);
+		}else if(mode=='down'){			
+			if(num_mcode)document.location.replace(url+mode);
+		}else{
+			alert('메뉴순서의 처음이나 끝입니다. '); 
+			return false;
+		}
+	}
+	
+	</SCRIPT>
+<div id="sub_content_area">
+	<div id="admin_sub_content">
+		
+			 <h3 id="admin_sub_title">메뉴편집</h3>
+		
+		<h3 id="admin_sub_title">{{nev_message}}</h3>
+		<div id="help_top_area">
+			<ul id="help_top_content">
+				<li>- 상위메뉴는 상위메뉴추가하기 버튼으로 생성이 가능합니다.</li>
+				<li>- 상위메뉴를 생성한후 상위메뉴안에서 Type(게시판, 앨범, 상담실, 웹문서, 링크)별 하위메뉴를 생성할수 있습니다.</li>
+			</ul>
+		</div>		
+		<Form NAME="orderForm" METHOD='POST'>
+		<input type="hidden" name="mode">
+		<div id="admin_table_area">
+		
+			<table class="admin_menu_table">
+				<tr>					
+					<th id="admin_tb_menuname"><p>메뉴명</p></th>
+					<th id="admin_tb_menulevel"><p>메뉴레벨</p></th>
+					<th id="admin_tb_menutype"><p>메뉴유형</p></td>					
+					<th id="admin_tb_menumodify"><p>수정</p></th>
+					<th id="admin_tb_menuorder"><p>순서변경</p></th>
+					<th id="admin_tb_menumanage"><p>관리(추가/삭제)</p></th>
+				</tr>
+<!-- DYNAMIC AREA 'LOOP' -->
+				<tr class="level{{level}}">					
+					<td id="admin_tb_menuname2">{{str_title}}</td>
+					<td headers="admin_tb_menulevel">{{str_level}}</td>
+					<td headers="admin_tb_menutype">{{str_type}}</td>					
+					<td id="admin_tb_menuname2"><img src="image/cafe/admin/bt_modify_middle.gif" value="수정" onClick="view_info('/?act=cafe.admin.menu.add&cafe_id={{cafe_id}}&mcode={{num_mcode}}&parent_mcode={{num_parent_mcode}}&num_order={{num_order}}','cafe_menu',600,600,0);" style="cursor:pointer" />{{edit_detail}}</td>
+					<td id="admin_tb_menuorder2"><input type=button onClick="actionTo('up','{{num_mcode}}','{{num_parent_mcode}}')" value="▲" /> <input type=button onClick="actionTo('down','{{num_mcode}}','{{num_parent_mcode}}')" value="▼" /></td>
+					<td id="admin_tb_menumanage2">{{add_link}}&nbsp;&nbsp; {{del_link}}</td>
+				</tr>
+<!-- DYNAMIC AREA 'LOOP' -->
+			</table>
+		</div>
+		<div id="admin_btn_area">
+			<p><img src="/image/cafe/admin/bt_topmenu_add.gif" onClick="view_info('/?act=cafe.admin.menu.add&cafe_id={{cafe_id}}&mcode={{mcode}}&parent_mcode={{parent_mcode}}','cafe_menu',300,200,0);" style="cursor:pointer" class="bt_topmenu_add"></p>
+			<!--<a href="javascript:MM_purpose('publishing');"><p>삭제</p></a>-->
+		</div>	
+		</Formrt>
+	</div>
+</div>		<!-- <div id="sub_content_area"> -->

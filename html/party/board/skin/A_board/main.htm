@@ -1,0 +1,121 @@
+<!-- 카페 메인 html -->
+<div id="cafeMainVisualArea">
+	<h3>카페 대문</h3>
+	<div id="cafeMainVisual">
+		{? str_main_html1}
+		{str_main_html1}{str_main_html2}{str_main_html3}
+		{:}
+		<img src="./tmpBg.gif" alt="<?=_ONAME?> 임시 대문" />
+		{/}
+	</div>
+</div>
+
+ <div id="cafeMainBoardArea">
+ 
+  <!-- 선정된 게시판리스트 -->
+   <!--{@BCLIST}-->
+	<div id="mainbbs{.num_mcode}" class="cafeObj">
+
+		<div class="cafeObjTop">
+			<h3>{.str_title} 최근게시물</h3>
+			<span class="{.str_skin} cafeMainBoardTitle"><a href="/party.board.list?pcode={pcode}&mcode={.num_mcode}">{.str_title}</a></span>
+			<span class="cafeMore"><a href="/party.board.list?pcode={pcode}&mcode={.num_mcode}"><img src="/html/party/image/more.gif" alt="{.str_title} 더보기" /></a></span>
+		</div>
+		
+		<div class="cafeObjContent">
+
+		{? .str_skin == 'gallery'}
+			<ul class="galleryList">
+				<wa:applet module="party.board.list_main" code="{.num_mcode}" mode="recent">
+				<!--{@Boardlist}-->
+				<li class="galleryNod">
+					<span class="thumb"><a href="{.readlink}"><img src="{.str_thumb}" alt="{.title}" /></a></span>
+					<span class="title"><a href="{.readlink}" title="{.title}">{.title}</a></span>
+					<span class="comment">댓글수 : {.cmt+0}개</span>
+				</li>
+				<!--{:}-->
+				<li class="cafeNoContent"><span>게시글이 없습니다.</span></li>
+				<!--{/}-->
+				</wa:applet>
+			</ul>
+		{/}
+		
+		
+		{? .str_skin == 'board'}
+			<ul class="boardList">
+				<wa:applet module="party.board.list_main" code="{.num_mcode}" mode="recent">
+				<!--{@Boardlist}-->
+				<li class="boardNod">
+					<span class="titleArea"><span class="title"><a href="{.readlink}">{.title}</a></span><span class="comment">[{.cmt+0}]</span></span>
+					<span class="name">{.str_name}</span>
+					<span class="date">{.dt_date2}</span>
+				</li>
+				<!--{:}-->
+				<li class="cafeNoContent"><span>게시글이 없습니다.</span></li>
+				<!--{/}-->
+				</wa:applet>
+			</ul>
+		{/}
+
+		</div>
+
+	</div>
+<!--{/}-->
+<!-- 선정된 게시판리스트 -->
+</div>
+
+<div id="cafeRecentAreaWrap">
+	<div id="cafeRecentArea">
+
+		<div id="cafeNoticeArea">
+
+			<div id="cafeNotice">
+				<div class="objTop">
+					<h3>최근 전체공지</h3>
+					<span class="cafeNoticeTit">전체공지</span>
+				</div>
+				<div class="objContent">
+					<ul class="noticeList">
+						<wa:applet module="party.board.list_main" mode="notice2" len="22">
+						<!--{@Boardlist}-->
+						<li class="noticeNod">
+							<span class="title"><a href="{.readlink}">{.title}</a></span>
+						</li>
+						<!--{:}-->
+						<li class="noContent">게시글이 없습니다.	</li>
+						<!--{/}-->
+						</wa:applet>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div id="cafeHotArea">
+
+			<div id="cafeHot">
+				<div class="objTop">
+					<h3>인기 게시물</h3>
+					<span class="cafeHotTit">인기게시물</span>
+				</div>
+				<div class="objContent">
+					<ul class="hotList">
+						<wa:applet module="party.board.list_main" mode="hot" listnum="10" len="22">
+						<!--{@Boardlist}-->
+						<li><span class="title"><a href="{.readlink}">{.title}</a></span></li>
+						<!--{:}-->
+						<li><span class="cafeNoContent">게시글이 없습니다.</span></li>
+						<!--{/}-->
+						</wa:applet>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+
+<!-- 카페 메인 html -->

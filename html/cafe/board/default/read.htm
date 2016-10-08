@@ -1,0 +1,200 @@
+<div id="sub_content_area">
+<script type="text/javascript" src="/js/lib.cookie.js"></script>
+<script type="text/javascript" src="/js/seo.default.js"></script>	
+	<!-- IF 'SUB_TITLE' -->
+	<div id="sub_title_area">
+		{{board_title}}
+	</div>
+	<!-- ENDIF 'SUB_TITLE' -->
+	<div class="read_area_top"></div>
+	<div class="read_area_content">
+		<div class="title_area border_top_2px border_bottom_1px border_color_2 board_top">
+			<h4>{{title}}</h4>
+		</div>
+		<dl class="author_area">
+			<dt>글쓴이 정보</dt>
+			<dd class="author_name">글쓴이 <span>{{name}}</span></dd>
+			<dd class="author_date">날짜 <span>{{reg_date}}</span></dd>
+			<dd class="author_ip"><!-- DYNAMIC AREA 'STR_IP' -->(IP : <a href="http://whois.nic.or.kr/whois/webapisvc?VALUE=?ip={{remote_addr}}" target="_blank">{{remote_addr}})</a><!-- DYNAMIC AREA 'STR_IP' --></dd>
+			<!-- IF 'ATTACH' -->
+			<dd class="added_file">
+				첨부파일
+				<!-- DYNAMIC AREA 'FILE' -->
+				<a href="{{downlink}}"> {{icon}} {{filename}}</a>
+				<!-- DYNAMIC AREA 'FILE' -->
+			</dd>
+			<!-- ENDIF 'ATTACH' -->
+		</dl>
+		<hr/>
+		<div class="content_area">
+			<table class="content_area_table">
+				<tr>
+					<td id="user_content"><div>{{content}}</div></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="read_area_bottom"></div>
+	<hr/>
+	<dl class="prev_next">
+		<dt>페이지 전환</dt>
+		<dd><span class="next_link">다음글</span>{{nextlink}}</dd>
+		<dd><span class="prev_link">이전글</span>{{prevlink}}</dd>
+	</dl>
+	<!-- DYNAMIC AREA 'USE_COMMENT' -->
+	<div class="comment_area border_bottom_2px border_color_2">
+		<h4 class="comment_title border_bottom_2px border_color_2">나도 한마디</h4>
+		<!-- DYNAMIC AREA 'COMMENT' -->
+		<dl id="comment_list"  class="border_bottom_1px border_color_2">
+			<dt id="comment_name">{{name}}</dt>
+			<dd id="comment_block">
+				<p>{{str_comment}}</p>
+				<span>
+					{{dt_date}}<a href="/cafe.php?act={{comment_del_url}}&cafe_id={{cafe_id}}&mcode={{mcode}}&main={{id}}&id={{num_serial}}"><img src="/image/board/default/icon08.gif" width="11" height="11" alt="댓글 삭제버튼"></a>
+				</span>
+			</dd>
+		</dl>
+		<!-- DYNAMIC AREA 'COMMENT' -->
+		<!-- IF 'COMMENT_WRITE' -->
+		<div class="comment_write">	
+			<form method="post" name="commentform" onsubmit="return prepare(this);">								
+				<input type="hidden" name="act" value="{{comment_write_url}}" />
+				<input type="hidden" name="cafe_id" value="{{cafe_id}}" />
+				<input type="hidden" name="num_main" value="{{id}}" />
+				<input type="hidden" name="mcode" value="{{mcode}}" />
+				<dl class="comment_write_input">
+					<dt>
+						<label for="cmt_name">이름 :</label><input name="cmt_name" type="text" class="login" id="cmt_name" alt="이곳에 이름을 넣어주세요"  readonly/>
+					</dt>
+					<dd>
+						<label for="cmt_comment">내용 :</label><textarea name="cmt_comment" class="sroll" id="cmt_comment" title="이곳에 내용을 써주세요" onkeyup="fc_chk_byte(this,1000);" onkeypress="fc_chk2()"></textarea>
+					</dd>
+					<dd>
+						<label for="cmt_pass">비밀번호 :</label><input name="cmt_pass" type="password" class="login" id="cmt_pass" alt="이곳에 비밀번호를 넣어주세요" />
+					</dd>
+				</dl>
+				<dl id="comment_limit">
+					<dt>글자수 제한</dt>
+					<dd class="comment_byte"><p id="comment_byte">0</p></dd>
+					<dd>/ 1000 byte</dd>
+				</dl>
+				<input type="image" name="submit_btn" src="/image/button/bt01/05.gif" width="40" height="19" alt="등록버튼" id="cmt_submit" />
+			</form>
+			<script language="javascript">
+				/*
+				' ------------------------------------------------------------------
+				' Function    : fc_chk_byte(aro_name)
+				' Description : 입력한 글자수를 체크
+				' Argument    : Object Name(글자수를 제한할 컨트롤)
+				' Return      : 
+				' ------------------------------------------------------------------
+				*/
+				function fc_chk_byte(aro_name,ari_max)
+				{
+				   var ls_str     = aro_name.value; // 이벤트가 일어난 컨트롤의 value 값
+				   var li_str_len = ls_str.length;  // 전체길이
+
+				   // 변수초기화
+				   var li_max      = ari_max; // 제한할 글자수 크기
+				   var i           = 0;  // for문에 사용
+				   var li_byte     = 0;  // 한글일경우는 2 그밗에는 1을 더함
+				   var li_len      = 0;  // substring하기 위해서 사용
+				   var ls_one_char = ""; // 한글자씩 검사한다
+				   var ls_str2     = ""; // 글자수를 초과하면 제한할수 글자전까지만 보여준다.
+
+				   for(i=0; i< li_str_len; i++)
+				   {
+					  // 한글자추출
+					  ls_one_char = ls_str.charAt(i);
+
+					  // 한글이면 2를 더한다.
+					  if (escape(ls_one_char).length > 4)
+					  {
+						 li_byte += 2;
+					  }
+					  // 그밗의 경우는 1을 더한다.
+					  else
+					  {
+						 li_byte++;
+					  }
+
+					  // 전체 크기가 li_max를 넘지않으면
+					  if(li_byte <= li_max)
+					  {
+						 li_len = i + 1;
+					  }
+				   }
+
+				   //화면에 지금 바이트수 출력
+				   document.getElementById('comment_byte').innerHTML = '<span>' + li_byte + '</span>';
+
+				   // 전체길이를 초과하면
+				   if(li_byte > li_max)
+				   {
+					  alert( li_max + " byte를 초과 입력할수 없습니다. \n 초과된 내용은 자동으로 삭제 됩니다. ");
+					  ls_str2 = ls_str.substr(0, li_len);
+					  aro_name.value = ls_str2;
+					  
+				   }
+				   aro_name.focus();   
+				}
+
+				/*
+				' ------------------------------------------------------------------
+				' Function    : fc_chk2()
+				' Description : Enter키를 못치게한다.
+				' Argument    : 
+				' Return      : 
+				' ------------------------------------------------------------------
+				*/
+				function fc_chk2()
+				{
+				   if(event.keyCode == 13)
+					  event.returnValue=false;
+				}
+			</script>
+		</div>
+		<!-- ENDIF 'COMMENT_WRITE' -->
+		<!-- DYNAMIC AREA 'USE_COMMENT' -->
+	</div>
+	<hr/>
+	<div id="read_btn">
+	<!-- IF 'COMMENT_WRITE' -->
+		<a href="{{writelink}}"><img src="/image/button/bt01/01.gif" width="51" height="19" alt="글쓰기 버튼" /></a>
+		<a href="{{replylink}}"><img src="/image/button/bt01/10.gif" width="40" height="19"  alt="답글달기 버튼"></a>
+		<a href="{{modifylink}}"><img src="/image/button/bt01/06.gif" width="40" height="19" alt="수정 버튼" /></a>
+		<a href="{{deletelink}}"><img src="/image/button/bt01/03.gif" width="40" height="19" alt="글 삭제 버튼" /></a>
+		<!-- ENDIF 'COMMENT_WRITE' -->
+		<a href="{{listlink}}"><img src="/image/button/bt01/02.gif" width="40" height="19" alt="목록으로 돌아가기 버튼" /></a>
+	</div>
+<!-- IF 'Filtering' -->
+<script src="/js/lib.filter.js"></script>
+<script language="JavaScript">
+	function prepare(form) {
+		if(getCookie('NAME')=="") {
+			alert("나도 한마디는 로그인 후 이용할 수 있습니다.");
+			return false;
+		}	
+		// 유해 단어 검사
+		strFilterList = "{{filter_words}}";
+		if(filterword(form.elements['cmt_comment'].value, strFilterList)){
+			document.all['submit_btn'].style.visibility = "visible";
+			return false;
+		}
+		return true;
+	}
+</script>
+<!-- ENDIF 'Filtering' -->
+<script>
+	if (username = '{{USER_NAME}}') {
+		if(document.forms['commentform'] != undefined) {
+			var el = document.forms['commentform'].elements['cmt_name'];
+			if (!el.value || el.value == username) {
+				el.value = username;
+				el.onkeydown = el.onkeyup = el.onselectstart = el.oncontextmenu =  function() { return false; }
+				el.readOnly = true;
+			}
+		}
+	}	
+</script>
+</div>

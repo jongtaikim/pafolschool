@@ -1,0 +1,410 @@
+<link rel="stylesheet" type="text/css" href="/css/table.silver.css">
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+{? !no}
+
+<form method=get onsubmit="return validate(this);">
+<input type="hidden" name="no" value="1">
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+ <tr>
+  <td>
+   안녕하세요? 한국교육개발입니다.<br>
+   본 타입조사는 귀사가 원하시는 솔루션 서비스를 한국교육개발에서 재공 가능여부를 판단하기위한 조사입니다.<br><br>
+
+   조사를 하기 위해선 간단한 정보가 필요합니다.  아래 항목을 작성해주시기 바랍니다.
+    </td>
+ </tr>
+ <tr>
+   <td style="padding-top:10">
+
+   <table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="zizibe07">
+    <tr>
+     <th> 
+      회사명(기관명)
+     </th>
+	 <td>
+	 <input type="text" name="organ_name" value="" class="button" hname="이름"  maxbyte="50"  style="ime-mode:active"  required>   
+	 </td>
+
+      <th>
+      조사 참여자
+     </th>
+	 <td>
+	 <input type="text" name="str_name" value="" class="button"  class="button" hname="이름"  maxbyte="50"  required>   
+	 </td>
+    </tr>
+
+	 <tr>
+     <th>
+      연락처
+     </th>
+	 <td>
+	 <input type="text" name="phone1" value="" class="button">   
+	 </td>
+
+      <th>
+      휴대폰
+     </th>
+	 <td>
+	 <input type="text" name="phone2" value="" class="button">   
+	 </td>
+    </tr>
+
+	 <tr>
+     <th>
+      Email
+     </th>
+	 <td colspan = 3>
+	 <input type="text" name="email_" value="" class="button" style="width:400px">   
+	 </td>
+    </tr>
+
+
+	 <tr>
+     <th>
+      서비스 형태
+     </th>
+	 <td colspan = 3>
+	
+		<TEXTAREA NAME="str_memo" style="width:100%; height:80" >ex) 증권교육방송, VOD동영상교육, 대학교연구실 온라인강의, 소콤, 람스, 동영상인코딩</TEXTAREA>
+	
+	 </td>
+    </tr>
+
+<tr>
+  <td colspan = 20 align=center><input type="submit" name="" value="시작하기" class="button1"></td>
+</tr>
+
+   </table>
+
+   </td>
+ </tr>
+</table>
+
+
+</form>
+{:}
+
+{? no ==2}
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="table01">
+ <tr>
+  <th>
+   테스트 결과
+  </th>
+    <td>
+     {moons}
+    </td>
+ </tr>
+
+  <tr>
+  <th>
+   테스트 내용
+  </th>
+    <td>
+     {moon}
+    </td>
+ </tr>
+
+<tr>
+  <td colspan=2 align=center><a href="/askType.start">처음으로</a></td>
+</tr>
+</table>
+
+
+
+{:}
+
+
+<form method=get onsubmit="return validate(this);">
+<input type="hidden" name="no" value="2">
+
+
+
+<? 
+	
+	$ask[0] = array(
+	'monjw' => '운영중인 사이트가 있으십니까? 있다면 어떠한 종류이신지요?',
+	'bogi1' => '일반 홈페이지',
+	'bogi2' => '동영상강의 사이트',
+	'bogi3' => '학교홈페이지',
+	'bogi4' => '커뮤니티',
+	'bogi5' => '없음',
+	);
+
+
+	$ask[1] = array(
+	'monjw' => '귀사에 웹 개발인력이 어느정도 있습니까?',
+	'bogi1' => '직접관리',
+	'bogi2' => '웹디자이너',
+	'bogi3' => '웹개발자',
+	'bogi4' => '웹개발자 + 웹디자이너',
+	'bogi5' => '없음',
+	);
+
+
+	$ask[2] = array(
+	'monjw' => '서버를 소유하고 운영하고 계신가요?',
+	'bogi1' => '호스팅환경',
+	'bogi2' => 'IDC 입고후 직접운영',
+	'bogi3' => '사무실에서운영',
+	'bogi4' => '업체호스팅',
+	'bogi5' => '없음',
+	);
+
+	
+	$ask[3] = array(
+	'monjw' => '계획하신 사이트는 어떤방식의 운영을 생각하고 계십니까?',
+	'bogi1' => '실시간 라이브 강의',
+	'bogi2' => '동영상VOD를 결제 후 기간만큼 보기',
+	'bogi3' => '특정 게시판을 결제 후 기간만큼사용하기',
+	'bogi4' => '동영상강좌',
+	'bogi5' => '없음',
+	'type' => 'row',
+	);
+
+
+
+  
+
+
+	$ask[4] = array(
+	'monjw' => '교육을 진행하기 위해 사이트를 구축 하실 예정이십니까?',
+	'bogi1' => '구축안함(기존사이트가 있음)',
+	'bogi2' => '신규 리뉴얼 예정',
+	'bogi3' => '신규제작',
+	'bogi4' => '사이트 필요없음',
+	'type' => 'row',
+
+	);
+
+
+
+	$ask[5] = array(
+	'monjw' => '만약 사이트를 제작하신다면 울트라웹, 무들LMS 중 어떤 솔루션을 사용하시겠습니까?',
+	'bogi1' => '울트라웹 + 디자인제작',
+	'bogi2' => '울트라웹',
+	'bogi3' => '무들 기본스킨',
+	'bogi4' => '무들 커스트마이징 스킨',
+	'bogi5' => '제작안함',
+	'type' => 'row',
+
+	);
+
+
+
+
+	$ask[6] = array(
+	'monjw' => '실시간방송솔루션(Ezlive)를 사용하시겠습니까?',
+	'bogi1' => '기존 방송시스템 이용',
+	'bogi2' => '사용함',
+	'bogi3' => '사용안함',
+
+
+	'type' => 'row',
+
+	);
+
+
+	$ask[7] = array(
+	'monjw' => 'FLV 동영상 호스팅(EzMov) 을 사용하시겠습니까?',
+	'bogi1' => '사용함',
+	'bogi2' => '사용안함',
+	'bogi3' => '기존 FLV시스템 이용',
+	'bogi4' => 'WMV 윈도우 MMS 이용',
+	'bogi5' => '사용안함',
+	'type' => 'row',
+
+	);
+
+
+
+
+
+
+
+	for($ii=0; $ii<count($ask); $ii++) { 
+	$iia = $ii +1;		
+	?>
+
+
+<?if($ii == 0) {echo '<h2 style="padding:10 0 5 0">&nbsp;&nbsp;&nbsp;&nbsp;환경 파악하기</h2>'; }	?>
+
+<?if($ii == 3) {echo '<h2 style="padding:10 0 5 0">&nbsp;&nbsp;&nbsp;&nbsp;운영계획 파악하기</h2>'; }	?>
+
+
+<?if($ii == 7) {echo '<h2 style="padding:10 0 5 0">&nbsp;&nbsp;&nbsp;&nbsp;요구사항 짜기</h2>'; }	?>
+
+
+
+<input type="hidden" name="askmoon[<?=$ii?>]" value="<?=$iia?>. <?=$ask[$ii][monjw]?>">
+<? if($ask[$ii][type] == "row") { ?>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="600" align=center>
+	<tr>
+		<td colspan="3"></td>
+	</tr>
+	<tr><td height="10" colspan = 20 style="padding:5px;border-bottom:1px solid #C1C1C1"><b style="color:#3366FF"><?=$iia?>. <?=$ask[$ii][monjw]?> </td></tr>
+		<tr>
+		<td colspan="3"></td>
+	</tr>
+	<? if($ask[$ii][bogi1]) { ?>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td >&nbsp;&nbsp;<input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi1]?>" hname="<?=$ask[$ii][monjw]?>"  required checked></td>
+					<td style="padding-top:4">(1) <?=$ask[$ii][bogi1]?></td>
+				</tr>
+			</table>
+		</td>
+
+	</tr>
+	<tr><td height="5"></td></tr>
+	<? } ?>
+	<? if($ask[$ii][bogi2]) { ?>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td>&nbsp;&nbsp;<input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi2]?>" ></td>
+					<td style="padding-top:4">(2) <?=$ask[$ii][bogi2]?></td>
+				</tr>
+			</table>
+		</td>
+
+			</tr>
+	<tr><td height="5"></td></tr>
+	<? }?>
+	<? if($ask[$ii][bogi3]) { ?>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td>&nbsp;&nbsp;<input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi3]?>" ></td>
+					<td style="padding-top:4">(3) <?=$ask[$ii][bogi3]?></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="5"></td></tr>
+	<? }?>
+	<? if($ask[$ii][bogi4]) { ?>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td>&nbsp;&nbsp;<input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi4]?>" ></td>
+					<td style="padding-top:4">(4) <?=$ask[$ii][bogi4]?></td>
+				</tr>
+			</table>
+		</td>
+
+			</tr>
+	<tr><td height="5"></td></tr>
+	<? }?>
+	<? if($ask[$ii][bogi5]) { ?>
+	<tr>
+		<td colspan="2">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td>&nbsp;&nbsp;<input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi5]?>" ></td>
+					<td style="padding-top:4"> (5) <?=$ask[$ii][bogi5]?></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="5"></td></tr>
+	<? }?>
+
+</table>
+
+
+
+
+
+<br> <br> <br>
+
+<? }else{ ?>
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="600" align=center>
+	<tr>
+		<td colspan="3"></td>
+	</tr>
+	<tr><td height="10" colspan = 20 style="padding:5px;border-bottom:1px solid #C1C1C1"><b style="color:#3366FF"><?=$iia?>. <?=$ask[$ii][monjw]?> </td></tr>
+		<tr>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td >&nbsp;&nbsp;<input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi1]?>" hname="<?=$ask[$ii][monjw]?>"  required checked></td>
+					<td style="padding-top:4">(1) <?=$ask[$ii][bogi1]?></td>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td><input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi2]?>" ></td>
+					<td style="padding-top:4">(2) <?=$ask[$ii][bogi2]?></td>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td><input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi3]?>"></td>
+					<td style="padding-top:4">(3) <?=$ask[$ii][bogi3]?></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="5"></td></tr>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td>&nbsp;&nbsp;<input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi4]?>" ></td>
+					<td style="padding-top:4">(4) <?=$ask[$ii][bogi4]?></td>
+				</tr>
+			</table>
+		</td>
+		<td colspan="2">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td><input type="radio" name="ask[<?=$ii?>]" value="<?=$ask[$ii][bogi5]?>" ></td>
+					<td style="padding-top:4"> (5) <?=$ask[$ii][bogi5]?></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="5"></td></tr>
+	
+</table>
+
+
+
+
+
+<br> <br> <br>
+
+
+
+
+<? } ?>
+<? } ?>
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+<tr>
+  <td colspan = 20 align=center><input type="submit" name="" value="다음단계" class="button1"></td>
+</tr>
+
+</table>
+</form>
+{/}
+{/}

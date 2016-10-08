@@ -1,0 +1,99 @@
+<link rel="stylesheet" type="text/css" href="./style.css">
+
+<style>
+	.f11 {font-size:11px; color:656565; font-family:돋움;}
+	.f1 {font-size:11px; color:656565	; font-family:돋움;
+</style>
+<link rel="stylesheet" type="text/css" href="/css/lightbox.css" media="screen,tv" />
+<script type="text/javascript" charset="UTF-8" src="/js/spica.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/js/lightbox_plus.js"></script>
+
+
+
+
+<div style="border:1px solid #E1E1E1;margin-top:10px">
+
+				
+<div class="boardType1" >
+		<div class="readTop">
+			<div class="title div50"><b>{str_title}</b></div>
+			<div class="date div50">{dt_date}&nbsp;&nbsp;&nbsp;</div>
+
+			<div class="readLine" style="width:97%">&nbsp;</div>
+
+
+	
+		</div>
+
+<br>
+
+
+		<div class="smartOutput readBody" style="border:1px solid #E1E1E1;width:93%;margin: 0px 10px 0 10px">
+		<div style="border-bottom:1px solid #E1E1E1;padding:5px;color:blue">명예의 전당 : {str_honor_name}</div>
+		<div style="padding:5px">
+		{content}
+		</div>
+		</div>
+
+<br>
+
+		{?  FILE_LIST}
+		<div class="readBodyFile2">
+			<div class="readBodyFileTitle">
+			첨부파일
+			</div>
+				<div class="readBodyFileItem">
+				<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 style="margin-top:3px">
+				{@ FILE_LIST}
+				 <tr>
+				  <td>
+					<a href="{.file_url}"><img src="/image/icon/{.str_ftype}.gif" align="absmiddle" onerror="this.src='/image/icon/unknown.gif';" border="0"> {.str_upfile}</a>  &nbsp;({=byte_convert(.num_size)})   
+				  </td>
+				  <td>
+				     
+				  </td>
+				 </tr>
+				 {/}
+				</table>
+				
+				
+				
+				</div>
+		</div>
+		{/}
+
+
+
+
+</div>
+
+
+<br>
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr><td height="10"></td></tr>
+	<tr>
+		<td><a href="{writelink}"><img src="./image/btn_write.gif" alt="글쓰기"></a></td>
+		<td width="65%">&nbsp;</td>
+<!--{? writable}-->
+
+		<td><a href="{modifylink}"><img src="./image/btn_modify.gif" alt="글수정"></a></td>
+		<td width="5">&nbsp;</td>
+		<td><a href="{deletelink}"><img src="./image/btn_delete.gif" alt="글삭제"></a></td>
+<!--{/}-->
+		<td width="5">&nbsp;</td>
+		<td align="right"><a href="{listlink}"><img src="./image/btn_list.gif" alt="목록보기"></a></td>
+		<td width="5">&nbsp;</td>
+	</tr>
+
+	<tr><td height="10"></td></tr>
+</table>
+	
+
+
+</div>
+	
+
+

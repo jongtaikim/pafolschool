@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/css/board.css" type="text/css" />
+
+<!-- 게시판 영역 시작 -->
+				<div class="board" >
+					<div class="boardListForm" >
+						<table class="boardList" border="1" cellspacing="0" summary="<?=_ONAME?> 온라인신청 목록입니다..">
+							<caption>온라인신청 목록</caption>
+							<thead>
+								<tr class="top">
+									<th scope="col" class="num">번호</th>
+									<th scope="col" class="title">목록</th>
+									<th scope="col" class="date">신청기간</th>
+									<th scope="col" class="date last">만료일</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								{@ LIST}
+
+								<tr class="{? (.index_+1) %2==0}bg1{:}bg2{/}">
+									<td>{.num_code}</td>
+									<td class="title"><a href="/form.write?code={.num_mcode}&mode=write"><b>{.str_title}</b> 온라인 신청</a> {? .counter}({.counter}){/}</td>
+									<td>{=date("Y.m.d",.dt_date)}</td>
+									<td>{? .end_date}{=date("Y.m.d",.end_date)}{:}기간없음{/}</td>
+								</tr>
+								{:}
+
+								<tr class="bg1">
+									<td colspan = "4" align="center" height="100px">온라인 신청 항목이 없습니다.</td>
+									
+								</tr>
+
+								{/}
+								
+							</tbody>
+						</table>
+					</div>
+
+						<div class="boardNavigation">
+							<div class="pagination">
+								<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/images/board/boardPrevBtn.gif" nexticon="/images/board/boardNextBtn.gif" firsticon="/images/board/boardFirstBtn.gif" lasticon="/images/board/boardLastBtn.gif" />
+							</div>
+						</div>
+				</div>
+				<!-- 게시판 영역 끝 -->

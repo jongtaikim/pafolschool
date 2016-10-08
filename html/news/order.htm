@@ -1,0 +1,45 @@
+<!-- 뉴스레터 -->
+	<div id="newsletter">
+		<!-- 상단공통 -->
+		{#TOP_TAB}
+		
+		<!-- 상단공통 끝 -->
+		<!-- 신청 -->
+		<div class="apply">
+			<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo">
+				<input type="hidden" name="mode" value="{mode}">
+				<fieldset>
+					<legend>개인정보 입력</legend>
+					<div class="bor">
+						<p class="left">
+							<label for="ap1"><strong><em>*</em>이름</strong></label><input class="txt" id="ap1" type="text" name="str_name" hname="이름"  required  />
+						</p>
+						<p class="right">
+							<label for="ap2"><strong>회사 및 소속</strong></label><input class="txt" id="ap2" type="text" name="str_compay" hname="회사 및 소속"  />
+						</p>
+						<p class="left">
+							<label for="ap3"><strong><em>*</em>e-mail</strong></label><input class="txt" id="ap3" type="text" name="str_email" hname="이메일"  required  />
+						</p>
+						<p class="right">
+							<label for="ap4"><strong>연락처</strong></label><input id="ap4" class="txt" type="text" name="str_phone" hname="연락처"    />
+						</p>
+						<p class="left last">
+							<strong><em>*</em>신청경로</strong>
+							<span><input id="ra1" type="radio" checked="checked" name="str_root" value="지인의 추천" checked/><label for="ra1">지인의 추천</label></span>
+							<span><input id="ra2" type="radio" name="str_root" value="인터넷 검색" /><label for="ra2">인터넷 검색</label></span>
+							<span><input id="ra3" type="radio" name="str_root" value="협력회사"/><label for="ra3">협력회사</label></span>
+							<span><input id="ra4" type="radio" name="str_root" value="홈페이지 방문"/><label for="ra4">홈페이지 방문</label></span>
+							<span><input id="ra5" type="radio" name="str_root" value="기타" /><label for="ra5">기타</label></span>
+						</p>
+					</div>
+				</fieldset>
+				
+				<div style="text-align:center">
+					<span class="btn_pack medium"><input type="submit" value="신청하기" /></span>
+				</div>
+				
+			</form>
+		</div>
+		<!-- 신청 끝 -->
+
+		</div>

@@ -1,0 +1,66 @@
+<script type="text/javascript">
+	function done(form) {
+		returnValue = form.elements['str_title'].value;
+		self.close();
+		//return false;
+	}
+
+	function onaction(el) {
+		var extend = document.getElementById('openoption');
+		extend.style.display = el.value == '#window' ? 'block' : 'none';
+	}
+</script>
+</head>
+<body style="overflow: hidden">
+
+<table  cellpadding="0" cellspacing="0" border="0" width=98% >
+
+<tr>
+	<td ><table cellpadding="0" cellspacing="0" border="0" width=98% height="45" background="/html/admin2/images/sub_title_bg.gif" align = center>
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545"><b>링크변경</b></td>
+				
+				</tr>
+			</table>
+<div class="tab01" >
+	<ul>
+		<li><a href="menu.admin.option?mcode={num_mcode}">메뉴옵션</a></li>
+		<li class="active"><a href="#">링크변경</a></li>
+	</ul>
+</div>
+<form name="menuform" method="post">
+<br>
+<table width="98%" border="0" class="table01" align = center>
+<tr>
+	<th width="100">링크제목</th>
+	<td><input type="text" name="str_title" value="{str_title}" size="20"></td>
+</tr>
+<tr>
+	<th width="100">URL</th>
+	<td><input type="text" name="str_url" value="{str_url}" size="45"></td>
+</tr>
+<tr>
+	<th>내용표시</th>
+	<td>
+		<label for="str_target1"><input type="radio" name="str_target" id="str_target1" value="_self" onClick="onaction(this)" {? str_target == '_self'}checked{/} style="border:0px;">현재창에</label>
+		<label for="str_target2"><input type="radio" name="str_target" id="str_target2" value="_blank" onClick="onaction(this)" {? str_target == '_blank'}checked{/} style="border:0px;">새창에</label>
+		<label for="str_target3"><input type="radio" name="str_target" id="str_target3" value="#window" onClick="onaction(this)" {? str_target == '#window'}checked{/} disabled style="border:0px;">오픈창에</label>
+		<fieldset id="openoption" style="display: none; width: 100%">
+		<legend>창 속성</legend>
+		가로 <input type="text" size="5" name="width"> × 세로 <input type="text" size="5" name="height"> <br />
+		<label for="scrolls"><input type="checkbox" id="scrolls" name="scrolls"> 스크롤바 보임</label>
+	</td>
+</tr>
+<tr>
+	<td align="center" colspan="2"><input type="submit" target="menu_option" value="확  인" class="button"></td>
+</tr>
+</table>
+
+<div class="tip" style="width:450px;margin-left:25px;">
+NOTE: 외부 URL은 <font color="#0000FF">http://</font> 를 포함한 전체 주소를 모두 넣으세요.<br> 다른 메뉴 주소를 붙여넣기 하실때는 <font color="#0000FF">http://주소/</font> 를 제외한 나머지 부분만 넣는것이 속도가 빠릅니다<br>
+<font color="#0000FF">"mailto:메일주소"</font> 를 이용하여 이메일보내기 링크로 사용할 수도 있습니다.
+</div>
+
+</form>
+</body>

@@ -1,0 +1,165 @@
+<style>
+.f1 {font-size:11px; font-family:돋움; color:3d3d3d; padding-top:8;}
+.f2 {font-size:11px; font-family:돋움; color:666666; padding-top:9;}
+.line1 {padding:5}
+.line2 {padding-top:6}
+.box1 {padding-top:3}
+.box2 {padding-top:0}
+</style>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+<!-- 타이틀 Start -->
+	<tr valign="top">
+		<td height="59">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="59" background="/html/image/title_bg.gif">
+				<tr valign="top">
+					<td align="right">북쿠폰관리</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+<!-- 타이틀 End -->	
+	<tr>
+		<td height="15"></td>
+	</tr>
+	<tr>
+		<td align="center" valign="top">
+			
+			<table align="center" width=97% border=0 cellspacing=0 cellpadding=0>
+			 <tr>
+			  <td>
+			   총 {= number_format(total)} 개의 쿠폰이 등록되어있습니다.
+			  </td>
+			    <td align = right>
+			     <form name="searchForm" method="get" style="margin:0px;">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>
+									<INPUT TYPE="hidden" NAME="listnum" value = "{listnum}">
+									<select name="search_key">
+										<option value="str_coupon"{? search_key=='str_coupon'} selected{/}>쿠폰코드</option>									
+										<option value="str_id"{? search_key=='str_id'} selected{/}>아이디</option>
+									</select>
+								</td>
+								<td width="3"></td>
+								<td><input type="text" name="search_value" value="{search_value}" style="border:1 solid #c0c0c0; height:20"></td>
+								<td width="3"></td>
+								<td style="padding-top:1"> <input TYPE="image" src="/html/member/admin/image/btn_search.gif" value="검색" ></td>
+							</td>
+							</tr>
+						</table>
+					</form>
+			    </td>
+			 </tr>
+			</table>
+
+			
+			<table cellpadding="0" cellspacing="0" border="0" width="98%">
+				<tr>
+					<td height="3" bgcolor="#ececec"></td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="#c0c0c0"></td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="#ffffff"></td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="#ededed"></td>
+				</tr>
+				<tr>
+					<td height="28" bgcolor="#f3f3f3" valign="top">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+						<col width="24%" align="center"></col><col width="1%" align="center"></col>
+						<col width="24%" align="center"></col><col width="1%" align="center"></col>
+						<col width="24%" align="center"></col><col width="1%" align="center"></col>
+						<col width="24%" align="center"></col><col width="1%" align="center"></col>
+							<tr>
+
+								<td class="f1">쿠폰</td>
+								<td class="line1"><img src="/image/line.gif"></td>
+								
+								<td class="f1">사용</td>
+								<td class="line1"><img src="/image/line.gif"></td>
+								
+								<td class="f1">사용회원</td>
+								<td class="line1"><img src="/image/line.gif"></td>
+
+								<td class="f1">사용일자</td>
+
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td bgcolor="#FFFFFF" valign="top">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+						<col width="24%" align="center"></col><col width="1%" align="center"></col>
+						<col width="24%" align="center"></col><col width="1%" align="center"></col>
+						<col width="24%" align="center"></col><col width="1%" align="center"></col>
+						<col width="24%" align="center"></col><col width="1%" align="center"></col>
+							<!--{@ LIST}-->
+							<tr>
+								<td class="f2">{.str_coupon}</td>
+								<td class="line1"><img src="/image/line.gif"></td>
+								
+								<td class="f2">{.str_use}</td>
+								<td class="line1"><img src="/image/line.gif"></td>
+						
+								
+								<td class="f2">{.str_id}</td>
+								<td class="line1"><img src="/image/line.gif"></td>
+
+								<td class="f2">{.str_date}</td>
+					
+							</tr>
+							<tr>
+								<td height="4"></td>
+							</tr>
+							<tr>
+								<td colspan="7" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+							</tr>
+
+{:}
+
+							<tr>
+								<td colspan="7" width="100%" height="30"  align=center>등록된 쿠폰이 없습니다.</td>
+							</tr>
+							{/}
+
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="#ededed"></td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="#ffffff"></td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="#c0c0c0"></td>
+				</tr>
+				<tr>
+					<td height="3" bgcolor="#ececec"></td>
+				</tr>
+				<tr>
+					<td align="center" bgcolor="f3f3f3">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td height="10"></td>
+							</tr>
+							<tr>
+								<td><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/image/btn_prevpage.gif" nexticon="/image/btn_nextpage.gif" firsticon="/image/btn_firstpage.gif" lasticon="/image/btn_lastpage.gif" /></td>
+							</tr>
+							<tr>
+								<td height="10"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td height="10"></td>
+				</tr>
+			</table>

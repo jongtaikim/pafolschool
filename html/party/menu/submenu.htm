@@ -1,0 +1,30 @@
+<div id="cafeSubmenu">
+	
+	<div class="cafeDefaultMenu">
+
+		<span class="cafeBoardAll"><a href="/party.board.list?pcode={pcode}">전체글보기</a></span>
+		<span class="cafeGalleryAll"><a href="/party.board.list_gallery?pcode={pcode}">전체갤러리보기</a></span>
+		<div class="cafeSubMenuLine"></div>
+
+	</div>
+	{@ SUBMENU}
+
+		{? .str_type !='separator'}
+			{? .str_type =='title'}
+			<span class="cafeSubMenuTitle">{.str_title}</span>
+			{:}
+			<span{? .str_in =='Y'} class="cafeSubMenuSpace"{/}>
+			{? .str_skin_type == "memo"}<span class="memo">{/}
+			{? .str_skin_type == "board"}<span class="board">{/}
+			{? .str_skin_type == "gallery"}<span class="gallery">{/}
+			{? .str_type == "link"}<span class="link">{/}
+			<a href = "{? .str_type == 'link'}{.str_link_url}{:}/{.str_link}{/}" class="cafeSubMenuNod"  {? .str_target}target="{.str_target}"{/}>{.str_title}</a></span></span> 
+			{/}
+			{:}
+			<div class="cafeSubMenuLine"></div>
+		{/}
+	 
+	{/}
+
+			<div class="cafeSubMenuLine"></div>
+</div>

@@ -1,0 +1,153 @@
+<? 
+include 'admin_menu.php';
+?>
+<div class="menu_body">
+	<div class="menu_head">
+		<div class="menu_head_icon">
+			<img src="/images/admin/menu_icon1.gif" alt="운영관리" />
+		</div>
+		<div class="menu_head_title">
+			<div class="menu_head_title1" ><a href="/menu.admin.frame">운영관리</a></div>
+			<div class="menu_head_title2" >홈페이지의 기본정보 관리</div>
+		</div>
+	</div>
+
+	<div class="menu_content">
+		<ul>
+			<? 
+			$pn_1 = 0;	
+			
+			for($ii=0; $ii<count($menu[$pn_1][submenu]); $ii++) { 
+			$ia = $ii +1;
+			?>
+
+			<li>
+				
+				<a href="<?=$menu[$pn_1][submenu][$ii][link].$menu[$pn_1][submenu][$ii][pn]?>" style="font-weight: bold">
+					<?=$menu[$pn_1][submenu][$ii][title]?>
+				</a>
+				<div class="menu_content_help">
+					<?=$menu[$pn_1][submenu][$ii][tip]?>
+				</div>
+
+			</li>
+
+			<? } ?>
+		</ul>
+	</div>
+</div>
+
+
+
+
+<div class="menu_body">
+	<div class="menu_head">
+		<div class="menu_head_icon">
+			<img src="/images/admin/menu_icon4.gif" alt="기능관리" />
+		</div>
+		<div class="menu_head_title">
+			<div class="menu_head_title1" >기능관리</div>
+			<div class="menu_head_title2" >메뉴및 배너,설문조사 관리</div>
+		</div>
+	</div>
+
+	<div class="menu_content">
+		<ul>
+			<? 
+			$pn_1 = 1;	
+			
+			for($ii=0; $ii<count($menu[$pn_1][submenu]); $ii++) { 
+			$ia = $ii +1;
+			?>
+
+			<li>
+				
+				<a href="<?=$menu[$pn_1][submenu][$ii][link].$menu[$pn_1][submenu][$ii][pn]?>"  style="font-weight: bold">
+					<?=$menu[$pn_1][submenu][$ii][title]?>
+				</a>
+				<div class="menu_content_help">
+					<?=$menu[$pn_1][submenu][$ii][tip]?>
+				</div>
+
+			</li>
+
+			<? } ?>
+		</ul>
+	</div>
+</div>
+
+
+
+<div class="menu_body">
+	<div class="menu_head">
+		<div class="menu_head_icon">
+			<img src="/images/admin/menu_icon3.gif" alt="교육관리" />
+		</div>
+		<div class="menu_head_title">
+			<div class="menu_head_title1" >회원관리</div>
+			<div class="menu_head_title2" >홈페이지회원 및 정책관리</div>
+		</div>
+	</div>
+
+	<div class="menu_content">
+		<ul>
+			<? 
+			$pn_1 = 2;	
+			
+			for($ii=0; $ii<count($menu[$pn_1][submenu]); $ii++) { 
+			$ia = $ii +1;
+			?>
+
+			<li>
+				
+				<a href="<?=$menu[$pn_1][submenu][$ii][link].$menu[$pn_1][submenu][$ii][pn]?>"  style="font-weight: bold">
+					<?=$menu[$pn_1][submenu][$ii][title]?>
+				</a>
+				<div class="menu_content_help">
+					<?=$menu[$pn_1][submenu][$ii][tip]?>
+				</div>
+
+			</li>
+
+			<? } ?>
+		</ul>
+	</div>
+</div>
+
+
+<div class="menu_body">
+	<div class="menu_head">
+		<div class="menu_head_icon">
+			<img src="/images/admin/menu_icon2.gif" alt="추가기능" />
+		</div>
+		<div class="menu_head_title">
+			<div class="menu_head_title1" >추가기능</div>
+			<div class="menu_head_title2" >별도로 추가개발되는 기능</div>
+		</div>
+	</div>
+
+	<div class="menu_content">
+		<ul>
+			<? 
+			$pn_1 = 3;	
+			
+			for($ii=0; $ii<count($menu[$pn_1][submenu]); $ii++) { 
+			$ia = $ii +1;
+			?>
+
+			<li>
+				
+				<a href="<?=$menu[$pn_1][submenu][$ii][link].$menu[$pn_1][submenu][$ii][pn]?>"  style="font-weight: bold">
+					<?=$menu[$pn_1][submenu][$ii][title]?>
+				</a>
+				<div class="menu_content_help">
+					<?=$menu[$pn_1][submenu][$ii][tip]?>
+				</div>
+
+			</li>
+
+			<? } ?>
+		</ul>
+	</div>
+</div>
+

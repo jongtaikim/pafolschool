@@ -1,0 +1,56 @@
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<script>
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight);
+
+	
+
+
+} 
+</script>
+<body onload="resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',10);" >
+<script type="text/javascript" src="/js/now_core.js"></script>
+<div style = "padding:0px;width:100%" id="priviewsubmenu">
+<table  border=0 cellspacing=0 cellpadding=0 width="99%">
+	{@ SUBMENU}
+	
+	<tr><td class="submenu_item" style="line-height:21px;">
+	 {? .str_type !='separator'}
+	 {? .str_type =='title'}
+	 <div style = "padding:0px 5px 0px 10px" ><b> {.str_title}</b></div>
+	 {:}
+	 <div style = "padding:0px 5px 5px 10px" >{? .str_in =='Y'}<img src='/image/in_line.gif' align = absmiddle>&nbsp;{/}
+	 {? .str_skin_type == "memo"}<img src='/image/img_memo.gif'> {/}
+	 {? .str_skin_type == "board"}<img src='/image/img_board.gif'> {/}
+	 {? .str_skin_type == "gallery"}<img src='/image/img_gall.gif'> {/}
+	 {? .str_type == "link"}<img src='/image/img_link.gif'> {/}
+
+	 {.str_title}</div>
+	 {/}
+	 {:}
+	   </td></tr>
+	   <tr><td height=3></td></tr>
+	   <tr><td height=1  class="submenu_line" style="background-color:#E0E0E0"></td></tr>
+	   <tr><td height=3></td></tr>
+	  <tr><td>
+	 {/}
+	 
+	{/}
+	</td>
+	 </tr>
+	</table>
+	
+	
+
+	</div>
+	<script>roundDiv('priviewsubmenu')</script>
+
+	</script>

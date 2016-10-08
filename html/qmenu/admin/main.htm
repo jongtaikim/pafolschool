@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+ </head>
+
+<style type="text/css">
+.title {height:29; text-align:center; padding-top:1; color:red}
+.title1 {color:#464444;font-family:돋움; font-weight:bold; padding-top:1}
+.menu {color:#555555; font-family:돋움; padding:8 0 0 17}
+.menu1 {color:#555555; font-family:돋움; padding:8 0 0 15}
+
+</style>
+
+			
+			
+
+			
+
+			<!-- 퀵메뉴 사용설정 start -->			
+			<form method=post >
+			<input type="hidden" name="mode" value="use">
+			
+			<div>
+				<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">퀵메뉴 사용 설정</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td width="4"></td>
+											<td><input type="checkbox" name="qmenu_use" value ="Y" <?if(_QMENU_USE =="Y"){?> checked<?}?> onclick="this.form.submit()"></td>
+											<td  class="bx1_text02">&nbsp;퀵메뉴 사용설정&nbsp;</td>
+											<td class="btn01"><img src="/html/admin/images/btn_01.gif"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr><td height="5"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+			<!-- 도움말 Start -->
+					<table cellpadding="0" cellspacing="0" border="0" width="98%">
+						<tr height="14">
+							<td colspan="2">&nbsp;</td>
+						</tr>
+						<tr>
+							<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+							<td class="tip_title">도움말</td>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" width="98%">
+					<tr height="14">
+						<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+						<td background="/html/admin/images/bx_tip_top_bg.gif"></td>
+						<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+					</tr>				
+					<tr>
+						<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+						<td class="tip_text">
+							ㆍ 퀵메뉴는 우측에 붙는 영역으로, 메인 및 서브페이지에서 빠르고 편하게 해당 정보로 바로 연결 할 수 있습니다.<br />
+							ㆍ <strong>글씨 확대/축소 기능</strong>을 사용하려면 퀵메뉴를 사용하셔야 합니다.
+
+						</td>
+						<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+					</tr>
+					<tr height="14">
+						<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+						<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+						<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+					</tr>
+				</table>
+			<!-- 도움말 End -->
+			</form>
+		<!-- 퀵메뉴 사용설정 end -->
+
+		
+			<!-- 퀵메뉴 등록/수정 start -->							
+			<div style="padding-top:30px;">
+				<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">퀵메뉴 등록/수정</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr><td height="14"></td></tr>
+							<tr valign="top">
+								<td width="16"></td>
+
+								<td>
+								
+								<!-- 순서변경 start -->	
+									<table cellpadding="0" cellspacing="0" border="0" width="209">
+										<tr>
+											<td width="6"><img src="/html/admin/images/bx2_top_left.gif"></td>
+											<td background="/html/admin/images/bx2_top_bg.gif" class="bx2_title " width="197">순서변경</td>
+											<td width="6" align="right"><img src="/html/admin/images/bx2_top_right.gif"></td>
+										</tr>
+										<tr>
+											<td width="6" background="/html/admin/images/bx2_mid_left.gif"></td>
+											<td bgcolor="#FFFFFF" height="196" valign="top">
+												<style type="text/css" title="">
+												.qitme{border:1 solid #c7c7c7; background-image:url(/html/admin/images/quick_fom_bg.gif); height:24px; width:198px;padding:3px 0 0 10px;margin:2px 0 2px 0px;cursor: move}
+												</style>
+												<script language="Javascript" type="text/javascript">
+												function defVal(serial,link,text,text2,target){
+												$('num_serial').value=serial;
+												$('str_url').value=link;
+												$('str_text').value=text;
+												$('str_text2').value=text2;
+											
+												if(target =="_blank"){
+												$('str_target2').checked = true;
+												}else{
+												$('str_target1').checked = true;
+												}
+												}
+												</script>		
+												<form method=post id="listForm">
+												<input type="hidden" name="mode" value="list">
+
+												<ul id="list" >
+													
+													{@LIST}
+
+													<li class="qitme" onclick="defVal('{.num_serial}','{.str_url}','{.str_text}','{.str_text2}','{.str_target}')"><input type="hidden" name="step[]" value="{.num_serial}">
+													<div style="float:left">
+													{? .num_serial ==1}<img src='/image/house.png' align="absmiddle">{/}
+													{? .num_serial ==2}<img src='/image/tv.png' align="absmiddle">{/}
+													{? .num_serial ==3}<img src='/image/users3_preferences.png' align="absmiddle">{/}
+													{? .num_serial ==4}<img src='/image/radio.png' align="absmiddle">{/}
+													{? .num_serial ==5}<img src='/image/books.png' align="absmiddle">{/}
+													
+													 &nbsp;{.str_text}
+													 </div>
+													 
+													 <div style="float:right;padding-right:5px"><a href="/qmenu.admin.main?mode=del&serial={.num_serial}"><img src='/image/btn_close_1.gif'></a></div>
+													 
+													 </li>
+													{/}
+
+												</ul>
+														
+												<table cellpadding="0" cellspacing="0" border="0" width="100%">
+													<tr><td height="5"></td></tr>
+													<tr>
+														<td align="center"> <font style="font-size:11px;color:#006699">마우스 드래그로 순서변경</font></td>
+													</tr>
+												</table>
+			
+
+											</td>
+											<td width="6" align="right" background="/html/admin/images/bx2_mid_right.gif"></td>
+										</tr>
+										<tr>
+											<td width="6"><img src="/html/admin/images/bx2_btm_left.gif"></td>
+											<td background="/html/admin/images/bx2_btm_bg.gif"></td>
+											<td width="6" align="right"><img src="/html/admin/images/bx2_btm_right.gif"></td>
+										</tr>
+
+										<tr>
+										  <td colspan="3" align="center" style="padding:5px">
+										  
+										 
+										  <a href="javascript:$('listForm').submit();"><img src="/html/admin/images/btn_order.gif"></a>
+										  <!-- <fieldset style="padding:3px;width:80px"></fieldset> -->
+										  </form>
+										  </td>
+										</tr>
+									</table>
+								<!-- 순서변경 end -->	
+							
+								
+								</td>
+
+								<td width="16"></td>
+								
+								<td align="center">
+								<!-- 퀵메뉴 등록/수정 start -->	
+								<form method=post enctype="multipart/form-data" onsubmit="return validate(this);">
+									<input type="hidden" name="mode" value="update">
+									<input type="hidden" name="num_serial" id="num_serial" value="">
+									<table cellpadding="0" cellspacing="0" border="0" width="359" height="240">
+										<tr>
+											<td width="6"><img src="/html/admin/images/bx2_top_left.gif"></td>
+											<td background="/html/admin/images/bx2_top_bg.gif" class="bx2_title ">퀵메뉴 등록/수정</td>
+											<td width="6" align="right"><img src="/html/admin/images/bx2_top_right.gif"></td>
+										</tr>
+										<tr>
+											<td width="6" background="/html/admin/images/bx2_mid_left.gif"></td>
+											<td bgcolor="#FFFFFF" height="196" valign="top">
+										<!-- 내용 start -->		
+												<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+													<tr>
+														<td style="padding-top:10">
+															<table cellpadding="0" cellspacing="0" border="0" width="98%">
+																<tr>
+																	<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+																	<td class="bx1_stitle">제목 : </td>
+																	<td width="4"></td>
+																	<td><input type="text" name="str_text" id="str_text" class="fom01" style="width:280"  required hname="제목" maxbyte="12"></td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+
+													<tr>
+														<td style="padding-top:10">
+															<table cellpadding="0" cellspacing="0" border="0" width="98%">
+																<tr>
+																	<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+																	<td class="bx1_stitle" style="width:50px">부제목 : </td>
+																	<td width="4"></td>
+																	<td><input type="text" name="str_text2" id="str_text2" class="fom01" style="width:266"  required hname="부제목" maxbyte="20"></td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td style="padding-top:10">
+															<table cellpadding="0" cellspacing="0" border="0" width="98%">
+																<tr>
+																	<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+																	<td class="bx1_stitle">URL : </td>
+																	<td width="4"></td>
+																	<td><input type="text" name="str_url" id="str_url" class="fom01" style="width:280"  required hname="링크"></td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													
+													<tr>
+														<td style="padding-top:10">
+															<table cellpadding="0" cellspacing="0" border="0">
+																<tr>
+																	<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+																	<td class="bx1_stitle">오픈방법 : </td>
+																	<td width="4"></td>
+																	<td><input type="radio" name="str_target" id="str_target1" value="_self"></td>
+																	<td  class="bx1_text02" checked>현재창&nbsp;</td>
+																	<td width="4"></td>
+																	<td><input type="radio"  name="str_target" id="str_target2" value="_blank"></td>
+																	<td  class="bx1_text02">새창&nbsp;</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td height="7"></td></tr>
+												</table>
+										<!-- 내용 end -->		
+											</td>
+											<td width="6" align="right" background="/html/admin/images/bx2_mid_right.gif"></td>
+										</tr>
+										<tr>
+											<td width="6"><img src="/html/admin/images/bx2_btm_left.gif"></td>
+											<td background="/html/admin/images/bx2_btm_bg.gif"></td>
+											<td width="6" align="right"><img src="/html/admin/images/bx2_btm_right.gif"></td>
+										</tr>
+										<tr height="10">
+											<td colspan="3">&nbsp;<td>
+										</tr>
+										<tr>
+											<td colspan="3"><center><input type="image" src="/html/admin/images/btn_save.gif"><img src="/html/admin/images/btn_cancel.gif" style="cursor: hand" onclick="location.reload();"></center><td>
+										</tr>
+									</table>
+									</form>
+								<!-- 퀵메뉴 등록/수정 end -->	
+								</td>
+								
+								<td width="20"></td>
+							</tr>
+
+							<tr><td height="10"></td></tr>
+							<tr><td height="6"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+		<!-- 퀵메뉴 등록/수정 end -->
+			<table cellpadding="0" cellspacing="0" border="0" width="98%">
+				<tr><td height="14"></td></tr>
+				<tr>
+					<td colspan="3" valign="top">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><img src="/html/admin/images/tip_icon.gif"></td>
+								<td class="tip_title">도움말</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td height="6"></td></tr>
+				<tr>
+					<td colspan="2">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr height="14">
+								<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+								<td background="/html/admin/images/bx_tip_top_bg.gif"></td>
+								<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+							</tr>				
+							<tr>
+								<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+								<td class="tip_text">
+								ㆍ 퀵메뉴 오브젝트의 순서변경은 좌측의 <strong>'순서변경' Area</strong> 를 활용하여 드래그&드랍으로 설정한뒤에 '순서변경' 버튼을<br />&nbsp;&nbsp;&nbsp; 클릭하면 저장됩니다.<br />
+								ㆍ 신규 퀵메뉴의 등록은 우측의 <strong>'퀵메뉴 등록/순서변경'</strong>에서 제목 및 URL등을 기입한 뒤에 '저장'버튼을 클릭하여 생성<br />&nbsp;&nbsp;&nbsp; 할 수 있습니다.
+								</td>
+								<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+							</tr>
+							<tr height="14">
+								<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+								<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+								<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+
+
+<script type="text/javascript">
+// <![CDATA[
+Sortable.create("list", {dropOnEmpty:true,containment:["list"],constraint:'vertical'});
+// ]]>
+</script>

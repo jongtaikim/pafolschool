@@ -1,0 +1,76 @@
+<!--모듈들을 싸고있는 레이어 제어 2008-03-10 종태-->
+<!--디자인에디터 모드 2008-03-10 종태-->
+<div style="float:left;padding-bottom:0px;border: 0px solid #FFCC33">
+<div style=" width:754;height:;x-overflow: " id = "titlebar">
+<wa:applet module="titlebar.main">
+
+{? _SESSION.de}
+<!--관리자 권한으로 사이트볼떄 에디터 버튼 바로가기-->
+<img src = "/edit.gif" style = "CURSOR: hand;" onClick="window.open('menu.admin.top_edit?mcode={mcode}', '', 'height=500, width=700, toolbar=no, scrollbars=no, menubar=no, resizable=yes');">
+<br>
+{/}
+{? top_str_text}
+<div id="sub_main_title_html">
+
+<center>
+{top_str_text}</center>
+
+</div>
+<div id="sub_main_title_simple">
+<div id="sub_title_name_simple">{? title_text2}  {title_text2} -  {/}{title_text}  </div><div id="sub_main_sitemap">{menu_location3}</div>
+</div>
+{:}
+<div id="sub_main_title">
+
+<div id="sub_title_name">
+<img src = "/module/btn/mk.php?text={title_text} &w=300&h=200&size=14&color=2D2D2D" align="absmiddle">
+ </div><div id="sub_main_sitemap">{menu_location3}</div>
+
+</div>
+<br>
+{/}
+
+
+			{? SUBMENU_TOP }
+			<div id="sub_main_menu">
+								{? on_select_box}
+									<script>
+									function Govw(key){
+										location.href= key;
+									}
+									</script>
+									하위 페이지 보기
+									<select  onchange="Govw(this.value);">
+									<!--{@ SUBMENU_TOP}-->
+									<option value="{.str_link}" {? .num_mcode == mcode} selected {/} >{.str_title}</option>
+									<!--{/}-->
+									</select>
+									{:}
+									<div class="tab01">
+									  <ul>
+
+										<!--{@ SUBMENU_TOP}-->
+										<li {? .num_mcode == mcode} class="active" {/}><a href="{.str_link}" target="{.str_target}">{.str_title}</a></li>
+										<!--{/}-->
+									  </ul>
+									</div>
+									{/}
+			</div>
+			{/}
+
+</wa:applet>	</div>
+</div>
+<div style="float:left;padding-bottom:0px;border: 0px solid #FFCC33">
+<div style=" width:754;height:;x-overflow: " id = "sub_content">
+		
+		
+		<div id="sub_center_layout">
+		
+			<TABLE width = "100%" cellpadding="0" cellspacing="0" border=0>
+			<TR>
+				<TD>{#CONTENT}</TD>
+			</TR>
+			</TABLE>
+			{#TOOL}
+			</div></div>
+</div>

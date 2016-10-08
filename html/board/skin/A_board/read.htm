@@ -1,0 +1,88 @@
+<link rel="stylesheet" type="text/css" href="/css/lightbox.css" media="screen,tv" />
+<script type="text/javascript" charset="UTF-8" src="/js/spica.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/js/lightbox_plus.js"></script>
+
+<table width="100%" cellspacing="0" border="1" summary="{str_title}" class="boderT tbl_type ">
+<caption>{str_title}</caption>
+	<colgroup> 
+		<col width="100"><col><col width="100"><col>
+	</colgroup>
+<tbody>
+	<tr>
+		<th scope="row">제목</th>
+		<td colspan="3">{str_title}</td>
+	</tr>
+	<tr>
+		<th scope="row">이름</th>
+		<td>{name} {? str_user}({str_user}){/}</td>
+		<th scope="row">작성일</th>
+		<td>{reg_date}</td>
+	</tr>
+
+</tbody>
+</table>
+
+{? str_re_text}
+<div style="margin-top:10px;font-weight: bold">본문글</div>
+<div class="boardReadBody smartOutput readBody" id="contentBody">
+		{content}
+</div>
+<wa:load src="filelist" sect="{sect}"/>
+
+<div style="margin-top:30px;font-weight: bold">답변글</div>
+<div class="boardReadBody openEditorStyles" style="margin-top:0px">
+	{str_re_text}
+</div>
+
+<wa:load src="filelist" sect="{sect2}"/>
+
+
+{:}
+
+
+<div class="boardReadBody smartOutput readBody se2_inputarea" id="contentBody">
+		{content}
+</div>
+<wa:load src="filelist" sect="{sect}"/>
+
+<table align="center" width="100%" border=0 cellspacing=0 cellpadding=0 class="tableTemp03">
+ <!--{@ FILE}-->
+ <tr>
+ {? .index_ == 0}
+	<td rowspan="{=count(FILE)}" width="100px" align="center">첨부파일</td>
+ {/}
+  <td  style = "padding:3px">
+		<a href="{.file_url}"><img src="/image/icon/{.str_ftype}.gif" align="absmiddle" onerror="this.src='/image/icon/unknown.gif';" border="0"> {.str_upfile}</a>
+  </td>
+ </tr><!--{/}-->
+</table>
+{/}
+
+
+ 
+<wa:applet module="comment.list" code="{_GET.mcode}" idx="{_GET.id}" len="4000" prem="{writable}"/>
+
+
+<div class="div2" style="border-top:1px solid #cdcdcd;padding-top:20px">
+	<div class="left">
+		<wa:btn size="2" type="a" href="/board.list?mcode={mcode}&cate={cate}" value="목록"/>
+	</div>
+	<div class="right">
+		
+		{? writable}<wa:btn size="2" type="a" href="{writelink}" value="글쓰기" style="float:right" icon="add"/>{/}
+
+		
+		{? writable}
+		<wa:btn size="2" type="a" href="{modifylink}" value="수정" style="float:right;margin-right:10px" icon="refresh"/>
+		
+		<wa:btn size="2" type="a" href="{deletelink}" value="삭제" style="float:right;margin-right:10px" icon="delete"/>{/}
+
+		{? reply_pre}<wa:btn size="2" type="a" href="{replylink}" value="답변글" style="float:right;margin-right:10px"/>{/}
+
+		
+
+	</div> 
+</div> 
+ 
+
+

@@ -1,0 +1,79 @@
+
+
+
+<!-- 소개 -->		<div id="training">
+							
+							
+							<!-- 신청 -->
+							<div class="apply">
+								
+								<ul class="list">
+									
+									<li>교육수료증과 해당 교육에 대한 자료를 발급 받으시기 원하시는 분께서는
+
+									  교육참가자 정로를 입력하신 후 수료하신 교육을 선택하시면
+									  요청하신 자료를 다운로드 받으실 수 있습니다.  
+
+									</li>
+																		
+								</ul>
+								<form method="post" name="orderForm" id="orderForm" enctype="multipart/form-data" onsubmit="return validate(this);">
+								
+
+								
+								<!-- 공개교육리스트 -->
+							<div class="eduList">
+								
+								
+								<table border="1" cellpadding="0" cellspacing="0" summary="교육과정 리스트입니다. 교육명, 기간(시간), 교육비, 교육일정(월)로 구성되어있습니다. ">
+									<caption>교육과정 리스트</caption>
+									<thead>
+										<tr>
+											
+											<th class="title" scope="col" style="text-align:center">교육명</th>
+											<th scope="col" style="text-align:center">회사명</th>
+											<th scope="col"  style="text-align:center">기간(시간)</th>
+											<th scope="col"  style="text-align:center">수료상태</th>
+											<th scope="col"  style="text-align:center">수료증</th>
+											<th scope="col"  style="text-align:center">교육자료</th>
+											
+										</tr>
+										
+									</thead>
+									<tbody>
+										{@ LIST}
+										
+										<tr>
+											<td class="title">
+											{.data.str_order_title}
+											</td>
+											<td>{.str_compay}</td>
+											<td>{.lms.str_time}</td>
+											<td>{? .str_commit == 'y'}<span style="color:blue">수료</span>{:}<span style="color:red">미수료</span>{/}</td>
+											<td>
+												{? .str_commit == 'y'}<span class="btn_pack small "><a href="javascript:winOpen('/lms.cert_print?order_code={.str_order_code}&lms_code={.num_lms_code}&serial={.num_serial}',740,800,'yes','cretds')">수료증 출력</a></span>{:}-{/}
+											</td>
+
+											<td>
+												{? .str_commit == 'y' && .lms.str_pds}<span class="btn_pack small "><a href="@/lms/{.lms.str_pds}" target="_blank">교육자료 다운로드</a></span>{:}-{/}
+											</td>
+											
+										</tr>
+										{:}
+										<tr>
+											<td colspan="5" height="50px" align="center">데이터가 없습니다. 이름 및 입력한 정보를 확인해주세요.</td>
+										</tr>
+										{/}
+										
+									</tbody>
+								</table>
+								
+							</div>
+								
+									
+									<span class="btnArea">
+										<span class="btn_pack medium"><a href="javascript:history.go(-1)">뒤로</a></span>
+									</span>
+								</form>
+							</div>
+						</div>

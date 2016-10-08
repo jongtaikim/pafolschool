@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<link rel="STYLESHEET" type="text/css" href="css/seo.default.css">
+	<STYLE>
+	BODY, TD, INPUT ,TEXTAREA{font-size:12px;}
+	.input1{border:1px solid #FFFFFF;height:24px;font-size:14px;}
+	.hide { position:absolute; visibility:hidden; } 
+	.show { position:absolute; visibility:visible; } 
+	</STYLE>
+ 
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/prototype.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.default.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+	function wizardTip(){
+				
+		/* 선택된 반 갯수 confirm 안하고 그대로 생성	
+		var check_grade = 0;
+		var check_class = 0;
+
+		var size = orderForm.school_grade.length;								
+
+		for(i=0; i<size; i++){			
+			if(orderForm.school_grade[i].value)check_grade++;			
+			check_class = check_class + Number(orderForm.school_grade[i].value);			
+		}
+				
+		
+		if(check_class < 1){
+			alert('선택된 반 갯수가 없습니다'); 
+			return false;
+		}			
+		
+		check_con =confirm('{{print_empty}} \n '+ $F('num_year') + '학년도 ' + check_grade + '개 학년 ' + check_class + '개 반 을 편성하시겠습니까 ?');
+		
+		
+		*/		
+		check_con =confirm(' 기존의 학급 편성은 삭제됩니다\n  그래도 편성하시겠습니까 ?');
+		if(check_con)orderForm.submit();		
+		
+	}
+	//-->
+
+
+	var _progressBar = new String("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"); 
+	var _progressEnd = 10; 
+	var _progressAt = 0; 
+	{? act =="bs.cate.admin.menu" || act =="bs.mcate.admin.menu" }
+	var _progressWidth = 50;        // 그래프의 가로크기 
+	{:}
+	var _progressWidth = 100;        // 그래프의 가로크기 
+	{/}
+
+
+
+
+	function ProgressCreate(end) { 
+			_progressEnd = end; 
+			_progressAt = 0; 
+
+			if (document.all) {         
+					progress.className = 'show'; 
+					progress.style.left = (document.body.clientWidth/2) - (progress.offsetWidth/2); 
+					progress.style.top = (document.body.clientHeight/2) - (progress.offsetHeight/2); 
+			} else if (document.layers) {         
+					document.progress.visibility = true; 
+					document.progress.left = (window.innerWidth/2) - 100; 
+					document.progress.top = (window.innerHeight/2) - 40; 
+			} 
+
+			ProgressUpdate(); 
+	} 
+
+	function ProgressDestroy() { 
+			if (document.all) {         
+					progress.className = 'hide'; 
+			} else if (document.layers) { 
+					document.progress.visibility = false; 
+			} 
+	} 
+
+	function ProgressStepIt() { 
+			_progressAt++; 
+			if(_progressAt > _progressEnd) _progressAt = _progressAt % _progressEnd; 
+			ProgressUpdate(); 
+	} 
+
+	function ProgressUpdate() { 
+			var n = (_progressWidth / _progressEnd) * _progressAt; 
+			if (document.all) {         
+					var bar = dialog.bar; 
+			} else if (document.layers) {         
+					var bar = document.layers["progress"].document.forms["dialog"].bar; 
+					n = n * 0.55;         
+			} 
+			var temp = _progressBar.substring(0, n); 
+			bar.value = temp; 
+	} 
+
+	function Demo() { 
+		
+
+	ProgressCreate(800); 
+
+			
+
+			window.setTimeout("Click()", 1000); 
+	} 
+
+	function Click() { 
+			if(_progressAt >= _progressEnd) { 
+					ProgressDestroy(); 
+					return; 
+			} 
+			ProgressStepIt(); 
+			window.setTimeout("Click()", 50); 
+	} 
+
+	function CallJS(jsStr) { 
+	  return eval(jsStr) 
+	  } 
+
+</script> 
+
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0">
+<SCRIPT LANGUAGE="JavaScript"> 
+<!-- 
+
+document.write("<span id=\"progress\" class=\"hide\">"); 
+        document.write("<FORM name=dialog>"); 
+        document.write("<TABLE border=0  cellpadding=8 cellspacing=0 bgcolor=\"#efefef\">"); 
+        document.write("<TR><TD ALIGN=\"center\" style=\"border:1px #555555 solid\">"); 
+        document.write("잠시만 기다리세요..<BR>"); 
+        document.write("<input type=text style=\"color:#669900\" name=\"bar\" size=\"" + _progressWidth/2 + "\""); 
+        if(document.all)          
+                document.write(" bar.style=\"color:navy;\">"); 
+        else         
+                document.write(">"); 
+        document.write("</TD></TR>"); 
+        document.write("</TABLE>"); 
+        document.write("</FORM>"); 
+document.write("</span>"); 
+ProgressDestroy();         
+
+//  --> 
+</script> 
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" bgcolor="3c8cbc">
+	<tr height="53" valign="top">
+		<td width="17"><img src="/html/admin/popup/popup_top_left.gif"></td>
+		<td background="/html/admin/popup/popup_top_bg.gif">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr valign="top">
+					<td width="24" style="padding-top:14px;"><img src="/html/admin/images/bu_popup.gif"></td>
+					<td class="popup_title01">학년 만들기</td>
+					<td align="right" style="padding-top:25px"><img src="/html/admin/images/by_ewut.gif"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="17" align="right"><img src="/html/admin/popup/popup_top_right.gif"></td>
+	</tr>
+	<tr>
+		<td background="/html/admin/popup/popup_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:15px" valign="top">
+		<!-- 안내 Start -->
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="14px"><img src="/html/admin/images/help_icon.gif"></td>
+					<td class="tip_title">안내</td>
+				</tr>
+				<tr><td height="6"></td></tr>
+			</table>
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr height="14">
+				<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+				<td background="/html/admin/images/bx_tip_top_bg.gif"></td>
+				<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+			</tr>				
+			<tr>
+				<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+				<td class="help_text">
+					1. 간편만들기는 학급의 <b>초기 구성</b>을 <b>목적</b>으로 만들어 졌습니다.<br>
+					2. 현재의 창에서 학년을 만든후 하단에 있는 [확인]을 눌러주세요 <br>
+					3. 학년선택은 추후 진급시 이용되므로 신중한 선택이 필요합니다. <br>
+					<div style="padding-top:6px;">
+					<font color="#d43e6c"><b>* 주의 : 간편만들기로 학급생성시.</b>.</font><br>
+					1. 간편만들기로 학급생성을 하면 <b>기존 학급은 모두 삭제</b>됩니다.<br>
+					2. 회원 관련 <b>기존 학급정보가 초기화</b> 됩니다.<br>
+					3. 교실의 창에서 <b>기존메뉴와 관련정보가 초기화</b> 됩니다.<br>
+					<font color="#d43e6c">* 기존 학급이 있는 상태에서는 사용하지 않는것을 권장합니다. </font>
+					</div>
+				</td>
+				<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+			</tr>
+			<tr height="14">
+				<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+				<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+				<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+			</tr>
+			</table>
+		<!-- 안내 End -->
+			
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr><td height="15"></td></tr>
+				<tr>
+					<td width="15"><img src="/html/admin/images/bu_square_info.gif"></td>
+					<td style="padding:1px 0px 0px 5px;"><b>간편만들기</b> (학급)</td>
+				</tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr><td height="8"></td></tr>
+				<tr>
+					<td width="6"></td>
+					<td class="font11_03">
+						급간편 만들기로 학급편성을 할 경우 숫자로만 생성됩니다.<br>
+						ex> 1학년 1반, 2반, 3반... <br>
+						학급편성 목록에서 수정할 수 있습니다. <br>
+						간편 만들기로 등록하지 못하는 학급은 학급편성목록에서 직접추가할 수 있습니다. <br>
+					</td>
+				</tr>
+				<tr><td height="15"></td></tr>
+			</table>
+
+		<!--wizard start-->
+
+			<form name='orderForm' method='post'>
+
+			<table cellpadding="0" cellspacing="0" border="0" width="70%" align="center">
+				<tr>
+					<td><b><select name='num_year'>{num_year}</select> 년도</b></td>
+				</tr>
+				<tr><td height="6"></td></tr>
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="70%" align="center" bgcolor="d5dfe7">
+				<tr bgcolor="#f3f6f8" height="29">
+					<td class="subtitle01" align="center">학년</td>
+					<td class="subtitle01" align="center">반갯수</td>
+				</tr>
+			  {@ GRADE}
+			  <input type=hidden name="num_grade[]" value="{.num_grade}">
+			  <input type=hidden name="str_grade[]" value="{.str_grade}">
+				<tr bgcolor="FFFFFF" height="28">
+					<td class="table01_title04">{.str_grade}</td>
+					<td align="center"><select name="school_grade{.num_grade}">{print_class}</select></td>
+				</tr>
+			{/}
+			</table>
+
+
+			<table cellspacing='0' cellpadding='0' border='0' align='center' width='90%'>
+			<tr><td height="15"></td></tr>
+			<tr>
+				<td align="center"><b>{print_empty}</b></td>
+			</tr>
+			<tr>	
+				<td align='center'><input type="image" src="/html/admin/images/btn_class_easy01.gif" style="cursor:hand;" value='만들기'  onClick="javascript:wizardTip();Demo()" ></td>
+			</tr>
+			</table>
+			</form>
+		</td>
+		<td background="/html/admin/popup/popup_mid_right.gif"></td>
+	</tr>
+	<tr height="17" valign="top">
+		<td width="17"><img src="/html/admin/popup/popup_btm_left.gif"></td>
+		<td background="/html/admin/popup/popup_btm_bg.gif"></td>
+		<td width="17" align="right"><img src="/html/admin/popup/popup_btm_right.gif"></td>
+	</tr>
+</table>
+

@@ -1,0 +1,120 @@
+
+<script type="text/javascript">
+				// <![CDATA[
+				
+			
+				function add_tr()
+				{
+				var lo_table = document.getElementById("dataTable"); // 테이블지정
+				var li_rows  = lo_table.rows.length; // 테이블 row 개수(Tr의 개수
+				var lo_tbody = lo_table.childNodes[1]; // table의 첫번째 차일드 즉 tbody를 지정한다.
+				var lo_row,lo_cell;
+				if(li_rows == 20) {
+				alert('20개 이상 만들수 없습니다.');
+				return 
+				}
+
+				li_rowsd = li_rows -1;
+				lo_row = document.createElement("TR"); // Tr을 하나 생성한다.
+				lo_tbody.appendChild(lo_row); // tbody에 자식노드를 하나 추가한다.
+				lo_row.id="str_col_name_c"+li_rowsd;
+			
+				
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_cell.className='input1';
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = li_rows; // 고유이름지정
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_cell.className='input2';
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"names["+li_rowsd+"]\" id=\"li_rowsd1"+li_rowsd+"\"; hname=\"이름\" required/>"; // 고유이름지정
+
+				
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_cell.className='input3';
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"emails["+li_rowsd+"]\"  id=\"li_rowsd5"+li_rowsd+"\"; hname=\"이메일\" required/>"; // 고유이름지정
+
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_cell.className='input4';
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"phones["+li_rowsd+"]\"  id=\"li_rowsd2"+li_rowsd+"\"; hname=\"연락처\" required/>"; // 고유이름지정
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_cell.className='input5';
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"compays["+li_rowsd+"]\"   id=\"li_rowsd3"+li_rowsd+"\"; hname=\"회사 및 소속\" />"; // 고유이름지정
+				
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_cell.className='input6';
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				if(li_rows>1) lo_cell.innerHTML = '<a href="javascript:onclick="delTr('+li_rowsd+')""><img src="./images/sub1/delBtn.gif" alt="삭제" /></a>';
+
+
+
+				}
+
+				function delTr(idx){
+
+				var el = $('str_col_name_c'+idx);
+				layer = el.parentNode;
+				layer.removeChild(el);
+
+				}
+				
+				// ]]>
+				</script>
+
+<div id="newsletter">
+{#TOP_TAB}
+
+<div class="recommand">
+		<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo">
+			<input type="hidden" name="mode" value="{mode}">
+			<fieldset>
+			<legend>추천인 정보</legend>
+			<div class="bor">
+				<p class="left">
+					<label for="ap1"><strong><em>*</em>추천인 이름</strong></label><input class="txt" id="ap1" type="text" name="str_voll" hname="추천인"  required />
+				</p>
+				<p class="right">
+					<label for="ap2"><strong><em>*</em>e-mail</strong></label><input class="txt" id="ap2" type="text" name="str_voll_email" hname="추천인 메일"  required />
+				</p>
+			</div>
+			</fieldset>
+		
+			<fieldset>
+				<legend class="vs">참가자 기본정보</legend>
+				<strong class="point">아래에 추천하시고 싶은 분의 이름과 이메일주소 연락처등을 입력하시고, <em>신청하기</em> 버튼을 클릭하시면 됩니다.</strong>
+				<table border="1" cellpadding="0" cellspacing="0" summary="참가자 기본저정보, 참가자이름, 휴대폰, 부서명, 지급, e-mail주소로 구성되어있습니다." id="dataTable">
+				<caption>참가자 기본정보</caption>
+				<thead>
+					<tr>
+						<th class="input1" scope="col">번호</th>
+						<th class="input2" scope="col"><em>*</em>이름</th>
+						<th class="input3" scope="col"><em>*</em>이메일</th>
+						<th class="input4" scope="col"><em>*</em>연락처</th>
+						<th class="input5" scope="col">회사 및 소속</th>
+						<th class="input6" scope="col">삭제</th>
+					</tr>
+				</thead>
+				
+
+				</tbody>
+				</table>
+				
+				
+			</fieldset>
+			<div class="btnArea">
+				<span><strong>1명</strong>만 입력하시고 신청하셔도 신청됩니다.</span> <input type="image" src="./images/sub1/applyBtn2.gif" alt="신청하기" /> <a href="javascript:add_tr()"><img src="./images/sub1/addBtn2.gif" alt="추천인 추가" /></a>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+// <![CDATA[
+add_tr();
+// ]]>
+</script>

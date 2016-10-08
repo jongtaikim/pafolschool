@@ -1,0 +1,1163 @@
+<link rel="stylesheet" type="text/css" href="/theme/{_THEME}/css/main.css">
+{CSS}
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/js/scriptaculous.js"></script>
+<script type="text/javascript" src="/js/Resize_attach.js"></script> 
+<script type="text/javascript">
+	new Resize("resizable","resizedistance","resizemaxwidth","resizemaxheight","resizedefaultcursor"); 
+	var ta_layout = "";
+	var ta_width = "";
+
+	function OnLayerChange (element) {
+		
+			if(element.hasChildNodes) {
+				layer = element.id;
+				len = element.childNodes.length;
+				for(j = 1; j<len; j++) {
+					el = element.childNodes[j];
+					//alert(layer);
+					var sel = $(el.id + '[layer]');
+					if(sel.options[sel.selectedIndex].value == layer) {  					
+					continue;
+					}
+					
+					if(sel.options.length) {
+						for(i = 0; i<sel.options.length; i++) {
+							if(sel.options[i].value == layer) {
+								sel.options[i].selected = true;
+								
+								break;
+							}
+						}
+					}
+				}
+			}
+		
+	}
+
+
+	function lineSelect (idx) {
+	if(idx) {
+		{@ CSS_ALIGN_manage}
+		{? .layout != "NONE"}
+		$('{.layout}').style.border = '1px solid #FFCC33';
+		{/}
+		{/}
+	}
+	}
+
+	
+
+	
+	function twinInput(el,h,w){
+
+	target = explode("(",el.name);
+	target_name = target[0];
+	target = explode(")",target[1]);
+
+	target = target[0];
+	$(target_name+"["+target+"]").value = el.value
+	
+	if(target == "type" ) {
+	if(w) $(target_name+"[width]").value = w
+	if(h) $(target_name+"[height]").value = h
+	}
+	}
+	
+	function defImgSize(name){
+
+	$(name+'(img_w)').value = '81';
+	$(name+'(img_h)').value = '59';
+	
+	$(name+'[img_w]').value = '81';
+	$(name+'[img_h]').value = '59';
+	
+
+	}
+
+	function viewPriv(src){
+
+	if($('popup_box2').style.display !='none') {
+		$('mmenu').src	 = src;
+	}
+	}
+
+	function moveLayout (id,target) {
+		
+		if($(id+'[layer]').value =="NONE") {
+		document.getElementById(target).appendChild(document.getElementById(id));
+		$(id+'[layer]').value = target;
+		$(id+'[chkbox]').checked = true;
+		}else{
+		document.getElementById('NONE').appendChild(document.getElementById(id));
+		$(id+'[layer]').value = 'NONE';
+		$(id+'[chkbox]').checked = false;
+		}
+
+		title = $(id+'[title]').value;
+		width = $(id+'[width]').value;
+		h = $(id+'[height]').value;
+
+		changeWidthDb(id, width,title,h);
+		
+	}
+
+	function changeWidth(id, width,title,h) {
+		
+		h2 = parseInt($(id+'[height]').value)
+		target_i = $(id+'[layer]').value;
+		r_width1 = (parseInt($(target_i).style.width)) / 4  ;
+		r_width1 = parseInt(r_width1);
+		
+		if($(id+'[width]').value == r_width1  ) {
+		maxWidth = r_width1 * 2 -6;
+		}else if($(id+'[width]').value == (r_width1 * 2 )-6 ){
+		maxWidth = r_width1 * 3 -13 ;
+		}else if($(id+'[width]').value == (r_width1 * 3 -13) ){
+		maxWidth = r_width1 * 4 -8 ;
+		}else if($(id+'[width]').value == (r_width1 * 4 ) -8 ){
+		maxWidth = r_width1  ;
+		}else{
+		maxWidth = r_width1 ;
+		}
+		 maxWidth = parseInt(maxWidth);
+		 maxWidth2 = parseInt(maxWidth) ;
+		 maxWidth3 = parseInt(maxWidth)-10 ;
+
+		$(id+'[la]').style.width = maxWidth2;
+		
+		$('[xxx]'+id).style.left=maxWidth3
+		$('[img]'+id).src = '/module/btn/module.php?text=' + title +'&w='+maxWidth2+'&h='+h2;
+		
+		$(id).style.width = maxWidth2;
+		$(id+'[width]').value = maxWidth2;
+		}
+
+
+
+
+	function changeWidthDb(id, width,title,h) {
+
+			
+	
+		$(id).style.display = 'none';
+		h2 = parseInt($(id+'[height]').value)
+		target_i = $(id+'[layer]').value;
+		r_width1 = (parseInt($(target_i).style.width)) ;
+        r_width1 = parseInt(r_width1);
+		
+
+		maxWidth2 = parseInt(r_width1) - 10 ;
+		maxWidth3 = parseInt(r_width1) - 20 ;
+
+		$(id+'[la]').style.width = maxWidth2;
+		$('[xxx]'+id).style.left=maxWidth3
+		$('[img]'+id).src = '/module/btn/module.php?text=' + title +'&w='+maxWidth2+'&h='+h2;
+		$(id).style.width = maxWidth2;
+		$(id+'[width]').value = maxWidth2;
+		$(id).style.display = '';
+	
+	}
+
+
+	function changeHeight(id, width,title,h,ssmu,s) {
+
+		if(ssmu =="up") {
+		h = parseInt($(id+'[height]').value) + parseInt(s);
+		}else{
+		h = parseInt($(id+'[height]').value) - parseInt(s);
+		}
+		
+		width = parseInt($(id+'[width]').value)
+
+		$(id).style.width = width;
+		$(id).style.height = h;	
+		$(id+'[height]').value = h;
+		$(id+'[la]').style.width = width;
+		$(id+'[la]').style.height = h;
+		$(id+'[width]').value = width;
+		
+		$('[img]'+id).src = '/module/btn/module.php?text=' + title +'&w='+width+'&h='+h;
+	
+		}
+
+
+	function changeWidth2(id, width,title,h,ssmu,s) {
+
+		if(ssmu =="up") {
+		h = parseInt($(id+'[width]').value) + parseInt(s);
+		}else{
+		h = parseInt($(id+'[width]').value) - parseInt(s);
+		}
+		
+		height = parseInt($(id+'[height]').value)
+
+		$(id).style.height = height;
+		$(id).style.width = h;	
+
+		$('[xxx]'+id).style.left = parseInt(h) - 10;
+		
+		$(id+'[height]').value = height;
+		$(id+'[la]').style.width = h;
+		$(id+'[la]').style.height = height;
+		$(id+'[width]').value = h;
+		
+		$('[img]'+id).src = '/module/btn/module.php?text=' + title +'&w='+h+'&h='+height;
+	
+		}
+
+
+	function addPart() {
+		fenster2('컨텐츠 추가', '컨텐츠 추가','attach.admin.add_part','10','100','785','630');
+	}
+
+	function editPart(name) {
+
+		fenster2('컨텐츠 편집', '컨텐츠 편집','attach.admin.edit_part?name=' + name,'10','100','785','630');
+	}
+
+	function deletePart(name) {
+		if(!confirm('정말 삭제하시겠습니까?')) return false;
+		document.frames['hidden_frame'].location.reload('attach.admin.delete_part?name=' + name);
+		
+		//alert(name+'[part_td]');
+		$(name+'[part_td]').style.display='none';
+
+	
+	}
+
+
+
+	function appendPart(serial, title) { // 2008-06-11 종태 추가 컨텐츠 작성시 추가 모듈배치
+	
+	location.reload();
+
+	}
+
+
+	function appendPartBoard(name, title) { // 2008-06-11 종태 추가 컨텐츠 작성시 추가 모듈배치
+	location.reload();
+	}
+
+
+
+
+	function removePart(name) { //2008-06-11 모듈 지우기 종태
+		el = $(name);
+		layer = el.parentNode;
+		layer.removeChild(el);
+	}
+
+
+	function selectHerf(val) {
+	location.href="/attach.admin.manage?layout=" + val;
+	}
+
+
+	function OnDragEffect(element,idx) { // 2008-06-11 시작시 약간의 투명도를 지정함
+		if(!idx) {
+		
+		element._opacity = Element.getOpacity(element); 
+		new Effect.Opacity(element, {duration:-1, from:element._opacity, to:0.8});	
+		}else{
+		element._opacity = Element.getOpacity(element); 
+		new Effect.Opacity(element, {duration:-1, from:element._opacity, to:1});	
+		
+		}
+		
+		}
+	
+	function OnDragStartEffect(element) { // 2008-06-11 드래그 이벤트시 투명한 이팩트
+		
+		ToolbarView(element.id+ '[stool]');
+		
+		ta_layout = $(element.id+'[layer]').value;
+		ta_width = element.style.width;
+
+		$('[xxx]'+element.id).style.display='none';
+		
+		element.style.width='100%';
+		$(element.id+'[la]').style.width='100%';				
+	
+		
+		$(element.id+'[la]').style.border='1px dotted #ffffff'
+		
+		$(element.id+'[la]').style.backgroundColor = '#9A9A9A';
+		
+		$('[img]'+element.id).style.display="none";
+		
+		$(element.id+'[la]').style.backgroundImage = '';
+		//Element.classNames(element).each(function(layer) { /$(layer).style.border = '1px solid B1B4C0';  });
+	}
+
+
+
+
+
+ 
+
+
+	function OnDragEndEffect(element) { // 2008-06-11 마우스를 놓는순간 이팩트
+		
+		title = $(element.id+'[title]').value;
+		width = $(element.id+'[width]').value;
+		h = $(element.id+'[height]').value;
+
+		$('[xxx]'+element.id).style.display='';
+
+		$(element.id+'[la]').style.border='0px dotted #ffffff';
+		
+		if(ta_layout != $(element.id+'[layer]').value){
+		changeWidthDb(element.id, width,title,h);
+		}else{
+		$(element.id+'[la]').style.width = ta_width;
+		$(element).style.width = ta_width;
+		}
+		
+		
+		
+		$('[img]'+element.id).style.display="";
+		//Element.classNames(element).each(function(layer) { $(layer).style.border = '1px dotted #898b93'; });
+	}
+
+
+		function getBounds(tag,tag2) 
+		{ 
+			var ret = new Object(); 
+				var rect = tag.getBoundingClientRect(); 
+				ret.left = rect.left ; 
+				ret.top = rect.top; 
+			return ret; 
+		} 
+
+
+
+		function ToolbarView(id) 
+		{ 
+		//if(	document.layoutForm.elements['resizeing_btn'][1].checked == true) {
+
+		{@ LIST2}
+		$('{.name}[stool]').style.display='none';
+		$('{.name}[la]').style.border='0px';
+		OnDragEffect($('{.name}'));
+		{/}
+				
+		if(id) {
+		
+		$('stools').style.display = '';
+		$('module_tool1').style.display = '';
+		$('module_tool2').style.display = 'none';
+		$('module_tool3').style.display = 'none';
+		$('module_tool4').style.display = 'none';
+
+		$(id).style.display='';
+		id2 = explode("[",id);
+		//$(id2[0]+'[la]').style.border='1px dashed #0033FF';	
+		
+		OnDragEffect($(id2[0]),'Y');
+		
+		//SaveCookie("setup_id", id, 1);
+		$('def_stool').style.display = 'none';
+		
+		//viewPriv('attach.view?name='+id2[0]);
+		
+		}else{
+		
+		$('stools').style.display = 'none';
+		$('module_tool1').style.display = '';
+		$('module_tool2').style.display = '';
+		$('module_tool3').style.display = '';
+		$('module_tool4').style.display = '';
+		//SaveCookie("setup_id", "");
+		$('def_stool').style.display = '';
+		}
+		//}
+
+		} 
+
+
+
+
+	function appendPanel(layer, name, title, width, avail_layer, avail_width, removable, is_part, bg, h,type,line,max,len,line_c,subject,img_w,img_h,idx) { //배치될 모듈생산 2008-06-11 종태
+		html_layers = '';
+		html_layers2 = '';
+		if(removable) html_layers += '<option value="NONE">NONE</option>';
+		for(i=0, cnt = avail_layer.length; i<cnt; i++) {
+			
+		html_layers += '<option value="' + avail_layer[i] + '"' + 
+							(layer == avail_layer[i] ? ' selected' : '') +
+							'>' + avail_layer[i] + '</option>';
+			
+			html_layers2 = avail_layer[0]; 
+		}
+
+
+		html_widths = '';
+		html_widths2 = '';
+		for(i=0, cnt = avail_width.length; i<cnt; i++) {
+			html_widths += '<option value="' + avail_width[i] + '"' + 
+							(width == avail_width[i] ? ' selected' : '') +
+							'>' + avail_width[i] + '</option>';
+			}
+
+			if(avail_width.length > 1) 	var wwidth = "Y";
+			if (!h)	var h = "80";
+
+		var width2 = parseInt(width)  ;	
+		var width3 = parseInt(width) - 10 ;	
+
+	
+		if(h > 50) bbr2 = "<br>"; else bbr2 = ""; 
+			
+		title = str_replace(" ","",title);
+
+		if(idx == 1 || idx == 3 || idx == 5 || idx == 7 || idx == 9 ) {
+		bgimg = '/module/btn/module.php?text=' + title +'&w='+width2+'&h='+h;
+		}else{
+		bgimg = '/module/btn/module.php?text=' + title +'&w='+width2+'&h='+h;
+		}
+
+		html = 
+		'<div  id="' + name + '[la]" style="width : '+width2+';  height: '+h+'; background-repeat:no-repeat;z-index:1;><div class="t_handle" style=" text-align:right; " ondblclick="changeWidth(\'' + name + '\',\'\',\''+title+'\',\''+h+'\');"' +
+		'onclick = "ToolbarView(\'' + name + '[stool]\')"'+
+		'><TABLE  cellpadding="0" cellspacing="0" border=0 class="tableNo2" ><TR><TD valign = top ><img id="[img]'+name+'" src='+bgimg+'>' +
+		'<select style = "font-size:11px;width:80px" name="' + name + '[layer]" id="' + name + '[layer]" onchange="moveLayout(\'' + name + '\',this.value,\''+title+'\',\''+width+'\',\''+removable+'\',\''+is_part+'\',\''+bg+'\',\''+h+'\');" style="display:none">' 
+		+ html_layers + 
+		'</select>' +
+		'<img id = "[xxx]'+name+'" src=/html/attach/admin/xxx.gif style="top:10px;left:'+width3+';position:absolute;cursor:hand;" '+		
+		'onclick = "moveLayout(\''+name+'\',\'NONE\');" align=absmiddle style="padding-bottom:10px">' + 
+
+		'<input type = "hidden" name="' + name + '[type]"  id="' + name + '[type]" value="'+type+'" style="width:30">'  +
+		'<input type = "hidden" name="' + name + '[line]"  id="' + name + '[line]" value="'+line+'" style="width:30">'  +
+		'<input type = "hidden" name="' + name + '[max]"  id="' + name + '[max]" value="'+max+'" style="width:30">'  +
+		'<input type = "hidden" name="' + name + '[len]"  id="' + name + '[len]" value="'+len+'" style="width:30">'  +
+		'<input type = "hidden" name="' + name + '[line_c]"  id="' + name + '[line_c]" value="'+line_c+'" style="width:30">'  +
+		'<input type = "hidden" name="' + name + '[subject]"  id="' + name + '[subject]" value="'+subject+'" style="width:30">'  +
+		'<input type = "hidden" name="' + name + '[img_w]"  id="' + name + '[img_w]" value="'+img_w+'" style="width:30">'  +
+		'<input type = "hidden" name="' + name + '[img_h]"  id="' + name + '[img_h]" value="'+img_h+'" style="width:30">'  +
+		'<input type = "hidden" name="' + name + '[title]"  id="' + name + '[title]" value="'+title+'" style="width:30">'  +
+		'<input type = "hidden" name="' + name + '[width]"  id="' + name + '[width]" value="'+width+'" >'  +
+		'<input type = "hidden" name="' + name + '[height]"  id="' + name + '[height]" value="'+h+'" >' +
+
+
+	/*	(is_part ? '<img src="/edit.gif" style="cursor:hand;" onclick="editPart(\'' + name + '\');"> <img src="/del.gif"  style="cursor:hand;" onclick="deletePart(\'' + name + '\');">' : '') +*/
+		
+		'<input type="hidden" name="pannels[]" value="' + name + '"></TD></TR>	</TABLE>' +
+
+		'</div>'+
+		'</div>' +'';
+		
+		
+		html_fixed = '';
+
+  
+		el = document.createElement('DIV');
+		el.id = name;
+		el.className = avail_layer.join(' ') + (removable ? ' NONE' : '');
+		el.style.styleFloat = 'left';
+		el.style.width = width;
+
+		el.style.paddingLeft = '4';
+		el.style.paddingTop = '2';
+		
+		if(layer =="NONE") {
+		el.style.display = 'none';
+		}
+		
+		el.innerHTML = html;
+		$(layer).appendChild(el);
+
+		el.style.zIndex = -1;
+
+		OnDragEffect(el) 
+		
+		
+
+		}///
+	
+		function def_css(id, uu, bg_no,reSize) {
+		if(id =="NONE") {
+		$(id).style.display="none";
+		}else{
+		$(id).style.padding='0';
+
+		$(id + '_width').value = parseInt(document.getElementById(id).currentStyle.width) / parseInt(uu) ;
+
+		if(reSize =="Y") {
+		$(id).resizedistance = "7";
+		$(id).resizemaxwidth = parseInt(document.getElementById('main_layout').currentStyle.width);
+		$(id).resizemaxheight = 600;
+
+		$(id).resizable = "false";
+		$(id).resizable_a = true;
+		$(id).resizedefaultcursor = "move"
+
+		
+		}else{
+		if(bg_no) $(id).style.backgroundImage='url()';
+		}
+		
+		//$(id).style.align='buttom';
+		$(id).style.width = parseInt(document.getElementById(id).currentStyle.width)  / parseInt(uu) ;
+
+
+		$(id + '_height').value = parseInt(document.getElementById(id).currentStyle.height) / parseInt(uu) ;
+		$(id).style.height = parseInt(document.getElementById(id).currentStyle.height)  / parseInt(uu) ;
+
+
+		}
+		}
+
+
+
+		function gaid(id) {
+
+		$(id).style.padding='0';
+
+		$(id).resizedistance = "30";
+		$(id).resizemaxwidth ='752';
+		$(id).resizemaxheight = 673;
+
+		$(id).resizable = "true";
+		$(id).resizable_a = false;
+		
+		if(ReadCookie(id+"[gw]")) {
+		$(id).style.width = ReadCookie(id+"[gw]");
+		}
+
+		if(ReadCookie(id+"[gh]")) {
+		$(id).style.height = ReadCookie(id+"[gh]");
+		}
+		
+		if(strstr(id,"gaid_w")) {
+		$(id).innerHTML='<img src="/b.gif" height=1 width=175>';		
+		}else{
+		$(id).innerHTML='<img src="/b.gif" height=10 width=1>';
+		}
+		}
+
+
+
+		function resizeing(id,setup){ // 레이아웃을 리사이징 한다 2008-06-11 종태
+		$('stools').style.display = 'none';
+		$('module_tool1').style.display = '';
+		$('module_tool2').style.display = '';
+		$('module_tool3').style.display = '';
+		$('module_tool4').style.display = '';
+
+
+		if(!setup) setup = "Y";
+		if(setup =="Y") {
+
+		
+	$('help').innerHTML = '<img src = "/module/btn/module2.php?text=마우스로 모듈을 원하는 위치에 드래그 하십시요.&font=yg330&size2=5&bg=898B93&color=FFF82C&mk_btn=Y"><br><img src = "/module/btn/module2.php?text=레이아웃을 마우스로 드래그하면 사이즈가 변경됩니다.&font=yg330&size2=5&bg=898B93&color=FFFFFF&mk_btn=Y">'
+
+
+	
+		
+		
+	
+
+		
+
+
+
+		Sortable.destroy(id);
+		
+		{@ CSS_ALIGN_manage}
+
+
+		{? layout !="main"}
+		Sortable.create("{.layout}", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT_{layout}","RIGHT_{layout}","LOGO_TOP_{layout}","TOP_{layout}","FOOT","TOP_BUTTON_{layout}","NONE"],accept:["{.layout}"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+		{:}
+		Sortable.create("{.layout}", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT","MAIN","RIGHT","LOGO_TOP","TOP","FOOT","TOP_BUTTON","NONE"],accept:["{.layout}"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+		{/}
+		
+		{/}
+
+
+		
+		
+		{@ CSS_ALIGN_manage}
+		{? .layout !="NONE"}
+		//$('{.layout}').style.border = "1px dashed #FFFF66";
+		$('{.layout}').resizable_a = false;
+		$('{.layout}').resizable = "true";
+		$('{.layout}').style.textAlign="center";
+	
+		
+
+		{/}
+
+		{/}
+
+		}else{
+
+
+	$('help').innerHTML = '<img src = "/module/btn/module2.php?text=마우스로 레이아웃을 배치합니다.&font=yg330&size2=5&bg=898B93&color=FFF82C&mk_btn=Y"><br><img src = "/module/btn/module2.php?text=원하시는 위치로 각각의 레이아웃을 이동하십시요.&font=yg330&size2=5&bg=898B93&color=FFFFFF&mk_btn=Y">'
+
+		{@ CSS_ALIGN_manage}
+		Sortable.destroy('{.layout}');
+		$('{.layout}').resizable_a = true;
+		$('{.layout}').resizable = "false";
+		$('{.layout}').style.border = '1px solid B1B4C0';
+		$('{.layout}').style.textAlign="center";
+
+		
+		{/}
+
+				
+		{@ CSS_ALIGN_manage}
+		Sortable.destroy('{.layout}');
+		{/}
+
+		Sortable.create(id, {treeTag:'div',tag:'div',constraint:false});	
+		
+		}
+		}
+
+
+
+
+
+
+
+
+
+
+
+		
+
+</script>
+<body topmargin="0" leftmargin="0" onUnload = "clouse()"  onSelectstart="return false" >
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" height="45" background="/html/admin2/images/sub_title_bg.gif" >
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right  height = 45><img src="/html/admin2/images/icon4.gif" ></td>
+					<td style="padding:3 0 0 0; color:454545" ><b>레이아웃관리</b></td>
+				<td >
+				※ 마우스로 끌어서(드래그 & 드롭) 컨텐츠 위치를 조정 하십시오.<br>
+				※ 사용하지 않는 모듈에 배치하시면 홈페이지에 나타나지 않습니다.</td>
+				</tr>
+			
+		
+			</table>
+
+<br>
+
+{? tmp1}
+<div id = "loding" style = "display:none;top:320;position:absolute;display:;z-index:999; left:600;background-color:#ffffff;padding:30;border:3 solid #38A356" >
+<center><img src = "/module/btn/mk.php?text=레이아웃 적용중입니다...&w=200&h=200&size=15&color=009933"></center>
+</div>
+{/}
+
+
+<style type="text/css">
+.t_handle { cursor:move;position:absolute;top:0px; }
+</style>
+<form name="layoutForm" method="post"  >
+
+
+
+<TABLE width="98%" cellpadding="0" cellspacing="0" border=0  >
+<!--tr>
+  <td  valign = bottom colspan=10 >
+ <table cellpadding="0" cellspacing="0" border="0" width="700" background="/html/attach/admin/bg.gif" >
+	<tr>
+		<td width="4"><img src="/html/attach/admin/left.gif"></td>
+		<td align="center">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td><img src="/html/attach/admin/j_1.gif"></td>
+					<td width="15" align="center"><img src="/html/attach/admin/j_line.gif"></td>
+					<td><img src="/html/attach/admin/j_2.gif"></td>
+					<td width="15" align="center"><img src="/html/attach/admin/j_line.gif"></td>
+					<td><img src="/html/attach/admin/j_3.gif"></td>
+					<td width="15" align="center"><img src="/html/attach/admin/j_line.gif"></td>
+					<td><img src="/html/attach/admin/j_4.gif"></td>
+					<td width="15" align="center"><img src="/html/attach/admin/j_line.gif"></td>
+					<td><img src="/html/attach/admin/j_5.gif"></td>
+					<td width="15" align="center"><img src="/html/attach/admin/j_line.gif"></td>
+					<td><img src="/html/attach/admin/j_6.gif"></td>
+					<td width="15" align="center"><img src="/html/attach/admin/j_line.gif"></td>
+					<td><img src="/html/attach/admin/j_7.gif"></td>
+					<td width="15" align="center"><img src="/html/attach/admin/j_line.gif"></td>
+					<td><img src="/html/attach/admin/j_8.gif"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="4" align="right"><img src="/html/attach/admin/right.gif"></td>
+	</tr>
+</table>
+  </td>
+    
+</tr-->
+
+
+<TR>
+	<TD width=670 style="background-color:898b93;color:#ffffff;padding-top:5px" valign=top  align = center height = 680  onmousedown = "ToolbarView();" >
+<!-- 가이드라인 
+<div id = "gaid_h1" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+<div id = "gaid_h2" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+<div id = "gaid_h3" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+<div id = "gaid_h4" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+<div id = "gaid_h5" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+<div id = "gaid_h6" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+<div id = "gaid_h7" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+<div id = "gaid_h8" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+<div id = "gaid_h9" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+<div id = "gaid_h10" style = "top:172;left:175px;height:10;position:absolute;border-bottom:1px solid #00FFFF;width:688px"></div>
+
+
+<div id = "gaid_w1" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+<div id = "gaid_w2" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+<div id = "gaid_w3" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+<div id = "gaid_w4" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+<div id = "gaid_w5" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+<div id = "gaid_w6" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+<div id = "gaid_w7" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+<div id = "gaid_w8" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+<div id = "gaid_w9" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+<div id = "gaid_w10" style = "top:182;left:0px;height:680;position:absolute;border-right:1px solid #00FFFF;width:175px"></div>
+
+
+<script>
+gaid('gaid_w1');
+gaid('gaid_w2');
+gaid('gaid_w3');
+gaid('gaid_w4');
+gaid('gaid_w5');
+gaid('gaid_w6');
+gaid('gaid_w7');
+gaid('gaid_w8');
+gaid('gaid_w9');
+gaid('gaid_w10');
+
+gaid('gaid_h1');
+gaid('gaid_h2');
+gaid('gaid_h3');
+gaid('gaid_h4');
+gaid('gaid_h5');
+gaid('gaid_h6');
+gaid('gaid_h7');
+gaid('gaid_h8');
+gaid('gaid_h9');
+gaid('gaid_h10');
+</script>
+<!-- 가이드라인 -->
+
+	<INPUT TYPE="radio" NAME="resizeing_btn" value = "Y" ONCLICK="resizeing('main_layout',this.value)" checked> 모듈설정  
+	<!--INPUT TYPE="radio" NAME="resizeing_btn" value = "M"  ONCLICK="resizeing2('main_layout',this.value)"> 모듈 설정 -->
+	<!--INPUT TYPE="radio" NAME="resizeing_btn" value = "N" ONCLICK="resizeing2('main_layout',this.value)" > 레이아웃배치 -->
+	<INPUT TYPE="radio" NAME="resizeing_btn" value = "T"  ONCLICK="resizeing('main_layout',this.value)"> 레이아웃 설정
+	
+	<SELECT NAME="thisLayout"  onchange = "selectHerf(this.value)" style = "font-size:11px">
+		<!--{@ LAYOUTS}-->	
+	<OPTION VALUE="{.key_}" {? .key_==layout}SELECTED{/}>{.value_} 변경</OPTION>
+		<!--{/}-->
+	</SELECT>
+<div id="help" style = "padding:5px"></div>	
+
+	
+	{#MANAGE}
+	
+
+	</TD>
+	<TD valign = top width = 215 style = "padding-left:5" >
+
+
+
+			<div style="float:left" id="module_tool1" style="padding-top:5px">
+			<table width="100%" cellpadding="0" cellspacing="0" class=zizibe01  bgcolor= "#ffffff" align =right >
+			
+			<tr>
+			  <th>전체 레이아웃</th>
+			</tr>
+			<tr>
+			  <td  style="padding:5">위치정렬 : 
+			  <INPUT TYPE="radio" NAME="layer_align" value="center" onclick = "modify_style('#main_frame','textAlign',this.value)" {? BODY_ALIGN == 'center'} checked{/} > 중앙 
+			  <INPUT TYPE="radio" NAME="layer_align" value="left" onclick = "modify_style('#main_frame','textAlign',this.value)" {? BODY_ALIGN == 'left'} checked{/}> 좌측</td>
+						</tr>
+					<tr>
+		  <td  style="padding:5">레이아웃표시 : 
+			  <INPUT TYPE="radio" NAME="layer_border" value="0"  {? BODY_BORDER =='0'} checked{/}  onclick = "lineSelect()">  안함
+			  <INPUT TYPE="radio" NAME="layer_border" value="1"  {? BODY_BORDER == '1'} checked{/} onclick = "lineSelect('Y')">표시 </td>
+
+						</tr>
+			</table>
+		</div>		
+
+	
+<TABLE width="100%" cellpadding="0" cellspacing="0"  class=zizibe01 style="font-size:11" id = "stools">		
+
+<tr id = "def_stool">
+  <td><TABLE cellpadding="0" cellspacing="0" border="0" width="100%"   class=zizibe01>
+	<tr>
+	  <th>모듈 속성 설정</th>
+	</tr>
+	<TR>
+		<TD style="height:80px;text-align:center">설정할 모듈을 선택하세요.</TD>
+	</TR>
+	</TABLE></td>
+</tr>
+<TR>
+	<TD style = "padding:5px"> 
+
+			<!--{@ LIST2}-->
+						
+						
+						<div id = "{.name}[stool]" style="display:none;" >
+						
+						
+
+							<TABLE width = 100% class =zizibe01  id="part_table">
+						<tr>
+						 <th><b><img src = "/image/cube_molecule.png" align = absmiddle> <font color = #003399>{.title} 모듈 </b></th>
+						</tr>	
+											
+							
+
+						
+
+							{? strstr(.name , "bbs_")} 
+							
+							<tr>
+							  <td>사이트 게시판을 여러가지 형태로 표출하는 기능입니다.<br>
+							  <br>
+							  <font style="color:#0066CC">모듈디자인</font> 디자인 및 여러 속성을 변경하실 수 있습니다.
+							  
+							  <br><br>
+							  추가로 미니게시판을 증설 하실려면 추가버튼을 눌러주세요.
+							  
+							  </td>
+							</tr>
+
+
+							<tr>
+							  <td align = "center"><button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="fenster2('미리보기', '미리보기','/attach.view?name={.name}','10','100','420','270');"><img src = "/image/search_16.gif" align=absmiddle> 미리보기 </button> &nbsp;<button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="return overlay2(this, 'popup_box2', 'rightbottom','미니게시판 추가','/latestboard.admin.list2?type=B','420','170');"><img src = "/image/colors.png" align=absmiddle>추가</button></td>
+							</tr>
+
+
+
+							<!--최근게시물 시리즈-->
+							{/}
+					
+							{? .name =="logo"}
+							<tr>
+							  <td >  
+							  <center><img src = "@/logo1.gif" style = "border:1px solid #EEEEEE"  ></center>
+							  
+							  <br>
+							   로고를 업로드하여 설정합니다.<br>
+							  <br>
+						
+							  로고를 변경하실려면 <font style="color:#0066CC">로고변경</font> 을 클릭하시면 됩니다.
+							</td>
+							</tr>
+							<tr>
+							  <td align = center>  
+							   <button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="return overlay2(this, 'popup_box2', 'rightbottom','로고변경','/lms_logo.setup','420','270');"><img src = "/image/colors.png" align=absmiddle> 로고변경 </button></td>
+							</tr>
+
+							{/}
+
+
+
+						
+
+
+							{? .name =="top_menu" || .name =="smenu" || .name =="submenu"}
+								<tr>
+							  <td>사이트 메뉴구성을 관리합니다.<br>
+							  <br>
+							  <font style="color:#0066CC">모듈디자인</font> 디자인 및 여러 속성을 변경하실 수 있습니다.
+							  
+							  <br><br>
+							  추가로 미니게시판을 증설 하실려면 추가버튼을 눌러주세요.
+							  
+							  </td>
+							</tr>
+
+							<tr>
+							 <td align = center> 
+							
+
+							<button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="return overlay2(this, 'popup_box2', 'right','메뉴관리','/menu.admin.frame_no','760','480');"><img src = "/image/text_tree.png" align=absmiddle> 메뉴관리 </button>
+							</td>
+							</tr>
+
+							{/}
+
+
+							{? .name =="vote"}
+							<tr>
+							 <td align = center> 
+							
+
+							<button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="return overlay2(this, 'popup_box2', 'right','설문조사 관리','/menu.admin.frame_no','760','480');"><img src = "/image/copy.png" align=absmiddle> 설문조사관리 </button>
+							</td>
+							</tr>
+
+							{/}
+
+							{? .name =="main_web" }
+								<tr>
+							  <td>사이트 메뉴구성을 관리합니다.<br>
+							  <br>
+							  <font style="color:#0066CC">모듈디자인</font> 디자인 및 여러 속성을 변경하실 수 있습니다.
+							  
+							  <br><br>
+							  추가로 미니게시판을 증설 하실려면 추가버튼을 눌러주세요.
+							  
+							  </td>
+							</tr>
+							{/}
+
+
+						{? strstr(.name , "part_")} 
+							<!--최근게시물 시리즈-->
+						
+						  <TR> 
+							<TD align = center style="padding:5px">					
+						추가 컨텐츠를 편집 / 삭제 합니다.<br><br>
+							
+
+						<button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="editPart('{.name}');"><img src = "/image/computer_16.gif" align=absmiddle> 편집 </button>
+						&nbsp;
+						<button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="deletePart('{.name}');"><img src = "/image/delete_16.gif" align=absmiddle> 삭제 </button>
+						</TD>
+						  </TR>
+							
+							<!--최근게시물 시리즈-->
+							{/}
+
+
+
+						<tr>
+						  <td align = center>모듈 사이즈 조정</td>
+						</tr>
+						<tr>
+						  <td align = center>		
+						
+					
+
+						<div><a href= "javascript:changeHeight('{.name}','{.width}','{.title}',this.value,'up','5');" alt="높이 +"><img src = "/html/attach/admin/btn_up.gif" align="absmiddle"></a></div>
+
+						<div><a href= "javascript:changeWidth2('{.name}','{.width}','{.title}',this.value,'down','5');" alt="넒이 -"><img src = "/html/attach/admin/btn_left.gif" align="absmiddle"></a><a href= "javascript:changeWidth('{.name}','','{.title}');"><img src = "/html/attach/admin/btn_width.gif" alt="가로길이 조절"></a><a href= "javascript:changeWidth2('{.name}','{.width}','{.title}',this.value,'up','5');" alt="넒이 +"><img src = "/html/attach/admin/btn_right.gif" align="absmiddle"></a></div>
+
+						<div ><a href= "javascript:changeHeight('{.name}','{.width}','{.title}',this.value,'down','5');" alt="높이 -"><img src = "/html/attach/admin/btn_down.gif" align="absmiddle"></a></div>
+						
+						
+						</td>
+						</tr>
+
+	
+						
+						
+					
+
+						<tr>
+						  <td style="padding-top:5px;padding-bottom:5px">가로사이즈는 4단계로 조정<br>
+						  세로 사이즈는 10px 단위로 조정<br><br>
+						  모듈 컨텐츠 내용이 가로 사이즈보다 길어질경우, 사이즈가 넘어가는 디자인은 표출되지 않습니다.<br><br>
+
+						  <font color="red">※ 이 사이즈는 실제 50%배율의 사이즈입니다.</font>
+
+			
+						  </td>
+						</tr>
+
+
+						<td>
+
+
+						  </TABLE>
+							<br>
+												
+							</div>
+						{/}
+
+			</td>
+		</tr>
+		</TABLE>
+
+			</div>
+
+		
+
+
+		<div style="float:left;" id="module_tool2">
+			<table width="100%" cellpadding="0" cellspacing="0"  class="zizibe01" align =right id="plusTable2">
+					
+						<tr>
+						  <th  style="padding:5">일반 모듈</th>
+						</tr>
+						<tr >
+						<td  height=100 style="padding:5">
+
+						<div style = "overflow:auto;height:130px;width:100%" id="">
+
+						<TABLE width="100%" cellpadding="0" cellspacing="0"  class= "zizibe01" style="font-size:11" bgcolor="#FFFFFF" >
+						<!--{@ LIST2}-->
+						{? !strstr(.name , "bbs_")} 
+						{? !.is_part }
+						<TR>
+							<TD id="{.name}[chk]">  
+							<INPUT TYPE="checkbox" 
+							{? .layer != "NONE"} checked {/}  onclick ="moveLayout('{.name}',{? layout == 'main'}'MAIN'{:}'LEFT_{layout}'{/});" id="{.name}[chkbox]"> <img src = "/image/cube_molecule.png" align = absmiddle> {.title}
+							</td>
+						</TR>
+						
+						{/}
+						{/}
+						{/}
+						</TABLE>
+						
+						</td>
+						</tr>
+						</TABLE>
+
+			</div>
+			</div>
+
+<div id="module_tool4" style="float:left;padding-top:5">
+		<table width="100%" cellpadding="0" cellspacing="0"  class="zizibe01" align =right id="plusTable2">
+					<tr>
+						  <th  style="padding:5">미니 게시판</th>
+						</tr>
+						<tr >
+						<td   style="padding:5">
+
+						<div style = "overflow:auto;height:130px;width:100%" id="">
+						<TABLE width="100%" cellpadding="0" cellspacing="0"  class= "zizibe01" style="font-size:11" bgcolor="#FFFFFF" >
+						<!--{@ LIST2}-->
+						{? strstr(.name , "bbs_")} 
+						{? !.is_part }
+						<TR>
+							<TD id="{.name}[chk]">  
+							<INPUT TYPE="checkbox" 
+							{? .layer != "NONE"} checked {/}  onclick ="moveLayout('{.name}',{? layout == 'main'}'MAIN'{:}'LEFT_{layout}'{/});" id="{.name}[chkbox]"> <img src = "/image/cube_molecule.png" align = absmiddle> {.title}
+							</td>
+						</TR>
+						
+						{/}
+						{/}
+						{/}
+						</TABLE>						
+						</td>
+						</tr>
+				<tr align="center" bgcolor = "#ffffff" >
+					<td ><button style="width:80px;border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="return overlay2(this, 'popup_box2', 'rightbottom','미니게시판 추가','/latestboard.admin.list2?type=B','420','170');"><img src = "/image/colors.png" align=absmiddle>게시판추가</button>
+				</td>
+				</tr>
+						</TABLE>
+</div>
+</div>
+
+			<div style="float:left;padding-top:5" id="module_tool3">
+			<table width="100%" cellpadding="0" cellspacing="0"    align =right bgcolor="#ffffff" class="zizibe01">
+					
+						<tr>
+						  <th  style="padding:5">추가 컨텐츠</th>
+						</tr>
+						<tr  style="padding:5">
+						<td   height= 80>
+
+						<div style = "overflow:auto;height:130px;width:100%" id="">
+						<TABLE width="100%" cellpadding="0" cellspacing="0"  class="zizibe01" style="font-size:11" bgcolor="#FFFFFF"  id="plusTable">
+						<!--{@ LIST2}-->
+						{? .is_part }
+						<TR id = "{.name}[part_td]">
+						<TD style = "2" width = 76% > <INPUT TYPE="checkbox" 
+							{? .layer != "NONE"} checked {/}  onclick ="moveLayout('{.name}',{? layout == 'main'}'MAIN'{:}'LEFT_{layout}'{/});" id="{.name}[chkbox]"> <img src = "/image/cube_molecule_add.png" align = absmiddle> {.title} {? .is_part}&nbsp;&nbsp;<img src="/edit.gif" style="cursor:hand;" onclick="editPart('{.name}');"> <img src="/del.gif"  style="cursor:hand;" onclick="deletePart('{.name}');">{/}</TD>	
+						</TR>
+						 {/}
+					
+						{/}
+						</TABLE>
+
+						</td>
+						</tr>
+					<tr align="center" bgcolor = "#ffffff" >
+					<td >
+					
+					<button style="width:80px;border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onclick="addPart(); "><img src = "/image/colors.png" align=absmiddle>컨텐츠추가</button>
+				
+				</td>
+				</tr>
+				</table>
+	</div>
+	</div>
+	</TD>
+</TR>
+
+<tr>
+  <td colspan = 2 style="text-align:center;padding:5">
+  
+   <INPUT TYPE="hidden" NAME="main_layout_width" > <INPUT TYPE="hidden" NAME="main_layout_height">
+
+  {@ CSS_ALIGN_manage}
+{? .layout != "NONE"}
+	<INPUT TYPE="hidden" NAME="{.layout}_width" > <INPUT TYPE="hidden" NAME="{.layout}_height">
+{/}
+  {/}
+
+
+ 
+  
+  <input type="submit" class="button2" value="저장">
+	</td>
+</tr>
+</TABLE>
+</form>
+
+<iframe width="0" height="0" frameborder="0" name="hidden_frame"></iframe>
+
+
+<script>
+
+		def_css('main_layout', '1' ,'N');
+	
+		{@ CSS_ALIGN_manage}
+		
+		def_css('{.layout}', '1' ,'N' ,'Y');
+		
+		{/}
+
+
+
+	{@ LIST}
+
+		
+		MAIN_to_width = $('{.layer}').style.width ;	
+		MAIN_to_width = parseInt(MAIN_to_width)-2;
+
+		{? layout =="main"}
+
+
+	appendPanel('{.layer}','{.name}','{.title}','{.width}',["LEFT","MAIN","RIGHT","LOGO_TOP","TOP","FOOT","TOP_BUTTON"],[MAIN_to_width],{.removable},{.is_part}, '{.avail_bg}', '{.height}','{.type}','{.line}','{.max}','{.len}','{.line_c}','{.subject}','{.img_w}','{.img_h}','{.index_}');
+			{:}
+	
+		appendPanel('{.layer}','{.name}','{.title}','{.width}',["LEFT_{layout}","RIGHT_{layout}","LOGO_TOP_{layout}","TOP_{layout}","FOOT","TOP_BUTTON_{layout}"],[MAIN_to_width],{.removable},{.is_part}, '{.avail_bg}', '{.height}','{.type}','{.line}','{.max}','{.len}','{.line_c}','{.subject}','{.img_w}','{.img_h}','{.index_}');
+			{/}
+
+	{/}
+
+	
+		
+		resizeing('main_layout','Y');
+		
+
+
+
+</script>
+
+
+
+
+</body>
+{? tmp1}
+<script>
+setTimeout(function(){document.layoutForm.submit();}, 800);
+ </script>
+{/}

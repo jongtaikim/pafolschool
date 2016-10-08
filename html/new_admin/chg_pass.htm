@@ -1,0 +1,43 @@
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+
+<body>
+
+<h2>${Modify Administrator Password}</h2>
+
+		<form name="loginform" method="post" onSubmit="return validate(this)">
+
+		<table width="550" class="table01">
+
+
+
+		<tr height="30" align="">
+
+			<th width="" align="right">${New Password}</th>
+
+			<td><input type="password" name="newpass" match="newpass2" hname="${New Password}" required onKeyup="cal_byte('newpass',8);"></td>
+
+		</tr>
+
+		<tr height="30" align="">
+
+			<th width="" align="right">${Confirm New Password}</th>
+
+			<td><input type="password" name="newpass2" hname="${Confirm New Password}" onKeyup="cal_byte('newpass',8);"></td>
+
+		</tr>
+
+		<thead>
+
+		<tr align="center">
+
+			<th colspan="2"><input type="submit" class="button1" value="${Modify}"></th>
+
+		</tr>
+
+		</thead>
+
+		</table>
+
+		</form>		
+
+</body>

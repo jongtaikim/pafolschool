@@ -1,0 +1,266 @@
+<!-- <link href="/css/admin_ver2006.css" rel="stylesheet" type="text/css"> -->
+
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+<link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+<script>
+/**
+* 원하는 방향으로 option을 옮겨줌
+* @param : where:String {'right'|'left'} (이동할 방향)
+*/
+function add_quick() {
+	var form = document.forms['quicknavform'];
+	var oAll = form.elements['menuall'];
+	var oSel = form.elements['menusel'];
+	if (oAll.selectedIndex == -1) return;
+	if (!oAll.options) oAll.options.length = 1;
+	var firstItem = oAll.selectedIndex;
+	for (var i=firstItem; i<oAll.options.length; i++) {
+        if (oAll.options[i].selected) {
+			opt = new Option(oAll.options[i].text.replace(/^▷+/,''), oAll.options[i].value);
+			oSel.add(opt);
+		}
+    }
+	cleanUp(oSel);
+}
+
+function remove_quick() {
+	var form = document.forms['quicknavform'];
+	var target = form.elements['menusel'];
+	for (var i=target.options.length-1; i >= 0; --i) {
+		if (target.options[i].selected) target.options[i] = null;
+	}
+}
+
+/**
+* 중복되는 값을 삭제해줌
+* @param obj:Object (클린업할 select 엘리먼트)
+*/
+function cleanUp(obj) {
+    var cnt = 0;
+    for (var i=0; i<obj.options.length; i++) {
+        var chk = obj.options[i].value;
+        for (var j=obj.options.length-1; j>i; j--) {
+            if (obj.options[j].value == chk) { obj.options[j] = null; cnt++; }
+        }
+    }
+    if (cnt) window.status = '중복되는 항목 ' + cnt + '개가 무시됨';
+    else window.status = window.defaultStatus;
+}
+
+/** 
+* 선택한 옵션 아이템을 바로위 아이템과 자리바꿈
+* @param obj:Object (적용할 select 엘리먼트)
+*/
+function moveUp(obj) {
+	if (obj.selectedIndex < 1 ) return;
+	var tmpVal = obj.options[obj.selectedIndex].value;
+	var tmpTxt = obj.options[obj.selectedIndex].text;
+	var swapVal = obj.options[obj.selectedIndex-1].value;
+	var swapTxt = obj.options[obj.selectedIndex-1].text;
+	obj.options[obj.selectedIndex].value = swapVal;
+	obj.options[obj.selectedIndex].text = swapTxt;
+	obj.options[obj.selectedIndex-1].value = tmpVal;
+	obj.options[obj.selectedIndex-1].text = tmpTxt;
+	obj.selectedIndex = obj.selectedIndex -1;
+}
+
+/** 
+* 선택한 옵션 아이템을 바로아래 아이템과 자리바꿈
+* @param obj:Object (적용할 select 엘리먼트)
+*/
+function moveDown(obj) {
+	if (obj.selectedIndex == -1 || obj.selectedIndex == obj.options.length-1) return;
+	var tmpVal = obj.options[obj.selectedIndex].value;
+	var tmpTxt = obj.options[obj.selectedIndex].text;
+	var swapVal = obj.options[obj.selectedIndex+1].value;
+	var swapTxt = obj.options[obj.selectedIndex+1].text;
+	obj.options[obj.selectedIndex].value = swapVal;
+	obj.options[obj.selectedIndex].text = swapTxt;
+	obj.options[obj.selectedIndex+1].value = tmpVal;
+	obj.options[obj.selectedIndex+1].text = tmpTxt;
+	obj.selectedIndex = obj.selectedIndex +1;
+}
+
+function pack(form) {
+	var oSel = form.elements['menusel'];
+	var oCapsule = form.elements['capsule'];
+	var items = new Array();
+	for (var i=0; i<oSel.options.length; i++ ) {
+		items[items.length] = oSel.options[i].value;
+	}
+	oCapsule.value = items.join(';');
+	return true;
+}
+
+</script>
+<body>
+
+<!-- 표1 start -->		
+<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+		<td background="/html/admin/images/bx1_top_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+	</tr>
+	<tr>
+		<td background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:10px">
+			<!--start-->
+			<table width="100%" border="0" bgcolor="FFFFFF"  cellpadding="0"  cellspacing="0">
+			<form name="quicknavform" method="post" onSubmit="return pack(this)">
+			<input type="hidden" name="capsule" value="">
+				<tr>
+					<td valign="top">
+					<!-- 1 start -->	
+						<table cellpadding="0" cellspacing="0" border="0" width="238">
+							<tr>
+								<td width="6"><img src="/html/admin/images/bx2_top_left.gif"></td>
+								<td background="/html/admin/images/bx2_top_bg.gif" class="bx2_title">모든메뉴</td>
+								<td width="6" align="right"><img src="/html/admin/images/bx2_top_right.gif"></td>
+							</tr>
+							<tr>
+								<td width="6" background="/html/admin/images/bx2_mid_left.gif"></td>
+								<td bgcolor="#FFFFFF" height="156" valign="top">				
+									<select name="menuall" size="10" id="menuall" style="width: 228px" multiple>
+									{@ SUBMENU}
+									<option value="{.str_link}">{.str_title}</option>
+										{? .is_sub}
+										<optgroup label="-----------------">
+										{@ SUBMENU_SUB}
+										<option value="{..str_link}">ㄴ{..str_title}</option>
+										{/}
+										</optgroup>
+										<option value="">----------------------</option>
+										{/}
+										
+									{/}
+								</select>
+								</td>
+								<td width="6" align="right" background="/html/admin/images/bx2_mid_right.gif"></td>
+							</tr>
+							<tr>
+								<td width="6"><img src="/html/admin/images/bx2_btm_left.gif"></td>
+								<td background="/html/admin/images/bx2_btm_bg.gif"></td>
+								<td width="6" align="right"><img src="/html/admin/images/bx2_btm_right.gif"></td>
+							</tr>
+						</table>
+					<!-- 1 end -->	
+					</td>
+
+					<td width="104" >
+						<table cellpadding="0" cellspacing="0" border="0" align="center">
+							<tr>
+								<td><img src="/html/admin/images/btn_add2.gif" border="0" style="cursor:hand" onClick="remove_quick()"></td>
+							</tr>
+							<tr><td height="6"></td></tr>
+							<tr>
+								<td><img src="/html/admin/images/btn_draw.gif" border="0" style="cursor:hand"  onClick="add_quick()"></td>
+							</tr>
+						</table>
+					</td>
+					<td align="center" valign="top" align="right">
+						<table cellpadding="0" cellspacing="0" border="0" width="238">
+						<tr>
+							<td>
+							<!-- 1 start -->	
+								<table cellpadding="0" cellspacing="0" border="0" width="238">
+									<tr>
+										<td width="6"><img src="/html/admin/images/bx2_top_left.gif"></td>
+										<td background="/html/admin/images/bx2_top_bg.gif" class="bx2_title">메뉴 바로가기 목록</td>
+										<td width="6" align="right"><img src="/html/admin/images/bx2_top_right.gif"></td>
+									</tr>
+									<tr>
+										<td width="6" background="/html/admin/images/bx2_mid_left.gif"></td>
+										<td bgcolor="#FFFFFF" height="156" valign="top">				
+											<select name="menusel" size="10" id="menusel" style="width: 220px" multiple>
+											{@ addLIST}
+											<option value="{.str_url}">{.str_title}</option>
+											{/}
+											</select>
+										</td>
+										<td width="6" align="right" background="/html/admin/images/bx2_mid_right.gif"></td>
+									</tr>
+									<tr>
+										<td width="6"><img src="/html/admin/images/bx2_btm_left.gif"></td>
+										<td background="/html/admin/images/bx2_btm_bg.gif"></td>
+										<td width="6" align="right"><img src="/html/admin/images/bx2_btm_right.gif"></td>
+									</tr>
+								</table>
+							<!-- 1 end -->	
+								<table cellpadding="0" cellspacing="0" border="0" align="center">
+									<tr><td height="8"></td></tr>
+									<tr>
+										<td>선택된메뉴를</td>
+										<td width="3"></td>
+										<td><img src="/html/admin/images/top_prev.gif" border="0" style="cursor:hand" onClick="moveUp(quicknavform.elements['menusel'])"></td>
+										<td width="3"></td>
+										<td><img src="/html/admin/images/top_next.gif" border="0" style="cursor:hand" onClick="moveDown(quicknavform.elements['menusel'])"></td>
+										<td width="3"></td>
+										<td>이동</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+				<tr><td height="8"></td></tr>
+				<tr>
+					<td align="center" colspan="3"><input type="image" src="/html/admin/images/btn_reg_01.gif"></td>
+				</tr>
+			</table>
+
+			</form>
+			<!--end-->
+		</td>
+		<td background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>
+<!-- 표1 end -->
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%">
+	<tr><td height="14"></td></tr>
+	<tr>
+		<td colspan="3" valign="top">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td><img src="/html/admin/images/tip_icon.gif"></td>
+					<td class="tip_title">도움말</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="6"></td></tr>
+	<tr>
+		<td colspan="2">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr height="14">
+					<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+					<td background="/html/admin/images/bx_tip_top_bg.gif"></td>
+					<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+				</tr>				
+				<tr>
+					<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+					<td class="tip_text">
+					ㆍ왼쪽 '모든메뉴' 상자에서 바로가기 메뉴로 추가할 메뉴를 선택하고 '넣기' 버튼을 눌러 오른쪽 상자로 이동시킵니다. <br>
+					ㆍ'선택메뉴' 상자에서 순서를 변경하고자 하는 메뉴를 클릭한 후 '위로' 또는 '아래로' 버튼을 눌러 순서를 변경합니다. <br>
+					ㆍ반드시 '저장' 버튼을 눌러 저장하셔야 변경사항이 적용됩니다. 
+
+					</td>
+					<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+				</tr>
+				<tr height="14">
+					<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+					<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+					<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

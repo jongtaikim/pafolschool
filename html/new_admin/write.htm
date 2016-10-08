@@ -1,0 +1,55 @@
+
+<wa:upload part="script" sect="main" code="news.{code}"></wa:upload>
+<form name="writeForm" method="post" onsubmit="return prepare(this);">
+<input type="hidden" name="code" value="{code}">
+<input type="hidden" name="id" value="{id}">
+<Input type="hidden" name="str_thumb" value="{str_thumb}">
+<h2>{title} 입력/수정</h2>
+<table width="725" class="table01">
+<tr>
+	<th><b>제목</b></th>
+	<td colspan="3">
+		<input type="text" name="str_title" hname="제목" value="{str_title2}" maxlength="30" style="width:100%;" required="true" />
+	</td>
+</tr>
+<tr>
+	<th><b>날짜</b></th>
+	<td>
+		<wa:datepicker type="text" name="dt_date" hname="날짜" value="{dt_date2}" size="10" maxlength="10" required="true"></wa:datepicker>
+	</td>
+	<th><b>조회수</b></th>
+	<td>
+		<input type="text" name="num_hit" hname="조회수" value="{num_hit}" size="5" maxlength="5" option="number" required="true" />
+	</td>
+</tr>
+<tr>
+	<td colspan="4" bgcolor="#FFFFFF">
+		
+		<wa:upload part="editor" sect="main" code="news.{code}">{content}</wa:upload>
+	</td>
+</tr>
+<tr>
+	<th><b>첨부파일</b></th>
+	<td colspan="3">
+		<wa:upload part="component" sect="main" code="news.{code}" liststyle="2" width="200" height="20" maxfilenum="1"></wa:upload>
+	</td>
+</tr>
+<!--{? FILE_LIST}-->
+<tr>
+	<th><b>첨부된 파일</b></th>
+	<td colspan="3">
+		<wa:upload part="filelist" sect="main" code="news.{code}"></wa:upload>
+	</td>
+</tr>
+<!--{/}-->
+</table>
+
+<table width="740">
+<tr>
+	<td align="center">
+		<input type="submit" class="button2" value=" 저장 " name="submit_btn" id="submit_btn" >
+		<input type="button" class="button2" value=" 취소 " onclick="history.go(-1);">
+	</td>
+</tr>
+</table>
+</form>

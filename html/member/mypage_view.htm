@@ -1,0 +1,488 @@
+<link rel="stylesheet" type="text/css" href="/css/doc_style.css">
+<style type="text/css" title="">
+/* UI Object */
+.form_table{margin:1em 0;font-size:12px;font-family:Tahoma, Geneva, sans-serif}
+.form_table input,
+.form_table textarea,
+.form_table select,
+.form_table table,
+.form_table button{font-size:12px}
+.form_table table{width:100%;border:0;border-top:2px solid #464f47}
+.form_table caption{padding:8px 0;font-weight:bold;text-align:left}
+.form_table th,
+.form_table td{padding:8px;border:0;vertical-align:top}
+.form_table th{color:#333}
+.form_table td{color:#666}
+.form_table thead th{border-bottom:1px solid #ccc;background:#f8f8f8}
+.form_table tbody th{border-bottom:1px solid #ddd;background:#fafafa;text-align:left}
+.form_table tfoot th{border-bottom:1px solid #ddd}
+.form_table tbody td{border-bottom:1px solid #ddd}
+.form_table tfoot td{border-bottom:1px solid #ddd;font-weight:bold;color:#333}
+.form_table .item{position:relative;margin:-4px 0}
+.form_table .item .i_help{position:absolute;top:4px;right:0}
+.form_table .item .i_label{ top:6px; left:10px}
+.form_table .item .i_dsc{margin:2px 0}
+.form_table .item .i_check,
+.form_table .item .i_radio{width:13px;height:13px;margin:2px 5px 2px 0;padding:0;vertical-align:middle}
+.form_table .item .i_text{position:relative;margin:2px;padding:3px 4px;border:1px solid #b7b7b7;border-right-color:#e1e1e1;border-bottom-color:#e1e1e1;background:transparent}
+.form_table .item .hide{visibility:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+.form_table .item select{margin:2px}
+.form_table .item label{margin:0 10px 0 0;cursor:pointer}
+input{color:#000}
+/* //UI Object */
+</style>
+
+<script type="text/javascript">
+// <![CDATA[
+function popup_zip() {
+	form = 'joinForm';
+	wZip = window.open('core.zipcode?el_addr=str_addr1&el_zip=str_zipcode&el_focus=str_addr2&form='+form,'zipsearch','width=400, height=200,scrollbars=yes');
+}
+
+// ]]>
+</script>
+
+
+<div style="width:100%">
+
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+
+<script type="text/javascript">
+	function update(select_ccode) {
+		
+		var params = 'select_ccode=' + select_ccode;  
+
+		sendRequest("/lms.admin.order_update", params, FromServer, "GET");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				$('price_change').value = "y";
+				if({num_price} != str_text){
+					alert('해당 신청과정은 기존 과정과 금액 차이가 발생합니다.');
+					$('info_price').innerHTML = '{num_price} - '+str_text+' = <span style="color:red"> '+({num_price} - str_text)+"</span>";
+					$('info_price_text').value = '{num_price} - '+str_text+' = <span style="color:red"> '+({num_price} - str_text)+"</span>";
+					$('num_ch_price').value = ({num_price} - str_text);
+					//$('log_text').value = '{str_title} {num_serial}기 =>'
+				}else{
+					$('info_price').innerHTML = str_text;
+					$('num_ch_price').value = "";
+				}
+				
+				def_ccodes();
+				
+			}
+		}
+	}
+</script>
+
+
+
+
+
+
+
+<fieldset>
+<legend>legend</legend>
+
+<p class="buTitle33" style="margin-bottom:0px;padding-left:18px">참가 학생 정보</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+<script type="text/javascript">
+// <![CDATA[
+function def_ccodes(){
+	if($('price_change').value) {
+		$('def_ccode_text').value='{@ camp_LIST}{? num_ccode == .num_ccode && num_serial == .num_serial}{.camp_title} - {.num_serial}기{/}{/}';
+		$('def_ccode_text').style.display='block';
+		$('isisi1').style.display='block';
+	}
+}
+// ]]>
+</script>
+
+<tr>
+	<th scope="row" style="width:120px">신청과정</th>
+	<td colspan="2">
+		<div class="item">
+		{? num_ccode == "70" || num_ccode == "71"}
+			1차 : {ccode_title_p1}<br>
+			2차 : {ccode_title_p2}
+		{:}
+			{ccode_title} - {num_serial}기
+		{/}
+		</div>
+	</td>
+</tr>
+
+
+<tr>
+	<th scope="row">금액</th>
+	<td colspan="2">
+		<div class="item" id="info_price">
+			{=number_format(num_price)}원
+		
+			
+		</div>
+	</td>
+</tr>
+
+
+</table>
+
+</div>
+</fieldset> 
+
+
+
+
+<fieldset>
+<legend>legend</legend>
+
+<p class="buTitle33" style="margin-bottom:0px;padding-left:18px">참가 학생 정보</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+<tr>
+	<th scope="row">학생성명</th>
+	<td colspan="2">
+		<div class="item">
+		{str_st_name}
+		</div>
+	</td>
+</tr>
+
+<!--tr>
+	<th scope="row">학생성명(영문)</th>
+	<td colspan="2">
+		<div class="item">
+			<input class="i_text" title="학생성명" type="text" name="str_st_eng_name" id="str_st_eng_name" value="{str_st_eng_name}" hname="{=_la('학생성명(영문')}"  required> 
+		</div>
+	</td>
+</tr-->
+
+<tr>
+	<th scope="row">성별</th>
+	<td colspan="2">
+		<div class="item">
+		{? str_sex == "1"}남자{:}여자{/}
+		
+		</div>
+	</td>
+</tr>
+
+<!--tr>
+	<th scope="row">주민등록번호</th>
+	<td colspan="2">
+		<div class="item">
+			<input class="i_text" title="주민등록번호" type="text" name="jumin1" id="jumin1" value="{jumin1}" hname="주민등록번호" style="width:80px" required> 
+			-
+			<input class="i_text" title="주민등록번호" type="text" name="jumin2" id="jumin2" value="{jumin2}" hname="주민등록번호" style="width:80px" required> 
+		</div>
+	</td>
+</tr-->
+
+
+<tr>
+	<th scope="row">{=_la('학교/학년')}</th>
+	<td colspan="2">
+		<div class="item">
+			{str_school} - {str_class}
+			
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row" >T-셔츠 사이즈</th>
+	<td colspan="2">
+		<input type="radio" name="str_tsize" id="str_tsize1" value="14" {? str_tsize == "14" } checked{/}><label for="str_tsize1">14호</label>
+		<input type="radio" name="str_tsize" id="str_tsize2" value="15" {? str_tsize == "15" } checked{/}><label for="str_tsize2">15호</label>
+		<input type="radio" name="str_tsize" id="str_tsize3" value="16" {? str_tsize == "16" } checked{/}><label for="str_tsize3">16호</label>
+		<input type="radio" name="str_tsize" id="str_tsize4" value="17" {? str_tsize == "17" } checked{/}><label for="str_tsize4">17호</label>
+		<input type="radio" name="str_tsize" id="str_tsize5" value="18" {? str_tsize == "18" } checked{/}><label for="str_tsize5">18호</label>
+		<br>
+		<input type="radio" name="str_tsize" id="str_tsize6" value="85" {? str_tsize == "85" } checked{/}><label for="str_tsize6">85호</label>
+		<input type="radio" name="str_tsize" id="str_tsize7" value="90" {? str_tsize == "90" } checked{/} ><label for="str_tsize7">90호</label>
+		<input type="radio" name="str_tsize" id="str_tsize8" value="95" {? str_tsize == "95" } checked{/} ><label for="str_tsize8">95호</label>
+		<input type="radio" name="str_tsize" id="str_tsize9" value="100" {? str_tsize == "100" } checked{/} ><label for="str_tsize9">100호</label>
+		<input type="radio" name="str_tsize" id="str_tsize10" value="105" {? str_tsize == "105" } checked{/} ><label for="str_tsize10">105호</label>
+		<input type="radio" name="str_tsize" id="str_tsize11" value="110" {? str_tsize == "110" } checked{/} ><label for="str_tsize11">110호</label>
+	</td>
+</tr>
+{? brs_LIST}
+<tr>
+	<th scope="row" >부모가 같은<br> 신청건</th>
+	<td colspan="2">
+		
+			<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0" class="tableTemp02" summary="">
+			<caption><span>caption</span></caption>
+				<thead>
+					<tr>
+						
+						<th style="text-align:center">프로그램명</th>
+						<th style="text-align:center">기수</th>
+						<th style="text-align:center">주문번호</th>
+						<th style="text-align:center">이름</th>
+						<th style="text-align:center">입금확인</th>
+					</tr>
+				</thead>
+				<tbody>
+					{@ brs_LIST}
+					<tr>
+						
+						<td>{.ccode_title}</td>
+						<td>{.num_serial}기</td>
+						<td><a href="/lms.admin.order_view?order_code={.str_order_code}">{.str_order_code}</a></td>
+						
+						<td>{.str_st_name}</td>
+						<td>
+						{? .str_order_st == "0"}
+						<span style="color:red">입금확인전</span>
+						{: .str_order_st == "1"}
+						<span style="color:blue">입금확인</span>
+						{: .str_order_st == "5"}
+						<span style="color:blue">카드승인</span>
+						{: .str_order_st == "2"}
+						<span style="color:#808080">취소</span>
+						{: .str_order_st == "3"}
+						<span style="color:#73758c">회원취소</span>
+						{/}
+						</td>
+					</tr>
+					{/}
+				</tbody>
+			</table>
+	</td>
+</tr>
+{/}
+</table>
+
+</div>
+</fieldset> 
+
+<p class="buTitle33" style="margin-bottom:0px;padding-left:18px">부모님 정보</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+<tr>
+	<th scope="row">보호자 성명</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			부 : {str_pr_name1}<br>
+			모 : {str_pr_name2}
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('이메일')}</th>
+	<td>
+		<div class="item">
+		{email1}@{email2}
+										
+			
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">주소</th>
+	<td>
+		<div class="item">
+		우 : {str_zipcode}<br>
+		{str_addr1} {str_addr2}
+
+		</div>
+		
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('전화번호')}</th>
+	<td>
+		<div class="item">
+		{tel1}-{tel2}-{tel3}
+	
+		
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('휴대폰')}</th>
+	<td>
+		<div class="item">
+		{tel11}-{tel22}-{tel33}
+		</div>
+		
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('메모')}</th>
+	<td>
+		<div class="item">
+		 {str_memo}
+		</div>
+		
+	</td>
+</tr>
+
+{? tab_etc < 4}
+<script type="text/javascript">
+// <![CDATA[
+function scsledk(idx){
+	if(idx != 4){
+		$('skskvie1').style.display = 'block';
+	}else{
+		$('skskvie1').style.display = 'none';
+	}
+	if(idx == "2"){
+		$('namet_1').innerHTML = '교우성명';
+		$('namet_2').innerHTML = '졸업학교';
+		$('namet_3').innerHTML = '입학학번';
+	}
+	if(idx == "1"){
+		$('namet_1').innerHTML = '교직원성명';
+		$('namet_2').innerHTML = '근무부서';
+		$('namet_3').innerHTML = '직급';
+	}
+	
+	if(idx == "3"){
+		$('namet_1').innerHTML = '학생성명';
+		$('namet_2').innerHTML = '참여과정';
+		$('namet_3').innerHTML = '참여기수';
+	}
+}
+// ]]>
+</script>
+{? tab_etc <4}
+<tr>
+	<th scope="row">추가사항</th>
+	<td>
+		<div class="item">
+		{? tab_etc == "1"}고려대 교직원 자녀{/}
+		{? tab_etc == "2"}고려대 교우 자녀{/}
+		{? tab_etc == "3"}기존캠프 참여자{/}
+		
+		</div>
+		
+	</td>
+</tr>
+
+<tr id="skskvie1" style="display:none">
+	<th scope="row"></th>
+	<td>
+		<div class="item">
+			<span id="namet_1">교유성명</span> {tab_etc_text1}
+			<span id="namet_2">교유성명</span> {tab_etc_text2}
+			<span id="namet_3">교유성명</span> {tab_etc_text3}
+		</div>
+	</td>
+</tr>
+<script type="text/javascript">
+// <![CDATA[
+scsledk({tab_etc})
+// ]]>
+</script>
+{/}
+{/}
+</table>
+</div>
+</fieldset> 
+
+
+
+
+<p class="buTitle33" style="margin-bottom:0px;padding-left:18px">결제정보 설정</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+{? str_pay_mes == "bank"}
+<tr>
+	<th scope="row" width="130px">계좌번호 </th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			무통장 : <strong>{str_bank_number}</strong>
+		
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">입금예정자</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			{str_bank_name}
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">입금예정일</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			{dt_bank_date}
+		</div>
+	</td>
+</tr>
+
+
+
+		<tr>
+			<th scope="row">결제 상태</th>
+			<td >
+				{? str_order_st == "0"}
+				<span style="color:red">입금확인전</span>
+				{: str_order_st == "1"}
+				<span style="color:blue">입금확인</span>
+				{: str_order_st == "5"}
+				<span style="color:blue">카드승인</span>
+				{: str_order_st == "2"}
+				<span style="color:#808080">취소</span>
+				{: str_order_st == "3"}
+				<span style="color:#73758c">회원취소</span>
+				{/}
+			</td>
+		</tr>
+
+{:}
+
+		<tr>
+			<th scope="row">결제 상태</th>
+			<td >
+				{? str_order_st == "0"}
+				<span style="color:red">입금확인전</span>
+				{: str_order_st == "1"}
+				<span style="color:blue">입금확인</span>
+				{: str_order_st == "5"}
+				<span style="color:blue">카드승인</span>
+				{: str_order_st == "2"}
+				<span style="color:#808080">취소</span>
+				{: str_order_st == "3"}
+				<span style="color:#73758c">회원취소</span>
+				{/}
+				
+			</td>
+		</tr>
+		
+		
+{/}
+</table>
+</div>
+</fieldset> 
+
+
+
+
+</div>

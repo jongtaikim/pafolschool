@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> New Document </title>
+<!-- <link rel="stylesheet" type="text/css" href="css/roundrect/yellowgreen.css"> -->
+<script type="text/javascript">
+var stat = 0;
+function show_menu() {
+	top.document.getElementById('vertical').setAttribute('cols','200,*');	
+}
+function hide_menu() {
+	top.document.getElementById('vertical').setAttribute('cols','0,*');	
+}
+
+function toggle_menu() {
+	if (stat == 1) {
+		hide_menu();
+		stat = 0;
+	} else {
+		show_menu();
+		stat = 1;
+	}
+}
+
+</script>
+</head>
+
+<body>
+<!--
+<div style="width: 5px; height: 100%; background-image: url(/image/ui/resizebar.gif); float: left; clear: both;">
+<img src="/image/ui/resizegrip.gif" onClick="toggle_menu();" style="cursor: pointer">
+</div>
+-->
+<table width="100%" height="100%"><tr><td align="center">
+<div class="sidebox" style="width: 250px;">
+	<div class="boxhead"><h2>관리자 모드</h2></div>
+	<div class="boxbody">
+		홈페이지 관리자 모드입니다
+	</div>
+</div>
+</td></tr></table>
+</body>
+</html>

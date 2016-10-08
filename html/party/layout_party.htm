@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta name="description" content="{str_pname} 카페" />
+<meta name="keywords" content="시흥시, 학교카페" />
+<meta name="author" content="이웃닷컴, 김동우, 김은정" />
+<script type="text/javascript" src="/js/lib.validate2.js"></script>
+<meta name="language" content="ko" />
+<title>{str_pname} 입니다.</title>
+<!--
+<link rel="stylesheet" type="text/css" href="/css/lightbox.css" media="screen,tv" />
+<link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+<script type="text/javascript" charset="UTF-8" src="/js/spica.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/js/lightbox_plus.js"></script>
+-->
+
+<link rel="stylesheet" type="text/css" href="/css/common.css" />
+<link rel="stylesheet" type="text/css" href="./skin/{str_layout}.css" />
+<script language="javascript" type="text/javascript">
+<!--
+	function Memdel() {
+		if(confirm('[{str_pname}]\n{cname}를 탈퇴하시겠습니까?')){
+			location.href="/party.member.memdel?pcode={pcode}";
+		}
+	}
+//-->
+</script>
+
+</head>
+
+<body>
+
+
+<!-- 김동우 임시 해제
+{?act2 =="/party.main"}
+<form method=post  id="layoutForm" enctype='multipart/form-data'>
+<input type="hidden" name="mode_r" value="layoutF" target="soketIfr"> 
+{:}
+<script>
+SaveCookie("STATICMENU_v", "false", 1);
+</script>
+{/}
+-->
+<h1>{str_pname}</h1>
+<div id="wrapperArea">	
+
+	<div  id="wrapper">
+			
+			<div id="cafeTopArea">
+
+					<div id="cafeGnb">
+						<h2>카페 네비게이션 메뉴</h2>
+
+						<div class="cafeGnbSchool">
+							<a href= '/'><?=_ONAME?>홈페이지 가기</a>
+						</div>
+
+						<div class="cafeGnbMenu">
+							<div class="cafeGnbLogin">
+								{?_SESSION.USERID}
+								<a href="/member.logout"><img src="/image/btn_logout.gif" alt="로그아웃" /></a>{:}
+								<a href="/member.login"><img src="/image/btn_login.gif" alt="로그인" /></a>{/}
+							</div>
+							<div class="cafeGnbMove">
+									<wa:applet module="party.sub_cafe" stype="{str_type}">
+									  {? _SESSION.USERID }<select onchange ="top.location.href= this.value;">
+										<option value="" selected="selected">다른 {cname} 보기</option>
+										<!--{@ cafe_list }-->
+										<option value="/cafe/{.num_pcode}">{.str_pname}</option>
+										<!--{/}-->
+									  </select>
+									  {:}
+									  <select onchange ="top.location.href= '/member.login';">
+										<option value="" selected="selected">다른 {cname} 보기</option>
+										<option value="">-- 로그인 --</option>
+									  </select>
+									  {/}
+									  </wa:applet>
+							</div>
+						</div>
+
+					</div>
+
+					<div  id="cafeTitleArea">
+						<h2>카페 기본 정보</h2>
+					
+						<div id="cafeTitle">
+							<span class="cafeTitle"><a href="/cafe/{pcode}">{str_pname}</a></span>
+							<span class="cafeTitleLink"><a href="/cafe/{pcode}">http://<?=$_SERVER[HTTP_HOST]?>/cafe/{pcode}</a></span>
+							<span class="cafeMemo">{cafe_memo}</span>
+						</div>
+
+						<div id="cafeBasicInfo">
+						   {? str_date}<span class="cafeInfoDate">개설일 {=date("Y.m.d",str_date)}</span>{/}
+						   <span class="cafeInfoMenber">회원수 {cafe_num_user} 명</span>
+						</div>
+
+					</div>
+
+			</div>
+
+			<div id="cafeContentArea">
+
+				<div id="cafeContentAreaTop">
+
+						<div  id="cafeMainMenuWrap" >
+							<div id="cafeMainMenu">
+							
+								<h2>카페 메인 메뉴</h2>
+								<a href = "/party.board.list?pcode={pcode}">전체글보기</a>
+								<a href = "/party.board.list_gallery?pcode={pcode}">전체갤러리보기</a>
+								<wa:applet module="party.menu.top" class="submenu" class_current="submenu_cur">
+								{@ SUBMENU_top}
+								<a href = "/{.str_link}">{.str_title}</a>
+								{/}
+								</wa:applet>
+
+							</div>
+						</div>
+
+				</div>
+				
+			<div id="cafeContentAreaMid">
+				
+				{? act2 != "/party.admin.frame"}
+				<div id="cafeSideMenu">
+					<h2>카페 정보 및 메뉴영역</h2>
+
+					<div id="cafeInfoArea">
+			
+						<div  id="cafeInfo">
+							<h3>카페 정보 및 회원설정</h3>
+							{? cm_id }
+								
+								<div id="cafeManagerInfo">
+									{? str_type =="class"}<span class="cafeAdminTit">담임선생님 :</span>
+									{: str_type =="cafe"}<span class="cafeAdminTit">매니저 :</span>
+									{:}<span class="cafeAdminTit">운영자 :</span>{/}
+									<span class="cafeAdminName"><a href="#" onclick ="MemoOpen('{cm_id}');" onkeypress ="MemoOpen('{cm_id}');">{cm_name}</a></span><!--<span class="cafeAdminId">({cm_id})</span>-->
+								</div>
+								
+								{? str_type =="class"}
+								<div id="classInfo">
+								<!--학급 정보 : <span class="classInfoTxt">{=substr(pcode,0,4)}년 {=substr(pcode,5,1)}학년 {=substr(pcode,6,2)*1}반</span>-->
+								</div>{/}
+
+								
+								<div id="cafeMemberInfo">
+								{? str_type =="class"}회원수 :
+								{: str_type =="cafe"}맴버수 :
+								{:}등록교직원 :{/}<span class="cafeMemberInfoNum">{cafe_num_user}</span>
+								</div>
+							
+								{? cafe_member_id}
+								<div id="cafeMyInfo">
+									<span class="cafeMyInfoTit">나의 정보</span>
+									<span class="cafeMyInfoGrade">등급 : {? _SESSION.CAFE_ADMIN}운영자{:}{cafe_mtype_name}{/}</span>
+									<span class="cafeMyInfoVisit">방문 : {num_login+0}</span>
+									<span class="cafeMyInfoWrite">게시물 : {num_board+0}</span>
+									<span class="cafeMyInfoComment">덧글 : {num_comment+0}</span>
+								</div>
+								{/}
+
+								{? _SESSION.ADMIN || _SESSION.CAFE_ADMIN || _SESSION.CAFE_ADMIN_sub}
+								<div  id="cafeAdminBtn">
+									<a href="/party.admin.frame?pcode={pcode}" ><img src="/image/btn_admin.gif" alt="관리하기" /></a>
+								</div>
+								{/}
+
+							
+								<div id="cafeInfoBtn">
+									{? !_SESSION.USERID || !cafe_member_id}
+
+									<a href="/party.member.join?pcode={pcode}">가입신청하기</a>
+
+									{:}<a href="/party.board.write?pcode={pcode}">글쓰기</a>{/}
+							
+								</div>
+								{:}
+								{? str_type =="class"}<b>담임선생님이</b>
+								{: str_type =="cafe"}<b>매니저가</b>
+								{:}<b>운영자가</b>{/} 지정되지 않았습니다.
+
+							{/}
+						</div>
+
+					</div>
+					<!-- 카페정보 부분 -->
+
+					<!-- 카페메뉴 부분 -->
+					<div  id="cafeSubmenuArea" >
+						<h3>카페 서브 메뉴</h3>
+
+						<wa:applet module="party.menu.sub" class="submenu" class_current="submenu_cur">
+						{@ SUBMENU}
+						{.str_title}<br>
+						{/}
+						</wa:applet>
+						
+						{? _SESSION.FCODE != pcode}
+						<div id="cafeWithdrawal">
+							{?_SESSION.USERID && cafe_mtype}<a href="#" onclick="Memdel();">{cname} 탈퇴하기</a>{/}
+						</div>
+						{/}
+						<!-- 카페메뉴 부분 -->
+
+					</div>
+					
+				</div>
+				{/}
+				<div id="cafeContent">
+					<h2>카페 컨텐츠 영역</h2>
+					
+					{#CONTENT}
+
+				</div>
+			
+			</div>
+			
+
+			<div id="cafeContentAreaBtm">
+
+				<div  id="cafeFoot">
+					<span class="cafeName">{str_pname}</span> - <span class="cafeType">{cname}</span> 
+				</div>
+			
+			</div>
+
+		</div>
+
+	</div>
+	
+</div>
+
+</body>
+</html>

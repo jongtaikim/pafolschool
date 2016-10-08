@@ -1,0 +1,56 @@
+
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight);
+         var w = parseInt(document.body.scrollWidth)+18; 
+	self.resizeTo(w, h); 
+
+} 
+//-->
+</script>
+
+<body onload="resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',100);">
+<form name="configForm" method="post">
+<div style = "width:100%;height:212;;overflow:auto" id="">
+<table width = 100% class="table01" align = center>
+<tr>
+
+	<th width="45%">게시물을 불어올 게시판</td>
+
+
+	{? type == 'B'}<th width="25%">메인에 추가</td>{/}
+</tr>
+<!--{@ LIST}-->
+<tr>
+
+	<td style = "padding-left:10px">	{? .str_mtitle1 != .str_mtitle  && .str_mtitle != "추가메뉴" }{.str_mtitle1} > {/} {.str_mtitle} > <img src = "/image/icon_total.gif"  align="absmiddle"> {.str_title} </td>
+
+
+		<td align="center">
+		{? type == 'B'}<input type="checkbox" name="num_main_view[]" value="1|{.str_title}|{.num_mcode}" style="border:0px;"{? .num_main_view == '1'} checked{/}>{/}
+	
+	</td>
+</tr>
+<!--{/}-->
+</table>
+
+</div>
+
+<br>
+<table width=400 class="Table01"  align = center>
+<tr>
+	<td align="center"><input type="submit" class="button2" value="저장"></td>
+</tr>
+</table>
+</form><br>
+</body>
+

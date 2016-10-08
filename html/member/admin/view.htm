@@ -1,0 +1,418 @@
+
+<style>
+ .ico{padding:0 0 0 15px; background-color:#f9f9f9;}
+ .f1{padding:3px 0 0 6px; background-color:#f9f9f9;font-size:12px;color:#4a4a4a;}
+ .f2{padding:0 0 2px 10px; font-size:11px;color:#666666;}
+ .f3{padding:11px 0 0 20px; background-color:#f9f9f9;font-size:11px;color:#666666;}
+ .f4{padding:0 0 0 20px; background-color:#f9f9f9;font-size:11px;color:#666666;}
+</style>
+
+
+	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+	<tr>
+		<td height="21"></td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<table cellpadding="0" cellspacing="0" border="0" width="95%" align = center>
+			<col width="1%"></col><col width="15%"></col><col width="%"></col>
+				<tr>
+					<td colspan="3">
+
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding:0 5px 4px 0"><img src="/html/image/ico_box02.gif"></td>
+								<td style="font-size:12; color:#e9084d"><!-- e57700 --><font color=cc0000>{str_name}</font> 님의 정보를 수정하실수 있습니다.</td>
+							</tr>
+							<tr>
+								<td height="4"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="3" bgcolor="#ececec"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="#c0c0c0"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="#ffffff"></td>
+				</tr>
+				<script type="text/javascript" src="/js/ajax.js"></script>
+				<script type="text/javascript" src="/js/dynamic.js"></script>
+				<script type="text/javascript" src="/js/ajax.js"></script>
+				<script type="text/javascript">
+	
+	function update(val) {
+
+		//alert(val);
+		var val = val + "&end=";  
+
+		
+		sendRequest("/member.admin.update", val, FromServer, "POST");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				if(str_text =="Y"){
+
+				alert('변경되었습니다.');	
+				}else{
+				//alert(str_text);
+				//alert('데이터를 모두 입력하시기 바랍니다.');
+				}
+			}
+		}
+	}
+
+	
+	function popup_zip() {
+			form = 'joinForm';
+			wZip = window.open('core.zipcode?el_addr=str_addr1&el_zip=str_zipcode&el_focus=str_addr2&form='+form,'zipsearch','width=400, height=200');
+		}
+
+function checkNick(id) {
+				form = document.forms['joinForm'];
+				if(!id) return false;
+				if(strlen(id) <2) {
+					$('nick_pr').innerHTML = '<font color=#996699>2자리 이상 작성해주세요.</font>';
+					return false;
+				}
+				ret = dynamic.load('member.check_masternick?id=' + id);
+				cknum=ret;
+
+				if(cknum == '00'||cknum == '0') {
+					//form.str_nick_prev.value = id;
+					$('nick_pr').innerHTML = '<font color=#0099FF>사용 가능한 닉네임 입니다.</font>';
+				
+				} else if(cknum == '99') {
+					//form.str_nick_prev.value = form.str_nick.value = '';
+					$('nick_pr').innerHTML = '<font color=#FF0099>이미 존재하는 닉네임 입니다.</font>';
+				
+				} else if(cknum == '98' ) {
+					//form.str_nick_prev.value = form.str_nick.value = '';
+					$('nick_pr').innerHTML = '<font color=#996699>사용할 수 없는 닉네임입니다.</font>';
+				
+				}
+			}
+
+              function checkPass(){
+                  return true;
+              }
+</script>
+
+<style>
+ .f1{padding:11px 0 5px 10px; background-color:#f9f9f9;font-size:11px;color:#666666;}
+ .f2{padding:11px 0 5px 10px;font-size:11px;color:#666666;}
+ .f3{padding:11px 0 5px 20px; background-color:#f9f9f9;font-size:11px;color:#666666;}
+ .f4{padding:0 0 5px 20px; background-color:#f9f9f9;font-size:11px;color:#666666;}
+</style>
+
+<form method='post'  style='border:0;margin:0' name = "joinForm" enctype="multipart/form-data" onsubmit="return validate(this); "  >
+<table cellpadding="0" cellspacing="0" border="0" width="95%" align = center>
+<col width="3%"><col width="18%"></col><col width="%"></col>
+
+	<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">아이디</td>
+		<td class="f2"  style = "padding:5px">						
+     		{str_id} &nbsp;<font color=#666666 style=font-size:8pt> ({dt_date}에 가입)
+	   </td>
+  </tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+
+	<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">비밀번호</td>
+		<td class="f2"  style = "padding:5px">
+			
+			<input type=str_passwd name=str_passwd size=20 maxlength=20  class=button  hname="비밀번호" required >		
+			
+
+			
+
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+
+
+	<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">이름</td>
+		<td class="f2"  style = "padding:5px"><input type=text name=str_name value="{str_name}" class=button hname="이름" required >
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+
+{? chr_mtype =="s"}
+	<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">학급정보</td>
+		<td class="f2"  style = "padding:5px">
+			
+		<input class="i_text" title="학교명" type="text" name="str_school" id="str_school" value="{str_school}" hname="{=_la('학교명')}"  required> 
+
+			<select  name="str_class" id="str_class" hname="학년정보" required>
+				<option value="">-- {=_la('학년정보')} --</option>
+				
+				<optgroup label="초등학교">
+					
+					<option value="초등학교 1학년" {? str_class =='초등학교 1학년'} selected{/}>1학년</option>
+					<option value="초등학교 2학년" {? str_class =='초등학교 2학년'} selected{/}>2학년</option>
+					<option value="초등학교 3학년" {? str_class =='초등학교 3학년'} selected{/}>3학년</option>
+					<option value="초등학교 4학년" {? str_class =='초등학교 4학년'} selected{/}>4학년</option>
+					<option value="초등학교 5학년" {? str_class =='초등학교 5학년'} selected{/}>5학년</option>
+					<option value="초등학교 6학년" {? str_class =='초등학교 6학년'} selected{/}>6학년</option>
+					
+				</optgroup>
+
+				<optgroup label="중학교">
+					
+					<option value="중학교 1학년" {? str_class =='중학교 1학년'} selected{/}>1학년</option>
+					<option value="중학교 2학년" {? str_class =='중학교 2학년'} selected{/}>2학년</option>
+					<option value="중학교 3학년" {? str_class =='중학교 3학년'} selected{/}>3학년</option>
+					
+				</optgroup>
+
+				<optgroup label="고등학교">
+					
+					<option value="고등학교 1학년" {? str_class =='고등학교 1학년'} selected{/}>1학년</option>
+					<option value="고등학교 2학년" {? str_class =='고등학교 2학년'} selected{/}>2학년</option>
+					<option value="고등학교 3학년" {? str_class =='고등학교 3학년'} selected{/}>3학년</option>
+					
+				</optgroup>
+
+			</select>
+		</td>
+	</tr>
+	<tr>
+    	<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+{/}
+	
+
+
+	<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">E-mail</td>
+		<td class="f2"  style = "padding:5px"><input type=text name=str_email size=50 maxlength=255 value="{str_email}" class=button>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+
+	<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">휴대폰</td>
+		<td class="f2"  style = "padding:5px"><input type=text name=tel1 size=4 maxlength=4 value="{tel1}" class=button> - <input type=text name=tel2 size=4 maxlength=4 value="{tel2}" class=button> - <input type=text name=tel3 size=4 maxlength=4 value="{tel3}" class=button>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+
+<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">연락처</td>
+		<td class="f2"  style = "padding:5px"><input type=text name=tel11 size=4 maxlength=4 value="{tel11}" class=button> - <input type=text name=tel22 size=4 maxlength=4 value="{tel22}" class=button> - <input type=text name=tel33 size=4 maxlength=4 value="{tel33}" class=button>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+
+<tr height="50">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">주소</td>
+		<td class="f2"  style = "padding:5px">
+		
+						<input type="text" id="sample6_postcode" name="chr_zip" value="{chr_zip}" placeholder="우편번호" class="i_text" style="width:80px">
+						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+						<input type="text" id="sample6_address" name="str_addr1" placeholder="주소" value="{str_addr1}" required maxbyte="100" readonly class="i_text" style="width:400px"><br>
+						<input type="text" id="sample6_address2" name="str_addr2" placeholder="상세주소" value="{str_addr2}" required maxbyte="100" trim="trim" class="i_text" style="width:400px">
+
+						<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+						<script>
+						    function sample6_execDaumPostcode() {
+							  new daum.Postcode({
+								oncomplete: function(data) {
+								    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+								    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+								    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+								    var fullAddr = ''; // 최종 주소 변수
+								    var extraAddr = ''; // 조합형 주소 변수
+
+								    // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+								    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+									  fullAddr = data.roadAddress;
+
+								    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+									  fullAddr = data.jibunAddress;
+								    }
+
+								    // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+								    if(data.userSelectedType === 'R'){
+									  //법정동명이 있을 경우 추가한다.
+									  if(data.bname !== ''){
+										extraAddr += data.bname;
+									  }
+									  // 건물명이 있을 경우 추가한다.
+									  if(data.buildingName !== ''){
+										extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+									  }
+									  // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+									  fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+								    }
+
+								    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+								    document.getElementById('sample6_postcode').value = data.zonecode; //5자리 기초구역번호 사용
+								    document.getElementById('sample6_address').value = fullAddr;
+
+								    // 커서를 상세주소 필드로 이동한다.
+								    document.getElementById('sample6_address2').focus();
+								}
+							  }).open();
+						    }
+						</script>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+
+
+
+<!--tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">대표이미지</td>
+		<td class="f2"  style = "padding:5px">
+		<div style="float:left;padding:5px">
+		<a href = "javascript:winOpen('/hosts/<?=HOST?>/files/member/{str_id}.gif',500,500)"><img src="/hosts/<?=HOST?>/files/member/{str_id}.gif_100"  onerror="this.src='/b.gif'"></a>
+		</div>
+		<div style="float:left;padding:5px">
+		<input type="file" name="upfile1" hname="대표이미지" pattern="\.(gif|jpg|jpeg|png)$" class="button"><br>
+		※ 사진은 gif, jpg, png 형식으로 올려주시기 바랍니다.<br>
+		※ 사진의 넓이는 100픽셀로 고정됩니다. <br>
+		※ 사이즈를 맞춰서 올려주시면 이미지가 깨지지 않습니다.
+		</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr-->
+
+	{? str_tmp1}
+	<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">지원동기</td>
+		<td class="f2"  style = "padding:5px">{str_tmp1} {str_tmp2} 
+	</tr>
+	<tr>
+    	<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+	{/}
+	
+	<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">자기소개</td>
+		<td class="f2"  style = "padding:5px">
+			<textarea style="width:95%" rows=10 name=str_introduct class=checkbox>{str_introduct}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+
+	
+
+	<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">회원등급</td>
+		<td class="f2"  style = "padding:5px">
+			
+
+
+	{? chr_mtype !="z"}
+	<select name="chr_mtype" >
+	{@ mtypes}
+	  {? .key_ !="z"} 
+	  <option value="{.key_}"{? chr_mtype==.key_} selected{/}>{.value_}</option>
+	  {/}
+	 {/}
+
+	</select>
+	{:}
+	<input type="hidden" name="chr_mtype" value="z"> 최고관리자
+	{/}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+
+<tr height="32">
+		<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+		<td class="f1">포인트점수</td>
+		<td class="f2"  style = "padding:5px">
+			<input type=text name=num_point_total value="{num_point_total}" class=button>&nbsp;
+		</td>
+	</tr>
+	
+	<!--tr height="32" valign="top">
+		<td class="f3">회원활동내역</td>
+		<td class="f2">
+		로그인 : <INPUT TYPE="text" NAME="num_login_point" value = "{num_login_point}" style = "width:40" class="button">
+			글쓰기 : <INPUT TYPE="text" NAME="num_board_point" value = "{num_board_point}" style = "width:40" class="button">
+			답변 : <INPUT TYPE="text" NAME="num_repaly_point" value = "{num_repaly_point}" style = "width:40" class="button">
+			뎃글 : <INPUT TYPE="text" NAME="num_commint_point" value = "{num_commint_point}" style = "width:40" class="button"></td>
+	</tr>
+
+
+<tr>
+		<td colspan="2" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr-->
+
+</table>
+
+<INPUT TYPE="hidden" NAME="mode" value = "update">
+<INPUT TYPE="hidden" NAME="str_id" value = "{str_id}">
+<INPUT TYPE="hidden" NAME="end" value = "{str_id}">
+<table align=center width=98%>
+
+
+<!--/// 내용 끝 ///-->	
+
+					</td>
+				</tr>
+					<td colspan="3" width="100%" height="3" bgcolor="#ececec"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="#c0c0c0"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="#ffffff"></td>
+				</tr>
+				<tr>
+				    <td colspan="3" align=center style="padding:10px"><input type="image" src="/html/image/btn_save.gif" value="저장하기"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+
+
+<input type="hidden" name="end" value="">
+</FORM>

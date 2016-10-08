@@ -1,0 +1,550 @@
+<link rel="stylesheet" type="text/css" href="/theme/{_THEME}/css/main.css">
+{CSS2}
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/js/scriptaculous.js"></script>
+<script type="text/javascript" src="/js/Resize_attach.js"></script> 
+<script type="text/javascript" src="/js/attach_core.js"></script> 
+<script type="text/javascript">
+	new Resize("resizable","resizedistance","resizemaxwidth","resizemaxheight","resizedefaultcursor"); 
+	var ta_layout = "";
+	var ta_width = "";
+
+
+		function ToolbarView(id) 
+		{ 
+
+		{@ LIST2}
+		$('{.name}[stool]').style.display='none';
+		{/}
+				
+		if(id) {
+
+		$(id).style.display='';
+		id2 = explode("[",id);
+
+		$('def_stool').style.display = 'none';
+		
+		viewPriv('attach.view?name='+id2[0]);
+		
+		}
+		} 
+
+	
+function resizeing(id,setup){ 
+var LOGO_TOP = $('LOGO_TOP{? layout !="main" }_{layout}{/}');
+var TOP_BUTTON = $('TOP_BUTTON{? layout !="main" }_{layout}{/}');
+var TOP = $('TOP{? layout !="main" }_{layout}{/}');
+var LEFT = $('LEFT{? layout !="main" }_{layout}{/}');
+{? layout =="main" }var MAIN = $('MAIN{? layout !="main" }_{layout}{/}');{/}
+var RIGHT = $('RIGHT{? layout !="main" }_{layout}{/}');
+var FOOT = $('FOOT');
+
+
+if(!setup) {setup = "Y";}
+if(setup =="Y") {
+
+$('help').innerHTML = '<img src = "/module/btn/module2.php?text=마우스로 모듈을 원하는 위치에 드래그 하십시요.&font=yg330&size2=5&bg=898B93&color=FFF82C&mk_btn=Y"><br><img src = "/module/btn/module2.php?text=레이아웃을 마우스로 드래그하면 사이즈가 변경됩니다.&font=yg330&size2=5&bg=898B93&color=FFFFFF&mk_btn=Y">';
+
+
+
+LOGO_TOP.resizable_a = false;
+LOGO_TOP.resizable = "true";
+LOGO_TOP.style.textAlign="center";
+
+TOP_BUTTON.resizable_a = false;
+TOP_BUTTON.resizable = "true";
+TOP_BUTTON.style.textAlign="center";
+
+TOP.resizable_a = false;
+TOP.resizable = "true";
+TOP.style.textAlign="center";
+
+LEFT.resizable_a = false;
+LEFT.resizable = "true";
+LEFT.style.textAlign="center";
+
+{? layout =="main" }MAIN.resizable_a = false;
+MAIN.resizable = "true";
+MAIN.style.textAlign="center";{/}
+
+RIGHT.resizable_a = false;
+RIGHT.resizable = "true";
+RIGHT.style.textAlign="center";
+
+FOOT.resizable_a = false;
+FOOT.resizable = "true";
+FOOT.style.textAlign="center";
+
+Sortable.destroy(id);
+
+Sortable.create("LOGO_TOP{? layout !='main' }_{layout}{/}", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","NONE","MAIN_TOP","MAIN_FOOT"],accept:["LOGO_TOP{? layout !='main' }_{layout}{/}"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+Sortable.create("TOP_BUTTON{? layout !='main' }_{layout}{/}", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","NONE","MAIN_TOP","MAIN_FOOT"],accept:["TOP_BUTTON{? layout !='main' }_{layout}{/}"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+Sortable.create("TOP{? layout !='main' }_{layout}{/}", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","NONE","MAIN_TOP","MAIN_FOOT"],accept:["TOP{? layout !='main' }_{layout}{/}"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+Sortable.create("LEFT{? layout !='main' }_{layout}{/}", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","NONE","MAIN_TOP","MAIN_FOOT"],accept:["LEFT{? layout !='main' }_{layout}{/}"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+
+{? layout =="main" }
+Sortable.create({? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/}, {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","NONE","MAIN_TOP","MAIN_FOOT"],accept:["MAIN"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+{/}
+
+Sortable.create("RIGHT{? layout !='main' }_{layout}{/}", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","NONE","MAIN_TOP","MAIN_FOOT"],accept:["RIGHT{? layout !='main' }_{layout}{/}"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+Sortable.create("FOOT", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","NONE","MAIN_TOP","MAIN_FOOT"],accept:["FOOT"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+Sortable.create("NONE", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","NONE","MAIN_TOP","MAIN_FOOT"],accept:["NONE"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+Sortable.create("MAIN_TOP", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","MAIN_TOP","MAIN_FOOT","NONE"],accept:["MAIN_TOP"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+Sortable.create("MAIN_FOOT", {dropOnEmpty:true,treeTag:'div',tag:'div',containment:["LEFT{? layout !='main' }_{layout}{/}",{? layout =="main" }"MAIN{? layout !='main' }_{layout}{/}"{/},"RIGHT{? layout !='main' }_{layout}{/}","LOGO_TOP{? layout !='main' }_{layout}{/}","TOP{? layout !='main' }_{layout}{/}","FOOT","TOP_BUTTON{? layout !='main' }_{layout}{/}","MAIN_TOP","MAIN_FOOT","NONE"],accept:["MAIN_FOOT"],constraint:false,handle:'t_handle',onUpdate:OnLayerChange,starteffect:OnDragStartEffect,endeffect:OnDragEndEffect});
+
+
+}else{
+
+
+$('help').innerHTML = '<img src = "/module/btn/module2.php?text=마우스로 레이아웃을 배치합니다.&font=yg330&size2=5&bg=898B93&color=FFF82C&mk_btn=Y"><br><img src = "/module/btn/module2.php?text=원하시는 위치로 각각의 레이아웃을 이동하십시요.&font=yg330&size2=5&bg=898B93&color=FFFFFF&mk_btn=Y">';
+
+Sortable.destroy('LOGO_TOP{? layout !="main" }_{layout}{/}');
+
+LOGO_TOP.resizable_a = true;
+LOGO_TOP.resizable = "false";
+LOGO_TOP.style.border = '1px solid B1B4C0';
+LOGO_TOP.style.textAlign="center";
+
+Sortable.destroy('TOP_BUTTON{? layout !="main" }_{layout}{/}');
+TOP_BUTTON.resizable_a = true;
+TOP_BUTTON.resizable = "false";
+TOP_BUTTON.style.border = '1px solid B1B4C0';
+TOP_BUTTON.style.textAlign="center";
+
+Sortable.destroy('TOP{? layout !="main" }_{layout}{/}');
+TOP.resizable_a = true;
+TOP.resizable = "false";
+TOP.style.border = '1px solid B1B4C0';
+TOP.style.textAlign="center";
+
+Sortable.destroy('LEFT{? layout !="main" }_{layout}{/}');
+LEFT.resizable_a = true;
+LEFT.resizable = "false";
+LEFT.style.border = '1px solid B1B4C0';
+LEFT.style.textAlign="center";
+
+{? layout =="main" }
+Sortable.destroy('MAIN{? layout !="main" }_{layout}{/}');
+MAIN.resizable_a = true;
+MAIN.resizable = "false";
+MAIN.style.border = '1px solid B1B4C0';
+MAIN.style.textAlign="center";
+{/}
+
+Sortable.destroy('RIGHT{? layout !="main" }_{layout}{/}');
+RIGHT.resizable_a = true;
+RIGHT.resizable = "false";
+RIGHT.style.border = '1px solid B1B4C0';
+RIGHT.style.textAlign="center";
+
+Sortable.destroy('FOOT');
+FOOT.resizable_a = true;
+FOOT.resizable = "false";
+FOOT.style.border = '1px solid B1B4C0';
+FOOT.style.textAlign="center";
+
+Sortable.destroy('NONE');
+$('NONE').resizable_a = true;
+$('NONE').resizable = "false";
+$('NONE').style.border = '1px solid B1B4C0';
+$('NONE').style.textAlign="center";
+
+Sortable.destroy('LOGO_TOP{? layout !="main" }_{layout}{/}');
+Sortable.destroy('TOP_BUTTON{? layout !="main" }_{layout}{/}');
+Sortable.destroy('TOP{? layout !="main" }_{layout}{/}');
+Sortable.destroy('LEFT{? layout !="main" }_{layout}{/}');
+Sortable.destroy('MAIN{? layout !="main" }_{layout}{/}');
+Sortable.destroy('RIGHT{? layout !="main" }_{layout}{/}');
+Sortable.destroy('FOOT');
+Sortable.destroy('NONE');
+Sortable.create(id, {treeTag:'div',tag:'div',constraint:false});
+
+
+
+}
+}
+
+
+</script>
+
+<body topmargin="0" leftmargin="0" onUnload = "clouse();"  onSelectstart="return false"  >
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="45" background="" align = center>
+				<tr>
+					<td style="padding:0 6 0 2" width="30" align = right  height = 45><img src="/html/admin2/images/icon4.gif" ></td>
+					<td style="padding:3 0 0 0; color:454545" width="100"  ><b>레이아웃관리</b></td>
+				<td >
+				※ 마우스로 끌어서(드래그 & 드롭) HTML 위치를 조정 하십시오.<br>
+				※ 사용하지 않는 모듈에 배치하시면 홈페이지에 나타나지 않습니다.</td>
+				</tr>
+			
+		
+			</table>
+{? tmp1}
+<div id = "loding" style = "display:none;top:320;position:absolute;display:;z-index:999; left:600;background-color:#ffffff;padding:30;border:3 solid #38A356" >
+<center><img src = "/module/btn/mk.php?text=레이아웃 적용중입니다...&w=200&h=200&size=15&color=009933"></center>
+</div>
+{/}
+
+<!--
+
+-->
+
+
+<style type="text/css">
+.t_handle { cursor:move;position:absolute;top:0px; }
+</style>
+<form name="layoutForm" method="post" style = "padding-left:15px"  >
+<table  width=98% border=0 cellspacing=0 cellpadding=0>
+ <tr>
+  <td style = "padding-bottom:5px">
+   <div class="tab01">
+	<ul>
+		<!--{@ LAYOUTS}-->	
+		<li {? .key_==layout}class="active"{/}><a href="/attach.admin.manage?layout={.key_}" >{.value_}</a></li>	
+		<!--{/}-->
+	</ul>
+</div>
+  </td>
+ </tr>
+</table>
+
+<TABLE width="98%" cellpadding="0" cellspacing="0" border=0  >
+<TR>
+	<TD  style="background-color:898b93;color:#ffffff;padding-top:5px;width:690" valign=top  align = center height = 620  onmousedown = "ToolbarView();" id = "center_f" >
+
+
+	<INPUT TYPE="radio" NAME="resizeing_btn" value = "Y" ONCLICK="resizeing('main_layout',this.value)" checked> 모듈이동  
+	<INPUT TYPE="radio" NAME="resizeing_btn" value = "T"  ONCLICK="resizeing('main_layout',this.value)"> 레이아웃 이동
+	
+	
+<div id="help" style = "padding:5px"></div>	
+
+	<div style = "width:690;height:20px;border-bottom:1px solid B1B4C0" id="MAIN_TOP"><INPUT TYPE="hidden" NAME="lay_be2[]" value="MAIN_TOP" ></div>
+	{#MANAGE}
+	<div style = "width:690;height:20px;border-top:1px solid B1B4C0" id="MAIN_FOOT"><INPUT TYPE="hidden" NAME="lay_be2[]" value="MAIN_FOOT" ></div>
+
+	</TD>
+	<TD valign = top width = 215 style = "padding-left:5" >
+
+<div id="asas"></div>
+<div id="asas2"></div>
+
+			<div style="float:left" id="module_tool1" style="padding-top:5px">
+			<table width="100%" cellpadding="0" cellspacing="0" class=zizibe01  bgcolor= "#ffffff" align =right >
+			
+			<tr>
+			  <th>전체 레이아웃</th>
+			</tr>
+			<tr>
+			  <td  style="padding:5">위치정렬 : 
+			  <INPUT TYPE="radio" NAME="layer_align" value="center" onclick = "modify_style('#main_frame','textAlign',this.value)" {? BODY_ALIGN == 'center'} checked{/} > 중앙 
+			  <INPUT TYPE="radio" NAME="layer_align" value="left" onclick = "modify_style('#main_frame','textAlign',this.value)" {? BODY_ALIGN == 'left'} checked{/}> 좌측</td>
+						</tr>
+			
+			</table>
+		</div>		
+
+<style type="text/css" >
+DIV.menu_on {border:1px solid #E1E1E1;;font-size:11px;padding:3px;text-align:center;float:left;background-color:#F5F5F5}
+DIV.menu_off {border:1px solid #E1E1E1;;font-size:11px;padding:3px;text-align:center;float:left;}
+</style>
+<div style = "width : 100%;padding-top:5px" >
+	<div class="menu_on" id = "tool1" code = "module_tool2" onclick = "seleTool(this)">일반 모듈</div>
+	<div class="menu_off" id = "tool2" code = "module_tool4" onclick = "seleTool(this)">게시판</div>
+	<div class="menu_off" id = "tool3" code = "module_tool3" onclick = "seleTool(this)">추가 HTML</div>
+</div>
+
+<script language="Javascript">
+function seleTool(idx){
+
+$('tool1').className =  "menu_off"
+$('tool2').className =  "menu_off"
+$('tool3').className =  "menu_off"
+
+$($('tool1').code).style.display =  "none"
+$($('tool2').code).style.display =  "none"
+$($('tool3').code).style.display =  "none"
+
+$(idx.id).className =  "menu_on"
+$($(idx.id).code).style.display =  ""
+
+}
+</script>
+<TABLE width="100%" cellpadding="0" cellspacing="0"  class=zizibe01 style="font-size:11" id = "stools">		
+
+<tr id = "def_stool">
+  <td><TABLE cellpadding="0" cellspacing="0" border="0" width="100%"   class=zizibe01>
+	<tr>
+	  <th>모듈 속성 설정</th>
+	</tr>
+	<TR>
+		<TD style="height:120px;text-align:center">설정할 모듈을 선택하세요.</TD>
+	</TR>
+	</TABLE></td>
+</tr>
+<TR>
+	<TD style = "padding:5px"> 
+
+			<!--{@ LIST2}-->
+			<div id = "{.name}[stool]" style="display:none;" >
+			<TABLE width = 100% class =zizibe01  id="part_table">
+						<tr>
+						 <th><b><img src = "/image/cube_molecule.png" align = absmiddle> <font color = #003399>{.title} 모듈 </b></th>
+						</tr>	
+						{? strstr(.name , "bbs_")} 
+							
+							<tr>
+							  <td>사이트 게시판을 여러가지 형태로 표출하는 기능입니다.<br>
+							  <br>
+							  <font style="color:#0066CC">디자인툴</font> 에서 디자인 및 여러 속성을 변경하실 수 있습니다.
+							  
+							  <br>
+							  
+							  </td>
+							</tr>
+							<tr>
+							  <td align = "center"><button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="fenster2('미리보기', '미리보기','/attach.view?name={.name}','10','100','420','270');"><img src = "/image/search_16.gif" align=absmiddle> 미리보기 </button> &nbsp;</td>
+							</tr>
+							<!--최근게시물 시리즈-->
+							{/}
+					
+							{? .name =="logo"}
+							<tr>
+							  <td >  
+							  <center><img src = "@/logo1.gif" style = "border:1px solid #EEEEEE"  ></center>
+							  
+							  <br>
+							   로고를 업로드하여 설정합니다.<br>
+							  <br>
+						
+							  로고를 변경하실려면 <font style="color:#0066CC">로고변경</font> 을 클릭하시면 됩니다.
+							</td>
+							</tr>
+							<tr>
+							  <td align = center>  
+							   <button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="return overlay2(this, 'popup_box2', 'rightbottom','로고변경','/lms_logo.setup','420','270');"><img src = "/image/colors.png" align=absmiddle> 로고변경 </button></td>
+							</tr>
+							{/}
+							{? .name =="top_menu" || .name =="smenu" || .name =="submenu"}
+								<tr>
+							  <td>사이트 메뉴구성을 관리합니다.<br>
+							  <br>
+							  <font style="color:#0066CC">디자인툴</font> 에서 디자인 및 여러 속성을 변경하실 수 있습니다.
+							  
+							  <br>
+
+							  
+							  </td>
+							</tr>
+							<tr>
+							 <td align = center> 
+							<button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="return overlay2(this, 'popup_box2', 'right','메뉴관리','/menu.admin.frame_no','760','480');"><img src = "/image/text_tree.png" align=absmiddle> 메뉴관리 </button>
+							</td>
+							</tr>
+							{/}
+							{? .name =="vote"}
+							<tr>
+							 <td align = center> 
+							<button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="return overlay2(this, 'popup_box2', 'right','설문조사 관리','/menu.admin.frame_no','760','480');"><img src = "/image/copy.png" align=absmiddle> 설문조사관리 </button>
+							</td>
+							</tr>
+
+							{/}
+
+						{? strstr(.name , "part_")} 
+							<!--최근게시물 시리즈-->
+					  <TR> 
+							<TD align = center style="padding:5px">					
+						추가 HTML를 편집 / 삭제 합니다.<br><br>
+							<button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="editPart('{.name}');"><img src = "/image/computer_16.gif" align=absmiddle> 편집 </button>
+						&nbsp;
+						<button style="border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onClick="deletePart('{.name}');"><img src = "/image/delete_16.gif" align=absmiddle> 삭제 </button>
+						</TD>
+						  </TR>
+								<!--최근게시물 시리즈-->
+							{/}
+						<tr>
+						  <td align = center>모듈 사이즈 조정</td>
+						</tr>
+						<tr>
+						  <td align = center>		
+							<div><a href= "javascript:changeHeight('{.name}','{.width}','{.title}',this.value,'up');" alt="높이 +"><img src = "/html/attach/admin/btn_up.gif" align="absmiddle"></a></div>
+
+						<div><a href= "javascript:changeWidth2('{.name}','{.width}','{.title}',this.value,'down');" alt="넒이 -"><img src = "/html/attach/admin/btn_left.gif" align="absmiddle"></a><a href= "javascript:changeWidth('{.name}','','{.title}');"><img src = "/html/attach/admin/btn_width.gif" alt="가로길이 조절"></a><a href= "javascript:changeWidth2('{.name}','{.width}','{.title}',this.value,'up');" alt="넒이 +"><img src = "/html/attach/admin/btn_right.gif" align="absmiddle"></a></div>
+						<div ><a href= "javascript:changeHeight('{.name}','{.width}','{.title}',this.value,'down');" alt="높이 -"><img src = "/html/attach/admin/btn_down.gif" align="absmiddle"></a></div>
+						사이즈 조절 단위 : <INPUT TYPE="text" id="{.name}[xxxe]" value = 10 style = "width : 20;font-size:11px" maxlength="2"> px
+						</td>
+						</tr>
+					<tr>
+						  <td style="padding-top:5px;padding-bottom:5px">가로사이즈는 4단계로 조정<br>
+						  세로 사이즈는 10px 단위로 조정<br><br>
+						
+						  <font color="red">※ 이 사이즈는 실제 50%배율의 사이즈입니다.</font>
+						  </td>
+						</tr>
+						<td>
+						  </TABLE>
+							<br>
+						</div>
+						{/}
+			</td>
+		</tr>
+		</TABLE>
+			</div>
+		<div style="float:left;" id="module_tool2">
+			<table width="100%" cellpadding="0" cellspacing="0"  class="zizibe01" align =right id="plusTable2">
+					
+						<tr>
+						  <th  style="padding:5">일반 모듈</th>
+						</tr>
+						<tr >
+						<td  height=100 style="padding:5">
+
+						<div style = "height:110px;width:100%" id="">
+
+						<TABLE width="100%" cellpadding="0" cellspacing="0"  class= "zizibe01" style="font-size:11" bgcolor="#FFFFFF" >
+						<!--{@ LIST2}-->
+						{? !strstr(.name , "bbs_")} 
+						{? !.is_part }
+						<TR>
+							<TD id="{.name}[chk]">  
+							<INPUT TYPE="checkbox" 
+							{? .layer != "NONE"} checked {/}  onclick ="moveLayout('{.name}',{? layout == 'main'}'MAIN'{:}'LEFT_{layout}'{/});" id="{.name}[chkbox]"> <img src = "/image/cube_molecule.png" align = absmiddle> {.title}
+							</td>
+						</TR>
+						
+						{/}
+						{/}
+						{/}
+						</TABLE>
+						
+						</td>
+						</tr>
+						</TABLE>
+
+			</div>
+			</div>
+
+<div id="module_tool4" style="float:left;padding-top:5">
+		<table width="100%" cellpadding="0" cellspacing="0"  class="zizibe01" align =right id="plusTable2">
+					<tr>
+						  <th  style="padding:5">게시판</th>
+						</tr>
+						<tr >
+						<td   style="padding:5">
+
+						<div style = "height:110px;width:100%" id="">
+						<TABLE width="100%" cellpadding="0" cellspacing="0"  class= "zizibe01" style="font-size:11" bgcolor="#FFFFFF" >
+						<!--{@ LIST2}-->
+						{? strstr(.name , "bbs_")} 
+						{? !.is_part }
+						<TR>
+							<TD id="{.name}[chk]">  
+							<INPUT TYPE="checkbox" 
+							{? .layer != "NONE"} checked {/}  onclick ="moveLayout('{.name}',{? layout == 'main'}'MAIN'{:}'LEFT_{layout}'{/});" id="{.name}[chkbox]"> <img src = "/image/cube_molecule.png" align = absmiddle> {.title}
+							</td>
+						</TR>
+						
+						{/}
+						{/}
+						{/}
+						</TABLE>						
+						</td>
+						</tr>
+
+						</TABLE>
+</div>
+</div>
+
+			<div style="float:left;padding-top:5" id="module_tool3">
+			<table width="100%" cellpadding="0" cellspacing="0"    align =right bgcolor="#ffffff" class="zizibe01">
+					
+						<tr>
+						  <th  style="padding:5">추가 HTML</th>
+						</tr>
+						<tr  style="padding:5">
+						<td   height= 80>
+
+						<div style = "height:110px;width:100%" id="">
+						<TABLE width="100%" cellpadding="0" cellspacing="0"  class="zizibe01" style="font-size:11" bgcolor="#FFFFFF"  id="plusTable">
+						<!--{@ LIST2}-->
+						{? .is_part }
+						<TR id = "{.name}[part_td]">
+						<TD style = "2" width = 76% > <INPUT TYPE="checkbox" 
+							{? .layer != "NONE"} checked {/}  onclick ="moveLayout('{.name}',{? layout == 'main'}'MAIN'{:}'LEFT_{layout}'{/});" id="{.name}[chkbox]"> <img src = "/image/cube_molecule_add.png" align = absmiddle> {.title} {? .is_part}&nbsp;&nbsp;<img src="/edit.gif" style="cursor:hand;" onclick="editPart('{.name}');"> <img src="/del.gif"  style="cursor:hand;" onclick="deletePart('{.name}');">{/}</TD>	
+						</TR>
+						 {/}
+					
+						{/}
+						</TABLE>
+
+						</td>
+						</tr>
+					<tr align="center" bgcolor = "#ffffff" >
+					<td >
+					
+					<button style="width:80px;border:1px solid #D8D8D8;font-size:11px;padding-top:3px;background-color:#F5F5F5" onclick="addPart(); "><img src = "/image/colors.png" align=absmiddle>HTML추가</button>
+				
+				</td>
+				</tr>
+				</table>
+	</div>
+	</div>
+	</TD>
+</TR>
+
+<tr>
+  <td colspan = 2 style="text-align:center;padding:5">
+  
+   <INPUT TYPE="hidden" NAME="main_layout_width" > <INPUT TYPE="hidden" NAME="main_layout_height">
+
+  {@ CSS_ALIGN_manage}
+{? .layout != "NONE"}
+	<INPUT TYPE="hidden" NAME="{.layout}_width" > <INPUT TYPE="hidden" NAME="{.layout}_height">
+{/}
+  {/}
+
+ <input type="submit" class="button2" value="저장">
+	</td>
+</tr>
+</TABLE>
+</form>
+
+<iframe width="0" height="0" frameborder="0" name="hidden_frame"></iframe>
+
+
+<script>
+
+		def_css('main_layout', '2' ,'N');
+		{@ CSS_ALIGN_manage}
+		def_css('{.layout}', '2' ,'N' ,'Y');
+		{/}
+		
+
+
+
+	{@ LIST}
+		MAIN_to_width = $('{.layer}').style.width ;	
+		MAIN_to_width = parseInt(MAIN_to_width)-2;
+		{? layout =="main"}
+	appendPanel('{.layer}','{.name}','{.title}','{.width}',["LEFT","MAIN","RIGHT","LOGO_TOP","TOP","FOOT","MAIN_TOP","MAIN_FOOT","TOP_BUTTON"],[MAIN_to_width],{.removable},{.is_part}, '{.avail_bg}', '{.height}','{.type}','{.line}','{.max}','{.len}','{.line_c}','{.subject}','{.img_w}','{.img_h}','{.index_}','{.Ptop}','{.Pleft}','{.Pright}','{.Pbottom}');
+	{:}
+	
+		appendPanel('{.layer}','{.name}','{.title}','{.width}',["LEFT_{layout}","RIGHT_{layout}","LOGO_TOP_{layout}","TOP_{layout}","FOOT","TOP_BUTTON_{layout}","MAIN_TOP","MAIN_FOOT"],[MAIN_to_width],{.removable},{.is_part}, '{.avail_bg}', '{.height}','{.type}','{.line}','{.max}','{.len}','{.line_c}','{.subject}','{.img_w}','{.img_h}','{.index_}','{.Ptop}','{.Pleft}','{.Pright}','{.Pbottom}');
+	{/}
+
+	{/}
+
+		resizeing('main_layout','Y');
+
+</script>
+
+</body>
+{? tmp1}
+<script>
+setTimeout(function(){document.layoutForm.submit();}, 800);
+ </script>
+{/}

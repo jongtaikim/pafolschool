@@ -1,0 +1,125 @@
+<div id="sub_content_area">
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.default.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+	function abledParse()
+	{
+		var len, count = 0;
+		len = orderForm.elements.length;
+
+		for( var i=0; i < len; i++ )
+		{
+			if( orderForm.elements[i].checked == true )count++; 
+		}
+		orderForm.elements['modify'].disabled = true;
+		orderForm.elements['delete'].disabled = true;
+		if( 0 < count )
+		{
+			if( count == 1)
+			{
+				orderForm.elements['modify'].disabled = false;
+			}else{
+				orderForm.elements['modify'].disabled = true;
+			}
+			orderForm.elements['delete'].disabled = false;
+		}
+	}
+	function MM_purpose( mode )
+	{
+		var code;
+
+		switch( mode )
+		{
+			case "modify": 
+				code = checkin();
+				location.href="?act=cafe.admin.story.modify&cafe_id={{cafe_id}}&page={{Page}}&id="+code;
+				break;
+			
+			case "delete": 
+				if( !confirm("삭제 후 복구할 수 없습니다. 삭제하시겠습니까?"))return;
+				go("orderForm", "?act=cafe.admin.story.list&cafe_id={{cafe_id}}&page={{Page}}" );
+				break;
+
+			default: return;
+		}
+	}
+	function checkin()
+	{
+		var len,num;
+		len = orderForm.elements.length;
+		for(var i=0; i < len; i++ )
+		{
+			if( orderForm.elements[i].checked == true ) num = orderForm.elements[i].value;
+		}
+		return num;
+	}
+	//-->
+	</SCRIPT>
+
+	<div id="admin_sub_content">
+		
+			 <h3 id="admin_sub_title">메인스토리</h3>
+		
+		<h3 id="admin_sub_title">{{nev_message}}</h3>
+		<div id="help_top_area">
+			<ul id="help_top_content">
+				<li>- 새 메인스토리 입력은 하단에 등록으로 생성이 가능합니다.</li>
+				<li>- 등록된 메인스토리의 관리는 한개의 메인스토리를 check 한후 수정, 삭제가 가능합니다</li>
+			</ul>
+		</div>		
+		<Form NAME="orderForm" METHOD='POST'>
+		<input type="hidden" name="mode">
+		<div id="admin_table_area">
+		
+		<TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" HEIGHT="80%" WIDTH="100%">
+		<FORM NAME="orderForm" METHOD="POST" onSubmit="return false;">
+		<TR>
+			<TD VALIGN="TOP" bgcolor="#FFFFFF">
+			<table width="100%" border="0" cellpadding="1" cellspacing="1" bgcolor="D7D7D7">
+			<tr align="center" bgcolor="F5F5F5"> 
+				<td width="68%" ><b>제목</b></td>
+				<td width="20%"><b>등록일</b></td>
+				<td width="12%"><b>관리</b></td>
+			</tr>
+			<!-- DYNAMIC AREA 'BOARD_LIST' -->
+			<tr  bgcolor="FFFFFF"> 
+				<td>&nbsp;{{_board_title}}</td>
+				<td align="center">{{_board_date}}</td>
+				<td align="center"><input type="checkbox" name="code[]" value="{{_board_serial}}" onClick="abledParse();"><input type="hidden" name="file{{_board_serial}}" value="{{_board_refilename}}"></td>
+			</tr>
+			<!-- DYNAMIC AREA 'BOARD_LIST' -->
+			</table>
+			</TD>
+		</TR>
+		<TR>
+			<TD height="20" align="center" bgcolor="#FFFFFF">
+			<script language="JavaScript">
+			<!--
+			function PageChange (page)
+			{
+				location.href="/cafe.php?act=cafe.admin.story.list&cafe_id={{cafe_id}}&Page="+page;
+			}	
+			//-->
+			</script>	
+			{{var_control}}
+			</TD>
+		</TR>
+		<TR>
+			<TD height="35" align="right">
+			<table cellspacing="0" cellpadding="0" border="0" width="97%">
+			<tr>
+				<td>
+				<input type="button" value="등록" class="button1" onClick="location.href='/cafe.php?act=cafe.admin.story.write&cafe_id={{cafe_id}}&page={{Page}}'">
+				<input type="button" value="수정(M)" class="button1" disabled id="modify" onClick="MM_purpose('modify')">
+				<input type="button" value="삭제(M)" class="button1" disabled id="delete" onClick="MM_purpose('delete')">
+				</td>
+			</tr>
+			</table>
+			</TD>
+		</TR>
+		</FORM>
+		</TABLE>
+	</div>
+
+</div>
+</div>		<!-- <div id="sub_content_area"> -->

@@ -1,0 +1,238 @@
+<!-- <link href="/css/admin_ver2006_2.css" rel="stylesheet" type="text/css"> -->
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+	
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.default.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.join.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+	function checkLogic()
+	{
+		var form = '';
+		nameArray = new Array("title","url");
+		msgeArray = new Array("제목 입력란","URL 입력란");
+
+		
+
+
+		if (entryForm.url.value.indexOf("http://") != 0)
+		{
+			alert("URL은 http://로 시작해야 합니다. 다시 입력해 주세요.");
+			return;
+		}
+
+		var len = entryForm.elements.length;
+		for( var i=0; i < len; i++ )
+		{
+			if(entryForm.elements[i].checked == true) break;
+		}
+		if( i==len )
+		{
+			ErrorMsg(4,"오픈방법 선택");
+			return;
+		}
+		go("entryForm","/menu.admin.site_add");
+	}
+	function entryLogic()
+	{
+		entryForm.mode.value = "write";
+		if(validate($('entryForm'))){
+		checkLogic();
+		}
+	}
+	function viewLogic(num)
+	{
+		var link_form = eval( "orderForm.dbh_link"+num );
+		var open_form = eval( "orderForm.dbh_open"+num );
+
+		entryForm.title.value = orderForm.choice.options[orderForm.choice.selectedIndex].text;
+		entryForm.url.value = link_form.value;
+		( open_form.value=="Y") ? entryForm.open[0].checked=true : entryForm.open[1].checked=true ;
+
+		entryForm.code.value = num;
+	}
+	function modifyLogic()
+	{
+		if( !entryForm.code.value )
+		{
+			alert("사이트 바로가기 등록 리스트에서 수정할 대상을 선택하시고 수정 후 버튼을 클릭하세요 !!");
+			return;
+		}
+		entryForm.mode.value = "modify";
+		checkLogic();
+	}
+	function deleteLogic()
+	{
+		
+		if( !entryForm.code.value )
+		{
+			alert("사이트 바로가기 등록 리스트에서 삭제할 대상을 선택하시고 삭제 버튼을 클릭하세요 !!");
+			return;
+		}
+		var str = orderForm.choice.options[orderForm.choice.selectedIndex].text;
+		if(!confirm( "선택하신 "+str+"을 삭제합니다. 계속 진행 하시겠습니까?"))return;
+		entryForm.mode.value = "delete";
+		go("entryForm","/menu.admin.site_add");
+	}
+	//-->
+	</SCRIPT>
+</HEAD>
+<BODY>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	
+<!-- 상단 Start -->
+				<tr>
+					<td width="11px" background="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif" >
+							<tr>
+								<td width="12px" height="28px" background="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">사이트 바로가기 등록</td>
+								<td width="14px" background="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11px" align="right" background="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+			<!-- 상단 End -->
+	<tr>
+		<td background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:15px;">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr valign="top">
+					<td>
+						<table cellspacing="0" cellpadding="0" border="0" width="200">
+							<form name="orderForm" method="post">
+							<input type="hidden" name="mode" value="delete">
+							<tr>
+								<td colspan="2">
+								<select multiple style="width:100%;" size="15" onChange="viewLogic(this.value);" name="choice">
+								{@ LIST}
+								<OPTION VALUE="{.num_serial}">{.str_title}</OPTION>
+								{/}
+								</select>
+								
+								{@ LIST}
+								<input type='hidden' name='dbh_link{.index_ +1}' value='{.str_url}'>
+								<input type='hidden' name='dbh_open{.index_ +1}' value='{.str_open}'>
+								{/}
+								</td>
+							</tr>
+						
+						</form>
+						</table>
+					</td>
+					<td width="10"></td>
+					<td>
+						<!-- 1 Start -->
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+							<tr>
+								<td width="100%" class="table_top_line02"></td>
+							</tr>			
+						</table>
+						<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="c4d4e7">
+							<form name="entryForm"  id="entryForm"  method="post" onSubmit="entryLogic(); return false;">
+							<input type="hidden" name="mode" value="write">
+							<input type="hidden" name="code">
+							<tr height="40" bgcolor="#FFFFFF">
+								<td class="table02_title05">제목 입력</td>
+								<td>
+									<table cellpadding="0" cellspacing="0" border="0" height="100%">
+										<tr>
+											<td width="2" bgcolor="#fafbfd" rowspan="2"></td>
+											<td width="8"rowspan="3" rowspan="2"></td>
+											<td><input type="text" name="title" style="font-size:12px;" size="35" onKeyup="cal_byte('title', 20);" hname="제목" required class="fom01"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr height="40" bgcolor="#FFFFFF">
+								<td class="table02_title05" width="110">URL 입력</td>
+								<td>
+									<table cellpadding="0" cellspacing="0" border="0" height="100%">
+										<tr>
+											<td width="2" bgcolor="#fafbfd" rowspan="2"></td>
+											<td width="8"rowspan="3" rowspan="2"></td>
+											<td><input type="text" name="url" style="font-size:12px;" size="35" value="http://" onKeyup="cal_byte('url', 150);" hname="URL" required class="fom01"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr height="40" bgcolor="#FFFFFF">
+								<td class="table02_title05">오픈방법 선택</td>
+								<td>
+									<table cellpadding="0" cellspacing="0" border="0" height="100%">
+										<tr>
+											<td width="2" bgcolor="#fafbfd" rowspan="2"></td>
+											<td width="8"rowspan="3" rowspan="2"></td>
+											<td><input type="radio" name="open" value="Y" id="openYes"> <label for="openYes" title="새창에서 선택한 사이트를 엽니다">새 창</label></td>
+											<td><input type="radio" name="open" value="N" id="openNon"> <label for="openNon" title="현재창에서 선택한 사이트를 엽니다">현재창</label></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td colspan="3" width="100%" class="table_btm_line01"></td>
+							</tr>
+						</table>
+						<!-- 1 End -->
+						
+						<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td height="10"></td>
+						</tr>
+						<tr>
+							<td><input type="image" src="/html/admin/images/btn_reg_02.gif" border="0">&nbsp;<img src="/html/admin/images/btn_modify_01.gif" border="0" style="cursor:hand" onclick="modifyLogic();"></td>
+							<td align="right"><img src="/html/admin/images/btn_delete_06.gif" border="0" style="cursor:hand" onclick="deleteLogic();"></td>
+						</tr>
+						</form>
+					</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+			ㆍ왼쪽 '모든메뉴' 상자에서 바로가기 메뉴로 추가할 메뉴를 선택하고 '넣기' 버튼을 눌러 오른쪽 상자로 이동시킵니다. <br>
+						ㆍ반드시 '저장' 버튼을 눌러 저장하셔야 변경사항이 적용됩니다. 
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+
+
+

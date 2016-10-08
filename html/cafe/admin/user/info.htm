@@ -1,0 +1,74 @@
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<title>상세정보</title>
+<link href="/css/sangin.css" rel="stylesheet" type="text/css">
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+<body leftmargin="0" topmargin="0">
+<table width="480" height="265" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30" ><table width="100%" border="0" cellpadding="5" cellspacing="0">
+        <tr> 
+          <td height="30" bgcolor="#6FB3EA" class="white" >학급홈피 회원정보 상세보기</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td valign="top"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="D7D7D7">
+              <tr> 
+                <td width="25%" height="17" align="center" bgcolor="F5F5F5"><b>이름</b></td>
+                <td width="25%" align="center" bgcolor="#FFFFFF">{{str_name}}</td>
+                <td width="25%" align="center" bgcolor="F5F5F5"><b>회원유형 </b></td>
+                <td width="25%" align="center" bgcolor="#FFFFFF">{{str_memtype}}</td>
+              </tr>
+              <!-- IF 'Use_User_Info' -->
+              <tr> 
+                <td height="17" align="center" bgcolor="F5F5F5"><strong>생년월일</strong></td>
+                <td align="center" bgcolor="#FFFFFF" colspan=3>{{birth1}}년 {{birth2}}월 {{birth3}}일 ({{birth4}})</td>
+                
+              </tr>
+              <!-- ENDIF 'Use_User_Info' -->
+              <tr> 
+                <td height="17" align="center" bgcolor="F5F5F5"><strong>아이디</strong></td>
+                <td colspan="3" bgcolor="#FFFFFF" align="center">{{str_logonid}}<!-- IF 'EWUT_PASS' --><hr><b>SystemID/PW <font color='#0c80c9'>(EWUT 만 보임)</font></b><br>{{str_id}}/{{str_pass}}<!-- ENDIF 'EWUT_PASS' --></td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="D7D7D7">
+              <tr> 
+                <td width="25%" height="17" align="center" bgcolor="F5F5F5"><b>학급정보</b></td>
+                <td bgcolor="#FFFFFF" align="center">{{class_title}}</td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="D7D7D7">
+              <tr> 
+                <td width="25%" height="17" align="center" bgcolor="F5F5F5">학급홈피
+                  가입일</td>
+                <td width="75%" align="center" bgcolor="#FFFFFF" colspan=3>{{okdate}}</td>                
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td height="35" align="center"><img src="image/cafe/admin/confirmation.gif" width="39" height="21" onclick="self.close()";></td>
+  </tr>
+</table>

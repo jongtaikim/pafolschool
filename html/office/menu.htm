@@ -1,0 +1,25 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	var oidx = null;
+	function linkStyle(idx) {
+		if(oidx) $(oidx).style.fontWeight="";
+		$(idx).style.fontWeight="bold";
+		oidx = idx;
+	}
+//-->
+</SCRIPT>
+<table cellpadding="2" cellspacing="0" border="0" width="100%" id="linkmenu">
+{@LIST_topmenu}
+	<tr><td>
+		<table cellpadding="0" cellspacing="0" border="0" width="100%" >
+		<tr><td height="20"><img src="./images/icon.gif" align="absmiddle"><a href="{?.str_link}{.str_link}{:}#{/}" {?.str_link}target="{?.str_target}{.str_target}{:}officemain{/}"{/} style="color:525252" id="link{.num_mcode}" onclick="linkStyle('link{.num_mcode}')">{.str_title}</a></td></tr>
+		{@sub_menu}
+			<tr><td style="padding-left:20px;"><a href="{?..str_link}{..str_link}{:}#{/}" {?..str_link}target="{?..str_target}{..str_target}{:}officemain{/}"{/} style="color:525252"  id="link{..num_mcode}" onclick="linkStyle('link{..num_mcode}')">{..str_title}</a></td></tr>
+		{/}
+		<tr><td height="2"></td></tr>
+		<tr><td height="1" background="./images/line.gif"></td></tr>
+		<tr><td height="4"></td></tr>
+		</table>
+	</td></tr>
+{/}
+</table>

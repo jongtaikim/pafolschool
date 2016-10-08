@@ -1,0 +1,93 @@
+<body>
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<form name="basicinfo" method="post" onsubmit="return validate(this);">
+<table class="table01">
+	<tbody>
+		<tr>
+			<th colspan="2">기관정보</th>
+		</tr> 
+		<tr>
+			<th><span class="required">*</span> 기관명</th>
+			<td><input type="text" size="50" name="str_organ" hname="기관명" value="{str_organ}" required="true" trim="trim" /></td>
+		</tr>
+		<tr>
+			<th><span class="required">*</span> 대표</th>
+			<td>
+				<input type="text" size="20" name="str_ceo_name" hname="대표 이름" value="{str_ceo_name}" maxbyte="20" required="true" trim="trim">
+			</td>
+		</tr>
+		<tr>
+			<th><span class="required">*</span> 대표 이메일</th>
+			<td><input type="text" size="50" name="str_ceo_email" hname="대표 이메일" value="{str_ceo_email}" maxbyte="50" required="true" trim="trim" /></td>
+		</tr>
+		<tr>
+			<th><span class="required">*</span> 기관 전화번호</th>
+			<td>
+				<input type="text" name="str_phone" hname="기관 전화번호" value="{str_phone}" option="phone" required="true" trim="trim">
+			</td>
+		</tr>
+		<tr>
+			<th>기관 팩스번호</th>
+			<td>
+				<input type="text" name="str_fax" hname="기관 팩스번호" value="{str_fax}" option="phone" trim="trim">
+			</td>
+		</tr>
+		<tr>
+			<th><span class="required">*</span> 주소</th>
+			<td>
+				<wa:zipsearch name="chr_zip" hname="우편번호" value="{chr_zip}" addr="str_addr1" focus="str_addr2" required="true">우편번호 검색</wa:zipsearch> <br />
+				<input type="text" size="50" name="str_addr1" value="{str_addr1}" required="true" maxbyte="100" readonly /><br>
+				<input type="text" size="50" name="str_addr2" value="{str_addr2}" required="true" maxbyte="100" trim="trim" />
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2">LMS 관리자 정보</th>
+		</tr>
+		<tr>
+			<th>관리자 명</th>
+			<td>
+				<input type="text" size="20" name="str_master_name" hname="관리자 명" value="{str_master_name}" maxbyte="20" trim="trim">
+			</td>
+		</tr>
+		<tr>
+			<th>관리자 전화번호</th>
+			<td>
+				<input type="text" size="20" name="str_master_phone" hname="관리자 전화번호" value="{str_master_phone}" maxbyte="20" trim="trim">
+			</td>
+		</tr>
+		<tr>
+			<th>관리자 휴대폰번호</th>
+			<td>
+				<input type="text" size="20" name="str_master_mobile" hname="관리자 휴대폰번호" value="{str_master_mobile}" maxbyte="20" trim="trim">
+			</td>
+		</tr>
+		<tr>
+			<th>관리자 Email</th>
+			<td>
+				<input type="text" size="20" name="str_master_email" hname="관리자 Email" value="{str_master_email}" maxbyte="20" trim="trim">
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2">LMS 정보</th>
+		</tr>
+		<tr>
+			<th>LMS 타이틀</th>
+			<td>
+				<input type="text" name="str_title" hname="LMS 타이틀" size="50" maxbyte="100" value="{str_title}"><br>
+				※ LMS 접속시 브라이저 상단에 나타나는 제목입니다.
+			</td>
+		</tr>
+		<tr>
+			<th>LMS 비밀번호</th>
+			<td>
+				<input type="password" name="str_password" hname="비밀번호" maxbyte="12" value="">
+				※ 입력하시면 변경됩니다.
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input class="button2" type="submit" value="확인" /></td>
+		</tr>
+	</tbody>
+</table>
+</form>
+</body>

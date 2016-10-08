@@ -1,0 +1,214 @@
+<style type="text/css">
+.title {height:29; text-align:center; padding-top:1}
+.title1 {color:#464444;font-family:돋움; font-weight:bold; padding-top:1}
+.menu {color:#464444; font-family:돋움; padding:5 0 0 10}
+
+</style>
+
+<table cellpadding="0" cellspacing="0" border="0"  width="100%" background="/html/image/leftmenu_bg.gif">
+	<tr><td><img src="/html/image/leftmenu_top.gif"></td></tr>
+	<tr>
+		<td valign="top" width="100%" background="/html/image/leftmenu_topbg.gif" class="title"><img src='/f.php?text=강좌관리&font=-윤고딕330&size2=7.5&bg=80b4d4&color=ffffff'></td>
+	</tr>
+<!-- 주문관리 시작 -->	
+	<tr>
+		<td style="padding:6 10 5 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/lms.admin.order_m_list">주문관리</a></td>
+				</tr>
+			</table>
+		</td>
+		</tr>
+
+<!-- 서비스신청회원 시작 -->	
+<? if(_OID == 20252) { ?> 
+	<tr>
+		<td style="padding:0 0 0 10" >
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/member.admin.lims_list" >서비스신청회원</a></td>
+				</tr>
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/lms.admin.order_m_list_old" style = "color:red">이전신청내역</a></td>
+				</tr>
+
+
+				<tr><td height="5"></td></tr>
+				<tr><td colspan="2" height="1" bgcolor="#eaeaea"></td></tr>
+			</table>
+		</td>	
+	</tr>
+<? } ?>
+
+<!-- OFFLINE 수강관리 끝 -->
+		<tr>
+			<td style="padding:0 10 0 10">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="f7f7f7">
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+					<tr><td height="3"></td></tr>
+					
+					<tr><td class="menu"><a href="/pay.admin.order_list">{? act2 == "/pay.admin.order_list" }<b style="color:#000099"> {/}주문신청관리</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.order_m_list">{? act2 == "/lms.admin.order_m_list" }<b style="color:#000099"> {/}강좌신청관리</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.order_m_list_off">{? act2 == "/lms.admin.order_m_list_off" }<b style="color:#000099">{/}OFFLINE신청관리</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.order_b_list">{? act2 == "/lms.admin.order_b_list" }<b style="color:#000099"> {/}교재신청관리</a></td></tr>
+					
+					
+
+					<tr><td class="menu"><a href="/lms.admin.log">{? act2 == "/lms.admin.log" }<b style="color:#000099">{/}결제정보Log</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.order_cht">{? act2 == "/lms.admin.order_cht" }<b style="color:#000099">{/}매출통계</a></td></tr>
+					<tr><td height="6"></td></tr>
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</tr>
+<!-- 주문관리 끝 -->
+<!-- OFFLINE 수강관리 시작 -->	
+<? if(_OID == 20250) { ?> 	
+	<tr>
+		<td style="padding:10 10 5 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/lms.admin.order_m_list_off">OFFLINE 수강관리</a></td>
+				</tr>
+			</table>
+		</td>
+		<tr>
+			<td style="padding:0 10 0 10">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="f7f7f7">
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+					<tr><td height="3"></td></tr>					
+					<tr><td class="menu"><a href="/lms.admin.order_m_list_off">전체</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.order_m_list_off?search_key6=a.str_off_st&search_value6=Y">인증자</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.order_m_list_off?search_key6=a.str_off_st&search_value6=N">미인증</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.order_m_list_off?search_key6=a.str_off_st&search_value6=C">환불자</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.order_m_list_off?search_key6=a.str_off_st&search_value6=T">재수강</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.order_m_list_off?search_key6=a.str_off_st&search_value6=H">수강연기</a></td></tr>
+					<tr><td height="6"></td></tr>
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</tr>
+<? } ?>
+
+<!-- 서비스신청회원 끝 -->
+
+<!-- 강좌관리 시작 -->	
+	<tr>
+		<td style="padding:10 10 5 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/lms.admin.input_m_list_time">강좌관리</a></td>
+				</tr>
+			</table>
+		</td>
+		<tr>
+			<td style="padding:0 10 0 10">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="f7f7f7">
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+					<tr><td height="3"></td></tr>					
+					<? if(_LIVE) { ?>
+					<tr><td class="menu"><a href="/lms.admin.input_m_list_time">{? act2 == "/lms.admin.input_m_list_time" }<b style="color:#000099">{/}실시간강좌목록</a></td></tr>
+					<? } ?>
+					<tr><td class="menu"><a href="/lms.admin.input_m_list">{? act2 == "/lms.admin.input_m_list" }<b style="color:#000099">{/}동영상강좌목록</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.input_m_list_off">{? act2 == "/lms.admin.input_m_list_off" }<b style="color:#000099">{/}OFFLINE강좌목록</a></td></tr>
+
+					
+					<tr><td class="menu"><a href="/lms.admin.input_array_off">{? act2 == "/lms.admin.input_array_off" }<b style="color:#000099">{/}시간표순서변경</a></td></tr>
+					<tr><td height="6"></td></tr>
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</tr>
+<!-- 강좌관리 끝 -->
+
+<!-- 강사 및 교재관리 시작 -->	
+	<tr>
+		<td style="padding:10 10 5 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/lms.admin.input_tach_list">강좌관리</a></td>
+				</tr>
+			</table>
+		</td>
+		<tr>
+			<td style="padding:0 10 0 10">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="f7f7f7">
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+					<tr><td height="3"></td></tr>					
+					<tr><td class="menu"><a href="/lms.admin.input_tach_list">{? act2 == "/lms.admin.input_tach_list" }<b style="color:#000099">{/}강사리스트</a></td></tr>
+					<tr><td class="menu"><a href="/lms.admin.input_book_list">{? act2 == "/lms.admin.input_book_list" }<b style="color:#000099">{/}교재목록</a></td></tr>
+					<!-- <tr><td class="menu"><a href="/lms.admin.input_tach_body">강사신청리스트</a></td></tr> -->
+					<tr><td height="6"></td></tr>
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</tr>
+<!-- 강사 및 교재관리 끝 -->
+
+
+
+
+
+
+
+
+<!-- 스탁스토리 추가기능 시작 -->	
+<? if(_OID == 20252) { ?> 
+	<tr>
+		<td style="padding:10 10 5 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/stockstory.admin.recom_item">스탁스토리 추가기능</a></td>
+				</tr>
+			</table>
+		</td>
+		<tr>
+			<td style="padding:0 10 0 10">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="f7f7f7">
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+					<tr><td height="3"></td></tr>					
+					
+					<tr><td class="menu"><a href="/stockstory.admin.recom_item">추천종목관리</a></td></tr>
+					<tr><td class="menu"><a href="/member.admin.cp_list">북쿠폰관리</a></td></tr>
+					<tr><td height="6"></td></tr>
+					<tr><td height="1" bgcolor="#eaeaea"></td></tr>
+				</table>
+			</td>
+		</tr>
+	</tr>
+<? } ?>
+<!-- 스탁스토리 추가기능 끝 -->
+
+
+
+<!-- 환경설정 시작 -->	
+	<tr>
+		<td style="padding:7 10 0 10">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="13"><img src="/html/image/icon_blue.gif"></td>
+					<td class="title1"><a href="/lms.admin.setup">환경설정</a></td>
+				</tr>
+				<tr><td height="5"></td></tr>
+				<tr><td colspan="2" height="1" bgcolor="#eaeaea"></td></tr>
+			</table>
+		</td>	
+	</tr>
+<!-- 환경설정 끝 -->
+
+
+<!-- 전체 메세지 보내기 끝 -->
+	<tr><td><img src="/html/image/leftmenu_bot.gif"></td></tr>
+</table>

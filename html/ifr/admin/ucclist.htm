@@ -1,0 +1,194 @@
+
+<style>
+.f1 {font-size:11px; font-family:돋움; color:3d3d3d; padding:8;}
+.f2 {font-size:11px; font-family:돋움; color:666666; padding:5;}
+.line1 {padding-top:5}
+.line2 {padding-top:6}
+.box1 {padding-top:3}
+.box2 {padding-top:0}
+</style>
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script language="Javascript">
+function update(val, id) {
+	var param = "val="+val+"&id="+id;
+	sendRequest("/ifr.admin.update", param, FromServer, "POST");
+}
+function FromServer() {
+	if (httpRequest.readyState == 4) {
+		if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			if(str_text =="Y"){
+				alert('변경되었습니다.');
+			}else{
+				alert(str_text);
+				//alert('데이터를 모두 입력하시기 바랍니다.');
+			}
+		}
+	}
+}
+
+</script>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+
+<tr>
+	<td height="15"></td>
+</tr>
+<tr>
+	<td align="center" valign="top">
+
+		<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+		<tr>
+			<td>
+				총 {total} 개의 강좌가 등록되어있습니다.
+			</td>
+			<td align=right>
+				<table align="center" border=0 cellspacing=0 cellpadding=0>
+				<form name="frm1">
+				<tr><td>
+					<select name="str_main_view" onchange="this.form.submit();">
+					<option value="">전체</option>
+					<option value="Y" {?str_main_view == 'Y'}selected{/}>메인표출</option>
+					<option value="N" {?str_main_view == 'N'}selected{/}>메인표출안함</option>
+					</select>
+
+					<select name="searchkey">
+					<option value="str_content_name" {?searchkey == 'str_content_name'}selected{/}>제목</option>
+					<option value="str_content_desc" {?searchkey == 'str_content_desc'}selected{/}>소개</option>
+					</select>
+					<input type=text name="searchvalue" size="15" class="button" value="{searchvalue}">
+					<input type=submit value="검색" class="button">
+				</td></tr>
+				</form>
+				</table>
+			</td>
+		</tr>
+		</table>
+
+		<table cellpadding="0" cellspacing="0" border="0" width="700">
+		<tr>
+			<td height="3" bgcolor="#ececec"></td>
+		</tr>
+		<tr>
+			<td height="1" bgcolor="#c0c0c0"></td>
+		</tr>
+		<tr>
+			<td height="1" bgcolor="#ffffff"></td>
+		</tr>
+		<tr>
+			<td height="1" bgcolor="#ededed"></td>
+		</tr>
+		<tr>
+			<td bgcolor="#FFFFFF" valign="top">
+				<table cellpadding="0" cellspacing="0" border="0" width="700" align=center>
+				<tr height="28" bgcolor="#f3f3f3" align=center>
+					<td class="f1" width="150">No</td>
+					<td class="line1" width="1"><img src="/image/line.gif"></td>
+
+					<td class="f1" colspan=3>UCC소개</td>
+					<td class="line1" width="1"><img src="/image/line.gif"></td>
+
+					<td class="f1" width="150">상태</td>
+				</tr>
+				<tr>
+					<td colspan=6 height="1" bgcolor="#ededed"></td>
+				</tr>
+				<!--{@ LIST}-->
+				<tr>
+					<td class="f2">{fno - .index_}</td>
+					<td></td>
+
+					<td class="f2"><img src='http://<?=_MOV_URL?>/upload/file/{.str_image_path}{.str_image_name}' border='0' alt='' width=80></td>
+					<td></td>
+					<td class="f2" align=left>
+						<b>{.str_content_name}</b><br>
+						{.str_content_desc}
+					</td>
+					<td></td>
+
+					<td class="f2">
+						<select name="str_main_view" onchange="update(this.value, '{.str_content_id}');">
+						<option value="N" {?.str_main_view == 'N'}selected{/}>메인표출안함</option>
+						<option value="Y" {?.str_main_view == 'Y'}selected{/}>메인표출</option>
+						</select>
+					</td>
+
+				</tr>
+				<tr>
+					<td colspan=6 height="4"></td>
+				</tr>
+				<tr>
+					<td colspan="6" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+				</tr>
+
+				{:}
+
+				<tr>
+					<td colspan="6" width="100%" height="30"  align=center>데이터가 없습니다.</td>
+				</tr>
+				{/}
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="1" bgcolor="#ededed"></td>
+		</tr>
+		<tr>
+			<td height="1" bgcolor="#ffffff"></td>
+		</tr>
+		<tr>
+			<td height="1" bgcolor="#c0c0c0"></td>
+		</tr>
+		<tr>
+			<td height="3" bgcolor="#ececec"></td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="f3f3f3">
+				<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td height="10"></td>
+				</tr>
+				<tr>
+					<td><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/image/btn_prevpage.gif" nexticon="/image/btn_nextpage.gif" firsticon="/image/btn_firstpage.gif" lasticon="/image/btn_lastpage.gif" /></td>
+				</tr>
+				<tr>
+					<td height="10"></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+	</table>
+
+	<br>
+	<table cellpadding="0" cellspacing="0" border="0" width="98%" height="52" background="/html/member/admin/image/tip_bg.gif">
+	<tr>
+		<td width="4"><img src="/html/member/admin/image/tip_left.gif"></td>
+		<td width="118"><img src="/html/member/admin/image/tip.gif"></td>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td height="1"></td>
+			</tr>
+			<tr>
+				<td style="padding:0 6 3 13"><img src="/html/image/ico_triangle1.gif"></td>
+				<td style="color:545963; font-size:11px">강좌정보수정에서 강좌의 설정을 변경할 수 있습니다.</td>
+			</tr>
+			<tr>
+				<td height="4"></td>
+			</tr>
+			<tr>
+				<td style="padding:0 6 3 13"></td>
+				<td style="color:545963; font-size:11px"></td>
+			</tr>
+			</table>
+		</td>
+		<td width="4" align="right"><img src="/html/member/admin/image/tip_right.gif"></td>
+	</tr>
+	</table>

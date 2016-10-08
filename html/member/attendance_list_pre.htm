@@ -1,0 +1,23 @@
+<table border="0" cellspacing="0" cellpadding="0" width="580" align="center">
+	<tr>
+		<td align="center">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td height="20"></td></tr></table>		
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<form method="post" action="member.attendance_list" name="chul_form1">
+			<tr>
+				날짜&nbsp;&nbsp;<wa:datepicker name="dt_date" value="{dt_date}{num_date}" />&nbsp;
+				<!-- <input type="button" class="button_log" style="width:50" value="조회" onClick="chul_form1.submit();">  -->
+				<input type="submit" style="width:50;height:28;font-size:11px;" value="조회"><br>
+			</tr>
+			<input type="hidden" name="subtarget" value="">
+			<input type="hidden" name="hak" value="">
+			<input type="hidden" name="ban" value="">	
+			<input type="hidden" name="search_date" value="{dt_date}{num_date}">
+		</form>
+		</table>
+		
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td height="20"></td></tr></table>		
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td><b><font color="#FF66FF">[  {num_date} 출결상황 ]</font></b><br><br>날짜를 선택하신 후 조회버튼을 눌러주시기 바랍니다.</td></tr></table>		
+		
+			
+</table>

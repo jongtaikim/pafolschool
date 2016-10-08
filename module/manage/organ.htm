@@ -1,0 +1,79 @@
+<body>
+
+<div style="width:98%;">
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<script type="text/javascript" src="js/lib.validate.js"></script>
+		<form name="searchForm" onsubmit="return validate(this);" style="margin:0px;">
+	
+		<td width="70">			
+			<select name="search_key">
+				<option value="str_organ">기관명</option>
+				<option value="str_domain">도메인</option>
+				<option value="num_oid">OID</option>
+			</select>		
+		</td>
+		<td width="133"><input type="text" name="search_value" value="{search_value}" style="border:1 solid #cecece; height:20px"></td>
+		<td style="padding-top:1"><input TYPE="image" src="/image/btn_search.gif" value="검색" align="absmiddle"></td>
+
+		</form>
+		<td align="right"><input type="button" class="button" value="생성" onclick="window.open('/manage.makehost?mcode=1011','_self');"></td>
+	</tr>
+	<tr><td height="8"></td></tr>
+</table>
+
+<table width="100%" class="zizibe03">
+	<tr>
+		<th>OID</th>
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>	
+		<th>기관명</th>
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		<th>만료일</th>
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		<th>도메인</th>	
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		<th>담당자</th>
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		<th>처리현황</th>
+		
+	</tr>
+	<!--{@ LIST}-->
+	<tr>
+		<td width='10%' align='center'>{.num_oid}</td>
+		<td><img src="/image/line.gif"></td>
+		<td style="padding-left:8"><a href="/manage.order_list?num_step={.num_step}">{.str_organ}</a></td>
+		<td><img src="/image/line.gif"></td>
+		<td  width='11%' align="center"><font  color="f2006c">{? .str_end_date}{.str_end_date}{:}없음{/}</FONT></td>
+		<td><img src="/image/line.gif"></td>
+		<td  style="padding-left:8">
+			{? .str_domain}<a href="http://{.str_domain}" target="_blank">{.str_domain}</a><br>{/}
+			{? .str_host}<a href="http://{.str_host}" target="_blank">{.str_host}</a>{/}
+		</td>
+		<td><img src="/image/line.gif"></td>
+		<td width='9%' align="center" >{.str_master_name}</td>
+		<td><img src="/image/line.gif"></td>
+		<td width='12%'>
+			{? .str_st == "1"}<FONT COLOR="red">신청확인중</FONT>{/} 
+			{? .str_st == "2"}<FONT COLOR="#FF6600">신청확인</FONT>{/} 
+			{? .str_st == "3"}<FONT COLOR="#0033CC">계약진행중</FONT>{/} 
+			{? .str_st == "4"}<FONT COLOR="#009900">디자인작업중</FONT>{/} 
+			{? .str_st == "5"}<FONT COLOR="#660099">내용이관중</FONT>{/} 
+			{? .str_st == "6"}<FONT COLOR="#333300">세팅중</FONT>{/} 
+			{? .str_st == "7"}<FONT COLOR="#0000FF">서비스중</FONT>{/} 
+		</td>
+	</tr>
+	<!--{:}-->
+	<tr height="100">
+		<td colspan="11" align="center">검색된 자료가 없습니다.</td>
+	</tr>
+	<!--{/}-->
+</table>
+<table width="100%">
+	<tr><td height="10"></td></tr>
+	<tr><td align="center"><wa:paging total="{total}" listnum="{listnum}" /></td></tr>
+	<tr><td height="10"></td></tr>
+</table>
+</div>
+</body>

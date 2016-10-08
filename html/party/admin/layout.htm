@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<title>{str_pname} 입니다.</title>
+<link rel="stylesheet" type="text/css" href="/css/lightbox.css" media="screen,tv" />
+<link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+<script type="text/javascript" charset="UTF-8" src="/js/spica.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/js/lightbox_plus.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+</head>
+<style type="text/css" >
+
+.t_handle { cursor:move;position:absolute;top:0px; }
+
+#root{width:100%; text-align:center;background-color:#9E9E9E; padding:10px;}
+#root_sub{text-align: left; margin: 0 auto;width:505px; border:1px solid #FFFF00}
+#login_button{width:99%;float:left;text-align:right;padding-top:5px;padding-bottom:5px;}
+.modulew{border:1px solid #AFAFAF;float:left;text-align:center;background-color:#F3F3F3;cursor: move;padding:10px;color:#0066FF}
+
+
+.formBody{width:100%;border-top:1px solid #BEBEBE;border-bottom:1px solid #BEBEBE;margin-bottom:5px;float:left;}
+.formBody .formTitle{width:100%; background-color:#F7F7F7;position: relative;float:left;}
+.formBody .formTitle .title{font-weight:bold; width:15%;float:left;text-align:center;position:absolute; top: 32%;}
+.formBody .formTitle .formItem{width:84.8%; background-color:#ffffff;float:right; }
+.formBody .formTitle .formItem .lin {padding:10px}
+</style>
+
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function Memdel() {
+		if(confirm('[{str_pname}]\n{cname}를 탈퇴하시겠습니까?')){
+			location.href="/party.member.memdel?pcode={pcode}";
+		}
+	}
+//-->
+</SCRIPT>
+<body>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:10px">
+<tr><td height="10"></td></tr>
+<tr valign="top">
+	<td width="22" style="padding-top:2"><img src="/html/party/image/title_icon.gif"></td>
+	<td class="stitle"><img src='/f.php?text={cname} 레이아웃관리&font=-윤고딕330&size2=8&bg=ffffff&color=423c2b'></td>
+</tr>
+<tr><td height="7"></td></tr>
+<tr><td height="3" bgcolor="f8f8f8" colspan="2"></td></tr>
+<tr><td height="1" bgcolor="f5f5f5" colspan="2"></td></tr>
+<tr><td height="1" bgcolor="ffffff" colspan="2"></td></tr>
+<tr><td height="1" bgcolor="cccccc" colspan="2"></td></tr>
+</table>
+
+
+
+<div class="formBody" >
+	<div class="formTitle">
+		<div class="title" >레이아웃 변경</div>
+		<div class="formItem">
+			<div class="lin">마우스를 이용하여 레이아웃 영역을 드래그하시면 변경하실 수 있습니다.</div>
+			
+		</div>
+	</div>
+</div>
+
+
+
+
+<form method=post  id="layoutForm">
+<input type="hidden" name="mode_r" value="layoutF" target="soketIfr"> 
+
+
+<div  id="root" >
+	<div  id="root_sub">
+	
+{@ LAYOUT_ARRAY}	
+
+		{? .value_ =="login_button"}
+		<div  id="login_button" class="modulew" style="width:100%;height:20px"><input type="hidden" name="setp[]" value="login_button">
+		최상단
+			 
+		  </div>
+		{/}
+
+	
+
+		{? .value_ =="top_menu"}
+			<div  id="top_menu"  class="modulew" style="width:100%;height:80px"><input type="hidden" name="setp[]" value="top_menu">
+			상단
+			</div>
+		{/}
+
+
+
+		{? .value_ =="cafe_main_menu"}
+			<div  id="cafe_main_menu"  class="modulew" style="width:100%;height:30px"><input type="hidden" name="setp[]" value="cafe_main_menu">
+			특별메뉴
+			</div>
+			
+		{/}
+
+
+
+
+
+			{? .value_ =="left"}
+				<div  id="left"  class="modulew" style="width:100px;height:180px">
+				<input type="hidden" name="setp[]" value="left">
+					메뉴
+			</div>
+		{/}
+			
+
+
+		{? .value_ =="main"}
+			<div  id="main"  class="modulew" style="width:403px;height:300px"><input type="hidden" name="setp[]" value="main">
+			내용
+			</div>
+		{/}
+
+
+
+		{? .value_ =="foot"}
+			<div  id="foot"  class="modulew" style="width:100%;height:50px"><input type="hidden" name="setp[]" value="foot">
+			하단
+			</div>
+		{/}
+
+
+{/}
+
+	</div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript" src="/js/prototype.js"></script>
+<script type="text/javascript" src="/js/scriptaculous.js"></script>
+<script >
+	function OnDragStartEffect(element) { 
+		element._opacity = Element.getOpacity(element); 
+		new Effect.Opacity(element, {duration:-1, from:element._opacity, to:1});	
+		}
+	
+	function OnReverteffect(element, top_offset, left_offset) { 
+	element._revert = new Effect.Move(element, { x: -left_offset, y: -top_offset, duration: "0.01"});
+
+	}
+
+		function OnDragEndEffect(element) {
+		
+		element._opacity = Element.getOpacity(element); 
+		new Effect.Opacity(element, {duration:-1, from:element._opacity, to:0.8});	
+		
+	}
+
+
+
+Sortable.create('root_sub', {treeTag:'div',tag:'div',dropOnEmpty:true,constraint:false,handle:'t_handle',starteffect:OnDragStartEffect,endeffect:OnDragEndEffect,reverteffect:OnReverteffect});
+</script>
+
+<br>
+<br>
+
+<center><fieldset style="width:150px;text-align:center;padding:10px;"><a href="#" onclick="$('layoutForm').submit()"><img src="/html/party/image/party_dot_icon1.gif" align="absmiddle"> <b>레이아웃 저장하기</b></a></fieldset></center>
+
+</form>
+</body>
+</html>

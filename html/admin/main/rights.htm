@@ -1,0 +1,157 @@
+<body>
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<script type="text/javascript" event="onload" for="window">
+el = document.forms['rightsForm'].elements;
+{@ LIST}
+el['rights[{.str_group}][{.right}]'].checked = true;
+{/}
+</script>
+
+
+  <link rel="stylesheet" type="text/css" href="css/admin.css">
+  <link rel="stylesheet" type="text/css" href="css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="css/tab.roundwhite.css">
+
+
+<style type="text/css">
+.title {height:29; text-align:center; padding-top:1; color:red}
+.title1 {color:#464444;font-family:돋움; font-weight:bold; padding-top:1}
+.menu {color:#555555; font-family:돋움; padding:8 0 0 17}
+.menu1 {color:#555555; font-family:돋움; padding:8 0 0 15}
+
+</style>
+
+
+ 			<table cellpadding="0" cellspacing="0" border="0" width="632">
+				<tr valign="top">
+					<td width="100%" colspan="7">
+						<div class="tab19" width="100%">
+							<ul>
+								<li><a href="javascript:history.go(-1)">{title}관리</a></li>
+								<li class="active"><a href="/admin.main.rights?sect={sect}&code={code}&module={module}">{title}관리 권한설정</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+ <form name="rightsForm" method="post" onsubmit="return validate(this);">
+		<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+				
+				<tr>
+					<td background="html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+
+						<table cellpadding="0" cellspacing="0" border="0" width="97%" align="center">
+							<tr><td height="17"></td></tr>
+							<tr>
+								<td colspan="2">
+									<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+										<tr >
+											<td width="20"><img src="html/admin/images/subtitle_icon_01.gif"></td>
+											<td class="subtitle01">회원 유형별 권한설정</td>
+										</tr>
+										<tr><td height="8"></td></tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" colspan="2">
+									<table cellpadding="0" cellspacing="0" border="0" width="100%" align = center>
+									<col width="25%"></col><col width="%"></col>
+										<tr>
+											<td colspan="2" width="100%" class="table_top_line01"></td>
+										</tr>
+										<tr>
+											<td colspan="2" width="100%" class="table_top_line02"></td>
+										</tr>
+										
+										
+						
+										{@ TYPES}
+										<tr height="28">
+											<td class="table01_title05">{.name}</td>
+											<td class="table_title01">
+												<table cellpadding="0" cellspacing="0" border="0">
+													<tr>
+														<td>{@ RIGHTS}
+															<input type="checkbox" name="rights[{.code}][{RIGHTS.key_}]" value="1" style="border:0px;"> {RIGHTS.value_}&nbsp;&nbsp;
+												{/}</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										
+										<tr><td colspan="2" width="100%" class="table_line"></td></tr>
+										{/}
+										<tr><td colspan="2" width="100%" class="table_btm_line01"></td></tr>
+									</table>
+								</td>
+							</tr>
+							
+							<tr><td height="28"></td></tr>
+							<tr>
+								<td colspan="2">
+									<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+										<tr >
+											<td width="20"><img src="html/admin/images/subtitle_icon_01.gif"></td>
+											<td class="subtitle01">회원 그룹별 권한설정</td>
+										</tr>
+										<tr><td height="8"></td></tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top" colspan="2">
+									<table cellpadding="0" cellspacing="0" border="0" width="100%" align = center>
+									<col width="25%"></col><col width="%"></col>
+										<tr>
+											<td colspan="2" width="100%" class="table_top_line01"></td>
+										</tr>
+										<tr>
+											<td colspan="2" width="100%" class="table_top_line02"></td>
+										</tr>
+										{@ GROUPS}
+										<tr height="28">
+											<td class="table01_title05">{.str_group_name}</td>
+											<td class="table_title01">
+												<table cellpadding="0" cellspacing="0" border="0">
+													<tr>
+														<td>{@ RIGHTS}
+														<input type="checkbox" name="rights[{.str_group}][{RIGHTS.key_}]" value="1" style="border:0px;"> {RIGHTS.value_}&nbsp;&nbsp;
+														{/}</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										
+										<tr><td colspan="2" width="100%" class="table_line"></td></tr>
+										{/}
+										<tr><td colspan="2" width="100%" class="table_btm_line01"></td></tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td height="15"></td>
+							</tr>
+							<tr>
+								<td align="center" colspan="2"><input type="image" src="html/admin/images/btn_save.gif"></td>
+							</tr>
+							<tr>
+								<td height="15"></td>
+							</tr>
+						</table>
+
+					</td>
+					<td background="html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="html/admin/images/bx1_btm_left.gif"></td>
+					<td background="html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+
+
+		</form>
+

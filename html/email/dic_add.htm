@@ -1,0 +1,39 @@
+<script type="text/javascript" src="js/lib.validate.js"></script>
+
+<table width="95%" class="table01">
+<thead>
+<tr>
+	<th>SMS 주소추가</th>
+</tr>
+</thead>
+</table>
+
+<table width="95%" class="table01">
+<form name="writeForm" method="post" onsubmit="return validate(this);">
+<tr>
+	<th>이름</th>
+	<td><input type="text" name="str_name" hname="이름" maxbyte="14" required></td>
+</tr>
+<tr>
+	<th>핸드폰번호</th>
+	<td><input type="text" name="str_mobile" hname="핸드폰번호" option="phone" required></td>
+</tr>
+<tr>
+	<th>소속학교</th>
+	<td><input type="text" name="str_pos" hname="소속회사" maxbyte="14"></td>
+</tr>
+<tr>
+	<th>그룹선택</th>
+	<td>
+		<select name="num_gcode" required>
+			<option value="0">미지정</option>
+			<!--{@ GROUP_LIST}--><option value="{.num_gcode}">{.str_group}</option><!--{/}-->
+		</select>
+	</td>
+</tr>
+</table>
+<center>
+	<input type="submit" class="button2" value="추가">
+	<input type="button" class="button2" value="취소" onclick="self.close();">
+</center>
+</form>

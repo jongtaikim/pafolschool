@@ -1,0 +1,80 @@
+<div id="sub_content_area">
+<script type="text/javascript" src="/js/seo.default.js"></script>	
+	<!-- IF 'SUB_TITLE' -->
+	<div id="sub_title_area">
+		학급문집 Q&A
+	</div>
+	<!-- ENDIF 'SUB_TITLE' -->
+	<div class="read_area_top"></div>
+	<div class="read_area_content">
+		<div class="title_area border_top_2px border_bottom_1px border_color_2 board_top">
+			<h4>{{str_title}}</h4>
+		</div>
+		<dl class="author_area">
+			<dt>글쓴이 정보</dt>
+			<dd class="author_name">글쓴이 <span>{{str_name}}</span></dd>
+			<dd class="author_date">날짜 <span>{{dt_wdate}}</span></dd>
+			<!-- IF 'ATTACH' -->
+			<dd class="added_file">
+				첨부파일
+				<a href="{{}}"> {{icon}} {{str_upfilename}}</a>
+			</dd>
+			<!-- ENDIF 'ATTACH' -->
+		</dl>
+		<hr/>
+		<div class="content_area">
+			<table class="content_area_table">
+				<tr>
+					<td id="user_content"><div>{{str_content}}</div></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="read_area_bottom"></div>
+	<hr/>
+	
+	<div id="read_btn">
+	<!-- IF 'COMMENT_WRITE' -->
+		<a href="{{writelink}}"><img src="/image/button/bt01/01.gif" width="51" height="19" alt="글쓰기 버튼" /></a>
+		<a href="{{replylink}}"><img src="/image/button/bt01/10.gif" width="40" height="19"  alt="답글달기 버튼"></a>
+		<a href="{{modifylink}}"><img src="/image/button/bt01/06.gif" width="40" height="19" alt="수정 버튼" /></a>
+		<a href="{{deletelink}}"><img src="/image/button/bt01/03.gif" width="40" height="19" alt="글 삭제 버튼" /></a>
+		<!-- ENDIF 'COMMENT_WRITE' -->
+		<a href="{{listlink}}"><img src="/image/button/bt01/02.gif" width="40" height="19" alt="목록으로 돌아가기 버튼" /></a>
+	</div>
+<!-- IF 'Filtering' -->
+<script src="/js/lib.filter.js"></script>
+<script language="JavaScript">
+	function prepare(form) {
+		if(getCookie('NAME')=="") {
+			alert("나도 한마디는 로그인 후 이용할 수 있습니다.");
+			return false;
+		}	
+		// 유해 단어 검사
+		strFilterList = "{{filter_words}}";
+		if(filterword(form.elements['cmt_comment'].value, strFilterList)){
+			document.all['submit_btn'].style.visibility = "visible";
+			return false;
+		}
+		return true;
+	}
+</script>
+<!-- ENDIF 'Filtering' -->
+</div>
+
+<!--
+<div>
+	<h4>제목</h4>
+	<span>{{str_title}}</span>
+	<hr />
+	<h4>글쓴이</h4>
+	<span>{{str_name}}</span>
+	<hr />
+	<h4>내용</h4>
+	<span>{{str_content}}</span>
+	<hr />
+	<h4>첨부파일</h4>
+	<span>{{str_upfilename}}</span>
+	<hr />
+</div>
+-->

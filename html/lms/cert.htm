@@ -1,0 +1,78 @@
+
+
+<!-- 소개 -->		<div id="training">
+							
+							
+							<!-- 신청 -->
+							<div class="apply">
+								
+								<ul class="list">
+									
+									<li>교육수료증과 해당 교육에 대한 자료를 발급 받으시기 원하시는 분께서는
+
+									  교육참가자 정로를 입력하신 후 수료하신 교육을 선택하시면
+									  요청하신 자료를 다운로드 받으실 수 있습니다.  
+
+									</li>
+																		
+								</ul>
+								<form method="post" name="orderForm" id="orderForm" enctype="multipart/form-data" onsubmit="return validate(this);">
+								
+
+								<!--div class="location">
+									<p>
+									<label for="ccode1">과정명</label>
+									<select id="ccode1" name="ccode1" onchange="location.href='/lms.cert?mcode={mcode}&cate={cate}&ccode1='+$('ccode1').value">
+										{@ cate1_LIST}
+										<option value="{.num_ccode}" {? ccode1 == .num_ccode} selected{/}>{.str_title}</option>
+										{/}
+									</select>
+									</p>
+									<p>
+									<label for="ccode2">날짜</label>
+									<select id="ccode2" name="ccode2" >
+										{@ cate2_LIST}
+										<option value="{.num_serial}" {? ccode2 == .num_serial} selected{/}>{.num_year}.{.num_month}.{.num_start_day}~{.num_end_day} {.str_time}</option>
+										{/}
+									</select>
+									</p>
+								</div-->
+								
+								
+								
+									
+									<fieldset>
+										<legend class="vs">참가자 기본정보 입력</legend>
+										<table border="1" cellpadding="0" cellspacing="0" summary="참가자 기본저정보, 참가자이름, 휴대폰, 부서명, 지급, e-mail주소로 구성되어있습니다." name="dataTable" id="dataTable">
+										<caption>참가자 기본정보</caption>
+										<thead>
+											<tr>
+												<th class="input1" scope="col" style="text-align:center">참가자이름</th>
+												<th class="input2" scope="col" style="text-align:center">휴대폰</th>
+												
+												<th class="input5" scope="col" style="text-align:center">e-mail주소</th>
+											
+											</tr>
+										</thead>
+										<tbody>
+										<tr>
+												<td class="input1"><input type="text" name="str_name"  hname="참가자 이름" required value="{_SESSION.NAMES}" style="width:95%"/></td>
+												<td class="input2"><input type="text" name="str_phone"  hname="참가자휴대폰" required value="{_SESSION.PHONES}" style="width:95%"/></td>
+												
+												<td class="input5"><input type="text" name="str_email"  hname="참가자 e-mail" required value="{_SESSION.EMAILS}" style="width:98%"/></td>
+											</tr>
+										</tbody>
+										</table>
+										
+										
+										
+										</div>
+										
+									</fieldset>
+									
+									<span class="btnArea">
+										<span class="btn_pack medium"><input type="submit"  value="검색하기"></span>
+									</span>
+								</form>
+							</div>
+					

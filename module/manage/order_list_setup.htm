@@ -1,0 +1,769 @@
+
+
+
+
+ 
+
+
+<script language='javascript' src='/js/flash.js'></script>
+
+ 
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+
+<script type="text/javascript">
+	function update(val) {
+
+		//alert(val);
+		var val = val + "&end=";  
+
+		
+		sendRequest("/manage.update", val, FromServer, "POST");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				
+				if(str_text !="N"){
+				
+				
+
+				document.getElementById('update_date').innerHTML = str_text;
+
+				//alert('변경되었습니다.');	
+				}else{
+				//alert(str_text);
+				alert('변경실패');
+				}
+			}
+		}
+	}
+	
+</script>
+
+
+{? num_step}
+<table cellpadding="1" cellspacing="1" border="0" width="100%">
+
+
+
+	<tr>
+		<td height="10"></td>
+	</tr>
+
+
+	<tr>
+		<td >
+
+
+<script>
+function selegogo(val){
+ self.location="/manage.order_list?num_step=" + val;
+}
+</script>
+<TABLE width="100%" class="table00">
+<TR>
+	<th>기관선택</th>
+	<td width = 40%>
+	
+	<select name="str_st" onChange="selegogo(this.value);">
+		<option value="" >:: 기관을 선택해주세요 :: </option>
+		{@ LIST_select}
+		<option value="{.num_step}" {? num_step == .num_step}selected{/}>{.str_organ} | {.str_name} </option>
+		{/}
+	</select>
+
+	</td>
+	
+	<TD>  <table width="400" align="center" border="0" cellspacing="0" cellpadding="0" >
+								<form method="get" name="searchform">
+								
+								<tr>
+									<th>기관선택</th>
+									<td align="center"><select name="key" id="key">
+										<option value="str_organ">기관명</option>
+										<option value="str_name">신청자</option>
+										<option value="str_order_set">작업내역</option>
+									</select></td>
+									<td width="120" align="center"><input name="search" type="text" class="login" id="search" style="width:150px;" value="{search}"></td>
+									<td width="41" align="right"><input type="button" width="40" height="19" value="검색" class="button"></td>
+								</tr>
+								</form>		
+								</table>
+								</TD>
+</TR>
+</TABLE>
+
+<br>
+
+
+
+
+
+
+<TABLE class="table00" style="" width = 95%>
+<TR>
+	<Th width = 40  height = 25>번호</Th>
+	
+
+
+	
+	<Th  align=center width =95% >신청내용</Th>
+
+	
+	
+
+
+	
+	
+</TR>
+
+{@ LIST_organ_setup}
+
+
+<script>
+function skseex(el){
+
+if(el.checked == true) {
+update(el.name + '=Y&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');	
+}else{
+update(el.name + '=&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');	
+}
+
+
+}
+
+function skseex2(el){
+
+if(el.checked == true) {
+update(el.name + '=Y&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');	
+}else{
+update(el.name + '=&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');	
+}
+
+
+}
+</script>
+<TR align = center style = "font-weight:bold" >
+	<TD>{.num_step}</TD>
+	
+	<TD align = left  >
+
+	
+			<TABLE width = 100% class ="table001">
+			<TR>
+				<Th>신청기관</Th>
+				<TD colspan =5>
+				<INPUT TYPE="text" NAME="str_organ"  value = "{.str_organ}" onChange="update('str_organ=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');" style = "color:#0033FF;width:250">
+				
+
+
+<SELECT NAME="str_end_date" onChange="update('str_end_date=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');">
+
+	<OPTION VALUE="">::기간선택::</OPTION >
+	<OPTION VALUE="1" {? .str_end_date == "1"} selected {/}>1년</OPTION >
+	<OPTION VALUE="2" {? .str_end_date == "2"} selected{/}>2년</OPTION >
+	<OPTION VALUE="3" {? .str_end_date == "3"} selected{/}>3년</OPTION >
+
+</SELECT>
+			
+				 </TD>
+
+			</TR>
+			<TR>
+				<Th>스킨유형</Th>
+				<TD>
+				<input type="radio" name="str_design" value = "테마선택형" 
+				onChange="update('str_design=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');"
+				{? .str_design == "테마선택형" }checked{/}>테마선택
+				
+				<input type="radio" name="str_design" value = "주문제작형"
+				onChange="update('str_design=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');"
+				{? .str_design == "주문제작형" }checked{/}>주문제작
+				</TD>
+				<Th>신청사이트</Th>
+				<TD>{? .str_home_type == "SCHOOL"}Easy School{/}{? .str_home_type == "B-MART"}Easy B-MART{/}</TD>
+				<th>신청날짜</th><td>{.dt_date}</td>
+			</TR>
+
+			<TR>
+			
+
+				<Th>신청정보</Th>
+				<TD colspan =3>
+신청자 : <INPUT TYPE="text" NAME="str_name"  value = "{.str_name}" onChange="update('str_name=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');"><br>
+주&nbsp;&nbsp; 소  
+<INPUT TYPE="text" NAME="str_zip"  value = "{.str_zip}" onChange="update('str_zip=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');"  style = "width:50">
+<br>
+<INPUT TYPE="text" NAME="str_addr1"  value = "{.str_addr1}" onChange="update('str_addr1=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');" style = "width:100%">
+
+<INPUT TYPE="text" NAME="str_addr2"  value = "{.str_addr2}" onChange="update('str_addr2=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');" style = "width:100%">
+<br>
+연락처 : 
+<INPUT TYPE="text" NAME="str_tel"  value = "{.str_tel}" onChange="update('str_tel=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');" style = "width:120">
+<INPUT TYPE="text" NAME="str_handtel"  value = "{.str_handtel}" onChange="update('str_handtel=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');" style = "width:120">
+<br>
+Email &nbsp;: <INPUT TYPE="text" NAME="str_email"  value = "{.str_email}" onChange="update('str_email=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');" style = "width:250">
+				</TD>
+	<Th>옵션</Th>
+<TD width = 30% >
+
+<input type="checkbox"  name="str_opt1" value = "Y"
+onclick ="skseex(this)"
+{? .str_opt1} checked{/}>학교소개 디자인페이지 제작 10만
+
+ 
+<input type="checkbox" name="str_opt2" value = "Y" onclick="skseex(this);"
+{? .str_opt2} checked{/}>도메인 대량관리 18,000<br>
+ 
+ <input type="checkbox" name="str_opt3" value = "Y" onclick="skseex(this)"
+{? .str_opt3} checked{/}>자료이전<br>
+
+				</TD>
+
+			</TR>
+
+
+
+	<TR>
+			
+
+
+
+<style type="text/css">
+.number_format {
+ text-align: right;
+}
+.number_format2 {
+ text-align: right;
+ color:red;
+}
+
+</style>
+
+<script>
+
+function sum(){
+
+var  num_order_price = document.getElementById('num_order_price').value;
+
+var  num_price = document.getElementById('num_price').value;
+
+
+if (num_order_price =="") { num_order_price = 0; }
+if (num_price =="") { num_price = 0; }
+
+
+var total = parseInt(num_order_price) - parseInt(num_price);
+document.getElementById('total_price').value = total;
+}
+
+
+</script>
+
+				<Th>전체금액</Th>
+				<TD >
+<INPUT TYPE="text" NAME="num_order_price" id="num_order_price"  value="{.num_order_price}" onkeyup = "sum();" onChange="update('num_order_price=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}'); " onkeypress="if ((event.keyCode<46)||(event.keyCode>57)) event.returnValue=false;" style="ime-mode:disabled"
+ class="number_format"
+>원
+				<Th>현재까지<br> 결제금액</Th>
+				<TD >
+<INPUT TYPE="text" NAME="num_price" id="num_price" value="{.num_price}" onChange="update('num_price=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');" onkeypress="if ((event.keyCode<46)||(event.keyCode>57)) event.returnValue=false;" style="ime-mode:disabled"  class="number_format" onkeyup = "sum();">원
+				</TD>
+	<Th>미수금</Th>
+				<TD width = 10% >
+<INPUT TYPE="text" NAME="total_price" id="total_price" value="{.total_price}" onkeypress="if ((event.keyCode<46)||(event.keyCode>57)) event.returnValue=false;" style="ime-mode:disabled"  class="number_format2">원
+				</TD>
+
+			</TR>
+
+
+
+
+<tr>
+  <th>진행상태</th><td colspan=2>
+  <select name="str_st" onChange="update('str_st=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');">
+
+		<option value="1" {? .str_st =="1"}selected{/}>신청확인중 </option>
+		<option value="2" {? .str_st =="2"}selected{/}>신청확인 </option>
+		<option value="3" {? .str_st =="3"}selected{/}>계약진행중 </option>
+		<option value="4" {? .str_st =="4"}selected{/}>디자인작업중 </option>
+		<option value="5" {? .str_st =="5"}selected{/}>내용이관중 </option>
+		<option value="6" {? .str_st =="6"}selected{/}>세팅중 </option>
+		<option value="7" {? .str_st =="7"}selected{/}>서비스중 </option>
+
+
+
+	</select></td>
+	<th>현데이터 마지막갱신</th>
+	<td colspan=2><div id="update_date"><FONT  COLOR="red">{? .str_update_date }{=date("Y-m-d H:i:s", .str_update_date)}{/}</FONT></div> </td>
+</tr>
+
+
+
+
+
+
+<tr>
+  <td colspan = 6>
+   <TABLE width = 100% >
+  
+  <tr>
+  <th >전할 말</th height = 60><td width = 88% valign = center>{= nl2br(.str_memo)}</td>
+   
+   </tr>
+   
+
+   <tr>
+  <th >메일 보내기</th height = 60>
+  
+  <td width = 88% valign = center>
+					<script>
+					 function gogosing(idx){
+					 if(idx == "6") {
+						document.getElementById('mail').style.display='';
+					 }else{
+					 	document.getElementById('mail').style.display='none';
+					 }
+					 }
+					 
+					 </script>
+					 
+<FORM METHOD=POST ACTION="/manage.mail" >
+	
+	<TABLE>
+	<TR>
+  <td>
+   <INPUT TYPE="text" NAME="rmail" value =  "{.str_email}" style = "width:240px">		
+
+<INPUT TYPE="hidden" NAME="rname" value="{.str_name}">
+<INPUT TYPE="hidden" NAME="oname" value="{.str_organ}">
+
+  </td>
+		<TD>  
+<INPUT TYPE="hidden" NAME="host_ff" value = "{.host_ff}">
+<SELECT NAME="str_mail" onchange ="gogosing(this.value);">
+	<OPTION VALUE="" SELECTED>:: 선택하시오 ::</option>
+	<OPTION VALUE="1">신청 확인 메일</option>
+	<OPTION VALUE="2">자료 요청 메일(학교소개를 추가 했을 경우만)</option>
+	<OPTION VALUE="3">임시사이트 도메인안내</option>
+	<OPTION VALUE="4">작업완료 메일</option>
+	<OPTION VALUE="5">서비스 종료 예고 메일</option>
+	<OPTION VALUE="6">메일 작성</option>
+</SELECT>
+</TD>
+<TD><INPUT TYPE="submit" value = "보내기"></TD>
+	</TR>
+	</TABLE>
+
+<TABLE width = 100% id = "mail" style = "display:none">
+<TR>
+	<Th  width = 20%>제목</Th><TD><INPUT TYPE="text" NAME="mail_title" style = "width:100%"></TD>
+</TR>
+<TR>
+	<TD colspan = 2><wa:upload part="editor_new" sect="hkedu" code="cont" name="cont">
+	
+<style>
+a {
+	selector-dummy : expression(this.hideFocus=true);
+}
+
+a:link {
+	color: #000000;
+	text-decoration:none;
+}
+
+a:visited {
+	color: #000000;
+	text-decoration:none;
+}
+
+a:active {
+	color:red;
+	text-decoration:none;
+}
+
+a:hover {
+	color:red;
+	text-decoration:none;
+}
+</style>
+<TABLE width = 540 height = 468 align = center background = http://main.hkedu.co.kr/mail.gif >
+<TR>
+	<TD  valign =top style = padding:60px >
+
+<TABLE align = center>
+<TR>
+	<TD stye = font-size:11px> 여기에 내용을 입력하세요.
+	</TD>
+</TR>
+</TABLE>
+
+</TD>
+</TR>
+<tr>
+  <td bgcolor = #000000 height = 15 align = right style = padding-right:10px><a href = http://www.hkedu.co.kr style = color:#ffffff;font-size:11px target=_blank>사이트 바로가기</a></td>
+</tr>
+</TABLE>
+
+
+	</wa:upload></TD>
+</TR>
+
+</TABLE>
+
+</FORM>
+
+  </td>
+   
+   </tr>
+   
+   <tr>
+   <th>진행상태<br>(회사전용)</th><td width = 70%><TEXTAREA NAME="str_order_set" ROWS="15" style = "width:100%" onChange="update('str_order_set=' + this.value + '&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');">{.str_order_set}</TEXTAREA>
+   <br><font color=red>※ 작성하면 바로 저장되오니 주의하시기 바랍니다.</font>
+   </td>
+</tr>
+   </TABLE>
+  </td>
+</tr>
+
+<tr>
+  <th>포트 폴리오 사진</th>  <td colspan = 2>
+<img src = '/data/poto/poto{num_step}.gif' onError="this.src='/b.gif'" width = 150 >
+
+</td>
+<script>
+function pppt(el)
+{
+if(el.checked) {
+	update('str_pot=1&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');
+}else{
+	update('str_pot=&str_update_date=<?=mktime()?>&mode=update&num_step={.num_step}');
+}
+
+}
+</script>
+<td><INPUT TYPE="checkbox" NAME="str_pot" style = "border:0px" value = "1" onclick="pppt(this)" {? .str_pot}checked{/}> 포트폴리오 노출</td>
+
+<th>사진업로드</th><td>
+  <FORM METHOD=POST   enctype='multipart/form-data'>
+<INPUT TYPE="hidden" NAME="mode" value = "pupload">
+<INPUT TYPE="hidden" NAME="num_step" value = "{num_step}">
+  <INPUT TYPE="file" NAME="pupfile">
+  
+  <INPUT TYPE="submit" value= "업로드">
+  </FORM>
+  </td>
+</tr>
+		
+
+
+			</TABLE>
+			
+		
+
+
+	</TD>
+	
+	
+
+</TR>
+
+{:}
+
+<tr>
+  <td height = 100 colspan= 2 align = center>기관을 선택하여 주십시오.</td>
+</tr>
+
+
+{/}
+
+{? ORGAN_inf}	
+<tr>
+<th>HOST</th><td>
+<TABLE width = 100% >
+
+{@ ORGAN_inf}
+<tr>
+<th> OID</th><td>{.num_oid}</td><th> 사이트명 </th><td>{.str_organ}{.str_branch_title}&nbsp;</td> <th> 1차도메인 </th><td><a href="http://{.str_host}{.str_dir}" target=_blank>{.str_host}{.str_dir}</a>&nbsp;</td>
+</tr>
+{/}	
+</TABLE>
+</td>
+</tr>
+{/}
+
+
+
+
+
+
+<tr>
+<th>자료</th>
+    <td colspan =5>
+	<wa:upload part="script" sect="main" code="ogran_data"></wa:upload>
+<form name="writeForm" method="post" onsubmit="return prepare(this);">
+<input type="hidden" name="id" value="{num_step}">
+<input type="hidden" name="code" value="ogran_data">
+<Input type="hidden" name="str_thumb" value="{str_thumb}">
+
+<table width="100%" class="table00">
+
+
+
+<!--{? FILE_LIST}-->
+<tr>
+	<th><b>첨부된 파일</b></th>
+	<td colspan = 2>
+<TABLE width = 100% class="table04">
+<TR>
+	<!--{@ FILE_LIST}--><TD width = 30%><a href="{.file_url}"><img src="/image/icon/{.str_ftype}.gif" align="absmiddle" onerror="this.src='/image/icon/unknown.gif';" border="0"> {.str_upfile}</a></TD>
+	<TD><INPUT TYPE="button" class ="button" onclick = "update('&mode=file_del&num_main={.num_step}&str_upfile={.str_upfile}&num_serial={.num_serial}');alert('삭제되었습니다.');location.reload();" value = "파일삭제"></TD>
+	
+	<!--{/}-->
+</TR>
+
+</TABLE>
+		
+	</td>
+</tr>
+<!--{/}-->
+
+
+<tr>
+	<th><b>첨부파일</b></th>
+	<td >
+		<wa:upload part="component" sect="main" code="ogran_data" liststyle="1" width="500" height="30" maxfilenum="50"></wa:upload>
+	</td>
+	<td><INPUT TYPE="submit" value = "파일전송" class="button"></td>
+</tr>
+
+</table>
+
+
+</form>	
+     
+    </td>
+</tr>
+
+
+{? LIST_bbs}	
+<tr>
+<th>문의<br>내역</th><td>
+<TABLE width = 100% >
+
+<tr>
+<th> 번호</th><th> 제목</th><th> 등록날짜</th><th> 글쓴이</th>
+</tr>
+{@ LIST_bbs}
+<tr align = center>
+<td>{.index_ +1}</td><td align = left><a href = "/board.read?mcode=900000&id={.num_serial}" target = _blank>{.str_title} &nbsp;{? .is_recent} <img src="/image/icon/new2.gif" >{/}</td><td>{.dt_date}</td><td>{.str_name}</td>
+</tr>
+{/}	
+</TABLE>
+</td>
+</tr>
+{/}
+
+
+</TABLE>
+
+
+		<td></tr>
+
+	
+
+
+			<tr>
+		<td height="10"></td>
+	</tr>
+
+</table>
+
+
+
+
+
+
+{:}
+
+
+
+
+<table cellpadding="1" cellspacing="1" border="0" width="95%">
+
+
+
+	
+
+
+	<tr>
+		<td align="center">
+
+
+
+<TABLE class="table00" style="" width = 100%>
+<TR>
+	<Th width = 40  height = 25>번호</Th>
+	
+	<Th width = 90 >날짜</Th>
+
+	
+	<Th  align=center width =50% >신청내용</Th>
+
+	
+	
+	
+
+	
+	<Th width = 100 >신청자</Th>
+
+	
+	<Th width = 100 >처리현황</Th>
+</TR>
+
+{@ LIST_organ}
+<TR align = center >
+	<TD>{.num_step}</TD>
+	<TD>{.dt_date} </TD>
+	<TD align = left >
+		<a href="/manage.order_list?num_step={.num_step}">	[{? .str_home_type == "SCHOOL"}Easy School{/}
+			{? .str_home_type == "B-MART"}Easy B-MART{/}] 
+			<font style = "font-weight:normal;color:#0033FF">{.str_organ} </font><font style = "font-weight:normal">
+			{? .str_home_type == "SCHOOL"} 학교홈페이지 {/}
+			{? .str_home_type == "B-MART"} 인터넷서점 {/}
+			 
+	</TD>
+	
+	<TD>{.str_name} </TD>
+
+	<TD>
+	{? .str_st == "1"}<FONT COLOR="red">신청확인중</FONT>{/} 
+	{? .str_st == "2"}<FONT COLOR="#FF6600">신청확인</FONT>{/} 
+	{? .str_st == "3"}<FONT COLOR="#0033CC">계약진행중</FONT>{/} 
+	{? .str_st == "4"}<FONT COLOR="#009900">디자인작업중</FONT>{/} 
+	{? .str_st == "5"}<FONT COLOR="#660099">내용이관중</FONT>{/} 
+	{? .str_st == "6"}<FONT COLOR="#333300">세팅중</FONT>{/} 
+	{? .str_st == "7"}<FONT COLOR="#0000FF">서비스중</FONT>{/} 
+	
+	</TD>
+</TR>
+{/}
+
+</TABLE>
+
+
+	
+
+
+
+		<td></tr>
+
+<tr>
+		<td height="10">
+		<TABLE width = 100% class=table00>
+		<TR  style="padding:10px">
+			<TD align = center><b><?=date("Y년 m월 d일")?></TD>
+			<TD><b>
+		<b style = "color:blue">총 매출 : {num_order_price}원  - <b style = "color:#006600">결제된금액 : {num_price}원  = <b style = "color:red">미수금 : {total_price}원	</td></TD>
+		</TR>
+		</TABLE>
+	</tr>
+
+		<tr>
+		  <td align = center style="padding-top:10px"><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/html/board/skin/newskin/image/btn_prevpage.gif" nexticon="/html/board/skin/newskin/image/btn_nextpage.gif" firsticon="/html/board/skin/newskin/image/btn_firstpage.gif" lasticon="/html/board/skin/newskin/image/btn_lastpage.gif" /></td>
+		</tr>
+<tr>
+		  <td style="padding-top:10px">
+		  
+		  <table width="320" align="right" border="0" cellspacing="0" cellpadding="0">
+								<form method="get" name="searchform">
+								
+								<tr>
+									<td width="92" align="right" ><img src="/html/board/skin/newskin/image/text_search.gif" width="47" height="13">&nbsp;</td>
+									<td width="67" align="center"><select name="key" id="key">
+										<option value="str_organ">기관명</option>
+										<option value="str_name">신청자</option>
+										<option value="str_order_set">작업내역</option>
+									</select></td>
+									<td width="120" align="center"><input name="search" type="text" class="login" id="search" style="width:90%;" value="{search}"></td>
+									<td width="41" align="right"><input type="image" src="/html/board/skin/newskin/image/btn_search.gif" width="40" height="19"></td>
+								</tr>
+								</form>		
+		  </table>
+		  </td>
+		</tr>
+
+
+
+			<tr>
+		<td height="10"></td>
+	</tr>
+</table>
+
+
+
+
+
+ <FORM METHOD=POST ACTION="/manage.order">
+
+	<table cellpadding="1" cellspacing="1" border="0" width="100%" bgcolor="d5e4f0" class=table00>
+			<col width="21%" align="center"></col><col width="%"></col><col width="21%" align="center"></col><col width="%"></col>
+				<tr>
+					<td class="table_bg1"><font color="#FF8000">*</font> 신청자</td>
+					<td class="table1">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>&nbsp;<input type="text" name="str_name" style="height:20; border:1 solid c5c5c5"  hname="신청자" required></td>
+							</tr>
+						</table>
+					</td>
+					<td class="table_bg1"><font color="#FF8000">*</font> 소속/직장</td>
+					<td class="table1">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>&nbsp;<input type="text" name="str_organ" style="height:20; border:1 solid c5c5c5"  hname="소속/직장" required></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+		
+			</table>
+
+<center><INPUT TYPE="submit" value = "학교추가" class=button></center>
+ </FORM>
+
+
+
+{/}
+
+
+<TABLE class="table00" style="" width = 95% >
+	<TR>
+	<Th align = left style = "padding-left:10px" colspan = 2>※ 처리현황안내</Th>
+	
+	</tr>
+
+	<tr>
+	  <td width = 20% align = center><FONT COLOR="red">신청확인중</FONT></td>
+	  <td>신청을 완료한 상태입니다.</td>  	 </tr><tr>
+ 
+	  <td align = center><FONT COLOR="#0033CC">계약진행중</FONT></td>
+	   <td>신청을 받고 견적서를 발송후  영업부 담당자가  상담 후 계약준비 단계입니다.</td>  	 </tr><tr>
+  	  <td align = center><FONT COLOR="#009900">디자인작업중</FONT></td>
+	  <td>계약후 디자인 기획이 신청자(기관) 에 승인을 받으면 디자인작업을 시작합니다.</td></tr><tr>
+  	  <td align = center><FONT COLOR="#660099">내용이관중</FONT></td>
+	  <td>디자인 작업후 사이트가 생성되며 기존 사이트에 기본자료를 이관하는 작업입니다.</td>  	 </tr><tr>
+  	  <td align = center><FONT COLOR="#333300">세팅중</FONT></td>
+	  <td>신청자(기관)과 상의후 오픈일자를 잡고 도메인,검색포털등록 등등 세팅을 하는 작업입니다.</td></tr><tr>
+  	  <td align = center><FONT COLOR="#0000FF">서비스중</FONT></td>
+	  
+	  <td>정상적으로 오픈한 후 부터 서비스 상태입니다.</td>
+ 
+
+	</tr>
+	
+	</table>
+	<br>

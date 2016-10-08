@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> New Document </title>
+<style type="text/css">
+a {
+    font-size: 8pt;
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+</style>
+</head>
+<body>
+<script type="text/javascript">
+function add_menu(mcode) {
+	parent.frames['padmin_content'].location.reload('party.menu.admin.add?pcode={pcode}&parent=' + mcode);
+}
+
+function detail(mcode) {
+	parent.frames['padmin_content'].location.reload('party.menu.admin.option?pcode={pcode}&mcode=' + mcode);
+}
+
+function listorder() {
+	parent.frames['padmin_content'].location.reload('party.menu.admin.listorder?pcode={pcode}');
+}
+
+function reloadSelected() {
+	tree.getSelected().reload();
+}
+
+function reloadParent() {
+	tree.getSelected().parentNode.reload();
+}
+</script>	
+<wa:tree var="tree" text="카페관리" src="party.admin.xml?pcode={pcode}"></wa:tree>
+</body>
+</html>

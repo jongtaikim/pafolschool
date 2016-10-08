@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<META NAME="Author" CONTENT="Wes">
+	<link rel="STYLESHEET" type="text/css" href="css/seo.default.css">
+	<STYLE>
+	BODY, TD, INPUT ,TEXTAREA{font-size:12px;}
+	.input1{border:1px solid #FFFFFF;height:24px;font-size:14px;}
+    </STYLE>
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/prototype.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.default.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+	function sendTo(){	
+		
+		var str = orderForm.selection;		
+		var radioVal="";	
+		for(var i=0;i<str.length; i++) { 
+		   if (str[i].checked == true) 
+		   { 
+		     radioVal = str[i].value; 
+		     break; 
+		   } 
+		} 	
+						
+		if(!radioVal){
+			alert('학년 유형을 선택해주세요'); 
+			return false;
+		}					
+						
+		orderForm.submit();
+	}
+	//-->
+	</SCRIPT>
+	
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0">
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" bgcolor="3c8cbc">
+	<tr height="53" valign="top">
+		<td width="17"><img src="/html/admin/popup/popup_top_left.gif"></td>
+		<td background="/html/admin/popup/popup_top_bg.gif">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr valign="top">
+					<td width="24" style="padding-top:14px;"><img src="/html/admin/images/bu_popup.gif"></td>
+					<td class="popup_title01">학년 만들기</td>
+					<td align="right" style="padding-top:25px"><img src="/html/admin/images/by_ewut.gif"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="17" align="right"><img src="/html/admin/popup/popup_top_right.gif"></td>
+	</tr>
+	<tr>
+		<td background="/html/admin/popup/popup_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:15px" valign="top">
+		<!-- 안내 Start -->
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="14px"><img src="/html/admin/images/help_icon.gif"></td>
+					<td class="tip_title">안내</td>
+				</tr>
+				<tr><td height="6"></td></tr>
+			</table>
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr height="14">
+				<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+				<td background="/html/admin/images/bx_tip_top_bg.gif"></td>
+				<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+			</tr>				
+			<tr>
+				<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+				<td class="help_text">
+					* 학년만들기는 <b>초기 학년구성을 목적</b>으로 만들어졌습니다. <br>
+					* 학년만들기 후 학급편성(간편만들기)을 할 수 있습니다. <br>
+					<div style="padding-top:6px;"><font color="#d43e6c">* 주의 : 학년선택은 추후 진급시 이용되므로 신중한 선택이 필요합니다.</font>	</div>
+				</td>
+				<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+			</tr>
+			<tr height="14">
+				<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+				<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+				<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+			</tr>
+			</table>
+		<!-- 안내 End -->
+			
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr><td height="15"></td></tr>
+				<tr>
+					<td width="15"><img src="/html/admin/images/bu_square_info.gif"></td>
+					<td style="padding:1px 0px 0px 5px;"><b>학년유형을 선택해주세요.</b></td>
+				</tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr><td height="8"></td></tr>
+				<tr>
+					<td width="6"></td>
+					<td class="font11_03">
+						선택한 학년에 따라 자동으로 기본학년이 입력됩니다.<br>
+						ex> 초등학교(1-6학년), 중학교(1-3학년), 고등학교(1-3학년)<br> 
+						위의 유형 이외의 학년제를 가지고 있는 경우에는 이웃닷컴으로 연락주세요.<br>
+						ex) 중고등학교, 초중학교 등
+					</td>
+				</tr>
+				<tr><td height="15"></td></tr>
+			</table>
+
+		<!--grade start-->						
+			<form action="/" method='get' name='orderForm' id="orderForm">
+			<input type="hidden" name="act" value="admin.form.main_grade" />
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+					<tr>
+				<td width="100%" class="table_top_line02"></td>
+				</tr>
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="c4d4e7">
+				<tr height="58" bgcolor="FFFFFF">
+					<td width="190" class="table01_title" background="/html/admin/images/bx4_bg1.gif">
+						<input type="radio" name='selection' value="E" {? selection=='E'} checked{/} />초등학교
+					</td>
+					<td width="190" class="table01_title" background="/html/admin/images/bx4_bg1.gif">
+						<input type="radio" name='selection' value="M" {? selection=='M'} checked{/}/>중학교
+					</td>
+					<td width="190" class="table01_title" background="/html/admin/images/bx4_bg1.gif">
+						<input type="radio" name='selection' value="H" {? selection=='H'} checked{/}/>고등학교
+					</td>
+				</tr>
+			</table>
+				
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr><td height="15"></td></tr>
+				<tr>
+					<td align="center">
+						<input name="button" type="image" src="/html/admin/images/btn_select_confirm.gif" style="cursor:hand;" onClick="sendTo()" value="선택 완료" />
+					</td>
+				</tr>
+			</table>
+			</form>
+		
+		<!--grade end-->
+		</td>
+		<td background="/html/admin/popup/popup_mid_right.gif"></td>
+	</tr>
+	<tr height="17" valign="top">
+		<td width="17"><img src="/html/admin/popup/popup_btm_left.gif"></td>
+		<td background="/html/admin/popup/popup_btm_bg.gif"></td>
+		<td width="17" align="right"><img src="/html/admin/popup/popup_btm_right.gif"></td>
+	</tr>
+</table>

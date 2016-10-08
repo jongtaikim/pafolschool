@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+	<meta name="description" content="{{학교이름}} 홈페이지" />
+	<meta name="keywords" content="{학교이름}, 학교홈페이지" />
+	<meta name="author" content="이웃닷컴, 김동우, 김은정, 이승희" />
+	<meta name="language" content="ko" />
+	<title>{학교이름}</title>
+	<link rel="stylesheet" href="css/common.css" type="text/css" />
+	<link rel="stylesheet" href="css/findPW.css" type="text/css" />
+</head>
+<body>
+
+	<div id="wrapper">
+
+	<h1>아이디 찾기</h1>
+		<div id="findPW">
+			<div class="objTop">
+				<img src="images/findPWTit.gif" alt="비밀번호 찾기" />
+			</div>
+			<div class="objContent">
+			<form action="#">
+				<img class="subTit" src="images/findPWSubTit.gif" alt="공공 I-PIN으로 비밀번호 찾기" />
+				<fieldset>
+					<legend>비밀번호 찾기</legend>
+					<span class="title"><strong>아이디와 이름, 생년월일을 입력해 주세요</strong></span>
+					<p id="id">
+					<label for="loginID" title="아이디">아이디</label><input type="text" name="uname" id="loginID" size="23" />
+					</p>
+					<p id="name">
+						<label for="loginName">이름</label><input type="text" name="uname" id="loginName" size="23" />
+					</p>
+					<p id="birth">
+					<label title="생년월일" for="birthInput">생년월일</label><select id="birthInput"><option value="">1900</option></select>년 <select><option value="">1</option></select>월 <select><option value="">20</option></select>일
+					</p>
+
+					
+				</fieldset>
+				<div class="btnArea">
+					<input type="image" src="images/submitBtn.gif" alt="확인, 아이디를 찾습니다" class="commit" />
+					<a href="#"><img src="images/cancelBtn.gif" alt="취소, 팝업창을 닫습니다." /></a>
+				</div>
+			</form>
+			</div>
+		</div>		
+
+	</div>
+</body>
+</html>

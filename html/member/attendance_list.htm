@@ -1,0 +1,1589 @@
+<table border="0" cellspacing="0" cellpadding="0" width="580" align="center">
+	<tr>
+		<td align="center">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td height="20"></td></tr></table>		
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<form method="post" action="member.attendance_list" name="chul_form1">
+			<tr>
+				날짜&nbsp;&nbsp;<wa:datepicker name="dt_date" value="{dt_date}{num_date}" />&nbsp;
+				<!-- <input type="button" class="button_log" style="width:50" value="조회" onClick="chul_form1.submit();">  -->
+				<input type="submit" style="width:50;height:28;font-size:11px;" value="조회"><br>
+			</tr>
+			<input type="hidden" name="subtarget" value="">
+			<input type="hidden" name="hak" value="">
+			<input type="hidden" name="ban" value="">	
+			<input type="hidden" name="search_date" value="{dt_date}{num_date}">
+		</form>
+		</table>
+		
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td height="20"></td></tr></table>		
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td><b><font color="#FF66FF">[  {dt_date} 출결상황 ]</font></b></td></tr></table>		
+		<table border="1" cellspacing="0" cellpadding="1" width="100%" class="main_tbl">
+			<tr>
+				<td bgcolor="#d6e8ff" rowspan="2" width="30" align="center">학년</td>
+				<td bgcolor="#d6e8ff" rowspan="2" width="30" align="center">구분</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#D3EFAD" align="center">1반</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#fcfee8" align="center">2반</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#D3EFAD" align="center">3반</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#fcfee8" align="center">4반</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#D3EFAD" align="center">5반</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#fcfee8" align="center">6반</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#D3EFAD" align="center">7반</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#fcfee8" align="center">8반</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#D3EFAD" align="center">9반</td>
+				
+				<td class="main_tbl_tt" colspan="2" bgcolor="#fcfee8" align="center">10반</td>
+				
+			</tr>
+			<tr>				
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st">여</td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st">여</td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				
+			</tr>
+			
+			<tr>	
+				<td bgcolor="#d6e8ff" rowspan="6" align="center">1</td><td class="main_tbl_st" bgcolor="#D5D5D5" align="center">재적</td>
+					
+					<td class="main_tbl_td" align="center">{num_aa_1_1}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_1_2}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_1_3}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_1_4}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_1_5}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_1_6}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_1_7}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_1_8}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_1_9}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_1_10}</td>
+					<td class="main_tbl_td" align="center">{num_ab_1_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">출석</td>
+					
+					<td class="main_tbl_td" align="center">{TotalA_1_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_1_2}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_2}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_1_3}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_3}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_1_4}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_4}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_1_5}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_5}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_1_6}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_6}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_1_7}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_7}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_1_8}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_8}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_1_9}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_9}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_1_10}</td>
+					<td class="main_tbl_td" align="center">{TotalB_1_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">결석</td>
+					
+					<td class="main_tbl_td" align="center">{num_ba_1_1}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_1_2}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_1_3}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_1_4}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_1_5}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_1_6}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_1_7}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_1_8}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_1_9}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_1_10}</td>
+					<td class="main_tbl_td" align="center">{num_bb_1_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">조퇴</td>
+					
+					<td class="main_tbl_td" align="center">{num_ca_1_1}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_1_2}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_1_3}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_1_4}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_1_5}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_1_6}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_1_7}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_1_8}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_1_9}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_1_10}</td>
+					<td class="main_tbl_td" align="center">{num_cb_1_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전입</td>
+					
+					<td class="main_tbl_td" align="center">{num_da_1_1}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_1_2}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_1_3}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_1_4}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_1_5}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_1_6}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_1_7}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_1_8}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_1_9}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_1_10}</td>
+					<td class="main_tbl_td" align="center">{num_db_1_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전출</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_1}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_2}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_3}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_4}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_5}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_6}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_7}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_8}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_9}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_1_10}</td>
+					<td class="main_tbl_td" align="center">{num_eb_1_10}</td>
+								
+			</tr>
+			<tr>	
+				<td bgcolor="#d6e8ff" rowspan="6" align="center">2</td><td class="main_tbl_st" bgcolor="#D5D5D5" align="center">재적</td>
+					
+					<td class="main_tbl_td" align="center">{num_aa_2_1}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_2_2}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_2_3}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_2_4}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_2_5}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_2_6}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_2_7}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_2_8}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_2_9}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_2_10}</td>
+					<td class="main_tbl_td" align="center">{num_ab_2_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">출석</td>
+					
+					<td class="main_tbl_td" align="center">{TotalA_2_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_2_2}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_2}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_2_3}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_3}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_2_4}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_4}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_2_5}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_5}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_2_6}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_6}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_2_7}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_7}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_2_8}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_8}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_2_9}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_9}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_2_10}</td>
+					<td class="main_tbl_td" align="center">{TotalB_2_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">결석</td>
+					
+					<td class="main_tbl_td" align="center">{num_ba_2_1}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_2_2}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_2_3}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_2_4}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_2_5}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_2_6}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_2_7}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_2_8}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_2_9}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_2_10}</td>
+					<td class="main_tbl_td" align="center">{num_bb_2_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">조퇴</td>
+					
+					<td class="main_tbl_td" align="center">{num_ca_2_1}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_2_2}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_2_3}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_2_4}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_2_5}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_2_6}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_2_7}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_2_8}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_2_9}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_2_10}</td>
+					<td class="main_tbl_td" align="center">{num_cb_2_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전입</td>
+					
+					<td class="main_tbl_td" align="center">{num_da_2_1}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_2_2}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_2_3}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_2_4}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_2_5}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_2_6}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_2_7}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_2_8}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_2_9}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_2_10}</td>
+					<td class="main_tbl_td" align="center">{num_db_2_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전출</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_1}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_2}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_3}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_4}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_5}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_6}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_7}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_8}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_9}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_2_10}</td>
+					<td class="main_tbl_td" align="center">{num_eb_2_10}</td>
+								
+			</tr>
+			<tr>	
+				<td bgcolor="#d6e8ff" rowspan="6" align="center">3</td><td class="main_tbl_st" bgcolor="#D5D5D5" align="center">재적</td>
+					
+					<td class="main_tbl_td" align="center">{num_aa_3_1}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_3_2}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_3_3}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_3_4}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_3_5}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_3_6}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_3_7}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_3_8}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_3_9}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_3_10}</td>
+					<td class="main_tbl_td" align="center">{num_ab_3_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">출석</td>
+					
+					<td class="main_tbl_td" align="center">{TotalA_3_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_3_2}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_2}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_3_3}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_3}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_3_4}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_4}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_3_5}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_5}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_3_6}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_6}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_3_7}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_7}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_3_8}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_8}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_3_9}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_9}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_3_10}</td>
+					<td class="main_tbl_td" align="center">{TotalB_3_10}</td>
+								
+			</tr>
+				
+			<tr>	
+
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">결석</td>
+					
+					<td class="main_tbl_td" align="center">{num_ba_3_1}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_3_2}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_3_3}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_3_4}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_3_5}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_3_6}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_3_7}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_3_8}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_3_9}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_3_10}</td>
+					<td class="main_tbl_td" align="center">{num_bb_3_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">조퇴</td>
+					
+					<td class="main_tbl_td" align="center">{num_ca_3_1}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_3_2}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_3_3}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_3_4}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_3_5}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_3_6}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_3_7}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_3_8}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_3_9}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_3_10}</td>
+					<td class="main_tbl_td" align="center">{num_cb_3_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전입</td>
+					
+					<td class="main_tbl_td" align="center">{num_da_3_1}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_3_2}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_3_3}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_3_4}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_3_5}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_3_6}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_3_7}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_3_8}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_3_9}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_3_10}</td>
+					<td class="main_tbl_td" align="center">{num_db_3_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전출</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_1}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_2}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_3}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_4}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_5}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_6}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_7}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_8}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_9}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_10}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_10}</td>
+								
+			</tr>
+			<tr>	
+				<td bgcolor="#d6e8ff" rowspan="6" align="center">4</td><td class="main_tbl_st" bgcolor="#D5D5D5" align="center">재적</td>
+					
+					<td class="main_tbl_td" align="center">{num_aa_4_1}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_4_2}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_4_3}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_4_4}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_4_5}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_4_6}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_4_7}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_4_8}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_4_9}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_4_10}</td>
+					<td class="main_tbl_td" align="center">{num_ab_4_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">출석</td>
+					
+					<td class="main_tbl_td" align="center">{TotalA_4_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_4_2}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_2}</td>
+			
+					<td class="main_tbl_td" align="center">{TotalA_4_3}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_3}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_4_4}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_4}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_4_5}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_5}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_4_6}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_6}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_4_7}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_7}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_4_8}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_8}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_4_9}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_9}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_4_10}</td>
+					<td class="main_tbl_td" align="center">{TotalB_4_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">결석</td>
+					
+					<td class="main_tbl_td" align="center">{num_ba_4_1}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_4_2}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_4_3}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_4_4}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_4_5}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_4_6}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_4_7}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_4_8}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_4_9}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_4_10}</td>
+					<td class="main_tbl_td" align="center">{num_bb_4_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">조퇴</td>
+					
+					<td class="main_tbl_td" align="center">{num_ca_4_1}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_4_2}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_4_3}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_4_4}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_4_5}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_4_6}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_4_7}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_4_8}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_4_9}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_4_10}</td>
+					<td class="main_tbl_td" align="center">{num_cb_4_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전입</td>
+					
+					<td class="main_tbl_td" align="center">{num_da_4_1}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_4_2}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_2}</td>
+			
+					<td class="main_tbl_td" align="center">{num_da_4_3}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_4_4}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_4_5}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_4_6}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_4_7}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_4_8}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_4_9}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_4_10}</td>
+					<td class="main_tbl_td" align="center">{num_db_4_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전출</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_1}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_2}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_3}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_4}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_5}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_6}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_7}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_8}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_9}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_4_10}</td>
+					<td class="main_tbl_td" align="center">{num_eb_4_10}</td>
+								
+			</tr>
+			<tr>	
+				<td bgcolor="#d6e8ff" rowspan="6" align="center">5</td><td class="main_tbl_st" bgcolor="#D5D5D5" align="center">재적</td>
+					
+					<td class="main_tbl_td" align="center">{num_aa_5_1}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_5_2}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_5_3}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_5_4}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_5_5}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_5_6}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_5_7}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_5_8}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_5_9}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_5_10}</td>
+					<td class="main_tbl_td" align="center">{num_ab_5_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">출석</td>
+					
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_5_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_5_1}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">결석</td>
+					
+					<td class="main_tbl_td" align="center">{num_ba_5_1}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_5_2}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_5_3}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_5_4}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_5_5}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_5_6}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_5_7}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_5_8}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_5_9}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_5_10}</td>
+					<td class="main_tbl_td" align="center">{num_bb_5_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">조퇴</td>
+					
+					<td class="main_tbl_td" align="center">{num_ca_5_1}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_5_2}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_5_3}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_5_4}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_5_5}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_5_6}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_5_7}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_5_8}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_5_9}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_5_10}</td>
+					<td class="main_tbl_td" align="center">{num_cb_5_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전입</td>
+					
+					<td class="main_tbl_td" align="center">{num_da_5_1}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_5_2}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_5_3}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_5_4}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_5_5}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_5_6}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_5_7}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_5_8}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_5_9}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_5_10}</td>
+					<td class="main_tbl_td" align="center">{num_db_5_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전출</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_1}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_2}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_3}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_4}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_5}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_6}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_7}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_8}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_9}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_5_10}</td>
+					<td class="main_tbl_td" align="center">{num_eb_5_10}</td>
+								
+			</tr>
+			<tr>	
+				<td bgcolor="#d6e8ff" rowspan="6" align="center">6</td><td class="main_tbl_st" bgcolor="#D5D5D5" align="center">재적</td>
+					
+					<td class="main_tbl_td" align="center">{num_aa_6_1}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_6_2}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_6_3}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_6_4}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_6_5}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_6_6}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_6_7}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_6_8}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_6_9}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_aa_6_10}</td>
+					<td class="main_tbl_td" align="center">{num_ab_6_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">출석</td>
+					
+					<td class="main_tbl_td" align="center">{TotalA_6_1}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_1}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_6_2}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_2}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_6_3}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_3}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_6_4}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_4}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_6_5}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_5}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_6_6}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_6}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_6_7}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_7}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_6_8}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_8}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_6_9}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_9}</td>
+				
+					<td class="main_tbl_td" align="center">{TotalA_6_10}</td>
+					<td class="main_tbl_td" align="center">{TotalB_6_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">결석</td>
+					
+					<td class="main_tbl_td" align="center">{num_ba_6_1}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_6_2}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_6_3}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_6_4}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_6_5}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_6_6}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_6_7}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_6_8}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_6_9}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ba_6_10}</td>
+					<td class="main_tbl_td" align="center">{num_bb_6_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">조퇴</td>
+					
+					<td class="main_tbl_td" align="center">{num_ca_6_1}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_6_2}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_6_3}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_6_4}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_6_5}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_6_6}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_6_7}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_6_8}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_6_9}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ca_6_10}</td>
+					<td class="main_tbl_td" align="center">{num_cb_6_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전입</td>
+					
+					<td class="main_tbl_td" align="center">{num_da_6_1}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_6_2}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_6_3}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_6_4}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_6_5}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_6_6}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_6_7}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_6_8}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_6_9}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_da_6_10}</td>
+					<td class="main_tbl_td" align="center">{num_db_6_10}</td>
+								
+			</tr>
+				
+			<tr>	
+				<td class="main_tbl_st" bgcolor="#D5D5D5" align="center">전출</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_1}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_1}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_2}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_2}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_3}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_3}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_4}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_4}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_5}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_5}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_6}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_6}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_7}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_7}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_8}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_8}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_9}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_9}</td>
+				
+					<td class="main_tbl_td" align="center">{num_ea_6_10}</td>
+					<td class="main_tbl_td" align="center">{num_eb_6_10}</td>
+								
+			</tr>
+				
+		</table>
+				
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td height="10"></td></tr></table>		
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td><font color="#FF66FF"><b>[ {num_date} 출결통계 ]</b></font></td></tr></table>		
+		<table border="1" cellspacing="0" cellpadding="0" width="100%" class="main_tbl">
+			<tr>
+				<td bgcolor="#d6e8ff" width="30" height="30" align="center">학년</td>				
+				
+				<td bgcolor="#D3EFAD" colspan="3" align="center">1학년</td>
+				
+				<td bgcolor="#fcfee8" colspan="3" align="center">2학년</td>
+				
+				<td bgcolor="#D3EFAD" colspan="3" align="center">3학년</td>
+				
+				<td bgcolor="#fcfee8" colspan="3" align="center">4학년</td>
+				
+				<td bgcolor="#D3EFAD" colspan="3" align="center">5학년</td>
+				
+				<td bgcolor="#fcfee8" colspan="3" align="center">6학년</td>
+				
+				<td bgcolor="#D3EFAD" colspan="3" align="center">전체계</td>				
+			</tr>
+			<tr>
+				<td bgcolor="#d6e8ff" width="30" height="25" align="center">성별</td>				
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				<td class="main_tbl_st"  bgcolor="#CCCC99" align="center"><b>계</b></td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				<td class="main_tbl_st" bgcolor="#CCCC99" align="center"><b>계</b></td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				<td class="main_tbl_st" bgcolor="#CCCC99"><b>계</b></td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				<td class="main_tbl_st" bgcolor="#CCCC99" align="center"><b>계</b></td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				<td class="main_tbl_st" bgcolor="#CCCC99" align="center"><b>계</b></td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				<td class="main_tbl_st" bgcolor="#CCCC99" align="center"><b>계</b></td>
+				
+				<td class="main_tbl_st" align="center">남</td>
+				<td class="main_tbl_st" align="center">여</td>
+				<td class="main_tbl_st" bgcolor="#CCCC99" align="center"><b>계</b></td>
+								
+			</tr>
+			
+			<tr>
+				<td bgcolor="#d6e8ff" height="25" align="center">재적</td>
+					
+				<td class="main_tbl_td" align="center">{Total_num_a_1_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_a_1_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_a_1}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_a_2_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_a_2_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_a_2}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_a_3_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_a_3_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_a_3}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_a_4_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_a_4_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_a_4}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_a_5_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_a_5_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_a_5}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_a_6_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_a_6_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_a_6}</b></td>
+					
+				<td class="main_tbl_td" align="center">{Boy_total_A}</td>
+				<td class="main_tbl_td" align="center">{Girl_total_A}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{TotalA1}</b></td>			
+			</tr>		
+			
+			<tr>
+				<td bgcolor="#d6e8ff" height="25" align="center">출석</td>
+					
+				<td class="main_tbl_td" align="center">{Total_TotalA_1}</td>
+				<td class="main_tbl_td" align="center">{Total_TotalB_1}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_Total1}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_TotalA_2}</td>
+				<td class="main_tbl_td" align="center">{Total_TotalB_2}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_Total2}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_TotalA_3}</td>
+				<td class="main_tbl_td" align="center">{Total_TotalB_3}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_Total3}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_TotalA_4}</td>
+				<td class="main_tbl_td" align="center">{Total_TotalB_4}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_Total4}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_TotalA_5}</td>
+				<td class="main_tbl_td" align="center">{Total_TotalB_5}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_Total5}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_TotalA_6}</td>
+				<td class="main_tbl_td" align="center">{Total_TotalB_6}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_Total6}</b></td>
+					
+				<td class="main_tbl_td" align="center">{culsuk_A}</td>
+				<td class="main_tbl_td" align="center">{culsuk_B}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_culsuk}</b></td>			
+			</tr>		
+			
+			<tr>
+				<td bgcolor="#d6e8ff" height="25" align="center">결석</td>
+					
+				<td class="main_tbl_td" align="center">{Total_num_b_1_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_b_1_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_b_1}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_b_2_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_b_2_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_b_2}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_b_3_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_b_3_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_b_3}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_b_4_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_b_4_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_b_4}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_b_5_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_b_5_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_b_5}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_b_6_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_b_6_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_b_6}</b></td>
+					
+				<td class="main_tbl_td" align="center">{Boy_total_B}</td>
+				<td class="main_tbl_td" align="center">{Girl_total_B}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{TotalB1}</b></td>			
+			</tr>		
+			
+			<tr>
+				<td bgcolor="#d6e8ff" height="25" align="center">조퇴</td>
+					
+				<td class="main_tbl_td" align="center">{Total_num_c_1_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_c_1_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_c_1}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_c_2_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_c_2_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_c_2}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_c_3_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_c_3_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_c_3}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_c_4_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_c_4_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_c_4}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_c_5_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_c_5_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_c_5}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_c_6_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_c_6_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_c_6}</b></td>
+					
+				<td class="main_tbl_td" align="center">{Boy_total_C}</td>
+				<td class="main_tbl_td" align="center">{Girl_total_C}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{TotalC1}</b></td>			
+			</tr>		
+			
+			<tr>
+				<td bgcolor="#d6e8ff" height="25" align="center">전입</td>
+					
+				<td class="main_tbl_td" align="center">{Total_num_d_1_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_d_1_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_d_1}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_d_2_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_d_2_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_d_2}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_d_3_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_d_3_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_d_3}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_d_4_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_d_4_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_d_4}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_d_5_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_d_5_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_d_5}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_d_6_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_d_6_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_d_6}</b></td>
+					
+				<td class="main_tbl_td" align="center">{Boy_total_D}</td>
+				<td class="main_tbl_td" align="center">{Girl_total_D}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{TotalD1}</b></td>			
+			</tr>		
+			
+			<tr>
+				<td bgcolor="#d6e8ff" height="25" align="center">전출</td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_e_1_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_e_1_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_e_1}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_e_2_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_e_2_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_e_2}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_e_3_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_e_3_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center">{Total_num_e_3}</td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_e_4_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_e_4_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_e_4}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_e_5_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_e_5_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{Total_num_e_5}</b></td>
+				
+				<td class="main_tbl_td" align="center">{Total_num_e_6_boy}</td>
+				<td class="main_tbl_td" align="center">{Total_num_e_6_girl}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center">{Total_num_e_6}</td>
+					
+				<td class="main_tbl_td" align="center">{Boy_total_E}</td>
+				<td class="main_tbl_td" align="center">{Girl_total_E}</td>
+				<td class="main_tbl_td" bgcolor="#CCCC99" align="center"><b>{TotalE1}</b></td>			
+			</tr>		
+			
+		
+		<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td height="30"></td></tr></table>		
+		</td>
+	</tr>
+</table></td></tr>		
+</table>

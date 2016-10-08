@@ -1,0 +1,143 @@
+<body>
+{? !_SESSION.PASSWD2}
+<form method=get action="">
+비밀번호 입력 <input type="password" name="passwd" value="" class="">
+<input type="submit" name="" value="입력" class="">
+</form>
+{:}
+
+<div style="width:98%;padding:10px">
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<script type="text/javascript" src="js/lib.validate.js"></script>
+		<form name="searchForm" onsubmit="return validate(this);" style="margin:0px;">
+		<input type="hidden" name="mcode" value="{mcode}">
+		<input type="hidden" name="gu" value="{gu}">
+		<td width="167">
+			<select name="str_school" onchange="this.form.submit()">
+				<option value="">::전체학교::</option>
+				<option value="E" {?str_school=='E'}selected{/}>초등학교</option>
+				<option value="M" {?str_school=='M'}selected{/}>중학교</option>
+				<option value="H" {?str_school=='H'}selected{/}>고등학교</option>
+			</select>
+			<select name="search_key">
+				<option value="str_organ">기관명</option>
+				<option value="str_domain">도메인</option>
+				<option value="num_oid">OID</option>
+			</select>		
+		</td>
+		<td width="133"><input type="text" name="search_value" value="{search_value}" style="border:1 solid #cecece; height:20px"></td>
+		<td style="padding-top:1"><input TYPE="image" src="/image/btn_search.gif" value="검색" align="absmiddle"></td>
+		</form>
+		<td class="zizibe03">{total}개 학교가 검색되었습니다.</td>
+		
+	</tr>
+	<tr><td height="8"></td></tr>
+</table>
+
+<table width="100%" class="zizibe03">
+	<tr>
+		<th>OID</th>
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>	
+		<th>기관명</th>
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		
+		<th>도메인</th>	
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		
+		<th>기존홈페이지관리자</th>
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		<th>신규홈페이지계정</th>
+		
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		<th>담당알바</th>
+
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		<th>게시물게수<br>(신규홈)</th>
+
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		<th>비고</th>
+
+		<th style="padding-bottom:4"><img src="/image/line.gif"></th>
+		<th>저장</th>
+
+
+		
+	</tr>
+	<!--{@ LIST}-->
+	{? .num_oid >2000}
+			<form method=post >
+	<tr>
+		<td width='10%' align='center'>{.num_oid}</td>
+		<td><img src="/image/line.gif"></td>
+		<td style="padding-left:8"><a href="http://{.str_host}/"  target="_blank">{.str_organ}</a></td>
+
+		<td><img src="/image/line.gif"></td>
+		<td  style="padding-left:8">
+			{? .str_domain}<a href="http://{.str_domain}" target="_blank">{.str_domain}</a><br>{/}
+			{? .str_host}<a href="http://{.str_host}/admin" target="_blank">{.str_host}</a>{/}
+		</td>
+		
+		<td><img src="/image/line.gif"></td>
+		<td width='9%' align="center" >
+
+			<input type="text" name="str_gi_id" value="{.str_gi_id}" class="" style="width:60px"><br>
+			<input type="text" name="str_gi_pw" value="{.str_gi_pw}" class="" style="width:60px">
+		
+		</td>
+		<td><img src="/image/line.gif"></td>
+		<td width='12%' align = center>
+			admin <br>
+			ez2008
+		</td>
+		<td><img src="/image/line.gif"></td>
+		<td width='9%' align="center" >
+
+			<input type="text" name="str_arba" value="{.str_arba}" class="" style="width:60px">
+					
+		</td>
+		<td><img src="/image/line.gif"></td>
+		<td width='8%' align = center>
+			{.bbs_count}
+		</td>
+
+		<td><img src="/image/line.gif"></td>
+			<td width='25%' align = center>
+			
+			<input type="checkbox" name="str_pro1" value="Y" {? .str_pro1 =="Y"}checked{/} >세팅
+			<input type="checkbox" name="str_pro2" value="Y" {? .str_pro2 =="Y"}checked{/}>디자인
+			<input type="checkbox" name="str_pro5" value="Y" {? .str_pro5 =="Y"}checked{/}>메뉴세팅
+			<input type="checkbox" name="str_pro4" value="Y" {? .str_pro4 =="Y"}checked{/}>자료이관
+			<input type="checkbox" name="str_pro3" value="Y" {? .str_pro3 =="Y"}checked{/}>코딩
+			
+			<TEXTAREA NAME="str_memo" style="width:280px;height:80px">{.str_memo}</TEXTAREA>
+			<input type="hidden" name="oid" value="{.num_oid}">
+
+		
+		</td>
+
+		<td><img src="/image/line.gif"></td>
+		<td width='12%' align = center>
+	
+		
+			{? sadmin}<input type="submit" name="" value="저장" class="">{/}
+		
+		</td>
+	</tr>
+		</form>
+		{/}
+	<!--{:}-->
+	<tr height="100">
+		<td colspan="11" align="center">검색된 자료가 없습니다.</td>
+	</tr>
+	<!--{/}-->
+</table>
+<table width="100%">
+	<tr><td height="10"></td></tr>
+	<tr><td align="center"><wa:paging total="{total}" listnum="{listnum}" /></td></tr>
+	<tr><td height="10"></td></tr>
+</table>
+</div>
+{/}
+</body>

@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+	<meta name="description" content="{{학교이름}} 홈페이지" />
+	<meta name="keywords" content="{학교이름}, 학교홈페이지" />
+	<meta name="author" content="이웃닷컴, 김동우, 김은정, 이승희" />
+	<meta name="language" content="ko" />
+	<title>{학교이름}</title>
+	<link rel="stylesheet" href="css/common.css" type="text/css" />
+	<link rel="stylesheet" href="css/joinStep3.css" type="text/css" />
+</head>
+
+<body>
+	<div id="wrapper">
+
+
+		<!--회원가입 영역 시작-->
+		<div class="gnb">
+			<h1>{학교이름} 회원가입</h1>
+			<ul>
+				<li><a href="#">홈으로</a></li>
+				<li><a href="#">사이트맵</a></li>
+			</ul>
+		</div>
+		<div id="joinStep3"> 
+			<div class="topArea">
+				
+				<img src="images/step3Img.gif" alt="회원가입 3단계: 상세정보입력" />
+			</div>
+			<div class="contentArea">
+				<h2>상세정보입력</h2>
+				<div id="info">
+					<ul>
+						<li><strong>올바른 학교 홈페이지 사용과 활용을 위해서</strong> 반드시 실제의 정보를 입력하셔야 합니다.
+						<li>만약 입력하신 정보가 허위일 경우 사전 통보 없이 가입을 취소 할 수 있습니다.</li>
+						<li>허위정보를 입력하였을 경우에는 담당 선생님이 본인 확인이 불가능하여 회원인증을 해줄 수 없습니다.</li>
+					</ul>
+					<p>회원아이디는 개인아이디를 사용합니다.</p>
+				</div>
+				<div id="joinInfoInput">
+					<div id="joinInfoInputTop">
+						<h5>기본정보 입력</h5>
+						<p>(<em class="star">*</em>)표시는 <em>필수입력</em> 사항입니다.</p>
+					</div>
+					<div id="joinInfoInputContent">
+						<form action="#">
+							<fieldset>
+								<legend>기본정보 입력</legend>
+								<div class="row memberChoice">
+									<div class="title"><em class="star">*</em><span class="inputTitle">회원유형</span></div>
+									<div class="input">
+										<span class="choiceInput inputSpan">교직원</span>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="left name">
+										<div class="title"><em class="star">*</em><span class="inputTitle">이름(실명)</span></div>
+										<div class="input"><span class="nameInput inputSpan">김은정</span></div>
+									</div>
+									<div class="right sex">
+										<div class="title"><em class="star">*</em><span class="inputTitle">성별</span></div>
+										<div class="input"><span class="sexInput inputSpan">남자</span></div>
+									</div>
+								</div>
+
+								<div class="row birth">
+									<div class="title"><em class="star">*</em><span class="inputTitle">생년월일</span></div>
+									<div class="input">
+										<span class="birthInput inputSpan"><span class="date">1984년 11월 18일</span><span class="monthPower">양력</span></span>
+									</div>
+								</div>
+
+								<div class="row id">
+									<div class="title"><em class="star">*</em><label for="idInput"><span class="inputTitle">아이디</span></label></div>
+									<div class="input"><input type="text" id="idInput" />
+										<span class="comment">lulubong(는)은 이미 사용중입니다.</span>
+									</div>
+								</div>
+
+								<div class="row password">
+									<div class="title"><em class="star">*</em><label for="password"><span class="inputTitle">비밀번호</span></label></div>
+									<div class="input"><input type="password" id="password" /><span class="comment">영문 또는 한글 4자 이상으로 입력하세요.</span></div>
+								</div>
+								<div class="row rePassword">
+									<div class="title"><em class="star">*</em><label for="rePassword"><span class="inputTitle">비밀번호 확인</span></label></div>
+									<div class="input"><input type="password" id="rePassword" /><span class="comment">일치합니다.</span></div>
+								</div>
+
+								<div class="row emailId">
+									<div class="title"><em class="star">*</em><label for="email1"><span class="inputTitle">이메일</span></label></div>
+									<div class="input"><input type="text" id="email1" /><span class="divide">@</span><input type="text" id="email2" /><select id="email3"><option>선택하세요</option></select>
+									<span class="comment">사용 가능합니다.</span>
+										<ul>
+											<li>비밀번호 분실시 이메일로 임시비밀번호가 발송됩니다. 반드시 정확히 입력해주세요.</li>
+											<li>주의!! 본인 이메일이 아닐경우 다른 사람에게 개인정보가 노출될 수 있습니다.</li>
+										</ul>
+									</div>
+								</div>
+								
+								<div class="row zipcode">
+									<div class="title"><em class="star">*</em><label for="code1"><span class="inputTitle">우편번호</span></label></div>
+									<div class="input"><input type="text" class="codeBox" id="code1" title="앞자리" /><span class="divide">-</span><input type="text" class="codeBox" id="code2" title="뒷자리" /> <a href="#"><img src="images/findPost.gif" alt="우편번호 찾기, 팝업창으로 뜹니다" /></a>
+									<p>
+									<input type="checkbox" id="foreign" /><label for="foreign">해외거주자</label>
+									</p>
+									<select><option>국적 선택</option></select></div>
+								</div>
+								<div class="row address">
+									<div class="title"><em class="star">*</em><span class="inputTitle">주소</span></div>
+									<div class="input"><div><label for="address1">기본주소</label><input type="text" id="address1" /></div><div><label for="address2">상세주소</label><input type="text" id="address2" /></div></div>
+								</div>
+								<div class="row phone">
+									<div class="title"><em class="star">*</em><label for="tel1"><span class="inputTitle">전화번호</span></label></div>
+									<div class="input"><select id="tel1" title="국번"><option>064</option></select><span class="divide">-</span><input type="text" id="tel2" title="앞자리" /><span class="divide">-</span><input type="text" id="tel3" title="뒷자리" /></div>
+								</div>
+								<div class="row cellPhone">
+									<div class="title"><label for="mobile1"><span class="inputTitle">휴대폰</span></label></div>
+									<div class="input">
+										<select id="mobile1"><option>010</option></select><span class="divide">-</span><input type="text" id="mobile2" /><span class="divide">-</span><input type="text" id="mobile3" />
+									</div>
+								</div>
+								<div class="row class">
+									<div class="title"><em class="star">*</em><label for="class1"><span class="inputTitle">학급</span></label></div>
+									<div class="input">
+										<select id="class1"><option>학년</option></select>
+										<select id="class2"><option>반</option></select>
+									</div>
+								</div>
+								<div class="row teacher">
+									<div class="title"><em class="star">*</em><label for="teacher1"><span class="inputTitle">직책</span></label></div>
+									<div class="input">
+										<select id="teacher1"><option>교직선택</option></select>
+									</div>
+								</div>
+								<div class="row parents">
+									<div class="title"><em class="star">*</em><span class="inputTitle">자녀정보</span></div>
+									<div class="input">
+										
+										<a href="#"><img src="images/findChildBtn.gif" alt="새창에서 자녀를 검색하여 추가합니다" /></a>
+										<table cellpadding="0" cellspacing="0" summary="자녀찾기를 통해 연결된 자녀의 목록을 보여주기 위한 표">
+											<caption>자녀 목록</caption>
+											<tr>
+												<th>이름</th><th>생년월일</th><th>아이디</th><th>학년</th><th>반</th><th>삭제</th>
+											</tr>
+											<tr>
+												<td>김은정</td><td>1984/11/18</td><td>lulubong</td><td>3</td><td>2</td><td><a href="#"><img src="images/delBtn.gif" alt="자녀 정보를 삭제합니다" /></a></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="row graduate">
+									<div class="title"><em class="star">*</em><label for="graduate1"><span class="inputTitle">졸업년도</span></label></div>
+									<div class="input"><input type="text" id="graduate1" /></div>
+								</div>
+								<div class="row office">
+									<div class="title"><em class="star">*</em><label for="schoolOffice"><span class="inputTitle">직장/학교</span></label></div>
+									<div class="input"><input type="text" id="schoolOffice" /></div>
+								</div>
+								<div class="row officeNum">
+									<div class="title"><em class="star">*</em><label for="officeNum"><span class="inputTitle">연락처</span></label></div>
+									<div class="input"><input type="text" id="officeNum" /></div>
+								</div>
+								<div class="row photo">
+									<div class="title"><em class="star">*</em><label for="photo1"><span class="inputTitle">본인 사진</span></label></div>
+									<div class="input"><img src="images/join/nothingPhoto.gif" alt="본인사진 이미지" /><input type="file" id="photo1" accept="multipart/form-data" /></div>
+								</div>
+								<div class="row introduce">
+									<div class="title"><em class="star">*</em><label for="introduce1"><span class="inputTitle">본인 소개</span></label></div>
+									<div class="input">
+										<textarea cols="50" rows="10" name="long_text" id="introduce1"></textarea>
+									</div>
+								</div>
+							</fieldset>
+							<div id="btnArea">
+								<span>본 홈페이지에 가입하시겠습니까?</span>
+								<input type="image" src="images/submitBtn.gif" alt="저장버튼, 기재한 사항을 저장합니다" />
+								<a href="#"><img src="images/cancelBtn.gif" alt="다시작성" /></a>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+			<div class="footerArea">
+				<ul class="footerMenu">
+					<li><a href="#">개인정보보호방침</a></li>
+					<li><a href="#">저작권지침 및 신고</a></li>
+					<li><a href="#">회원가입 도움말</a></li>
+				</ul>
+			</div>
+		</div>
+
+		
+		
+		<!-- 회원가입 영역 끝 -->
+
+	</div>
+</body>
+</html>

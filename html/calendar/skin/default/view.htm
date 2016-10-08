@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="/css/calendarPopup.css" type="text/css" />
+
+
+
+<div id="calendarList">
+			<h1 class="topTitle">{year}년 {month}월 {day}일 행사안내</h1>
+			<table cellspacing='0' cellpadding='0'>
+				<caption>오늘의 행사</caption>
+				<thead>
+					<tr>
+						<th class="num">번호</th>
+						<th class="listTit">제목</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--{@ LIST}-->
+					<tr>
+						<td class="num">{= (.size_ - .index_)}</td>
+						<td class="listTit"><a href="calendar.view?date={date}&id={.num_serial}">{.str_title}</a></td>
+					</tr>
+					{/}
+					
+				</tbody>
+			</table>
+
+			{? id}
+			<div id="contentPart">
+				<div class="objTop topTitle">
+					<span>{str_title}</span>
+				</div>
+				<div class="objcontent">
+					<div id="explain" class="row">
+						<p>{content}</p>
+					</div>
+					{? FILE_LIST}
+					<div id="attachFile" class="row">
+						<div class="title">첨부파일</div>
+						<div class="content">	
+						<!--{@ FILE_LIST}-->
+						<img src="image/icon/{.str_ftype}.gif" align="absmiddle"> <a href="{.file_url}">{.str_upfile}</a><br>
+						<!--{/}--></div>
+					</div>
+					{/}
+				</div>
+			</div>
+			{/}
+
+			<div id="btnArea">
+				<input type="button" value="닫기"  onclick="self.close()"/>
+			</div>
+
+		</div>
+
+
+
+

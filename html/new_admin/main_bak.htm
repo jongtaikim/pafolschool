@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>B-MART  - 온라인 관리시스템</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<link rel="STYLESHEET" type="text/css" href="./css/2005_admin.css">
+<style>
+body {margin:0px;}
+</style>
+<script type="text/javascript">
+function goMenu(url,url2) {
+	if(url2 == '') url2 = 'about:blank';
+	window.open(url,'admin_menu');
+	window.open(url2,'admin_content');
+}
+function flushPage(){
+	document.all.admin_menu.src='bs.admin.menu?part=home';
+	document.all.admin_content.src='bs.admin.main';
+}
+</script>
+</head>
+
+<body leftmargin="10" topmargin="10">
+<table cellpadding="0" cellspacing="0" width="100%" height="100%">
+<tr height="103">
+	<td>
+		<table cellpadding="0" cellspacing="0" width="100%" height="4" bgcolor="#1E99AF">
+		<tr><td></td></tr>
+		</table>
+		<table cellpadding="0" cellspacing="0" width="100%" height="47">
+		<tr>
+			<td width="165"><a href="javascript:;" onClick="flushPage()"><img src="./image/logo.gif" width="165" height="47" border="0" alt=""></a></td>
+			<td width="130" align="center"><img src="./image/txt01.gif" width="105" height="23" border="0" alt=""></td>
+			<td width="250" style="color:#00A4B9;font-weight:bold;font-size:9pt;" nowrap>
+<?php
+{weekdayArr} = array('일','월','화','수','목','금','토','일');
+{weekday} = {weekdayArr}[date('w')].'요일';
+?>
+				<b>{__OBRANCH} - {= date('Y년 n월 j일')} {weekday}</b>
+			</td>
+			<td width="*" align="right">
+				<a href="/"><img src="./image/btn_home.gif" width="71" height="19" border="0" alt=""></a>
+				<a href="bs.admin.help.list" target="admin_content"><img src="./image/btn_help.gif" width="61" height="19" border="0" alt=""></a>
+				<a href="admin.logout"><img src="./image/btn_logout.gif" width="72" height="19" border="0" alt=""></a>
+			</td>
+		</tr>
+		</table>
+		<table cellpadding="0" cellspacing="0" width="100%" height="52">
+		<tr>
+			<td><a href="javascript:;" onClick="flushPage()"><img src="./image/txt02.gif" width="166" height="52" border="0" alt=""></a></td>
+			<td><img src="./image/menu01.gif" width="125" height="52" border="0" alt="" style="cursor:hand;" onclick="goMenu('bs.admin.menu?part=home','bs.admin.main');"></td>
+			<td><img src="./image/menu02.gif" width="112" height="52" border="0" alt="" style="cursor:hand;" onclick="goMenu('bs.admin.menu?part=book','bs.admin.stock.list');"></td>
+			<td><img src="./image/menu03.gif" width="98" height="52" border="0" alt="" style="cursor:hand;" onclick="goMenu('bs.admin.menu?part=sale','bs.admin.order.list');"></td>
+			<td><img src="./image/menu04.gif" width="98" height="52" border="0" alt="" style="cursor:hand;" onclick="goMenu('bs.admin.menu?part=member','member.admin.list');"></td>
+			<td><img src="./image/menu05.gif" width="91" height="52" border="0" alt="" style="cursor:hand;" onclick="goMenu('bs.admin.menu?part=sms','bs.admin.sms.send');"></td>
+			<!-- <td><img src="./image/menu06.gif" width="113" height="52" border="0" alt="" style="cursor:hand;" onclick="goMenu('bs.admin.menu?part=my','');"></td> -->
+			<td><img src="./image/menu07.gif" width="148" height="52" border="0" alt="" style="cursor:hand;" onclick="goMenu('bs.admin.menu?part=comm','bs.admin.notice.list');"></td>
+			<td width="100%" background="./image/menu_bg.gif"></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr height="*">
+	<td>
+		<table cellpadding="0" cellspacing="0" width="100%" height="100%">
+		<tr valign="top">
+			<td width="165">
+				<iframe name="admin_menu" src="bs.admin.menu?part=home" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+			</td>
+			<td width="*">
+				<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+				<tr height="*">
+					<td><iframe name="admin_content" src="bs.admin.main" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe></td>
+				</tr>
+				<tr height="33">
+					<td bgcolor="#F1F1F1" align="center"><img src="./image/copyright.gif" width="538" height="5" border="0" alt=""></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</body>
+</html>

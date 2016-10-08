@@ -1,0 +1,35 @@
+@char-set "euc-kr";
+@import url(./1.css);
+@import url(./2.css);
+@import url(./3.css);
+@import url(./4.css);
+
+body	{
+	width:100%;
+	height:100%;
+	font-family:"µ¸¿ò";
+	font-size:12px;
+	padding:0px;
+	margin:0px;
+	background:#FFFFFF url(../../common/imgs/share/bg_body_01.gif) repeat-x left top;
+}
+
+td, select		{ font-family:"µ¸¿ò"; font-size:12px; color:#656565; line-height:16px; }
+input	{ vertical-align:middle; }
+input.GrayInput	{ height:18px; font-size:12px; color:#666666; padding:2px 2px 0px 2px; border:1px solid #E0E0E0; background:#FFFFFF; }
+
+/* Default Link */
+a, a:link, a:visited	{
+	font-family:"µ¸¿ò";
+	font-size:12px;
+	line-height:16px;
+	color:#666666;
+	text-decoration:none;
+}
+a:hover, a:active		{
+	font-family:"µ¸¿ò";
+	font-size:12px;
+	line-height:16px;
+	color:#038093;
+	text-decoration:underline;
+}

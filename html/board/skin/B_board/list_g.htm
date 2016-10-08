@@ -1,0 +1,270 @@
+
+
+{? _SESSION.ADMIN_sub}
+<script type="text/javascript">
+// <![CDATA[
+
+function checkSelected() {
+	form = document.forms['itemForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('항목을 선택하여 주십시오.');
+		return false;
+	}
+	return true;
+}
+
+
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.itemForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.itemForm.all.value = "";
+
+ return;
+}
+
+
+
+function selectItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 작업을 실행 하시겠습니까?')) return false;
+	
+	if(!$('mode')){
+		alert('작업을 선택하여 주세요.');
+		return false;
+	}
+	form.method="post";
+	form.submit();
+}
+// ]]>
+</script>
+{/}
+
+
+<style type="text/css" title="">
+	.boardBody{letter-spacing: 1px;}
+	
+/* 겔러리리스트 */
+.gallBodyLine{width:100%;text-align:center;clear: both; }
+.gallBody{width:25%;float:left; text-align:center;}
+.gallBody .item{padding:3px;width:100%;text-align:center;clear: both;}
+.gallBody .item .imageLine{border:1px solid #DDDDDD; width:80%;height:90px;padding-top:12px;margin: 0px 5px 0px 5px}
+.gallBody .item .image{width:100px;}
+.gallBody .item .title{word-break:break-all;width:100%;clear: both;text-align:left ;padding-left:10px}
+
+</style>
+
+<div class="boardBody">
+
+		<div style="margin:5px 0 5px 0;float:left;width:100%">
+				
+				<div style="float:left;width:48%">
+				전체 <strong>{total +0}</strong>개의 글이 있습니다.
+				</div>
+
+				<div style="float:right;text-align:right;width:48%">
+					{? str_category_use}
+					<select name="str_category" onchange = "location.href='/user_page/board_list/{mcode}<?=_QS?>&sch_str_category='+this.value" style = "font-size:11px;width:130px;float:right" >
+						<option value="">** 카테고리보기 **</option>
+						<option value="일반" {? '일반' == sch_str_category} selected{/}>일반</option>
+						<!--{@ cate_LIST}-->
+						<option value="{.str_category}" {? .str_category == sch_str_category} selected{/}>{.str_category}</option>
+						<!--{/}-->
+					</select>
+					{/}
+				</div>
+		</div>
+
+
+
+
+		<form method="post" name="itemForm">
+		<input type="hidden" name="all" id="all" >
+		<input type="hidden" name="mode" id="mode" >
+		<input type="hidden" name="mcode" id="mcode" value="{mcode}" >
+		<input type="hidden" name="cate" id="cate" value="{cate}" >
+
+
+
+		<table class="tbl_type_board" border="0" cellspacing="0" summary="게시판의 글제목 리스트"  style="margin-bottom:0px;border-bottom:0px">
+		<caption>게시판 리스트</caption>
+			<colgroup>
+			
+				<col width="80">
+				<col>
+				<col width="115">
+				<col width="85">
+				<col width="60">
+			</colgroup>
+		<thead>
+			<tr>
+				
+				<th scope="col">번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">글쓴이</th>
+				<th scope="col">날짜</th>
+				<th scope="col">조회수</th>
+			</tr>
+		</thead> 
+		<tbody>
+			
+			{@ gong_LIST}
+			
+			<tr >
+				
+				<td style="text-align:center"><strong style="color:#3d3d3d">[공지]</strong></td>
+				<td class="title">
+					<a href="/board.read?mcode={.num_mcode}&cate={cate}"><strong style="color:#3d3d3d">{.str_title}</strong></a>
+				</td>
+				<td style="text-align:center">
+					<a href="/board.read?mcode={.num_mcode}&cate={cate}">{.str_name}</a>
+				</td>
+				<td class="date" style="text-align:center">{.dt_date1}.{.dt_date2}.{.dt_date3}</td>
+				<td class="hit" style="text-align:center">{.num_hit}</td>
+			</tr>
+			
+			{/}
+				</tbody>
+			</table>
+			
+			
+		<div class="layout" style="border:0px">
+			<!--일반글-->
+			{@ LIST}
+			
+				{? .num_notice == 0}
+				<div class="gallBody">
+						
+						<div class="item">		
+							<div class="imageLine">
+
+							{? .num_input_pass }
+								{?_SESSION.ADMIN || _SESSION.ADMIN_sub}
+								 <a href="/board.read?mcode={.num_mcode}&id={.num_serial}&num={.num_serial}" >
+								 {:}
+								 <a href="#" onClick="return overlay(this, 'subcontent2', 'lefttbottom', '{.num_serial}')">
+								 {/}
+							 {:}
+							<a href="/board.read?mcode={.num_mcode}&id={.num_serial}&num={.num_serial}" >
+							 {/}
+							
+							<img src="{.thumb_url}" onerror="this.src='image/noimage.gif';"   onmouseover = "this.style.filter='Alpha(Opacity=70);'" onmouseout = "this.style.filter='Alpha(Opacity=100)';" width="{?.img_w}{.img_w}{:}100{/}px" height = "{?.img_h}{.img_h}{:}75{/}px" class="image"></a>
+							
+							</div>
+							<br>
+							<div class="title">
+								{? _SESSION.ADMIN ||  _SESSION.ADMIN_sub}<input type="checkbox" name="ids[]" value="{.num_serial}"> {/}
+								
+							{? .num_input_pass }
+								{?_SESSION.ADMIN || _SESSION.ADMIN_sub}
+								 <a href="/board.read?mcode={.num_mcode}&id={.num_serial}&num={.num_serial}" >
+								 {:}
+								 <a href="#" onClick="return overlay(this, 'subcontent2', 'lefttbottom', '{.num_serial}')">
+								 {/}
+							 {:}
+							<a href="/board.read?mcode={.num_mcode}&id={.num_serial}&num={.num_serial}" >
+							 {/}
+
+
+								{.title2}</a>{? .cmt }&nbsp;&nbsp;<font style = "font-size:11px" color = #FF3333>[{.cmt}]</font>{/}</a><br>	
+								<font style = "font-size:11px;color:#AA9BA0" > 조회수: {.hit} | {.date}</font>
+								
+								<br>
+								{? .num_input_pass}<img src="/html/secret.gif" alt="비밀 글" align="absmiddle">&nbsp;{/}
+								<font style = "font-size:11px;color:#765B64">작성자: {.name}</font>
+								{? .is_recent}<img src="/image/icon/new2.gif" align="absmiddle" alt='신규글입니다.'>{/}
+							</div>
+						</div>
+
+				</div>
+					{? (.index_ +1) %4 ==0}
+					<div class="gallBodyLine">	&nbsp;</div>
+					{/}
+				{/}
+			{:}
+			<div class="noneBoardData">게시된 글이 없습니다.</div>
+			{/}
+			<!--일반글 끝-->
+		</div>
+		</div>
+			
+
+	<div class="gallBodyLine" style="border-top:1px solid #cdcdcd">	&nbsp;</div>
+		
+
+
+		 <div class="div2">
+			<div class="left">
+				
+			</div>
+			<div class="right">
+				{? writable}
+					<wa:btn size="2" type="a" href="/board.write?mcode={mcode}&cate={cate}" value="글쓰기" style="float:right"/>
+				{/}
+			</div> 
+		</div>
+
+		
+
+		</form>
+
+			<div style="margin:10px 0 15px 0;width:100%;text-align:center">
+				<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}"/>
+			</div>
+		
+		
+		
+
+			<div style="text-align:center;width:100%">
+				<form method="get">
+				<select name="search_key">
+					<option value="str_title">글제목</option>
+					<option value="str_text">본문</option>
+
+				</select>
+				<input type="text" name="search_value" value="{search_value}" class="">
+				<wa:btn size="2" type="submit" value="검색하기"/>
+				</form>
+			</div>
+					
+
+

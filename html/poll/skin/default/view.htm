@@ -1,0 +1,128 @@
+<link rel="stylesheet" href="/css/onlinePollSub.css" type="text/css" />
+
+<script language="javaScript" src="js/lib.validate.js"></script>
+<script language="javaScript">
+<!--
+function viewList() {
+	location.href = "/poll.list?mcode={mcode}&type={type}";
+}
+
+function deleteComment(id) {
+	if(id) location.href = "poll.cmt_delete?main={id}&id="+id;
+
+}
+//-->
+</script>
+
+<script language="javascript">
+			<!--
+			function pollCheck(form) {
+				var els = form.elements['cid'];
+				if(els == undefined) return false;
+				if(!els.length) els = new Array(els);
+				var chk_item;
+				for( var i=0; i < els.length; i++ ) {
+					if(els[i].checked) {
+						chk_item = els[i].value;
+						break;
+					}
+				}
+				if(!chk_item) {
+					alert("설문에 대한 답이 선택되지 않았습니다. 설문에 대한 답을 보기에서 선택해 주세요.");
+					return false;
+				}
+				return true;
+			}
+
+
+
+function keyInputWord3 (val,count){
+	
+	if(strlen(val) > count) {
+	alert('덧글은 '+count+'자 이내로 작성하셔야합니다.') 
+	$('cmt_comment').value = substr(val,0,strlen(val) -1);	
+
+	$('textlimit').innerHTML = '<div id="textlimit">'+strlen($('cmt_comment').value)+'/<span class="textlimit">'+count+'</span>';
+	}else{
+	$('textlimit').innerHTML = '<div id="textlimit">'+strlen(val)+'/<span class="textlimit">'+count+'</span>';
+	}
+		
+	}
+			
+			//-->
+</script>
+
+
+<div id="onlinePollSub">
+					<div  id="chart">
+						<h4>설문조사 투표결과 조회</h4>
+						<form name="pollForm" method="post" onsubmit="return pollCheck(this);">
+						<input type="hidden" name="type2" value="{type2}">
+						<input type="hidden" name="mcode" value="{mcode}">
+						<input type="hidden" name="id" value="{id}">
+						<dl>
+							<dt class="subject"><span>설문주제</span><span class="title">{str_title}</span></dt>
+						</dl>	
+							{@ LIST}
+							
+							
+								<div style="border-bottom:1px solid #cdcdcd;margin:10px 0 10px 0;padding-bottom:20px">
+									<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:10px">
+									<tbody>
+										<tr>
+											<td width="60px" align="center">
+											<input type="radio" name="cid" value="{.num_serial}" id="choice{.index_}" {? !use_poll}disabled{/}>
+
+											</td>
+											<td width="120px" align="center">
+											<a href="@/poll/{.str_file}" target="_blank">
+												<img src="@/poll/{.str_file}_100" alt="" width="70px" />
+											</a>
+											
+											</td>
+											<td>
+											
+											<label for="choice{.index_}"><span class="character"><strong>{.str_contents}</strong></span></label>
+
+											<div class="gauge" style="margin-top:5px">
+												<div class="gaugeBar" style="width:{.rate}%;"><span><em>{.rate}%</em></span></div>
+											</div>
+												<div style="margin:10px 0 10px 0">
+													{.num_vote}명({.rate}%)												
+												</div>
+											</td>
+											
+										</tr>
+									</table>
+									
+									
+									
+								</div>
+							
+							
+							
+							
+							
+							
+								
+								
+							
+							
+							{/}
+						
+					</div>
+
+					<div style="text-align:center;padding-top:10px;padding-bottom:10px">
+					
+					<span class="btn_pack medium "><input type="submit" name="" value="투표하기" class=""></span>
+
+					
+					</div>
+					</form>
+					
+
+
+				</div>
+
+
+			

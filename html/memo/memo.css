@@ -1,0 +1,239 @@
+@charset "euc-kr";
+
+/* 이웃닷컴(e-wut.com) 
+웹 퍼블리싱 
+작업자:이승희 , 김동우 , 김은정 */
+
+/* 배너 */
+#memoWrap {
+	float:left;
+	width:650px;
+	height:600px;
+	color:#464444;
+	}
+#memoWrap .objTop {
+	float:left;
+	width:629px;
+	height:41px;
+	padding:10px 10px 0 10px;
+	background:url(images/titleTopBg.gif) repeat-x left top;
+	}
+	.memoTit {
+		float:left;
+		}
+	#menuArea {
+		float:right;
+		}
+	#menuArea li {
+		float:left;
+		margin-right:3px;
+		}
+#memoWrap .objContent {
+	float:left;
+	width:650px;
+	height:550px;
+	background:url(images/contentBg.gif) no-repeat left top;
+	}
+
+/* 게시판 */
+.board {	
+	display:inline;
+	float:left;
+	width:595px;
+	margin:25px 0 10px 30px;
+	}
+.board .boardList, .board td, .board th ,.boardWrite {
+	border:0;
+	}
+/* 게시판 상단 정보 및 검색 시작 */
+.boardInfo {
+	float:left;
+	width:595px;
+	margin-bottom:5px;
+	}
+.boardInfo .infoTit {
+	float:left;
+	padding-left:10px;
+	font-weight:bold;
+	color:#b83873;
+	background:url(images/infoTitBg.gif) no-repeat left center;
+	}
+.boardInfo .infoNotice {
+	float:right;
+	font-size:0.92em;
+	padding:2px 0 0 15px;
+	background:url(images/infoNoticeBg.gif) no-repeat left top;
+	}
+
+/* 게시판 상단 정보 및 검색 끝 */
+.boardListForm {
+	float:left;
+	width:100%;
+	line-height:normal;
+	margin-bottom:10px;
+	padding-bottom:3px;
+	background: url(images/boardListBtm.gif) repeat-x left bottom;
+	}
+.boardListForm a {
+	text-decoration: none;
+	}
+.boardListForm a:hover {
+	color:#285775;
+	text-decoration:none;
+	}
+.boardList {
+	float:left;
+	width:100%;
+	background: url(images/boardListTop.gif) repeat-x left top;
+	}
+	.boardList .top {
+		height:33px;
+		}
+.boardList th {
+	height:28px;
+	padding:5px 10px 0 10px;
+	font-weight:bold;
+	color:#b83873;
+	white-space:nowrap;
+	}
+.boardList th.title {
+	white-space:normal;
+	}
+.boardList td {
+	padding:6px 4px;
+	font-weight:normal;
+	color:#545454;
+	text-align:center;
+	white-space:nowrap;
+	border-left:0;
+	border-right: 0;
+	border-top:#f5c0dd 1px solid;
+	background:#fffbfe;
+	}
+	.boardList td.title {
+		text-align:left;
+		width:100%;
+		white-space: normal;
+		}
+.boardList .unconfirm {
+	color:#f00;
+	}
+.boardList .confirm {
+	color:#00f;
+	}
+
+/* 글쓰기 글읽기 시작 */
+.boardWriteForm {
+	float:left;
+	width:595px;
+	margin-bottom:10px;
+	padding-bottom:3px;
+	background:url(images/boardListBtm.gif) repeat-x left bottom;
+	}
+	.boardWriteForm .inputtxt {
+		display:inline;
+		float:left;
+		width:180px;
+		height:16px;
+		padding:2px;
+		font-size: 12px;
+		border: #f0a2c6 1px solid; 
+		}
+	.boardWriteForm textarea {
+		border:1px solid #f0a2c6;
+		font-size:12px;
+		color:#666;
+		width:450px;
+		height:300px;
+		}
+.boardWrite {
+	float:left;
+	width:100%;
+	padding-top:1px;
+	background: url(images/boardListTop.gif) repeat-x left top;
+	}
+.boardWrite th {
+	height:28px;
+	padding:5px 35px 0 35px;
+	font-weight:bold;
+	color:#b83873;
+	white-space:nowrap;
+	border-top:#f5c0dd 1px solid;
+	background:#ffeaf5;
+	}
+.boardWrite td {
+	padding:6px 10px;
+	font-weight:normal;
+	color:#545454;
+	white-space:nowrap;
+	border-left:0;
+	border-right: 0;
+	border-top:#f5c0dd 1px solid;
+	background:#fffbfe;
+	}
+
+
+/* 하단 네비게이션 시작 */ 	
+.boardNavigation {
+	float:left;
+	position:relative;
+	width:595px;
+	}
+	.pagination {
+		float:left;
+		width:595px;
+		text-align:center;
+		margin-bottom:10px;
+		}
+	.pagination a , .pagination input {	
+		overflow:visible;
+		padding:0 3px;
+		}
+	.pagination a img {
+		display:inline;
+		margin:0;
+		padding:0;
+		vertical-align:middle;
+		}
+	.pagination .prev {
+		padding-right:15px;
+		background:url(images/prevBtn.gif) no-repeat right top;
+		}
+	.pagination .next {
+		padding-left:15px;
+		background:url(images/nextBtn.gif) no-repeat left top;
+		}
+/* 하단 네비게이션 끝 */ 
+
+/*버튼디자인*/
+.buttonArea {
+	text-align:center;
+	}
+.btn01 {
+	display:inline-block;
+	height:32px;
+	margin-right:3px;
+	background:url(images/btnLeftBg1.gif) no-repeat left top;
+	}
+	.btn01 a {
+		display:inline-block;
+		height:24px;
+		padding:9px 25px 0 25px;
+		color:#fff;
+		font-size:1em;
+		background:url(images/btnRightBg1.gif) no-repeat right top;
+		}
+.btn02 {
+	display:inline-block;
+	height:32px;
+	margin-right:3px;
+	background:url(images/btnLeftBg2.gif) no-repeat left top;
+	}
+	.btn02 a {
+		display:inline-block;
+		height:24px;
+		padding:9px 25px 0 25px;
+		color:#fff;
+		font-size:1em;
+		background:url(images/btnRightBg2.gif) no-repeat right top;
+		}

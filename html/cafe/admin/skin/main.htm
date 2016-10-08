@@ -1,0 +1,66 @@
+<SCRIPT LANGUAGE="JavaScript">
+
+	function actionSet(){
+		str=document.orderFormTitle.skin;				
+		var radioVal="";			
+		for(var i=0;i<str.length; i++) { 
+		   if (str[i].checked == true) 
+		   { 
+		     radioVal = str[i].value; 		     
+		     break; 
+		   } 
+		} 			
+		
+		if(!radioVal) {
+		   if(str.value != undefined){
+		   	radioVal = str.value;
+		   }
+		}
+		
+		if(radioVal == "" || radioVal == undefined) {			
+			alert("1개 이상을 선택해야 합니다. ");
+			str[0].focus();
+			return false;			
+		}						
+		alert('학급 홈피의 디자인을 변경합니다.');			
+		document.orderFormTitle.submit();
+	}	
+
+	function set_skin(type){	
+		if(type)orgimg.location.href='/cafe/skin/images/admin_img/'+type;
+	}	
+</SCRIPT>
+<div id="sub_content_area">
+	<div id="admin_sub_content">
+		<h3 id="admin_sub_title">학급홈피 디자인 스킨</h3>
+		<form name=orderFormTitle method="post">						
+			<iframe name="orgimg" frameborder="0" src="" id="skin_preview"></iframe>
+			<!-- DYNAMIC AREA 'LOOP' -->
+			<dl class="skin_list">
+				<dt class="skin_title">
+					<input type="hidden" name="pv_no" value="{{pv_no}}">
+					<input type="radio" name="skin" value="{{key}}" {{skin_check}} onclick="javascript:set_skin('{{orgimg}}')">
+					<strong>{{title}}</strong>
+				</dt>
+				<dd class="skin_thumb">
+					<img src="{{thumbimg}}" width=100 height="93" alt="{{note}}">
+				</dd>
+				<dd class="skin_note">
+					<p class="hidden">{{note}}</p>
+				</dd>
+			</dl>
+			<!-- DYNAMIC AREA 'LOOP' -->
+			<div id="skin_page_num">
+				<!-- DYNAMIC AREA 'PAGE_LOOP' -->
+				<a href="{{link_url}}">{{page_no}}</a>
+				<!-- DYNAMIC AREA 'PAGE_LOOP' -->
+			</div>
+			<div id="skin_submit" class="border_top_2px">
+				<img src="/image/admin/main/popup/button/apply.gif" onclick="javascript:actionSet();">
+			</div>
+		</form>
+	</div>
+</div>
+<script language="javascript">
+	set_skin('{{cafe_skin_orgimg}}')	
+</script>

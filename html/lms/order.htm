@@ -1,0 +1,218 @@
+<style type="text/css" title="">
+ .tip_title {font-weight:bold; color:#e86200; padding-left:3px;}
+ .tip_text {background-color:#f6f6f6; font-size:11px; color:545963; line-height:18px; padding-top:2px;}
+ .help_text {background-color:#f6f6f6; font-size:12px; color:545963; line-height:18px; padding-top:2px;}
+</style>
+
+
+<!--div class="progress" style="margin-bottom:30px">
+<strong class="tit">현위치</strong>
+	<ol>
+		<li class="on">
+			<span>목록</span>
+		</li>
+
+		<li>
+			<span>참가신청 약관 동의</span>
+		</li>
+		<li>
+			<span>신청서 작성</span>
+		</li>
+		<li>
+			<span>신청완료</span>
+		</li>
+	</ol>
+</div-->
+
+
+<!--table cellpadding="0" cellspacing="0" border="0" style="margin-top:20px">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title" style="">안내</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text" style="color:#000">
+			기수 및 정보를 변경은 전화연락(1599-3290) 또는 상담 게시판에 남겨 주시기 바랍니다.		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table-->
+{? !no_tab}
+{#TAB}
+{/}
+
+	{? _GET.ccode == '70' || _GET.ccode == '71'}
+	<div style="border:2px solid #cdcdcd;padding:5px">
+		 <strong>패키지는 5박6일 프로그램 과정 두가지를 연속해서 수강하는 것입니다.<br></strong>
+		 (예 : 인문학+공부법, 공부법+IT/SW, 인문학+종합스포츠 등등)
+
+	</div>
+	{/}
+
+	<!--ui object -->
+	<table class="tbl_type" border="1" cellspacing="0" summary="교육 목록리스트" style="margin-top:20px">
+	<caption>등록별 교육목록</caption>
+	<colgroup>
+
+		<!--col width="12%"-->
+		<col width="9%">
+		<col>
+		<col width="15%">
+
+
+		<col width="13%">
+		<col width="12%">
+		<col width="8%">
+
+
+	</colgroup>
+
+	<thead>
+		<tr >
+
+			<!--th style="text-align:center">이미지</th-->
+			<th style="text-align:center">
+				{? !_GET.study}
+					기수
+				{:}
+					구분
+				{/}
+			</th>
+			<th style="text-align:center">프로그램</th>
+
+			<th style="text-align:center">대상</th>
+			<th style="text-align:center">교육비</th>
+			<th style="text-align:center">상태</th>
+			<th style="text-align:center">신청</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		{@ LIST}
+		<tr >
+
+			<!--td><a href="/lms.admin.add?serial={.num_serial}"><img src="/hosts/<?=HOST?>/lms/{.str_file}_100" width="60px" onerror="this.src='/image/noimage.gif'"  style="border:1px solid #cdcdcd"/></a></td-->
+
+			<td style="color:#000;text-align:center">
+			 {? !.str_study}
+			 {? _GET.py =="ts"}
+				<p>제{.num_serial}기 ~ {.num_serial+1}기</p>
+				{:}
+				<p>제{.num_serial}기</p>
+			  {/}
+			  {:}
+				{? .str_ccode_text_2}
+					{.str_ccode_text_2}반
+				{:}
+					-
+				{/}
+			  {/}
+			</td>
+
+			<td style="text-align:left">
+				<a href="/lms.yak?ccode={.num_ccode}&serial={.num_serial}&mcode={mcode}&cate={cate}">
+					<p>
+						<span style="color:#9933ff">
+
+						{.str_ccode_text}
+
+					  {? !.str_study}
+						  {? _GET.py =="ts"}
+								제{.num_serial}기 ~ {.num_serial+1}기
+						  {:}
+								제{.num_serial}기
+						 {/}
+					 {/}
+						</span>
+					</p>
+					{? !.str_study}
+					<p>일자 : {.start_date}~{.end_date}</p>
+					{/}
+
+
+					 {? !.str_study}
+						<p>장소 : {.str_camp_area}</p>
+					{:}
+						{? .str_ccode_text_2 == '주중'}
+							<p>장소 : {.str_camp_area} (요일:협의 후 결정)</p>
+						{:}
+							<p>장소 : {.str_camp_area}</p>
+						{/}
+					{/}
+				</a>
+
+
+
+			</td>
+
+
+			<td  style="text-align:center"><p>{.str_target}</p></td>
+			<td style="color:#000;text-align:center"><p>{=number_format(.num_price)}원</p></td>
+			<td  style="text-align:center">
+
+
+				<p>{? .num_st == "1"}<span style="color:#0033ff">접수중</span>{/}
+				{? .num_st == "2" }<span style="color:#ff00cc">마감임박</span>{/}
+				{? .num_st == "4" }<span style="color:#ff00cc">마감임박<br>전화요망</span>{/}
+				{? .num_st == "5" }<span style="color:#ff00cc">학년별마감</span>{/}
+				{? .num_st == "6" }<span style="color:#ff00cc">학년별마감<br>전화요망</span>{/}
+				{? .num_st == "3" || num_start_date >= date("Ymd")}<span style="color:#990033">마감</span>{/}</p>
+
+
+			</td>
+			<td style="text-align:center">
+				{? _SESSION.USERID}
+					{?  (num_start_date >= date("Ymd") || .num_st == "3") }
+					<!--strong style="color:blue">마감됨</strong-->
+						<span class="btn_pack small "><a href="/lms.yak?ccode={.num_ccode}&serial={.num_serial}&mcode={mcode}&cate={cate}&hold=y">대기자</a></span>
+					{:}
+
+						{? .num_st == "4"  || .num_st == "3" }
+						<span class="btn_pack small "><a href="/lms.yak?ccode={.num_ccode}&serial={.num_serial}&mcode={mcode}&cate={cate}&hold=y">대기자</a></span>
+						{:}
+						<span class="btn_pack small "><a href="/lms.yak?ccode={.num_ccode}&serial={.num_serial}&mcode={mcode}&cate={cate}">신청</a></span>
+						{/}
+					{/}
+
+				{:}
+					<span class="btn_pack small "><a href="javascript:login();">신청</a></span>
+				{/}
+			</td>
+
+		</tr>
+		{:}
+
+		<tr>
+			<td colspan="6" align="center" style="text-align:center">현재 신청가능한 스쿨이 없습니다.</td>
+		</tr>
+		{/}
+	</tbody>
+	</table>
+
+
+	<div style="margin:10px 0 10px 0;border-bottom:1px solid #cdcdcd">
+		<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" class="paginate_complex"/>
+	</div>
+
+<br />
+<p class="buTitle02" >신청안내</p>
+<div style="border:2px solid #cdcdcd;padding:5px">
+※ 등록은 수업료, 교재비, 기숙사비, 식비, 보험료, 행사비 등을 포함한 금액입니다 (개인 용돈 제외) <br>
+			※ 금액은 반드시 전액 납부되어야 등록 완료됩니다. <br>
+
+			ㆍ 공식 접수기간 내 신청 후 선착순 등록금 완납 기준입니다. <br>
+			ㆍ 조기마감될 수 있습니다. 가급적 결정을 서둘러 주시길 바랍니다.<br>
+</div>
+

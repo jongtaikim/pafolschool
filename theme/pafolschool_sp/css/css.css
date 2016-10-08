@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+body { 
+		line-height: 180%;
+		color: #7f7f7f;
+		font-size: 14px;
+		font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+		@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+}
+
+a {
+	text-decoration:none;
+	}
+
+a:link    {
+	font-size: 14px;
+	text-decoration:none; color:#4B4B4B;}
+  a:hover {
+	  font-size: 14px;
+	  text-decoration:none; color:#FF0000;}
+  a:active    {
+	  font-size: 14px;
+	  text-decoration:none; color:#4B4B4B;}
+
+
+/* quick */
+.body_container .quick_area {position:absolute;left:1000px;top:35px;}
+.body_container .quick_area .quick a {display:block;}
+
+
+<!-- font-size: 0.8750em; -->

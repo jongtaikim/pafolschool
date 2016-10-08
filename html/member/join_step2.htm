@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="/css/joinStep2.css" type="text/css" />
+<script type="text/javascript">
+function yak(){
+	if($('agreecheck').checked == true){
+	$('agree').submit();
+	}else{
+	alert('이용약관에 동의 해주시기 바랍니다.')
+	}
+}
+</script>
+<body>
+
+
+
+
+<!--회원가입 영역 시작-->
+				<div id="joinStep">
+					<h3>현재 회원가입 절차 - 약관동의</h3>
+					<img src="images/join/joinStep2.gif" alt="회원가입 절차 두번째, 약관 및 개인정보 보호정책 동의  안내 이미지" />
+				</div>
+				<form id="agree" name="joinForm" method="get"   enctype="multipart/form-data" action="/member.join">
+				<input type="hidden" name="num_birthday" value="{num_birthday}"/>
+				<input type="hidden" name="chr_mtype" value="{chr_mtype}"/>
+				<input type="hidden" name="str_name" value="{str_name}"/>
+				<input type="hidden" name="chr_birthday" value="{chr_birthday}"/>
+				<input type="hidden" name="str_sex" value="{str_sex}"/>
+
+					<div class="h4">회원 약관 확인</div>
+					<fieldset class="agreeBox">
+						<legend>이용약관</legend>
+						<div id="useAgreeContent">
+							<div class="h5">이용약관</div>
+							<iframe width="100%" height="200px" src="/admin.pra_view?mode=user" frameborder="0" scrolling="yes"></iframe>
+						</div>
+					</fieldset>
+					<fieldset class="agreeBox">
+						<legend>개인정보 보호정책</legend>
+						<div id="secureAgreeContent">
+							<div class="h5">개인정보 보호정책</div>
+							<iframe width="100%" height="200px" src="/admin.pra_view?mode=pra" frameborder="0" scrolling="yes"></iframe>
+						</div>
+					</fieldset>
+					<div id="btnArea">
+						<p>
+							<em>위의 '이용약관'에 동의하십니까?</em>
+							<input type="checkbox" id="agreecheck"  />
+							<label for="agreecheck">예,동의합니다.</label>
+						</p>
+						<a href = "#" onclick = "yak()"><img src="/images/join/submitBtn.gif" alt="확인" /></a>
+						<a href="/"><img src="/images/join/cancelBtn.gif" alt="취소" /></a>
+					</div>
+				</form>
+					
+				<!-- 회원가입 영역 끝 -->
+<br><br>
+

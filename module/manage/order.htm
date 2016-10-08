@@ -1,0 +1,274 @@
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<FORM METHOD=POST name="joinForm" onsubmit="return validate(this)">
+	
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td><img src="/theme/bk7/images/icon1.gif"><img src="/theme/bk7/images/order_title1.gif"></td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+<!-- 홈페이지 구축사항 시작 -->	
+	<tr>
+		<td align="center">
+			<table cellpadding="1" cellspacing="1" border="0" width="100%" bgcolor="d5e4f0">
+			<col width="21%" align="center"></col><col width="%"></col>
+				<tr>
+					<td class="table_bg1"><font color="#FF8000">*</font> 홈페이지 계약기간</td>
+					<td class="table1">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><input type="radio" name="str_end_date"  value = "1" checked></td>
+								<td class="tab_pad1">1년</td>
+								<td><input type="radio" name="str_end_date" value = "2"></td>
+								<td class="tab_pad1">2년</td>
+								<td><input type="radio" name="str_end_date" value = "3"></td>
+								<td class="tab_pad1">3년</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="table_bg1"><font color="#FF8000">*</font> 홈페이지 구분</td>
+					<td class="table1">
+					<script>
+					
+					function select11(idx){
+					if(idx == "B-MART") {
+					document.getElementById('vvvaw').style.display = "none";						
+					document.getElementById('vvvaw1').innerHTML = "<b>상담후 견적";						
+					}else{
+					document.getElementById('vvvaw').style.display = "";						
+					document.getElementById('vvvaw1').innerHTML = "<b>무료";						
+					}
+
+					}
+
+					</script>
+						
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><input type="radio" name="str_home_type" value = "SCHOOL" onclick = "select11(this.value);" checked></td>
+								<td class="tab_pad1">EASY SCHOOL</td>
+								<!--td><input type="radio" name="str_home_type" value = "HOME"></td>
+								<td class="tab_pad1">EASY HOME</td>
+								<td><input type="radio" name="str_home_type" value = "SHOP"></td>
+								<td class="tab_pad1">EASY SHOP</td-->
+								<td><input type="radio" name="str_home_type" value = "B-MART" onclick = "select11(this.value);"></td>
+								<td class="tab_pad1">B-MART</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="table_bg1">개발비용</td>
+					<td class="table2">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><div id ="vvvaw1"><b>무료</b></div></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="table_bg2"><font color="#FF8000">*</font> 디자인 유형</td>
+					<td class="table3">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td style="padding:0 0 0 5"><input type="radio" name="str_design" value = "테마선택형" checked></td>
+								<td class="tab_pad2">테마선택형</td>
+								<td class="tab_pad3"> / 정규적으로 업데이트 되는 테마를 마음대로 선택사용합니다. (*커스팅마이즈 불가)</td>
+							</tr>
+							<tr>
+								<td height="10"></td>
+							</tr>
+							<tr>
+								<td colspan="3" height="1" bgcolor="d5e4f0"></td>
+							</tr>
+							<tr>
+								<td height="10"></td>
+							</tr>
+							<tr>
+								<td style="padding:0 0 0 5"><input type="radio" name="str_design" value = "주문제작형"></td>
+								<td class="tab_pad2">주문제작형</td>
+								<td class="tab_pad3"> / 주문제작한 디자인입니다. 독립디자인이며 스킨선택 불가합니다.</td>
+							</tr>
+
+							<tr>
+							  <td colspan =3 style = "padding:3px;color : red">&nbsp;&nbsp;※ 스킨선택형은 추가 비용이 들어가지 않습니다.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr id = "vvvaw">
+					<td class="table_bg3">옵션<b>(필수가 아님)</td>
+					<td class="table3">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr height="40">
+								<td style="padding:0 0 0 5"><input type="checkbox"  name="str_opt1" value = "Y"></td>
+								<td class="tab_pad4">학교소개 디자인페이지 제작</td>
+								<td class="tab_pad3">/ 10만원 10페이지</td>
+							</tr>
+
+							<tr>
+							  <td colspan =3 style = "padding:3px;color : red">&nbsp;&nbsp;※ 제공해드리는 기본 학교소개외에 제작을 원하시면 선택 해주세요.</td>
+							</tr>
+							<tr>
+								<td colspan="3" height="1" bgcolor="d5e4f0"></td>
+							</tr>
+							<tr height="40">
+								<td style="padding:0 0 0 5"><input type="checkbox" name="str_opt2" value = "Y"></td>
+								<td class="tab_pad4">도메인 대량관리</td>
+								<td class="tab_pad3">/ 도메인 등록비용 18,000원</td>
+							</tr>
+							<tr>
+							  <td colspan =3 style = "padding:3px;color : red">&nbsp;&nbsp;※ 보유한 도메인이 있을시에는 비용이 들지 않습니다.</td>
+							</tr>
+							<tr>
+								<td colspan="3" height="1" bgcolor="d5e4f0"></td>
+							</tr>
+							<tr height="40">
+								<td style="padding:0 0 0 5"><input type="checkbox" name="str_opt3" value = "Y"></td>
+								<td class="tab_pad4">게시판 이관작업</td>
+								<td class="tab_pad3">/ 학교사정에 따라 비용이 청구될 수 있음</td>
+							</tr>
+							<tr>
+								<td colspan="3" height="1" bgcolor="d5e4f0"></td>
+							</tr>
+							<tr height="40">
+								<td style="padding:0 0 0 5"></td>
+								<td class="tab_pad4" colspan="2"><FONT  COLOR="#009900">홈페이지 정규업그레이드 무료</FONT></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="table_bg1">관리 호스팅</td>
+					<td class="table2">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>&nbsp;<b>(월 3만원)</b> 디자인 제작은 별도</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+<!-- 홈페이지 구축사항 끝 -->
+	<tr>
+		<td height="30"></td>
+	</tr>
+	<tr>
+		<td><img src="/theme/bk7/images/icon1.gif"><img src="/theme/bk7/images/order_title2.gif"></td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+<!-- 홈페이지 구축사항 시작 -->	
+	<tr>
+		<td align="center">
+			<table cellpadding="1" cellspacing="1" border="0" width="100%" bgcolor="d5e4f0">
+			<col width="21%" align="center"></col><col width="%"></col><col width="21%" align="center"></col><col width="%"></col>
+				<tr>
+					<td class="table_bg1"><font color="#FF8000">*</font> 신청자</td>
+					<td class="table1">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>&nbsp;<input type="text" name="str_name" style="height:20; border:1 solid c5c5c5"  hname="신청자" required></td>
+							</tr>
+						</table>
+					</td>
+					<td class="table_bg1"><font color="#FF8000">*</font> 소속/직장</td>
+					<td class="table1">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>&nbsp;<input type="text" name="str_organ" style="height:20; border:1 solid c5c5c5"  hname="소속/직장" required></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="table_bg1"><font color="#FF8000">*</font> 주소</td>
+					<td class="table3" colspan="3">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td height="5"></td>
+							</tr>
+							<tr>
+								<td class="tab_pad5"><script type="text/javascript">
+							function popup_zip() {
+								form = 'joinForm';
+								wZip = window.open('core.zipcode?el_addr=str_addr1&el_zip=chr_zip&el_focus=str_addr2&form='+form,'zipsearch','width=400, height=200');
+							}
+							</script>
+							우편번호 &nbsp;:&nbsp; <input name="chr_zip" hname="우편번호" size="7" maxlength="7" type="text"  style="border:1px solid #D1D1D1;" onclick="popup_zip();" required readonly>
+							<input type="button" value="우편번호검색" style="cursor:hand;width:75;height:19;font-size:11px;" onclick="popup_zip();">
+							
+							</td>
+							</tr>
+							<tr>
+								<td class="tab_pad5">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소 &nbsp;:&nbsp; <input name="str_addr1" hname="기본주소" type="text" style="width:313px; border:1px solid #D1D1D1;" maxbyte="100" onclick="popup_zip();" required readonly></td>
+							</tr>
+							<tr>
+								<td class="tab_pad5">상세주소 &nbsp;:&nbsp; <input name="str_addr2" hname="상세주소" type="text" style="width:313px; border:1px solid #D1D1D1;" maxbyte="100" required ></td>
+							</tr>
+							<tr>
+								<td height="5"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="table_bg1"><font color="#FF8000">*</font> 이메일</td>
+					<td class="table1" colspan="3">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>&nbsp;<input name="str_email" hname="이메일" type="text" option="email" maxbyte="50" style="width:313px; border:1px solid #D1D1D1;" required><br>&nbsp;다음(daum.net, hanmail.net)' 메일계정을 사용하시면, 정상적으로 받으실 수 없습니다.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="table_bg1">연락처</td>
+					<td class="table1" colspan="3">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>&nbsp;<input type="text" name="str_tel1" style="height:20; width:30; border:1 solid c5c5c5"> - <input type="text" name="str_tel2" style="height:20; width:40; border:1 solid c5c5c5"> - <input type="text" name="str_tel3" style="height:20; width:40; border:1 solid c5c5c5"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="table_bg1"><font color="#FF8000">*</font> 휴대폰</td>
+					<td class="table1" colspan="3">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td>&nbsp;<input type="text" name="str_handtel1" style="height:20; width:30; border:1 solid c5c5c5"  hname="휴대폰" required> - <input type="text" name="str_handtel2" style="height:20; width:40; border:1 solid c5c5c5"  hname="휴대폰" required > - <input type="text" name="str_handtel3" style="height:20; width:40; border:1 solid c5c5c5" hname="휴대폰" required></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td class="table_bg1">메모</td>
+					<td colspan="3" bgcolor="FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td style="padding:8 0 8 8"><textarea style="height:140; width:530; border:1 solid c5c5c5" name="str_memo"></textarea></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+			</table>
+		</td>
+	</tr>
+<!-- 홈페이지 구축사항 끝 -->
+	<tr>
+		<td height="15"></td>
+	</tr>
+	<tr>
+		<td align="center"><input type = "image" src="/theme/bk7/images/btn1.gif">&nbsp;&nbsp;<a href = "/"><img src="/theme/bk7/images/btn2.gif"></a></td>
+	</tr>
+</table>
+</FORM>

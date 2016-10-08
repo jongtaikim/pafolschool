@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>${Search Zipcode}</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<script language="javascript">
+<!--
+function selectZipcode( n, b, x ) {
+	opener.selectZipcode( n, b, x );
+}
+//-->
+</script>
+<style type="text/css">
+body,td {font-size:9pt;}
+a {text-decoration:none;}
+</style>
+</head>
+<body topmargin="0" leftmargin="0">
+<table cellspacing="0" cellpadding="0" width="100%" height="100%" align="center" border="0" class="window">
+<tr><td align="center" class="title">${Search Zipcode}</td></tr>
+<tr><td height="10"></td></tr>
+<tr valign="top">
+	<td>
+		<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+		<form name="orderForm" method="post">
+		<tr><td align="center"><input type="text" name="name" size="10"> <input type="submit" value="${Search}"></td></tr>
+		</form>
+		<tr><td height="10"></td></tr>
+		</table>
+
+		<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
+		<!--{@ LOOP}-->
+		<tr>
+			<td align="center" width="70">{.str_code}</td>
+			<td align="left"><a href="javascript:selectZipcode('{.zip1}','{.zip2}','{.head_addr}');">{.sum_addr}</a></td>
+		</tr>
+		<tr><td height="3" colspan="2"></td></tr>
+		<!--{/}-->
+		
+		</table>
+	</td>
+</tr>
+<tr><td height="10"></td></tr>
+</table>
+</body>
+</html>

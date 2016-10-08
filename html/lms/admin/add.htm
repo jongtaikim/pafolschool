@@ -1,0 +1,180 @@
+<style type="text/css" title="">
+.texta1{ width:280px;height:16px}
+</style>
+<script type="text/javascript">
+// <![CDATA[
+function selectCate(idx){
+	if($('str_type').value == "1"){
+		$('ccodes').style.display = 'block';
+		$('ccodes2').style.display = 'none';
+		$('gkdate').style.display = 'block';
+		$('num_ccode').value = '10';
+	}else{
+		$('ccodes').style.display = 'none';
+		$('ccodes2').style.display = 'block';
+		$('gkdate').style.display = 'none';
+		$('num_ccode').value = '100';
+	}
+}
+// ]]>
+</script>
+
+<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo">
+	{? _GET.copy}
+	<input type="hidden" name="serial" value="">
+	{:}
+	<input type="hidden" name="serial" value="{serial}">
+	{/}
+	<input type="hidden" name="types" value="{types}">
+	
+	<p class="buTitle17" style="margin-bottom:10px">{? _GET.study=='y'}스터디{:}캠프{/} 기본 정보</p>
+
+	<table width="100%" cellspacing="0" border="1" summary="커리큘럼 캠프 입력/수정" class="tbl_type">
+	<caption>커리큘럼 캠프 입력/수정</caption>
+		<colgroup>
+			<col width="140"><col><col width="120"><col>
+		</colgroup>
+	<tbody>
+		
+		<tr>
+			<th scope="row">{? _GET.study=='y'}스터디{:}캠프{/} 프로그램</th>
+			<td colspan="3">
+			
+
+			<select name="num_ccode" id="num_ccode"  hname="캠프과정"  required>
+					{@ title_LIST}
+					<option value="{.num_ccode}" {? num_ccode == .num_ccode || ccode == .num_ccode} selected{/}>{.str_title}</option>
+					{/}
+				</select>
+				{? !num_serial || _GET.copy}
+					{? _GET.study !='y'}
+					&nbsp;&nbsp;|&nbsp; 시작 기수 : <input type="text" name="st_num_serial" value="{? num_serial}{num_serial}{:}1{/}" class="" hname="캠프시작기수" style="width:30px" required>
+					{:}
+						<input type="hidden" name="st_num_serial" value="{? num_serial}{num_serial}{:}1{/}" class="" hname="캠프시작기수" style="width:30px">
+						<input type="hidden" name="str_study" value="y">
+					{/}
+				{/}
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">참가대상</th>
+			<td>
+				<input type="text" name="str_target" value="{str_target}" class="" hname="참가대상" required>
+			</td>
+			<th scope="row">{? _GET.study=='y'}스터디{:}캠프{/}장소</th>
+			<td>
+				<input type="text" name="str_camp_area" value="{str_camp_area}" class="" hname="캠프장소" required>
+			</td>
+		</tr>
+		{? _GET.study!='y'}
+		<tr >
+			<th scope="row">캠프일자</th>
+			<td colspan="3">
+				<div id="gkdate">
+				<wa:datepicker name="start_date" value="{start_date}"/> ~ <wa:datepicker name="end_date" value="{end_date}"/>
+				</div>
+				
+			</td>
+		</tr>
+		{/}
+		<tr >
+			<th scope="row">상태</th>
+			<td colspan="3">
+				<select name="num_st">
+					<option value="1" {? num_st == "1"} selected{/}>접수중</option>
+					<option value="2" {? num_st == "2"} selected{/}>마감임박</option>
+					<option value="4" {? num_st == "4"} selected{/}>마감임박-전화요망</option>
+					<option value="5" {? num_st == "5"} selected{/}>학년별 마감</option>
+					<option value="6" {? num_st == "6"} selected{/}>학년별 마감-전화요망</option>
+					<option value="3" {? num_st == "3"} selected{/}>마감</option>
+					
+				</select>
+			</td>
+		</tr>
+
+			<tr >
+			<th scope="row">숨김상태</th>
+			<td colspan="3">
+				<select name="str_view">
+					<option value="y" {? str_view == "y"} selected{/}>표출</option>
+					<option value="n" {? str_view == "n"} selected{/}>숨김</option>
+				</select>
+			</td>
+		</tr>
+
+
+	</tbody>
+	</table>
+	
+	<br/>
+	<br/>
+
+	<p class="buTitle17" style="margin-bottom:10px">{? _GET.study=='y'}스터디{:}캠프{/} 상세 정보</p>
+
+	<table width="100%" cellspacing="0" border="1" summary="커리큘럼 캠프 입력/수정" class="tbl_type">
+	<caption>커리큘럼 캠프 입력/수정</caption>
+		<colgroup>
+			<col width="140"><col><col width="120"><col>
+		</colgroup>
+	<tbody>
+		
+		<!--tr>
+			<th scope="row">대표이미지</th>
+			<td colspan="3">
+				 {? str_file} <img src="/hosts/<?=HOST?>/lms/{str_file}_100"  /><br>{/}
+				<input type="file" name="upfile1" class="button">
+
+			</td>
+		</tr-->
+		<tr>
+			<th scope="row">{? _GET.study=='y'}스터디{:}캠프{/}참가비</th>
+			<td colspan="3">
+				<input type="text" name="num_price" value="{num_price}" class="" hname="캠프참가비"  required>원
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">계좌번호</th>
+			<td colspan="3">
+				<input type="text" name="str_bank_number" value="{str_bank_number}" class="" hname="계좌번호"  required>
+				ex) 국민 000-00-000000
+			</td>
+		</tr>
+		
+		<tr>
+			<th scope="row">과정특징</th>
+			<td colspan="3">
+				<wa:upload part="editor_basic" sect="lms" code="{num_ccode}" name="str_text1" width="100%" height="150px">{str_text1}</wa:upload>
+			</td>
+		</tr>
+
+		<!--tr>
+			<th scope="row">커리큘럼</th>
+			<td colspan="3">
+				<textarea name="str_text2" id="str_text2"  style="height:150px;width:100%">{str_text2}</textarea>
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row">캠프교재</th>
+			<td colspan="3">
+				<textarea name="str_text3" id="str_text3"  style="height:150px;width:100%">{str_text3}</textarea>
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row">스케줄</th>
+			<td colspan="3">
+				<textarea name="str_text4" id="str_text4"  style="height:250px;width:100%">{str_text4}</textarea>
+			</td>
+		</tr-->
+		
+
+	</tbody>
+	</table>
+
+	<div style="text-align:center;margin-top:20px">
+		<span class="btn_pack medium icon"><span class="check"></span><input type="submit" value="저장하기"></span>
+		<span class="btn_pack medium icon"><span class="refresh"></span><a href="javascript:history.go(-1)">취소</a></span>
+	</div>
+
+</form>

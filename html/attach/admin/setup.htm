@@ -1,0 +1,430 @@
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+<style>
+ .ico{padding:0 0 0 15; background-color:f9f9f9;}
+ .f1{padding:3 0 0 6; background-color:f9f9f9;font-size:12px;color:#4a4a4a;}
+ .f2{padding:0 0 2 10; font-size:11px;color:#666666;}
+ .f3{padding:11 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+ .f4{padding:0 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+</style>
+
+<FORM METHOD=POST >
+	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+<!-- 타이틀 Start -->
+	<tr valign="top">
+		<td height="59">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="59" background="/html/image/title_bg.gif">
+				<tr valign="top">
+					<td align="right"><!--img src="/html/image/member_title02.gif"-->레이아웃 환경설정</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+<!-- 타이틀 End -->	
+	<tr>
+		<td height="21"></td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<table cellpadding="0" cellspacing="0" border="0" width="95%" align = center>
+			<col width="1%"></col><col width="15%"></col><col width="%"></col>
+				<tr>
+					<td colspan="3">
+
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding:0 5 4 0"><img src="/html/image/ico_box02.gif"></td>
+								<td style="font-size:12; color:e9084d"><!-- e57700 -->서브페이지와 레이아웃을 연결하는 곳입니다.</td>
+							</tr>
+							<tr>
+								<td height="4"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+				</tr>
+				<tr height="55">
+					<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+					<td class="f1">회원관련</td>
+					<td class="f2" style = "padding:5 0 5 0 ">
+
+
+	
+
+
+
+
+	<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+
+ <tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   회원로그인
+  </td>
+   <td>
+    <select name="login">
+						<option value="sub" {? login=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? login=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? login=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? login=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? login=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? login=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? login=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? login=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? login=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? login=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+    <td><a href="/member.login" target="_blank">미리보기</a> 주소 : /member.login</td>
+
+ </tr>
+
+ 
+<tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   ID/비밀번호 찾기
+  </td>
+   <td>
+    <select name="findid">
+						<option value="sub" {? findid=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? findid=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? findid=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? findid=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? findid=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? findid=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? findid=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? findid=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? findid=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? findid=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+    <td><a href="/member.findid" target="_blank">미리보기</a> 주소 : /member.findid</td>
+
+ </tr>
+
+
+
+
+ <tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   회원가입
+  </td>
+   <td>
+    <select name="join">
+						<option value="sub" {? join=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? join=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? join=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? join=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? join=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? join=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? join=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? join=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? join=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? join=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+    <td><a href="/member.join" target="_blank">미리보기</a> 주소 : /member.join</td>
+
+ </tr>
+
+
+
+
+ <tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   회원정보수정
+  </td>
+   <td>
+    <select name="modify">
+						<option value="sub" {? modify=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? modify=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? modify=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? modify=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? modify=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? modify=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? modify=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? modify=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? modify=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? modify=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+    <td><a href="/member.modify" target="_blank">미리보기</a> 주소 : /member.modify</td>
+
+ </tr>
+
+
+
+ <tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   회원탈퇴
+  </td>
+   <td>
+    <select name="del">
+						<option value="sub" {? del=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? del=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? del=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? del=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? del=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? del=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? del=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? del=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? del=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? del=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+    <td><a href="/member.del" target="_blank">미리보기</a> 주소 : /member.del</td>
+
+ </tr>
+
+
+
+
+
+</table>
+					
+					 
+					 
+					
+					
+
+					
+					
+					</td>
+				</tr>
+
+
+<tr>
+					<td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+				</tr>
+
+<tr>
+  <td colspan = 3>
+<br>
+<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding:0 5 4 0"><img src="/html/image/ico_box02.gif"></td>
+								<td style="font-size:12; color:e9084d"><!-- e57700 -->추가 기능 페이지의 레이아웃을 연결합니다.</td>
+							</tr>
+							<tr>
+								<td height="4"></td>
+							</tr>
+						</table>
+
+</td>
+</tr>
+
+<tr>
+					<td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+				</tr>
+		
+				
+<tr height="120">
+					<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+					<td class="f1">수강관리</td>
+						<td class="f2" style = "padding:5 0 5 0 ">
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+
+ <tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   강좌리스트
+  </td>
+   <td>
+    <select name="m_list">
+						<option value="sub" {? m_list=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? m_list=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? m_list=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? m_list=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? m_list=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? m_list=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? m_list=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? m_list=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? m_list=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? m_list=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+    <td><a href="/lms.m_list" target="_blank">미리보기</a> 주소 : /lms.m_list</td>
+
+ </tr>
+
+ <tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   강좌상세보기
+  </td>
+   <td width=80>
+    <select name="m_view">
+						<option value="sub" {? m_view=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? m_view=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? m_view=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? m_view=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? m_view=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? m_view=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? m_view=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? m_view=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? m_view=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? m_view=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+      <td><a href="/lms.m_view" target="_blank">미리보기</a> 주소 : /lms.m_view</td>
+ </tr>
+
+
+  <tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   내강의실
+  </td>
+   <td width=80>
+    <select name="mypage">
+						<option value="sub" {? mypage=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? mypage=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? mypage=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? mypage=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? mypage=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? mypage=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? mypage=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? mypage=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? mypage=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? mypage=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+      <td><a href="/lms.mypage" target="_blank">미리보기</a> 주소 : /lms.mypage</td>
+ </tr>
+
+
+
+  <tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   내강의실 상세보기
+  </td>
+   <td width=80>
+    <select name="mypage_view">
+						<option value="sub" {? mypage_view=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? mypage_view=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? mypage_view=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? mypage_view=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? mypage_view=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? mypage_view=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? mypage_view=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? mypage_view=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? mypage_view=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? mypage_view=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+      <td><a href="/lms.mypage_view" target="_blank">미리보기</a> 주소 : /lms.mypage_view</td>
+ </tr>
+
+
+
+<tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   OFFLINE 강좌 시간표
+  </td>
+   <td width=80>
+    <select name="m_list_off">
+						<option value="sub" {? m_list_off=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? m_list_off=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? m_list_off=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? m_list_off=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? m_list_off=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? m_list_off=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? m_list_off=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? m_list_off=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? m_list_off=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? m_list_off=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+      <td><a href="/lms.m_list_off" target="_blank">미리보기</a> 주소 : /lms.m_list_off</td>
+ </tr>
+
+
+
+
+<tr>
+  <td width="130" style = "padding:2 0 2 10" class="f2">
+   강사소개
+  </td>
+   <td width=80>
+    <select name="tach_list">
+						<option value="sub" {? tach_list=="sub"}selected{/}>서브1</option>
+						<option value="sub2" {? tach_list=="sub2"}selected{/}>서브2</option>
+						<option value="sub3" {? tach_list=="sub3"}selected{/}>서브3</option>
+						<option value="sub4" {? tach_list=="sub4"}selected{/}>서브4</option>
+						<option value="sub5" {? tach_list=="sub5"}selected{/}>서브5</option>
+						<option value="sub6" {? tach_list=="sub6"}selected{/}>서브6</option>
+						<option value="sub7" {? tach_list=="sub7"}selected{/}>서브7</option>
+						<option value="sub8" {? tach_list=="sub8"}selected{/}>서브8</option>
+						<option value="sub9" {? tach_list=="sub9"}selected{/}>서브9</option>
+						<option value="sub10" {? tach_list=="sub10"}selected{/}>서브10</option>
+					</select> 
+  </td>
+
+      <td><a href="/lms.tach_list" target="_blank">미리보기</a> 주소 : /lms.tach_list</td>
+ </tr>
+
+
+
+
+
+
+</table>
+					
+					 
+					
+					
+
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+				</tr>
+
+				<tr>
+					<td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+				</tr>
+
+				<tr>
+				  <td colspan="3" align =center style="padding:10"><input type="image" src="/html/image/btn_save.gif" value="저장하기"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+
+
+<input type="hidden" name="end" value="">
+</FORM>

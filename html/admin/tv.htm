@@ -1,0 +1,920 @@
+<html>
+<head>
+<title>경기교육인터넷방송 GGETV - 교육영상의 모든 것</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="P3P" content='policyref="http://w.about.com/w3c/p3p.xml"'>
+<link href="/style.css" rel="stylesheet" type="text/css">
+<script src="/js/common.js"></script>
+<script src="/lib/common.js"></script>
+<script id="dynamic"></script> 
+<SCRIPT	LANGUAGE="JavaScript">
+<!--
+var vCode = ""
+
+function loadData(sel,target) {
+	var trigger = sel.options[sel.selectedIndex].value;	// selectbox의 선택된 내용
+	var form2 = sel.form.name;
+	dynamic.src = "loadData.asp?frm=" + form2 + "&trigger=" + trigger + "&target=" + target;
+}
+//-->
+</SCRIPT>
+<SCRIPT	Language="JavaScript" SRC="../lib/player4.js"></SCRIPT>
+<script	language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<script	language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight;  }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function MM_showHideLayers() { //v6.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v=='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+//-->
+</script>
+
+
+<SCRIPT	Language="JavaScript">
+
+	var bShow1 = false;
+	var bShow2 = false;
+	var bPage = false;
+
+	var isOnLoad = false;
+	var isSwitch = false;
+	var flagPos = 0;
+	var flagCheck = 0;
+
+	var SkinWidth100 = 350;
+	var SkinHeight100 = 300;
+	var SkinWidth200 = 1210;
+	var SkinHeight200 = 798;
+
+	var nX = screen.width / 2;
+	var nY = screen.height / 2;
+
+	function init(pos)
+	{
+		if(pos != "")
+		MediaPlayer1.controls.currentposition = pos;
+		MediaPlayer1.controls.play();
+		OnTopChk();
+	}
+
+	function MediaView(flag)
+	{
+		if(isOnLoad){
+			if(flag)
+				MediaPlayer1.style.visibility = "visible";
+			else
+				MediaPlayer1.style.visibility = "hidden";
+		}
+	}
+
+	function XpServicePackUse()
+	{
+		if (navigator.userAgent.indexOf("SV1") > 0){
+			SkinHeight100 = SkinHeight100 + 22;
+			SkinHeight200 = SkinHeight200 + 22;
+		}
+	}
+	XpServicePackUse();
+
+	function Pager(size)
+	{
+		if(size=='100'){
+			if(bPage)
+			{
+				//window.resizeTo(SkinWidth100, SkinHeight100);
+				//hide1.innerHTML = "<a href=# onMouseOut=MM_swapImgRestore() onMouseOver=MM_swapImage('switch1','','images/play_skill_b_switch1_on.gif',1)  onMouseDown=MM_swapImage('switch1','','images/play_skill_b_switch1_down.gif',1) onMouseUp=MM_swapImgRestore() onfocus=blur() onClick=Pager('100');><img src=images/play_skill_b_switch1.gif alt=내용숨기기 name=switch1 width=41 height=32 border=0></a>";
+				bPage = false;
+			}
+			else
+			{
+				if(bShow1 == true)
+				{
+					bShow1 = false;
+					//slide100.style.zIndex = 9;
+					//dv100_child.style.zIndex = 10;
+					//slide100.style.left = 0;
+				}
+
+				//window.resizeTo(SkinWidth100-345, SkinHeight100);
+				//hide1.innerHTML = "<a href=# onMouseOut=MM_swapImgRestore() onMouseOver=MM_swapImage('switch1','','images/play_skill_b_switch2_on.gif',1) onMouseDown=MM_swapImage('switch1','','images/play_skill_b_switch2_down.gif',1) onMouseUp=MM_swapImgRestore() onfocus=blur() onClick=Pager('100');><img src=images/play_skill_b_switch2.gif alt=내용보이기 name=switch1 width=41 height=32 border=0></a>";
+				bPage = true;
+			}
+		} else {
+			if(bPage)
+			{
+				//window.resizeTo(SkinWidth200, SkinHeight200);
+				//hide2.innerHTML = "<a href=# onMouseOut=MM_swapImgRestore() onMouseOver=MM_swapImage('switch2','','images/play_skill_b_switch1_on.gif',1) onMouseDown=MM_swapImage('switch2','','images/play_skill_b_switch1_down.gif',1) onMouseUp=MM_swapImgRestore() onfocus=blur() onClick=Pager('200');><img src=images/play_skill_b_switch1.gif alt=내용숨기기 name=switch2 width=41 height=32 border=0></a>";
+				bPage = false;
+			}
+			else
+			{
+				if(bShow2 == true)
+				{
+					bShow2 = false;
+					slide200.style.zIndex = 9;
+					//dv200_child.style.zIndex = 10;
+					slide200.style.left = 0;
+				}
+
+				//window.resizeTo(SkinWidth200-337, SkinHeight200);
+				//hide2.innerHTML = "<a href=# onMouseOut=MM_swapImgRestore() onMouseOver=MM_swapImage('switch2','','images/play_skill_b_switch2_on.gif',1) onMouseDown=MM_swapImage('switch2','','images/play_skill_b_switch2_down.gif',1) onMouseUp=MM_swapImgRestore() onfocus=blur() onClick=Pager('200');><img src=images/play_skill_b_switch2.gif alt=내용보이기 name=switch2 width=41 height=32 border=0></a>";
+				bPage = true;
+			}
+		}
+	}
+
+	function OnTop()
+	{
+	}
+
+	function OnTopChk()
+	{
+	}
+
+	function onSwitch(param)
+	{
+		//dv100.style.visibility       = "hidden";
+		dv100_child.style.visibility = "hidden";
+		console100.style.visibility  = "hidden";
+		//slide100.style.visibility    = "hidden";
+		//dv200.style.visibility       = "hidden";
+		//dv200_child.style.visibility = "hidden";
+		//console200.style.visibility  = "hidden";
+		//slide200.style.visibility    = "hidden";
+
+		var pos = MediaPlayer1.controls.CurrentPosition;
+		//alert(pos);
+		//window.resizeTo(1210, 848);
+		//location.href = "Player_big.asp?" + param + "&pos=" + pos;
+	}
+
+	function onKeyCheck()
+	{
+		if((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode >= 112 && event.keyCode <= 123) || (event.altKey == true) || (event.shiftKey == true && event.keyCode == 121))
+		{
+			event.keyCode = 0;
+			event.cancelBubble = true;
+			event.returnValue = false;
+		}
+
+		document.onkeydown = onKeyCheck;
+	}
+
+</SCRIPT>
+<script src="/js/main.js"></script>
+<SCRIPT	Language="JavaScript">
+    song = new Array();
+song[0] = 'mms://61.108.84.15//20080201 학생상담자원봉사자 수료식 300K.wmv';
+song[1] = 'mms://61.108.84.15//20080205 ebs 정보마당(김진춘 교육감 인터뷰)300k.wmv';
+song[2] = 'mms://61.108.84.15//20080215 graduation-500k.wmv';
+song[3] = 'mms://61.108.84.15//20080215 진로교육자료 발간_300k.wmv';
+song[4] = 'mms://61.108.84.15//20080221 edu forum 300k.wmv';
+song[5] = 'mms://61.108.84.15//20080221 학생상담자원봉사총회 300K.wmv';
+song[6] = 'mms://61.108.84.15//20080225 중국원격화상수업 300K.wmv';
+song[7] = 'mms://61.108.84.15//20080304_성남시청 감사패 증정_300k.wmv';
+song[8] = 'mms://61.108.84.15/wisemedia/wmv/2008-03/10121_10660.wmv';
+song[9] = 'mms://61.108.84.15//20080130 이러닝 재외동포 자녀 교육지원 300K.wmv';
+song[10] = 'mms://61.108.84.15//북유럽문화및교육탐방-스웨덴편_500K.wmv';
+song[11] = 'mms://61.108.84.15//나눔의 집-이옥선 300K.wmv';
+song[12] = 'mms://61.108.84.15//아침독서10분운동(300k).wmv';
+song[13] = 'mms://61.108.84.15//광주-교통체험학습장500k.wmv';
+song[14] = 'mms://61.108.84.15//광주-나눔의 집.wmv';
+song[15] = 'mms://61.108.84.15//광주_남한산성연구원.wmv';
+song[16] = 'mms://61.108.84.15//광주-도자기 엑스포.wmv';
+song[17] = 'mms://61.108.84.15//광주-분원 백자관.wmv';
+song[18] = 'mms://61.108.84.15//광주-분원백자도요지500k.wmv';
+song[19] = 'mms://61.108.84.15//광주-역사와 자연이 숨쉬는 체험학습.wmv';
+song[20] = 'mms://61.108.84.15//광주-영은미술관.wmv';
+song[21] = 'mms://61.108.84.15//광주-조정경기장500k.wmv';
+song[22] = 'mms://61.108.84.15//광주-천진암500k.wmv';
+song[23] = 'mms://61.108.84.15//3조_화성행궁(300K).wmv';
+song[24] = 'mms://61.108.84.15//20080201 학생상담자원봉사자 수료식 300K.wmv';
+song[25] = 'mms://61.108.84.15//20080205 ebs 정보마당(김진춘 교육감 인터뷰)300k.wmv';
+song[26] = 'mms://61.108.84.15//20080215 graduation-500k.wmv';
+song[27] = 'mms://61.108.84.15//20080215 진로교육자료 발간_300k.wmv';
+song[28] = 'mms://61.108.84.15//20080221 edu forum 300k.wmv';
+song[29] = 'mms://61.108.84.15//20080221 학생상담자원봉사총회 300K.wmv';
+song[30] = 'mms://61.108.84.15//20080225 중국원격화상수업 300K.wmv';
+song[31] = 'mms://61.108.84.15//20080304_성남시청 감사패 증정_300k.wmv';
+song[32] = 'mms://61.108.84.15/wisemedia/wmv/2008-03/10121_10660.wmv';
+song[33] = 'mms://61.108.84.15//20080130 이러닝 재외동포 자녀 교육지원 300K.wmv';
+song[34] = 'mms://61.108.84.15//4조_화성궁평리마을(300k).wmv';
+song[35] = 'mms://61.108.84.15//4조_화성은행나무마을(300k).wmv';
+song[36] = 'mms://61.108.84.15//수원-화성.wmv';
+song[37] = 'mms://61.108.84.15//용주사500k.wmv';
+song[38] = 'mms://61.108.84.15//화성 만의사640.wmv';
+song[39] = 'mms://61.108.84.15//화성-뽕나무꼴누에박물관500k.wmv';
+song[40] = 'mms://61.108.84.15//화성-송산.wmv';
+song[41] = 'mms://61.108.84.15//화성-오산.wmv';
+song[42] = 'mms://61.108.84.15//화성-용주사.wmv';
+song[43] = 'mms://61.108.84.15//융건릉과 용주사 master.wmv';
+song[44] = 'mms://61.108.84.15//화성-제부도.wmv';
+song[45] = 'mms://61.108.84.15//화성-제암리,매향리.wmv';
+song[46] = 'mms://61.108.84.15//화성 창문 아트센터640.wmv';
+song[47] = 'mms://61.108.84.15//화성 타조 사파리640.wmv';
+song[48] = 'mms://61.108.84.15//화성-한경김치박물관500k.wmv';
+song[49] = 'mms://61.108.84.15//sikmok.wmv';
+song[50] = 'mms://61.108.84.15//samil.wmv';
+song[51] = 'mms://61.108.84.15//korea_war.wmv';
+song[52] = 'mms://61.108.84.15//independence.wmv';
+song[53] = 'mms://61.108.84.15//hyunchung.wmv';
+song[54] = 'mms://61.108.84.15//gaechen.wmv';
+song[55] = 'mms://61.108.84.15//constitution.wmv';
+song[56] = 'mms://61.108.84.15//의정부 노강서원.wmv';
+song[57] = 'mms://61.108.84.15//사찰찾아떠나는여행-500k.wmv';
+song[58] = 'mms://61.108.84.15//의정부-박세당 선생 고택과 고강서원500k.wmv';
+song[59] = 'mms://61.108.84.15//의정부-의정부 문화 체험공간을 찾아서.wmv';
+song[60] = 'mms://61.108.84.15//정문부장군과신숙주선생묘를찾아서-500.wmv';
+song[61] = 'mms://61.108.84.15//의정부-회룡문화재.wmv';
+song[62] = 'mms://61.108.84.15//의정부-회룡사.wmv';
+song[63] = 'mms://61.108.84.15//5조_가평 영양 잣마을(300k).wmv';
+song[64] = 'mms://61.108.84.15//가평-전투전적비300k.wmv';
+song[65] = 'mms://61.108.84.15//가평-가일미술관 300k.wmv';
+song[66] = 'mms://61.108.84.15//가평-현등사 300k.wmv';
+song[67] = 'mms://61.108.84.15//가평 조무락계곡 300K.wmv';
+song[68] = 'mms://61.108.84.15//20080201 학생상담자원봉사자 수료식 300K.wmv';
+song[69] = 'mms://61.108.84.15//20080205 ebs 정보마당(김진춘 교육감 인터뷰)300k.wmv';
+song[70] = 'mms://61.108.84.15//20080215 graduation-500k.wmv';
+song[71] = 'mms://61.108.84.15//20080215 진로교육자료 발간_300k.wmv';
+song[72] = 'mms://61.108.84.15//20080221 edu forum 300k.wmv';
+song[73] = 'mms://61.108.84.15//20080221 학생상담자원봉사총회 300K.wmv';
+song[74] = 'mms://61.108.84.15//20080225 중국원격화상수업 300K.wmv';
+song[75] = 'mms://61.108.84.15//20080304_성남시청 감사패 증정_300k.wmv';
+song[76] = 'mms://61.108.84.15/wisemedia/wmv/2008-03/10121_10660.wmv';
+song[77] = 'mms://61.108.84.15//20080130 이러닝 재외동포 자녀 교육지원 300K.wmv';
+song[78] = 'mms://61.108.84.15//가평-아침고요수목원.wmv';
+song[79] = 'mms://61.108.84.15//가평-현등사.wmv';
+song[80] = 'mms://61.108.84.15//아라크노피아 생태수목원640.wmv';
+song[81] = 'mms://61.108.84.15//부천 모란서울촬영소.wmv';
+song[82] = 'mms://61.108.84.15//남양주-거미박물관500k.wmv';
+song[83] = 'mms://61.108.84.15//남양주-다산유적지.wmv';
+song[84] = 'mms://61.108.84.15//남양주-모란미술관.wmv';
+song[85] = 'mms://61.108.84.15//남양주-몽골문화촌.wmv';
+song[86] = 'mms://61.108.84.15//남양주-수종사.wmv';
+song[87] = 'mms://61.108.84.15//나눔의 집-이옥선 300K.wmv';
+song[88] = 'mms://61.108.84.15//기획다큐 먼지(교직원-300k).wmv';
+song[89] = 'mms://61.108.84.15//기획특집-북녘의 문화유산 300k.wmv';
+song[90] = 'mms://61.108.84.15//혜경궁 홍씨 진찬연(300k).wmv';
+song[91] = 'mms://61.108.84.15//남양주 자연사박물관640.wmv';
+song[92] = 'mms://61.108.84.15//남양주-충령사.wmv';
+song[93] = 'mms://61.108.84.15//남양주-향토사료관.wmv';
+song[94] = 'mms://61.108.84.15//남양주-홍유릉.wmv';
+song[95] = 'mms://61.108.84.15//동두천 양주문화유적500k.wmv';
+song[96] = 'mms://61.108.84.15//20080201 학생상담자원봉사자 수료식 300K.wmv';
+song[97] = 'mms://61.108.84.15//20080205 ebs 정보마당(김진춘 교육감 인터뷰)300k.wmv';
+song[98] = 'mms://61.108.84.15//20080215 graduation-500k.wmv';
+song[99] = 'mms://61.108.84.15//20080215 진로교육자료 발간_300k.wmv';
+song[100] = 'mms://61.108.84.15//20080221 edu forum 300k.wmv';
+song[101] = 'mms://61.108.84.15//20080221 학생상담자원봉사총회 300K.wmv';
+song[102] = 'mms://61.108.84.15//20080225 중국원격화상수업 300K.wmv';
+song[103] = 'mms://61.108.84.15//20080304_성남시청 감사패 증정_300k.wmv';
+song[104] = 'mms://61.108.84.15/wisemedia/wmv/2008-03/10121_10660.wmv';
+song[105] = 'mms://61.108.84.15//20080130 이러닝 재외동포 자녀 교육지원 300K.wmv';
+song[106] = 'mms://61.108.84.15//양주 - 대장금테마박물관 300k.wmv';
+song[107] = 'mms://61.108.84.15//경기도 문화재(북부)-양주 회암사지.wmv';
+song[108] = 'mms://61.108.84.15//경기도무형문화재-양주별산대놀이.wmv';
+song[109] = 'mms://61.108.84.15//6조_원골문화마을(양주별산대놀이)300k.wmv';
+song[110] = 'mms://61.108.84.15//용인 디 아모레 뮤지움 300K.wmv';
+song[111] = 'mms://61.108.84.15//용인_심곡서원연구원.wmv';
+song[112] = 'mms://61.108.84.15//용인 우리랜드 300K.wmv';
+song[113] = 'mms://61.108.84.15//용인 경기도박물관.wmv';
+song[114] = 'mms://61.108.84.15//용인- 한국민속박물관.wmv';
+song[115] = 'mms://61.108.84.15//용인 한택식물원1.wmv';
+song[116] = 'mms://61.108.84.15//용인-경기도국악당500k.wmv';
+song[117] = 'mms://61.108.84.15//용인-등잔박물관500k.wmv';
+song[118] = 'mms://61.108.84.15//용인-삼성교통박물관500k.wmv';
+song[119] = 'mms://61.108.84.15//용인-세중 돌 박물관.wmv';
+song[120] = 'mms://61.108.84.15//용인-신세계상업사박물관500k.wmv';
+song[121] = 'mms://61.108.84.15//용인-와우정사500k.wmv';
+song[122] = 'mms://61.108.84.15//용인-한터조랑말농장500k.wmv';
+song[123] = 'mms://61.108.84.15//연천-경순왕릉300k.wmv';
+song[124] = 'mms://61.108.84.15//연천-아름다운고장 연천.wmv';
+song[125] = 'mms://61.108.84.15//연천 연천의 문화재.wmv';
+song[126] = 'mms://61.108.84.15//연천 통일체험학습.wmv';
+song[127] = 'mms://61.108.84.15//연천-임장서원300k.wmv';
+song[128] = 'mms://61.108.84.15//연천-팔효문 남순하 효자문 300k.wmv';
+song[129] = 'mms://61.108.84.15//연천 - 향교 300k.wmv';
+song[130] = 'mms://61.108.84.15//연천_선사유적지연구원.wmv';
+song[131] = 'mms://61.108.84.15//연천05.wmv';
+song[132] = 'mms://61.108.84.15//연천01.wmv';
+song[133] = 'mms://61.108.84.15//연천03.wmv';
+song[134] = 'mms://61.108.84.15//20080201 학생상담자원봉사자 수료식 300K.wmv';
+song[135] = 'mms://61.108.84.15//20080205 ebs 정보마당(김진춘 교육감 인터뷰)300k.wmv';
+song[136] = 'mms://61.108.84.15//20080215 graduation-500k.wmv';
+song[137] = 'mms://61.108.84.15//20080215 진로교육자료 발간_300k.wmv';
+song[138] = 'mms://61.108.84.15//20080221 edu forum 300k.wmv';
+song[139] = 'mms://61.108.84.15//20080221 학생상담자원봉사총회 300K.wmv';
+song[140] = 'mms://61.108.84.15//20080225 중국원격화상수업 300K.wmv';
+song[141] = 'mms://61.108.84.15//20080304_성남시청 감사패 증정_300k.wmv';
+song[142] = 'mms://61.108.84.15/wisemedia/wmv/2008-03/10121_10660.wmv';
+song[143] = 'mms://61.108.84.15//20080130 이러닝 재외동포 자녀 교육지원 300K.wmv';
+song[144] = 'mms://61.108.84.15//연천04.wmv';
+song[145] = 'mms://61.108.84.15//연천06.wmv';
+song[146] = 'mms://61.108.84.15//연천02.wmv';
+song[147] = 'mms://61.108.84.15//경기도무형문화재-경기도당굿.wmv';
+song[148] = 'mms://61.108.84.15//경기도박물관.wmv';
+song[149] = 'mms://61.108.84.15//공예류.회화류.wmv';
+song[150] = 'mms://61.108.84.15//석조문화제.wmv';
+song[151] = 'mms://61.108.84.15//왕능을 찾아서.wmv';
+song[152] = 'mms://61.108.84.15//유적지.wmv';
+song[153] = 'mms://61.108.84.15//천연기념물.wmv';
+song[154] = 'mms://61.108.84.15//경기민요,경기잡가.wmv';
+song[155] = 'mms://61.108.84.15//경기영어마을 파주캠프 500k.wmv';
+song[156] = 'mms://61.108.84.15//광명 경륜 돔 경기장 300K.wmv';
+song[157] = 'mms://61.108.84.15//능.wmv';
+song[158] = 'mms://61.108.84.15//백두산경기지방의봄들꽃1.300k.wmv';
+song[159] = 'mms://61.108.84.15//백두산경기지방의봄들꽃2.300k.wmv';
+song[160] = 'mms://61.108.84.15//경기도무형문화재-승무,살풀이춤.wmv';
+song[161] = 'mms://61.108.84.15//용인-호암미술관500k.wmv';
+song[162] = 'mms://61.108.84.15//20080201 학생상담자원봉사자 수료식 300K.wmv';
+song[163] = 'mms://61.108.84.15//20080205 ebs 정보마당(김진춘 교육감 인터뷰)300k.wmv';
+song[164] = 'mms://61.108.84.15//20080215 graduation-500k.wmv';
+song[165] = 'mms://61.108.84.15//20080215 진로교육자료 발간_300k.wmv';
+song[166] = 'mms://61.108.84.15//20080221 edu forum 300k.wmv';
+song[167] = 'mms://61.108.84.15//20080221 학생상담자원봉사총회 300K.wmv';
+song[168] = 'mms://61.108.84.15//20080225 중국원격화상수업 300K.wmv';
+song[169] = 'mms://61.108.84.15//20080304_성남시청 감사패 증정_300k.wmv';
+song[170] = 'mms://61.108.84.15/wisemedia/wmv/2008-03/10121_10660.wmv';
+song[171] = 'mms://61.108.84.15//20080130 이러닝 재외동포 자녀 교육지원 300K.wmv';
+song[172] = 'mms://61.108.84.15//물 절약,이제는 선택이 아닙니다.wmv';
+song[173] = 'mms://61.108.84.15//050616독도태극기휘날리며300k.wmv';
+song[174] = 'mms://61.108.84.15//황사-이렇게 대처합시다.wmv';
+song[175] = 'mms://61.108.84.15//프리미어 제10강 700k.wmv';
+
+	function Slider(type)
+	{
+		if(bPage == true) return;
+
+		if(type == "1")
+		{
+			if(bShow1)
+			{
+				//slide100.style.zIndex = 9;
+				dv100_child.style.zIndex = 8;
+				hideKeyframe1();
+				bShow1 = false;
+			}
+			else
+			{
+				//slide100.style.zIndex = 9;
+				dv100_child.style.zIndex = 8;
+				showKeyframe1();
+				bShow1 = true;
+			}
+		}
+		else
+		{
+			if(bShow2)
+			{
+				slide200.style.zIndex = 9;
+				//dv200_child.style.zIndex = 8;
+				hideKeyframe2();
+				bShow2 = false;
+			}
+			else
+			{
+				slide200.style.zIndex = 9;
+				//dv200_child.style.zIndex = 8;
+				showKeyframe2();
+				bShow2 = true;
+			}
+		}
+	}
+
+	var Frame_ID1;
+	var Frame_ID2;
+
+	function showKeyframe1()
+	{
+		clearTimeout(Frame_ID1);
+		var lefts = parseInt(slide100.style.left);
+
+		if(lefts < 386)
+		{
+			//slide100.style.left = lefts + 15;
+			Frame_ID1 = setTimeout("showKeyframe1()", 30);
+		}
+		else
+		{
+			//slide100.style.left = "395";
+			clearTimeout(Frame_ID1);
+			//slide100.style.zIndex = 10;
+		}
+	}
+
+	function hideKeyframe1()
+	{
+		clearTimeout(Frame_ID1);
+		var lefts = parseInt(slide100.style.left);
+
+		if(lefts > 0)
+		{
+			//slide100.style.left = lefts - 15;
+			Frame_ID1 = setTimeout("hideKeyframe1()", 30);
+		}
+		else
+		{
+			//slide100.style.left = "0";
+			clearTimeout(Frame_ID1);
+			dv100_child.style.zIndex = 10;
+		}
+	}
+
+	function showKeyframe2()
+	{
+		clearTimeout(Frame_ID2);
+		var lefts = parseInt(slide200.style.left);
+
+		if(lefts < 666)
+		{
+			slide200.style.left = lefts + 15;
+			Frame_ID2 = setTimeout("showKeyframe2()", 30);
+		}
+		else
+		{
+			slide200.style.left = "666";
+			clearTimeout(Frame_ID2);
+			slide200.style.zIndex = 10;
+		}
+	}
+
+	function hideKeyframe2()
+	{
+		clearTimeout(Frame_ID2);
+		var lefts = parseInt(slide200.style.left);
+
+		if(lefts > 320)
+		{
+			slide200.style.left = lefts - 15;
+			Frame_ID2 = setTimeout("hideKeyframe2()", 30);
+		}
+		else
+		{
+			slide200.style.left = "320";
+			clearTimeout(Frame_ID2);
+			//dv200_child.style.zIndex = 10;
+		}
+	}
+
+	function chg_data1(cate){
+		content1.location.href="player_slide.asp?cate2="+cate;
+	}
+
+	function chg_data2(cate){
+		slide2.location.href="player_slide.asp?cate2="+cate;
+	}
+	function chg_data3(){
+	    content1.location.href="player_slide.asp?cate2="+document.f2.cate2.value;
+	}
+	function chg_data4(){
+	    content1.location.href="player_content.asp?bno=";
+	}
+	function ctrlRate1(rate1) 
+    { 
+      MediaPlayer1.controls.Rate = rate1; 
+      //setSpeed(rate1); 
+    } 
+	
+var Toggle =1;
+function TWtop(chk)
+{
+  Toggle = 0;
+  switch(chk) {
+	case 1:
+	  pg.stop();
+	  break;
+	case 2:
+	  pg.stop();
+	  break;
+  }
+}
+
+function TWstart(chk)
+{
+  Toggle = 1;
+  switch(chk) {
+	case 1:
+	  pg.start();
+	  break;
+	case 2:
+	  pg.start();
+	  break;
+  }
+}
+
+function next()
+{
+  bgnum = document.vod_form.vodnum.value;
+  //document.getElementById("MediaPlayer1").FileName = "mms://61.108.84.15//화성-송산.wmv";
+  //MediaPlayer1.controls.play();
+ 
+  //if(bgnum == 4){bgnum = 1;}
+  document.getElementById("MediaPlayer1").url =song[bgnum];
+  MediaPlayer1.controls.play();
+  if (bgnum == 175)
+  {
+  document.vod_form.vodnum.value = 0 ;
+  }else{
+  document.vod_form.vodnum.value = parseInt(document.vod_form.vodnum.value)+1
+  }
+
+}
+</SCRIPT>
+
+<SCRIPT	FOR="MediaPlayer1" EVENT="Buffering(bStart)" LANGUAGE="JScript">
+
+	var strTemp;
+    
+	if(bStart == true) {
+		if(flagCheck == 0) {
+
+			MediaView(false);
+			strTemp = "버퍼링 중";
+
+			mediaback.style.visibility = "";
+		}
+	}
+	else {
+		MediaView(true);
+		strTemp = "실행 중";
+		flagPos = 1;
+		flagCheck = 0;
+
+		mediaback.style.visibility = "hidden";
+
+	}
+    
+
+</SCRIPT>
+
+<SCRIPT	FOR="MediaPlayer1" EVENT="PlayStateChange(lNewState)" LANGUAGE="JScript">
+	var strTemp;
+
+	if(lNewState==0) {
+			strTemp = "알 수 없는 오류"; //"Undefined";
+	}
+	else if(lNewState==1) {
+			MediaView(false);
+			strTemp = "정지";
+			flagCheck = 0;
+			flagPos = 0;
+
+			mediaback.style.visibility = "";
+	}
+	else if(lNewState==2) {
+			strTemp = "일시정지";
+			flagCheck = 0;
+			flagPos = 0;
+
+			mediaback.style.visibility = "hidden";
+	}
+	else if(lNewState==3) {
+			if(flagCheck == 0) {
+				MediaView(true);
+				strTemp = "실행 중";
+				flagPos = 1;
+				flagCheck = 0;
+
+				mediaback.style.visibility = "hidden";
+
+			}
+	}
+	else if(lNewState==4)
+			strTemp = "앞으로 감기"; //"ScanForward";
+
+	else if(lNewState==5)
+			strTemp = "뒤로 감기"; //"ScanReverse";
+	else if(lNewState==6) {
+			strTemp = "버퍼링 중"; //"Buffering.";
+
+			mediaback.style.visibility = "";
+	}
+	else if(lNewState==7) {
+			strTemp = "대기 중"; //"Waiting";
+			mediaback.style.visibility = "";
+	}
+	else if(lNewState==8) {
+			strTemp = "정지"; //"MediaEnded";
+            setTimeout("next()", 100);
+
+			mediaback.style.visibility = "";
+	}
+	else if(lNewState==9) {
+			strTemp = "Transitioning";
+
+			mediaback.style.visibility = "";
+	}
+	else if(lNewState==10) {
+			strTemp = "대기 중"; //"Ready to begin playing.";
+			mediaback.style.visibility = "";
+	}
+	else if(lNewState==11) {
+			strTemp = "재접속 중"; //"Reconnecting to stream.";
+			mediaback.style.visibility = "";
+	}
+    
+</SCRIPT>
+
+</head>
+
+<body bgcolor="2B8386" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="init('53'); isOnLoad=true;" >
+<!-- 플래시로고 시작 -->
+
+
+<div id="mediaback" style="position:absolute; left:16px; top:36px; width:270px; height:230px; z-index:201; visibility:"> 
+  <table width="270" height="203" border="0" cellpadding="0" cellspacing="0" bgcolor="277679">
+    <tr>
+      <td>
+	  <script language="javascript" src="/js/embed.js"></script>
+              <script >
+              writeFlash("http://www.ggetv.net/media1/img/player_load_small.swf","width=270,height=203","transparent");
+               </script>
+		</td>
+    </tr>
+  </table>
+</div>
+<!-- 플래시 로고 끝 -->
+<!-- 화면시작 -->
+<div id="dvMedia" style="position:absolute; left:12px; top:33px; width:270px; height:250px;  z-index:100; visibility:"> 
+  <table width="276" height="203" border="0" cellpadding="3" cellspacing="0" bgcolor="277679">
+    <tr>
+      <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="270" height="203">
+			<OBJECT NAME="MediaPlayer1" CLASSID="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6" BGCOLOR="DarkGray" WIDTH=100% HEIGHT=100%>
+					<PARAM NAME="enableContextMenu" value="true">
+					<PARAM NAME="mute"				value="false">
+					<PARAM NAME="rate"				value="1">
+					<PARAM NAME="stretchToFit"		value="true">
+					<PARAM NAME="windowlessVideo"	value="false">
+					<PARAM NAME="invokeURLs"		value="true">
+					<PARAM NAME="autoStart"			value="true">
+					<PARAM NAME="uiMode"			value="none">
+					<PARAM NAME="Volume"			value="100">
+					<PARAM NAME="url"				value="mms://61.108.84.15//화성-송산.wmv">
+			</OBJECT>
+			
+			<!--img src="http://www.ggetv.net/media1/img/media_logoimg.jpg" width="400" height="300"--></td>
+          </tr>
+          <tr>
+            
+			<td height="24" bgcolor="#B4C2E2">
+			<table width="100%" height="22" bgcolor="#000000" cellspacing="1" cellpadding="1" border="0">
+			<tr height="22">	
+				<td name="tdMState1" id="tdMState1" align="left"></td>
+				<td name="tdMState2" id="tdMState2" align="right"></td>
+			</tr>
+			</table>
+			</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</div>
+
+
+
+<!-- 화면끝 -->
+<!-- 플레이어바 시작 -->
+<div id="Layer2" style="position:absolute; left:12px; top:265px; width:276px; height:53px; z-index:2"> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><img src="http://www.ggetv.net/media1/img/bar_play_small.gif" width="276" height="53"></td>
+    </tr>
+  </table>
+</div>
+<!-- 플레이어바 끝 -->
+<!--플레이어 기능키 시작-->
+<div id="console100" style="position:absolute; left:29px; top:397px; width:208px; height:60px; z-index:11; visibility: "> 
+  
+</div>
+<!--플레이어 기능키 끝-->
+<!--볼륨 및 기능키 시작-->
+<div id="Layer4" style="position:absolute; left:185px; top:293px; width:131px; height:25px; z-index:4"> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td align="right"><table border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="13"><a onClick="onMute();"  onfocus="blur()" style="cursor:hand"><img src="http://www.ggetv.net/media1/img/vol_on.gif" width="13" height="13" id="mute100" name="mute100"></a></td>
+            <td width="3"></td>
+            <td width="99"><img src="http://www.ggetv.net/media1/img/volume_track_small.gif" width="76" height="16"></td>
+            <td width="10"></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</div>
+<!--볼륨 및 기능키 끝-->
+<!--볼륨조절키 시작-->
+<div id="pVol" style="position:absolute; left:217px; top:294px; width:14px; height:14px; z-index:11"> 
+  <table  border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('soundbar_button','','http://www.ggetv.net/media1/img/volume_btn.gif',1)" onfocus="blur()"><img src="http://www.ggetv.net/media1/img/volume_btn.gif" name="soundbar_button" width="11" height="8" border="0"></a></td>
+    </tr>
+  </table>
+</div>
+<!--볼륨조절키 끝-->
+<!--진행조절키 시작-->
+<div id="cPos" style="position:absolute; left:38px; top:290px; width:16px; height:12px; z-index:11"> 
+  <table  border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><img src="http://www.ggetv.net/media1/img/play_btn.gif" name="trackbar_button" width="14" height="8" border="0"></td>
+    </tr>
+  </table>
+</div>
+<!--진행조절키 끝-->
+<!--/100% 오른쪽 본문  테이블 시작 -->
+<div id="dv100_child" style="position:absolute; left:400px; top:42px; width:360px; height:372px;  z-index:10; visibility:hidden;"> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td></td>
+    </tr>
+  </table>
+</div>
+
+<div id="scoll_msg" style="position:absolute; left:15px; top:290px; width:271px; height:40px;  z-index:14; visibility:;"> 
+  <table width="100%" border="0" cellpadding="0" cellspacing="1">
+    <tr> 
+      <td width="2%">&nbsp;</td>
+      <td width="21%"><a href="/sub/general/channel_list.asp?Uchannel=C" target="_blank"><img src="http://www.ggetv.net/media1/img/btn_broadcast_list_small.gif" width="76" height="21" border="0"></a></td>
+      <td width="77%"><a href="#" onClick="resize('full');"><img src="http://www.ggetv.net/media1/img/btn_full_small.gif" width="62" height="21" border="0"></a></td>
+    </tr>
+  </table>
+</div>
+
+<div id="scoll_msg" style="position:absolute; left:12px; top:320px; width:275px; height:30px;  z-index:13; visibility:;">
+<table width="95%" border="0" cellpadding="0" cellspacing="1" bgcolor="36B1B5">
+                                      <tr> 
+                                        <td bgcolor="004A80">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+ <tr> 
+    <td width="5"></td>
+    <td align="center"><font color="#FFFFFF"><marquee id=pg direction="left" width="275" border='1' scrollamount="2" onMouseOver="TWtop(1)" onMouseOut="TWstart(1)"><font color='#ffffff'> <a onclick="Viewer('5638','2702','M0006','low')" style='cursor:hand'><font color='#ffffff'>☆클릭☆중학과학실험-소리의 발생과 전달</font></a>  <a onclick="Viewer('5899','2840','M0006','low')" style='cursor:hand'><font color='#ffffff'>☆클릭☆중학과학실험-빛의굴절</font></a>  <a onclick="Viewer('5629','2698','M0045','low')" style='cursor:hand'><font color='#ffffff'>□클릭▷포커스 인-광주분원초 안준철 교장선생님</font></a>  <a onclick="Viewer('5611','2690','M0006','low')" style='cursor:hand'><font color='#ffffff'>□클릭▷화폐이야기</font></a>  <a onclick="Viewer('5497','2630','M0045','low')" style='cursor:hand'><font color='#ffffff'>□클릭▷부천부곡중 김정혜 선생님과 과학동아리 '카오스'</font></a>  <a onclick="Viewer('4945','2361','M0004','low')" style='cursor:hand'><font color='#ffffff'>◈동화구연◈아주아주 작은모자</font></a>  <a onclick="Viewer('5211','2475','M0006','low')" style='cursor:hand'><font color='#ffffff'>■클릭▶과학실험-소화의 필요성</font></a>  <a onclick="Viewer('5285','2512','M0045','low')" style='cursor:hand'><font color='#ffffff'>□클릭▷포커스 인-희망과 나눔의 실천 '논곡공부방'</font></a>  <a onclick="Viewer('5182','2449','M0045','low')" style='cursor:hand'><font color='#ffffff'>■클릭▶나눔봉사활동, 아프리카를 가다!</font></a>  <a onclick="Viewer('3625','1729','M0005','low')" style='cursor:hand'><font color='#ffffff'>■클릭▶한강의 기적을 통일로!</font></a>  <a onclick="Viewer('3639','1739','M0003','low')" style='cursor:hand'><font color='#ffffff'>■클릭▶과학입국의 디딤돌이 되자!</font></a>  <a onclick="Viewer('3649','1740','M0039','low')" style='cursor:hand'><font color='#ffffff'>■클릭▶자원봉사의 참된 의미, 파랑새 둥지</font></a>  <a onclick="Viewer('3637','1735','M0006','low')" style='cursor:hand'><font color='#ffffff'>■클릭▶창의적인 미술활동은 뭘까요?</font></a>  <a onclick="Viewer('3016','1408','M0045','low')" style='cursor:hand'><font color='#ffffff'>■클릭▶선생님들 학생생활지도 힘드시죠? 학교폭력토론회</font></a>  <a onclick="Viewer('1831','872','M0028','low')" style='cursor:hand'><font color='#ffffff'>◈클릭◈빛을 그린 화가들 -인상파거장전</font></a>  <a onclick="Viewer('1959','929','M0028','low')" style='cursor:hand'><font color='#ffffff'>◈클릭◈북녘의 문화유산 전시회</font></a>  <a onclick="Viewer('1763','855','M0028','high')" style='cursor:hand'><font color='#ffffff'>◈클릭◈무서운 교통사고가 났습니다. 어떻게 하면 좋지요?</font></a> </font></marquee></td>
+    <td width="5"></td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+
+
+
+
+
+<table width="300" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="http://www.ggetv.net/media1/img/topbar_small.gif" width="300" height="30" usemap="#map"></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="12" height="310" background="http://www.ggetv.net/media1/img/left_bg_small.gif"></td>
+          <td width="260"></td>
+          <td width="16"></td>
+          <td>&nbsp;</td>
+          <td width="12" background="http://www.ggetv.net/media1/img/right_bg_small.gif"></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td height="10"><table width="100%"border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td><img src="http://www.ggetv.net/media1/img/bottombar_small.gif" width="300" height="10"></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr bgcolor="black">
+    <td align="right"><input type="checkbox" onclick="closeWin()"><font color="white">오늘 하루 그만보기</font></td>
+  </tr>
+</table>
+</body>
+</html>
+
+<!--디비닫기 시작//-->
+
+<!--디비닫기 종료//-->
+
+	<SCRIPT Language="JavaScript">
+		resize("100");
+	</SCRIPT>
+	<SCRIPT Language="JavaScript">
+		bShow1 = true;
+		//slide100.style.zIndex = 9;
+		//dv100_child.style.zIndex = 9;
+		//slide100.style.left = 398;
+	</SCRIPT>
+    <script language="JScript" event="EndOfStream" for="MediaPlayer1">
+	setTimeout("cl()",100);
+	</script>
+
+
+
+
+
+
+<script language="javascript">
+
+<!-- 
+
+ 
+
+function setCookie( name, value, expiredays ) 
+
+{ 
+
+var todayDate = new Date(); 
+
+todayDate.setDate( todayDate.getDate() + expiredays ); 
+
+document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+
+} 
+
+ 
+
+function closeWin() 
+
+{ 
+
+if ( document.pop.popup.checked ) 
+
+setCookie( "popup", "done" , 1); 
+opener.setCookie( "popup", "done" , 1); 
+self.close(); 
+
+} 
+
+// --> 
+
+</SCRIPT> 
+<form name="vod_form">
+<input type="hidden" name="vodnum" value="41">
+</form>
+<map name="map">
+  <area shape="rect" coords="216,2,286,29" href="http://www.ggetv.net/" target="_blank">
+
+</map>
+
+
+
+
+<FORM METHOD=POST name = "pop">
+	
+
+<TABLE cellpadding="0" cellspacing="0" border="1" width="300">
+
+<tr>
+  <td bgcolor = #000000><table cellpadding="0" cellspacing="0" border="0" width="300">
+				<tr>
+					<td style="padding-left:14"><input type=CHECKBOX name="popup" value="" onclick="closeWin();" style="border:0px">&nbsp;<img src="/html/popup/images/popup_text1.gif"></td>
+					<td style="padding-right:16" align="right">
+					<input type="image" src="/html/popup/images/popup_text2.gif" value="×Close" onclick="closeWin();" style="width:43; height:10"></td>
+				</tr>
+			</table></td>
+</tr>
+</TABLE>
+<br>
+
+</FORM>

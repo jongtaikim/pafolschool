@@ -1,0 +1,83 @@
+<title>이지스쿨 템플릿 디자인 보기</title>
+<style>
+body,td,select,input,div,form,textarea,center,option,pre,blockquote {font-size:12px;font-family:돋움;color:#FFFFFF;}
+.icon1{padding-top:2; width:17}
+
+a:link {
+	color: #ffffff;
+	text-decoration:none;
+}
+
+a:visited {
+	color: #ffffff;
+	text-decoration:none;
+}
+
+a:active {
+	color:red;
+	text-decoration:none;
+}
+
+a:hover {
+	color:red;
+	text-decoration:none;
+}
+</style>
+<body topmargin="0" leftmargin="0" bgcolor="#000000">
+<? 
+
+
+
+$theme_name = $theme;
+if($sub == "Y") {
+$theme_name = $theme."_sub";	
+}
+
+
+?>
+<table cellpadding="0" cellspacing="0" border="0" width="470">
+	<tr>
+		<td width="470" height="53" background="./images/s_top.jpg" valign="top" style="padding-left:22">
+			<table cellpadding="0" cellspacing="0" border="0" width="448">
+				<tr>
+					<td height="13"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>템플릿명</b> : <?=$theme_name?></td>
+				</tr>
+				<tr>
+					<td height="4"></td>
+				</tr>
+				<tr>
+					<td>관리자모드에서 바로 적용가능</td>
+					<td align="right" style="padding-right:21"><b style="color:fffbd1">
+					
+					<a href= "/module/manage/view.htm?theme=<?=$theme?>" <? if (!$sub) echo "style = color:red;"?>> 메인</a></b> l <a href= "/module/manage/view.htm?theme=<?=$theme?>&sub=Y" <? if ($sub=="Y") echo "style = color:red;"?>>서브</a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td width="470" height="543" background="./images/s_bg.jpg">
+			<table cellpadding="0" cellspacing="0" border="0" align="center">
+				<tr>
+					<td><img src="./images/<?=$theme_name?>.gif"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td width="470" height="38" background="./images/s_top.jpg" valign="bot" style="padding-left:22">
+			<table cellpadding="0" cellspacing="0" border="0" width="448">
+				<tr>
+					<td height="12"></td>
+				</tr>
+				<tr>
+					<td><b style="color:fffbd1">다른템플릿보기</b> : 
+					
+					<a href= "/module/manage/view.htm?theme=sh1" <? if ($theme=="sh1") echo "style = color:red;"?>> SH1</a>| <a href= "/module/manage/view.htm?theme=sh2" <? if ($theme=="sh2") echo "style = color:red;"?>>SH2</a> l <a href= "/module/manage/view.htm?theme=sh3" <? if ($theme=="sh3") echo "style = color:red;"?>>SH3</a> l <a href= "/module/manage/view.htm?theme=sh4" <? if ($theme=="sh4") echo "style = color:red;"?>>SH4</a> l <a href= "/module/manage/view.htm?theme=sh5" <? if ($theme=="sh5") echo "style = color:red;"?>>SH5</a> l <a href= "/module/manage/view.htm?theme=sh6" <? if ($theme=="sh6") echo "style = color:red;"?>>SH6</a>  </td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

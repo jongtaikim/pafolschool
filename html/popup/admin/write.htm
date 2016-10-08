@@ -1,0 +1,344 @@
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+
+<style type="text/css">
+.title {height:29px; text-align:center; padding-top:1px; color:red}
+.title1 {color:#464444;font-family:돋움; font-weight:bold; padding-top:1}
+.menu {color:#555555; font-family:돋움; padding:8px 0 0 17px}
+.menu1 {color:#555555; font-family:돋움; padding:8px 0 0 15px}
+
+</style> 
+ 
+
+			
+			
+			<form name="writeForm" enctype="multipart/form-data" method="post" onsubmit="return validate(this);">
+			<input type="hidden" name="preview" value="0">
+			<input type="hidden" name="id" value="{id}">
+			<input type="hidden" name="str_skin" id="skin_name" value="popup1">
+
+			<!-- 팝업목록 및 관리 start -->							
+			<div style="padding-top:20px;">
+				<table cellpadding="0" cellspacing="0" border="0" width="98%" align="center">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">팝업목록 및 관리</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						
+						
+
+						<table cellpadding="0" cellspacing="0" border="0" width="97%" align="center">
+							<tr>
+								<td style="padding-top:14px"> 
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">팝업명 :</td>
+											<td width="4"></td>
+											<td><input type="text" name="str_title"  value="{str_title}" class="fom01" style="width:300px" maxlength = "50" hname="제목"  required>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+
+							<tr>
+								<td style="padding-top:14px"> 
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">오픈설정 :</td>
+											<td width="4"></td>
+											<td>
+											<select name="str_open" id="str_open">
+												<option value="A" {? str_open=='A'} selected{/}>파폴스쿨만</option>	
+												<option value="B" {? str_open=='B'} selected{/}>파폴스포츠만</option>	
+												<option value="Z" {? str_open=='Z'} selected{/}>둘다</option>	
+											</select>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							
+							<tr>
+								<td style="padding-top:14px">
+							
+								<script language="Javascript" type="text/javascript">
+								<!--
+								function popTimeChange(idx){
+									if(idx == "none") {
+										$('dt_start_date').value='';
+										$('dt_end_date').value='';
+										$('dateTable').style.display='none';
+								
+									}else{
+										$('dt_start_date').value='<?=date("Y-m-d")?>';
+										$('dt_end_date').value='<?=date("Y-m-d",(mktime()+(86400 * 10)))?>';
+									
+									
+										
+										
+										$('dateTable').style.display='';
+									}
+								}
+								//-->
+								</script>
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+							
+											<td class="bx1_stitle">팝업존 기간 :</td>
+											<td width="4"></td>
+											<td></td>
+											<td width="10"></td>
+											<td><input type="hidden" name="popTime" value="set"></td>
+											<td style="padding-top:4px">기간사용</td>
+
+											<td style="padding-left:8px">
+												<table cellpadding="0" cellspacing="0" border="0" id="dateTable" >
+													<tr>
+														<td style="padding-top:1px">
+														<wa:datepicker name="dt_start_date" id="dt_start_date" value="{dt_start_date}" required="true" hname="팝업시작일" readonly="true"/>  
+														</td>
+														<td width="8px"></td>
+														<td style="padding-top:1px">
+														<wa:datepicker name="dt_end_date" id="dt_end_date" value="{dt_end_date}" required="true" hname="팝업종료일" readonly="true"/>  
+														</td>
+														 <td>
+														  &nbsp;
+														 </td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+
+							{? !ifr}
+							
+							
+								
+								
+								<tr>
+								<td style="padding-top:10px;" align="center" >
+								<wa:upload part="editor_SE" sect="main" code="{code}" height="300px">{content}</wa:upload>
+								</td>
+								</tr>
+								{:}
+								
+
+								<tr>
+								<td style="padding-top:14px;"> 
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">URL 입력 :</td>
+											<td width="4"></td>
+											<td><input type="text" name="str_url"  value="{?str_url}{str_url}{:}http://{/}" class="fom01" style="width:300px" maxlength = "255" hname="팝업가져오기 URL"  required>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+								
+
+								
+								{/}
+
+							{? !ifr}	
+							
+							{/}
+							<tr>
+								<td style="padding-top:25px">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">팝업크기 :</td>
+											<td width="4"></td>
+											<td>
+											
+											<script language="Javascript" type="text/javascript">
+											function popsizeChange(val){
+												if(val){
+													if(val != "self"){												
+													size = explode("|",val);
+													
+													$('num_width_db').value=size[0];
+													$('num_height_db').value=size[1];
+													}else{
+													//$('num_width_db').readOnly = false;
+													//$('num_height_db').readOnly = false;
+													}
+												
+												}
+											}
+											</script>
+
+											<select name="popupSize" onchange="popsizeChange(this.value)">
+											
+												<option value="230|290" {? num_width =="230" && num_height=="290"} selected{/}>230*290</option>
+												<option value="350|530" {? num_width =="350" && num_height=="530"} selected{/}>350*530</option>
+												<option value="500|700" {? num_width =="500" && num_height=="700"} selected{/}>500*700</option>
+												<option value="self" 
+												{? 
+												(num_width !="230" && num_height !="290") ||
+												(num_width !="350" && num_height !="530") ||
+												(num_width !="500" && num_height !="700") 
+												
+												} selected{/}
+												>직접입력</option>											
+
+											</select></td>
+											<td>
+												<table cellpadding="0" cellspacing="0" border="0">
+													<tr>
+														<td style="padding-top:4px">&nbsp;&nbsp;(가로크기 :&nbsp;</td>
+														<td style="padding-top:1px"><input type="text" name="num_width" id="num_width_db" class="fom01" style="width:40px" value="{num_width}" maxlength="3"    hname="팝업가로"  required>&nbsp;</td>
+														<td style="padding-top:4px">px&nbsp;&nbsp;</td>
+														<td style="padding-top:4px">&nbsp;&nbsp;세로크기 :&nbsp;</td>
+														<td style="padding-top:1px"><input type="text" name="num_height" id="num_height_db" class="fom01" style="width:40px" value="{num_height}" maxlength="3"  hname="팝업세로"  required>&nbsp;</td>
+														<td style="padding-top:4px">px)</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10px">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">팝업위치 :</td>
+											<td width="4"></td>
+											<td><input type="radio" name="popupPos" value="auto" onclick="$('posTable').style.display='none';$('num_left').value='';$('num_top').value=''" {? num_left  <1 && num_top <1 } checked{/}></td>
+											<td style="padding-top:4px" >자동</td>
+											<td width="10"></td>
+											<td><input type="radio" name="popupPos" value="none" onclick="$('posTable').style.display='';" {? num_left  >0 && num_top >0 } checked{/}></td>
+											<td style="padding-top:4px">수동입력</td>
+											<td>
+												<table cellpadding="0" cellspacing="0" border="0" id="posTable" {? num_left  <1 && num_top <1 }style="display:none"{/}>
+													<tr>
+														<td style="padding-top:4px">&nbsp;&nbsp;(가로위치 :&nbsp;</td>
+														<td style="padding-top:1px"><input type="text" name="num_left" id="num_left" hname="가로"  size="3" maxlength="3" class="fom01" style="width:40" value="{num_left}">&nbsp;</td>
+														<td style="padding-top:4px">px&nbsp;&nbsp;</td>
+														<td style="padding-top:4px">&nbsp;&nbsp;세로위치 :&nbsp;</td>
+														<td style="padding-top:1px"><input type="text" name="num_top" id="num_top" hname="세로" size="3" maxlength="3" class="fom01" style="width:40" value="{num_top}">&nbsp;</td>
+														<td style="padding-top:4px">px)</td>
+													</tr>
+												</table>
+											</td>
+				 						</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10px">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">팝업 차단기간 :</td>
+											<td width="4"></td>
+											<td>
+												<select name="num_kill">
+													<option value="1" {? num_kill ==1} selected{/}>1</option>
+													<option value="3" {? num_kill ==3} selected{/}>3</option>
+													<option value="7" {? num_kill ==7} selected{/}>7</option>
+													<option value="10" {? num_kill ==10} selected{/}>10</option>
+													<option value="15" {? num_kill ==15} selected{/}>15</option>
+													<option value="20" {? num_kill ==20} selected{/}>20</option>
+													<option value="30" {? num_kill ==30} selected{/}>30</option>
+
+													
+												</select>
+												일간 이 창을 열지 않음.
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr><td height="7"></td></tr>
+						</table>
+
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+
+			</div>
+		<!-- 팝업목록 및 관리 end -->
+			<script language="Javascript" type="text/javascript">
+			<!--
+			function win(url,w,h,x,y,name){
+			winOpen(url,w,h,'no',name,x,y);
+			}
+			function pview(){
+
+			 if(!$('num_width_db').value){
+				alert('팝업창 사이즈를 지정해주시기 바랍니다.');
+				return false;
+			 }
+
+			 if(!$('num_height_db').value){
+				alert('팝업창 사이즈를 지정해주시기 바랍니다.');
+				return false;
+			 }
+
+			 $('contentpv').value = oEditors.getById['content'].getIR();
+			win('',$('num_width_db').value,$('num_height_db').value,$('num_left').value,$('num_top') ,'popview');
+			
+			$('skin').value = $('skin_name').value;
+			//$('title').value = $('str_title').value;
+			$('width').value = $('num_width_db').value;
+			$('height').value = $('num_height_db').value - 32;
+			$('priview').submit();
+			}
+			//-->
+			</script>
+			<table cellpadding="0" cellspacing="0" border="0" width="98%">
+				<tr>
+					<td height="10"></td>
+				</tr>
+				<tr>
+					<td>
+					<span class="btn_pack medium "><a href="#none" onclick="pview()">미리보기</a></span>
+					</td>
+					<td align="right">
+					
+					
+					
+					<span class="btn_pack medium "><input type="submit" name="" value="저장하기" class="" onclick="_onSubmit(this); " ></span></td>
+				</tr>
+			</table>
+</form>
+
+<form method=post action="/popup.admin.pview" target="popview" id = "priview" style="display:none">
+<input type="hidden" name="boid" value="<?=_OID?>">
+<input type="text" name="skin"  id="skin"  value="">
+<input type="text" name="title"  id="title"  value="">
+<input type="text" name="width"  id="width"  value="">
+<input type="text" name="height"  id="height"  value="">
+<textarea name="contentpv"  id="contentpv"></textarea>
+</form>   

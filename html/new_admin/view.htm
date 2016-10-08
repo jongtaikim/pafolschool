@@ -1,0 +1,39 @@
+<wa:applet module="admin.main.comptabs"></wa:applet>
+<h2>{title} (주) 아이노크 홈페이지 공지사항 보기</h2>
+<table width="725" class="table01">
+<tr>
+	<th width = "10%"><b>제목</b></th>
+	<td colspan="3">
+		{str_title2}
+	</td>
+</tr>
+
+
+<tr>
+	<td colspan="4" bgcolor="#FFFFFF" height = 300 valign = top style="padding:20px">
+		
+		{content}
+	</td>
+</tr>
+
+<!--{? FILE_LIST}-->
+			<tr bgcolor="#FFFFFF" width = "10%"> 
+				<td align="center" bgcolor="F8F8F8">첨부파일</td>
+				<td colspan="3">
+					<!--{@ FILE_LIST}-->
+					<a href="{.file_url}"><img src="/image/icon/{= strtolower(.str_ftype)}.gif" border="0" onerror="this.src='/image/icon/default.gif'" align="absmiddle"> {.str_upfile}</a><br>
+					<!--{/}-->
+				</td>
+			</tr>
+			<!--{/}-->
+</table>
+
+<table width="740">
+<tr>
+	<td align="center">
+		
+		<input type="button" class="button2" value=" 돌아가기" onclick="history.go(-1);">
+	</td>
+</tr>
+</table>
+</form>

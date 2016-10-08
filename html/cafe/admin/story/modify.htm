@@ -1,0 +1,33 @@
+<div id="sub_content_area">
+<style>
+	.stretch {
+		width: 100%;
+	}
+</style>
+<script src="/js/lib.validate.js"></script>
+<!-- REQUIRE FILE 'html/class/admin/adminmenu.htm' -->
+<table width="100%" border="0" cellpadding="2" cellspacing="1" bgcolor="black">
+	<form name="storyform" method="post" onSubmit="return validate(this)" enctype="multipart/form-data">
+	<tr bgcolor="white">
+		<td width="80" align="center">제목</td>
+		<td><input type="text" name="title" value="{{title}}" class="stretch" required maxlength="50"></td>
+	</tr>
+	<!-- DYNAMIC AREA 'PRE_FILE' -->
+	<tr bgcolor="white">
+		<td width="80" align="center">기존파일</td>
+		<td>{{icon}} {{filename}} <a href="#">삭제</a></td>
+	</tr>
+	<!-- DYNAMIC AREA 'PRE_FILE' -->
+	<tr bgcolor="white">
+		<td width="80" align="center">그림</td>
+		<td><input type="file" name="file" class="stretch"></td>
+	</tr>
+	<tr bgcolor="white">
+		<td width="80" align="center">내용</td>
+		<td><textarea name="content" rows="10" required wrap="virtual">{{content}}</textarea></td>
+	</tr>
+	<tr bgcolor="white" align="center">
+		<td colspan="2"><input type="submit" value="저장"><input type="button" value="취소" onClick="location.href='/?act=class.admin.story.list&formation={{formation}}&page={{page}}'"></td>
+	</tr>
+	</form>
+</div>

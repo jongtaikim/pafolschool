@@ -1,0 +1,201 @@
+	<script language="Javascript" type="text/javascript">
+	<!--
+function resizeFrame(aa){
+	
+	if(aa){
+	saveMyTree();
+	}
+
+	//페이지가 로딩되면 바로 리사이즈..
+	var h = document.body.scrollHeight+60;
+	var w = document.body.scrollWidth;
+
+	//self.resizeTo(w, h);
+	//alert(document.documentElement.scrollWidth);
+	//alert(document.documentElement.scrollHeight);
+
+	parent.$('menuf').style.height = h+'px';
+	//parent.$('orderMenu').style.width = w+'px';
+	
+}
+	//-->
+	</script>
+	<script type="text/javascript" src="/js/ajax_tree.js"></script>
+	<script type="text/javascript" src="/js/drag-drop-folder-tree.js"></script>
+	<link rel="stylesheet" href="/css/drag-drop-folder-tree.css" type="text/css"></link>
+	
+	<style type="text/css">
+	/* CSS for the demo */
+	img{
+		border:0px;
+	}
+	</style>
+	<script type="text/javascript">
+	//--------------------------------
+	// Save functions
+	//--------------------------------
+	var ajaxObjects = new Array();
+	
+	// Use something like this if you want to save data by Ajax.
+	function saveMyTree()
+	{
+			
+		saveString = treeObj.getNodeOrders();
+			var ajaxIndex = ajaxObjects.length;
+			ajaxObjects[ajaxIndex] = new sack();
+			var url = '/menu.admin.move_tree?saveString=' + saveString;
+			ajaxObjects[ajaxIndex].requestFile = url;	// Specifying which file to get
+			ajaxObjects[ajaxIndex].onCompletion = function() { saveComplete(ajaxIndex); } ;	// Specify function that will be executed after file has been found
+			ajaxObjects[ajaxIndex].runAJAX();		// Execute AJAX function		
+		
+
+
+		
+		/*	saveString = treeObj.getNodeOrders();
+			$('saveString').value=saveString;
+			$('myForm').submit();
+		*/
+	}
+	function saveComplete(index)
+	{
+		alert('적용되었습니다.');			
+	}
+
+	
+	// Call this function if you want to save it by a form.
+	function saveMyTree_byForm()
+	{
+		document.myForm.elements['saveString'].value = treeObj.getNodeOrders();
+		document.myForm.submit();		
+	}
+	
+
+	</script>
+
+	
+<body onclick="resizeFrame()">
+
+	<div style="padding:3px;border-bottom:1px solid #E1E1E1;text-align:center;width:270px;padding-top:10px">
+
+	<a href="javascript:resetYesNo()"  ><img src='/image/menu_move_reset.gif' border='0' alt=''></a>  
+	<a href="#" onclick="treeObj.collapseAll()"><img src='/image/menu_move_hidden.gif' border='0' alt=''></a>  
+	<a href="#" onclick="treeObj.expandAll()"><img src='/image/menu_move_show.gif' border='0' alt=''></a><br>
+
+	
+	</div>
+
+
+	<ul id="dhtmlgoodies_tree2" class="dhtmlgoodies_tree">
+		<li id="node0" noDrag="true" noSiblings="true" noDelete="true" noRename="true"><a href="/menu.admin.listorder_mini?mcode=" target="orderMenu"><img src='/font_2.php/ygo330/11/FFFFFF/1f1f1f/?text=홈페이지 메뉴 최상단' style="margin-top:10px"></a>
+
+			<ul id="dhtmlgoodies_tree2" class="dhtmlgoodies_tree" style="display:block">
+						{@ SUBMENU}
+						<li id="node{.num_cate}" noSiblings="true" noDelete="true" noRename="true" ><a href="/menu.admin.listorder_mini?mcode={.num_mcode}" target="orderMenu" onclick="parent.$('orderMenu').style.display=''" ><img src='/image/1btn.gif' border='0' style="margin-top:4px" align="absmiddle">
+						{?.num_view==1}
+								<img src='/font_2.php/ygo330/11/FFFFFF/{? .num_cate != .num_mcode}CC0033{:}1f1f1f{/}/?text={.str_title}' style="margin-top:8px">
+								{:}
+								<img src='/font_2.php/ygo330/11/FFFFFF/{? .num_cate != .num_mcode}B87E80{:}B2B2B2{/}/?text={.str_title}' style="margin-top:8px">
+								{/}</a>
+							<!-- 2단계-->
+							{? .is_sub}
+								<ul  {? strstr(_SESSION.ses_cate,.num_cate)} style="display:block"{/}>
+
+									{@ SUBMENU_SUB}
+									<li id="node{..num_cate}" ><a href="/menu.admin.listorder_mini?mcode={..num_mcode}" target="orderMenu" onclick="parent.$('orderMenu').style.display=''" ><img src='/image/2btn.gif' border='0' style="margin-top:4px" align="absmiddle">
+
+									 
+
+									{?..num_view==1}
+									<img src='/font_2.php/ygo330/11/FFFFFF/{? ..num_cate != ..num_mcode}CC0033{:}1f1f1f{/}/?text={..str_title}' style="margin-top:8px">
+									{:}
+									<img src='/font_2.php/ygo330/11/FFFFFF/{? ..num_cate != ..num_mcode}B87E80{:}B2B2B2{/}/?text={..str_title}' style="margin-top:8px">
+									{/}
+									</a>
+									
+										<!--3단계-->
+											{? ..is_sub}
+												<ul {? strstr(_SESSION.ses_cate,..num_cate)} style="display:block"{/}>
+												{@ SUBMENU_SUB_SUB}
+													<li id="node{...num_cate}"><a href="/menu.admin.listorder_mini?mcode={...num_mcode}" target="orderMenu" onclick="parent.$('orderMenu').style.display=''" > <img src='/image/3btn.gif' border='0' style="margin-top:4px" align="absmiddle">
+													
+													{?...num_view==1}
+														<img src='/font_2.php/ygo330/11/FFFFFF/{? ...num_cate != ...num_mcode}CC0033{:}1f1f1f{/}/?text={...str_title}' style="margin-top:8px">
+													{:}
+														<img src='/font_2.php/ygo330/11/FFFFFF/{? ...num_cate != ...num_mcode}B87E80{:}B2B2B2{/}/?text={...str_title}' style="margin-top:8px">
+													{/}
+
+													</a></li>
+												{/}
+												</ul>	
+									
+											{/}
+										<!--3단계-->
+								</li>
+								
+									 
+								{/}
+								<!-- 2단계-->
+							</ul>	
+							{/}
+						</li>	
+						
+						{/}
+					</ul>
+			
+			</li>
+	</ul>
+	<br><br>
+	<form>
+
+
+	</Form>
+	<script type="text/javascript">	
+	treeObj = new JSDragDropTree();
+	treeObj.setTreeId('dhtmlgoodies_tree2');
+	treeObj.setMaximumDepth(4);
+
+	treeObj.setMessageMaximumDepthReached('설정할 수 있는 범위를 초과하였습니다.'); // If you want to show a message when maximum depth is reached, i.e. on drop.
+	treeObj.initTree();
+
+	
+	function resetYesNo(){
+		if(confirm('메뉴정렬을 초기화 하시겠습니까?\n\n초기화를 하시면 메뉴를 생성한 순서대로 설정됩니다.')){
+		location.href="/menu.admin.move_reset";
+		}else{
+		return;
+		}
+	}
+
+	</script>
+	
+	
+	<br>
+	
+	<div style="padding:3px;border-top:1px solid #E1E1E1;text-align:center;width:270px">
+	
+
+	<a href="javascript:resetYesNo()" ><img src='/image/menu_move_reset.gif' border='0' alt=''></a>  
+	<a href="#" onclick="treeObj.collapseAll()"><img src='/image/menu_move_hidden.gif' border='0' alt=''></a>  
+	<a href="#" onclick="treeObj.expandAll()"><img src='/image/menu_move_show.gif' border='0' alt=''></a><br>
+	
+	</div>
+
+		
+	<div style="padding:3px;border-top:1px solid #E1E1E1;text-align:center;width:270px">
+	
+		<input type="button" onclick="location.reload()" value="갱신">
+	</div>
+	
+	
+	<form name="myForm" method="post"  id="myForm">
+		<input type="hidden" name="saveString" id = "saveString">
+	</form>
+
+	<div id=""></div>
+
+<script language="Javascript" type="text/javascript">
+<!--
+resizeFrame();
+//-->
+</script>
+</body>

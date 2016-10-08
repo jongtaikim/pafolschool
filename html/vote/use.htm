@@ -1,0 +1,47 @@
+<head>
+<title>온라인투표하기</title>
+	<link rel="stylesheet" href="/css/onlineVoteSub.css" type="text/css" />
+	<script type="text/javascript" src="/js/lib.validate.js"></script>	
+</head>
+<body>
+
+<form method=post onsubmit="return validate(this);">
+<input type="hidden" name="user_number" id="user_number" value="" hname="후보자 선택" nofocus required/>
+<input type="hidden" name="serial" value="{serial}"/>
+
+	<div id="wrapper">
+		<div id="onlineVote">
+			<h1 style="display:none">온라인 투표</h1>
+			
+			<div class="voteBox">
+				<div class="objTop">
+					<h2>{str_title}</h2>
+				</div>
+				<div class="objContent">
+					<p class="comment">{str_text}</p>
+
+					{@LIST}
+					<div class="boxWrapper">
+						<div class="listBox">
+							<h3>후보{.index_+1}번</h3>
+							<img src="{.img}" alt="후보1번 {.str_name}"  />
+							<p>
+								<label for="num_user_number{.index_}">{.str_name}</label>
+								<input type="radio" name="num_user_number" id="num_user_number{.index_}" hname="후보자 선택" required  requirenum="{.index_}" onclick="$('user_number').value=this.value"  value ="{.num_user_number}"  />
+							</p>
+						</div>
+					</div>
+					{/}
+					
+		
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+<div style="padding:5px; font-size:1.5em;text-align:center;border: 2px solid #D7D7D7">	인증번호 입력 : <input type='text' name='code' hname="인증코드" required> <input type='submit' value='투표하기' style='width:93px;' ></div>
+
+<br><br><br>
+</form>
+</body>

@@ -1,0 +1,233 @@
+<style>
+ .ico{padding:0 0 0 15; background-color:f9f9f9;}
+ .f1{padding:3 0 0 6; background-color:f9f9f9;font-size:12px;color:#4a4a4a;}
+ .f2{padding:10 0 5 10; font-size:11px;color:#666666;}
+ .selectBox{font-size:11px}
+</style>
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<script type="text/javascript" src="/js/ajax.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function update(val, id) {
+	var query = "mode=update&pcode={pcode}&mtype="+val+"&id="+id;
+	sendRequest("/party.member.admin.update", query, FromServer, "POST");
+}
+
+function update2(val, id) {
+	var query = "mode=update2&pcode={pcode}&auth="+val+"&id="+id;
+	sendRequest("/party.member.admin.update", query, FromServer, "POST");
+}
+function FromServer() {
+	if (httpRequest.readyState == 4) {
+		if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			if(str_text =="Y"){
+				alert('변경되었습니다.');
+			}
+		}
+	}
+}
+function ChkDel(id) {
+	if(confirm('삭제하시겠습니까?')){
+		location.href="/party.member.admin.update?mode=delete&pcode={pcode}&id="+id;
+	}
+}
+//-->
+</SCRIPT>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:10px">
+<tr><td height="10"></td></tr>
+<tr valign="top">
+	<td width="22" style="padding-top:2"><img src="/html/party/image/title_icon.gif"></td>
+	<td class="stitle"><img src='/f.php?text={cname}회원관리&font=-윤고딕330&size2=8&bg=ffffff&color=423c2b'></td>
+</tr>
+<tr><td height="7"></td></tr>
+<tr><td height="3" bgcolor="f8f8f8" colspan="2"></td></tr>
+<tr><td height="1" bgcolor="f5f5f5" colspan="2"></td></tr>
+<tr><td height="1" bgcolor="ffffff" colspan="2"></td></tr>
+<tr><td height="1" bgcolor="cccccc" colspan="2"></td></tr>
+</table>
+<table align="center" width=99% border=0 cellspacing=0 cellpadding=0>
+<tr>
+	<td>
+		총 {total}명의 회원이 가입했습니다.
+	</td>
+	<td align = right>
+		<form name="searchForm" method="get" style="margin:0px;">
+		<table cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td>
+				<INPUT TYPE="hidden" NAME="pcode" value = "{pcode}">
+				<select name="search_key">
+				<option value="str_id"{? search_key=='str_id'} selected{/}>아이디</option>
+				<option value="str_name"{? search_key=='str_name'} selected{/}>이름</option>
+				<option value="str_nick"{? search_key=='str_nick'} selected{/}>닉네임</option>
+				</select>
+			</td>
+			<td width="3"></td>
+			<td><input type="text" name="search_value" value="{search_value}" style="border:1 solid #c0c0c0; height:20"></td>
+			<td width="3"></td>
+			<td style="padding-top:1"> <input TYPE="image" src="/html/member/admin/image/btn_search.gif" value="검색" ></td>
+		</td>
+	</tr>
+	</table>
+	</form>
+</td>
+</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="99%" align="center">
+
+<tr><td height="5"></td></tr>
+<tr>
+<td height="3" bgcolor="#ececec"></td>
+</tr>
+<tr>
+<td height="1" bgcolor="#c0c0c0"></td>
+</tr>
+<tr>
+<td height="1" bgcolor="#ffffff"></td>
+</tr>
+<tr>
+<td height="1" bgcolor="#ededed"></td>
+</tr>
+<tr>
+<td bgcolor="#FFFFFF" valign="top">
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr align=center height="24">
+		<td class="f1">회원유형</td>
+		<td class="line1"><img src="/image/line.gif"></td>
+		
+		{? str_type =="class"}
+		<td class="f1">홈페이지인증</td>
+		<td class="line1"><img src="/image/line.gif"></td>
+		{/}
+
+		<td class="f1">회원아이디</td>
+		<td class="line1"><img src="/image/line.gif"></td>
+		<td class="f1">이름</td>
+		<td class="line1"><img src="/image/line.gif"></td>
+	
+		<td class="f1">등급</td>
+		<td class="line1"><img src="/image/line.gif"></td>
+		<td class="f1">게시글수</td>
+		<td class="line1"><img src="/image/line.gif"></td>
+		<td class="f1">댓글수</td>
+		<td class="line1"><img src="/image/line.gif"></td>
+		<td class="f1">로그인수</td>
+		<td class="line1"><img src="/image/line.gif"></td>
+		<td class="f1">가입일</td>
+		<td class="line1"><img src="/image/line.gif"></td>
+		<td class="f1">탈퇴</td>
+	</tr>
+	<tr>
+		<td height="1" bgcolor="#ededed" colspan=17></td>
+	</tr>
+	<!--{@ LIST}-->
+	<tr align=center height="20">
+		<td class="f2"><b>{.chr_mtype}</b></td>
+		<td></td>
+
+		{? str_type =="class"}
+		<td class="f2">
+		
+		<select name="mtype" class="selectBox" onchange="update2(this.value, '{.str_id}')">
+			<option value="0" {? .num_auth== 0} selected{/}>미인증</option>
+			<option value="1" {? .num_auth== 1} selected{/}>인증</option>
+		</select>
+			
+			</td>
+		<td></td>
+		{/}
+
+
+		<td class="f2">{.str_id} <a href="#" onclick ="if($('bb{.str_id}').style.display=='none') $('bb{.str_id}').style.display=''; else $('bb{.str_id}').style.display='none';">(답변보기)</a></td>
+		<td></td>
+		<td class="f2">{.str_name}</td>
+		<td></td>
+
+
+		
+		<td class="f2">
+			{? cm_id == .str_id }
+				{? str_type =="class"}<b>담임선생님</b>
+				{: str_type =="cafe"}<b>매니저</b>
+				{:}<b>운영자</b>{/}
+			{:}
+			<select name="mtype" class="selectBox" onchange="update(this.value, '{.str_id}')">
+			<!--{@ .mtype}-->
+			{?..key_ != 'x' }{? ..key_ != 'a'}<option value="{..key_}"{? .str_mtype==..key_} selected{/}>{..value_}</option>{/}{/}
+			<!--{/}-->
+			</select>
+			{/}
+		</td>
+		<td></td>
+		<td class="f2">{=number_format(.num_board)}</td>
+		<td></td>
+		<td class="f2">{=number_format(.num_comment)}</td>
+		<td></td>
+		<td class="f2">{=number_format(.num_login)}</td>
+		<td></td>
+		<td class="f2">{=date("Y.m.d",.str_date)}</td>
+		<td></td>
+		<td class="f2">{? .str_mtype != 'a' }<input type="button" value="탈퇴" class="button" onclick="ChkDel('{.str_id}')">{/}</td>
+	</tr>
+	<tr>
+		<td height="4" colspan="17"></td>
+	</tr>
+
+	<tr>
+	  <td colspan = 20 id="bb{.str_id}" style="display:none;border-top:1px dashed #D8D8D8;padding:5px"  onclick ="$('bb{.str_id}').style.display='none'">
+		
+	<table  border=0 cellspacing=0 cellpadding=0 class="table01" width="100%">
+	 <tr>{?.str_text1}<th width="50%">{str_text1}</th><td>{.str_text1}</td>{/}</tr>
+	 <tr>{?.str_text2}<th >{str_text2}</th><td>{.str_text2}</td>{/}</tr>
+	 <tr>{?.str_text3}<th >{str_text3}</th><td>{.str_text3}</td>{/}</tr>
+	 <tr>{?.str_text4}<th >{str_text4}</th><td>{.str_text4}</td>{/}</tr>
+	 <tr>{?.str_text5}<th >{str_text5}</th><td>{.str_text5}</td>{/}</tr>
+	</table>
+	</td>
+	</tr>
+
+	<tr>
+		<td colspan="17" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+	</tr>
+	{:}
+	<tr>
+		<td colspan="17" width="100%" height="30"  align=center>데이터가 없습니다.</td>
+	</tr>
+	{/}
+
+	</table>
+</td>
+</tr>
+<tr>
+<td height="1" bgcolor="#ededed"></td>
+</tr>
+<tr>
+<td height="1" bgcolor="#ffffff"></td>
+</tr>
+<tr>
+<td height="1" bgcolor="#c0c0c0"></td>
+</tr>
+<tr>
+<td height="3" bgcolor="#ececec"></td>
+</tr>
+<tr>
+<td align="center" bgcolor="f3f3f3">
+	<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td height="10"></td>
+	</tr>
+	<tr>
+		<td><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/image/btn_prevpage.gif" nexticon="/image/btn_nextpage.gif" firsticon="/image/btn_firstpage.gif" lasticon="/image/btn_lastpage.gif" /></td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+	</table>
+</td>
+</tr>
+<tr>
+<td height="10"></td>
+</tr>
+</table>

@@ -1,0 +1,98 @@
+<!-- 공개교육 -->
+						<div id="training">
+							<!-- 상단공통 -->
+							<ul class="tabArea">
+								<li class="selected"><img src="./images/sub1/liBtn3.gif" alt="공개교육 리스트" /></li>
+								
+								
+							</ul>
+							<h4><img src="./images/sub1/trainingTit.gif" alt="교육소개" /> <span>
+							{@ cate2_LIST}
+								{? ccode2 == .num_ccode}{.str_title}{/}
+							{/}
+							</span></h4>
+							<!-- 상단공통 끝 -->
+
+							<!-- 공개교육리스트 -->
+							<div class="eduList">
+								<p class="comment">위에 마우스를 올리시면 일정을 볼 수 있으며 클릭 시 신청 가능합니다.</p>
+								<div class="location">
+									<p>
+									<label for="ccode1">장소선택</label>
+									<select id="ccode1" name="ccode1" onchange="location.href='/lms.list?types={types}&mcode={mcode}&cate={cate}&ccode1='+$('ccode1').value+'&&ccode2='+$('ccode2').value">
+										{@ cate1_LIST}
+										<option value="{.num_ccode}" {? ccode1 == .num_ccode} selected{/}>{.str_title}</option>
+										{/}
+									</select>
+									</p>
+									<p>
+									<label for="ccode2">과정명</label>
+									<select id="ccode2" name="ccode2" onchange="location.href='/lms.list?types={types}&mcode={mcode}&cate={cate}&ccode1='+$('ccode1').value+'&&ccode2='+$('ccode2').value">
+										{@ cate2_LIST}
+										<option value="{.num_ccode}" {? ccode2 == .num_ccode} selected{/}>{.str_title}</option>
+										{/}
+									</select>
+									</p>
+								</div>
+								<table border="1" cellpadding="0" cellspacing="0" summary="교육과정 리스트입니다. 교육명, 기간(시간), 교육비, 교육일정(월)로 구성되어있습니다. ">
+									<caption>교육과정 리스트</caption>
+									<thead>
+										<tr>
+											<th class="title" rowspan="2" scope="col">교육명</th>
+											<th rowspan="2" scope="col">기간(시간)</th>
+											<th rowspan="2" scope="col">교육비</th>
+											<th class="period last" colspan="12" scope="col">교육일정(월)</th>
+										</tr>
+										<tr>
+											<td>01</td>
+											<td>02</td>
+											<td>03</td>
+											<td>04</td>
+											<td>05</td>
+											<td>06</td>
+											<td>07</td>
+											<td>08</td>
+											<td>09</td>
+											<td>10</td>
+											<td>11</td>
+											<td class="last">12</td>
+										</tr>
+									</thead>
+									<tbody>
+										{@ LIST}
+										
+										<tr>
+											<td class="title"><a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}">{.str_title}</a></td>
+											<td>{.str_time}</td>
+											<td>￦{=number_format(.num_price)}</td>
+											<td>{? .num_month == 1}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}"  /></a>{/}</td>
+											<td>{? .num_month == 2}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td>{? .num_month == 3}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td>{? .num_month == 4}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td>{? .num_month == 5}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td>{? .num_month == 6}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td>{? .num_month == 7}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td>{? .num_month == 8}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td>{? .num_month == 9}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td>{? .num_month == 10}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td>{? .num_month == 11}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+											<td class="last">{? .num_month == 12}<a href="/lms.view?types={types}&mcode={mcode}&cate={cate}&serial={.num_serial}" title="{.num_month}.{.num_start_day}~{.num_end_day}"><img src="./images/sub1/dot.gif" alt="{.num_month}.{.num_start_day}~{.num_end_day}" /></a>{/}</td>
+										</tr>
+										{:}
+
+										<tr>
+											<td colspan="15" height="50px" align="center">데이터가 없습니다.</td>
+										</tr>
+										{/}
+										
+									</tbody>
+								</table>
+								<h5><img src="./images/sub1/processTit.gif" alt="교육신청절차" /></h5>
+								<ul class="list">
+									<li>교육참가를 희망하시는 분께서는 원하시는 교육일정의 <img src="./images/sub1/dot.gif" alt="일정있음" />를 누르시고 해당교육 페이지로 이동 후 교육신청 탭을 선택하셔서 해당교육 신청화면으로 이동하십시오. 이 후, 각 항목을 기입하시고 사업자등록증을 첨부해서 등록해주시길 바랍니다.</li>
+									<li>교육참가비는 신청 후 교육 시작 3일전 까지 기업은행 586-005788-01-178 (예금주: 에코시안) 로 입금해주시기 바랍니다. <br />(동일사업장 2인 이상 참여 시 할인율이 적용됩니다.)</li>
+									<li>모든 교육과정의 정원은 40명으로 제한하며, 선착순 마감됩니다. 	</li>
+								</ul>
+							</div>
+							<!-- 공개교육리스트 끝 -->
+						</div>

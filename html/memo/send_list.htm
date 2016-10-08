@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="/css/common.css" type="text/css" />
+<link rel="stylesheet" href="./memo.css" type="text/css" />
+
+
+
+<div id="memoWrap">
+
+	<div class="objTop">
+		<div class="memoTit">
+			<img src="./images/memoTit.gif" alt="쪽지함" />
+		</div>
+		
+		{#MEMO_TOP}
+	</div>
+
+	<div class="objContent">
+	
+	<!-- 게시판 영역 시작 -->
+	<div class="board">
+		
+		<div class="boardInfo">
+			<span class="infoTit">보낸쪽지함</span>
+			<span class="infoNotice">쪽지 보관기간은 1개월입니다.</span>
+		</div>
+
+		<form class="boardListForm" >
+			<fieldset>
+			<legend>보낸쪽지함 목록</legend>
+				<table class="boardList" border="1" cellspacing="0" summary="보낸쪽지함 목록입니다.">
+					<caption>보낸쪽지함 목록</caption>
+					<thead>
+						<tr class="top">
+							<th scope="col">받는이</th>
+							<th scope="col">제목</th>
+							<th scope="col">받은날짜</th>
+							<th scope="col">수신여부</th>
+							<th scope="col">취소</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						
+						
+						
+						 {@ LIST}
+						<tr>
+							<td>{.str_to_id}</td>
+							<td class="title">{.str_title}</td>
+							<td>{=date("Y-m-d", .str_send_date)}</td>
+							
+							{? .str_reading_date}<td class="confirm">확인</td>{:}<td class="unconfirm">미확인</td>{/}
+
+							<td>{? !.str_reading_date}<a href= "javascript:delMemo('{.num_serial}')">취소</a>{/}&nbsp;</td>
+						</tr>
+						{/}
+					</tbody>
+				</table>
+				
+			</fieldset>
+		</form>
+		
+		<!-- 페이징 시작 -->
+		<div class="pagination">
+			<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}"/>
+		</div>
+		<!-- 페이징 끝 -->
+		
+		
+
+	</div>
+	<!-- 게시판 영역 끝 -->
+
+	</div>
+
+</div>
+

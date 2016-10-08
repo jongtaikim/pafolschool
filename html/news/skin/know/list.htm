@@ -1,0 +1,144 @@
+<style type="text/css" title="">
+	.pagination {
+		padding-top:3px;
+		text-align:center;
+		}
+	.pagination a , .pagination input {	
+		overflow:visible;
+		padding:0 3px;
+		}
+	.pagination a img {
+		display:inline;
+		margin:0;
+		padding:0;
+		vertical-align:middle;
+		}
+</style>
+
+<div class="boardTopBody" style="width:100%;padding:5px">
+	
+	총 <b>{total}</b> 개 게시물이 있습니다.
+
+</div>
+
+
+<link rel="stylesheet" type="text/css" href="./style.css">
+
+
+<form method=post  name="listForm"  action="/board.copy"  target="d_main">
+<INPUT TYPE="hidden" NAME="all" id="all" >
+<INPUT TYPE="hidden" NAME="mcode" id="mcode" value="{mcode}" >
+
+<div class="boardType1">
+	<div class="objTop">
+		<ul class="menu">
+			<li class="item1" >번호</li>
+			
+			<li class="item3">제목</li>
+			<li class="item5">작성일</li>
+			<li class="item6">조회</li>
+			
+		</ul>
+	</div>
+
+	<div class="objBody">
+
+	<!--공지-->
+	{@ LIST}
+	{? .num_order ==1}
+		<ul class="menu">
+				<li class="item1">
+				{?id==.num_serial }<img src='/image/arrow.gif' alt='현재글'>{/}
+					{? .num_order ==1}<img src = "./image/notice_icon.gif" alt=" 공지">{:}{.num}{/}</li>
+				
+				<li class="item3 left">
+				<img src="./image/notice1.gif"  align="absmiddle" >
+					<a href="/news.read?mcode={mcode}&code={code}&id={.num_serial}" class="allGong2">
+						{.str_title}
+					</a>
+					{? .cmt }<font color="#990000">({.cmt})</font>{/}
+					&nbsp;{? .is_recent} <img src="/image/icon/new2.gif" alt='신규글입니다.'>{/}
+				</li>
+				
+				<li class="item5">{.dt_date}</li>
+				<li class="item6">{.num_hit}</li>
+				
+		</ul>
+		{/}
+	{/}
+	<!--공지 끝-->
+
+
+
+
+	<!--일반글-->
+	{@ LIST}
+		{? .num_order ==0}
+		<ul class="menu">
+				<li class="item1">
+				{?id==.num_serial }<img src='/image/arrow.gif' alt='현재글'>{/}
+				{.num}
+				
+				<li class="item3 left">
+			
+					<a href="/news.read?mcode={mcode}&code={code}&id={.num_serial}" >
+						{.str_title}
+					</a>
+					{? .cmt }<font color="#990000">({.cmt})</font>{/}
+					&nbsp;{? .is_recent} <img src="/image/icon/new2.gif" alt='신규글입니다.'>{/}
+				</li>
+				
+				<li class="item5">{.dt_date}</li>
+				<li class="item6">{.num_hit}</li>
+				
+		</ul>
+		{/}
+	
+	{:}
+	<div class="noneBoardData">게시된 글이 없습니다.</div>
+	{/}
+	<!--일반글 끝-->
+	</div>
+
+</form>
+
+
+
+
+	<div class="objBottom">
+		<div class="pagination"><div class="page"><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="./image/btn_prevpage.gif" nexticon="./image/btn_nextpage.gif" firsticon="./image/btn_firstpage.gif" lasticon="./image/btn_lastpage.gif" /></div></div>
+
+		<div class="btn">
+			<div class="wbtn">
+			
+			
+			<!--{? writable}-->
+			<a href="/news.write?code={code}"><img src="./image/btn_write.gif"></a>
+			<!--{/}-->
+			</div>
+			
+			<div class="sch">
+					<form method="get" name="searchform" action="/board.list">
+					<input type="hidden" name="mcode" value="{mcode}">
+							
+							<input type="image" src="/html/board/skin/A_board/image/btn_search.gif" style="float:right" align="absmiddle">
+							<input name="search" type="text"  id="search" value="{search}" style="border:1 solid dcdcdc;margin:1px 5px 0px 5px;width:200px;float:right">
+							<select name="key" id="key" style="float:right">
+								<option value="str_title">제목</option>
+							</select>
+							
+
+					</form>					
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> New Document </title>
+<meta name="Generator" content="EditPlus">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<style type="text/css">
+a {
+    font-size: 8pt;
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+</style>
+
+<style type="text/css"> body { scrollbar-highlight-color: #A864A8; scrollbar-shadow-color: #A864A8; scrollbar-arrow-color: #A864A8; scrollbar-face-color: #FFFFFF; scrollbar-3dlight-color: #FFFFFF; scrollbar-darkshadow-color: #FFFFFF; scrollbar-track-color: #FFFFFF; } </style> 
+ 
+</head>
+<body  >
+<script type="text/javascript">
+
+function del_menu(mcode)
+{
+	if (!confirm('메뉴를 삭제하면 저장된 문서 또는 게시물이 모두 삭제되며 복구가 불가능합니다.\n정말 삭제하시겠습니까?')) return;
+	parent.frames['content'].location.href = 'menu.admin.del?mcode=' + mcode
+}
+
+function detail(n,title,url)
+{
+alert("asdasd");
+	parent.fenster(n, title, url ,'215','20','1000','730');
+}
+
+</script>
+
+
+<wa:tree text="이지스쿨 관리메뉴" var="tree">
+
+<tree>
+
+
+<tree  text="인트라넷" action = "javascript:detail('인트라넷','인트라넷','http://main.hkedu.co.kr/admin.main')" >
+<tree  text="호스트현황" action = "http://main.hkedu.co.kr/manage.organ" target="main"/>
+<tree  text="서비스현황" action = "http://main.hkedu.co.kr/manage.order_list2" target="main"/>
+
+<tree  text="hk공지사항" action = "http://main.hkedu.co.kr/news.admin.list?code=com" target="main"/>
+
+<tree  text="OID복사" action = "http://main.hkedu.co.kr/oid_copy.copy" target="main"/>
+<tree  text="ISCH호스트생성" action = "http://main.hkedu.co.kr/manage.makehost" target="main"/>
+
+<tree  text="전제회원현황" action = "http://main.hkedu.co.kr/member.admin.list_all" target="main"/>
+</tree>
+
+
+<tree  text="학교매뉴" action = "/admin2.main" target="main">
+
+<tree  text="학교정보" action = "/admin.common" target="main"/>
+<tree  text="스킨변경" action = "/skin.select" target="main"/>
+<tree  text="메인레이아웃변경" action = "/attach.admin.manage?layout=main" target="main"/>
+<tree  text="서브레이아웃변경" action = "/attach.admin.manage?layout=sub" target="main"/>
+<tree  text="사이트메뉴" action = "/menu.admin.frame" target="main"/>
+<tree  text="메인플래시 설정" action = "/fla.admin.list" target="main"/>
+<tree  text="메인문구 설정" action = "/admin.text" target="main"/>
+</tree>
+
+
+<tree  text="SMS 테스트" action = "/sms.send" target="main">
+<tree  text="보내기" action = "/sms.send" target="main"/>
+<tree  text="주소록" action = "/sms.dic_list" target="main"/>
+</tree>
+<tree  text="도서정보센터" action = "/book.main.index" target="main"/>
+<tree  text="관리자문의게시판" action = "/board.list?mcode=900000" target="main"/>
+<tree  text="작업요청게시판" action = "/board.list?mcode=900001" target="main"/>
+<tree  text="고북이자료실" action = "http://jjbook.net/webdisk.disk" target="main"/>
+</tree>
+</wa:tree>
+<br />
+
+
+
+</body>
+</html>
+
+

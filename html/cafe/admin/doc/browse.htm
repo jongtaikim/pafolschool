@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> New Document </title>
+<meta name="Generator" content="EditPlus">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+</head>
+
+<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>폴더탐색기</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<!-- for xLoadTree -->
+<script type="text/javascript" src="/js/xtree.js"></script>
+<script type="text/javascript" src="/js/xmlextras.js"></script>
+<script type="text/javascript" src="/js/xloadtree.js"></script>
+<link type="text/css" rel="stylesheet" href="/css/xtree.css" />
+
+<!-- for dynamic updating -->
+<script id="dynscript"></script>
+<script>
+function file_list(path) {
+//	parent.frames['preview'].document.location.replace("/?act=admin.content.file_list&dir="+path);
+}
+
+function show_file(path) {
+	parent.document.all.preview.src = "/?p=!"+path;
+//	parent.frames['preview'].document.location.replace("/?p=!"+path);
+}
+</script>
+<style>
+	body, td {
+		font-size: 9pt;
+	}
+</style>
+<script>
+	var selectedNode = null;
+</script>
+
+<style type="text/css">
+
+body {
+	background:	white;
+	color:		black;
+	overflow: hidden;
+}
+
+</style>
+</head>
+<body topmargin="0" leftmargin="0">
+
+<script type="text/javascript">
+
+/// XP Look
+webFXTreeConfig.blankIcon		= "/image/icon/blank.png";
+webFXTreeConfig.rootIcon		= "/image/icon/madang.png";
+webFXTreeConfig.openRootIcon	= "/image/icon/madang.png";
+webFXTreeConfig.folderIcon		= "/image/icon/folder.png";
+webFXTreeConfig.openFolderIcon	= "/image/icon/openfolder.png";
+webFXTreeConfig.fileIcon		= "/image/icon/html.png";
+//webFXTreeConfig.fileIcon		= "/image/icon/folder.png";
+webFXTreeConfig.lMinusIcon		= "/image/icon/Lminus.png";
+webFXTreeConfig.lPlusIcon		= "/image/icon/Lplus.png";
+webFXTreeConfig.tMinusIcon		= "/image/icon/Tminus.png";
+webFXTreeConfig.tPlusIcon		= "/image/icon/Tplus.png";
+webFXTreeConfig.iIcon			= "/image/icon/I.png";
+webFXTreeConfig.lIcon			= "/image/icon/L.png";
+webFXTreeConfig.tIcon			= "/image/icon/T.png";
+
+var tree = new WebFXLoadTree("문서마당", "/?act=cafe.admin.doc.browse","explorer");
+</script>
+<div style="width:200px; height:100%; overflow:auto;"><script>document.write(tree);</script></div>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<script language='javascript' src='/js/flash.js'></script>
+
+<table cellpadding="1" cellspacing="1" border="0" width="100%">
+
+
+<tr>
+		<td><img src="/theme/bk7/images/icon1.gif" align="absmiddle"><script language="javascript">flash('/title1.swf','300',20,'','transparent','&title_text=현황리스트','..')</script></td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+
+
+	<tr>
+		<td align="center">
+
+
+
+<TABLE class="table00" style="" width = 100%>
+<TR>
+	<Th width = 40  height = 25><script language="javascript">flash_text('번호')</script></Th>
+	
+	<Th width = 90 ><script language="javascript">flash_text('날짜')</script></Th>
+
+	
+	<Th  align=center width =50% ><script language="javascript">flash_text('신청내용')</script></Th>
+
+	
+	
+	
+
+	
+	<Th width = 100 ><script language="javascript">flash_text('신청자')</script></Th>
+
+	
+	<Th width = 100 ><script language="javascript">flash_text('처리현황')</script></Th>
+</TR>
+
+{@ LIST_organ}
+<TR align = center style = "font-weight:bold">
+	<TD>{.num_step}</TD>
+	<TD>{.dt_date} </TD>
+	<TD align = left >
+			[{? .str_home_type == "SCHOOL"}Easy School{/}
+			{? .str_home_type == "B-MART"}Easy B-MART{/}] 
+			<font style = "font-weight:normal;color:#0033FF">{.str_organ} </font><font style = "font-weight:normal">
+			{? .str_home_type == "SCHOOL"} 학교홈페이지 {/}
+			{? .str_home_type == "B-MART"} 인터넷서점 {/}
+			 
+	</TD>
+	
+	<TD>{.str_name2} </TD>
+
+	<TD>
+	{? .str_st == "1"}<FONT COLOR="red">신청확인중</FONT>{/} 
+	{? .str_st == "2"}<FONT COLOR="#FF6600">신청확인</FONT>{/} 
+	{? .str_st == "3"}<FONT COLOR="#0033CC">계약진행중</FONT>{/} 
+	{? .str_st == "4"}<FONT COLOR="#009900">디자인작업중</FONT>{/} 
+	{? .str_st == "5"}<FONT COLOR="#660099">내용이관중</FONT>{/} 
+	{? .str_st == "6"}<FONT COLOR="#333300">세팅중</FONT>{/} 
+	{? .str_st == "7"}<FONT COLOR="#0000FF">서비스중</FONT>{/} 
+	
+	</TD>
+</TR>
+{/}
+
+</TABLE>
+
+
+	
+		<td></tr>
+
+		<tr>
+		  <td align = center style="padding-top:10px"><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/html/board/skin/newskin/image/btn_prevpage.gif" nexticon="/html/board/skin/newskin/image/btn_nextpage.gif" firsticon="/html/board/skin/newskin/image/btn_firstpage.gif" lasticon="/html/board/skin/newskin/image/btn_lastpage.gif" /></td>
+		</tr>
+
+		<tr>
+		  <td style="padding-top:10px">
+		  
+		  <table width="320" align="right" border="0" cellspacing="0" cellpadding="0">
+								<form method="get" name="searchform">
+								<input type="hidden" name="mcode" value="{mcode}">
+								<tr>
+									<td width="92" align="right" ><img src="/html/board/skin/newskin/image/text_search.gif" width="47" height="13">&nbsp;</td>
+									<td width="67" align="center"><select name="key" id="key">
+										<option value="str_organ">기관명</option>
+										
+									</select></td>
+									<td width="120" align="center"><input name="search" type="text" class="login" id="search" style="width:90%;" value="{search}"></td>
+									<td width="41" align="right"><input type="image" src="/html/board/skin/newskin/image/btn_search.gif" width="40" height="19"></td>
+								</tr>
+								</form>		
+		  </table>
+		  </td>
+		</tr>
+
+
+
+			<tr>
+		<td height="10"></td>
+	</tr>
+<tr>
+  <td>
+
+
+   
+  <TABLE class="table00" style="" width = 100%>
+	<TR>
+	<Th align = left style = "padding-left:10px" colspan = 2><script language="javascript">flash('/title1.swf','250',20,'','transparent','&title_text=※ 처리현황안내','..')</script></Th>
+	
+	</tr>
+
+	<tr>
+	  <td width = 20% align = center><FONT COLOR="red">신청확인중</FONT></td>
+	  <td>신청을 완료한 상태입니다.</td>  	 </tr><tr>
+ 
+	  <td align = center><FONT COLOR="#0033CC">계약진행중</FONT></td>
+	   <td>신청을 받고 견적서를 발송후  영업부 담당자가  상담 후 계약준비 단계입니다.</td>  	 </tr><tr>
+  	  <td align = center><FONT COLOR="#009900">디자인작업중</FONT></td>
+	  <td>계약후 디자인 기획이 신청자(기관) 에 승인을 받으면 디자인작업을 시작합니다.</td></tr><tr>
+  	  <td align = center><FONT COLOR="#660099">내용이관중</FONT></td>
+	  <td>디자인 작업후 사이트가 생성되며 기존 사이트에 기본자료를 이관하는 작업입니다.</td>  	 </tr><tr>
+  	  <td align = center><FONT COLOR="#333300">세팅중</FONT></td>
+	  <td>신청자(기관)과 상의후 오픈일자를 잡고 도메인,검색포털등록 등등 세팅을 하는 작업입니다.</td></tr><tr>
+  	  <td align = center><FONT COLOR="#0000FF">서비스중</FONT></td>
+	  
+	  <td>정상적으로 오픈한 후 부터 서비스 상태입니다.</td>
+ 
+
+	</tr>
+	
+	</table>
+
+
+	</td>
+</tr>
+</table>
+

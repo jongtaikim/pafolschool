@@ -1,0 +1,76 @@
+<h2>SMS 서비스관리</h2>
+<div class="tab01">
+	<ul>
+		<li><a href="bs.admin.sms.mng_point">신청내역</a></li>
+		<li class="active"><a href="bs.admin.sms.mng_point_log">충전내역</a></li>
+	</ul>
+</div>
+
+<table width="725" class="table01">
+<form name="searchForm" method="get">
+<tr>
+	<td>
+		<div style="float:left;">
+		기간
+		<wa:datepicker name="search_sdate" value="{search_sdate}" /> ~
+		<wa:datepicker name="search_edate" value="{search_edate}" />
+		<input type="submit" class="button" value="검색">
+		<input type="button" class="button" value="전체" onclick="location.href='bs.admin.sms.mng_point_log';">
+		</div>
+		<div style="float:right;">
+		<select name="search_oid" onchange="this.form.submit();">
+		<option value="">- 지점별 보기 -</option>
+		<!--{@ ORGAN_LIST}-->
+		<option value="{.num_oid}">{.str_title}</option>
+		<!--{/}-->
+		</select>
+		</div>
+	</td>
+</tr>
+</form>
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<script type="text/javascript">
+document.forms['searchForm'].values = {'search_oid':'{search_oid}'};
+</script>
+</table>
+
+<table width="725" class="table01">
+<tr>
+	<th width="5%">번호</th>
+	<th width="10%">신청일</th>
+	<th width="20%">지점명</th>
+	<th width="15%">충전포인트</th>
+	<th width="15%">결제금액</th>
+</tr>
+<!--{@ LIST}-->
+<tr align="center">
+	<td>{= total - ((page - 1) * listnum) - .index_}</td>
+	<td>{.dt_date}</td>
+	<td>{.str_title}</td>
+	<td align="right">{= number_format(.num_point)}</td>
+	<td align="right">{= number_format(.num_price)}</td>
+</tr>
+<!--{:}-->
+<tr height="100">
+	<td colspan="7" align="center">검색 된 충전내역이 없습니다.</td>
+</tr>
+<!--{/}-->
+</table>
+
+<table width="725" style="margin-left:15px;">
+<tr>
+	<td width="20%"></td>
+	<td width="60%" align="center">
+		<wa:paging total="{total}" listnum="{listnum}" />
+	</td>
+	<td width="20%"></td>
+</tr>
+</table>
+
+<table width="725" class="table01">
+<tr>
+	<td>
+		※ 충전완료된 내역만 보여집니다.
+	</td>
+</tr>
+</table>

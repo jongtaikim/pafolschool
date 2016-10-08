@@ -1,0 +1,15 @@
+<Navigation>
+	
+	{top_r}
+	
+		<!--{@ MENU}-->
+		<item name="{.str_title}" href="{.str_link}" target="{.str_target}">
+			<submenu>
+				<!--{@ MENUITEM}-->
+				<sub href="{..str_link}" target="{..str_target}">{..str_title}</sub>
+				<!--{/}-->
+			</submenu>
+		</item>
+		<!--{/}-->
+	</menu>
+</Navigation>

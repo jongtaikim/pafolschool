@@ -1,0 +1,745 @@
+/**
+ * Bechu-Basic Skin for Gnuboard4
+ *
+ * Copyright (c) 2008 Choi Jae-Young <www.miwit.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+/********************
+    common 
+ ********************/
+#mw_basic {
+    font-family:gulim;
+    font-size:12px;
+    color:#000;
+}
+
+#mw_basic form {
+    margin:0;
+}
+
+#mw_basic img {
+    border:0;
+}
+
+#mw_basic td {
+    font-family:gulim;
+    font-size:12px;
+    color:#000;
+}
+
+#mw_basic a {
+    color:#000;
+    text-decoration:underline;
+}
+
+#mw_basic table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+#mw_basic td {
+    padding:0;
+}
+
+/* input type=text */
+#mw_basic .mw_basic_text {
+    border-top:1px solid #9a9a9a;
+    border-left:1px solid #9a9a9a;
+    border-right:1px solid #d8d8d8;
+    border-bottom:1px solid #d8d8d8;
+    height:20px;
+    font-size:12px;
+    padding:2px;
+}
+
+/* textarea */
+#mw_basic .mw_basic_textarea {
+    border-top:1px solid #9a9a9a;
+    border-left:1px solid #9a9a9a;
+    border-right:1px solid #d8d8d8;
+    border-bottom:1px solid #d8d8d8;
+    font-size:12px;
+    padding:5px;
+    line-height:18px;
+}
+
+/* 라인색상 */
+#mw_basic .mw_basic_line_color {
+    background-color:#b0adf5;
+    background-color:#6b95bd;
+}
+
+/* CCL 표시 */
+#mw_basic .mw_basic_ccl {
+    padding:30px 0 0 0;
+}
+
+/* CCL 표시 링크 */
+#mw_basic .mw_basic_ccl a:link,
+#mw_basic .mw_basic_ccl a:hover,
+#mw_basic .mw_basic_ccl a:active,
+#mw_basic .mw_basic_ccl a:visited
+{
+    text-decoration:none;
+}
+
+
+/********************
+    list
+ ********************/
+
+/* 인기 게시물 */
+#mw_basic #mw_basic_hot_list {
+    border:2px solid #6B95BD;
+    background-color:#F8F8F9;
+    padding:10px;
+    margin:0 0 10px 0;
+    height:140px;
+}
+
+
+/* 인기 게시물 */
+#mw_basic #mw_basic_hot_list h3 {
+    margin:0 0 10px 10px;
+    padding:0;
+    font-size:12px;
+    font-weight:bold;
+    border-bottom:1px solid #CAD9E8;
+    color:#4E7DAD;
+    line-height:22px;
+}
+
+/* 인기 게시물 */
+#mw_basic #mw_basic_hot_list ul {
+    padding:0;
+    margin:0 0 0 10px;
+    width:47%;
+    float:left;
+    list-style-type:none;
+}
+
+/* 인기 게시물 */
+#mw_basic #mw_basic_hot_list li {
+    padding:0 0 0 20px;
+    margin:0;
+    line-height:22px;
+}
+
+/* 인기 게시물 */
+#mw_basic #mw_basic_hot_list ul.mw_basic_hot_dot {
+    border-right:1px dotted #ddd;
+}
+
+/* 인기 게시물 */
+#mw_basic #mw_basic_hot_list a {
+    text-decoration:none;
+}
+
+/* 인기 게시물 */
+#mw_basic #mw_basic_hot_list a:hover {
+    text-decoration:underline;
+}
+
+/* 게시판 상단 타이틀 */
+#mw_basic .mw_basic_list_title {
+    background-color:#f8f8f9;
+    height:30px;
+    text-align:center;
+}
+
+/* 게시판 상단 타이틀 글씨 */
+#mw_basic .mw_basic_list_title td {
+    color:#3d5b7a;
+    font-size:11px;
+}
+
+/* 게시판 상단 타이틀 글씨 링크 */
+#mw_basic .mw_basic_list_title td a {
+    color:#3d5b7a;
+    font-size:11px;
+	text-decoration:none;
+}
+
+/* 게시물 갯수 */
+#mw_basic .mw_basic_list_total {
+    color:#888;
+    font-size:11px;
+}
+
+/* 글 없음 */
+#mw_basic .mw_basic_nolist {
+    height:100px;
+    text-align:center;
+    color:#888;
+    font-size:11px;
+}
+
+/* 글번호 */
+#mw_basic .mw_basic_list_num {
+    color:#888;
+}
+
+/* 현재 글번호 */
+#mw_basic .mw_basic_list_num_select {
+    color:#ff6600;
+    font-weight:bold;
+}
+
+/* 썸네일 */
+#mw_basic .mw_basic_list_gall {
+    text-align:center;
+    vertical-align:top;
+    color:#ddd;
+    margin:0 10px 0 0;
+    padding:2px 0 2px 0;
+}
+
+/* 썸네일 */
+#mw_basic .mw_basic_list_gall a img {
+    border:2px solid #ddd;
+}
+
+/* 썸네일 */
+#mw_basic .mw_basic_list_thumb {
+    text-align:center;
+    vertical-align:middle;
+    color:#ddd;
+    float:left;
+    margin:0 10px 0 0;
+    padding:2px 0 2px 0;
+}
+
+/* 썸네일 */
+#mw_basic .mw_basic_list_thumb a img {
+    border:2px solid #ddd;
+}
+
+/* 썸네일 */
+/*
+#mw_basic .mw_basic_list_thumb a:hover img {
+    border:2px solid #ff4e00;
+}
+*/
+
+/* 글내용 요약 */
+#mw_basic .mw_basic_list_desc {
+    color:#888;
+    margin:5px 0 0 0;
+    line-height:15px;
+    font-size:11px;
+}
+
+/* 글제목 */
+#mw_basic .mw_basic_list_subject {
+    word-break:break-all;
+    text-align:left;
+    height:28px;
+    padding:5px 0 5px 0;
+    color:#3d5b7a;
+    text-decoration:none;
+}
+
+/* 글제목:요약형 */
+#mw_basic .mw_basic_list_subject_desc {
+    padding:5px 0 0 0;
+}
+
+/* 글제목 링크 */
+#mw_basic .mw_basic_list_subject a{
+    color:#5883ad;
+    color:#3d5b7a;
+    text-decoration:none;
+}
+
+/* 글제목 링크 마우스 오버 */
+#mw_basic .mw_basic_list_subject a:hover {
+    text-decoration:underline;
+}
+
+/* 갤러리 - 글제목 */
+#mw_basic .mw_basic_list_subject_gall {
+    word-break:break-all;
+    margin:0 auto 40px auto;
+    height:28px;
+    padding:5px 0 5px 0;
+}
+
+/* 갤러리 - 글제목 링크 */
+#mw_basic .mw_basic_list_subject_gall a{
+    color:#5883ad;
+    color:#3d5b7a;
+    text-decoration:none;
+}
+
+/* 갤러리 - 글제목 링크 마우스 오버 */
+#mw_basic .mw_basic_list_subject_gall a:hover {
+    text-decoration:underline;
+}
+
+
+/* 분류명 */
+#mw_basic a.mw_basic_list_category {
+    font-size:11px;
+    color:#808080;
+}
+
+/* 공지사항 */
+#mw_basic .mw_basic_list_notice {
+    font-weight:bold;
+}
+
+
+/* 댓글 갯수 */
+#mw_basic .mw_basic_list_comment_count {
+    font-size:10px;
+    color:#ff6600;
+    font-weight:normal;
+}
+
+/* 댓글 갯수 */
+#mw_basic a.mw_basic_list_comment_count {
+    font-size:10px;
+    color:#ff6600;
+    font-weight:normal;
+}
+
+/* 댓글 갯수 */
+#mw_basic span.mw_basic_list_comment_count {
+    font-size:10px;
+    color:#ff6600;
+    font-weight:normal;
+}
+
+/* 글쓴이 */
+#mw_basic .mw_basic_list_name {
+    display:block;
+    overflow:hidden;
+    width:105px;
+    color:#3d5b7a;
+}
+
+/* 글쓴이 링크 */
+#mw_basic .mw_basic_list_name a {
+    text-decoration:none;
+    color:#3d5b7a;
+}
+
+/* 작성일시 */
+#mw_basic .mw_basic_list_datetime {
+    color:#888;
+}
+
+/* 조회수 */
+#mw_basic .mw_basic_list_hit {
+    color:#888;
+}
+
+/* 추천수 */
+#mw_basic .mw_basic_list_good {
+    color:#888;
+}
+
+/* 비추천수 */
+#mw_basic .mw_basic_list_nogood {
+    color:#888;
+}
+
+/* 페이지 번호 */
+#mw_basic .mw_basic_page {
+    height:30px;
+    text-align:center;
+}
+
+/* 페이지 번호 링크 */
+#mw_basic .mw_basic_page a {
+    font-weight:bold;
+    font-size:11px;
+    color:#797979;
+    text-decoration:none;
+}
+
+/* 페이지 번호 현재 */
+#mw_basic .mw_basic_page b {
+    font-weight:bold;
+    font-size:11px;
+    color:#ffa500;
+    text-decoration:none;
+}
+
+/********************
+    view 
+ ********************/
+
+/* 글제목 */
+#mw_basic .mw_basic_view_subject {
+    word-break:break-all;
+    text-align:left;
+    height:30px;
+    background-color:#f8f8f9;
+    padding:0 0 0 10px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* 타이틀 */
+#mw_basic .mw_basic_view_title {
+    color:#888;
+    font-size:11px;
+    padding:0 0 0 10px;
+}
+
+/* 글쓴이 */
+#mw_basic .mw_basic_view_name {
+    color:#888;
+    margin:0 15px 0 0;
+}
+
+/* 글쓴이 링크 */
+#mw_basic .mw_basic_view_name a {
+    text-decoration:none;
+    color:#888;
+    font-weight:bold;
+}
+
+/* 작성일시 */
+#mw_basic .mw_basic_view_datetime {
+    color:#888;
+    margin:0 10px 0 0;
+}
+
+/* 조회수 */
+#mw_basic .mw_basic_view_hit {
+    color:#888;
+    margin:0 10px 0 0;
+}
+
+/* 추천수 */
+#mw_basic .mw_basic_view_good {
+    color:#888;
+    margin:0 10px 0 0;
+}
+
+/* 비추천수 */
+#mw_basic .mw_basic_view_nogood {
+    color:#888;
+    margin:0 10px 0 0;
+}
+
+/* 신고버튼 */
+#mw_basic .mw_basic_view_singo {
+    color:#888;
+    font-size:11px;
+    text-decoration:none;
+}
+
+#mw_basic .mw_basic_view_singo img {
+    border-bottom:1px solid #fff;
+}
+
+/* 첨부파일 */
+#mw_basic .mw_basic_view_file {
+    height:25px;
+    padding:0 0 0 10px;
+}
+
+/* 첨부파일 링크 */
+#mw_basic .mw_basic_view_file a {
+    font-size:11px;
+    color:#888;
+    text-decoration:none;
+}
+
+/* 첨부파일 정보 */
+#mw_basic .mw_basic_view_file_info {
+    font-size:11px;
+    color:#d3d3d3;
+}
+
+/* 참조주소 */
+#mw_basic .mw_basic_view_link {
+    height:25px;
+    padding:0 0 0 10px;
+}
+
+/* 참조주소 링크  */
+#mw_basic .mw_basic_view_link a {
+    text-decoration:none;
+    font-size:11px;
+    color:#888;
+}
+
+/* 참조주소 정보 */
+#mw_basic .mw_basic_view_link_info {
+    font-size:11px;
+    color:#d3d3d3;
+}
+
+/* 본문 */
+#mw_basic .mw_basic_view_content {
+    word-break:break-all;
+    height:150px;
+    padding:10px;
+    border:2px solid #efefef;
+    background-color:#f8f8f9;
+    line-height:20px;
+    color:#000;
+}
+
+/* 본문 table */
+#mw_basic .mw_basic_view_content table {
+    border-collapse:separate;
+}
+
+/* 본문 링크 */
+#mw_basic .mw_basic_view_content a {
+    color:#000;
+    text-decoration:underline;
+}
+
+/* 짤방 레이어 */
+#mw_basic .mw_basic_view_zzal {
+    margin:20px 0 10px 0;
+}
+
+/* 짤방 버튼 */
+#mw_basic .mw_basic_view_zzal_button {
+    border:1px solid #ddd;
+    background-color:#efefef;
+    height:30px;
+}
+
+/* 관련글 */
+#mw_basic .mw_basic_view_related {
+    height:10px;
+}
+
+/* 관련글 */
+#mw_basic .mw_basic_view_related h3 {
+    font-size:13px;
+    font-weight:bold;
+    padding:0;
+    margin:20px 0 0 0;
+}
+
+/* 관련글 */
+#mw_basic .mw_basic_view_related ul {
+    margin:5px 0 0 0;
+    padding:0 0 0 10px;
+}
+
+/* 관련글 */
+#mw_basic .mw_basic_view_related li {
+    margin:0;
+    padding:0;
+}
+
+/* 관련글 */
+#mw_basic .mw_basic_view_related a {
+    text-decoration:none;
+}
+
+/* 관련글 */
+#mw_basic .mw_basic_view_related a:hover {
+    text-decoration:underline;
+}
+
+
+/********************
+    comment
+ ********************/
+
+/* 댓글 작성자 */
+#mw_basic .mw_basic_comment_name {
+    font-weight:bold;
+    color:#888;
+}
+
+/* 댓글 작성자 링크 */
+#mw_basic .mw_basic_comment_name a {
+    text-decoration:none;
+    font-weight:bold;
+    font-size:11px;
+    color:#888;
+}
+
+/* 댓글 작성자 IP */
+#mw_basic .mw_basic_comment_ip {
+    font-size:11px;
+    color:#888;
+    margin:0 0 0 10px;
+}
+
+/* 댓글 작성일시 */
+#mw_basic .mw_basic_comment_datetime {
+    font-size:11px;
+    color:#888;
+}
+
+/* 댓글 공지 */
+#mw_basic .mw_basic_comment_notice {
+    border:1px solid #efefef;
+    background:#f8f8f9;
+}
+
+/* 댓글 공지 */
+#mw_basic .mw_basic_comment_notice td {
+    padding:10px;
+}
+
+/* 댓글 본문 */
+#mw_basic .mw_basic_comment_content {
+    /*border:1px solid #efefef;
+    background:#f8f8f9;*/
+}
+
+/* 댓글 본문 글자 */
+#mw_basic .mw_basic_comment_content td {
+    word-break:break-all;
+    line-height:150%;
+    padding:7px;
+}
+
+/* 댓글 본문 table */
+#mw_basic .mw_basic_comment_content table {
+    border-collapse:separate;
+}
+
+/* 댓글 본문 링크 */
+#mw_basic .mw_basic_comment_content td a {
+    color:#000;
+    text-decoration:underline;
+}
+
+/* 댓글 비밀 */
+#mw_basic .mw_basic_comment_secret {
+    color:#ff6600;
+}
+
+/* 댓글 입력 */
+#mw_basic #mw_basic_comment_write_form {
+    margin:10px 0 0 0;
+    padding:5px; 
+    background-color:#f8f8f9; 
+    border:1px solid #efefef;
+    font-size:11px;
+    color:#888;
+}
+
+/* 댓글 입력 글자 */
+#mw_basic #mw_basic_comment_write_form td {
+    font-size:11px;
+    color:#888;
+}
+
+/* 이모티콘 입력 버튼 */
+#mw_basic #mw_basic_comment_write_form .mw_basic_comment_emoticon {
+    margin:0 0 0 20px;
+}
+
+/* 이모티콘 입력 버튼 링크 */
+#mw_basic #mw_basic_comment_write_form .mw_basic_comment_emoticon a {
+    text-decoration:none;
+    color:#0080C0;
+}
+
+/********************
+    write
+ ********************/
+
+/* 항목 */
+#mw_basic .mw_basic_write_title {
+    padding-left:20px; 
+    height:30px;
+    font-size:11px;
+    color:#888;
+}
+
+/* 항목 글자 */
+#mw_basic .mw_basic_write_title td {
+    font-size:11px;
+    color:#888;
+}
+
+/* 항목 내용 */
+#mw_basic .mw_basic_write_content {
+    font-size:11px;
+    color:#888;
+}
+
+/* 항목 내용 */
+#mw_basic .mw_basic_write_content select {
+    font-size:11px;
+}
+
+/* 항목 내용 */
+#mw_basic .mw_basic_write_content a {
+    font-size:11px;
+    color:#888;
+}
+
+/* 자동등록방지 설명문 */
+#mw_basic .mw_basic_norobot {
+    margin:0 0 0 10px;
+    font-size:11px;
+    color:#888;
+}
+
+/********************
+    contents shop
+ ********************/
+
+/* 가격 */
+#mw_basic .mw_basic_contents_price {
+    color:#0D6AB2;
+}
+
+/* 목록-가격 */
+#mw_basic .mw_basic_list_contents_price {
+    color:#0D6AB2;
+    font-size:11px;
+    text-align:center;
+}
+
+#mw_basic .mw_basic_list_contents_price span {
+    /*padding-right:10px;*/
+}
+
+/********************
+    plugin
+ ********************/
+
+
+/* 짧은 글주소 */
+#mw_basic .umz_url {
+    border:0;
+    width:200px;
+    background-color:#fff;
+    font-size:11px;
+    color:#888;
+    cursor:pointer;
+}
+
+/* 짧은 글주소 - 자체도메인 */
+#mw_basic .shorten {
+    border:0;
+    width:400px;
+    background-color:#fff;
+    font-size:11px;
+    color:#888;
+    cursor:pointer;
+}
+

@@ -1,0 +1,354 @@
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+ <style type="text/css" title="">
+ .td{padding:2px}
+ </style>
+<script type="text/javascript" src="/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="/module/webconfig_module_edit.js"></script>
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+<body style="margin:0" bgcolor="#FFFFFF"  >
+
+<FORM METHOD=POST id= "fomr1" >
+<input type="hidden" name="code" value="{code}">
+<input type="hidden" name="mode" value="{mode}">
+ 
+
+ <p class="buTitle02" >신청폼 셋업 안내</p>
+<div style="border:2px solid #cdcdcd;padding:5px">
+ㆍ 입력받을 폼을 편집하는 곳입니다. <br>
+						ㆍ 컬럼명을 지우고 저장하면 해당 컬럼은 삭제됩니다. 
+</div>
+
+
+<br>
+<br>
+
+	
+<div class="tab01" width="100%">
+		<ul>
+			<li {? mode !="edit"} class="active"{/}><a href="/form.admin.setup?code={code}&admin={admin}" >입력폼 편집</a></li>
+			<li {?mode=="edit"}class="active"{/}><a href="/form.admin.setup?code={code}&mode=edit&admin={admin}" >문구 편집</a></li>
+			<li ><a href="/form.admin.list?code={code}&admin={admin}" >데이터 확인</a></li>
+		</ul>
+	</div>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+
+
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+
+
+				{?mode !="edit"}
+
+				<tr bgcolor="#FFFFFF" height="28">
+
+
+				<td>
+
+				<script language="Javascript">
+				function add_tr()
+				{
+				var lo_table = document.getElementById("dataTable"); // 테이블지정
+				var li_rows  = lo_table.rows.length; // 테이블 row 개수(Tr의 개수
+				var lo_tbody = lo_table; // table의 첫번째 차일드 즉 tbody를 지정한다.
+				var lo_row,lo_cell;
+				if(li_rows == 16) {
+					alert('15개 이상 만들수 없습니다.');
+				return 
+				}
+
+				li_rowsd = li_rows -1;
+				lo_row = document.createElement("TR"); // Tr을 하나 생성한다.
+				lo_tbody.appendChild(lo_row); // tbody에 자식노드를 하나 추가한다.
+				lo_row.id="str_col_name_c"+li_rowsd;
+				lo_row.style.backgroundColor = '#ffffff';
+				lo_row.style.height = '28px';
+				lo_row.style.textAlign = 'center';
+
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"str_col_name["+li_rowsd+"]\"  class=\"fom01\" style = width:80px'>"; // 고유이름지정
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = '<select style = "font-size:11px" name="str_col_type['+li_rowsd+']">'+
+				'<option value="text" >텍스트박스</option>'+
+				'<option value="radio">라디오상자</option>'+
+				'<option value="select">셀렉트박스</option>'+
+
+				'<option value="zipcode" >주소</option>'+
+				'<option value="email" >이메일</option>'+
+				'<option value="phone" >전화번호</option>'+
+				'<option value="textarea" >입력영역</option>'+
+				'</select>';
+				
+
+
+
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"str_value1["+li_rowsd+"]\"  class=\"fom01\" style = width:40px>"; // 고유이름지정
+
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"str_value2["+li_rowsd+"]\"  class=\"fom01\" style = width:40px>"; // 고유이름지정
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"str_value3["+li_rowsd+"]\"  class=\"fom01\" style = width:40px>"; // 고유이름지정
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"str_value4["+li_rowsd+"]\"  class=\"fom01\" style = width:40px>"; // 고유이름지정
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = "<input type=\"text\" name=\"str_value5["+li_rowsd+"]\"  class=\"fom01\" style = width:40px>"; // 고유이름지정
+
+
+
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = '<select style = "font-size:11px" name="str_not_null["+li_rowsd+"]">'+
+				'<option value="Y" >필수아님</option>'+
+				'<option value="N">필수</option>'+
+				'</select>';
+
+
+				lo_cell = document.createElement("TD"); // Td를 생성한다.
+				lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+				lo_cell.innerHTML = '<input type="button" value="삭제" class="button" onclick="delTr('+li_rowsd+')">'
+
+
+
+				}
+
+				function delTr(idx){
+
+				var el = $$('str_col_name_c'+idx);
+				layer = el.parentNode;
+				layer.removeChild(el);
+
+				}
+				</script>
+
+				<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" class="tableTemp02">
+					<thead> 
+					<tr height="38">
+						<th  width="135">온라인 신청명</th>
+						<td colspan="3" style="text-align:left">
+							<input type="text" name="str_title" value="{str_title}" style="width:200px" hname="온라인 신청명" required class="fom01"></td>
+						</td>
+					</tr>
+					</thead>
+
+					<tr height="38">
+						<th  width="135">시작일</th>
+						<td style="text-align:left">
+								<wa:datepicker name="dt_date" id="dt_date" value="{dt_date}"/>
+						</td>
+						<th  width="135">만료일</th>
+						<td style="text-align:left">
+							<wa:datepicker name="end_date" id="end_date" value="{end_date}"/>
+						</td>
+					</tr>
+				</table>
+	
+				<br><br>
+
+				<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center"  id="dataTable" class="tableTemp05">
+					<thead>
+					<tr height="28">
+						<th width="53" >컬럼명</th>
+						<th width="100" >종류</th>
+						<th width="50" >보기1</th>
+						<th width="50" >보기2</th>
+						<th width="50" >보기3</th>
+						<th width="50" >보기4</th>
+						<th width="50" >보기5</th>
+						<th width="80" >필수</th>
+						<th width="53" >삭제</th>
+					</tr>
+					</thead>
+				{@LIST}
+
+				
+								
+					<tr id="str_col_name_c{.index_}" height="28px" bgcolor="#FFFFFF">
+
+						<td align="center"><input type="text" name="str_col_name[{.index_}]" id="str_col_name{.index_}" value="{.str_col_name}" class="fom01" ></td>
+						<td  class="table01_text07" align="center">
+							<select style = "font-size:11px" name="str_col_type[{.index_}]">
+							<option value="text" {? .str_col_type == "text"}selected{/}>텍스트박스</option>
+							<option value="radio" {? .str_col_type == "radio"}selected{/}>라디오상자</option>
+							<option value="select" {? .str_col_type == "select"}selected{/}>셀렉트박스</option>
+							<option value="zipcode" {? .str_col_type == "zipcode"}selected{/}>주소</option>
+							<option value="email" {? .str_col_type == "email"}selected{/}>이메일</option>
+							<option value="phone" {? .str_col_type == "phone"}selected{/}>전화번호</option>
+							<option value="textarea" {? .str_col_type == "textarea"}selected{/}>입력영역</option>
+							</select>
+						</td>
+
+						<td align="center"><input type="text" name="str_value1[{.index_}]" value="{.str_value1}" style = "width:40px" class="fom01"></td>
+						<td align="center"><input type="text" name="str_value2[{.index_}]" value="{.str_value2}" style = "width:40px" class="fom01"></td>
+						<td align="center"><input type="text" name="str_value3[{.index_}]" value="{.str_value3}" style = "width:40px" class="fom01"></td>
+						<td align="center"><input type="text" name="str_value4[{.index_}]" value="{.str_value4}" style = "width:40px" class="fom01"></td>
+						<td align="center"><input type="text" name="str_value5[{.index_}]" value="{.str_value5}" style = "width:40px" class="fom01"></td>
+
+						<td  height="28px" bgcolor="#FFFFFF" align="center">
+							<select style = "font-size:11px" name="str_not_null[{.index_}]">
+							<option value="Y" {? .str_not_null == "Y"}selected{/}>필수아님</option>
+							<option value="N" {? .str_not_null == "N"}selected{/}>필수</option>
+							</select>
+						</td>
+
+
+						<td align="center">
+							<input type="button" value="삭제" class="button" onclick="delTr('{.index_}')">
+						</td>
+
+					</tr>
+			
+
+			<!-- 입력폼 편집 수정 End -->
+
+				{:}
+
+			<!-- 입력폼 편집 등록 Start -->
+					<tr height="28px">
+
+						<td  style="padding-left:10px;"><input type="text" name="str_col_name[]" value="이름" class="fom01" style = "width:80px"></td>
+						<td  class="table01_text07" align="center">
+						<input type="hidden" name="str_col_type[]" value="text">
+						텍스트
+						</td>
+
+						<td  class="table01_text07" align="center"></td>
+						<td  class="table01_text07" align="center"></td>
+						<td  class="table01_text07" align="center"></td>
+						<td  class="table01_text07" align="center"></td>
+						<td  class="table01_text07" align="center"></td>
+
+						<td  class="table01_text07" align="center"><input type="hidden" name="str_not_null[]" value="N">필수</td>
+						<td ></td>
+					</tr>
+
+					
+
+				{/}
+			<!-- 입력폼 편집 등록 End -->
+				</table>
+				
+
+						<wa:btn size="1" type="button" icon="add" event="onclick" js="add_tr()" value="라인추가"/>
+				</td>
+				</tr>
+
+				{:}
+				<tr>
+					<td>
+						<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="#c4d4e7">
+							<tr bgcolor="#FFFFFF" height="28">
+								<td >HTML(상단)</td>
+							</tr>
+							<tr bgcolor="#FFFFFF">	
+								<td align="center">
+									<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+										<tr>
+											<td><TEXTAREA NAME="str_top" style="width:100%;height:120px" >{str_top}</TEXTAREA></td>
+										</tr>
+										<tr><td height="8"></td></tr>
+										<tr>
+											<td class="table01_text07" style="padding-left:5px;">상단에 표출됩니다.</td>
+										</tr>
+										<tr><td height="8"></td></tr>
+									</table>
+
+
+								</td> 
+							</tr>
+						</table>
+					</td>
+				</tr> 
+
+				<tr>
+					<td>
+						<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="#c4d4e7">
+							<tr height="28">
+								<td >HTML(하단)</td>
+							</tr>
+							<tr bgcolor="#FFFFFF">	
+								<td align="center">
+									<table align="center" border="0" cellspacing="0" cellpadding="0" width="100%">
+										<tr>
+											<td><TEXTAREA NAME="str_foot" style="width:100%;height:120px" >{str_foot}</TEXTAREA></td>
+										</tr>
+										<tr><td height="8"></td></tr>
+										<tr>
+											<td class="table01_text07" style="padding-left:5px;">하단에 표출됩니다.</td>
+										</tr>
+										<tr><td height="8"></td></tr>
+									</table>
+								</td> 
+							</tr>
+						</table>
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td colspan="3" width="100%" class="table_btm_line01"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				{/}
+
+				<tr>
+					<td colspan="3" align =center style="padding:10">
+
+					<script language="Javascript" type="text/javascript">
+					function sbmit(){
+						if($$('end_date')) {
+							if(!$$('end_date').value){
+								alert('만료일을 적어주세요.');
+								$$('end_date').focus();
+								return;
+							}
+						}
+
+						if($$('dt_date')) {
+							if(!$$('dt_date').value){
+							 
+								alert('시작일을 적어주세요.');
+								$$('dt_date').focus();
+								return;
+							}
+						}
+						
+						if(validate($$('fomr1'))){
+						$$('fomr1').submit();
+						}
+					}
+					</script>
+						
+						<wa:btn size="3" type="button" event="onclick" js="sbmit()" value="저장하기"/>
+						
+					</td>
+				</tr>
+			</table>
+		
+
+
+
+<input type="hidden" name="end" value="">
+</FORM>
+</body>

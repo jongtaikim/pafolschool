@@ -1,0 +1,226 @@
+<style>select{behavior: url('/selectbox.htc');}</style>
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight);
+         var w = parseInt(document.body.scrollWidth); 
+		  //self.resizeTo(w, h); 
+
+
+document.getElementById('loding').style.height = h;
+
+} 
+//-->
+
+
+function Cachdel(module,theme) {
+
+		document.getElementById('loding').style.display = '';
+		
+		var params = module +'='+ theme + '&back=Y' ;  
+		
+		sendRequest('/attach/de_lib'  , params, FromServerCachdel, "POST");
+		
+		setTimeout(function(){CallHtml(module,theme);}, 300);
+
+	}
+
+
+function CallHtml(module,theme,intp) {
+		
+		var params = 'theme='+ theme +'&ids=' + module +'&mmode=sample' ;  
+		sendRequest('/'+ module + '.lib'  , params, FromServer, "POST");
+	}
+
+
+	function CallHtml2(module,theme,r_module) {
+		Cachdel(module,theme);
+		var params = 'theme='+ theme +'&ids=' + module +'&r_module=' + r_module + '&mmode=sample' ;  
+		sendRequest('/lib_html.lib'  , params, FromServer, "POST");
+	}
+
+
+function FromServerCachdel() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			//alert(str_text);
+			
+			}
+		}
+	}
+
+
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			//alert(str_text);
+			html = str_text.split("|||")
+		
+			//document.getElementById('temp').innerHTML = html[0];
+			parent.document.getElementById(html[1]).innerHTML = html[0];
+			document.getElementById('loding').style.display = 'none';
+			}
+		}
+	}
+
+</script>
+<body onload="resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',100);" style="margin-top:0;margin-left:0" bgcolor="#FFFFFF">
+<FORM METHOD=POST >
+
+<TABLE align= center >
+
+{? !smenu_count }
+<TR>
+					<td>사이트메뉴</td>
+					<TD>
+				<select name = "menu" onchange="Cachdel(this.name,this.value);" >
+				{@ LIST_demi }
+				<option value="{.api}" {? menu == .api} selected {/} >{.api}</option>	
+				{/}
+				</select>
+
+					</TD>
+					</tr>
+{/}
+{? !latestboard_count }
+				<TR>
+					<td>최근게시물</td>
+					<TD>
+				<select name = "latestboard" onchange="Cachdel(this.name,this.value);">
+				{@ LIST_demi }
+				<option value="{.api}" {? latestboard == .api} selected {/} >{.api}</option>	
+				{/}
+				</select>
+					
+
+					</TD>
+					</tr>
+{/}
+
+{? !lunch_count }
+				
+				<TR>
+					<td>오늘의 식단</td>
+					<TD>
+				<select name = "lunch" onchange="Cachdel(this.name,this.value);">
+				{@ LIST_demi }
+				<option value="{.api}" {? lunch == .api} selected {/} >{.api}</option>	
+				{/}
+				</select>
+					
+
+					</TD>
+					</tr>
+
+{/}
+{? !calendar_count }	
+				
+
+				<TR>
+				<td>학교일정</td>
+					<TD>
+				<select name = "calendar" onchange="Cachdel(this.name,this.value);">
+				{@ LIST_demi }
+				<option value="{.api}" {? calendar == .api} selected {/} >{.api}</option>	
+				{/}
+				</select>
+
+					</TD>
+					</tr>
+
+
+{/}
+{? !poll_count }	
+
+
+				<TR>
+				<td>설문조사</td>
+					<TD>
+				<select name = "poll" onchange="Cachdel(this.name,this.value);">
+				{@ LIST_demi }
+				<option value="{.api}" {? poll == .api} selected {/} >{.api}</option>	
+				{/}
+				</select>
+
+					</TD>
+					</tr>
+
+
+{/}
+{? !counter_count }	
+
+				<TR>
+				<td>카운터</td>
+					<TD>
+				<select name = "counter" idd = "counter" onchange="Cachdel(this.name,this.value);">
+				{@ LIST_demi }
+				<option value="{.api}" {? counter == .api} selected {/} >{.api}</option>	
+				{/}
+				</select>
+
+					</TD>
+					</tr>
+
+
+{/}
+{? !class_count }	
+
+
+
+				<TR>
+				<td>학급홈페이지</td>
+					<TD>
+				<select name = "class" idd = "class" onchange="Cachdel(this.name,this.value);">
+				{@ LIST_demi }
+				<option value="{.api}" {? class == .api} selected {/} >{.api}</option>	
+				{/}
+				</select>
+
+					</TD>
+					</tr>
+
+{/}
+{? !party_count }	
+
+
+				<TR>
+				<td>학교동아리</td>
+					<TD>
+				<select name = "party" idd = "party" onchange="CallHtml2(this.name,this.value,this.idd)">
+				{@ LIST_demi }
+				<option value="{.api}" {? party == .api} selected {/} >{.api}</option>	
+				{/}
+				</select>
+
+					</TD>
+					</tr>
+
+{/}
+
+				
+				
+				</TABLE>
+</FORM>
+<div style = "padding-top:3px;padding-left:3px">
+<FORM METHOD=POST >
+<INPUT TYPE="hidden" NAME="mmode" value = "reset">
+	<center><INPUT TYPE="image" src = "http://sh.hkedu.co.kr/module/btn/btn.php?text=기본세팅&w=73&h=28&size=10&color=009933"> <a href="javascript:parent.location.reload();"><img src = "http://sh.hkedu.co.kr/module/btn/btn.php?text=적용&w=52&h=28&size=10&color=009933" ></a></center>
+</FORM>
+</div>
+
+
+<div id = "loding" style = "top:0px;position:absolute;display:none;z-index:999; left:0px;width:100%;background-color:#ffffff;padding-top:100px;padding-left:28px" >
+<center><img src = "http://sh.hkedu.co.kr/module/btn/mk.php?text=디자인 적용중입니다...&w=200&h=200&size=15&color=009933"></center>
+</div>
+</body>

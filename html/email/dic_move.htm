@@ -1,0 +1,30 @@
+<table width="95%" class="table01">
+<thead>
+<tr>
+	<th>그룹이동</th>
+</tr>
+</thead>
+</table>
+
+<table width="95%" class="table01">
+<form name="moveForm" method="post" onsubmit="return confirm('그룹이동하시겠습니까?');">
+<input type="hidden" name="mode" value="move">
+<!--{@ LIST}-->
+<input type="hidden" name="ids[]" value="{.value_}">
+<!--{/}-->
+<tr>
+	<td>
+		이동할 그룹 선택
+		<select name="num_gcode" required>
+			<option value="0">미지정</option>
+			<!--{@ GROUP_LIST}--><option value="{.num_gcode}">{.str_group}</option><!--{/}-->
+		</select>
+	</td>
+</tr>
+</table>
+
+<center>
+	<input type="submit" class="button2" value="그룹이동">
+	<input type="button" class="button2" value="취소">
+</center>
+</form>

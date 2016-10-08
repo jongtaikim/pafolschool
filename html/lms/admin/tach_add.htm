@@ -1,0 +1,111 @@
+<style type="text/css" title="">
+.texta1{ width:280px;height:16px}
+</style>
+
+<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo">
+	
+	<input type="hidden" name="serial" value="{serial}">
+	<input type="hidden" name="types" value="{types}">
+	
+	
+
+	<p class="buTitle17" style="margin-bottom:10px">맨토 상세 정보</p>
+
+	<table width="100%" cellspacing="0" border="1" summary="맨토 입력/수정" class="tbl_type">
+	<caption>맨토 입력/수정</caption>
+		<colgroup>
+			<col width="140"><col><col width="120"><col>
+		</colgroup>
+	<tbody>
+
+
+		<tr>
+			<th scope="row">프로그램</th>
+			<td colspan="3">
+				<select name="num_ccode">
+					{@ cate_LIST}
+					<option value="{.num_ccode}"  {? .num_ccode == ccode} selected{/}>{.str_title}</option>
+					{/}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">사진</th>
+			<td colspan="3">
+				 {? str_file} <img src="/hosts/<?=HOST?>/tach/{str_file}_145"  /><br>{/}
+				<input type="file" name="upfile1" class="button">
+				<br> 사진 크기는  145x161 사이즈로 올려주세야 정상적으로 표출됩니다.
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">이름</th>
+			<td colspan="3">
+				<input type="text" name="str_name" value="{str_name}" class="" hname="이름"  required>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">학교</th>
+			<td colspan="3">
+				<input type="text" name="str_school" value="{str_school}" class="" hname="학교"  required>
+			
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row">전공</th>
+			<td colspan="3">
+				<input type="text" name="str_party" value="{str_party}" class="" hname="전공"  required>
+			
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row">학번</th>
+			<td colspan="3">
+				<input type="text" name="str_year" value="{str_year}" class="" hname="학번"  required>
+			
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row">입시전형</th>
+			<td colspan="3">
+				<input type="text" name="str_style" value="{str_style}" class="" hname="입시전형"  required>
+			
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row">취미특기</th>
+			<td colspan="3">
+				<input type="text" name="str_haby" value="{str_haby}" class="" hname="취미특기"  required>
+			
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row">좌우명</th>
+			<td colspan="3">
+				<input type="text" name="str_pain" value="{str_pain}" class="" hname="좌우명"  required>
+			
+			</td>
+		</tr>
+		
+		
+		<tr>
+			<th scope="row">자기소개</th>
+			<td colspan="3">
+				<textarea name="str_etc" id="str_etc"  style="height:250px;width:100%">{str_etc}</textarea>
+			</td>
+		</tr>
+		
+
+	</tbody>
+	</table>
+
+	<div style="text-align:center;margin-top:20px">
+		<span class="btn_pack medium icon"><span class="check"></span><input type="submit" value="저장하기"></span>
+		<span class="btn_pack medium icon"><span class="refresh"></span><a href="javascript:history.go(-1)">취소</a></span>
+	</div>
+
+</form>

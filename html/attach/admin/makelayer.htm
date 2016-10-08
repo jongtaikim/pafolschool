@@ -1,0 +1,13 @@
+<!--{@ LIST}-->
+{? .str_name == "sub_content" || .str_name == "submenuObj" }
+	<div  id = "{.str_name}" class="module obj2 {.str_name}" >
+	{.content}
+	</div>
+{:}
+
+<div  id = "{.str_name}" class="module obj">
+{.content}
+</div>
+{/}
+<!--{/}-->
+

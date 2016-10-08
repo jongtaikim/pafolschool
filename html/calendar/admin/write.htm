@@ -1,0 +1,114 @@
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<form name="writeForm" method="post" onsubmit="return prepare(this);">
+
+<!-- 표1 Start -->	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+
+	<tr>
+		<td width="100%" class="table_top_line02"></td>
+	</tr>			
+</table>
+
+<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="c4d4e7">
+	<tr height="40" bgcolor="FFFFFF">
+		<td width="120" class="table02_title01">날짜</td>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="2" bgcolor="#fafbfd" rowspan="3"></td>
+					<td width="12"rowspan="3"></td>
+					<td><wa:datepicker name="num_date" value="{num_date}" format="%Y%m%d" /></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	
+	<tr height="40" bgcolor="#FFFFFF">
+		<td  class="table02_title01">제목</td>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="2" bgcolor="#fafbfd"></td>
+					<td width="12"></td>
+					<td><input type="text" name="str_title" hname="제목" value="{str_title}" class="fom01" maxbyte="150" style="width:338px;;" required></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr height="40" bgcolor="#FFFFFF">
+		<td  class="table02_title01">아이콘</td>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="2" bgcolor="#fafbfd"></td>
+					<td width="12"></td>
+					<td>
+						<select name="num_icon" onChange="$('icon_img').src='/image/calendar/'+this.value+'.gif'">
+							<option value="0" {? num_icon ==0} selected{/}>없음</option>
+							<option value="1" {? num_icon ==1} selected{/}>개교기념</option>
+							<option value="2" {? num_icon ==2} selected{/}>체육대회</option>
+							<option value="3" {? num_icon ==3} selected{/}>발표회</option>
+							<option value="4" {? num_icon ==4} selected{/}>축제</option>
+							<option value="5" {? num_icon ==5} selected{/}>방학</option>
+							<option value="6" {? num_icon ==6} selected{/}>축하행사</option>
+							<option value="7" {? num_icon ==7} selected{/}>입학졸업</option>
+							<option value="8" {? num_icon ==8} selected{/}>특별행사</option>
+							<option value="9" {? num_icon ==9} selected{/}>소풍</option>
+							<option value="10" {? num_icon ==10} selected{/}>기타</option>
+							<option value="11" {? num_icon ==11} selected{/}>시험</option>
+						</select>
+						<img src="/image/calendar/{num_icon}.gif" id="icon_img"  align="absmiddle" onerror="this.src = '/image/calendar/0.gif';">
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr>
+		<td width="100%" class="table_btm_line01"></td>
+	</tr>
+	<tr><td height="10"></td></tr>
+</table>
+<!-- 표1 End -->	
+
+
+
+<wa:upload part="editor_SE" sect="main" code="calendar" width="100%" height="200">{content}</wa:upload>
+ 
+
+<table width = 100% class="table01">
+	<!--tr>
+		<th>파일첨부</th>
+		<td>
+			<wa:upload part="component" sect="main" code="calendar" />
+		</td>
+	</tr>
+	{? FILE_LIST}
+	<tr>
+		<th>첨부된 파일</th>
+		<td>
+			<wa:upload part="filelist" sect="main" code="calendar" />
+		</td>
+	</tr>
+	<!--{/}
+	<tr -->
+		<td colspan="2">
+			<!--{? id=='write'}-->
+			<center><input type="image" src="/html/admin/images/btn_calendar.gif" value="일정등록" id="submit_btn" onclick="_onSubmit(this); return false;"  onkeypress="_onSubmit(this)  return false;" ></center>
+			<!--{:}-->
+			<div style="float:left;">
+			<input type="image" src="/html/admin/images/btn_modify_01.gif" value="수정" id="submit_btn" onclick="_onSubmit(this);  return false;"  onkeypress="_onSubmit(this);  return false;" ><img src="/html/admin/images/btn_cancel.gif" value="취소" onclick="alert('취소하셨습니다.');location.href='calendar.admin.list?ym={ym}&f={f}';" style="cursor: hand">
+			</div>
+			<div style="float:right;">
+			<img src="/html/admin/images/btn_delete_04.gif" value="삭제" onclick="if(confirm('정말 삭제하시겠습니까?')) location.href='calendar.admin.delete?ym={ym}&id={id}&f={f}';" style="cursor: hand">
+			</div>
+			<!--{/}-->
+		</td>
+	</tr>
+</table>
+
+	
+	
+

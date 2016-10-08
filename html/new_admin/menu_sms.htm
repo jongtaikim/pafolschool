@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>B-MART  - 온라인 관리시스템</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<link rel="STYLESHEET" type="text/css" href="./css/admin.css">
+<base target="admin_content">
+<style type="text/css">
+td.submenu {
+	font-size:9pt;
+	color:#4A4A4A;
+	font-weight:bold;
+	background-image:url('./image/submenu_line.gif');
+	background-repeat:no-repeat;
+	background-position:bottom left;
+}
+</style>
+</head>
+<body leftmargin="0" topmargin="0">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+<tr height="11"><td></td></tr>
+<tr height="61">
+	<td background="./image/submenu_title.gif" style="font-size:10pt;color:#000000;font-weight:bold;padding-right:10px;" align="center">SMS관리</td>
+</tr>
+<tr height="*" valign="top">
+	<td style="padding-left:20px;" background="./image/submenu_bg.gif">
+		<table width="138" cellpadding="0" cellspacing="0">
+		<tr height="30">
+			<td width="15"><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td width="123" class="submenu"><a href="bs.admin.sms.send">SMS발송</a></td>
+		</tr>
+		<tr height="30">
+			<td width="15"><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td width="123" class="submenu"><a href="bs.admin.sms.mng_auto">자동발송관리</a></td>
+		</tr>
+		<tr height="30">
+			<td width="15"><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td width="123" class="submenu"><a href="bs.admin.sms.dic_list">주소록관리</a></td>
+		</tr>
+		<tr height="30">
+			<td width="15"><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td width="123" class="submenu"><a href="bs.admin.sms.send_log">발송내역조회</a></td>
+		</tr>
+		<tr height="30">
+			<td width="15"><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td width="123" class="submenu"><a href="bs.admin.sms.point_log">충전내역조회</a></td>
+		</tr>
+		{? __OID == __HOID}
+		<tr height="30">
+			<td width="15"><img src="./image/submenu_icon.gif" width="11" height="11" border="0" alt=""></td>
+			<td width="123" class="submenu"><a href="bs.admin.sms.mng_point">SMS 서비스관리</a></td>
+		</tr>
+		{/}
+		</table>
+	</td>
+</tr>
+</table>
+</body>
+</html

@@ -1,0 +1,92 @@
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function deleteChk(id) {
+		if(confirm('삭제하시겠습니까?')){
+			location.href="/member.admin.crossuser_delete?id="+id;
+		}
+	}
+//-->
+</SCRIPT>
+<script language = "JavaScript">
+<!--
+	function UserList() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+
+			document.getElementById("userList").innerHTML = str_text;
+
+			}
+		}
+	}
+
+	function CallList(params, method) {
+		sendRequest('/member.admin.crossuser_list'  , params, UserList, method);
+	}
+
+	function ADDuser() {
+		if(validate(document.form1)){
+			var params = "mode=new&";
+			params = params + '&str_chk='+encodeURIComponent($('str_chk').value);
+			params = params + '&str_text='+encodeURIComponent($('str_text').value);
+			params = params + '&str_alert='+encodeURIComponent($('str_alert').value);
+			CallList(params, "POST");
+		}
+	}
+
+	function Searchuser() {
+		var params = "";
+		{?searchkey}params = params + '&searchkey='+encodeURIComponent("{searchkey}");{/}
+		{?searchvalue}params = params + '&searchvalue='+encodeURIComponent("{searchvalue}");{/}
+		CallList(params, "GET");
+	}
+
+	window.attachEvent("onload",  Searchuser);
+//-->
+</script>
+
+<style type="text/css" title="">
+.bx6_bg{border:1px solid #c7c7c7; background-image:url(/html/admin/images/bx6_bg.gif); height:33px; width:100%; text-align:center; cursor: move}
+</style>
+
+<form method=post name=form1>
+<input type="hidden" name="mode" value="new">
+<table cellpadding="0" cellspacing="0" border="0" width="98%" class="bx6_bg" align="center">
+	<tr>
+		<td align="left">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="10"></td>
+					<td align="center" class="subtitle01">신규등록 :&nbsp;</td>
+					<td>
+						<select name="str_chk" required>
+						<option value="">선택</option>
+						<option value="ip" {? ips } selected{/}>IP Address</option>
+						<option value="id">회원 아이디</option>
+						</select>
+					</td>
+					<td width="8"></td>
+					<td>
+						<input type="text" name="str_text" class="fom01" style = "width:120px" {? ips }value="{ips}"{/} required>
+					</td>
+					<td width="15"></td>
+					<td align="center" class="subtitle01">차단메세지 :&nbsp;</td>
+					<td><input type="text" name="str_alert" class="fom01" style = "width:200px" value="차단되었습니다." required></td>
+					<td width="5"></td>
+					<td><a href="#" onclick="ADDuser();"><img src="/html/admin/images/btn_reg_04.gif"  value="등록"></a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</form>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="98%" >
+
+	<tr>
+		<td align=center valign="top">
+			<div name="userList" id="userList"></div>
+		</td>
+	</tr>
+</table>

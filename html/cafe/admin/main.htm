@@ -1,0 +1,232 @@
+<SCRIPT LANGUAGE="JavaScript">
+	function actionTo(form){
+		if(!form.str_value.value){
+			alert("수정할 항목이 누락되었습니다");
+			return false;
+		}
+		form.submit();
+	}
+
+	function actionSet(form){				
+		str=form.str_value;
+		var radioVal="";	
+		for(var i=0;i<str.length; i++) { 
+		   if (str[i].checked == true) 
+		   { 
+		     radioVal = str[i].value; 
+		     break; 
+		   } 
+		} 	
+		if(radioVal == "" || radioVal == undefined) {			
+			alert("공개설정을 선택하세요");
+			str[0].focus();
+			return false;			
+		}						
+		alert('학급 홈피의 공개설정을 변경합니다. \n 게시판,갤러리,상담실의 별도권한 설정시에는 메뉴편집에서 권한을 변경하세요');			
+		form.submit();
+	}	
+</SCRIPT>
+<div id="sub_content_area">
+	<div id="admin_sub_content">
+		<table width='100%' border="0" cellspacing="0" cellpadding="0">
+		<tr><td>
+		<table width="700" border="0" cellspacing="0" cellpadding="0">
+				<tr> 
+				  <td width="100%" >
+					<h3 id="admin_sub_title">학급홈피 정보</h3>
+				  </td>
+				</tr>
+				<tr>	
+					<td height="5"></td>
+				</tr>
+				<tr> 
+				  <td>
+					<table width="100%" border="0" cellpadding="0" cellspacing="0" cellpadding="0">
+						<tr> 
+							<td width="500" valign="top">
+								<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="D7D7D7">							
+									<form name=orderFormTitle method="post">
+									<tr bgcolor="#FFFFFF">												
+									<input type="hidden" name="mode" value="title">                  
+										<td height="30" width="80"bgcolor="F5F5F5">&nbsp학급홈피 이름</td>
+										<td bgcolor="#FFFFFF">
+													<!--<input type='text' name='str_value' value='{{class_title}}' size=15 maxlength=19>&nbsp; <input type=button value="반이름 수정" onclick="actionTo(this.form);">-->
+									   &nbsp;{{class_title}}                    	
+										</td>							
+									</tr>	
+									</form>
+									<tr bgcolor="#FFFFFF">
+										<td height="30" bgcolor="F5F5F5">&nbsp;주소(URL)</td>
+										<td>&nbsp;http://{{HOST}}/cafe.php?cafe_id={{cafe_id}}</td>
+									</tr>                 
+									  <form name=orderFormMotto method="post">
+									  <input type="hidden" name="mode" value="motto">                  
+									  <tr bgcolor="#FFFFFF">
+										<td height="30" bgcolor="F5F5F5" valign=middle>&nbsp;실천사항</td>
+										<td>&nbsp;<input type='text' name='str_value' value='{{motto}}' size=50 maxlength=80>&nbsp;<input type=image src="image/cafe/admin/motto_modify.gif" align="absmiddle" onclick="actionTo(this.form);" style="cursor:hand"></td>
+									  </tr>
+									  </form>
+									  <form name=orderFormOpenUse method="post">
+									  <input type="hidden" name="mode" value="open_use">
+									  <tr bgcolor="#FFFFFF">
+										<td height="30" bgcolor="F5F5F5">&nbsp;공개설정</td>
+										<td>
+										  <input type="radio" name="str_value" value="1" {{CHR_OPEN_1}}>
+										  학급홈피 회원 공개
+										  <input type="radio" name="str_value" value="2" {{CHR_OPEN_2}}>
+										  학교회원 공개
+										  <input type="radio" name="str_value" value="3" {{CHR_OPEN_3}}>
+										  비회원 공개
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										  <input type=image src="image/cafe/admin/open_option.gif" align="absmiddle" value="공개설정수정" onclick="actionSet(this.form);" style="cursor:hand">
+										</td>
+									  </tr>
+									  </form>
+									  <!-- IF 'PARENTS_USE' -->
+									  <form name=orderFormOpenParents method="post">
+									  <input type="hidden" name="mode" value="parents_open">
+									  <tr bgcolor="#FFFFFF">
+										<td height="30" bgcolor="F5F5F5">&nbsp;학부모 공개설정</td>
+										<td>
+										  <input type="radio" name="str_value" value="0" {{CHR_PARENTS_0}}>
+										  비공개
+										  <input type="radio" name="str_value" value="1" {{CHR_PARENTS_1}}>
+										  공개
+										  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										  <input type=image src="image/cafe/admin/option_save.gif" align="absmiddle" value="공개설정수정" onclick="actionSet(this.form);" style="cursor:hand">
+										</td>
+									  </tr>
+									  </form>									  
+									  <!-- ENDIF 'PARENTS_USE' -->									  
+								</table>
+							</td>
+							<td width="10"></tD>
+							<td valign="top">
+								<img src="image/cafe/admin/bt_class_manual.gif" border=0 onclick="javascript:window.open('http://e-wut.com/help/class_2007/web','','width=850','height=500')" style="cursor:pointer" alt="관리자용 홈페이지 도움말입니다">
+								<a href="{{main_first_url}}"><img src="image/cafe/admin/banner_2007_08_22.gif" border=0 style="cursor:pointer" alt="학급홈피 기능 업그레이드"></a>
+							</td>
+						</tr>
+					</table></td>
+				</tr>
+				<tr> 
+				  <td>&nbsp;</td>
+				</tr>
+				<!-- 추후 e-wut.com 공지사항 적용예정
+				<tr> 
+				  <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+					  <tr> 
+						<td width="50%"> <table width="98%" border="0" cellspacing="0" cellpadding="0">
+							<tr> 
+							  <td width="87%" height="30"><img src="images/icon_notice.gif" width="15" height="12" align="absmiddle"> 
+								<span class="bodytitle">공지사항</span> </td>
+							  <td width="13%" align="center" valign="bottom" style="padding-bottom:3"><a href="#"><img src="images/more.gif" width="36" height="9" border="0"></a></td>
+							</tr>
+							<tr> 
+							  <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="2">
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								  <tr bgcolor="#FFFFFF"> 
+									<td width="3%"><img src="images/icon_title2.gif" width="4" height="4"></td>
+									<td width="77%"><a href="#" class="notice">방학 숙제 얼른 
+									  하시오</a> <img src="images/icon_new.gif" width="11" height="11" align="absmiddle"></td>
+									<td width="20%">2007.01.17</td>
+								  </tr>
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								  <tr bgcolor="#FFFFFF"> 
+									<td><img src="images/icon_title2.gif" width="4" height="4"></td>
+									<td><a href="#" class="notice">방학 숙제 얼른 하시오 얼른 얼른 
+									  얼른</a> <img src="images/icon_new.gif" width="11" height="11" align="absmiddle"></td>
+									<td>2007.01.17</td>
+								  </tr>
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								  <tr bgcolor="#FFFFFF"> 
+									<td><img src="images/icon_title2.gif" width="4" height="4"></td>
+									<td><a href="#" class="notice">방학 숙제 얼른 하시오</a></td>
+									<td>2007.01.17</td>
+								  </tr>
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								  <tr bgcolor="#FFFFFF"> 
+									<td><img src="images/icon_title2.gif" width="4" height="4"></td>
+									<td><a href="#" class="notice">방학 숙제 얼른 하시오</a></td>
+									<td>2007.01.17</td>
+								  </tr>
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								</table></td>
+							</tr>
+						  </table></td>
+						<td align="right"> <table width="98%" border="0" cellspacing="0" cellpadding="0">
+							<tr> 
+							  <td width="87%" height="30"><img src="images/icon_faq.gif" width="14" height="14" align="absmiddle"> 
+								<span class="bodytitle">자주 묻는 질문 </span></td>
+							  <td align="center" valign="bottom" style="padding-bottom:3"><a href="#"><img src="images/more.gif" width="36" height="9" border="0" ></a></td>
+							</tr>
+							<tr> 
+							  <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="2">
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								  <tr bgcolor="#FFFFFF"> 
+									<td width="3%"><img src="images/icon_title2.gif" width="4" height="4"></td>
+									<td width="77%"><a href="#" class="notice">어떻게 하면 
+									  얼른 하나요?</a> <img src="images/icon_new.gif" width="11" height="11" align="absmiddle"></td>
+									<td width="20%">2007.01.17</td>
+								  </tr>
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								  <tr bgcolor="#FFFFFF"> 
+									<td><img src="images/icon_title2.gif" width="4" height="4"></td>
+									<td><a href="#" class="notice">어떻게 하면 얼른 하나요 어떻게 하면?</a> 
+									  <img src="images/icon_new.gif" width="11" height="11" align="absmiddle"></td>
+									<td>2007.01.17</td>
+								  </tr>
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								  <tr bgcolor="#FFFFFF"> 
+									<td><img src="images/icon_title2.gif" width="4" height="4"></td>
+									<td><a href="#" class="notice">어떻게 하면 얼른 하나요?</a></td>
+									<td>2007.01.17</td>
+								  </tr>
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								  <tr bgcolor="#FFFFFF"> 
+									<td><img src="images/icon_title2.gif" width="4" height="4"></td>
+									<td><a href="#" class="notice">어떻게 하면 얼른 하나요?</a></td>
+									<td>2007.01.17</td>
+								  </tr>
+								  <tr bgcolor="#D7D7D7"> 
+									<td height="1" colspan="3" ></td>
+								  </tr>
+								</table></td>
+							</tr>
+						  </table></td>
+					  </tr>
+					</table></td>
+				</tr>	
+				<tr> 
+				  <td>&nbsp;</td>
+				</tr>
+				<tr>
+				  <td align="center"><table width="100%" height="75" border="0" cellpadding="0" cellspacing="0" bgcolor="F5F5F5">
+					  <tr>
+						<td align="center">광고영역</td>
+					  </tr>
+					</table></td>
+				</tr>
+				-->
+			  </table>
+		</td></tr>
+		</table>
+	</div>    
+</div>                                 

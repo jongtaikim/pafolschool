@@ -1,0 +1,177 @@
+<style type="text/css" title="">
+#index_body{border:0px solid #D0D0D0;;width:100%;;}
+
+#index_left{border:0px solid #D0D0D0;;width:400px; margin:5px}
+
+#main_title{border:0px solid #D0D0D0;width:100%;;filter:progid:DXImageTransform.Microsoft.Shadow(color=#DBDBDB,direction=135,strength=2);}
+
+#index_right_main{margin:5px;border:0px solid #D0D0D0;;width:400px;;padding:0	0 0 5 px;filter:progid:DXImageTransform.Microsoft.Shadow(color=#DBDBDB,direction=135,strength=2);}
+
+
+#index_right{border:0px solid #D0D0D0;;width:400px;margin:5px;padding:0	0 0 5 px;;filter:progid:DXImageTransform.Microsoft.Shadow(color=#DBDBDB,direction=135,strength=2);}
+
+
+</style>
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<form method=post enctype='multipart/form-data' onsubmit="return validate(this);">
+<input type="hidden" name="mcode" value="{mcode}"> 
+<input type="hidden" name="mode" value="{? num_mcode}update{:}add{/}"> 
+
+<div  id="index_body" >
+
+	<div  id="index_left">
+	
+	<div ></div>
+		<div id="main_title">
+			<div style="height:153px;width:100%;padding:10">
+			
+			<div style = "float:left;border-bottom:1px solid #CCCCCC;width:100%;text-align:left;font-size:14px;padding:5px;color:#333333;" ><b>프로잭트명 : <input type="text" name="str_title" value="{str_title}"   hname="프로젝트명"  maxbyte="30" required></b> </div>
+			
+			<div style = "width:100%;height:80px;text-align:left;line-height:21px;padding-left:10px" id="">
+			<span style="color:#005DAF;width:110px" >개발 상태</span> <input type="text" name="str_st" value="{str_st}" style="width:120" hname="개발상태"  maxbyte="30" required> <br>
+			
+			<span style="color:#005DAF;width:110px">사용자 인터페이스</span> <input type="text" name="str_int" value="{str_int}" style="width:120" hname="사용자인터페이스"  maxbyte="30" required>  <br>
+			<span style="color:#005DAF;width:110px">프로그래밍 언어</span> <input type="text" name="str_lang" value="{str_lang}" style="width:120" hname="프로그래밍언어"  maxbyte="100" required> 
+
+			</div>
+
+			</div>
+		</div>
+		<script>roundDiv('main_title','#E3E3E3','#FAFAFA')</script>
+
+	</div>
+	
+	
+
+
+	<div  id="index_right" >
+		<div style="height:115px;width:100%;border-bottom:1px dashed #E3E3E3;overflow:hidden">
+		<img src='/project/{mcode}/main.gif' border='0' alt='' onerror="this.src='/b.gif'">
+		
+		</div>
+	
+		<div style="height:34px;width:100%;padding:3">
+		대표이미지 : <input type="file" name="upfile1" style="width:70%;"  class=button hname="프로젝트대표이미지" ><br>
+		설명 : <input type="text" name="str_memo" value="{str_memo}" style="width:70%" maxbyte="100" ><br>
+		시작일 : <wa:datepicker name="num_start_date" value="{num_start_date}" format="%Y%m%d" />
+		
+		</div>
+	</div>
+	<script>roundDiv('index_right')</script>
+
+
+
+
+		<div style="height:76px;width:100%;padding:">
+
+		<table align="center" width=400 border=0 cellspacing=0 cellpadding=0 class="table01">
+		 <tr>
+		  <th>개발자</th>
+		 </tr>
+		 <tr>
+		<td height = 50 align=center>
+		<select name="str_pm1"  style="width:110px;font-size:11px">
+			<option value="">--  선택  --</option>
+			{@ MEMBERLIST }
+			<option value="{.str_id}" {? str_pm1 == .str_id} selected {/}>{.str_name}</option>
+			{/}
+		</select>
+
+		<select name="str_pm2" style="width:110px;font-size:11px">
+			<option value="">--  선택  --</option>
+			{@ MEMBERLIST }
+			<option value="{.str_id}" {? str_pm2 == .str_id} selected {/}>{.str_name}</option>
+			{/}
+		</select>
+
+		<select name="str_pm3" style="width:110px;font-size:11px">
+		<option value="">--  선택  --</option>
+			{@ MEMBERLIST }
+			<option value="{.str_id}" {? str_pm3 == .str_id} selected {/}>{.str_name}</option>
+			{/}
+		</select>
+
+		</td>
+		</tr>
+		<tr>
+		<th>디자이너</th>
+		</tr>
+		<tr>
+		<td align=center>
+
+		<select name="str_dm1" style="width:110px;font-size:11px">
+		<option value="">--  선택  --</option>
+			{@ MEMBERLIST2 }
+			<option value="{.str_id}" {? str_dm1 == .str_id} selected {/}>{.str_name}</option>
+			{/}
+		</select>
+
+		<select name="str_dm2" style="width:110px;font-size:11px">
+		<option value="">--  선택  --</option>
+			{@ MEMBERLIST2 }
+			<option value="{.str_id}" {? str_dm2 == .str_id} selected {/}>{.str_name}</option>
+			{/}
+		</select>
+
+		<select name="str_dm3" style="width:110px;font-size:11px" >
+		<option value="">--  선택  --</option>
+			{@ MEMBERLIST2 }
+			<option value="{.str_id}" {? str_dm3 == .str_id} selected {/}>{.str_name}</option>
+			{/}
+		</select>
+
+		</td>
+		 </tr>
+
+		 <tr>
+		   <th>게시판 연동 설정</th>
+		</tr>
+		<tr>
+		  <td align=center>
+		  
+		  	<select name = "num_board_mcode1" style = "font-size:11px;" >
+			<option value="">게시판을 선택하세요.</option>
+			{@ bbs_LIST}
+				<option value="{.num_mcode}" {? num_board_mcode1 == .num_mcode} selected{/} >{.stitle} > {.str_title}{.counter}</option>
+			{/}
+			</select><br>
+
+			<select name = "num_board_mcode2" style = "font-size:11px;" >
+			<option value="">게시판을 선택하세요.</option>
+			{@ bbs_LIST}
+				<option value="{.num_mcode}" {? num_board_mcode2 == .num_mcode} selected{/}>{.stitle} > {.str_title}{.counter}</option>
+			{/}
+			</select><br>
+
+			<select name = "num_board_mcode3" style = "font-size:11px;" >
+			<option value="">게시판을 선택하세요.</option>
+			{@ bbs_LIST}
+				<option value="{.num_mcode}" {? num_board_mcode3 == .num_mcode} selected{/} >{.stitle} > {.str_title}{.counter}</option>
+			{/}
+			</select><br>
+
+			<select name = "num_board_mcode4" style = "font-size:11px;" >
+			<option value="">게시판을 선택하세요.</option>
+			{@ bbs_LIST}
+				<option value="{.num_mcode}" {? num_board_mcode4 == .num_mcode} selected{/}>{.stitle} > {.str_title}{.counter}</option>
+			{/}
+			</select><br>
+		  
+		  </td>
+		 </tr>
+		</table>
+
+		</div>
+	</div>
+
+
+
+
+	</div>
+
+<br><br><br>
+<input type="image" src="/html/image/btn_save.gif" value="저장하기">
+
+</div>
+
+</form>

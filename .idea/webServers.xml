@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8396e3b3-73e1-49b9-8192-36e74b7c89bb" name="brainmapping" url="http://brainmapping.cafe24.com">
+        <fileTransfer host="brainmapping.cafe24.com" port="22" rootFolder="/home/hosting_users/brainmapping/www/" accessType="SFTP" password="dfd8dfcfdfdcdfc5dfc6df99df9cdf99df93" username="brainmapping">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,187 @@
+<html>
+<head>
+<style>
+	body, form {
+		margin: 0px;
+	}
+	.selector {
+		width: 100%;
+		font-size: 9pt;
+	}
+</style>
+<script type="text/javascript">
+	//<!-- // buffer required component [using template]
+	required_components = [];
+	{@ REQUIRED_COMPONENTS}
+	required_components[required_components.length] = '{.name}';
+	{/}
+	//-->
+
+	// TODO: 컴포넌트가 추가될때를 대비해서 이 목록은 다른곳에서받아오도록 해야할껀데..
+	var component_admin_urls = {
+		'news_com' : 'news.admin.list?code=com',
+		'news_sch' : 'news.admin.list?code=sch',
+		'news_edu' : 'news.admin.list?code=edu',
+		'calendar' : 'calendar.admin.list'
+	};
+
+	function go_component() {
+		var form = document.forms['componentform'];
+		var el = form.elements['using_components[]'];
+		var opt = el.options[el.selectedIndex].value;
+		if (href = component_admin_urls[opt]) {
+			location.href = href;
+		}
+	}
+
+	function is_select_single(el) {
+		var n = 0;
+		for(var i=0; i<el.options.length; i++) {
+			n += el.options[i].selected ? 1 : 0;
+		}
+		return n == 1;
+	}
+
+	function component_onchange() {
+		return;
+		var el = document.forms['componentform'].elements['using_components[]'];
+		var output_div = document.getElementById('component_name');
+		var b_perm = document.getElementById('b_perm');
+		var b_edit = document.getElementById('b_edit');
+		var single = is_select_single(el);
+		b_perm.disabled = b_edit.disabled = !single;
+		var selected_label = single ? el.options[el.selectedIndex].text : '${[Multiple select]}';
+		output_div.innerHTML = selected_label;
+	}
+
+	/**
+	* 원하는 방향으로 option을 옮겨줌
+	* @param : where:String {'right'|'left'} (이동할 방향)
+	*/
+	function add_component() {
+		var form = document.forms['componentform'];
+		var oAll = form.elements['all_components'];
+		var oSel = form.elements['using_components[]'];
+		if (oAll.selectedIndex == -1) return;
+		if (!oAll.options) oAll.options.length = 1;
+		var firstItem = oAll.selectedIndex;
+		for (var i=firstItem; i<oAll.options.length; i++) {
+			if (oAll.options[i].selected) {
+				opt = new Option(oAll.options[i].text, oAll.options[i].value);
+				WebApp.ie ? oSel.add(opt) : oSel.add(opt,null);	// HTMLSelectElement.add method is different at IE and FF
+			}
+		}
+		cleanUp(oSel);
+	}
+
+	function remove_component() {
+		var form = document.forms['componentform'];
+		var target = form.elements['using_components[]'];
+		for (var i=target.options.length-1; i >= 0; --i) {
+			var value = target.options[i].value;
+			if (target.options[i].selected) {
+				var bRequired = false;
+				for(var j=0; j<required_components.length; j++) {
+					bRequired |= (value == required_components[j]);
+				}
+				if (!bRequired) target.options[i] = null; //if (value != 'a' && value != 'b') target.options[i] = null;
+				else {
+					alert('${can not remove required components}');
+					continue;
+				}
+			}
+		}
+	}
+
+	/**
+	* 중복되는 값을 삭제해줌
+	* @param obj:Object (클린업할 select 엘리먼트)
+	*/
+	function cleanUp(obj) {
+		var cnt = 0;
+		for (var i=0; i<obj.options.length; i++) {
+			var chk = obj.options[i].value;
+			for (var j=obj.options.length-1; j>i; j--) {
+				if (obj.options[j].value == chk) { obj.options[j] = null; cnt++; }
+			}
+		}
+		if (cnt) window.status = '중복되는 항목 ' + cnt + '개가 무시됨';
+		else window.status = window.defaultStatus;
+	}
+
+	function submit_all(el) {
+		for (var i=0; i<el.options.length; i++) {
+			el.options[i].selected = true;
+		}
+	}
+</script>
+</head>
+<body>
+
+<!---------------------------------------------------------------------->
+
+<form name="componentform" method="post" onSubmit="submit_all(this.elements['using_components[]'])">
+
+<table width="98%" class="table01" align = center>
+	<tr>
+		<th width="200" class="head">메인메뉴</th>
+		<th width="50" class="head">
+		</th>
+		<th width="200" class="head">1차</th>
+		<th width="50" class="head">
+		</th>
+		<th width="200" class="head">2차</th>
+	</tr>
+	<tr>
+		<th width="250">
+			<select name="all_components" id="all_components" size="15" class="selector" multiple>
+				
+				<!--{@ REQUIRED_COMPONENTS}-->
+					<option value="{.name}">{.title}</option>
+				<!--{/}-->
+				
+			</select>
+		</th>
+
+		<th width="50">
+			&gt;&gt;
+		</th>
+
+		<th width="250">
+			<select name="using_components[]" size="15" class="selector" onChange="component_onchange()" >
+			<!--{@ USING_COMPONENTS}-->
+				<option value="{.name}">{.title}</option>
+			<!--{/}-->
+			</select>
+		</th>
+
+
+<th width="50">
+			&gt;&gt;
+		</th>
+
+		<th width="250">
+			<select name="using_components[]" size="15" class="selector" onChange="component_onchange()" >
+			<!--{@ USING_COMPONENTS}-->
+				<option value="{.name}">{.title}</option>
+			<!--{/}-->
+			</select>
+		</th>
+
+
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<input type="submit" value="${Save changes}" class="button"><br>
+			<div class="tip">
+				${Note: Will effect after submit changes}
+			</div>
+		</td>
+	</tr>
+</table>
+</form>
+
+
+
+
+</body>

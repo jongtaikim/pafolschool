@@ -1,0 +1,191 @@
+<div id="sub_content_area">
+<style>
+body, font, td {
+	font-size: 9pt;
+}
+
+/*
+body {
+	border: 0;
+	margin: 0;
+}
+*/
+
+.richEdit {
+	/* padding-top: 10px; */
+	width: 100%;
+	height: 100%;
+	border: 2px inset;
+}
+
+</style>
+<body bgcolor="buttonface">
+<link type="text/css" rel="StyleSheet" href="/css/cb2.css">
+<script type="text/javascript" src="/js/richedit.js"></script>
+<script type="text/javascript" language="JavaScript1.5" src="/js/ieemu.js"></script>
+<script type="text/javascript" src="/js/cb2.js"></script>
+<script type="text/javascript" src="/js/richedit.js"></script>
+<script>
+
+function save() {
+	var edit = document.all.edit;
+	alert(
+//		(edit.supportsXHTML ? edit.getXHTML() : edit.getHTML())
+		edit.getHTML()
+	);
+	edit.focus();
+}
+
+function dump() {
+	var edit = document.all.edit;
+	var form = document.forms['editform'];
+
+	form.elements['content'].value = edit.getHTML();
+	return true;
+}
+
+function getRealOffsetTop(o) { return o ? o.offsetTop + getRealOffsetTop(o.offsetParent) : 0; }
+function getRealOffsetLeft(o) { return o ? o.offsetLeft + getRealOffsetLeft(o.offsetParent) : 0; }
+
+function togglePicker() {
+	var el = event.srcElement;
+	var e = document.getElementById('cp');
+	e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+	e.style.top = getRealOffsetTop(el)+el.offsetHeight;
+	e.style.left = getRealOffsetLeft(el);
+}
+
+function togglePicker2() {
+	var el = event.srcElement;
+	var e = document.getElementById('cp2');
+	e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+	e.style.top = getRealOffsetTop(el)+el.offsetHeight;
+	e.style.left = getRealOffsetLeft(el);
+}
+
+function toggleTable() {
+	var el = event.srcElement;
+	var e = document.getElementById('tb');
+	e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+	e.style.top = getRealOffsetTop(el)+el.offsetHeight;
+	e.style.left = getRealOffsetLeft(el);
+}
+
+function attachImage() {
+	var r = showModalDialog('/?p=!editor.attachimg&mcode={{code}}','','dialogHeight: 350px; dialogWidth:450px');
+}
+
+function showTemplates() {
+	var r = showModalDialog('/?p=!class.admin.timetable.browse_template','','dialogHeight: 400px; dialogWidth:455px;');
+	var edit = document.all.edit;
+	if (r) edit.src = r;
+}
+</script>
+
+<object id="cp" type="text/x-scriptlet" data="/?p=!editor.colorpicker" style="position:absolute; display:none; width: 170px; height: 180px; border-width: 0px; border-style: groove;"></object>
+<object id="cp2" type="text/x-scriptlet" data="/?p=!editor.colorpicker" style="position:absolute; display:none; width: 170px; height: 180px; border-width: 0px; border-style: groove;"></object>
+<object id="tb" type="text/x-scriptlet" data="/?p=!editor.tablegrid" style="position:absolute; display:none; border-width: 0px; border-style: groove;"></object>
+<script for="cp" event="onscriptletevent(name, eventData)">
+var cp = document.getElementById('cp');
+var edit = document.all.edit;
+if (name == "colorchange") {
+	edit.setColor(eventData);
+	cp.style.display = 'none';
+}
+</script>
+<script for="cp2" event="onscriptletevent(name, eventData)">
+var cp = document.getElementById('cp2');
+var edit = document.all.edit;
+if (name == "colorchange") {
+	edit.setBackgroundColor(eventData);
+	cp.style.display = 'none';
+}
+</script>
+<script for="tb" event="onscriptletevent(name, eventData)">
+var tb = document.getElementById('tb');
+var edit = document.all.edit;
+
+switch(name) {
+	case "drawtable":
+		edit.drawTable(eventData);
+		tb.style.display = 'none';
+		break;
+	case "changesize":
+		tb.style.width = (eventData.col * 17) + 'px';
+		tb.style.height = (eventData.row * 17) + 'px';
+		break;
+}
+
+</script>
+<table width='90%' border="0" cellspacing="10" cellpadding="0">
+	<form name="editform" method="post" onSubmit="return dump()">
+        <tr> 
+          <td width="100%" height="30">
+            <h2 id="admin_sub_title">시간표 입력</h2>
+		  </td>
+        </tr>		
+	<tr>
+		<td style="padding-left:13;padding-top:10" valign="top">
+			<table border="0" cellpadding="0" cellspacing="0" bgcolor="buttonface" id="toolbar">
+				<tr>
+					<td class="coolButton" onAction="showTemplates()">문서마당</td>
+					<td class="coolButton" onAction="document.all.edit.setBold()"><img src="/image/editor/icon_bold.gif" alt="굵게" width="22" height="22"></td>
+					<td class="coolButton" onAction="document.all.edit.setUnderline()"><img src="/image/editor/icon_underline.gif" alt="밑줄" width="22" height="22"></td>
+					<td class="coolButton" onAction="document.all.edit.setItalic()"><img src="/image/editor/icon_italic.gif" alt="기울임" width="22" height="22"></td>
+					<td><img src="/image/editor/icon_sep.gif" width="4" height="22"></td>
+					<td class="coolButton" onAction="togglePicker()"><img src="/image/editor/icon_color.gif" alt="글자색" width="22" height="22"></td>
+					<td class="coolButton" onAction="togglePicker2()"><img src="/image/editor/icon_bgcolor.gif" alt="글자배경색" width="22" height="22"></td>
+					<td><img src="/image/editor/icon_sep.gif" width="4" height="22"></td>
+					<td class="coolButton" onAction="document.all.edit.setAlign('Left')"><img src="/image/editor/icon_alignleft.gif" alt="왼쪽정렬" width="22" height="22"></td>
+					<td class="coolButton" onAction="document.all.edit.setAlign('Center')"><img src="/image/editor/icon_aligncenter.gif" alt="가운데정렬" width="22" height="22"></td>
+					<td class="coolButton" onAction="document.all.edit.setAlign('Right')"><img src="/image/editor/icon_alignright.gif" alt="오른쪽정렬" width="22" height="22"></td>
+					<td><img src="/image/editor/icon_sep.gif" width="4" height="22"></td>
+					<td width="99%">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="210">
+			<iframe frameborder="0" id="edit" class="richEdit" onblur="return false">			
+				<style>body, td, font, div, span { font-family: 굴림, Arial; font-size: 9pt; }</style>
+				<body>
+					{{content}}
+				</body>
+			</iframe>
+		</td>
+	</tr>
+	<tr>
+		<td height="20" align="center">
+			<input type="hidden" name="content" value="">
+			<input type="submit" value="저장하기">
+		</td>
+	</tr>
+	<tr> <td height="10"></td></tR>
+	<tr>
+		<Td >
+		<UL>
+			<LI> 새 시간표를 작성시 상단의 "문서마당" 을 클릭하면 입력틀을 불러오실 수 있습니다.
+		</UL>
+		</td>
+	</tr>
+	</form>
+</table>
+<iframe name="pro-cess" width="1" height="1" frameborder="no"></iframe>
+
+</body>
+<script type="text/javascript">
+//fixSize();
+
+var all = document.all;
+var l = all.length;
+for (var i = 0; i < l; i++) {
+	if (all[i].tagName != "INPUT" && all[i].tagName != "TEXTAREA") all[i].unselectable = "on";
+}
+var toolbar = document.getElementById('toolbar');
+for (var i=0; i<toolbar.cells.length; i++) {
+	if (toolbar.cells[i].className == 'coolButton') createButton(toolbar.cells[i]);
+}
+
+</script>
+</div>

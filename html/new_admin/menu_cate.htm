@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title> New Document </title>
+<style type="text/css">
+a {
+    font-size: 8pt;
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+</style>
+</head>
+<body style="margin-left:3">
+<script type="text/javascript">
+/*
+function getRealOffsetTop(o)
+{
+	return o ? o.offsetTop + getRealOffsetTop(o.offsetParent) : 0;
+}
+
+function getRealOffsetLeft(o)
+{
+	return o ? o.offsetLeft + getRealOffsetLeft(o.offsetParent) : 0;
+}
+		
+function del_menu(mcode)
+{
+	if (!confirm('메뉴를 삭제하면 저장된 문서 또는 게시물이 모두 삭제되며 복구가 불가능합니다.\n정말 삭제하시겠습니까?')) return;
+	parent.frames['content'].location.href = 'menu.admin.del?mcode=' + mcode
+}
+
+function reloadSelected() {
+	//tree.getSelected().parentNode.reload();
+	tree.childNodes[2].reload();
+}
+//*/
+
+var gSelectedNode = '';
+
+function add_menu(parent)
+{
+	var menuname = showModalDialog('media_cate.admin.add?parent='+parent,'create','dialogHeight: 367px; dialogWidth: 580px;');
+}
+
+function setSelected(mcode) {
+	gSelectedNode = mcode;
+}
+
+function reloadSelected() {
+	tree.getSelected().reload();
+}
+
+function reloadParent() {
+	tree.getSelected().parentNode.reload();
+}
+
+function detail(mcode)
+{
+	parent.frames['content'].location.href = 'media_cate.admin.option?mcode=' + mcode;
+}
+
+function selectMenu(mcode) {
+	tree.getSelected().reload();
+	if(!mcode) mcode = '';
+	parent.frames['content'].location.href = 'media_cate.admin.listorder?mcode=' + mcode;
+}
+</script>
+<!-- <wa:tree var="tree" text="관리메뉴">
+<tree>
+	<tree icon="image/icon/information.gif" text="기본정보" action="admin.common" target="content"/>
+	<tree icon="image/icon/gear.gif" text="메인페이지관리" action="admin.main.compose" target="content"/>
+	<tree icon="image/icon/wizard.gif" text="레이아웃관리" action="attach.admin.manage" target="content"/>
+	<tree icon="image/icon/chess.png" text="학급편성" action="class.manage.frame" target="content"/>
+	<tree icon="image/icon/chess.png" text="동아리" action="party.admin.list" target="content"/>
+	<tree text="회원관리">
+		<tree icon="image/icon/mac.gif" text="회원목록" action="member.admin.list" target="content" />
+		<tree icon="image/icon/chess.png" text="추가그룹관리" action="member.admin.group_list" target="content" />
+	</tree>
+	<tree icon="image/icon/madang.png" text="메뉴관리" action="javascript:selectMenu();" src="menu.admin.xml"/>
+</tree>
+</wa:tree> -->
+<link rel="stylesheet" type="text/css" href="css/xtree.css" />
+<script type="text/javascript" src="js/xmlextras.js"></script>
+<script type="text/javascript" src="js/xtree.js"></script>
+<script type="text/javascript" src="js/xloadtree.js"></script>
+
+	<script type="text/javascript">
+var tree = new WebFXLoadTree("메뉴tree","new_admin.menu_xml_cate","","explorer","");
+document.write(tree);
+
+</script>
+
+<br>
+
+
+<br />
+
+
+
+
+</body>
+</html>
+
+{? mcode}
+<script type='text/javascript'>
+  try {
+              reloadParent();
+               setSelected('{mcode}');
+            } catch(e) {
+                //  nothing special
+            }
+             
+            </script>
+{/}

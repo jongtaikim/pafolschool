@@ -1,0 +1,71 @@
+<style type="text/css" title="">
+.texta1{ width:280px;height:16px}
+</style>
+
+<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo">
+	
+	<input type="hidden" name="serial" value="{serial}">
+
+
+	
+
+
+	<p class="buTitle17" style="margin-bottom:10px">회원정보</p>
+
+	<table width="100%" cellspacing="0" border="1" summary="뉴스레터 회원정보 입력/수정" class="tbl_type">
+	<caption>뉴스레터 회원정보 입력/수정</caption>
+		<colgroup>
+			<col width="100"><col><col width="100"><col>
+		</colgroup>
+	<tbody>
+		
+		
+		<tr>
+			<th scope="row">이름</th>
+			<td colspan="3">
+				<input type="text" name="str_name" value="{str_name}" class="" hname="이름"  required>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">연락처</th>
+			<td>
+				<input type="text" name="str_phone" value="{str_phone}" class="" hname="연락처"  required>
+			</td>
+			<th scope="row">이매일</th>
+			<td>
+				
+				<input type="text" name="email" value="{email}" class="" style="width:70px" hname="이메일"  required>@
+				<input type="text" name="email2" id="email2" value="{email2}" class="" style="width:70px" hname="이메일"  required>
+
+				<select name="emailSelect1" onchange = "$('email2').value=this.value">
+					<option value="">Email 주소 선택</option>
+					<option value="">직접입력</option>
+					<option value="gmail.com">구글(G메일)</option>
+					<option value="naver.com">네이버</option>
+					<option value="nate.com">네이트</option>
+					<option value="dreamwiz.com">드림위즈</option>
+					<option value="yahoo.co.kr">야후</option>
+					<option value="empal.com">엠파스</option>
+					<option value="paran.com">파란</option>
+					<option value="hanmail.net">한메일</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<th scope="row">회사 및 소속</th>
+			<td colspan="3">
+				<input type="text" name="str_compay" value="{str_compay}" class="">
+			</td>
+		</tr>
+		
+
+	</tbody>
+	</table>
+
+	<div style="text-align:center;margin-top:20px">
+		<span class="btn_pack medium icon"><span class="check"></span><input type="submit" value="저장하기"></span>
+		<span class="btn_pack medium icon"><span class="refresh"></span><a href="javascript:history.go(-1)">취소</a></span>
+	</div>
+
+</form>

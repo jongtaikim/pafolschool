@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+/* ÀÌ¿ô´åÄÄ(e-wut.com) 
+À¥ ÆÛºí¸®½Ì 
+ÀÛ¾÷ÀÚ:±èµ¿¿ì, ±èÀºÁ¤ */
+
+body {
+	margin:0;
+	padding:0;
+	color:#414141;
+	font:75% dotum, µ¸¿ò, sans-serif;
+	}
+
+a {
+	color:#414141;
+	text-decoration:none;
+	}
+
+a:hover {
+	color:#2387b0;
+	text-decoration:underline;
+	}
+
+img {
+	border:0;
+	}
+
+p {
+	margin:0;
+	padding:0;
+	}
+
+ul, li, ol, dt, dd, dl {
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	}
+
+h1, h2, h3, h4, h5 {
+	display:none;
+	padding:0;
+	margin:0;
+	}
+
+hr {
+	display:none;
+	}
+
+fieldset, form {
+	margin:0;
+	padding:0;
+	border:0;
+	}
+
+legend {
+	display:none;
+	}
+
+caption {
+	display:none;
+	}
+
+#accessibllity, #accessibilityNav {
+	display:none;
+	}

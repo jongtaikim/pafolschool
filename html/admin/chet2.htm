@@ -1,0 +1,142 @@
+<style> 
+.hide { position:absolute; visibility:hidden; } 
+.show { position:absolute; visibility:visible; } 
+</style> 
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+
+<body style="margin:0px">
+<script>
+/*
+var xh_msgr_color1="#666666";
+var xh_msgr_color2="#EFEFEF";
+var xh_msgr_color3="#FFFFFF";
+var xh_msgr_color4="#EFEFEF";
+var xh_msgr_color5="#FFFFFF";
+var xh_msgr_color6="#FFFFFF";
+var xh_msgr_color7="#000000";
+var xh_msgr_bgurl="";
+
+var xh_chat_color1="#666666";
+var xh_chat_color2="#EFEFEF";
+var xh_chat_color3="#FFFFFF";
+var xh_chat_color4="#FFFFFF";
+var xh_chat_color5="#EFEFEF";
+var xh_chat_color6="#FFFFFF";
+var xh_chat_color7="#000000";
+var xh_chat_bgurl="";
+var xh_chat_openmember="0";//채팅창 리스트 표시여부(0 or 1)
+
+var xh_msgr_width=175;
+var xh_msgr_height=300;
+
+var xh_channel_name="easyschool";//고유 채널이름
+var xh_user_name="{organ}";//유저네임. 고유하게 입력. 입력하지 않으면 손님으로 입장.
+*/
+</script>
+<!--script src="http://xh.ygchat.com/xhchat/pagesc/js.aspx?mode=chat"></script-->
+</body >
+
+<br><br>
+
+
+
+
+
+<div style = "top:0px;position:absolute;" >
+
+<TABLE class =table00 align = center width = 190 >
+
+<TR>
+	<Th>한국교육개발 관리자 메뉴</Th>
+</TR>
+
+<tr>
+    <td>
+  
+  <script>
+function selegogo(val){
+ window.open(val,'_top');
+}
+
+function selegogo2(val){
+parent.fenster('main', "관리자모드", val,'10','10','1030','825');
+}
+
+function selegogo3(val){
+parent.fenster(val, "사이트메인", val,'25','25','1030','825');
+}
+</script>
+
+<select  onChange="selegogo(this.value);" style = "width:150;">
+		<option value="" >:: 호스트 바로가기 ::</option>
+		{@ LIST}
+		<option value="http://{.str_host}/admin.main?go=main"  {? .num_oid == num_oid} selected {/}>{.str_organ} </option>
+		{/}
+	</select><br>
+	
+
+	<input type = button value = "관리자모드" onclick = "selegogo2('/admin2.main')" style = "width :80">
+  </td>
+</tr>
+
+
+<TR>
+	<TD height = 300 valign = top >
+	
+
+		<script type="text/javascript">
+
+
+
+function detail(n,title,url)
+{
+
+	parent.fenster(n, title, url ,'10','10','1030','825');
+}
+
+</script>
+
+
+<wa:tree text="이지스쿨 관리메뉴" var="tree">
+
+<tree>
+
+
+<tree  text="인트라넷" action = "javascript:detail('인트라넷','인트라넷','http://main.hkedu.co.kr/admin.main')" >
+
+<tree  text="호스트현황" action = "javascript:detail('호스트현황','호스트현황','http://main.hkedu.co.kr/manage.organ')" />
+<tree  text="서비스현황" action = "javascript:detail('서비스현황','서비스현황','http://main.hkedu.co.kr/manage.order_list2') "/>
+
+<tree  text="hk공지사항" action = "javascript:detail('hk공지사항','hk공지사항','http://main.hkedu.co.kr/news.admin.list?code=com')" />
+
+<tree  text="OID복사" action = "javascript:detail('OID복사','OID복사','http://main.hkedu.co.kr/oid_copy.copy')" />
+<tree  text="ISCH호스트생성" action = "javascript:detail('ISCH호스트생성','ISCH호스트생성','http://main.hkedu.co.kr/manage.makehost')" />
+
+<tree  text="전제회원현황" action = "javascript:detail('전제회원현황','전제회원현황','http://main.hkedu.co.kr/member.admin.list_all')" />
+</tree>
+
+
+<tree  text="학교매뉴" action = "javascript:detail('학교매뉴','학교매뉴','/admin2.main')" >
+
+<tree  text="학교정보" action = "javascript:detail('학교정보','학교정보','/admin.common')" />
+<tree  text="스킨변경" action = "javascript:detail('스킨변경','스킨변경','/skin.select')" />
+<tree  text="메인레이아웃변경" action = "javascript:detail('메인레이아웃변경','메인레이아웃변경','/attach.admin.manage?layout=main')" />
+<tree  text="서브레이아웃변경" action = "javascript:detail('메인레이아웃변경','메인레이아웃변경','/attach.admin.manage?layout=sub')" />
+<tree  text="사이트메뉴" action = "javascript:detail('메인레이아웃변경','메인레이아웃변경','/menu.admin.frame')" />
+<tree  text="메인플래시 설정" action = "javascript:detail('메인플래시','메인플래시','/fla.admin.list')" />
+<tree  text="메인문구 설정" action = "javascript:detail('메인문구','메인문구','/admin.text')" />
+</tree>
+
+
+
+</tree>
+</wa:tree>
+
+
+
+	</TD>
+</TR>
+
+</TABLE>
+
+</div>

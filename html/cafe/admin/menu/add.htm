@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<TITLE> 메뉴 편집 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: </TITLE>
+	<META NAME="Author" CONTENT="Wes">
+	<link rel="STYLESHEET" type="text/css" href="css/seo.default.css">
+	<STYLE>
+	BODY, TD, INPUT ,TEXTAREA{font-size:12px;}
+	.input1{border:1px solid #FFFFFF;height:24px;font-size:14px;}
+	</STYLE>
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/prototype.js"></SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.default.js"></SCRIPT>
+	<script src="/js/lib.bitexpress.js"></script>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+	function actionTo(form){	
+										
+		if(!$F('str_title')){
+			alert('메뉴명을 입력해주세요');			
+			document.orderForm.str_title.focus();
+			return false;
+		}		
+		<!-- IF 'Sub_Menu_Select' -->		
+		if(!$F('str_type')){
+			alert('메뉴유형을 선택해주세요');			
+			return false;
+		}
+		
+		if($F('mcode')){
+			if($F('str_type')!='{{str_type}}'){
+				alert('메뉴유형의 변경은 불가능합니다. 메뉴의 삭제후 다른유형의 추가는 가능합니다');
+					return false;				
+			}		
+			
+		}
+		<!-- ENDIF 'Sub_Menu_Select' -->						
+		
+		document.forms['orderForm'].submit();
+	}
+
+	function actionToPer(form){	
+
+		document.orderForm.what.value = 'permission';										
+		
+		document.forms['orderForm'].submit();
+	}
+
+
+	function tabmenu(imgID)
+	{
+		if (document["Image1"]) document["Image1"].src="/image/admin/menu/option/images/menu_tep_01_off.gif";
+		if (document["Image2"]) document["Image2"].src="/image/admin/menu/option/images/menu_tep_02_off.gif";
+		document["Image"+ imgID ].src="/image/admin/menu/option/images/menu_tep_0" + imgID + "_on.gif";
+	
+		if (document["Image1"]) document.all["Image1_layer"].style.display = "none";
+		if (document["Image2"]) document.all["Image2_layer"].style.display = "none";
+		document.all["Image" + imgID + "_layer"].style.display = "block";		
+	}		
+			
+	//-->
+	</SCRIPT>
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" onload="javascript:tabmenu({{Perm_Choice}});">
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+<form name='orderForm' method='post'>
+<input type=hidden name="cafe_id" value='{{cafe_id}}'>
+<input type=hidden name="mcode" value='{{mcode}}'>	
+<input type=hidden name="parent_mcode" value='{{parent_mcode}}'>							
+<input type=hidden name="num_order" value='{{num_order}}'>
+<input type=hidden name="what" value=''>
+  <tr height="23">
+    <td width="17"><img src="image/admin/main/popup/images/popup_top2_left.gif" width="17" height="23"></td>
+    <td background="image/admin/main/popup/images/popup_top2_bg.gif"></td>
+    <td width="17"><img src="image/admin/main/popup/images/popup_top2_right.gif" width="17" height="23"></td>
+  </tr>
+  <tr>
+    <td width="17" background="image/admin/main/popup/images/popup_middle_left_bg.gif"></td>
+    <td align="center" valign="top">
+	
+	<table cellspacing='1' cellpadding='2' border='0' width='100%'>
+	  <tr>
+	    <td><img src="image/admin/main/popup/images/title_icon.gif" width="15" height="17" align="absmiddle"> <span style="font-size:14px; font-weight:bold;">메뉴 편집 </span>
+	      <hr/>
+
+		<table width="100%" border="0"  cellpadding="0" cellspacing="0">
+		<tr>
+		<td background="/image/admin/menu/option/images/menu_tep_bg.gif">
+			
+			<!-- 메뉴관련 상단 선택 시작 -->
+			<table width="94%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+			<td width="330"></td>
+			<td width="87"><img src="/image/admin/menu/option/images/menu_tep_01_on.gif" name="Image1" width="87" height="27" border="0" id="Image1" onclick="tabmenu('1')" style="cursor:pointer"></a></td>
+			<!-- IF 'USE_PERMISSION' --><td width="106"><img src="/image/admin/menu/option/images/menu_tep_02_off.gif" name="Image2" height="27" border="0" id="Image2"  onclick="tabmenu('2')" style="cursor:pointer"></a></td><!-- ENDIF 'USE_PERMISSION' -->			
+			</tr>
+			</table>
+			<!-- 메뉴관련 상단 선택 끝 -->			
+		</td>
+		</tr>
+		</table>
+	      
+	      </td>
+	    </tr>
+	  <tr>
+	    <td height="10"></td>
+	    </tr>
+</table>
+
+<!-- 메뉴 옵션 Layer 시작 -->
+<div id="Image1_layer" style="display:block" width="600">		
+<table cellspacing='1' cellpadding='2' border='0' width='100%'>
+<TR>
+	<TD align=center>				
+		<table width="230"  border="0" cellpadding="3" cellspacing="1" bgcolor="E7E7E7">		
+			<tr bgcolor="F7F7F7">
+				<td align="center"><b>{{menu_exp}}</b> {{mode_display}}</td>
+				<!-- IF 'Sub_Menu_Select' --><td width="93" align="center">메뉴유형</td><!-- ENDIF 'Sub_Menu_Select' -->
+			</tr>			
+			<tr bgcolor="#FFFFFF">
+				<td align="center"><input type=text name="str_title" value="{{str_title}}" size=15 maxlength=20></td>
+				<!-- IF 'Sub_Menu_Select' --><td width="93" align="center"><select name="str_type"><option value=''>선택</option><option value='board'>게시판</option><option value='gallery'>앨범</option><option value='council'>상담실</option><option value='content'>웹문서</option><option value='link'>링크형</option><!--<option value='bulletin'>메모장</option>--></select></td><!-- ENDIF 'Sub_Menu_Select' -->
+			</tr>			
+			
+		</table>		
+	</TD>
+</TR>
+<tr><td>&nbsp;</td></tr>
+
+<TR>
+	<TD align=center><img src="image/admin/main/popup/button/confirmation.gif" style="cursor:hand;" value='확인' onclick="actionTo(this.form)"></TD>
+  </tr>
+</table>  
+</div>		
+<!-- 메뉴 옵션 Layer 끝 -->
+
+<!-- 메뉴 권한 Layer 시작 -->
+<div id="Image2_layer" style="display:none" width="600">		
+<table cellspacing='1' cellpadding='2' border='0' width='100%'>
+<TR>
+	<TD align=center>				
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<!-- 폼의 시작 -->
+		<tr>
+		<td width="17" height="9"><img src="/image/admin/menu/option/images/greenbox_top_left.gif" width="17" height="9"></td>
+		<td background="/image/admin/menu/option/images/greenbox_top_bg.gif"></td>
+		<td width="17"><img src="/image/admin/menu/option/images/greenbox_top_right.gif" width="17" height="9"></td>
+		</tr>
+		<tr>
+		<td background="/image/admin/menu/option/images/greenbox_left_bg.gif"></td>
+		<td>
+			<!-- IF 'Use_Permission' -->
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+			<td height="25" width="35%"><img src="/image/admin/menu/option/images/basic_sub_title_icon.gif" width="4" height="4" align="absmiddle">
+			<strong>메뉴이름</strong></td>
+			<td>
+			
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				<td width="35%" class="menu"> {{str_title}} ({{mode_display}})</td>
+				<td width="65%"></td>				
+				</tr>
+				</table>			
+			</td>
+			</tr>
+
+			<tr>
+			<td height="25"><img src="/image/admin/menu/option/images/basic_sub_title_icon.gif" width="4" height="4" align="absmiddle">
+			<strong>메뉴형태</strong></td>
+			<td>
+			
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				<td width="35%" class="menu"> {{str_type}}</td>
+				<td width="65%"></td>				
+				</tr>
+				</table>			
+			</td>
+			</tr>
+
+			<tr>
+			<td height="25"><img src="/image/admin/menu/option/images/basic_sub_title_icon.gif" width="4" height="4" align="absmiddle">
+			<strong>학급공개설정</strong></td>
+			<td>
+			
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				<td width="35%" class="menu"> {{str_open}}</td>
+				<td width="65%"></td>				
+				</tr>
+				</table>			
+			</td>
+			</tr>
+			
+			
+			</table>
+			<!-- ENDIF 'Use_Permission' -->
+		</td>
+		<td background="/image/admin/menu/option/images/greenbox_right_bg.gif"></td>
+		</tr>
+		<tr>
+		<td width="17" height="9" valign="top"><img src="/image/admin/menu/option/images/greenbox_bottom_left.gif" width="17" height="9"></td>
+		<td height="9" background="/image/admin/menu/option/images/greenbox_bottom_bg.gif"></td>
+		<td width="17" height="9" valign="top"><img src="/image/admin/menu/option/images/greenbox_bottom_right.gif" width="17" height="9"></td>
+		</tr>
+		</table>	
+		<br>
+
+<table width="100%"  border="0" cellpadding="3" cellspacing="1" bgcolor="E7E7E7">		
+<tr><td colspan=3 align=center>------------------------------------교직원--------------------------------------------</td></tr>
+<!-- DYNAMIC AREA 'NO_RELATION_PERM' -->
+			<TR align="center"  height="25">
+				<TD align="center">{{str_title}}</TD>
+				<TD colspan="2" align="center">					
+					<input type="checkbox" name="rights[{{chr_group}}][]" value="2"> 쓰기            
+					<input type="checkbox" name="rights[{{chr_group}}][]" value="4" disabled=true> 읽기
+				</TD>
+			</TR>
+	<!-- DYNAMIC AREA 'NO_RELATION_PERM' -->
+</table>				
+<div id="Perm_layer_class" style="display:{{layer_class}}">
+<table width="100%"  border="0" cellpadding="3" cellspacing="1" bgcolor="E7E7E7">					
+		
+	<tr><td colspan=3 align=center>------------------------------------학급회원--------------------------------------------</td></tr>
+	<!-- DYNAMIC AREA 'CLASS_PERM' -->
+				<TR align="center"  height="25">
+					<TD align="center">{{str_title}}</TD>
+					<TD colspan="2" align="center">					
+						<input type="checkbox" name="rights[{{chr_group}}][]" value="2"> 쓰기            
+						<input type="checkbox" name="rights[{{chr_group}}][]" value="4"> 읽기
+					</TD>
+				</TR>
+	<!-- DYNAMIC AREA 'CLASS_PERM' -->
+</table>	
+</div>
+
+<div id="Perm_layer_school" style="display:{{layer_school}}">		
+<table width="100%"  border="0" cellpadding="3" cellspacing="1" bgcolor="E7E7E7">			
+<tr><td colspan=3 align=center>------------------------------------학교회원--------------------------------------------</td></tr>
+	<!-- DYNAMIC AREA 'SCHOOL_PERM' -->
+				<TR align="center"  height="25">
+					<TD align="center">{{str_title}}</TD>
+					<TD colspan="2" align="center">					
+						<input type="checkbox" name="rights[{{chr_group}}][]" value="2"> 쓰기            
+						<input type="checkbox" name="rights[{{chr_group}}][]" value="4" {{disabled}}> 읽기
+					</TD>
+				</TR>
+	<!-- DYNAMIC AREA 'SCHOOL_PERM' -->	
+</table>	
+</div>
+
+<div id="Perm_layer_NoMember" style="display:{{layer_nomember}}">		
+<table width="100%"  border="0" cellpadding="3" cellspacing="1" bgcolor="E7E7E7">			
+<tr><td colspan=3 align=center>------------------------------------비회원--------------------------------------------</td></tr>
+	<!-- DYNAMIC AREA 'NO_SCHOOL_PERM' -->
+				<TR align="center"  height="25">
+					<TD align="center">{{str_title}}</TD>
+					<TD colspan="2" align="center">					
+						<input type="checkbox" name="rights[{{chr_group}}][]" value="2"> 쓰기            
+						<input type="checkbox" name="rights[{{chr_group}}][]" value="4" {{disabled}}> 읽기
+					</TD>
+				</TR>
+	<!-- DYNAMIC AREA 'NO_SCHOOL_PERM' -->
+</table>	
+</div>
+		
+	</TD>
+</TR>
+<tr><td>&nbsp;</td></tr>
+
+<TR>
+	<TD align=center><img src="image/admin/main/popup/button/confirmation.gif" style="cursor:hand;" value='확인' onclick="actionToPer(this.form)"></TD>
+  </tr>
+</table>  
+
+	<script>
+		//==-- 권한 체크박스 체크하기 --==//
+		var bitexp = null;
+		var form = document.forms['orderForm'];
+		var bitexp = new BitExp();
+		<!-- DYNAMIC AREA 'CHECKBOX' -->
+		bitexp.select = {{num_right}};		
+		form.elements['rights[{{chr_group}}][]'][0].checked = bitexp.checked(2);
+		form.elements['rights[{{chr_group}}][]'][1].checked = bitexp.checked(4);
+		<!-- DYNAMIC AREA 'CHECKBOX' -->
+	</script>
+
+</div>	
+<!-- 메뉴 권한 Layer 끝 -->
+
+	</td>
+    <td width="17" background="image/admin/main/popup/images/popup_middle_right_bg.gif"></td>
+  </tr>
+   <tr  height="23">
+    <td width="17"><img src="image/admin/main/popup/images/popup_bottom_left.gif" width="17" height="23"></td>
+    <td background="image/admin/main/popup/images/popup_bottom_bg.gif"></td>
+    <td width="17"><img src="image/admin/main/popup/images/popup_bottom_right.gif" width="17" height="23"></td>
+  </tr>
+</form>  
+</table>
+<!-- IF 'Sub_Menu_Select' -->		
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+document.orderForm.str_type.value='{{str_type}}';
+//-->
+</SCRIPT>
+<!-- ENDIF 'Sub_Menu_Select' -->		
+</BODY>
+</HTML>

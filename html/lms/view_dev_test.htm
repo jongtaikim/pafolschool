@@ -1,0 +1,763 @@
+<?
+$CST_PLATFORM	= {CST_PLATFORM};	
+?>
+
+<link rel="stylesheet" type="text/css" href="/css/doc_style.css">
+<script language="javascript">
+
+//		document.LGD_PAYINFO.action = "/lms.view_ok";
+
+
+function jumin_check() { //주민번호 검증
+		var jumin1 = document.LGD_PAYINFO.jumin1.value.length;
+		var jumin2 = document.LGD_PAYINFO.jumin2.value.length;
+		var sign_zumin_length = jumin1 + jumin2;
+
+		if ( !jumin1 || !jumin2 ) {
+			alert("주민등록번호를 입력해 주십시오.");
+			document.getElementById("jumin1").value="";
+			document.getElementById("jumin2").value="";
+			document.getElementById("jumin1").focus();
+			$$('chk_jumin').value = ''
+			return false;
+		}
+
+		if (sign_zumin_length != 13) {   // 번호가 13개 아니라면
+			alert("주민등록번호의 개수가 모자랍니다.");
+			document.getElementById("jumin1").value="";
+			document.getElementById("jumin2").value="";
+			document.getElementById("jumin1").focus();
+			$$('chk_jumin').value = ''
+			return false;
+		} else {
+			var strjumin = document.getElementById("jumin1").value+""+document.getElementById("jumin2").value;   //변수에 주민번호 앞자리 담음
+		}
+
+		var a1=strjumin.substring(0,1);
+		var a2=strjumin.substring(1,2);
+		var a3=strjumin.substring(2,3);
+		var a4=strjumin.substring(3,4);
+		var a5=strjumin.substring(4,5);
+		var a6=strjumin.substring(5,6);
+		var checkdigit=a1*2+a2*3+a3*4+a4*5+a5*6+a6*7;
+		   
+		var b1=strjumin.substring(6,7);
+		var b2=strjumin.substring(7,8);
+		var b3=strjumin.substring(8,9);
+		var b4=strjumin.substring(9,10);
+		var b5=strjumin.substring(10,11);
+		var b6=strjumin.substring(11,12);
+		var b7=strjumin.substring(12,13);
+		var checkdigit=checkdigit+b1*8+b2*9+b3*2+b4*3+b5*4+b6*5;
+
+		checkdigit = checkdigit%11;
+		checkdigit = 11 - checkdigit;
+		checkdigit = checkdigit%10;
+
+		if (checkdigit != b7) {
+			alert('잘못된 주민등록번호입니다.\n\n다시 확인하고 입력해 주세요.');
+			document.getElementById("jumin1").value="";
+			document.getElementById("jumin2").value="";
+			document.getElementById("jumin1").focus();
+			return false;
+			$$('chk_jumin').value = ''
+		}
+		alert('정상적인 주민등록번호 입니다.');
+		$$('chk_jumin').value = 'y'
+		return true;
+	}
+
+</script>
+
+
+
+
+<script type="text/javascript">
+// <![CDATA[
+function popup_zip() {
+	form = 'LGD_PAYINFO';
+	wZip = window.open('core.zipcode?el_addr=str_addr1&el_zip=str_zipcode&el_focus=str_addr2&form='+form,'zipsearch','width=400, height=200,scrollbars=yes');
+}
+
+// ]]>
+</script>
+
+<script language = 'javascript'>
+	<!--
+	/*
+	 * 상점결제 인증요청후 PAYKEY를 받아서 최종결제 요청.
+	 */
+	function doPay_ActiveX(){
+		ret = xpay_check(document.getElementById('LGD_PAYINFO'), '{CST_PLATFORM}');
+
+		if (ret=="00"){     //ActiveX 로딩 성공
+			var LGD_RESPCODE        = dpop.getData('LGD_RESPCODE');       //결과코드
+			var LGD_RESPMSG         = dpop.getData('LGD_RESPMSG');        //결과메세지
+
+			if( "0000" == LGD_RESPCODE ) { //인증성공
+				var LGD_PAYKEY      = dpop.getData('LGD_PAYKEY');         //LG데이콤 인증KEY
+				var msg = "인증결과 : " + LGD_RESPMSG + "\n";
+				msg += "LGD_PAYKEY : " + LGD_PAYKEY +"\n\n";
+				document.getElementById('LGD_PAYKEY').value = LGD_PAYKEY;
+				//alert(msg);
+				document.getElementById('LGD_PAYINFO').submit();
+
+
+
+
+			} else { //인증실패
+				alert("인증이 실패하였습니다. " + LGD_RESPMSG);
+				//self.close();
+				/*
+				 * 인증실패 화면 처리
+				 */
+			}
+			
+		} else {
+			alert("LG데이콤 전자결제를 위한 ActiveX 설치 실패");
+			/*
+			 * 인증실패 화면 처리
+			 */
+		}
+	}
+
+
+	function isActiveXOK(){
+		if(lgdacom_atx_flag == true){
+			document.getElementById('LGD_BUTTON1').style.display='none';
+			document.getElementById('LGD_BUTTON2').style.display='';
+		}else{
+			document.getElementById('LGD_BUTTON1').style.display='';
+			document.getElementById('LGD_BUTTON2').style.display='none';	
+		}
+	}
+
+	//-->
+	</script>
+
+<div id="LGD_ACTIVEX_DIV"/>
+	<!-- ActiveX 설치 안내 Layer 입니다. 수정하지 마세요. -->
+</div>
+<div id="LGD_BUTTON1"><input type="hidden"></div>
+<div id="LGD_BUTTON2" style="display:none"><input type="hidden" value="" > </div>
+
+
+
+
+<form name="LGD_PAYINFO" id="LGD_PAYINFO" method="post" onsubmit="return validate(this);" >
+<input type="hidden" name="mcode" id="mcode" value="{mcode}"/>
+<input type="hidden" name="cate" id="cate" value="{cate}"/>
+<input type="hidden" name="ccode" id="ccode" value="{ccode}"/>
+<input type="hidden" name="serial" id="serial" value="{serial}"/>
+<input type="hidden" name="hold" id="hold" value="{_GET.hold}"/>
+<input type="hidden" name="chk_jumin" id="chk_jumin"  hname="주민번호 유호성 체크" errmsg="{=_la('주민번호 유호성 체크를 실행해주시기 바랍니다.')}"  value="Y" nofocus required>
+
+<p class="buTitle02" style="margin-bottom:0px;padding-left:18px">부모님 입력란</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+<tr>
+	<th scope="row">보호자 성명</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<input class="i_text" name="str_pr_name1" id="str_pr_name1" hname="{=_la('아버지 성명')}" type="text"  style="width:100px" value="11" required >부
+			<input class="i_text" name="str_pr_name2" id="str_pr_name2" hname="{=_la('어머니 성명')}" type="text"  style="width:100px" value="11"  required >모
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('이메일')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="email1" id="email1" hname="{=_la('이메일')}" type="text"  maxbyte="50" style="width:100px" value="{email1}"  required >@<input name="email2" id="email2" hname="이메일" type="text"  value="{email2}" maxbyte="50" required />
+										
+			<select name="emailSelect1"  onchange = "$$('email2').value=this.value" required="false">
+				<option value="">Email 주소 선택</option>
+				<option value="">직접입력</option>
+				<option value="gmail.com">구글(G메일)</option>
+				<option value="naver.com">네이버</option>
+				<option value="nate.com">네이트</option>
+				<option value="dreamwiz.com">드림위즈</option>
+				<option value="yahoo.co.kr">야후</option>
+				<option value="empal.com">엠파스</option>
+				<option value="paran.com">파란</option>
+				<option value="hanmail.net">한메일</option>
+			</select>
+			<br>
+			<div class="" id="">
+				적성검사 및 캠프 소견서 등을 이메일로 받을 예정입니다. 주로 사용하는 이메일 주소를 등록해주세요.
+			</div>
+		
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">집 주소<br>(우편물 수령용)</th>
+	<td>
+		<div class="item">
+
+		<input name="str_zipcode" id="str_zipcode" hname="우편번호" size="10" maxlength="7" type="text"    onclick="popup_zip();"   class="codeBox"  readonly required value="{chr_zip}"/>
+		<wa:btn size="2" type="a" href="javascript:popup_zip();" value="우편번호"/><br />
+
+		<input class="i_text" name="str_addr1" id="str_addr1" value="{str_addr1}" hname="{=_la('기본주소')}" type="text" style = "width:70%" maxbyte="255" required> <br>
+		<input class="i_text" name="str_addr2"  id="str_addr2" value="{str_addr2}"  hname="{=_la('상세주소')}" type="text" style = "width:70%"  maxbyte="255" required> 
+		</div>
+		
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('전화번호')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="tel1" id="tel1" value="{tel1}"  hname="{=_la('연락처')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4">
+		-<input class="i_text"  name="tel2" id="tel2" value="{tel2}" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+		-<input class="i_text"  name="tel3" id="tel3" value="{tel3}" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+		
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('휴대폰')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="tel11" id="tel11" value="{tel11}"  hname="{=_la('휴대폰')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4">
+		-<input class="i_text"  name="tel22" id="tel22" value="{tel22}" hname="{=_la('휴대폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+		-<input class="i_text"  name="tel33" id="tel33" value="{tel33}" hname="{=_la('휴대폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+		
+		
+		<span style="color:#ff3333">* 상담 및 입금 확인용</span>
+		</div>
+		
+	</td>
+</tr>
+
+<script type="text/javascript">
+// <![CDATA[
+function scsledk(idx){
+	if(idx != 4){
+		$$('skskvie1').style.display = 'block';
+	}else{
+		$$('skskvie1').style.display = 'none';
+		<? if(date("Ymd")>20121031){ ?>
+		$$('sndAmount').value = {num_price};
+		$$('bank_price_info').innerHTML =  number_format($$('sndAmount').value,0)+"원";
+		<? } ?>
+	}
+	if(idx == "2"){
+		$$('namet_1').innerHTML = '교우성명';
+		$$('namet_2').innerHTML = '졸업학과';
+		$$('namet_3').innerHTML = '입학학번';
+		<? if(date("Ymd")>20121031){ ?>
+		$$('sndAmount').value = {num_price} - 50000;
+		$$('bank_price_info').innerHTML =  number_format($$('sndAmount').value,0)+"원";
+		<? } ?>
+	}
+	if(idx == "1"){
+		$$('namet_1').innerHTML = '교직원성명';
+		$$('namet_2').innerHTML = '근무부서';
+		$$('namet_3').innerHTML = '직급';
+		<? if(date("Ymd")>20121031){ ?>
+		$$('sndAmount').value = {num_price} - 100000;
+		$$('bank_price_info').innerHTML =  number_format($$('sndAmount').value,0)+"원";
+		<? } ?>
+	}
+	
+	if(idx == "3"){
+		$$('namet_1').innerHTML = '학생성명';
+		$$('namet_2').innerHTML = '참여과정';
+		$$('namet_3').innerHTML = '참여기수';
+		<? if(date("Ymd")>20121031){ ?>
+		$$('sndAmount').value = {num_price} - 100000;
+		$$('bank_price_info').innerHTML = number_format($$('sndAmount').value,0)+"원";
+		<? } ?>
+	}
+}
+// ]]>
+</script>
+<tr  style="display:none">
+	<th scope="row">추가사항</th>
+	<td>
+		<div class="item">
+		<input type="radio" name="str_etc" id="str_etc_se" value="4" checked onclick="scsledk(this.value)"> 해당없음
+		
+		
+		</div>
+		
+	</td>
+</tr>
+
+<tr id="skskvie1" style="display:none">
+	<th scope="row"></th>
+	<td>
+		<div class="item">
+			<span id="namet_1">교유성명</span> <input type="text" name="str_etc_text1"  id="str_etc_text1" value="" class="" required="false">
+			<span id="namet_2">교유성명</span> <input type="text" name="str_etc_text2"  id="str_etc_text2" value="" class="" required="false">
+			<span id="namet_3">교유성명</span> <input type="text" name="str_etc_text3"  id="str_etc_text3" value="" class="" required="false">
+		</div>
+	</td>
+</tr>
+
+</table>
+</div>
+</fieldset> 
+
+
+<fieldset>
+<legend>legend</legend>
+
+<p class="buTitle02" style="margin-bottom:0px;padding-left:18px">참가 학생 정보</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+<tr>
+	<th scope="row" width="100px">학생성명</th>
+	<td colspan="2">
+		<div class="item">
+		<input class="i_text" title="학생성명"  type="text" name="str_st_name" id="str_st_name" hname="{=_la('학생성명')}" value="11" style="width:80px" required> 
+		</div>
+	</td>
+</tr>
+<script type="text/javascript">
+// <![CDATA[
+function views_sibal(){
+	if($$('views_sibal').style.display == 'none'){
+		$$('views_sibal').style.display = 'block';
+	}else{
+		$$('views_sibal').style.display = 'none';
+	}
+}
+// ]]>
+</script>
+<tr>
+	<th scope="row">주민등록번호</th>
+	<td colspan="2">
+		<div class="item">
+			<input class="i_text" title="주민등록번호" type="text" name="jumin1" id="jumin1" hname="주민등록번호" value="840210" style="width:80px"  required> 
+			-
+			<input class="i_text" title="주민등록번호" type="text" name="jumin2" id="jumin2" hname="주민등록번호" value="1626644" style="width:80px"  onkeyup="chkSex()" required> 
+			<wa:btn size="2" type="button" js="jumin_check();" event="onclick" value="주민번호 유효성 검사"/>
+			
+			<span style="color:#ff3333">* 여행자 보험 가입용 <a href="javascript:layer_popup('/html/lms/tu_info.htm', '550', '260','y','여행자 보험 가입')">[자세히..]</a></span>
+			<br><strong style="color:blue">참가학생의 주민번호를 입력하시기 바랍니다.</strong>
+		</div>
+	</td>
+</tr>
+
+<script type="text/javascript">
+// <![CDATA[
+function chkSex(){
+	var sid = substr($$('jumin2').value,0,1);
+	if(sid == "1" || sid == "3"){
+		$$('str_sex').value = 1;
+	}else{
+		$$('str_sex').value = 2;
+	}
+}
+// ]]>
+</script>
+
+
+
+<tr>
+	<th scope="row">성별</th>
+	<td colspan="2">
+		<div class="item">
+		<select name="str_sex" id="str_sex">
+			<option value="1">남자</option>
+			<option value="2">여자</option>
+		</select>
+		</div>
+	</td>
+</tr>
+
+
+
+<tr>
+	<th scope="row">{=_la('학교/학년')}</th>
+	<td colspan="2">
+		<div class="item">
+			
+			<input class="i_text" title="학교명" type="text" name="str_school" id="str_school" hname="{=_la('학교명')}"   required onclick="winOpen('/sch_school',400,400,'yes')" style="width:120px"  readonly value="장충초등학교"> 
+
+			<select  name="str_class" id="str_class" hname="학년정보" required>
+				<option value="">-- {=_la('학년정보')} --</option>
+				
+				<option value="초3" selected>초3</option>
+				<option value="초4" >초4</option>
+				<option value="초5" >초5</option>
+				<option value="초6" >초6</option>
+
+				<option value="중1" >중1</option>
+				<option value="중2" >중2</option>
+				<option value="중3" >중3</option>
+
+				<option value="고1" >고1</option>
+				
+			</select>
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row" >T-셔츠 사이즈</th>
+	<td style="width:360px">
+		<input type="radio" name="str_tsize" id="str_tsize1" value="14" checked><label for="str_tsize1">14호</label>
+		<input type="radio" name="str_tsize" id="str_tsize2" value="15" ><label for="str_tsize2">15호</label>
+		<input type="radio" name="str_tsize" id="str_tsize3" value="16" ><label for="str_tsize3">16호</label>
+		<input type="radio" name="str_tsize" id="str_tsize4" value="17" ><label for="str_tsize4">17호</label>
+		<input type="radio" name="str_tsize" id="str_tsize5" value="18" ><label for="str_tsize5">18호</label>
+		<br>
+		<input type="radio" name="str_tsize" id="str_tsize6" value="85" ><label for="str_tsize6">85호</label>
+		<input type="radio" name="str_tsize" id="str_tsize7" value="90" ><label for="str_tsize7">90호</label>
+		<input type="radio" name="str_tsize" id="str_tsize8" value="95" ><label for="str_tsize8">95호</label>
+		<input type="radio" name="str_tsize" id="str_tsize9" value="100" ><label for="str_tsize9">100호</label>
+		<input type="radio" name="str_tsize" id="str_tsize10" value="105" ><label for="str_tsize10">105호</label>
+		<input type="radio" name="str_tsize" id="str_tsize11" value="110" ><label for="str_tsize11">110호</label>
+	</td>
+	<td style="position:relative;"><span class="btn_pack small" ><input type="button" name="" value="SIZE 보기"  onclick="layer_popup('/html/lms/t_size_info.htm', '550', '450','y','T-셔츠 SIZE 보기')" ></span>
+	
+	
+	<div  id="tsize" style="display:none;position:absolute;left:-320px;background-color:#e4e4e4;border:2px solid #cdcdcd;z-index:99;width:460px" onmouseout="view_size()">
+	
+			<script type="text/javascript">
+			// <![CDATA[
+			function view_size(){
+				if($$('tsize').style.display =='none'){
+					$$('tsize').style.display ="block";
+					//$$('str_memo').style.display ="none";
+				}else{
+					$$('tsize').style.display ="none";
+					//$$('str_memo').style.display ="block";
+				}
+			}
+			// ]]>
+			</script>
+		
+				
+
+	</div>
+
+	
+	</td>
+</tr>
+
+
+<tr>
+	<th scope="row">{=_la('메모')}</th>
+	<td colspan="3">
+		<div class="item">
+		 <textarea  class="i_text" cols="50" rows="10" name="str_memo" id="str_memo" hname="{=_la('메모')}" ></textarea> 
+		<br>
+		<span style="color:#ff3333">* 학생 건강정보 등 특이사항 작성용</span>
+		</div>
+		
+		
+	</td>
+</tr>
+</table>
+
+<script type="text/javascript">
+// <![CDATA[
+function memberCopy(){
+	if($$('memberTo').checked == true){
+	 {? _SESSION.CHR_MTYPE == "s"}
+		$$('str_st_name').value="{_SESSION.NAME}";
+		//$$('str_st_eng_name').value="{str_eng_name}";
+		
+		
+		$$('str_school').value= '{str_school}';
+		$$('str_class').value= '{str_class}';
+		$$('str_sex').value= '{str_sex}';
+	 {/}
+	}else{
+		$$('str_st_name').value="";
+		$$('str_st_eng_name').value="";
+		$$('st_email1').value= '';
+		$$('st_email2').value= '';
+		$$('st_tel11').value= '';
+		$$('st_tel22').value= '';
+		$$('st_tel33').value= '';
+		$$('str_school').value= '';
+		$$('str_class').value= '';
+	}
+}
+// ]]>
+</script>
+ {? _SESSION.CHR_MTYPE == "s"}
+<div style="padding:5px">
+<input type="checkbox" name="memberTo" id="memberTo" value="y" onclick="memberCopy()"><label for="memberTo"> 신청자 회원정보와 학생정보가 동일합니다.</label>
+</div>
+{/}
+</div>
+</fieldset> 
+
+
+<script type="text/javascript">
+// <![CDATA[
+function selectPayMos(idx){
+	if(idx == "bank"){
+		$$('bank').style.display='block';
+	
+		$$('bank_btn').style.display='block';
+		$$('card_btn').style.display='none';
+		$$('LGD_PAYINFO').target = '';
+		$$('LGD_PAYINFO').action = '';
+		//_frm.action ='lms.view_ok';
+
+		
+	
+	}else{
+		$$('bank').style.display='none';
+	
+//		$$('ordername').value = $$('str_pr_name1').value;
+		//$$('phoneno').value = $$('tel11').value +  $$('tel22').value + $$('tel33').value;
+		$$('bank_btn').style.display='none';
+		$$('card_btn').style.display='block';
+		
+	}
+}
+
+function submitss(){
+	
+	if($$('str_etc_se').checked != true){
+		if($$('str_etc_text1').value ==""){
+			alert($$('namet_1').innerHTML+'는 필수사항입니다.');
+			$$('str_etc_text1').focus();
+			return false;
+		}
+
+		if($$('str_etc_text2').value ==""){
+			alert($$('namet_2').innerHTML+'는 필수사항입니다.');
+			$$('str_etc_text2').focus();
+			return false;
+		}
+		if($$('str_etc_text3').value ==""){
+			alert($$('namet_3').innerHTML+'는 필수사항입니다.');
+			$$('str_etc_text3').focus();
+			return false;
+		}
+	}
+
+	if($$('str_pay_mes1').checked == true){
+		if(validate($$('LGD_PAYINFO'))) {
+			if($$('str_class').value !=""){
+				$$('LGD_PAYINFO').action = '/lms.view_end_lg';
+				
+				 doPay_ActiveX();
+				
+				//_pay(document.LGD_PAYINFO)
+			}else{
+				alert('학년은 필수 선택사항입니다.');
+				$$('str_class').focus();
+			}
+		}else{
+			return false;
+		}
+	}else{
+		if(validate($$('LGD_PAYINFO'))) {
+			if($$('str_class').value !=""){
+				$$('LGD_PAYINFO').action = '';
+				$$('LGD_PAYINFO').submit();
+			}else{
+				alert('학년은 필수 선택사항입니다.');
+				$$('str_class').focus();
+			}
+		}else{
+			return false;
+		}
+	}
+}
+// ]]>
+</script>
+
+
+<!--p class="buTitle02" style="margin-bottom:0px;padding-left:18px">결제정보 안내</p-->
+
+<div class="form_table" style="margin-bottom:0px;display:none">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+<tr >
+	<th scope="row" style="width:140px">결제방법 선택</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			
+			<input type="radio" name="str_pay_mes" value="card" id="str_pay_mes1" onclick="selectPayMos(this.value)" checked> <label for="str_pay_mes1">신용카드</label>
+	
+			<input type="radio" name="str_pay_mes" value="bank" id="str_pay_mes2" onclick="selectPayMos(this.value)"> <label for="str_pay_mes2">무통장 입금</label>
+		</div>
+	</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<input type="hidden" name="CST_PLATFORM" value="{CST_PLATFORM}"><!-- 테스트, 서비스 구분 -->
+<input type="hidden" name="CST_MID" value="{CST_MID}">	<!-- 상점아이디 -->
+<input type="hidden" name="LGD_MID" value="{LGD_MID}">	<!-- 상점아이디 -->
+<input type="hidden" name="LGD_OID" value="{LGD_OID}">	<!-- 주문번호 -->
+<input type="hidden" name="LGD_BUYER" value="{LGD_BUYER}">           	<!-- 구매자 -->
+<input type="hidden" name="LGD_BUYERID"	value="{LGD_BUYERID}">          	<!-- 구매자아이디 -->
+<input type="hidden" name="LGD_PRODUCTINFO" value="{LGD_PRODUCTINFO}">     <!-- 상품정보 -->
+<input type="hidden" name="LGD_AMOUNT"	value="{LGD_AMOUNT}">	<!-- 결제금액 -->
+<input type="hidden" name="LGD_BUYEREMAIL"	value="{LGD_BUYEREMAIL}">	<!-- 구매자 이메일 -->
+<input type="hidden" name="LGD_CUSTOM_SKIN" value="{LGD_CUSTOM_SKIN}"><!-- 결제창 SKIN -->
+<input type="hidden" name="RESERVED" value="{RESERVED}"><!-- 타입 -->
+<input type="hidden" name="LGD_CUSTOM_USABLEPAY"	value="{LGD_CUSTOM_USABLEPAY}"><!--특정 결제창 띄우기-->
+<input type="hidden" name="LGD_CUSTOM_PROCESSTYPE"	value="{LGD_CUSTOM_PROCESSTYPE}">	<!-- 트랜잭션 처리방식 -->
+<input type="hidden" name="LGD_TIMESTAMP" value="{LGD_TIMESTAMP}"><!-- 타임스탬프 -->
+<input type="hidden" name="LGD_HASHDATA" value="{LGD_HASHDATA}"><!-- MD5 해쉬암호값 -->
+<input type="hidden" name="LGD_CASNOTEURL" value="{LGD_CASNOTEURL}"><!-- 무통장거시기 -->
+<input type="hidden" name="LGD_CUSTOM_PROCESSTIMEOUT"   value="{LGD_CUSTOM_PROCESSTIMEOUT}">	<!-- TWOTR타임아웃 시간 -->
+<input type="hidden" name="LGD_VERSION"         		id="LGD_VERSION"		value="PHP_XPay_1.1">							<!-- 버전정보 (삭제하지 마세요) -->
+<input type="hidden" name="LGD_PAYKEY" id="LGD_PAYKEY" value="">	<!-- LG데이콤 PAYKEY(인증후 자동셋팅)-->
+<input type="hidden" name="host2"	value="{host2}">	<!-- 다시 돌아갈 url hosting -->
+
+
+
+<div class="form_table" id="bank" style="display:none;margin-top:0px" >
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요" style="border-top:0px;margin-top:0px">
+<tbody>
+
+
+
+<tr>
+	<th scope="row"  style="width:140px">결제금액 안내</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<strong style="color:blue" id="bank_price_info">{=number_format(num_price)} 원</strong>
+		</div>
+	</td>
+</tr>
+
+
+<tr>
+	<th scope="row"  style="width:140px">계좌번호 안내</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			무통장 : <strong>{str_bank_number}</strong>
+			<input type="hidden" name="str_bank_number" value="{str_bank_number}" required="false">
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">입금예정자 명</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<input class="i_text" title="입금예정자 명" type="text" name="str_bank_name" id="str_bank_name" value="{_SESSION.NAME}" hname="{=_la('입금예정자 명')}"  required> 
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">입금예정일</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<wa:datepicker2 name="dt_bank_date" value="{dt_bank_date}"/> 
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">현금영수증 신청여부</th>
+	<td style="text-align:left">
+		<div class="item" style="padding-top:5px">
+			<input type="radio" name="str_money_tax" id="str_money_tax1" value="n" {? str_money_tax == "n" || str_money_tax ==""} checked{/} onclick="$$('money_number').style.display='none'"><label for="str_money_tax1" onclick="$$('money_number').style.display='none'">신청안함</label>
+			<input type="radio" name="str_money_tax" id="str_money_tax2" value="y" onclick="$$('money_number').style.display='block'" {? str_money_tax == "y"} checked{/}><label for="str_money_tax2" onclick="$$('money_number').style.display='block'">신청함</label>
+		</div>
+	</td>
+</tr>
+
+<tr style="display:none;" id="money_number">
+	<th scope="row">
+	현금영수증 번호<br>
+(주민번호/ 휴대폰)
+</th>
+	<td style="text-align:left">
+		<script type="text/javascript">
+		// <![CDATA[
+		function vissd(idx){
+			$$('st_type1').style.display = 'none';
+			$$('st_type2').style.display = 'none';
+			$$('st_type3').style.display = 'none';
+
+			$$('st_type'+idx).style.display = 'block';
+		}
+		// ]]>
+		</script>
+		<div class="item" style="padding-top:5px">
+			<input type="radio" name="numberH" value="1" onclick="vissd(this.value)" checked>휴대폰
+			<input type="radio" name="numberH" value="2" onclick="vissd(this.value)">주민등록번호
+			<input type="radio" name="numberH" value="3" onclick="vissd(this.value)">사업자등록번호
+			
+			<div class="" id="st_type1">
+				
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number1" id="money_number1" hname="현금영수증 번호" required="false">
+				-
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number2" id="money_number2" hname="현금영수증 번호" required="false"> 
+				-
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number3" id="money_number3" hname="현금영수증 번호" required="false"> 
+			</div>
+			<div class="" id="st_type2" style="display:none">
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:80px" name="money_number11" id="money_number1" hname="현금영수증 번호" required="false">
+				-
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:80px" name="money_number22" id="money_number2" hname="현금영수증 번호" required="false">
+			</div>
+			<div class="" id="st_type3" style="display:none">
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number111" id="money_number1" hname="현금영수증 번호" required="false">
+				-
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number222" id="money_number2" hname="현금영수증 번호" required="false"> 
+				-
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:80px" name="money_number333" id="money_number3" hname="현금영수증 번호" required="false"> 
+			</div>
+		</div>
+	</td>
+</tr>
+
+
+
+</table>
+</div>
+
+
+
+
+
+</fieldset> 
+
+<div style="text-align:center;margin-top:20px" id="card_btn">
+	<span class="btn_pack medium icon"><span class="check"></span><input type="button" name="" value="결제실행"  onclick="javascript:submitss();" ></span>
+	<span class="btn_pack medium "><a href="javascript:history.go(-1)">취소</a></span>
+</div>
+
+<div style="text-align:center;margin-top:20px;display:none" id="bank_btn">
+	<span class="btn_pack medium icon"><span class="check"></span><input type="submit" name="" value="결제완료" class=""></span>
+	<span class="btn_pack medium "><a href="javascript:history.go(-1)">취소</a></span>
+</div>
+
+</form>  
+
+
+
+<script type="text/javascript">
+// <![CDATA[
+$(document).ready(function(){
+	selectPayMos('card');
+	 isActiveXOK();
+});
+// ]]>
+
+</script>
+
+<script language="javascript" src="<?= $_SERVER['SERVER_PORT']!=443?"http":"https" ?>://xpay.lgdacom.net<?=($CST_PLATFORM == "test")?":7080":""?>/xpay/js/xpay.js" type="text/javascript"></script>

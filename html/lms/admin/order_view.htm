@@ -1,0 +1,661 @@
+<link rel="stylesheet" type="text/css" href="/css/doc_style.css">
+<style type="text/css" title="">
+/* UI Object */
+.form_table{margin:1em 0;font-size:12px;font-family:Tahoma, Geneva, sans-serif}
+.form_table input,
+.form_table textarea,
+.form_table select,
+.form_table table,
+.form_table button{font-size:12px}
+.form_table table{width:100%;border:0;border-top:2px solid #464f47}
+.form_table caption{padding:8px 0;font-weight:bold;text-align:left}
+.form_table th,
+.form_table td{padding:8px;border:0;vertical-align:top}
+.form_table th{color:#333}
+.form_table td{color:#666}
+.form_table thead th{border-bottom:1px solid #ccc;background:#f8f8f8}
+.form_table tbody th{border-bottom:1px solid #ddd;background:#fafafa;text-align:left}
+.form_table tfoot th{border-bottom:1px solid #ddd}
+.form_table tbody td{border-bottom:1px solid #ddd}
+.form_table tfoot td{border-bottom:1px solid #ddd;font-weight:bold;color:#333}
+.form_table .item{position:relative;margin:-4px 0}
+.form_table .item .i_help{position:absolute;top:4px;right:0}
+.form_table .item .i_label{ top:6px; left:10px}
+.form_table .item .i_dsc{margin:2px 0}
+.form_table .item .i_check,
+.form_table .item .i_radio{width:13px;height:13px;margin:2px 5px 2px 0;padding:0;vertical-align:middle}
+.form_table .item .i_text{position:relative;margin:2px;padding:3px 4px;border:1px solid #b7b7b7;border-right-color:#e1e1e1;border-bottom-color:#e1e1e1;background:transparent}
+.form_table .item .hide{visibility:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+.form_table .item select{margin:2px}
+.form_table .item label{margin:0 10px 0 0;cursor:pointer}
+input{color:#000}
+/* //UI Object */
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+// <![CDATA[
+function popup_zip() {
+	form = 'joinForm';
+	wZip = window.open('core.zipcode?el_addr=str_addr1&el_zip=str_zipcode&el_focus=str_addr2&form='+form,'zipsearch','width=400, height=200,scrollbars=yes');
+}
+
+// ]]>
+</script>
+
+
+<div style="width:980px">
+<div style="width:490px;float:left;border-right:1px dashed #cdcdcd;margin-right:8px;padding-right:10px">
+
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+
+<script type="text/javascript">
+	function update(select_ccode) {
+		
+		var params = 'select_ccode=' + select_ccode;  
+
+		sendRequest("/lms.admin.order_update", params, FromServer, "GET");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				$('price_change').value = "y";
+				if({num_price} != str_text){
+					alert('해당 신청과정은 기존 과정과 금액 차이가 발생합니다.');
+					$('info_price').innerHTML = '{num_price} - '+str_text+' = <span style="color:red"> '+({num_price} - str_text)+"</span>";
+					$('info_price_text').value = '{num_price} - '+str_text+' = <span style="color:red"> '+({num_price} - str_text)+"</span>";
+					$('num_ch_price').value = ({num_price} - str_text);
+					//$('log_text').value = '{str_title} {num_serial}기 =>'
+				}else{
+					$('info_price').innerHTML = str_text;
+					$('num_ch_price').value = "";
+				}
+				
+				def_ccodes();
+				
+			}
+		}
+	}
+</script>
+
+
+
+
+
+<form name="joinForm" id="joinForm" method="post" onsubmit="return validate(this);"  enctype="multipart/form-data" >
+<input type="hidden" name="mcode" id="mcode" value="{mcode}"/>
+<input type="hidden" name="cate" id="cate" value="{cate}"/>
+<input type="hidden" name="ccode" id="ccode" value="{ccode}"/>
+<input type="hidden" name="num_ccode_p1" id="num_ccode_p1" value="{num_ccode_p1}"/>
+<input type="hidden" name="num_ccode_p2" id="num_ccode_p2" value="{num_ccode_p2}"/>
+<input type="hidden" name="serial" id="serial" value="{serial}"/>
+
+<input type="hidden" name="num_ch_price" id="num_ch_price" value=""/>
+<input type="hidden" name="price_change" id="price_change" value=""/>
+<input type="hidden" name="info_price_text" id="info_price_text" value=""/>
+
+
+
+<fieldset>
+<legend>legend</legend>
+
+<p class="buTitle33" style="margin-bottom:0px;padding-left:18px">참가 학생 정보</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+<script type="text/javascript">
+// <![CDATA[
+function def_ccodes(){
+	if($('price_change').value) {
+		$('def_ccode_text').value='{@ camp_LIST}{? num_ccode == .num_ccode && num_serial == .num_serial}{.camp_title} - {.num_serial}기{/}{/}';
+		$('def_ccode_text').style.display='block';
+		$('isisi1').style.display='block';
+	}
+}
+// ]]>
+</script>
+{? camp_LIST}
+
+		
+		{? num_ccode == "70" || num_ccode == "71"}
+
+		<tr>
+			<th scope="row" style="width:100px">1차 프로그램선택</th>
+			<td>
+				<div class="item" style="padding-top:5px">
+					<select name="num_ccode_p1" id="num_ccode_p1"  hname="1차 프로그램" style="width:300px">
+						<option value="">-- 1차 캠프프로그램 선택 --</option>
+						{@ cate_LIST}
+							{? .num_ccode !='70' && .num_ccode !='71' && .num_step <12}
+								<option value="{.num_ccode}" idx="{.num_step}" {? .num_ccode == num_ccode_p1} selected{/}>{.str_title}</option>
+							{/}
+						{/}
+					</select>
+				</div>
+			</td>
+			</tr>
+			<tr>
+			<th scope="row" style="width:100px">2차 프로그램선택</th>
+			<td>
+				<div class="item" style="padding-top:5px">
+					<select name="num_ccode_p2" id="num_ccode_p2"  hname="2차 프로그램"  style="width:300px">
+						<option value="">-- 2차 캠프프로그램 선택 --</option>
+						{@ cate_LIST}
+							{? .num_ccode !='70' && .num_ccode !='71' && .num_step <12}
+								<option value="{.num_ccode}" idx="{.num_step}" {? .num_ccode == num_ccode_p2} selected{/}>{.str_title}</option>
+							{/}
+						{/}
+					</select>
+				</div>
+			</td>
+		</tr>
+		<script type="text/javascript">
+		// <![CDATA[
+			$(document).ready(function(){ 
+				var p_code2 = '{num_ccode_p2}'
+				var p_code1 = '{num_ccode_p1}'
+				$('#num_ccode_p2,#num_ccode_p1').change(function(){
+					if($('#num_ccode_p2').val() == $('#num_ccode_p1').val()){
+						alert('1차와 프로그램이 동일합니다. 다른 프로그램을 선택하여 주세요');
+						$('#num_ccode_p2').val(p_code2);
+						$('#num_ccode_p1').val(p_code1);
+					}
+				});
+			});
+			
+		// ]]>
+		</script>
+		{:}
+<tr>
+	<th scope="row">신청과정</th>
+	<td colspan="2">
+		<div class="item">	
+		<input type="text" name="def_ccode_text" id="def_ccode_text" value="" readonly style="display:none;float:left;height:14px;padding:3px"><span style="display:none;float:left" id="isisi1">-></span>
+		<select name="select_ccode" onchange="update(this.value)" required>
+			{@ camp_LIST}
+				 {? num_ccode == .num_ccode && num_serial == .num_serial}
+					<option value="{.num_ccode}|{.num_serial}" selected >{.camp_title} - {.num_serial}기 </option>
+				{/}
+			{/}
+			<option value="">-----------------------</option>
+			{@ camp_LIST}
+			
+					<option value="{.num_ccode}|{.num_serial}"  >{.camp_title} - {.num_serial}기 </option>
+			
+			{/}
+		</select>
+		{/}
+		</div>
+	</td>
+</tr>
+{:}
+
+<tr>
+	<th scope="row">신청과정</th>
+	<td colspan="2">
+		<div class="item">
+		{ccode_title} - {num_serial}기
+		</div>
+	</td>
+</tr>
+
+{/}
+
+<tr>
+	<th scope="row">금액</th>
+	<td colspan="2">
+		<div class="item" id="info_price">
+			{=number_format(num_price - str_discount)}원
+			{? str_discount}<br><span style="color:red">특별할인 : {=number_format(str_discount)}원</span>{/}
+			<input type="hidden" name="num_ch_price"  id="num_ch_price" value="{num_ch_price}">
+			
+		</div>
+	</td>
+</tr>
+{? num_ch_price}
+<tr>
+	<th scope="row">결제차액</th>
+	<td colspan="2">
+		<div class="item" id="info_price">
+			{=number_format(num_ch_price)}원
+		</div>
+	</td>
+</tr>
+{/}
+
+</table>
+
+</div>
+</fieldset> 
+
+
+
+
+<fieldset>
+<legend>legend</legend>
+
+<p class="buTitle33" style="margin-bottom:0px;padding-left:18px">참가 학생 정보</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+<tr>
+	<th scope="row">학생성명</th>
+	<td colspan="2">
+		<div class="item">
+		<input class="i_text" title="학생성명" type="text" name="str_st_name" id="str_st_name" value="{str_st_name}" hname="{=_la('학생성명')}"  required> 
+		</div>
+	</td>
+</tr>
+
+<!--tr>
+	<th scope="row">학생성명(영문)</th>
+	<td colspan="2">
+		<div class="item">
+			<input class="i_text" title="학생성명" type="text" name="str_st_eng_name" id="str_st_eng_name" value="{str_st_eng_name}" hname="{=_la('학생성명(영문')}"  required> 
+		</div>
+	</td>
+</tr-->
+
+<tr>
+	<th scope="row">성별</th>
+	<td colspan="2">
+		<div class="item">
+		<select name="str_sex" id="str_sex">
+			<option value="1" {? str_sex == "1"} selected{/}>남자</option>
+			<option value="2" {? str_sex == "2"} selected{/}>여자</option>
+		</select>
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">주민등록번호</th>
+	<td colspan="2">
+		<div class="item">
+			<input class="i_text" title="주민등록번호" type="text" name="jumin1" id="jumin1" value="{jumin1}" hname="주민등록번호" style="width:80px" required> 
+			-
+			<input class="i_text" title="주민등록번호" type="text" name="jumin2" id="jumin2" value="{jumin2}" hname="주민등록번호" style="width:80px" required> 
+		</div>
+	</td>
+</tr>
+
+
+<tr>
+	<th scope="row">{=_la('학교/학년')}</th>
+	<td colspan="2">
+		<div class="item">
+			
+			<input class="i_text" title="학교명" type="text" name="str_school" id="str_school" value="{str_school}" hname="{=_la('학교명')}"  required> 
+
+			<select  name="str_class" id="str_class" hname="학년정보" required>
+				<option value="">-- {=_la('학년정보')} --</option>
+				<option value="초3" {? str_class =='초3'} selected{/}>초3</option>
+				<option value="초4" {? str_class =='초4'} selected{/}>초4</option>
+				<option value="초5" {? str_class =='초5'} selected{/}>초5</option>
+				<option value="초6" {? str_class =='초6'} selected{/}>초6</option>
+
+				<option value="중1" {? str_class =='중1'} selected{/}>중1</option>
+				<option value="중2" {? str_class =='중2'} selected{/}>중2</option>
+				<option value="중3" {? str_class =='중3'} selected{/}>중3</option>
+
+				<option value="고1" {? str_class =='고1'} selected{/}>고1</option>
+				<option value="고2" {? str_class =='고2'} selected{/}>고2</option>
+
+			</select>
+			<br>
+			<!-->해당 학년은 예비 학년입니다.-->
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row" >T-셔츠 사이즈</th>
+	<td colspan="2">
+
+
+			<input type="radio" name="str_tsize" id="str_tsize1" value="16" {? str_tsize == "16" } checked{/}><label for="str_tsize1">16호</label>
+		<input type="radio" name="str_tsize" id="str_tsize2" value="17" {? str_tsize == "17" } checked{/}><label for="str_tsize2">17호</label>
+		<input type="radio" name="str_tsize" id="str_tsize3" value="18" {? str_tsize == "18" } checked{/}><label for="str_tsize3">18호</label>
+		<input type="radio" name="str_tsize" id="str_tsize4" value="19" {? str_tsize == "19" } checked{/}><label for="str_tsize4">19호</label>
+		<br>
+		<input type="radio" name="str_tsize" id="str_tsize6" value="S" {? str_tsize == "S" } checked{/}><label for="str_tsize6">S</label>
+		<input type="radio" name="str_tsize" id="str_tsize7" value="M" {? str_tsize == "M" } checked{/}><label for="str_tsize7">M</label>
+		<input type="radio" name="str_tsize" id="str_tsize8" value="L" {? str_tsize == "L" } checked{/}><label for="str_tsize8">L</label>
+		<input type="radio" name="str_tsize" id="str_tsize9" value="XL" {? str_tsize == "XL" } checked{/}><label for="str_tsize9">XL</label>
+		<input type="radio" name="str_tsize" id="str_tsize10" value="XXL" {? str_tsize == "XXL" } checked{/}><label for="str_tsize10">XXL</label>
+		
+
+
+	</td>
+</tr>
+{? brs_LIST}
+<tr>
+	<th scope="row" >부모가 같은<br> 신청건</th>
+	<td colspan="2">
+		
+			<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0" class="tableTemp02" summary="">
+			<caption><span>caption</span></caption>
+				<thead>
+					<tr>
+						
+						<th style="text-align:center">프로그램명</th>
+						<th style="text-align:center">기수</th>
+						<th style="text-align:center">주문번호</th>
+						<th style="text-align:center">이름</th>
+						<th style="text-align:center">입금확인</th>
+					</tr>
+				</thead>
+				<tbody>
+					{@ brs_LIST}
+					<tr>
+						
+						<td>{.ccode_title}</td>
+						<td>{.num_serial}기</td>
+						<td><a href="/lms.admin.order_view?order_code={.str_order_code}">{.str_order_code}</a></td>
+						
+						<td>{.str_st_name}</td>
+						<td>
+						{? .str_order_st == "0"}
+						<span style="color:red">입금확인전</span>
+						{: .str_order_st == "1"}
+						<span style="color:blue">입금확인</span>
+						{: .str_order_st == "5"}
+						<span style="color:blue">카드승인</span>
+						{: .str_order_st == "2"}
+						<span style="color:#808080">취소</span>
+						{: .str_order_st == "8"}
+						<span style="color:#808080">취소환불</span>
+						{: .str_order_st == "6"}
+						<span style="color:#73758c">대기자 변경(결제)</span>
+						
+						{: .str_order_st == "7"}
+						<span style="color:#73758c">대기자 변경</span>
+						{/}
+						</td>
+					</tr>
+					{/}
+				</tbody>
+			</table>
+	</td>
+</tr>
+{/}
+</table>
+
+</div>
+</fieldset> 
+
+<p class="buTitle33" style="margin-bottom:0px;padding-left:18px">부모님 정보</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+<tr>
+	<th scope="row">보호자 성명</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<input class="i_text" name="str_pr_name1" id="str_pr_name1" value="{str_pr_name1}" hname="{=_la('아버지 성명')}" type="text"  style="width:100px"  required >부
+			<input class="i_text" name="str_pr_name2" id="str_pr_name2" value="{str_pr_name2}"  hname="{=_la('어머니 성명')}" type="text"  style="width:100px"  required >모
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('이메일')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="email1" id="email1" hname="{=_la('이메일')}" type="text"  maxbyte="50" style="width:100px" value="{email1}"  required >@<input name="email2" id="email2" hname="이메일" type="text"  value="{email2}" maxbyte="50" required />
+										
+			
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">주소</th>
+	<td>
+		<div class="item">
+
+		<input name="str_zipcode" id="str_zipcode" hname="우편번호" size="10" maxlength="7" type="text"     class="codeBox"   required value="{str_zipcode}"/>
+		<br />
+
+		<input class="i_text" name="str_addr1" id="str_addr1" value="{str_addr1}" hname="{=_la('기본주소')}" type="text" style = "width:70%" maxbyte="255" required> <br>
+		<input class="i_text" name="str_addr2"  id="str_addr2" value="{str_addr2}"  hname="{=_la('상세주소')}" type="text" style = "width:70%"  maxbyte="255" required> 
+		</div>
+		
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('전화번호')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="tel1" id="tel1" value="{tel1}"  hname="{=_la('연락처')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4">
+		-<input class="i_text"  name="tel2" id="tel2" value="{tel2}" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+		-<input class="i_text"  name="tel3" id="tel3" value="{tel3}" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+		
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('휴대폰')}</th>
+	<td>
+		<div class="item">
+		<input class="i_text" name="tel11" id="tel11" value="{tel11}"  hname="{=_la('핸드폰')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4">
+		-<input class="i_text"  name="tel22" id="tel22" value="{tel22}" hname="{=_la('핸드폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+		-<input class="i_text"  name="tel33" id="tel33" value="{tel33}"  hname="{=_la('핸드폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+		<br>
+		</div>
+		
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">{=_la('메모')}</th>
+	<td>
+		<div class="item">
+		 <textarea  class="i_text" cols="50" rows="5" name="str_memo" id="str_memo" hname="{=_la('메모')}">{str_memo}</textarea> 
+		</div>
+		
+	</td>
+</tr>
+
+{? str_etc < 4}
+<script type="text/javascript">
+// <![CDATA[
+function scsledk(idx){
+	if(idx != 4){
+		$('skskvie1').style.display = 'block';
+	}else{
+		$('skskvie1').style.display = 'none';
+	}
+	if(idx == "2"){
+		$('namet_1').innerHTML = '교우성명';
+		$('namet_2').innerHTML = '졸업학교';
+		$('namet_3').innerHTML = '입학학번';
+	}
+	if(idx == "1"){
+		$('namet_1').innerHTML = '교직원성명';
+		$('namet_2').innerHTML = '근무부서';
+		$('namet_3').innerHTML = '직급';
+	}
+	
+	if(idx == "3"){
+		$('namet_1').innerHTML = '학생성명';
+		$('namet_2').innerHTML = '참여과정';
+		$('namet_3').innerHTML = '참여기수';
+	}
+}
+// ]]>
+</script>
+<tr>
+	<th scope="row">추가사항</th>
+	<td>
+		<div class="item">
+		<input type="radio" name="str_etc" value="1" onclick="scsledk(this.value)" {? str_etc == 1} checked{/}> 고려대 교직원 자녀
+		<input type="radio" name="str_etc" value="2" onclick="scsledk(this.value)" {? str_etc == 2} checked{/}> 고려대 교우 자녀
+		<input type="radio" name="str_etc" value="3" onclick="scsledk(this.value)" {? str_etc == 3} checked{/}> 기존캠프 참여자
+		
+		</div>
+		<input type="hidden" name="def_etc" value="{str_etc}"/>
+		
+	</td>
+</tr>
+
+<tr id="skskvie1" style="display:none">
+	<th scope="row"></th>
+	<td>
+		<div class="item">
+			<span id="namet_1">교유성명</span> <input type="text" name="str_etc_text1" value="{str_etc_text1}" class="" style="width:80px">
+			<span id="namet_2">교유성명</span> <input type="text" name="str_etc_text2" value="{str_etc_text2}" class="" style="width:80px">
+			<span id="namet_3">교유성명</span> <input type="text" name="str_etc_text3" value="{str_etc_text3}" class="" style="width:80px">
+		</div>
+	</td>
+</tr>
+<script type="text/javascript">
+// <![CDATA[
+scsledk({str_etc})
+// ]]>
+</script>
+{/}
+</table>
+</div>
+</fieldset> 
+
+
+
+
+<p class="buTitle33" style="margin-bottom:0px;padding-left:18px">결제정보 설정</p>
+
+<div class="form_table">
+<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+<tbody>
+
+{? str_pay_mes == "bank"}
+<tr>
+	<th scope="row" width="130px">계좌번호 </th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			무통장 : <strong>{str_bank_number}</strong>
+			<input type="hidden" name="str_bank_number" value="{str_bank_number}">
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">입금예정자</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<input class="i_text" title="입금예정자 명" type="text" name="str_bank_name" id="str_bank_name" value="{str_bank_name}" hname="{=_la('입금예정자 명')}"  required> 
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">입금예정일</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<wa:datepicker name="dt_bank_date" value="{dt_bank_date}"/> 
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">현금영수증 신청여부</th>
+	<td>
+		<div class="item" style="padding-top:5px">
+			<input type="radio" name="str_money_tax" id="str_money_tax1" value="n" {? str_money_tax =="n"} checked{/}><label for="str_money_tax1">신청안함</label>
+			<input type="radio" name="str_money_tax" id="str_money_tax2" value="y" {? str_money_tax =="y"} checked{/}><label for="str_money_tax2">신청함</label>
+		</div>
+	</td>
+</tr>
+
+<tr>
+	<th scope="row">현금영수증 번호</th>
+	<td style="text-align:left">
+		<div class="item" style="padding-top:5px">
+			<input class="i_text" title="현금영수증 번호" type="text" style="width:80px" name="str_money_number" id="str_money_number" value="{str_money_number}" hname="현금영수증 번호"> 
+		</div>
+	</td>
+</tr>
+
+		<tr>
+			<th scope="row">결제 상태</th>
+			<td >
+				<select name="str_order_st"  id="str_order_st">
+					<option value="0" {? str_order_st == "0"} selected{/} style="color:red">입금대기중</option>
+					<option value="1" {? str_order_st == "1"} selected{/} style="background-color:blue;color:#fff">입금확인</option>
+					<option value="2" {? str_order_st == "2"} selected{/} style="color:#848484">취소</option>
+					<option value="8" {? str_order_st == "8"} selected{/} style="color:#848484">취소환불</option>
+					<option value="7" {? str_order_st == "7"} selected{/} style="color:#73758c">대기자 변경(비결제)</option>
+					<option value="6" {? str_order_st == "6"} selected{/} style="color:#73758c">대기자 변경(결제)</option>
+				</select>
+				<input type="hidden" name="order_st_hi" value="{str_order_st}">
+			</td>
+		</tr>
+
+{:}
+
+		<tr>
+			<th scope="row">결제 상태</th>
+			<td >
+				<select name="str_order_st"  id="str_order_st">
+					<option value="5" {? str_order_st == "5"} selected{/} style="background-color:blue;color:#fff">카드승인</option>
+					<option value="2" {? str_order_st == "2"} selected{/} style="color:#848484">취소</option>
+					<option value="8" {? str_order_st == "8"} selected{/} style="color:#848484">취소환불</option>
+					<option value="0" {? str_order_st == "0"} selected{/} style="color:red">입금대기중</option>
+					<option value="1" {? str_order_st == "1"} selected{/} style="background-color:blue;color:#fff">입금확인</option>
+					<option value="6" {? str_order_st == "6"} selected{/} style="color:#73758c">대기자 변경</option>
+				</select>
+				<input type="hidden" name="order_st_hi" value="{str_order_st}">
+			</td>
+		</tr>
+		{? str_pay_mes == "card"}
+		<tr>
+			<th scope="row">카드 결제 결과 <br>메세지</th>
+			<td >
+				{str_card_text}
+			</td>
+		</tr>
+		{:}
+		<tr>
+			<th scope="row">결제방법</th>
+			<td >
+				계좌이체
+			</td>
+		</tr>
+		{/}
+{/}
+</table>
+</div>
+</fieldset> 
+
+
+<div style="text-align:center;margin-top:20px">
+	<span class="btn_pack medium icon"><span class="check"></span><input type="submit" name="" value="작성완료" class=""></span>
+	<span class="btn_pack medium "><a href="javascript:history.go(-1)">취소</a></span>
+</div>
+
+</form>  
+
+</div>
+<div style="width:220px;float:left;">
+	<div class="" id="" style="float:left;">
+		<p class="buTitle01" style="margin-top:0px">주문 메모 로그</p>
+		<wa:applet module="log" code="{order_code}"/>
+	</div>
+	<div class="" id="" style="float:left;margin-top:20px">
+		<p class="buTitle01" style="margin-top:00px">상담 메모 로그</p>
+		<wa:applet module="log" code="{str_id}"/>
+	</div>
+	
+</div>
+
+</div>

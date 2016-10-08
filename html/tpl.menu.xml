@@ -1,0 +1,13 @@
+<Navigation>
+	<menu align="auto" stageW="777" stageH="59" startX="15" startY="7" mmSpace="14" smSpace="5" smNextTab="15" smMaxX="15">
+		<!--{@ MENU}-->
+		<item name="{.str_title}" href="{.str_link}" target="{.str_target}">
+			<submenu>
+				<!--{@ MENUITEM}-->
+				<sub href="{..str_link}" target="{..str_target}">{..str_title}</sub>
+				<!--{/}-->
+			</submenu>
+		</item>
+		<!--{/}-->
+	</menu>
+</Navigation>

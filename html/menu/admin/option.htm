@@ -1,0 +1,989 @@
+<link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+<script type="text/javascript">
+var ifrContentsTimer;
+function resizeRetry() {
+
+	//이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+	if(document.body.readyState == "complete") {
+		clearInterval(ifrContentsTimer);
+	}
+	else {
+		resizeFrame();
+	}
+}
+function resizeFrame(){
+	
+	//페이지가 로딩되면 바로 리사이즈..
+	var h = document.body.scrollHeight;
+	var w = parseInt(document.body.scrollWidth);
+	//self.resizeTo(w, h);
+
+	if(parent.$$('content')) parent.$$('content').style.height = (h+100)+'px';
+	
+}
+
+function copy_url() {
+	var form = document.forms['basicinfo']
+	var el = form.elements['menu_url'];
+	var tRange = el.createTextRange();
+	tRange.execCommand("Copy");
+	alert("메뉴의 URL이 클립보드에 복사되었습니다.");
+}
+
+function del_menu() {
+	if(!confirm('정말 삭제하시겠습니까?')) return false;
+	location.href = "menu.admin.del?mcode={mcode}";
+}
+
+function reset_menu() {
+	if(!confirm('내용을 삭제하여 비어있는 메뉴로 만듭니다. 계속하시겠습니까?')) return false;
+	location.href = "menu.admin.reset?mcode={mcode}";
+}
+
+function SkinAlert(val) {
+	if(val.substring(0,1) == 'D'){
+		//이건 상담실게시판
+		$$("skinmsg").style.display="";
+		$$("skinmsg").innerHTML = "상담실게시판 적용시 [게시판 옵션변경]에서 관리자를 입력하셔야합니다.";
+	}else{
+		$$("skinmsg").style.display="none";
+	}
+}
+
+function boardTopView(id){
+	if($$(id).style.display =='none'){
+	$$(id).style.display ='';
+	}else{
+	$$(id).style.display ='none';
+	}
+	resizeFrame()
+}
+</script>
+
+<body style="margin:10px">
+
+<div class="tab19" width="100%">
+				<ul>
+					<li class="active"><a href="#">메뉴옵션</a></li>
+					<!--{? rights}-->
+					<li><a href="menu.admin.rights?mcode={mcode}">권한설정</a></li>
+					<!--{/}-->
+					<!--{? sub_cnt > 1}-->
+					<li><a href="menu.admin.listorder?mcode={mcode}">하위메뉴 순서변경</a></li>
+					<!--{/}-->
+					<!--{@ TABS}-->
+					<li>
+					<a 
+					{? .key_ == "첨부파일 관리"}
+					href="javascript:winOpen('/manage.file_view?mcode={mcode}','800','600','yes','fileWidth')"
+					{: .key_ == "내용편집"}
+					href="javascript:winOpen('/doc.admin.edit?mcode={mcode}&no=y','800','600','yes','fileWidth')"
+					{:} href="{.value_}"{/}>{.key_}</a>  
+					</li>
+					<!--{/}-->
+				</ul>
+			</div>
+		<!-- 메뉴기본정보 start -->
+
+
+	<br>
+	<br>
+
+		<form method="post" name="basicinfo" onsubmit="return validate(this);" enctype="multipart/form-data">
+
+			<div>
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">메뉴기본정보</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding-top:14">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">메뉴이름 :</td>
+											<td width="4"></td>
+											<td><input type="text" name="str_title"  id="str_title" class="fom01" style="width:338" value="{str_title}"  hname="메뉴이름" required></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:14">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">영문이름 :</td>
+											<td width="4"></td>
+											<td><input type="text" name="str_title2"  id="str_title2" class="fom01" style="width:338" value="{str_title2}" <? if(_OID !=_AOID) {?>   <? } ?> hname="메뉴이름" ></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">메뉴 위치 :</td>
+											<td width="4"></td>
+											<td class="bx1_text">{menu_location} &gt; {str_title}</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">메뉴숨기기 :</td>
+											<td width="4"></td>
+											<td>
+
+											<input type="radio" name="num_view" value="1" {? num_view ==1} checked{/}> 표출
+											<input type="radio" name="num_view" value="0" {? num_view ==0} checked{/}> 숨김
+											</td>
+											
+											<td class="bx1_text01">(숨김상태에서는 메뉴바에 표출되지 않습니다.)</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">메뉴형태 :</td>
+											<td width="4"></td>
+											<td class="bx1_text02">
+											<select name="str_type" class="bx1_text02">
+											<!--{@ MENU_TYPE}-->
+												<option value="{.key_}" {? str_type ==.key_} selected{/}>{.value_}</option>
+											<!--{/}-->
+											</select></td>
+											<td class="btn01" style="padding-top:5px"><input type="image" src="/html/admin/images/btn_01.gif" align="absmiddle"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">타이틀 배경 : </td>
+											<td width="4">
+												
+											</td>
+											<td><input type="file" name="title_img" class="button"><br>
+												{? title_img}이미지가 등록되어있습니다.
+												<br>
+												<input type="checkbox" name="title_img_del" value="y" id="upfile1_del"><label for="title_img_del">업로드된 파일을 삭제합니다.</label>
+												
+												{/}</td>
+											<td  class="bx1_text02"></td>
+											<td class="btn01"></td>
+										</tr>
+										
+										
+									</table>
+								</td>
+							</tr>
+							<!--tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">레이아웃 :</td>
+											<td width="4"></td>
+											<td class="bx1_text02">
+											<select name="str_layout" class="bx1_text02">
+											
+												<option value="sub" {? str_layout =="sub"} selected{/}>서브1</option>
+												<option value="sub2" {? str_layout =="sub2"} selected{/}>서브2</option>
+											
+											</select></td>
+											<td class="btn01" style="padding-top:5px"></td>
+										</tr>
+									</table>
+								</td>
+							</tr-->
+
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">메뉴주소 :</td>
+											<td width="4"></td>
+											<td><input type="text" name="menu_url" class="fom01" style="width:280" value="{menu_url}"></td>
+											<td style="padding-left:4"><a href="javascript:copy_url()"><img src="/html/admin/images/btn_etc01.gif"></a></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr><td height="7"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+		<!-- 메뉴기본정보 end -->
+
+
+
+		<input type="hidden" name="m_type" value="{m_type}">
+		<input type="hidden" name="cate" value="{num_cate}">
+		{? m_type =="board" || m_type =="tong_board"}
+	
+		<!-- 게시판정보 start -->							
+			<div style="padding-top:14px">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">게시판정보</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+							{? m_type =="board" }
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">외부 RSS 연동 : </td>
+											<td width="4"></td>
+											<td class="bx1_text03">
+											
+											<input type="text" name="str_rss_url" value="{str_rss_url}" class="fom01" style="width:140px">
+											
+											<SELECT name="num_rss_count"  id="num_rss_count" class="bx1_text03" style="width:50">
+											
+											<option value="10" {? num_rss_count == "10"} selected{/}>10개</option>
+											<option value="20" {? num_rss_count == "20"} selected{/}>20개</option>
+											<option value="30" {? num_rss_count == "30"} selected{/}>30개</option>
+
+											</SELECT>
+											
+											
+											
+
+											<SELECT name="str_iconv"  id="str_iconv" class="bx1_text03" style="width:80">
+											
+											<option value="UTF-8" {? str_iconv == "UTF-8"} selected{/}>UTF-8</option>
+											<option value="EUC-KR" {? str_iconv == "EUC-KR"} selected{/}>EUC-KR</option>
+											
+											
+											</SELECT><br>
+											카테고리 : <input type="text" name="str_rss_cate" value="{str_rss_cate}" class="fom01" style="width:80">
+											
+											
+											
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+
+
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										
+
+
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">게시판 형태 : </td>
+											<td width="4"></td>
+											<td class="bx1_text03">
+										
+											<table  border=0 cellspacing=0 cellpadding=0>
+											 <tr align=center>
+											   {? chr_listtype !="D" || sadmin}<td style="padding-left:10px"><img src='/html/attach/image/ico_list03.gif' border='0' alt="일반형 게시판"></td>
+											  <td style="padding-left:10px"><img src='/html/attach/image/ico_list02.gif' border='0' alt="겔러리형 게시판"></td>
+											  <td style="padding-left:10px"><img src='/html/attach/image/ico_list01.gif' border='0' alt="웹진형 게시판"></td>
+											  {/}
+											  <td style="padding-left:10px"><img src='/html/attach/image/ico_list04.gif' border='0' alt="상담형 게시판"></td>
+											 </tr>
+											 <tr align=center>
+											  {? chr_listtype!="D"  || sadmin}
+											  <td style="padding:3px">
+											  
+											  <input type="radio" name="chr_listtype" value="B" id="chr_listtype_B" {? chr_listtype=="B"} checked{/}><label for ="chr_listtype_B">일반형</label></td>
+											
+											  <td style="padding:3px">
+											  <input type="radio" name="chr_listtype" value="G" id="chr_listtype_G" {? chr_listtype=="G"} checked{/}><label for ="chr_listtype_G">겔러리형</label></td>
+
+											 <td style="padding:3px">
+											  <input type="radio" name="chr_listtype" value="W" id="chr_listtype_W" {? chr_listtype=="W"} checked{/}><label for ="chr_listtype_W">웹진형</label></td>
+											 {/}
+
+											  <td style="padding:3px">
+											  <input type="radio" name="chr_listtype" value="D" id="chr_listtype_D" {? chr_listtype=="D"} checked{/} onclick="alert('상담실형은 운영자를 반드시 지정해주시기 바랍니다.')"><label for ="chr_listtype_D">상담실형</label></td>
+											  
+											 </tr>
+											</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							{/}
+							<input type="hidden" name="str_skin" value="boardType1">
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">게시판 스킨 : </td>
+											<td width="4"></td>
+											<td class="bx1_text03">
+											
+											<select name="str_skin" size="1" id="str_skin">
+											{@ bbs_skin }
+												<option value="{.str_skin}" {? str_skin == .str_skin }selected{/}>{.str_skin}</option>
+											{/}
+											</select>
+											<div name="skinmsg" id="skinmsg" style="font-size:11px;color:red;display:none" ></div>
+											</td>
+											<td class="btn01" style="padding-top:5px"><input type="image" src="/html/admin/images/btn_02.gif"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+
+							
+							
+
+
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0" width="100%">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle" width="160px">게시판 소개글 사용여부 :</td>
+											<td width="4"></td>
+											<td width="10px"><input type="checkbox" name="chr_stats" value="1" {? chr_stats ==1} checked{/}></td>
+											<td  class="bx1_text02">사용</td>
+											<td class="btn01"><a href="javascript:boardTopView('board_top_v')"><img src="/html/admin/images/btn_03.gif"></a>
+											</td>
+										</tr>
+										<tr  id="board_top_v" style="display:{? !str_top}none{/}">
+										  <td class="bu_arrow_bx01"></td>
+										  <td colspan="20"><textarea name="str_top" style="width:100%;height:80px;">{str_top}</textarea></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">페이지당 목록수 :</td>
+											<td width="4"></td>
+											<td><select name="num_listnum"  class="bx1_stitle">
+													<option value="10" {? num_listnum == "10"} selected{/}>10개</option>
+													<option value="20" {? num_listnum == "20"} selected{/}>20개</option>
+													<option value="30" {? num_listnum == "30"} selected{/}>30개</option>
+													<option value="40" {? num_listnum == "40"} selected{/}>40개</option>
+													<option value="50" {? num_listnum == "50"} selected{/}>50개</option>
+													</select></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">카테고리 관리 :</td>
+											<td width="4"></td>
+											<td><input type="checkbox" name="chr_hak" value="1" {? chr_hak ==1} checked {/}></td>
+											<td  class="bx1_text02">사용</td>
+											<td class="btn01"><a href="/board.admin.categorypop?mcode={mcode}&noresize=Y" target="cateData"><img src="/html/admin/images/btn_04.gif" onclick="javascript:boardTopView('board_cate_v');"></a></td>
+										</tr>										
+										<tr  id="board_cate_v" style="display:none" >
+										  <td class="bu_arrow_bx01"></td>
+										  <td colspan="20">
+										  <div style="border:1px solid #CECECE; width:100%;padding:5px">
+										  <iframe name="cateData" id="cateData" src="/board.admin.categorypop?mcode={mcode}&noresize=Y" width="300" height="150" scrolling="no" frameborder=0></iframe>
+										  </div>
+										  </td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">댓글사용여부 :</td>
+											<td width="4"></td>
+											<td><input type="checkbox" name="chr_comment" value="Y" {? chr_comment =='Y'} checked {/}></td>
+											<td  class="bx1_text02">사용</td>
+										</tr>
+									</table>
+								</td>
+							</tr>										
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">운영자관리 :</td>
+											<td width="4"></td>
+											<td>
+												<table cellpadding="0" cellspacing="0" border="0">
+													<tr>			
+														<td  class="bx1_text02" width="115" id ="admin_id">{? str_admin_id}{str_admin_name}({str_admin_id}){:}설정된 운영자 없음{/}
+													
+														</td>
+														<td class="btn02"><a href="javascript:winOpen('/menu.admin.findid','400','300','yes','boardId')"><img src="/html/admin/images/btn_05.gif"></td>
+														<td  class="bx1_text02" width="115" style="padding-top:3px">	<input type="hidden" name="str_admin_id"  id="str_admin_id"  value="{str_admin_id}"></td>
+														
+													</tr>
+
+								
+													
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr><td height="7"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+		<!-- 게시판정보 end -->
+
+
+		<!-- 파일첨부설정 start -->							
+			<div style="padding-top:14px">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">파일첨부 설정</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">파일첨부 설정 :</td>
+											<td width="4"></td>
+											<td><input type="checkbox" name="chr_upload" value="Y" {? chr_upload =="Y" } checked{/}></td>
+											<td  class="bx1_text02">사용하기&nbsp;</td>
+											<td class="bx1_text01">(파일첨부 기능을 사용합니다.)</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">다운로드 차단 :</td>
+											<td width="4"></td>
+											<td><input type="checkbox" name="str_download" value="Y" {? str_download == "Y"} checked{/}></td>
+											<td  class="bx1_text02">차단&nbsp;</td>
+											<td class="bx1_text01">    (글읽기에서 파일 다운로드 창이 보이지 않습니다.)</td>
+										</tr>
+
+									</table>
+								</td>
+							</tr>
+							<!--tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">미디어 미리보기 :</td>
+											<td width="4"></td>
+											<td><input type="checkbox" name=""></td>
+											<td  class="bx1_text02">미디어 미리보기 사용&nbsp;</td>
+										</tr>
+										<tr>
+											<td class="bx1_text01" colspan="5" style="padding-left:15"> (동영상 첨부시 게시판에서 바로 재생됩니다)</td>
+										</tr>
+									</table>
+								</td>
+							</tr -->
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">총 사용 용량 :</td>
+											<td width="4"></td>
+											<td  class="bx1_text03"><a href="/manage.file_view?mcode={mcode}" target="_blank"><b class="bx1_text03">{? max_disk}{max_disk}{:}0 byte{/}</b></a></td>
+											  <td class="btn01">
+											 <a href="javascript:winOpen('/manage.file_view?mcode={mcode}','800','600','yes','fileWidth')"><img src='/html/admin/images/btn_06.gif' border='0' alt='첨부파일 관리하기'></a>
+											
+											  </td>
+										</tr>
+									</table>
+								</td>
+							</tr>						
+							<tr><td height="7"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+		<!-- 파일첨부설정 end -->
+
+		{/}
+
+
+		{? m_type =="doc"}	
+		
+
+		<!-- 웹문서 정보 -->
+		
+		<div style="padding-top:14px">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">웹문서정보</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">웹문서 내용 :</td>
+											<td width="4"></td>
+											<td><a href="javascript:winOpen('/doc.admin.edit?mcode={mcode}&no=y','800','600','yes','filefWidth')"><img src='/html/admin/images/btn_03.gif' border='0' alt=''></a></td>
+											<td  class="bx1_text02"></td>
+											<td class="btn01"></td>
+										</tr>										
+										
+									</table>
+								</td>
+							</tr>
+														
+							<tr><td height="7"></td></tr>
+
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">추가자료 : </td>
+											<td width="4">
+												
+											</td>
+											<td> <input type="file" name="upfile1" class="button"><br>
+												{? str_file }{str_refile} 이 등록되어있습니다.
+												<br>
+												<input type="checkbox" name="upfile1_del" value="y" id="upfile1_del"><label for="upfile1_del">업로드된 파일을 삭제합니다.</label>
+												<input type="hidden" name="upfile1_del_name" value="{str_file}">
+												{/}</td>
+											<td  class="bx1_text02"></td>
+											<td class="btn01"></td>
+										</tr>
+										<tr><td height="7"></td></tr>
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">추가자료 설명 : </td>
+											<td width="4"></td>
+											<td><textarea name="str_text" style="width:300px;height:100px">{str_text}</textarea></td>
+											<td  class="bx1_text02"></td>
+											<td class="btn01"></td>
+										</tr>	
+										
+									</table>
+								</td>
+							</tr>
+														
+							<tr><td height="7"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+
+		<!-- 웹문서 정보 끝 -->
+
+		{/}
+
+
+				{? str_type =="form#C"}	
+		
+
+		<!-- 온라인 신청 문서 정보 -->
+		
+		<div style="padding-top:14px">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">온라인 신청항목</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+							
+							
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">온라인 신청 설정 :</td>
+											<td width="4"></td>
+											<td><a href="javascript:winOpen('form.admin.setup?mcode={mcode}&no=y','800','600','yes','filefWidth')"><img src='/html/admin/images/btn_03.gif' border='0' alt=''></a></td>
+											<td  class="bx1_text02"></td>
+											<td class="btn01"></td>
+										</tr>										
+										
+									</table>
+								</td>
+							</tr>
+														
+							<tr><td height="7"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+
+		<!-- 온라인 신청 문서 정보  끝 -->
+
+		{/}
+
+
+		{? m_type =="link"}	
+		
+
+		<!-- 링크메뉴 정보 -->
+		
+		<div style="padding-top:14px">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">URL링크형</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+							
+							
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">URL :</td>
+											<td width="4"></td>
+											<td><input type="text" name="str_url" value="{str_url}" size="45"></td>
+											<td  class="bx1_text02"></td>
+											<td class="btn01"></td>
+										</tr>										
+										
+									</table>
+								</td>
+							</tr>
+								
+
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">내용표시  :</td>
+											<td width="4"></td>
+											<td>
+											<label for="str_target1"><input type="radio" name="str_target" id="str_target1" value="_self"  {? str_target == '_self' || str_target == ''}checked{/} style="border:0px;">현재창에</label>
+											<label for="str_target2"><input type="radio" name="str_target" id="str_target2" value="_blank"{? str_target == '_blank'}checked{/} style="border:0px;">새창에</label>
+
+	
+											</td>
+											<td  class="bx1_text02"></td>
+											<td class="btn01"></td>
+										</tr>										
+										
+									</table>
+								</td>
+							</tr>
+							
+							<tr><td height="7"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+
+		<!-- 링크메뉴 정보 끝 -->
+
+		{/}
+
+
+	{? m_type =="ifr"}	
+		
+
+		<!-- 링크메뉴 정보 -->
+		
+		<div style="padding-top:14px">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif">
+							<tr>
+								<td><img src="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">아이프레임형</td>
+								<td><img src="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0">
+							
+							
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">URL :</td>
+											<td width="4"></td>
+											<td><input type="text" name="str_url" value="{str_url}" size="45"></td>
+											<td  class="bx1_text02"></td>
+											<td class="btn01"></td>
+										</tr>										
+										
+									</table>
+								</td>
+							</tr>
+								
+
+							<tr>
+								<td style="padding-top:10">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="bu_arrow_bx01"><img src="/html/admin/images/bu_arrow_01.gif"></td>
+											<td class="bx1_stitle">세로길이  :</td>
+											<td width="4"></td>
+											<td>
+											<label for="str_target1"><input type="text" name="str_height" value="{str_height}" size="45">
+	
+											</td>
+											<td  class="bx1_text02"></td>
+											<td class="btn01"></td>
+										</tr>										
+										
+									</table>
+								</td>
+							</tr>
+							
+							<tr><td height="7"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+
+		<!-- 링크메뉴 정보 끝 -->
+
+		{/}
+
+
+		<!--{? admin_desc}-->
+			<br>
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+						<tr>
+							<td colspan="3" valign="top">
+								<table cellpadding="0" cellspacing="0" border="0">
+									<tr>
+										<td><img src="/html/admin/images/tip_icon.gif"></td>
+										<td class="tip_title">안내</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr><td height="6"></td></tr>
+						<tr>
+							<td colspan="2">
+								<table cellpadding="0" cellspacing="0" border="0" width="100%">
+									<tr height="14">
+										<td width="14"><img src="/html/admin/images/bx_tip_top_left.gif"></td>
+										<td background="/html/admin/images/bx_tip_top_bg.gif"></td>
+										<td width="14"><img src="/html/admin/images/bx_tip_top_right.gif"></td>
+									</tr>				
+									<tr>
+										<td width="14" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+										<td class="tip_text">
+											{ admin_desc}
+											
+										</td>
+										<td width="14" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+									</tr>
+									<tr height="14">
+										<td width="14"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+										<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+										<td width="14"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>			
+<br>
+		<!--{/}-->
+
+
+
+			<div>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:10px">
+				<tr><td height="10"></td></tr>
+				<tr>
+					<!--{? num_enable_remove}-->
+					<td align="left">
+					<span class="btn_pack medium icon"><span class="refresh"></span><a href="#"  onclick="reset_menu()">메뉴 초기화</a></span>
+					<!--{? sub_cnt < 1}-->
+					<span class="btn_pack medium icon"><span class="delete"></span><a href="#"  onclick="del_menu()">메뉴 삭제</a></span>
+					<!--{/}-->
+					</td>
+					<!--{/}-->
+					<td align="right">
+					<span class="btn_pack medium icon"><span class="add"></span><input type="submit" name="" value="저장하기" class=""></span>
+
+				</tr>
+			</table>
+			</div>
+	</form>
+
+
+<script language="Javascript" type="text/javascript">
+
+resizeFrame();
+
+
+</script>
+</body>

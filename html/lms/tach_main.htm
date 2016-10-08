@@ -1,0 +1,48 @@
+<style type="text/css" title="">
+.metoBody{width:100%;float:left;}
+.metoBody .tdItem {width:168px;height:260px;float:left;;margin:10px 10px 12px 0}
+.metoBody .tdItem .itemFrm{border:3px solid #cdcdcd;padding:10px;}
+.metoBody .tdItem .itemFrm .imgFrm{height:171px;overflow:hidden;text-align:center}
+
+.metoBody .tdItem .itemFrm .title{text-align:center;margin:12px 0 5px 0;}
+.metoBody .tdItem .bottomImg{margin-top:5px;}
+
+
+</style>
+
+<style type="text/css" title="">
+ .tip_title {font-weight:bold; color:#e86200; padding-left:3px;}
+ .tip_text {background-color:#f6f6f6; font-size:11px; color:#545963; line-height:18px; padding-top:2px;}
+ .help_text {background-color:#f6f6f6; font-size:12px; color:#545963; line-height:18px; padding-top:2px;}
+</style>
+
+<p class="buTitle02" style="margin-bottom:20px">Pafolschool ∏‡≈‰</p>
+
+{#TAB}
+
+<div class="metoBody">
+	{@ LIST}
+	<div class="tdItem">
+		<div class="itemFrm">
+			<div class="title" style="color:#b9b9b9">
+				PafolSchool ∏‡≈‰
+			</div>
+			<div class="imgFrm" style="margin-bottom:0px;height:150px">
+				<a href="javascript:winOpen('/lms.tach_view?serial={.num_serial}','720','600','yes','meto')">
+					<img src="/hosts/<?=HOST?>/tach/{.str_file}_145"  onerror="this.src='/image/noimage.gif'" style="border:2px solid #d8d8d8;"  />
+				</a>
+			</div>
+			<div class="title" style="border-bottom:1px solid #cdcdcd;padding-bottom:10px;font-size:14px;color:#313131">
+				{.str_name}
+			</div>
+			
+		</div>
+		
+	</div>
+	{/}
+</div>
+
+
+<div style="margin-top:20px;margin-bottom:20px;text-align:center;width:100%;float:left">
+	<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}"/>
+</div>

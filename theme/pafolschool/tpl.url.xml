@@ -1,0 +1,13 @@
+<menu>
+	<!--{@ MENU}-->
+	<depth1 name="{.str_title}" names="{.str_title2}" link="{.str_link}" target="{.str_target}">
+		<!--{@ MENUITEM}-->
+		<depth2 name="{..str_title}"  names="{..str_title2}" link="{..str_link}" target="{..str_target}">
+			<!--{@ ..MENUITEM_SUB}-->
+			<depth3 name="{...str_title}"  names="{...str_title2}" link="{...str_link}" target="{...str_target}"/>
+			<!--{/}-->
+		</depth2 >
+		<!--{/}-->
+	</depth1>
+	<!--{/}-->
+</menu>

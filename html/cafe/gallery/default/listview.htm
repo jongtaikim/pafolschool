@@ -1,0 +1,130 @@
+<div id="sub_content_area">
+<link rel="STYLESHEET" type="text/css" href="/html/board/default/style.css">
+<table width="584" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+									<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tr> 
+											<td><table width="100%" border="0" cellpadding="0" cellspacing="0" background="/image/theme/A/A/sub_title_bg2.gif">
+													<tr> 
+														<td width="16%" background="/image/theme/A/A/sub_title_bg2.gif"><img src="/image/theme/A/A/sub_title_01.gif" width="104" height="67"></td>
+														<td width="81%"><table width="100%" height="67" border="0" cellpadding="0" cellspacing="0">
+																<tr> 
+																	<td valign="middle" background="/image/theme/A/A/sub_title_bg.gif" ><span style="background-color: #FFFFFF; padding-top: 22px; padding-right: 20px; height: 59px; font-weight: bold">{{board_title}} </span></td>
+																</tr>
+															</table></td>
+														<td width="3%" align="right" background="/image/theme/A/A/sub_title_bg.gif"><img src="/image/theme/A/A/sub_title_02.gif" width="17" height="67"></td>
+													</tr>
+												</table></td>
+									</table>
+		</td>
+	</tr>
+	<!-- 라이센스 추가 21008.06.24 BY NCS -->
+	<tr>
+		<td height="10">&nbsp;</td>
+	<tr>
+	<tr>
+		<td>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+				{{LICENCE}}
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<!-- 라이센스 추가 21008.06.24 BY NCS -->
+	<tr height="20"><td></td></tr>
+	<tr>
+		<td><table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="52%" height="20"><img src="/image/board/default/icon01.gif" width="10" height="11" align="absmiddle"> <span class="f-CG8pt">총 {{total}} 개 게시물이 있습니다 </span></td>
+					<td width="48%" align="right"><img src="/image/board/default/icon15.gif" width="13" height="14" align="absmiddle"><!-- [ 게시판 관리자 : <font color="#006699"><b> </b></font>]--></td>
+				</tr>
+				<tr>
+					<td height="26" colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td height="26"><table width="100%" height="26" border="0" cellpadding="0" cellspacing="0" background="/image/board/default/b_top_bg.gif">
+										<tr align="center">
+											<td width="7%"><font color="#FFFFFF"><b>번호</b></font></td>
+											<td width="60%"><font color="#FFFFFF"><b>제목</b></font></td>
+											<td width="14%"><font color="#FFFFFF"><b>글쓴이</b></font></td>
+											<td width="12%"><font color="#FFFFFF"><b>날짜</b></font></td>
+											<td width="7%"><font color="#FFFFFF"><b>조회</b></font></td>
+										</tr>
+								</table></td>
+							</tr>
+							<tr>
+								<td><table width="100%" border="0" cellspacing="0" cellpadding="3">
+										<!-- DYNAMIC AREA 'NOTICE' -->
+
+										<!-- DYNAMIC AREA 'NOTICE' -->
+										<!-- DYNAMIC AREA 'LIST' -->
+										<tr bgcolor="{{bgcolor}}">
+											<td width="7%" height="25" align="center">{{num}}</td>
+											<td width="60%">{{indent}}{{icon}}<a href="{{readlink}}">{{title}}</a> <font color="#990000">{{cmt}}</font></td>
+											<td width="14%" align="center">{{name}}</td>
+											<td width="12%" align="center" class="f-d8pt">{{date}}</td>
+											<td width="7%" align="center">{{hit}}</td>
+										</tr>
+										<tr>
+											<td height="1" colspan="5" background="/image/board/default/dotline01.gif"></td>
+										</tr>
+										<!-- DYNAMIC AREA 'LIST' -->
+										<tr>
+											<td height="1" colspan="5"  bgcolor="C6C6C6"></td>
+										</tr>
+								</table></td>
+							</tr>
+							<tr>
+								<td height="35" align="center">
+									<script src="/js/lib.pagingcafe.js"></script>
+									<script>
+										PG = new Paging({{total}});
+										PG.config.itemPerPage = {{listnum}};
+										document.write(PG);
+									</script></td>
+							</tr>
+							<tr>
+								<td height="2" bgcolor="F8F8F8"></td>
+							</tr>
+							<tr>
+								<td height="1" bgcolor="A4A4A4"></td>
+							</tr>
+							<tr>
+								<td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td width="43%">
+											<!-- IF 'WRITABLE' -->
+												<a href="{{writelink}}"><img src="/image/button/bt01/01.gif" width="51" height="19" border="0"></a>   
+											<!-- ENDIF 'WRITABLE' -->
+											</td>
+											<td width="57%"><table width="320" border="0" cellspacing="0" cellpadding="0">
+											<form method="get" name="searchform">
+											<input type="hidden" name="act" value="{{act}}">
+											<input type="hidden" name="cafe_id" value="{{cafe_id}}">
+											<input type="hidden" name="mcode" value="{{mcode}}">
+													<tr>
+														<td width="92" align="right" ><img src="/image/board/default/icon04.gif" width="47" height="13">　</td>
+														<td width="67" align="center"><select name="key" id="key">
+															<option value="str_name">글쓴이</option>
+															<option value="str_title">제목</option>
+														</select></td>
+														<td width="120" align="center"><input name="search" type="text" class="login" id="search" style="width:90%;" value="{{search}}"></td>
+														<td width="41" align="right"><img src="/image/button/bt01/04.gif" width="40" height="19"></td>
+													</tr>
+											</form>													
+											</table></td>
+										</tr>
+								</table></td>
+							</tr>
+					</table></td>
+				</tr>
+				<tr>
+					<td height="30" colspan="2">&nbsp;</td>
+				</tr>
+		</table></td>
+	</tr>
+</table>
+</div>

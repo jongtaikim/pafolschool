@@ -1,0 +1,88 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>new document</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<script type="text/javascript" src="http://map.naver.com/js/naverMap.naver?key=95e3a1f6858062683178eba9701f9901"></script> 
+</head>
+<body style="margin:0px;"> 
+
+<div id="naver_map" class="naver_map"><img src="img/map.gif" alt="오시는길" width="620" height="372" /></div>
+
+<script type="text/javascript"> 
+
+	var content = '<div style="width:220px;border:dotted 1px #000000; background:#ffffff;padding:5px;">';
+	content = content + '<div style="font-size:10pt;font-family:돋움;font-weight:bold;float:left;"></div>';
+	content = content + '<div style="font-size:8pt;font-family:돋움;"></div>';
+	content = content + '<div style="font-size:8pt;font-family:돋움;"></div>';
+	content = content + '<div style="font-size:8pt;font-family:돋움;">파폴스쿨 사업부</div>';
+	var icon = new NIcon('http://static.naver.com/maps2/icons/pin_spot2.png',new NSize(28,37));
+	var map = document.getElementById("naver_map");
+	var width = 730; 
+	var height = 450;
+	var x = '308230';
+	var y = '542356';
+ 
+	/*지도 개체 생성 */
+	var opts = {width:width, height:height, mapMode:0}; // mapMode 0은 일반지도, 1은 겹침지도, 2는 위성지도
+	var mapObj = new NMap(map,opts); 
+ 
+	/* 지도 좌표, 축적 수 준 초기화 */
+	mapObj.setCenterAndZoom(new NPoint(x,y),3); 
+	//mapObj.setBound(0, 99999, 0, 99999);
+ 
+	mapObj.enableWheelZoom(); // 마우스 zoom 
+	mapObj.setMinLevel(0);
+	mapObj.setMaxLevel(5);
+ 
+	// 지도 모드 변경 버튼 생성  
+	var mapBtns = new NMapBtns();
+	mapBtns.setAlign("right");
+	mapBtns.setValign("top");
+	mapObj.addControl(mapBtns);
+ 
+	// zoom 객체 생성
+	var zoom = new NZoomControl();
+	zoom.setAlign("right");
+	zoom.setValign("top");
+	mapObj.addControl(zoom);  
+ 
+ 	// 정보창 객체 생성
+	var infowin = new NInfoWindow();
+	mapObj.addOverlay(infowin); //NMark, NInfowindow, NPolyline
+ 
+ 	// 정보창 객체 생성 
+	initMarker(x,y);
+ 
+ 
+	// 검색 결과를 마커를 사용하여 지도에 표시합니다.
+	function initMarker(x, y){ 
+		mapObj.clearOverlays("SchoolMap"); 
+ 
+		// 좌표표시
+		var pos = new NPoint(x,y);
+ 
+		// 마커 생성 
+		var marker = new NMark(pos, icon);
+ 
+		// marker 객체에 마우스가 오버했을 때, 실행할 함수를 등록합니다.
+		NEvent.addListener(marker, "mouseover",
+			function(pos){
+				infowin.set(pos, content);
+				infowin.showWindow();
+			} );
+		// mouseout시에 마크제거
+		NEvent.addListener(marker, "mouseout", function(){infowin.hideWindow();});
+ 
+		// 지도에 마커를 등록합니다. 
+		mapObj.addOverlay(marker,"SchoolMap");
+		marker.show(); 
+	} 
+ 
+		
+ //-->
+</script> 
+<div class="" id="info"></div>
+</body>
+</html>  

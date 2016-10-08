@@ -1,0 +1,49 @@
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<form name="searchForm" method="post" onsubmit="return validate(this);" style="margin:0px;">
+<table class="list01" width="100%">
+<thead>
+<tr>
+	<th>찾으실 학교명을 입력하세요</th>
+</tr>
+<tr>
+	<td align="center">
+		<input type="text" name="search" hname="학교명" errmsg="검색하실 학교명을 입력하여 주십시오." value="{search}" required>
+		<input type="submit" class="button" value="검색"></td>
+</tr>
+</thead>
+</table>
+
+</form>
+<script type="text/javascript">
+resizeTo(400,400);
+function $$(s) {
+	return opener.document.forms['{form}'].elements[s];
+}
+function insert_school(school,serial) {
+	{? el_school}$$('{el_school}').value = school;{/}
+	{? el_serial}$$('{el_serial}').value = serial;{/}
+	{? el_addr}$$('{el_addr}').focus();{/}
+	self.close();
+}
+window.focus();
+document.forms['searchForm'].elements['search'].focus();
+</script>
+<table class="list01" width="100%">
+
+</table>
+<div style="width: 100%; height: 290px; overflow-y: auto">
+<table class="list01" width="99%" style="table-layout:fixed;">
+<tr>
+	<th>학교명</th>
+	<th>주소</th>
+</tr>
+{@ LIST}
+<tr>
+	<td nowrap><a href="#none" onClick="insert_school('{.str_name} ','{.num_serial}');">{.str_name}</a></td>
+	<td nowrap>{.str_addr1}</td>
+</tr>
+{:}
+	{? search}<tr height="100"><td colspan="2" align="center">검색 결과가 없습니다.</td></tr>{/}
+{/}
+</table>
+</div>

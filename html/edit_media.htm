@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=KSC5601">
+<title>동영상파일 첨부하기</title>
+<script language="Javascript">
+<!--
+var W3CDOM = (document.createElement && document.getElementsByTagName);
+function initAttachfile()
+{
+	if (!W3CDOM) return;
+	var fakeFileUpload = document.createElement('div');
+	fakeFileUpload.className = 'fakefile';
+	var inputText = document.createElement('input');
+	inputText.type="text";
+	inputText.className="input_text";
+	inputText.size=30;
+	inputText.width=190;
+	fakeFileUpload.appendChild(inputText);
+	var image = document.createElement('img');
+	image.src='/image/btn_file_find.gif';
+	image.width=63;
+	image.height=21;
+	fakeFileUpload.appendChild(image);
+	var x = document.getElementsByTagName('input');
+	for (var i=0;i<x.length;i++) {
+		if (x[i].type != 'file') continue;
+		if (x[i].getAttribute('noscript')) continue;
+		if (x[i].parentNode.className != 'inputarea') continue;
+		x[i].className = 'file hidden';
+		var clone = fakeFileUpload.cloneNode(true);
+		x[i].parentNode.appendChild(clone);
+		x[i].relatedElement = clone.getElementsByTagName('input')[0];
+		if (x[i].value)
+			x[i].onchange();
+		x[i].onchange = x[i].onmouseout = function () {
+			this.relatedElement.value = this.value;
+		}
+	}
+}
+ function _onSubmit(elClicked){
+	if($$('attachfile').value){
+		$$('loding').style.display='';
+		$$('frmAttach').submit();
+	
+	}else if( !$$('attachfile').value){
+	alert('전송할 내용이 없습니다.');
+	return false;
+	}
+	
+
+
+
+}
+
+-->
+</script>
+
+<style type="text/css"> 
+<!--
+/* Default Type Selector */
+*{ margin:0; padding:0; font-size:12px; font-family:돋움, Dotum, 굴림, Gulim, AppleGothic, Sans-serif;}
+a{ color:#004790;}
+img,
+fieldset{ border:none;}
+legend{ display:none;}
+em{ font-style:normal; color:#258102;}
+strong{ color:#258102;}
+li{ list-style:none;}
+h1{ font:bold 13px 굴림, Gulim, 돋움, Dotum, AppleGothic, Sans-serif; color:#ffffff; padding:11px 0 0 24px; background:url(/image/bu_h1.gif) no-repeat 15px 13px;}
+/* Layout */
+#wrap{ position:relative; overflow:hidden;}
+#header{ background:url(/image/bg_h_green.gif) no-repeat; height:35px;}
+#content{ width:360px; padding:20px 0 1px; margin:0 0 0 20px; auto; border-bottom:1px solid #e4e4e4;}
+#footer{ border-top:3px solid #f9f9f9; text-align:center; padding:7px 0 15px 0; margin:0 20px;}
+#footer * { vertical-align:top;}
+#footer input,
+#footer a{ margin:0 1px 0 0;}
+/* Solo Style */
+.w400{ width:400px;}
+.w330,
+.w330_2{ width:330px; margin:0 0 0 15px; auto; overflow:hidden;}
+/* Common */
+.bx1{ border:1px solid #e3e3e3; margin:0 0 19px;}
+.bx1_shadow{ border:1px solid #f1f1f1; background:#f8f8f8; margin:0;  padding:14px 0 12px 50px;}
+.bx1 *{ color:#282828; vertical-align:middle;}
+.bx1 a{ margin:0 0 0 1px;}
+.input_text{border:1px solid #9a9a9a; border-right-color:#d8d8d8; border-bottom-color:#d8d8d8; padding:2px 3px 2px 3px; color:#676767;}
+.inputarea{position:relative;}
+.file {position:relative; text-align:right; -moz-opacity:0; -ms-filter:"alpha(opacity:0)"; filter:alpha(opacity:0); opacity:0; z-index:2; width:270px; height:22px;}
+.fakefile {position:absolute !important; top:0; left:0; padding:0; _padding:0 2px 2px; z-index:1; text-align:left; overflow:hidden;}
+.fakefile img{margin-left:4px;}
+/* Content */
+.desc1{ color:#666666; font-size:11px; letter-spacing:-1px; margin:4px 0 0;}
+.desc1 em{ font-size:11px; color:#333333;}
+.w330 dt{ float:left; width:78px; height:73px;}
+.w330 dd{ float:left; width:237px; background:url(/image/bu_1x139_ef.gif) 0 0 no-repeat; margin-top:13px; padding:1px 0 25px 13px; color:#888888; font-size:11px; letter-spacing:-1px; line-height:1.4em;}
+.w330 dd .st{ font-weight:bold; font-size:12px; color:#DA272F; padding-bottom:3px; }
+.w330 dd .btn{ vertical-align:top; margin:3px 0 16px;}
+.w330 dd .btn a{ background:url(/image/bu_arrow_46.gif) right 2px no-repeat; padding-right:8px; font-size:11px; color:#464646; }
+.line1{ background:url(/image/bu_1x12_dot_c2.gif) bottom left repeat-x; margin-bottom:14px;}
+.lineText{border:1px solid #D8D8D8;width:250px}
+-->
+</style>
+</head>
+ 
+ 
+<body onload="initAttachfile();">
+<div id="wrap" class="w400">
+	<form name="frmAttach" id="frmAttach" method="post" enctype="multipart/form-data">
+		<fieldset>
+			<legend>동영상 올리기</legend>
+			
+			<div id="content">
+				<div class="bx1">
+					<div class="bx1_shadow">
+						<div class="inputarea">
+							<input type="file" class="file" name="attachfile" id="attachfile" />
+							<p class="desc1"><em>20M 미만</em> 파일만 올리실 수 있습니다.</p>
+						</div> 
+					</div>
+				</div>
+				<dl class="w330">
+					<dt><img src="/image/ico_copyright_img.gif" width="66" height="73" alt=""></dt>
+					<dd><p class="st">저작권을 보호합시다</p>
+					저작권 침해로 인해 발생할 수 있는<br>이용자 피해 방지 및 권리자 보호를 위해<br>저작권 침해가 우려되는 파일에 대한 사용을<br>일부 제한하고 있음을 알려드립니다. <br><br><br>
+					
+					
+
+					동영상은 인코딩을 어떻게 하느냐에 따라 용량이 천차만별입니다.<br>
+					20MB 이상되는 동영상을 인코딩가이드를 참고 하여 인코딩 후 업로드해주시기 바랍니다.
+					<br>
+					
+
+					</dd>
+				</dl>
+			</div>
+			<div id="footer">
+				<img src="/image/btn_confirm.gif" id="sbtn" onclick="_onSubmit(this)"> <a href="javascript:parent.closewPop(2);"><img src="/image/btn_cancel.gif" alt="취소" width="40" height="23"></a>
+			</div>
+		</fieldset>
+	</form>
+</div>
+<div id = "loding" style = "left:65px;top:90px;position:absolute;display:none;z-index:999; ;background-color:#ffffff;padding:10px;;border:3px solid #4C9F11" >
+<center>파일을 처리하고 있습니다....</center>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,129 @@
+@charset "euc-kr";
+
+/* ÀÌ¿ô´åÄÄ(e-wut.com) 
+À¥ ÆÛºí¸®½Ì 
+ÀÛ¾÷ÀÚ:±èµ¿¿ì, ±èÀºÁ¤ */
+
+/*·¹ÀÌ¾Æ¿ô*/
+body {
+	background:url(../images/joinInfoBg.gif) repeat-x left top;
+	}
+#wrapper {
+	width:760px;
+	margin:0 auto;
+	}
+
+ h1 {
+	float:left;
+	position:static;
+	visibility:visible;
+	line-height:130%;
+	font-size:14px;
+	width:auto;
+	height:20px;
+	padding-top:3px;
+	padding-left:25px;
+	color:#0178aa;
+	background:url(../images/titleIcon2.gif) no-repeat left top;
+	
+	}
+.gnb {
+	height:24px;
+	padding-top:31px;
+	}
+.gnb ul {
+		overflow:hidden;
+		float:right;
+		}
+.gnb ul li {
+			float:left;
+			margin-right:-1px;
+			padding:0 10px;
+			font-size:0.92em;
+			background:url(../images/bar.gif) no-repeat right 1px;
+			}
+#joinIntro .topArea {
+	height:156px;
+	padding-top:58px;
+	background:url(../images/infoTopAreaBg.gif) no-repeat left top;
+	}
+
+	#joinIntro .topArea .title {
+		display:block;
+		margin-left:57px;
+		margin-bottom:10px;
+		font-weight:bold;
+		font-size:14px;
+		}
+	#joinIntro .topArea img {
+		margin-left:57px;
+		}
+#joinIntro .contentArea {
+	margin-top:-29px;
+	padding-left:14px;
+	}
+#joinIntro .contentArea h2 {
+	visibility:visible;
+	line-height:130%;
+	font-size:14px;
+	width:auto;
+	height:29px;
+	padding-left:20px;
+	position:static;
+	background:url(../images/titleIcon.gif) no-repeat left top;
+	}
+#joinIntro .typeSelect .type {
+	height:122px;
+	padding-top:19px;
+	padding-left:11px;
+	}
+#joinIntro .typeSelect .type li {
+	float:left;
+	margin-right:9px;
+	}
+#joinIntro .comment {
+	clear:both;
+	margin-left:5px;
+	margin-bottom:41px;
+	margin-top:26px;
+	line-height:180%;
+	}
+#joinIntro .comment li {
+	padding-left:10px;
+	background:url(../images/joinInfoIcon.gif) no-repeat left 6px;
+	}
+#joinIntro  .helpInfo {
+	overflow:hidden;
+	float:left;
+	width:224px;
+	margin-right:25px;
+	padding-right:30px;
+	background:url(../images/helpInfoBg.gif) no-repeat right top;
+	}
+	#joinIntro .campaign li {
+		float:left;
+		margin-right:11px;
+		}
+
+#joinIntro .footerArea {
+	float:left;
+	width:100%;
+	padding-top:25px;
+	margin-top:30px;
+	background:url(../images/introFooterAreaBg.gif) no-repeat left top;
+	}
+	#joinIntro .footerArea .footerMenu {
+		display:inline;
+	overflow:hidden;
+		float:left;
+		width:500px;
+		margin-left:250px;
+		}
+	#joinIntro .footerArea .footerMenu li{
+		display:inline;
+		float:left;
+		margin-left:-1px;
+		padding:0 8px;
+		font-size:0.92em;
+		background:url(../images/bar.gif) no-repeat left 1px;
+		}

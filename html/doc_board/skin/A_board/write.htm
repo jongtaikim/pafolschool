@@ -1,0 +1,123 @@
+   <script type="text/javascript" src="/js/ieemu.js"></script>
+<script type="text/javascript">
+if (moz) {
+   emulateAllModel();
+}
+</script>
+ 
+<form name="writeForm" method="post" enctype="multipart/form-data" onsubmit="return prepare(this);" >
+<input type="hidden" name="id" value="{id}">
+<input type="hidden" name="str_thumb" value="{str_thumb}">
+<input type="hidden" name="origin_num_file" value="{num_file}">
+ 
+       
+  <style>
+	.f11 {font-size:11px; color:656565; font-family:돋움; padding-top:3}
+	.f1 {font-size:11px; color:656565	; font-family:돋움; padding-top:3}
+</style>  
+  
+<Table border=0 width=100%   cellspacing=0 cellpadding=0  style=margin-bottom:1 >
+                <tr>
+                    <td  height="30" bgcolor="#ffffff" class=color3>
+											<b>|  <b>
+								{? _act=='doc_board.write'}문서작성
+				 			
+								{/} 	<!--{? env.listtype == 'G'}-->								
+	
+	{/}
+  
+ 
+								{? _act=='doc_board.modify'}수정 {? _SESSION.USERID != str_user }<font color=red> ※ 본인이 작성한 글이 아닙니다. </font> {/}{/} 
+								{? _act=='doc_board.reply'}답글{/} 
+								</b>            
+                    </td> 
+                </tr>           
+
+						</table>
+ 
+  
+			<Table border=0 width=100%   cellspacing=1 cellpadding=0 bgColor=#dcdcdc>
+				  		           
+			 	 		        
+			 				
+				      
+ 
+	<tr>         
+							 <input type="hidden" name="str_name" value = "운영자">
+								<input type="hidden" name="str_pass" value = "0000">
+
+									<td height=27 width=10% align=center bgColor=#f3f3f3 class="f1">제목</td>
+									<td bgcolor=ffffff colspan = 3>
+
+					 							<input name="str_title" type="text" class="login" id="str_title2" style="width:80%;background-color:#FFFFFF;border:1 solid #DCDCDC;font-size:12px;font-family:돋움,Dotum;" value="{str_title}" hname="문서제목" required  maxbyte="100">
+									
+ 
+ 
+
+									</td>
+
+
+								</tr>
+  
+<tr>     
+ 
+									
+									<td bgcolor=ffffff colspan = 4 height = 400 valign = top >
+									
+<wa:upload part="script" sect="menu" code="{mcode}"></wa:upload>
+<wa:upload part="editor2" sect="menu" code="{mcode}" name="content" width="100%" height="600">{content}</wa:upload>
+			 						
+									   
+						 			</td>
+     
+		  		  					  
+						 		</tr> 
+ 
+				    
+	  
+				</table>
+
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td height="10"></td>
+				</tr>
+				<tr>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								
+								<td><input type="image" src="./image/btn_submit.gif" id="submit_btn"></td>
+								<td width="5"></td>
+								<td><a href="#"><img src="./image/btn_cancel.gif" onclick="history.go(-1);"></a></td>
+								
+							
+							</tr>
+						</table>
+					</td>
+					<td align="right"><a href="{listlink}"><img src="./image/btn_list.gif"></a></td>
+				</tr>
+			</table>
+				
+				
+
+			    
+</form>
+   
+<script language="javaScript">
+<!--
+	if (username = getCookie('NAME')) {
+		var el = document.forms['writeForm'].elements['str_name'];
+		if (!el.value || el.value == username) {
+			el.value = username;
+			el.onkeydown = el.onkeyup = el.onselectstart = el.oncontextmenu =  function() { return false; }
+			el.readOnly = true;
+		} 
+	}
+	if (FormCheckerObject == null) {
+		FormCheckerObject = new FormChecker;
+	}
+//-->  
+</script>
+
+ 
+   

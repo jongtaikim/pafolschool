@@ -1,0 +1,142 @@
+<form class="boardWriteFrom" name="writeForm" method="post" enctype="multipart/form-data" onsubmit="return validate(this);">
+<input type="hidden" name="id" value="{id}" required="false"/>
+<input type="hidden" name="str_thumb" value="{str_thumb}"  required="false"/>
+<input type="hidden" name="origin_num_file" value="{num_file}" required="false"/>
+<fieldset>  
+<legend>legend</legend>
+<div class="form_table"> 
+	<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+		<tbody>
+			<tr>
+				<th scope="row" width="12%">제목</th>
+				<td colspan="3">
+					<div class="item">
+					{? chr_hak ==1}
+					<select name="str_category"  id="str_category" style = "font-size:11px;" >
+					<option value="일반">-카테고리-</option>
+					<option value="일반">일반</option>
+					<!--{@ cate_LIST}-->
+					<option value="{.str_category}" {? .str_category == str_category} selected{/}>{.str_category}</option>
+					<!--{/}-->
+					</select>
+					{/}
+					<input class="i_text" title="제목" type="text" name="str_title" hname="제목" maxbyte="100" value="{str_title}" required> 
+
+					<input type="checkbox" name="num_input_pass"  id="num_input_pass" value = "1" {? num_input_pass}checked{/} style = "border:0px">비밀글</label> 
+					</div>
+				</td> 
+			</tr> 
+			{? _SESSION.ADMIN}
+			<tr>
+				<th scope="row" width="12%">관리기능</th>
+				<td colspan="3">
+					<div class="item">
+					<input type="radio" name="num_notice" value="0"{? !num_notice} checked{/} style = "border:0px"  required="false">일반
+								
+					<input type="radio" name="num_notice" value="2"{? num_notice == 2} checked{/} style = "border:0px"  required="false">전체공지
+					
+					<input type="radio" name="num_notice" value="1"{? num_notice == 1} checked{/} style = "border:0px"  required="false"> 
+					공지
+					&nbsp;|&nbsp;
+					날짜<wa:datepicker name="dt_date" value="{dt_date}"/>  
+					&nbsp;|&nbsp;
+					조회수<input type="text" name="num_hit" value="{num_hit}" style = "width:40px" class = "button"  required="false">
+					</div>
+				</td>
+			</tr>
+			{/}
+			{? !_SESSION.USERID }
+			<tr>
+				<th scope="row" width="12%">이름</th>
+				<td colspan="3">
+					<div class="item">
+					<input  class="inputtxt" type="text" title="이름"  name="str_name" id="str_name"  value="{_SESSION.NAME}" readonly="true" hname="작성자" required maxbyte="20" title="이름" />
+					</div>
+				</td>
+			</tr>
+		
+
+			<tr>
+				<th scope="row" width="12%">비밀번호</th>
+				<td colspan="3">
+					<div class="item">
+					<input name="str_pass" type="password" class="inputtxt" id="str_pass"  value="{? _act!='board.modify'}{? ! pass}{PASSWD}{:}{pass}{/}{/}" required hname="비밀번호" maxbyte="20" title="비밀번호"/>
+					</div>
+				</td>
+			</tr>  
+			<tr>
+				<th scope="row" width="12%">email</th>
+				<td colspan="3">
+					<div class="item">
+					<input name="str_email" type="text" class="inputtxt" id="str_email"  value="{? !email}{EMAIL}{:}{email}{/}" option="email" hname="E-mail" maxbyte="30" title="이메일"/>
+					</div>
+				</td>
+			</tr> 
+			{:}
+				<input type="hidden" name="str_name" value = "{? !name}{NAME}{:}{name}{/}"  required="false"/>
+				<input type="hidden" name="str_pass" value = "{? ! pass}{PASSWD}{:}{pass}{/}"  required="false"/>
+				<input type="hidden" name="str_email" value = "{? !email}{EMAIL}{:}{email}{/}"  required="false"/>
+				<input type="hidden" name="str_nick" value="{_SESSION.NICKNAME}"  required="false"/>
+			{/}
+			<tr>
+				<td colspan="4">
+					<wa:upload part="editor_SE3" sect="menu" code="{mcode}" name="content" width="100%" height="350px">{content}</wa:upload>
+				</td> 
+			</tr> 
+			{? chr_upload == 'Y'} 
+			<tr>
+				<th scope="row" width="12%">파일첨부</th>
+				<td colspan="3">
+					<div class="item">
+						{? maxfilesize > 1 }
+						<wa:upload part="component" sect="menu" code="{mcode}" allowtype="{str_file_type}" maxfilesize="{maxfilesize}"></wa:upload>
+						{?_SESSION.ADMIN}디스크용량:<b>{=byte_convert(num_disk)}중 {=byte_convert(use_size)} 남음<br></b>{/}
+						{:}
+							업로드 가능한 디스크공간을 초과했습니다. 관리자에게 문의해주세요.
+						{/}
+						<div>
+							첨부파일은 {=byte_convert(maxfilesize)} 이상 올리실 수 없습니다.
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row" width="12%">첨부파일</th>
+				<td colspan="3">
+					<div class="item">
+						<wa:upload part="filelist" sect="menu" code="{mcode}" allowtype="{str_file_type}" maxfilesize="{maxfilesize}"></wa:upload>
+					</div>
+				</td>
+			</tr> 
+			 
+			{/}
+
+			<tr>
+				<th scope="row" width="12%">글설정</th>
+				<td colspan="3">
+					<div class="item">
+						&nbsp;&nbsp;<b>복사</b> <input type="radio" name="str_scrab" id="str_scrab1" value="1"  {? str_scrab_use =="1"}checked{/}  required="false"/><label for="str_scrab1">허용</label> 
+						<input type="radio" name="str_scrab" id="str_scrab2" value="2" {? str_scrab_use =="2"}checked{/}  required="false"/><label for="str_scrab2">허용안함</label>
+						&nbsp;|&nbsp;
+						<b>RSS공개</b>
+						<input type="radio" name="str_rss" id="str_rss1" value="Y" {? str_rss_use =="Y"}checked{/}  required="false"/><label for="str_rss1">허용</label>
+						<input type="radio" name="str_rss" id="str_rss2" value="N" {? str_rss_use =="N"}checked{/}  required="false"/><label for="str_rss2">허용안함 </label>
+						&nbsp;|&nbsp;
+						<input type="checkbox" name="str_setup" value="Y"  required="false"> 현재설정을 계속유지합니다. 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align:center">
+
+					<wa:btn size="3" type="button" js="_onSubmit(this);" event="onclick" id="btn_submit" value="등록"/>
+					<wa:btn size="3" type="button" js="history.go(-1)" event="onclick" id="btn_submit" value="취소"/>
+					
+				</td> 
+			</tr>
+		</tbody>
+	</table>	
+</fieldset>
+
+
+ 

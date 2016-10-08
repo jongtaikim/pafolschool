@@ -1,0 +1,659 @@
+<script type="text/javascript" src="/js/scriptaculous_bak.js"></script>
+<script type="text/javascript" src="/js/Resize_attach.js"></script> 
+<style type="text/css">
+ul {
+margin:10px;
+}
+
+ul.noimage li {
+list-style-type:none;
+font-size:11px
+}
+
+ul.noimage2 li {
+list-style-type:none;
+font-size:11px;
+padding:3px;
+}
+
+
+
+.dtree {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666666;
+	white-space: nowrap;
+	padding: 5px 0 0 10px;
+}
+.dtree img {
+	border: 0px;
+	vertical-align: middle;
+}
+.dtree a {
+	color: #333333;
+	text-decoration: none;
+}
+.dtree a.node, .dtree a.nodeSel {
+	white-space: nowrap;
+	padding: 1px 2px 1px 2px;
+}
+.dtree a.node:hover, .dtree a.nodeSel:hover {
+	color: #333333;
+	text-decoration: underline;
+}
+.dtree a.nodeSel {
+	background-color: #EBF3F3;
+}
+.dtree .clip {
+	overflow-y:hidden;
+	overflow-x:scroll;
+}
+</style>
+<script type="text/javascript" src="/js/dtree.js"></script>
+			<script language="Javascript">
+
+
+function tView(){
+
+	$('ttBody').innerHTML = '<iframe src ="http://<?=_MOV_URL?>/uadmin/index_trapic.php?ss_cp_code={ucc}" frameborder="0" width="0" height="0" scrolling="no" id="t_data"></iframe>'
+
+}
+</script>
+
+
+<table align="center"  border=0 cellspacing=0 cellpadding=0 align = center>
+ <tr>
+  <td><img src="./img/left_top.gif"></td>
+  <td width="700" background="./img/admin_top_bg.gif" valign = top style = "padding-top:5px">
+
+   <style type="text/css" title="">
+   .tipBox{filter:progid:DXImageTransform.Microsoft.Shadow(color=#DBDBDB,direction=135,strength=2);;padding:5px;cursor: move}
+   </style>
+   
+   <!-- 메인베너 -->
+   <div style="width:730;height:185;background-image:url(/admin_title.gif);position:relative" id="main_title">
+  
+  
+   </div>
+
+     <div style="width:730;height:185;background-image:url(/admin_title.gif);display:none" id="main_title2">FusionCharts.</div>
+   <!-- 메인베너 -->
+	
+	<script>
+
+	function BoardTip(id,title,text,w,h,x,y){
+		var str=	'<div style = "width:'+w+';height:'+h+';position:absolute;" id="'+id+'" class="tipBox"><div style = "width:100%;; padding:5px">				<table align="center" width=100% border=0 cellspacing=0 cellpadding=0> <tr><td width=10px><img src="/html/admin2/images/menu_icon.gif" align=absmiddle></td><td ><b>'+title+'</b></td></tr> </table></div>	<div style = "width:100%;height:; padding:5px" style="font-size:11px">'+text+'</div></div>';
+		$('main_title').innerHTML = $('main_title').innerHTML+str;
+		$(id).style.left = x;
+		$(id).style.top = y;
+		roundDiv(id);
+	
+		var element = $(id);
+		element._opacity = Element.getOpacity(element); 
+		new Effect.Opacity(element, {duration:-1, from:element._opacity, to:0.9});	
+	}
+
+	BoardTip('tip1','관리자 리뉴얼안내','현재 보고계신 곳은 울트라보드 입니다.<br>특별한 공지나 전달사항을 전단하는 새로운 수단입니다.  ',240,80,10,5);
+
+	BoardTip('tip3','커뮤니티 기능 개발중.. ','이젠 울트라웹에서 카페나 미니홈피를 운영하실 수 있습니다. 현재 개발중 베타서비스를 실시할 예정입니다. ',210,20,490,15);
+	BoardTip('tip4','관리자 메뉴변경','관리자 메뉴가 변경되었습니다.',240,80,30,110);
+//	BoardTip('tip4',80,70);
+
+	Sortable.create('main_title', {treeTag:'div',tag:'div',revert:false, constraint:  false,overlap: 'vertical', dropOnEmpty: false});
+	</script>
+
+	<script language="JavaScript" src="/js/cht.js"></script>
+	 <script type="text/javascript">
+function chat(idx){
+	$('main_title').style.display='none';
+	$('main_title2').style.display='';
+
+		
+		if(idx == 1){
+		var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "730", "185");
+		chart.setDataURL("/manage.use_board?year=<?=_OID?>|<?=date("Y")?>");		
+		}
+
+		if(idx == 2){
+		 var chart = new FusionCharts("/cht_flash/FCF_Bar2D.swf", "ChartId", "730", "185");
+		   chart.setDataURL("/manage.use_member?oids=<?=_OID?>");	
+		}
+	   
+	   	if(idx == 3){
+ 		   var chart = new FusionCharts("/cht_flash/FCF_Line.swf", "ChartId", "730", "185");
+		   chart.setDataURL("/manage.use_counter_time?oids=<?=_OID?>|");	
+		}
+
+	   	if(idx == 4){
+ 		     var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "730", "185");
+		   chart.setDataURL("/manage.use_disk?year=<?=_OID?>|<?=date("Y")?>");		
+		}
+	   
+	   chart.render('main_title2');
+	}
+	</script> 
+	
+	
+	
+	
+
+	<div style="padding:12px 0 0 10px;font-size:11px">
+	<img src = "/image/iicon/ico-list-album.gif" align = absmiddle> <a href="#" onclick="	$('main_title').style.display='';$('main_title2').style.display='none';">울트라보드</a> &nbsp;<font color = "#E0E0E0">|</font> &nbsp;
+
+	<img src = "/image/iicon/ico-list-album.gif" align = absmiddle> <a href="#" onclick="chat(1);">게시판사용량</a> &nbsp;<font color = "#E0E0E0">|</font> &nbsp;
+	<img src = "/image/iicon/ico-list-album.gif" align = absmiddle> <a href="#" onclick="chat(2);">회원현황</a> &nbsp;<font color = "#E0E0E0">|</font> &nbsp;
+	<img src = "/image/iicon/ico-list-album.gif" align = absmiddle> <a href="#" onclick="chat(3);">접속자그래프</a> &nbsp;<font color = "#E0E0E0">|</font> &nbsp;
+	<img src = "/image/iicon/ico-list-album.gif" align = absmiddle> <a href="#" onclick="chat(4);">디스크 사용현황</a> &nbsp;<font color = "#E0E0E0">|</font> &nbsp;
+
+   </div>
+  
+  </td>
+    <td width="201" height="231" background="./img/right_top.gif" valign = top >
+	
+	<div style="height:110;padding:15px 10px 10px 15px">
+	
+			<div style="padding-left:5px"><img src = "./img/arow.gif" align = absmiddle>&nbsp;<b>사이트 계정정보</b></div>
+			<div style="font-size:11px">
+			
+			<script type="text/javascript" src="counter.fcounter?var_today=COUNTER_TODAY&var_total=COUNTER_TOTAL"></script>
+			<ul class="noimage">
+			<li >사용만료일 : {? str_end_date}<font color = "#1A5C68">{str_end_date}</font>{:}<font color = "#9A150E">없음</font>{/}</li>
+			<li ><a href="/manage.admin.organ_view?PageNum=010200"  style="color:#9A9A9A">금일방문자 : {=number_format(today_counter)}명</a></li>
+			<li ><a href="/manage.admin.organ_view?PageNum=010200" style="color:#9A9A9A">전체방문자 : {=number_format(total_counter)}명</a></li>
+			</ul>
+
+			
+			</div>
+	 
+	</div>
+	<div style="height:30;padding:5px 10px 10px 15px;font-size:11px">디스크:{? num_disk}{num_disk}{:}1.00GB{/} 업로드:{?num_upload_size}{num_upload_size}{:}10.00MB{/}</div>
+	<div style="height:85;padding:8px 10px 10px 12px"><a href="/?remocon=Y"><img src = "./img/remocon_btn.gif"></a></div>
+	</td>
+ </tr>
+</table>
+
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="933" align="center">
+	<tr><td height="6"></td></tr>
+	<tr height="211" valign="top">
+		<td background="./images/main.gif" width="708" height="243">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td style="padding:18 0 0 34"><img src="./images/main_img1.gif"></td>
+					<td style="padding:18 0 0 45" >
+	              <div style = "background-image:url('./lodding.gif');text-align:center" id= "ttBody" >
+				  {? ucc}
+				 <iframe src ="http://<?=_MOV_URL?>/uadmin/index_trapic.php?ss_cp_code={ucc}" frameborder="0" width="0" height="0" scrolling="no" id="t_data"></iframe>
+				   {:}
+				   동영상 서비스를 신청하지 않았습니다.
+				   {/}
+				   </div>
+    </td>
+    </tr>
+    <tr>
+      <td style="padding:28 0 0 34"><img src="./images/main_img2.gif"></td>
+      <td style="padding:18 0 0 45">
+        {? ucc}
+        <iframe src ="http://<?=_MOV_URL?>/uadmin/index_disk.php?ss_cp_code={ucc}" frameborder="0" width="400" height="90" scrolling="no"></iframe>
+        {:}
+        동영상 서비스를 신청하지 않았습니다.
+        {/}
+
+
+      </td>
+    </tr>
+    </table>
+  </td>
+  <td background="./images/main_right.gif" width="225" height="243">
+    <table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td height="80" valign=top style="padding-top:5">
+
+        <table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+        <tr>
+          <td style="padding:10">
+            <font color=#003399 style="font-szie:11px"><<?=_ONAME?>></font><br>
+            <b>{_SESSION.NICKNAME}</b>님 로그인중 입니다.<br>
+            관리번호[<?=_OID?>] -><a href="/admin.common">환경설정</a><br>
+
+          </td>
+        </tr>
+        </table>
+
+
+      </td>
+    </tr>
+    <tr><td><a href="javascript:{? ucc}winOpen('{ucc_admin_url}','1024','800'){:}alert('동영상 서비스를 신청하지 않았습니다.'){/}" ><img src="./images/main_btn01.gif"></a></td></tr>
+    <tr><td height="4"></td></tr>
+    <tr><td><a href="/?remocon=Y"><img src="./images/main_btn02.gif"></td></tr>
+    </table>
+  </td>
+</tr>
+<tr><td height="13"></td></tr>
+</table>
+
+
+
+
+
+
+
+<table align="center" width=100% height=300 border=0 cellspacing=0 cellpadding=0 align = center>
+
+<tr>
+  <td valign=top rowspan = 2 width = 200>
+
+
+
+
+    <div class="dtree">
+	<script type="text/javascript">
+function qmenuEdit() {
+
+	var x = (document.body.clientWidth / 2) - (785 / 2 ) - 20 ;
+
+	fenster2('퀵메뉴편집', '퀵메뉴편집','attach.admin.qmenu?layout=main',x,'130','785','630');
+}
+
+<!--
+
+//id, pid, name, url, title, target, icon, iconOPne, open,
+
+d = new dTree('d');
+d.config.target="right";
+d.config.folderLinks = false;
+
+
+// ----------------- INTRODUCTION ------------------//
+d.add(0,-1,'<B>즐겨찾기메뉴</B>','','_top');
+
+<? if(_OID == 20252) {
+	?>
+
+	d.add(1,0,'스탁스토리 추가기능','/stockstory.admin.recom_item','','_top');
+	d.add(101,1,'추천종목관리','/stockstory.admin.recom_item','','_top');
+	d.add(102,1,'북쿠폰관리','/member.admin.cp_list','','_top');
+	d.add(103,1,'실시간강좌목록','/lms.admin.input_m_list_time','','_top');
+
+	d.add(104,1,'서비스 신청 회원','/lms.admin.input_m_list_time','','_top');
+
+	d.add(10401,104,'명품클럽','/member.admin.lims_list?search_ccode=1','','_top');
+	d.add(10402,104,'부자되기','/member.admin.lims_list?search_ccode=3','','_top');
+	d.add(10403,104,'고수되기','/member.admin.lims_list?search_ccode=4','','_top');
+	d.add(10404,104,'증권아카데미','/member.admin.lims_list?search_ccode=5','','_top');
+	d.add(10405,104,'증권대학','/member.admin.lims_list?search_ccode=6','','_top');
+	<? }
+?>
+
+
+<? if(_OID == 20250) {
+	?>
+
+	d.add(1,0,'예스이지 추가기능','/stockstory.admin.recom_item','','_top');
+	d.add(101,1,'OFFLINE강좌관리','/lms.admin.input_m_list_off','','_top');
+	d.add(102,1,'강사관리','/lms.admin.input_tach_list','','_top');
+	d.add(103,1,'교재관리','/lms.admin.input_book_list','','_top');
+
+
+	<? }
+?>
+
+
+
+<? if(_OID == 20247) {
+	?>
+
+	d.add(1,0,'금장학원 추가기능','','','_top');
+	d.add(101,1,'학급홈페이지편성','/class.manage.frame','','_top');
+
+
+	<? }
+?>
+
+
+d.add(2,0,'주문관리','/lms.admin.order_m_list','','_top');
+
+d.add(201,2,'신청관리','/lms.admin.order_m_list','','_top');
+d.add(203,2,'결제정보Log','/lms.admin.log','','_top');
+d.add(204,2,'매출통계','/lms.admin.order_cht','','_top');
+
+
+
+d.add(3,0,'퀵메뉴편집','javascript:qmenuEdit()','','_top');
+
+
+
+
+// --------------- SAMPLE CHARTS -------------------- //
+
+
+
+
+
+
+document.write(d);
+
+//-->
+d.openAll();
+</script>
+	<br>
+	<p style="text-align:center"><a href="javascript: d.openAll();">모두펼침</a> | <a href="javascript: d.closeAll();">닫기</a></p>
+   </div>
+
+
+
+
+  </td>
+
+
+  <td colspan =2 style = "padding:5px">
+
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" height = 188 align = center>
+    <tr valign="top" height="37">
+      <td width="7"><img src="./images/m_t_left.gif"></td>
+      <td background="./images/m_t_bg.gif" style="padding:13px 0px 0 5px ">
+        <b>
+        <img src="./title_icon.gif" ><img src='/f.php?text={title3}&font=yg330&size2=6&bg=F9F9F9&color=4B4A4A'>
+      </td>
+      <td width="9" valign="top"><img src="./images/m_t_right.gif"></td>
+    </tr>
+    <tr valign="top" height="100%">
+      <td width="7" background="./images/m_c_left.gif"></td>
+      <td bgcolor="FFFFFF" >
+
+
+
+
+        <table cellpadding="0" cellspacing="0" border="0" width=100%>
+        <tr valign="top">
+          <td style = "padding:3px">
+
+
+
+            <!--$arr['str_title'] = $arr['str_option']." / ".$arr['str_name']." / ".$num_st." / ".number_format($arr['num_price']);	//상품,신청자,주문상태,결제금액-->
+            <table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class=table01>
+            <tr>
+              <th>주문번호</th>
+              <th width = 200>상품</th>
+              <th>신청자</th>
+              <th>주문상태</th>
+              <th>결제금액</th>
+              <th>포인트</th>
+
+              <th>주문일</th>
+            </tr>
+            {@ data3}
+            <tr>
+              <td><a href="{.link}&PageNum=060100">{.num_order_number}</td>
+              <td>
+                <a href="{.link}&PageNum=060100">{? .str_option}{.str_option}{:}{.str_title}{/}
+                {? .num_media_type !=3}{? .str_book_code}<br><b style="color:red"> (교재포함)</b>{/}{/}
+                {? .new2} <img src= '/image/icon/new2.gif' >{/}
+              </td>
+              <td><a href="{.link}&PageNum=060100">{.str_name}</td>
+              <td>
+                {? .num_st =="0"} <font style="color:#FF3300">입금확인전</font>{/}
+                {? .num_st =="1"} <font style="color:#FFFFFF;background-color:#CC0000">입금확인</font>{/}
+                {? .num_st =="2"} <font style="color:#FFFFFF;background-color:#CC0000">카드승인</font>{/}
+                {? .num_st =="3"} <font style="color:#999900">취소</font>{/}
+                {? .num_st =="4"} <font style="color:#0066CC">서비스</font>{/}
+
+
+
+              </td>
+              <td>
+                <a href="{.link}&PageNum=060100">{=number_format(.num_order_price)}원
+              </td>
+              <td>{=number_format(.num_point_use + 0)}점</td>
+              <td>
+                {= date("Y-m-d", .dt_date)}
+              </td>
+            </tr>
+            {/}
+            </table>
+
+
+
+
+          </td>
+        </tr>
+        </table>
+      </td>
+      <td width="9" background="./images/m_c_right.gif"></td>
+    </tr>
+    <tr valign="top" height="9">
+      <td width="7"><img src="./images/m_b_left.gif"></td>
+      <td background="./images/m_b_bg.gif"></td>
+      <td width="9" valign="top"><img src="./images/m_b_right.gif"></td>
+    </tr>
+    </table>
+
+
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" height = 188 align = center>
+    <tr valign="top" height="37">
+      <td width="7"><img src="./images/m_t_left.gif"></td>
+      <td background="./images/m_t_bg.gif" style="padding:13px 0px 0 5px ">
+        <b>
+        <img src="./title_icon.gif" ><img src='/f.php?text={title4}&font=yg330&size2=6&bg=F9F9F9&color=4B4A4A'>
+      </td>
+      <td width="9" valign="top"><img src="./images/m_t_right.gif"></td>
+    </tr>
+    <tr valign="top" height="100%">
+      <td width="7" background="./images/m_c_left.gif"></td>
+      <td bgcolor="FFFFFF" >
+
+
+
+
+        <table cellpadding="0" cellspacing="0" border="0" width=100%>
+        <tr valign="top">
+          <td style = "padding:3px">
+
+
+
+            <!--$arr['str_title'] = $arr['str_option']." / ".$arr['str_name']." / ".$num_st." / ".number_format($arr['num_price']);	//상품,신청자,주문상태,결제금액-->
+            <table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class=table01>
+            <tr>
+              <th>주문번호</th>
+              <th width = 200>상품</th>
+              <th>신청자</th>
+              <th>주문상태</th>
+              <th>결제금액</th>
+              <th>포인트</th>
+
+              <th>주문일</th>
+            </tr>
+            {@ data4}
+            <tr>
+              <td><a href="{.link}&PageNum=060300">{.num_order_number}</td>
+              <td>
+                <a href="{.link}&PageNum=060300">{.str_bookname} {? .new2} <img src= '/image/icon/new2.gif' >{/}
+              </td>
+              <td><a href="{.link}&PageNum=060300">{.str_name}</td>
+              <td>
+                {? .num_st =="0"} <font style="color:#FF3300">입금확인전</font>{/}
+                {? .num_st =="1"} <font style="color:#FFFFFF;background-color:#CC0000">입금확인</font>{/}
+                {? .num_st =="2"} <font style="color:#FFFFFF;background-color:#CC0000">카드승인</font>{/}
+                {? .num_st =="3"} <font style="color:#999900">취소</font>{/}
+                {? .num_st =="4"} <font style="color:#0066CC">서비스</font>{/}
+
+
+
+              </td>
+              <td>
+                <a href="{.link}&PageNum=060100">{=number_format(.num_order_price)}원
+              </td>
+              <td>{=number_format(.num_point_use + 0)}점</td>
+              <td>
+                {= date("Y-m-d", .dt_date)}
+              </td>
+            </tr>
+            {/}
+            </table>
+
+
+
+
+          </td>
+        </tr>
+        </table>
+      </td>
+      <td width="9" background="./images/m_c_right.gif"></td>
+    </tr>
+    <tr valign="top" height="9">
+      <td width="7"><img src="./images/m_b_left.gif"></td>
+      <td background="./images/m_b_bg.gif"></td>
+      <td width="9" valign="top"><img src="./images/m_b_right.gif"></td>
+    </tr>
+    </table>
+
+  </td>
+
+
+
+
+  <tr>
+    <td style = "padding:5px">
+
+
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" height = 188 align = center>
+      <tr valign="top" height="37">
+        <td width="7"><img src="./images/m_t_left.gif"></td>
+        <td background="./images/m_t_bg.gif" style="padding:13px 0px 0 5px ">
+          <b>
+          <img src="./title_icon.gif" ><img src='/f.php?text={title1}&font=yg330&size2=6&bg=F9F9F9&color=4B4A4A'>
+        </td>
+        <td width="9" valign="top"><img src="./images/m_t_right.gif"></td>
+      </tr>
+      <tr valign="top" height="100%">
+        <td width="7" background="./images/m_c_left.gif"></td>
+        <td bgcolor="FFFFFF" >
+          <table cellpadding="0" cellspacing="0" border="0">
+          <tr valign="top">
+            <td>
+              <ul>
+                {@ data1}
+                <li class="noimage2" style="padding:0 0 7 0"><img src="./images/menu_icon.gif"><a href="{.link}">{.str_title}</a> {? .formcount >0}<img src= '/image/icon/new2.gif' >{/}</li>
+                {/}
+              </ul>
+            </td>
+          </tr>
+          </table>
+        </td>
+        <td width="9" background="./images/m_c_right.gif"></td>
+      </tr>
+      <tr valign="top" height="9">
+        <td width="7"><img src="./images/m_b_left.gif"></td>
+        <td background="./images/m_b_bg.gif"></td>
+        <td width="9" valign="top"><img src="./images/m_b_right.gif"></td>
+      </tr>
+      </table>
+
+
+
+    </td>
+
+
+
+
+
+
+    <td style = "padding:5px">
+
+
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" height = 188 align = center>
+      <tr valign="top" height="37">
+        <td width="7"><img src="./images/m_t_left.gif"></td>
+        <td background="./images/m_t_bg.gif" style="padding:13px 0px 0 5px ">
+          <b>
+          <img src="./title_icon.gif" ><img src='/f.php?text={title2}&font=yg330&size2=6&bg=F9F9F9&color=4B4A4A'>
+        </td>
+        <td width="9" valign="top"><img src="./images/m_t_right.gif"></td>
+      </tr>
+      <tr valign="top" height="100%">
+        <td width="7" background="./images/m_c_left.gif"></td>
+        <td bgcolor="FFFFFF" >
+          <table cellpadding="0" cellspacing="0" border="0" width=100%>
+          <tr valign="top">
+            <td style="padding:5px">
+              <table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class=table01>
+              <tr>
+
+                <th >강좌</th>
+                <th>신청자</th>
+                <th>주문상태</th>
+
+                <th>결제금액</th>
+
+                <th>주문일</th>
+              </tr>
+              {@ data2}
+              <tr>
+
+                <td>
+                  <a href="{.link}">{.str_option} {? .new2}<img src= '/image/icon/new2.gif' >{/}
+                  {? .str_book_code}<b style="color:red"> (교재포함)</b>{/}
+                  {? new2}<img src= '/image/icon/new2.gif' >{/}
+                </td>
+                <td><a href="{.link}">{.str_name}</td>
+                <td>
+                  {? .num_st =="0"} <font style="color:#FF3300">입금확인전</font>{/}
+                  {? .num_st =="1"} <font style="color:#FFFFFF;background-color:#CC0000">입금확인</font>{/}
+                  {? .num_st =="2"} <font style="color:#FFFFFF;background-color:#CC0000">카드승인</font>{/}
+                  {? .num_st =="3"} <font style="color:#999900">취소</font>{/}
+                  {? .num_st =="4"} <font style="color:#0066CC">서비스</font>{/}
+
+
+
+                </td>
+
+                <td><a href="{.link}">{=number_format(.num_order_price)} 원</td>
+
+                <td>
+                  {= date("Y-m-d", .dt_date)}
+                </td>
+              </tr>
+              {/}
+              </table>
+            </td>
+          </tr>
+          </table>
+        </td>
+        <td width="9" background="./images/m_c_right.gif"></td>
+      </tr>
+      <tr valign="top" height="9">
+        <td width="7"><img src="./images/m_b_left.gif"></td>
+        <td background="./images/m_b_bg.gif"></td>
+        <td width="9" valign="top"><img src="./images/m_b_right.gif"></td>
+      </tr>
+      </table>
+
+
+
+    </td>
+  </tr>
+</tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<wa:applet module="popup.open" mainp="admin"></wa:applet>

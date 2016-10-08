@@ -1,0 +1,47 @@
+<body>
+
+<div class="tab01">
+	<ul>
+		<li><a href="menu.admin.option?mcode={mcode}">메뉴옵션</a></li>
+		<li class="active"><a href="menu.admin.option?mcode={mcode}">메뉴형태 선택</a></li>
+		<!--{@ TABS}-->
+		<li>{? .key_ == "내용편집"} <a href="#"  onclick = "window.open('{.value_}','part_editor','width=735,height=620');" >{.key_}</a> {:}<a href="{.value_}"  >{.key_}</a>   {/}</li>
+		<!--{/}-->
+	</ul>
+</div>
+<br><br><br>
+<table width="60%" class="table01" align=center>
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<form method="post" onsubmit="return validate(this);" action="index.php?requestReffer=1">
+	<tbody>
+		<tr>
+			<th width="20%">${Location}</td>
+			<td width="80%"><b><font color="blue">{menu_location}</font></b></td>
+		</tr>
+		<tr>
+			<th>${Menu Title}</td>
+			<td><input type="text" name="str_title" value="{str_title}" size="20" required>
+		</tr>
+		<tr>
+			<th>${Menu Option}</td>
+			<td>
+				<select name="str_type">
+				<!--{@ MENU_TYPE}-->
+					<option value="{.key_}">{.value_}</option>
+				<!--{/}-->
+					<!--{@ MENU_TYPE2}-->
+					<option value="{.key_}">{.value_}</option>
+				<!--{/}-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+			<INPUT TYPE="hidden" NAME="mcode" value = "{mcode}">
+			<input type="submit" class="button2" target="menu_option" value="${OK}"></td>
+		</tr>
+	</tbody>
+</form>
+</table>
+</body>
+</html>

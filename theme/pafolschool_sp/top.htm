@@ -1,0 +1,96 @@
+<table width="1000" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+			<td width="495">
+			{? act=='/main?' || act=='/?' }
+				<a href="/">
+					<img src="./images/main_top_logo.png" alt="파폴스포츠 로고" width="495" height="113" border="0" />
+				</a>
+			{:}
+				<a href="/">
+					<img src="./images/sub_top_logo.png" alt="파폴스포츠 로고" width="495" height="113" border="0" />
+				</a>
+			{/}
+			</td>
+			<td width="505" valign="top">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+									<td width="505" height="53" valign="top" class="pos_r">
+										<div class="pos_a" style="right:0px;bottom:6px" >
+											
+											{? !_SESSION.USERID}
+											<a href="/" class="m-r10" style="color:#fff;;font-size:10px">HOME</a>
+											<a href="javascript:login();" class="m-r10" style="color:#fff;;font-size:10px">LOGIN</a>
+											<a href="/member.join_step" class="m-r10" style="color:#fff;;font-size:10px">MEMBERSHIP</a>
+											{:}
+											<a href="/" class="m-r10" style="color:#fff;;font-size:10px">HOME</a>
+											<a href="/member.mypage" class="m-r10" style="color:#fff;;font-size:10px">MYPAGE</a>
+											<a href="/member.logout" class="m-r10" style="color:#fff;;font-size:10px">LOGOUT</a>
+											{/}
+
+										</div>
+
+									</td>
+							</tr>
+							<tr>
+									<td height="60" valign="top">
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									  <tr>
+									    
+									    <td>
+										<a href="menu.blank?mcode=110&cate=110">
+											<img src="./images/pafolSports_menu01_{? substr(_GET.cate,0,3) !=110}off{:}on{/}.png" on_src="./images/pafolSports_menu01_on.png" alt="파폴스포츠" class="{? substr(_GET.cate,0,3) !=110}t_menu_over{/} cate110" />
+										</a>
+									    </td>
+
+									    <td>
+										<a href="menu.blank?mcode=111&cate=111">
+											<img src="./images/pafolSports_menu02_{? substr(_GET.cate,0,3) !=111}off{:}on{/}.png" on_src="./images/pafolSports_menu02_on.png" alt="스포츠캠프" class="{? substr(_GET.cate,0,3) !=111}t_menu_over{/} cate111"/>
+										</a>
+									    </td>
+
+									    <td>
+										<a href="menu.blank?mcode=112&cate=112">
+											<img src="./images/pafolSports_menu03_{? substr(_GET.cate,0,3) !=112}off{:}on{/}.png" on_src="./images/pafolSports_menu03_on.png" alt="캠프생활" class="{? substr(_GET.cate,0,3) !=112}t_menu_over{/} cate112"/>
+										</a>
+									    </td>
+
+									    <td>
+										<a href="menu.blank?mcode=113&cate=113">
+											<img src="./images/pafolSports_menu04_{? substr(_GET.cate,0,3) !=113}off{:}on{/}.png" on_src="./images/pafolSports_menu04_on.png" alt="신청안내" class="{? substr(_GET.cate,0,3) !=113}t_menu_over{/} cate113"/>
+										</a>
+									    </td>
+
+									    <td>
+										<a href="menu.blank?mcode=114&cate=114">
+											<img src="./images/pafolSports_menu05_{? substr(_GET.cate,0,3) !=114}off{:}on{/}.png" on_src="./images/pafolSports_menu05_on.png" alt="체대 입시컨설팅" class="{? substr(_GET.cate,0,3) !=114}t_menu_over{/} cate114"/>
+										</a>
+									    </td>
+									   
+									  </tr>
+									 </table>
+
+										<script type="text/javascript">
+										
+										//메인메뉴 롤오버
+										$('.t_menu_over').hover(
+											function(){ 
+												$(this).attr('off_src',$(this).attr('src'));
+												$(this).attr('src',$(this).attr('on_src'));
+											},
+											function(){
+												$(this).attr('src',$(this).attr('off_src'));
+												
+											}
+										);
+										$(document).ready(function(){ 
+											{? _GET.cate}$('.cate{=substr(_GET.cate,0,3)}').attr('src',$(this).attr('on_src'));{/} 
+										});
+										
+										</script> 
+									</td>
+							</tr>
+					</table>
+			</td>
+	</tr>
+	
+</table>

@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title> [<?=_OID?>] <?=_ONAME?> -  관리자 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+<link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+<link rel="stylesheet" type="text/css" href="/css/table.silver.css">
+<link rel="stylesheet" type="text/css" href="/css/nowcms_admin.css">
+
+	<link rel="stylesheet" href="/css/common.css" type="text/css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/lib.validate2.js"></script>
+
+<script language="Javascript" type="text/javascript">
+
+	function setPng24(obj) { 
+	    obj.width=obj.height=1; 
+	    obj.className=obj.className.replace(/\bpng24\b/i,''); 
+	    obj.style.filter = 
+	    "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+ obj.src +"',sizingMethod='image');" 
+	    obj.src='images/1pixel.gif';  
+	    return ''; 
+	} 
+	
+	function layerPopupClose(){
+		$('layerPopupBody').style.display='none';
+		$('layerPopup').innerHTML = '';
+		$('modalBg').style.display = 'none';
+	}
+
+	function layerPopupOpen(w,titles,texts,url,ifr){
+		//new Draggable('layerPopupBody',"dropOnEmpty: false");
+		var myDrag = new Drag("draggable","dragelement","dragarea","dragdirection","scalepercent");
+		if(!w) w = "500";
+		
+		$('layerPopupBody').style.left = (parseInt(screen.availWidth) / 4) - (parseInt(w) / 3);
+		$('layerPopupBody').style.top = '100px';
+		$('layerPopupBody').style.width = w+'px';
+		$('layerPopupBody').style.display='block';
+		$('layerPopupTitle').innerHTML = titles;
+		
+		if(url){
+			if(ifr =="y"){
+			$('layerPopup').innerHTML = '<iframe src ="'+url+'" frameborder="0" width="100%" height="560px" name="layPopupifr" scrolling="yes"></iframe>';
+			}else{
+			$('layerPopup').innerHTML = ajaxLoad(url);
+			}
+		}else{
+			$('layerPopup').innerHTML = texts;
+		}
+		
+		$('modalBg').style.display = 'block';
+		new Floating($('modalBg'),0,0,1,1);
+		//new Floating($('layerPopupBody'),100,100,10,30);
+	}
+
+	</script>
+
+</head>
+
+
+<body style="background:url(/images/admin/admin_bg.gif) repeat-x;background-color:#f9f9f9">
+<? 
+include 'admin_menu.php';
+
+$pn_1 = substr(_PN,1,1)-1;
+$pn_2 = substr(_PN,3,1)-1;
+$pn_3 = substr(_PN,5,1)-1;
+$pn_33 = substr(_PN,5,1);
+
+?>
+
+
+{#TOP}
+
+<div class="gnb_info">
+		<span class="ver">ㆍ<?=_ONAME?> 관리자모드 (ver : NOW CMS 4.2)</span> {? _SESSION.USERID}: <span class="id">{_SESSION.NAME}</span> 님 이 로그인 중입니다.{/}
+</div>
+
+<div class="content_body">
+	{#CONTENT}
+</div>	
+
+<div class="footer">
+	Copyright ⓒ NOWCORE Corp. All Rights Reserved.
+</div>
+
+
+
+
+ <div  id="modalBg"></div>
+ <div class="section" id="layerPopupBody">  
+	<h2 class="hx" style="display:block" id="layerPopupTitle" style="cursor: move" draggable="true" dragelement="document.getElementById('layerPopupBody')">제목</h2>  
+	<div class="tx" id="layerPopup">내용</div>  
+	<a class="section_more" href="#" onclick="layerPopupClose();">  
+	<span>x</span> 닫기</a> 
+ </div>  
+
+
+</body>
+<script type="text/javascript">
+jQuery(function($){
+	
+	// Side Menu
+	var menu_v = $('div.menu_v');
+	var sItem = menu_v.find('>ul>li');
+	var ssItem = menu_v.find('>ul>li>ul>li');
+	var lastEvent = null;
+	
+	sItem.find('>ul').css('display','none');
+	menu_v.find('>ul>li>ul>li[class=active]').parents('li').attr('class','active');
+	menu_v.find('>ul>li[class=active]').find('>ul').css('display','block');
+
+	function menu_vToggle(event){
+		var t = $(this);
+		
+		if (this == lastEvent) return false;
+		lastEvent = this;
+		setTimeout(function(){ lastEvent=null }, 200);
+		
+		if (t.next('ul').is(':hidden')) {
+			sItem.find('>ul').slideUp(100);
+			t.next('ul').slideDown(100);
+		} else if(!t.next('ul').length) {
+			sItem.find('>ul').slideUp(100);
+		} else {
+			t.next('ul').slideUp(100);
+		}
+		
+		if (t.parent('li').hasClass('active')){
+			t.parent('li').removeClass('active');
+		} else {
+			sItem.removeClass('active');
+			t.parent('li').addClass('active');
+		}
+	}
+	sItem.find('>a').click(menu_vToggle).focus(menu_vToggle);
+	
+	function subMenuActive(){
+		ssItem.removeClass('active');
+		$(this).parent(ssItem).addClass('active');
+	}; 
+	ssItem.find('>a').click(subMenuActive).focus(subMenuActive);
+	
+	//icon
+	menu_v.find('>ul>li>ul').prev('a').append('<span class="i"></span>');
+});
+</script>
+</html>
+
+
+
+

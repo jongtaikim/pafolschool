@@ -1,0 +1,56 @@
+@charset "euc-kr";
+
+/*
+À¥ ÆÛºí¸®½Ì
+ÀÛ¾÷ÀÚ:±èµ¿¿ì(haman@nate.com) 
+*/
+
+/*±âº»¼³Á¤*/
+body {
+	margin:0;
+	padding:0;
+	font-size:75%;
+	font-family:"µ¸¿ò", dotum, "±¼¸²", Gulim, AppleGothic, sans-serif;
+	}
+
+img {
+	border:0;
+	}
+
+a {
+	color:#000 ;
+	text-decoration:none;
+	font-size:1em;
+	}
+
+a:hover {
+	color:#000;
+	}
+
+ul, li, ol, dt, dd, dl {
+ margin:0;
+ padding:0;
+ list-style-type:none;
+ }
+
+hr { 
+	display:none;
+	} 
+
+form, fieldset {
+	border:0;
+	margin:0;
+	padding:0;
+	}
+
+h1, h2, h3, h4, h5, h6, legend, caption, #accessibility, #accessibilityNav .skipLogin, #accessibilityNav .skipMenu, #accessibilityNav .skipPolicy {
+	visibility:hidden;
+	overflow:hidden;
+	position:absolute;
+	width:0; 
+	height:0;
+	margin:0; 
+	padding:0;
+	font-size:0;
+	line-height:0;
+	}

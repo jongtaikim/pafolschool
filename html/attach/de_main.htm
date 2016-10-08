@@ -1,0 +1,140 @@
+<style>select{behavior: url('/selectbox.htc');}</style>
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight);
+         var w = parseInt(document.body.scrollWidth)+18; 
+	self.resizeTo(w, h); 
+
+document.getElementById('loding').style.left =  30;
+document.getElementById('loding').style.top = 30;
+
+} 
+//-->
+
+
+function Cachdel(module,theme) {
+
+		document.getElementById('loding').style.display = '';
+
+		parent.document.getElementById('tmp').value = "tmpakwe";
+		
+		var params = module +'='+ theme + '&mmode=session&back=Y' ;  
+		
+		sendRequest('/attach/de_lib'  , params, FromServerCachdel, "POST");
+		
+		setTimeout(function(){CallHtml(module,theme);}, 300);
+
+	}
+
+
+function CallHtml(module,theme,intp) {
+		
+		var params = 'theme='+ theme +'&ids=' + module +'&mmode=sample' ;  
+		sendRequest('/'+ module + '.lib'  , params, FromServer, "POST");
+	}
+
+
+	function CallHtml2(module,theme,r_module) {
+		Cachdel(module,theme);
+		var params = 'theme='+ theme +'&ids=' + module +'&r_module=' + r_module + '&mmode=sample' ;  
+		sendRequest('/lib_html.lib'  , params, FromServer, "POST");
+	}
+
+
+function FromServerCachdel() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			//alert(str_text);
+			
+			}
+		}
+	}
+
+
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+			var str_text = httpRequest.responseText;
+			//alert(str_text);
+			html = str_text.split("|||")
+		
+			//document.getElementById('temp').innerHTML = html[0];
+			parent.document.getElementById(html[1]).innerHTML = html[0];
+			document.getElementById('loding').style.display = 'none';
+			}
+		}
+	}
+
+
+</script>
+<body onload="resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',100);" style="margin:0" bgcolor="#FFFFFF" >
+<TABLE>
+<TR>
+	<TD><img src = "http://sh.hkedu.co.kr/module/btn/mk.php?text=모듈디자인 베타 테스트&w=195&h=200&size=14&color=009933" align="absmiddle"></TD> 	
+	<TD style = "padding-bottom:5px"><img src = "/image/beta.gif"></TD>
+</TR>
+</TABLE>
+&nbsp;디자인을 변경하실 모듈을 선택하세요.
+
+<TABLE cellpadding="0" cellspacing="0" border="0"  width = 100>
+<TR >
+	<TD>{? news_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/1.gif">{:}<a href = "/attach.de_lib?key=news"><img src = "/html/attach/image/1.gif">{/}</TD>
+	<TD>{? news2_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/2.gif">{:}<a href = "/attach.de_lib?key=news2"><img src = "/html/attach/image/2.gif">{/}</TD>
+	<TD>{? smenu_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/3.gif">{:}<a href = "/attach.de_lib?key=smenu"><img src = "/html/attach/image/3.gif">{/}</TD>
+</TR>
+<TR >
+	
+	<TD>{? latestboard_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/4.gif">{:}<a href = "/attach.de_lib?key=latestboard"><img src = "/html/attach/image/4.gif">{/}</TD>
+	
+	<TD>{? lunch_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/5.gif">{:}<a href = "/attach.de_lib?key=lunch"><img src = "/html/attach/image/5.gif">{/}</TD>
+	
+	<TD>{? calendar_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/6.gif">{:}<a href = "/attach.de_lib?key=calendar"><img src = "/html/attach/image/6.gif">{/}</TD>
+</TR>
+<TR >
+	
+	<TD>{? latestgallery_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/7.gif">{:}<a href = "/attach.de_lib?key=latestgallery"><img src = "/html/attach/image/7.gif">{/}</TD>
+	
+	
+	<TD>{? poll_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/8.gif">{:}<a href = "/attach.de_lib?key=poll"><img src = "/html/attach/image/8.gif">{/}</TD>
+	<TD>{? edusearch_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/9.gif">{:}<a href = "/attach.de_lib?key=edusearch"><img src = "/html/attach/image/9.gif">{/}</TD>
+</TR>
+<TR >
+	<TD>{? counter_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/10.gif">{:}<a href = "/attach.de_lib?key=counter"><img src = "/html/attach/image/10.gif">{/}</TD>
+	<TD>{? class_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/11.gif">{:}<a href = "/attach.de_lib?key=class"><img src = "/html/attach/image/11.gif">{/}</TD>
+	<TD>{? party_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/12.gif">{:}<a href = "/attach.de_lib?key=party"><img src = "/html/attach/image/12.gif">{/}</TD>
+</TR>
+<TR >
+	<TD>{? banner_count }<a href = "javascript:alert('레이아웃관리에서 추가해주세요.')"><img src = "/html/attach/image/ov/13.gif">{:}<a href = "/attach.de_lib?key=banner"><img src = "/html/attach/image/13.gif">{/}</TD>
+	<TD></TD>
+	<TD></TD>
+</TR>
+<tr>
+  <td colspan = 3 style = "padding-top:5px"><center><FORM METHOD=POST action = "/attach.de_lib">
+<INPUT TYPE="hidden" NAME="mmode" value = "reset" >
+	<center><INPUT TYPE="image" src = "/module/btn/btn.php?text=기본값으로 되돌리기&w=140&h=28&size=10&color=009933" onclick="document.getElementById('loding').style.display=''"> </center>
+</FORM></center>
+</td>
+</tr>
+</TABLE>
+
+
+</div>
+
+
+
+
+<div id = "loding" style = "top:0px;position:absolute;display:none;z-index:999; left:0px;background-color:#ffffff;padding:30px;border:3px solid #38A356" >
+<center><img src = "http://sh.hkedu.co.kr/module/btn/mk.php?text=디자인 적용중입니다...&w=190&h=200&size=15&color=009933"></center>
+</div>
+</body>

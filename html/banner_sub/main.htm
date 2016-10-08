@@ -1,0 +1,73 @@
+
+<style type="text/css" title="">
+.banner_body {width:688px;float:left;padding:5px}
+.banner_area {width:100%;border-bottom:1px solid #eaeaea;float:left}
+.banner_body .banner_item{float:left;width:42%;margin:15px 20px 15px 15px ;height:50px;} 
+.banner_body .banner_item .imgs{float:left;width:50%;margin-right:10px;border:1px solid #cdcdcd;} 
+.banner_body .banner_item .imgs IMG{width:143px;height:36px} 
+.banner_body .banner_item .titles{float:right;width:45%;} 
+.banner_body .banner_item .titles IMG{margin-bottom:5px;margin-top:2px} 
+</style>
+
+
+<div class="tab" style="margin-bottom:20px">
+	<ul>
+		<li {? !types} class="on"{/}>
+			<a href="/banner_sub.main?mcode={mcode}&cate={cate}&mode={mode}">전체</a>
+		</li>
+
+		<li {? types == "banner1"} class="on"{/}>
+			<a href="/banner_sub.main?mcode={mcode}&cate={cate}&types=banner1&mode={mode}">정부 및 공공기관</a>
+		</li>
+
+		<li {? types == "banner2"} class="on"{/}>
+			<a href="/banner_sub.main?mcode={mcode}&cate={cate}&types=banner2&mode={mode}">학계 및 관련모임</a>
+		</li>
+
+		<li {? types == "banner3"} class="on"{/}>
+			<a href="/banner_sub.main?mcode={mcode}&cate={cate}&types=banner3&mode={mode}">산업계</a>
+		</li>
+
+		<li {? types == "banner4"} class="on"{/}>
+			<a href="/banner_sub.main?mcode={mcode}&cate={cate}&types=banner4&mode={mode}">언론</a>
+		</li>
+
+		<li {? types == "banner5"} class="on"{/}>
+			<a href="/banner_sub.main?mcode={mcode}&cate={cate}&types=banner5&mode={mode}">해외기관</a>
+		</li>
+
+		<li {? types == "banner6"} class="on"{/}>
+			<a href="/banner_sub.main?mcode={mcode}&cate={cate}&types=banner6&mode={mode}">기타</a>
+		</li>
+
+		
+	</ul>
+</div>
+
+
+
+<div class="banner_body">
+	
+	<div class="banner_area">
+		{@ LIST}
+		<div class="banner_item">
+			<div class="imgs">
+				<a href="{.str_link}" target="{.chr_open}"><img src="{.file_url}" alt="{.str_title}" /></a>
+			</div>
+
+			<div class="titles">
+				<img src="/font_2.php/ygo540/14/ffffff/000000/?text={=urlencode(.str_title)}" alt="{.str_title}" /><br />
+				<a href="{.str_link}" target="{.chr_open}" style="color:#939393">{.str_link}</a>
+			</div>
+		</div>
+
+			{? (.index_+1) %2 == 0}
+			</div>
+			<div class="banner_area">
+			
+			{/}
+
+		{/}
+	</div>
+</div>
+

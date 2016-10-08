@@ -1,0 +1,744 @@
+<style>select{behavior: url('/selectbox.htc');}</style>
+<link rel="stylesheet" type="text/css" href="/theme/SH1/css/main.css">
+
+{CSS2}
+
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight);
+         var w = parseInt(document.body.scrollWidth); 
+	self.resizeTo(w, h); 
+
+document.getElementById('loding').style.left =  10;
+document.getElementById('loding').style.top = 80;
+
+} 
+//-->
+</script>
+
+
+<body onload="resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',10);" style="margin:0" bgcolor="#FFFFFF" style = "background-image:url('')"  >
+
+<script type="text/javascript" src="/js/ajax.js"></script>
+
+<script type="text/javascript">
+	function AjaxSession (set,name,val) {
+
+	var params = name + '=' + encodeURIComponent(val) + '&mode='+set;  
+	sendRequest("/core.mk_session", params, FromServer, "POST");
+	}
+	function FromServer() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str_text = httpRequest.responseText;
+				//alert(str_text)
+			parent.document.getElementById('tmp').value = "tmpakwe";
+			}
+		}
+	}
+</script>
+
+
+<FORM METHOD=POST name="layoutForm" enctype='multipart/form-data'>
+	
+
+<div style="padding-top:5px"></div>
+
+
+
+<div style="position:absolute;border:0px solid black;background-color:white;display:none;" id="subcontent2" >
+<INPUT TYPE="hidden" NAME="target">
+<table border="1" cellpadding="2" cellspacing="2" style="cursor:hand;cursor:pointer;;" bordercolor="000000" bordercolorlight="CCCCCC"  bgcolor="#FFFFFF">
+                <tr>
+                    <td bgcolor=000000 ONCLICK="createColor('000000')" height="6px" width="6px"></td>
+					
+					<td bgcolor=FFF4E2 ONCLICK="createColor('FFF4E2')" height="6px" width="6px"></td>
+                    <td bgcolor=FFFEE0 ONCLICK="createColor('FFFEE0')" height="6px" width="6px"></td>
+                    <td bgcolor=EEFAE4 ONCLICK="createColor('EEFAE4')" height="6px" width="6px"></td>
+                    <td bgcolor=F0F9E4 ONCLICK="createColor('F0F9E4')" height="6px" width="6px"></td>
+                    <td bgcolor=E6FAFB ONCLICK="createColor('E6FAFB')" height="6px" width="6px"></td>
+                    <td bgcolor=E5EDFA ONCLICK="createColor('E5EDFA')" height="6px" width="6px"></td>
+                    <td bgcolor=E4EEFA ONCLICK="createColor('E4EEFA')" height="6px" width="6px"></td>
+                    <td bgcolor=F1E5F9 ONCLICK="createColor('F1E5F9')" height="6px" width="6px"></td>
+                    <td bgcolor=FCE5F5 ONCLICK="createColor('FCE5F5')" height="6px" width="6px"></td>
+                    <td bgcolor=FEE6E4 ONCLICK="createColor('FEE6E4')" height="6px" width="6px"></td>
+                    <td bgcolor=FDE5E3 ONCLICK="createColor('FDE5E3')" height="6px" width="6px"></td>
+                    <td bgcolor=FFF4E2 ONCLICK="createColor('FFF4E2')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                    <td bgcolor=2B2B2B ONCLICK="createColor('2B2B2B')" height="6px" width="6px"></td>
+					
+					<td bgcolor=FEF7C3 ONCLICK="createColor('FEF7C3')" height="6px" width="6px"></td>
+                    <td bgcolor=FEF7C3 ONCLICK="createColor('FEF7C3')" height="6px" width="6px"></td>
+                    <td bgcolor=EBF6CC ONCLICK="createColor('EBF6CC')" height="6px" width="6px"></td>
+                    <td bgcolor=D5F5CC ONCLICK="createColor('D5F5CC')" height="6px" width="6px"></td>
+                    <td bgcolor=CDF5F5 ONCLICK="createColor('CDF5F5')" height="6px" width="6px"></td>
+                    <td bgcolor=D0E3F2 ONCLICK="createColor('D0E3F2')" height="6px" width="6px"></td>
+                    <td bgcolor=CFD5F7 ONCLICK="createColor('CFD5F7')" height="6px" width="6px"></td>
+                    <td bgcolor=E3CCF6 ONCLICK="createColor('E3CCF6')" height="6px" width="6px"></td>
+                    <td bgcolor=F6CDED ONCLICK="createColor('F6CDED')" height="6px" width="6px"></td>
+                    <td bgcolor=FCC5CA ONCLICK="createColor('FCC5CA')" height="6px" width="6px"></td>
+                    <td bgcolor=FED5C3 ONCLICK="createColor('FED5C3')" height="6px" width="6px"></td>
+                    <td bgcolor=FEE3C5 ONCLICK="createColor('FEE3C5')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                    <td bgcolor=5D5D5D ONCLICK="createColor('5D5D5D')" height="6px" width="6px"></td>
+					<td bgcolor=FFE9A6 ONCLICK="createColor('FFE9A6')" height="6px" width="6px"></td>
+                    <td bgcolor=FDFBA6 ONCLICK="createColor('FDFBA6')" height="6px" width="6px"></td>
+                    <td bgcolor=E3F1B3 ONCLICK="createColor('E3F1B3')" height="6px" width="6px"></td>
+                    <td bgcolor=BEF0B3 ONCLICK="createColor('BEF0B3')" height="6px" width="6px"></td>
+                    <td bgcolor=B4F0F0 ONCLICK="createColor('B4F0F0')" height="6px" width="6px"></td>
+                    <td bgcolor=B3D5F1 ONCLICK="createColor('B3D5F1')" height="6px" width="6px"></td>
+                    <td bgcolor=B4BEF1 ONCLICK="createColor('B4BEF1')" height="6px" width="6px"></td>
+                    <td bgcolor=CFB1EF ONCLICK="createColor('CFB1EF')" height="6px" width="6px"></td>
+                    <td bgcolor=EFB4E4 ONCLICK="createColor('EFB4E4')" height="6px" width="6px"></td>
+                    <td bgcolor=FEA4AE ONCLICK="createColor('FEA4AE')" height="6px" width="6px"></td>
+                    <td bgcolor=FFC1A6 ONCLICK="createColor('FFC1A6')" height="6px" width="6px"></td>
+                    <td bgcolor=FFD5A5 ONCLICK="createColor('FFD5A5')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                    <td bgcolor=8C8C8C ONCLICK="createColor('8C8C8C')" height="6px" width="6px"></td>
+					<td bgcolor=FFE184 ONCLICK="createColor('FFE184')" height="6px" width="6px"></td>
+                    <td bgcolor=FFF987 ONCLICK="createColor('FFF987')" height="6px" width="6px"></td>
+                    <td bgcolor=D6EE9A ONCLICK="createColor('D6EE9A')" height="6px" width="6px"></td>
+                    <td bgcolor=A3EB97 ONCLICK="createColor('A3EB97')" height="6px" width="6px"></td>
+                    <td bgcolor=9BEBEA ONCLICK="createColor('9BEBEA')" height="6px" width="6px"></td>
+                    <td bgcolor=9CC9EA ONCLICK="createColor('9CC9EA')" height="6px" width="6px"></td>
+                    <td bgcolor=9AA9EE ONCLICK="createColor('9AA9EE')" height="6px" width="6px"></td>
+                    <td bgcolor=C099EC ONCLICK="createColor('C099EC')" height="6px" width="6px"></td>
+                    <td bgcolor=EB9BD6 ONCLICK="createColor('EB9BD6')" height="6px" width="6px"></td>
+                    <td bgcolor=FA8A96 ONCLICK="createColor('FA8A96')" height="6px" width="6px"></td>
+                    <td bgcolor=FFAE88 ONCLICK="createColor('FFAE88')" height="6px" width="6px"></td>
+                    <td bgcolor=FFC887 ONCLICK="createColor('FFC887')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                   <td bgcolor=BCBCBC ONCLICK="createColor('BCBCBC')" height="6px" width="6px"></td>
+					<td bgcolor=FFDA68 ONCLICK="createColor('FFDA68')" height="6px" width="6px"></td>
+                    <td bgcolor=FFFA6A ONCLICK="createColor('FFFA6A')" height="6px" width="6px"></td>
+                    <td bgcolor=CDE87F ONCLICK="createColor('CDE87F')" height="6px" width="6px"></td>
+                    <td bgcolor=94E682 ONCLICK="createColor('94E682')" height="6px" width="6px"></td>
+                    <td bgcolor=82E6E4 ONCLICK="createColor('82E6E4')" height="6px" width="6px"></td>
+                    <td bgcolor=84BAE6 ONCLICK="createColor('84BAE6')" height="6px" width="6px"></td>
+                    <td bgcolor=8293E5 ONCLICK="createColor('8293E5')" height="6px" width="6px"></td>
+                    <td bgcolor=B282E6 ONCLICK="createColor('B282E6')" height="6px" width="6px"></td>
+                    <td bgcolor=E781CD ONCLICK="createColor('E781CD')" height="6px" width="6px"></td>
+                    <td bgcolor=F86E7B ONCLICK="createColor('F86E7B')" height="6px" width="6px"></td>
+                    <td bgcolor=FF9A69 ONCLICK="createColor('FF9A69')" height="6px" width="6px"></td>
+                    <td bgcolor=FEBA67 ONCLICK="createColor('FEBA67')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                   <td bgcolor=C2C2C2 ONCLICK="createColor('C2C2C2')" height="6px" width="6px"></td>
+					<td bgcolor=FED24B ONCLICK="createColor('FED24B')" height="6px" width="6px"></td>
+                    <td bgcolor=FFFA6A ONCLICK="createColor('FFFA6A')" height="6px" width="6px"></td>
+                    <td bgcolor=CEE97E ONCLICK="createColor('CEE97E')" height="6px" width="6px"></td>
+                    <td bgcolor=94E680 ONCLICK="createColor('94E680')" height="6px" width="6px"></td>
+                    <td bgcolor=7AE6E8 ONCLICK="createColor('7AE6E8')" height="6px" width="6px"></td>
+                    <td bgcolor=82BBE6 ONCLICK="createColor('82BBE6')" height="6px" width="6px"></td>
+                    <td bgcolor=8293E5 ONCLICK="createColor('8293E5')" height="6px" width="6px"></td>
+                    <td bgcolor=B282E6 ONCLICK="createColor('B282E6')" height="6px" width="6px"></td>
+                    <td bgcolor=E583CC ONCLICK="createColor('E583CC')" height="6px" width="6px"></td>
+                    <td bgcolor=F86E7B ONCLICK="createColor('F86E7B')" height="6px" width="6px"></td>
+                    <td bgcolor=FF9A6A ONCLICK="createColor('FF9A6A')" height="6px" width="6px"></td>
+                    <td bgcolor=FEBA69 ONCLICK="createColor('FEBA69')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                   <td bgcolor=CECECE ONCLICK="createColor('CECECE')" height="6px" width="6px"></td>
+					<td bgcolor=FED24B ONCLICK="createColor('FED24B')" height="6px" width="6px"></td>
+                    <td bgcolor=FFF94D ONCLICK="createColor('FFF94D')" height="6px" width="6px"></td>
+                    <td bgcolor=C5E465 ONCLICK="createColor('C5E465')" height="6px" width="6px"></td>
+                    <td bgcolor=7FE168 ONCLICK="createColor('7FE168')" height="6px" width="6px"></td>
+                    <td bgcolor=69E1E0 ONCLICK="createColor('69E1E0')" height="6px" width="6px"></td>
+                    <td bgcolor=68AEE1 ONCLICK="createColor('68AEE1')" height="6px" width="6px"></td>
+                    <td bgcolor=6A7CE2 ONCLICK="createColor('6A7CE2')" height="6px" width="6px"></td>
+                    <td bgcolor=A469E1 ONCLICK="createColor('A469E1')" height="6px" width="6px"></td>
+                    <td bgcolor=E169C3 ONCLICK="createColor('E169C3')" height="6px" width="6px"></td>
+                    <td bgcolor=FA5263 ONCLICK="createColor('FA5263')" height="6px" width="6px"></td>
+                    <td bgcolor=FE854C ONCLICK="createColor('FE854C')" height="6px" width="6px"></td>
+                    <td bgcolor=FFAC4C ONCLICK="createColor('FFAC4C')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                     <td bgcolor=BFBFBF ONCLICK="createColor('BFBFBF')" height="6px" width="6px"></td>
+					<td bgcolor=FFCB2D ONCLICK="createColor('FFCB2D')" height="6px" width="6px"></td>
+                    <td bgcolor=FFF82C ONCLICK="createColor('FFF82C')" height="6px" width="6px"></td>
+                    <td bgcolor=BAE04D ONCLICK="createColor('BAE04D')" height="6px" width="6px"></td>
+                    <td bgcolor=6ADC50 ONCLICK="createColor('6ADC50')" height="6px" width="6px"></td>
+                    <td bgcolor=50DCD9 ONCLICK="createColor('50DCD9')" height="6px" width="6px"></td>
+                    <td bgcolor=3792D8 ONCLICK="createColor('3792D8')" height="6px" width="6px"></td>
+                    <td bgcolor=3650D9 ONCLICK="createColor('3650D9')" height="6px" width="6px"></td>
+                    <td bgcolor=8537D8 ONCLICK="createColor('8537D8')" height="6px" width="6px"></td>
+                    <td bgcolor=D637AE ONCLICK="createColor('D637AE')" height="6px" width="6px"></td>
+                    <td bgcolor=F6182D ONCLICK="createColor('F6182D')" height="6px" width="6px"></td>
+                    <td bgcolor=FE5D0F ONCLICK="createColor('FE5D0F')" height="6px" width="6px"></td>
+                    <td bgcolor=FF8F0F ONCLICK="createColor('FF8F0F')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                     <td bgcolor=DBDBDB ONCLICK="createColor('DBDBDB')" height="6px" width="6px"></td>
+					<td bgcolor=EFB400 ONCLICK="createColor('EFB400')" height="6px" width="6px"></td>
+                    <td bgcolor=F0E801 ONCLICK="createColor('F0E801')" height="6px" width="6px"></td>
+                    <td bgcolor=A2CB27 ONCLICK="createColor('A2CB27')" height="6px" width="6px"></td>
+                    <td bgcolor=45C928 ONCLICK="createColor('45C928')" height="6px" width="6px"></td>
+                    <td bgcolor=28C8C6 ONCLICK="createColor('28C8C6')" height="6px" width="6px"></td>
+                    <td bgcolor=2784C7 ONCLICK="createColor('2784C7')" height="6px" width="6px"></td>
+                    <td bgcolor=2843C8 ONCLICK="createColor('2843C8')" height="6px" width="6px"></td>
+                    <td bgcolor=7527C9 ONCLICK="createColor('7527C9')" height="6px" width="6px"></td>
+                    <td bgcolor=C9279F ONCLICK="createColor('C9279F')" height="6px" width="6px"></td>
+                    <td bgcolor=E90419 ONCLICK="createColor('E90419')" height="6px" width="6px"></td>
+                    <td bgcolor=F04F01 ONCLICK="createColor('F04F01')" height="6px" width="6px"></td>
+                    <td bgcolor=F18000 ONCLICK="createColor('F18000')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                     <td bgcolor=E0E0E0 ONCLICK="createColor('E0E0E0')" height="6px" width="6px"></td>
+					<td bgcolor=D29D00 ONCLICK="createColor('D29D00')" height="6px" width="6px"></td>
+                    <td bgcolor=D2CB01 ONCLICK="createColor('D2CB01')" height="6px" width="6px"></td>
+                    <td bgcolor=8DB31F ONCLICK="createColor('8DB31F')" height="6px" width="6px"></td>
+                    <td bgcolor=3EAE24 ONCLICK="createColor('3EAE24')" height="6px" width="6px"></td>
+                    <td bgcolor=23AFAE ONCLICK="createColor('23AFAE')" height="6px" width="6px"></td>
+                    <td bgcolor=2373AE ONCLICK="createColor('2373AE')" height="6px" width="6px"></td>
+                    <td bgcolor=243BAD ONCLICK="createColor('243BAD')" height="6px" width="6px"></td>
+                    <td bgcolor=6723AE ONCLICK="createColor('6723AE')" height="6px" width="6px"></td>
+                    <td bgcolor=AF238C ONCLICK="createColor('AF238C')" height="6px" width="6px"></td>
+                    <td bgcolor=CB0617 ONCLICK="createColor('CB0617')" height="6px" width="6px"></td>
+                    <td bgcolor=D24500 ONCLICK="createColor('D24500')" height="6px" width="6px"></td>
+                    <td bgcolor=D27100 ONCLICK="createColor('D27100')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                     <td bgcolor=EAEAEA ONCLICK="createColor('EAEAEA')" height="6px" width="6px"></td>
+					<td bgcolor=967001 ONCLICK="createColor('967001')" height="6px" width="6px"></td>
+                    <td bgcolor=969101 ONCLICK="createColor('969101')" height="6px" width="6px"></td>
+                    <td bgcolor=658017 ONCLICK="createColor('658017')" height="6px" width="6px"></td>
+                    <td bgcolor=2B7D19 ONCLICK="createColor('2B7D19')" height="6px" width="6px"></td>
+                    <td bgcolor=197D7B ONCLICK="createColor('197D7B')" height="6px" width="6px"></td>
+                    <td bgcolor=19527F ONCLICK="createColor('19527F')" height="6px" width="6px"></td>
+                    <td bgcolor=192A7C ONCLICK="createColor('192A7C')" height="6px" width="6px"></td>
+                    <td bgcolor=49197D ONCLICK="createColor('49197D')" height="6px" width="6px"></td>
+                    <td bgcolor=78105F ONCLICK="createColor('78105F')" height="6px" width="6px"></td>
+                    <td bgcolor=910512 ONCLICK="createColor('910512')" height="6px" width="6px"></td>
+                    <td bgcolor=973101 ONCLICK="createColor('973101')" height="6px" width="6px"></td>
+                    <td bgcolor=973101 ONCLICK="createColor('973101')" height="6px" width="6px"></td>
+                </tr>
+                <tr>
+                    <td bgcolor=FFFFFF ONCLICK="createColor('FFFFFF')" height="6px" width="6px"></td>
+					<td bgcolor=594500 ONCLICK="createColor('594500')" height="6px" width="6px"></td>
+                    <td bgcolor=5A5600 ONCLICK="createColor('5A5600')" height="6px" width="6px"></td>
+                    <td bgcolor=3D4D0E ONCLICK="createColor('3D4D0E')" height="6px" width="6px"></td>
+                    <td bgcolor=194B0E ONCLICK="createColor('194B0E')" height="6px" width="6px"></td>
+                    <td bgcolor=0F4B49 ONCLICK="createColor('0F4B49')" height="6px" width="6px"></td>
+                    <td bgcolor=0E304B ONCLICK="createColor('0E304B')" height="6px" width="6px"></td>
+                    <td bgcolor=0F194C ONCLICK="createColor('0F194C')" height="6px" width="6px"></td>
+                    <td bgcolor=2C0E4A ONCLICK="createColor('2C0E4A')" height="6px" width="6px"></td>
+                    <td bgcolor=4A0F3B ONCLICK="createColor('4A0F3B')" height="6px" width="6px"></td>
+                    <td bgcolor=58020B ONCLICK="createColor('58020B')" height="6px" width="6px"></td>
+                    <td bgcolor=591D01 ONCLICK="createColor('591D01')" height="6px" width="6px"></td>
+                    <td bgcolor=5B3302 ONCLICK="createColor('5B3302')" height="6px" width="6px"></td>
+                </tr>
+            </table>
+</div>
+
+
+
+
+<TABLE align= center  width = 270 align = center border=0 cellspacing=0 cellpadding=0 >
+
+
+
+	
+  <script>
+
+
+
+function getposOffset(overlay, offsettype){
+    var totaloffset=(offsettype=="left")? overlay.offsetLeft : overlay.offsetTop;
+    var parentEl=overlay.offsetParent;
+    while (parentEl!=null){
+        totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+        parentEl=parentEl.offsetParent;
+    }
+    return totaloffset;
+}
+
+function overlay(curobj, subobjstr, opt_position,key,target){
+  
+document.getElementById('target').value= target;
+
+	if (document.getElementById){
+    var subobj=document.getElementById(subobjstr)
+        subobj.style.display=(subobj.style.display!="block")? "block" : "none"
+    var xpos=getposOffset(curobj, "left")+((typeof opt_position!="undefined" && opt_position.indexOf("right")!=-1)? -(subobj.offsetWidth-curobj.offsetWidth) : 0) 
+    var ypos=getposOffset(curobj, "top")+((typeof opt_position!="undefined" && opt_position.indexOf("bottom")!=-1)? curobj.offsetHeight : 0)
+        subobj.style.left=xpos+"px"
+        subobj.style.top=ypos+"px"
+    return false
+    }
+    else
+return true
+
+
+	}
+
+function overlayclose(subobj){
+    document.getElementById(subobj).style.display="none"
+}
+
+
+
+function createColor(color) {
+
+	target2 = document.getElementById('target').value
+
+	document.getElementById(target2).value = "#"+color;
+
+	document.getElementById(target2).style.backgroundColor = color;
+	overlayclose('subcontent2');
+	borderW()
+	
+}
+
+
+
+
+
+
+  
+
+
+  </script>
+
+<tr>
+  <td align = center colspan = 10 style = "padding:0px" >
+
+
+
+<style>
+#main_frame { }
+#main_layout {border:1px solid #FFFF33;}
+
+</style>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 id = "main_frame[tool]" >
+ <tr>
+  <td bgcolor = #B4B4B4 style ="padding:5 0 5 0">
+
+<div id="main_frame" style="width:100%;padding:0px" >
+<div id="main_layout"  style=";border:0px solid B1B4C0;">
+{@ CSS_ALIGN_manage}
+{? .layout !="NONE"}
+<div id="{.layout}" style="border:1px solid ffffff;padding:0;background-image:url('qwqw') " onclick = "reset_css('{.layout}');"><input type="hidden" name="lay_be[]" value="{.layout}"> 
+<input type="hidden" name="{.layout}[border]" value="" style="width:25px;font-size:11px;height:15px">
+<input type="hidden" name="{.layout}[line]" value="solid" style="width:25px;font-size:11px;height:15px">
+<input type="hidden" name="{.layout}[color]" value="" style="width:25px;font-size:11px;height:15px">
+<input type="hidden" name="{.layout}[top]" value="" style="width:25px;font-size:11px;height:15px">
+<input type="hidden" name="{.layout}[left]" value="" style="width:25px;font-size:11px;height:15px">
+<input type="hidden" name="{.layout}[right]" value="" style="width:25px;font-size:11px;height:15px">
+<input type="hidden" name="{.layout}[bgs]" value="" style="width:25px;font-size:11px;height:15px">
+<input type="hidden" name="{.layout}[bgs2]" value="" style="width:25px;font-size:11px;height:15px">
+<input type="hidden" name="{.layout}[bottom]" value="" style="width:25px;font-size:11px;height:15px">&nbsp;</div>{/}
+{/}
+</div>
+
+	</div>
+  </td>
+ </tr>
+
+</table>
+<script>
+//var def_css = "{def}";
+
+		function reset_css(id) {
+		$('tmp_ccde').style.display='none';
+		
+		{@ CSS_ALIGN_manage}
+		{? .layout !="NONE"}
+		$('{.layout}').style.backgroundColor = '';
+		$('{.layout}(layTool)').style.display = 'none';
+		
+		{/}
+		{/}
+		
+		$(id).style.backgroundColor = 'F9F9F9';
+		$(id+'(layTool)').style.display = '';
+		$('target2').value = id;
+		
+		resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',100);
+		}
+		
+
+		function reset_css2() {
+		var def_css = $('def').value;
+		
+		{@ CSS_ALIGN_manage}
+		{? .layout !="NONE"}
+		
+		var tmp = explode("{.layout}",def_css);
+			if(tmp[1]) {
+				
+				var tmp2= explode("border-top:",tmp[1]);
+					 
+					 tmp2=explode(";",tmp2[1]);
+					 tmp2=explode(" ",tmp2[0]);
+
+					 $('{.layout}top_t').value =tmp2[0];
+					 $('{.layout}[top]').value =tmp2[0];
+					 
+					 if(tmp2[1]) $('{.layout}line_t').value =tmp2[1];
+					 $('{.layout}[line]').value =tmp2[1];
+					 $('{.layout}borderColor_t').value =tmp2[2];
+					 $('{.layout}[color]').value =tmp2[2];
+					 $('{.layout}borderColor_t').style.backgroundColor =tmp2[2];
+
+					 tmp2= explode("border-left:",tmp[1]);
+ 					 tmp2=explode(";",tmp2[1]);
+					 tmp2=explode(" ",tmp2[0]);
+					 $('{.layout}left_t').value =tmp2[0];
+					 $('{.layout}[left]').value =tmp2[0];
+					
+					 tmp2= explode("border-right:",tmp[1]);
+ 					 tmp2=explode(";",tmp2[1]);
+					 tmp2=explode(" ",tmp2[0]);
+					 $('{.layout}right_t').value =tmp2[0];
+      			     $('{.layout}[right]').value =tmp2[0];
+
+					 tmp2= explode("border-bottom:",tmp[1]);
+ 					 tmp2=explode(";",tmp2[1]);
+					 tmp2=explode(" ",tmp2[0]);
+					 $('{.layout}bottom_t').value =tmp2[0];
+					 $('{.layout}[bottom]').value =tmp2[0];
+
+					  tmp2= explode("background-repeat:",tmp[1]);
+    				  tmp2= explode(";",tmp2[1]);
+
+					  $('{.layout}bgs').value = tmp2[0];
+					  $('{.layout}[bgs]').value =tmp2[0];
+
+					  tmp2= explode("background-position:",tmp[1]);
+    				  tmp2= explode(";",tmp2[1]);
+
+					  $('{.layout}bgs2').value = tmp2[0];
+					  $('{.layout}[bgs2]').value =tmp2[0];
+
+					
+			}
+
+				
+		{/}
+		{/}
+		
+		
+		}
+
+
+
+		function def_css(id, uu) {
+		
+		$(id).style.padding='0';
+		$(id).style.width = parseInt(document.getElementById(id).currentStyle.width)  / parseInt(uu) ;
+		$(id).style.height = parseInt(document.getElementById(id).currentStyle.height)  / parseInt(uu) ;
+		$(id).style.backgroundImage='none';
+		$(id).style.backgroundColor='';
+		}
+
+
+
+
+
+
+var cssT = "";
+var target2 =""
+
+function borderW (){
+var target = $('target2').value;
+var line = $(target+'line_t').value;
+var color = $(target+'borderColor_t').value;
+var bgs = $(target+'bgs').value;
+var bgs2 = $(target+'bgs2').value;
+
+parent.document.getElementById(target).style.backgroundRepeat = bgs ;	
+parent.document.getElementById(target).style.backgroundPosition = bgs2 ;	
+
+$(target+"[bgs]").value = bgs;
+$(target+"[bgs2]").value = bgs2;
+
+
+parent.document.getElementById(target).style.border = $(target+'border').value +" "+ line +  " " + color ;	
+//$(target+"[border]").value = $(target+'border').value;
+
+$(target+"[color]").value = color;
+$(target+"[line]").value = line;
+
+//alert(parseInt($(target+'top_t').value));
+
+	parent.document.getElementById(target).style.borderTop = $(target+'top_t').value  +" "+ line +  " " + color;
+
+	  
+	$(target+"[top]").value =parseInt($(target+'top_t').value) ; 
+
+
+
+	parent.document.getElementById(target).style.borderBottom = $(target+'bottom_t').value   +" "+ line +  " " + color;  
+	
+	$(target+"[bottom]").value =$(target+'bottom_t').value ; 
+
+
+	parent.document.getElementById(target).style.borderRight = $(target+'right_t').value   +" "+ line +  " " + color; 
+	
+	$(target+"[right]").value = $(target+'right_t').value ; 
+
+
+	parent.document.getElementById(target).style.borderLeft = $(target+'left_t').value  +" "+ line +  " " + color;  
+	$(target+"[left]").value =$(target+'left_t').value; 
+
+//var ttmp  = explode("/*추가레이아웃*/ ",$('def').value);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$("laT["+target+"]").value= " #"+target+"{border-top:"+ $(target+'top_t').value  +" "+ line +  " " + color +"; " +
+  									    "border-bottom:"+ $(target+'bottom_t').value  +" "+ line +  " " + color +"; " +
+										"border-left:"+ $(target+'left_t').value  +" "+ line +  " " + color +"; " +
+									    "border-right:"+ $(target+'right_t').value  +" "+ line +  " " + color +"; "+
+										"background-repeat:"+ bgs +"; " +
+										"background-position:"+ bgs2 +"; " +
+										"background-image:url(/hosts/<?=HOST?>/{layout}_"+target+".gif) ;}" 
+
+AjaxSession('y',target,$("laT["+target+"]").value);
+
+
+}
+
+
+function bgSelect_file (layout,taer){
+
+
+document.layoutForm.submit();
+
+alert('업로드 되었습니다.');
+parent.document.getElementById(taer).style.backgroundImage="url(/hosts/<?=HOST?>/"+layout+"_"+taer+".gif)"
+}
+</script>
+
+	  </td>
+	</tr>
+<input type="hidden" name="layout" value="{layout}">
+  <input type="hidden" name="target2" value="{? target2 }{target2}{:}MAIN{/}">
+<TEXTAREA NAME="def" style = "display:none;width:100%;height:100">{def}</TEXTAREA>
+{@ CSS_ALIGN_manage}
+		{? .layout !="NONE"}
+
+<tr id="{.layout}(layTool)" style = "display:none">
+  <td style = "padding-top:10">
+
+  <TEXTAREA NAME="laT[{.layout}]" style = "display:none;width:100%;height:100">{.def}</TEXTAREA>
+  <table align="center" width=100%  border=0 cellspacing=0 cellpadding=0>
+	  <tr>
+		<td width = 1 height = 1><img src="./1.gif" ></td>
+		<td background="./2.gif" align = center><b style = "color:#ffffff;font-size:11px">레이아웃 영역 스타일</b></td>
+		<td width = 1><img src="./3.gif" ></td>
+	  </tr>
+	  <tr>
+		<td background="./4.gif"></td>
+		  <td>
+
+				<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="tableNo3">
+				
+
+					<tr>
+					  <td align = center>
+					  
+					  
+					  
+					  </td>
+					</tr>
+
+					<tr>
+					  <td>
+				
+					
+
+<table align="center"  border=0 cellspacing=0 cellpadding=0>
+<TR>
+	<TD></TD>
+	<TD align = center><input type="text" name="{.layout}top_t" value="0" style="width:20px;font-size:11px;height:15px" onchange="borderW(this)" ></TD>
+	<TD></TD>
+</TR>
+<TR>
+	<TD><input type="text" name="{.layout}left_t" value="0" style="width:20px;font-size:11px;height:15px" onchange="borderW(this)" ></TD>
+	<TD><div style = "border:1px solid #000;width:40;height:40;" id=""></div></TD>
+	<TD><input type="text" name="{.layout}right_t" value="0" style="width:20px;font-size:11px;height:15px" onchange="borderW(this)" ></TD>
+</TR>
+<TR>
+	<TD></TD>
+	<TD align = center><input type="text" name="{.layout}bottom_t" value="0" style="width:20px;font-size:11px;height:15px" onchange="borderW(this)" ></TD>
+	<TD></TD>
+</TR>
+</TABLE>
+
+
+
+						  
+					  </td>
+
+					    <td>
+					     
+
+					<input type="hidden" name="{.layout}border" value="1" style="width:25px;font-size:11px;height:15px" onkeyup="borderW(this)" >
+					 라&nbsp;&nbsp; 인 :<select name="{.layout}line_t" onchange = "borderW()">
+						<option value="">없음</option>
+						<option value="solid">실선</option>
+						<option value="dotted">도트</option>
+						<option value="dashed">데쉬</option>
+						<option value="double">이중선</option>
+	
+
+
+
+					  </select> <br>
+					
+					라인색 :<INPUT TYPE="text" NAME="{.layout}borderColor_t" id="{.layout}borderColor_t"  code = "{.layout}borderColor_t" style = "width:50px;background-color:{color1};border:1px solid #CFCCD0"  onchange="borderW()" ><input type="button" value="..." onclick="return overlay(this, 'subcontent2', 'righttbottom', 'main_frame','{.layout}borderColor_t');"><Br>
+
+
+					반&nbsp;&nbsp;복 :<select name="{.layout}bgs" onchange = "borderW()">
+						<option value="">없음</option>
+						<option value="repeat" >바둑판</option>
+						<option value="repeat-x">가로반복</option>
+						<option value="repeat-y" >세로반복</option>
+						<option value="no-repeat" >반복안함</option>
+					  </select> 
+					위&nbsp;&nbsp;치 :<select name="{.layout}bgs2" onchange = "borderW()">
+						<option value="">없음</option>
+						<option value="left" >left</option>
+						<option value="right">right</option>
+						<option value="center" >center</option>
+						<option value="top" >top</option>
+						<option value="bottom" >bottom</option>
+					  </select> 
+
+
+
+					  </select> <br>
+					    </td>
+					</tr>
+
+					  <td colspan = 10>배경 :<input type="file" name="upfile{.layout}" id="upfile{.layout}" style="width:200;" class=button onchange ="bgSelect_file('{layout}','{.layout}')">
+					  {? .image}<a href= "/attach.del2?name={.image}" style="font-size:9px;color:red">Del</a>{/}
+					  {? .image}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;영역에 배경이미지가 있습니다.{/}
+					  
+					  </td>
+					</tr>
+				</table>
+
+
+	</td><td background="./6.gif"></td>
+ </tr>
+
+  
+  <tr>
+  <td height = 1><img src="./7.gif"></td><td background="./8.gif"></td><td><img src="./9.gif"></td>
+ </tr>
+</table>
+  
+
+  
+  
+  </td>
+</tr>
+
+{/}{/}
+
+
+<tr id = "tmp_ccde">
+  <td style = "padding-top:10">
+
+<table align="center" width=100%  border=0 cellspacing=0 cellpadding=0>
+	  <tr>
+		<td width = 1 height = 1><img src="./1.gif" ></td>
+		<td background="./2.gif" align = center><b style = "color:#ffffff;font-size:11px"> 영역 스타일</b></td>
+		<td width = 1><img src="./3.gif" ></td>
+	  </tr>
+	  <tr>
+		<td background="./4.gif"></td>
+		  <td align=center height = 80>
+
+설정할 영역을 클릭하세요.
+
+
+	</td><td background="./6.gif"></td>
+ </tr>
+
+  
+  <tr>
+  <td height = 1><img src="./7.gif"></td><td background="./8.gif"></td><td><img src="./9.gif"></td>
+ </tr>
+</table>
+  
+
+
+
+
+
+  </td>
+ </tr>
+</TABLE>
+
+<div style = "padding-top:3px;padding-left:3px">
+<TABLE align = center>
+<TR>
+  <td style = "padding-top:5px">
+  <input type="image" src = "/module/btn/btn.php?text=설정&w=52&h=28&size=10&color=009933" >
+  </td>
+	<TD></TD>
+	</FORM>
+	
+</TR>
+</TABLE>
+
+
+
+
+</div>
+
+
+
+
+<div id = "loding" style = "top:0px;position:absolute;display:none;z-index:999; left:0px;background-color:#ffffff;padding:30px;border:3px solid #38A356" >
+<center><img src = "/module/btn/mk.php?text=디자인 적용중입니다...&w=190&h=200&size=15&color=009933"></center>
+</div>
+
+
+<br>
+
+</body>
+<script>
+{@ CSS_ALIGN_manage}
+
+
+
+{? .layout !="NONE"}
+def_css('{.layout}', '4');
+{/}
+{/}
+def_css('main_layout', '4');
+
+
+
+reset_css2()
+
+
+</script>

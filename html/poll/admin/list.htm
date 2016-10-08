@@ -1,0 +1,90 @@
+<script language="javaScript">
+<!--
+function writePoll() {
+	location.href = "/poll.admin.write";
+}
+
+function deletePoll(form) {
+	els = form.elements['id[]'];
+	if(!els) return false;
+	if(!els.length) els = new Array(els);
+	cnt = els.length;
+	flag = false;
+	for(var i=0;i<cnt;i++) {
+		if(els[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('삭제할 항목에 체크하여 주십시오.');
+		return false;
+	}
+	if(!confirm('체크하신 항목을 삭제하시겠습니까?')) return false;
+	form.action = 'poll.admin..delete';
+	return true;
+}
+//-->
+</script>
+
+
+<!-- 표1 Start -->	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr>
+		<td width="100%" class="table_top_line01"></td>
+	</tr>
+	<tr>
+		<td width="100%" class="table_top_line02"></td>
+	</tr>			
+</table>
+<form name="orderForm" action="poll.admin.delete" onsubmit="return deletePoll(this);" style="margin:0px;">
+<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="d5dfe7">
+	<tr height="28" bgcolor="#FFFFFF">
+		<td width="53" class="table01_title">번호</td>
+		<td width="350" class="table01_title">제목</td>
+		<td width="86" class="table01_title">시작날짜</td>
+		<td width="86" class="table01_title">종료날짜</td>
+		<td width="50" class="table01_title">삭제</td>
+	</tr>
+	
+	<!--{@ LIST}-->
+	<tr height="28" bgcolor="#FFFFFF">
+		<td class="table01_text05">{.num}</td>
+		<td class="table01_text07" style="padding-left:10px;"><img src="/image/m1.gif" align="absmiddle"><a href="{.modifylink}"> {.str_title}</a></td>
+		<td class="table01_text05">{.dt_start_date}</td>
+		<td class="table01_text05">{.dt_finish_date}</td>
+		<td align="center"><input type="checkbox" name="id[]" value="{.num_serial}"></td>
+	</tr>	
+	<!--{:}-->
+	<tr height="100" bgcolor="#FFFFFF">
+		<td colspan="5" align="center">등록된 설문이 없습니다.</td>
+	</tr>		
+	<!--{/}-->
+	
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td colspan="3" width="100%" class="table_btm_line01"></td>
+	</tr>
+	<tr><td height="10"></td></tr>
+	<tr valign="top">
+		<td>
+		
+		<span class="btn_pack medium icon"><span class="add"></span><a href="javascript:writePoll();">등록</a></span>
+
+		</td>
+		<td align="center" >
+			<!-- <wa:paging total="{total}" listnum="{listnum}"></wa:paging> --><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" class="paginate_complex"/>
+		</td>
+		<td align="right">
+		
+		<span class="btn_pack medium icon"><span class="delete"></span><input type="submit" value="삭제"></span>
+
+		
+		
+		</td>
+	</tr>
+</table>
+<!-- 표1 End -->	
+</form>
+

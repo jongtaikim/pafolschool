@@ -1,0 +1,304 @@
+<? {_OID} = _OID?>
+<? {_AOID} = _AOID?>
+<center>
+<style>
+	.f11 {font-size:11px; color:#656565; font-family:돋움;}
+	.f1 {font-size:11px; color:#656565	; font-family:돋움;}
+
+</style>
+<link rel="stylesheet" type="text/css" href="/css/lightbox.css" media="screen,tv" />
+<script type="text/javascript" charset="UTF-8" src="/js/spica.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/js/lightbox_plus.js"></script>
+{? str_scrab == 2}
+<script type="text/javascript">
+document.oncontextmenu = new Function ('return false');
+document.ondragstart = new Function ('return false');
+document.onselectstart = new Function ('return false');
+</script>
+{/}
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	function ChkDel(id) {
+		if(confirm("삭제하시겠습니까?")){
+			location.href="{delcommlink}?mcode={mcode}&main={id}&id="+id;
+		}
+	}
+//-->
+</SCRIPT>
+<table cellpadding="0" cellspacing="0" border="0" width="{? str_width}{str_width}{?str_width <= 100}%{/}{:}100%{/}" style="border:1 solid e5e5e5">
+	<tr>
+		<td align="center">
+			
+			<table cellpadding="0" cellspacing="0" border="0" width="96%">
+				<tr>
+					<td height="5"></td>
+				</tr>
+				<tr>
+					<td  height="30" style="border-bottom:1px dotted" align="left">{? gon}<b style = "color:#FF0033">[전체공지글] {/}
+					
+					<b>{str_title}</b> 
+					&nbsp;&nbsp;
+					</td>
+					<td class="f11" align="right"style="border-bottom:1px dotted">{reg_date}</td>
+				</tr>
+				<tr>
+					<td height="10"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td class="f11" colspan = 2  valign = top align="left"><b>[{str_tmp1}]  </b></td>
+				
+				
+					<td  align = right colspan = 10 style = "padding:0px;color:#A4A4A4" >
+
+					<table align="right"  border=0 cellspacing=0 cellpadding=0 class=table01>
+					 <tr><th  align="left">사이트 정보</th></tr>
+					 <tr><td  align="left"><a href="http://{str_tmp2}" target="_blank">{str_tmp1}<br>
+					http://{str_tmp2}</a></td></tr>
+					</table>
+
+					</td>
+							</tr>
+						</table>
+					</td>
+					
+				</tr>
+
+
+				<tr>
+				<script language="Javascript">
+								function viewFile(){
+								if($('subco').style.display=='none'){
+								$('subco').style.display=''
+								}else{
+								$('subco').style.display='none'
+								}
+								}
+								</script>
+								<!--{?  FILE}-->
+								<td align="right" class="f1" colspan = 10 style = "padding:5px 0 5px 0"><img src="./image/up_icon1.gif" align="absmiddle">&nbsp;<a href="javascript:viewFile();" ><b>첨부파일(<font color=#663333>{FILE_COUNT}</font>)</b></a>
+								
+							
+								
+								<div style = "position:relative;" id="">
+									<div style = "left:-210px;border:3px solid #B0B0B0;position:;background-color:#FFFFFF;display:none;width:200px" id="subco">
+										<table align="center" width=200 border=0 cellspacing=0 cellpadding=0>
+										 <!--{@ FILE}-->
+										 <tr>
+										  <td bgcolor = #f3f3f3 style = "padding:3px"  align="left">
+											
+										<a href="{.file_url}"><img src="/image/icon/{.str_ftype}.gif" align="absmiddle" onerror="this.src='/image/icon/unknown.gif';" border="0"> {.str_upfile}</a>
+										
+										  </td>
+										 </tr><!--{/}-->
+										</table>
+									</div>
+								</div>
+
+
+								</td>
+								<!--{/}-->
+				</tr>
+				<tr>
+					<td height="10"></td>
+				</tr>
+
+				
+			
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 style = "table-layout:fixed">
+		 <tr>
+		  <td colspan = 2 align="left">
+		   <div style = " padding:20px 10px 50px 10px ;" align="">{content}</div>	
+		  </td>
+		 </tr>
+		
+		
+	
+		 <tr>
+		   <td height =10></td>
+		 </tr>
+		</table>
+
+		<center>
+
+<? if(check_edumark_ip()) { ?>
+
+<table cellpadding="0" cellspacing="0" border="1" width="96%" bordercolor="#c0c0c0">
+	<tr>
+		<th width="15%"><font color="666666">작업상태</font></th>
+		<td style="padding:5px 10px 5px 10px" align="left">
+			<form method=post>
+			<input type="hidden" name="mcode" value="{mcode}">
+			<input type="hidden" name="serial" value="{id}">
+			<input type="hidden" name="work_status" value="work">
+			<select name="str_tmp6">
+				<option value="작업중" {? str_tmp6 == "작업중"} selected{/}>작업중</option>
+				<option value="작업완료" {? str_tmp6 == "작업완료"} selected{/}>작업완료</option>
+				<option value="보류" {? str_tmp6 == "보류"} selected{/}>보류</option>
+				<option value="작업취소" {? str_tmp6 == "작업취소"} selected{/}>작업취소</option>
+				<option value="작업인계" {? str_tmp6 == "작업인계"} selected{/}>작업인계</option>
+			</select>
+			<input type="submit" name="" value="상태변경" class="button">
+			</form>
+		</td>
+	</tr>
+{?  FILE}
+	<tr>
+		<th align="center"><font color="#666666">첨부파일</font></th>
+		<td style="padding:5px 10px 5px 10px"  align="left">
+			<!--{@ FILE}-->
+			<a href="{.file_url}"><img src="/image/icon/{.str_ftype}.gif" align="absmiddle" onerror="this.src='/image/icon/unknown.gif';" border="0"> {.str_upfile}</a>
+			<!--{/}-->
+		</td>
+	</tr>
+{/}
+</table>
+
+<? } ?>
+
+		
+		<table cellpadding="0" cellspacing="0" border="0" width="96%" >
+			
+			<tr>
+				<td height="5" ></td>
+			</tr>
+			
+			<tr>
+			  <td   colspan = 4 style="padding:5px;border-bottom:1px solid #F4F4F9" align="left"><img src='/image/comment_text_icon.gif' border='0' alt=''> 현재 <b>{num_comment}</b>개의 덧글이 등록되어 있습니다.</td>
+			</tr>
+			<tr>
+				<td colspan = 4 style = "padding-top:10px;padding-bottom:10px">
+					<table width= 98% border = 0 align = center> 
+					<!--{@ COMMENT}-->
+						<tr>
+							
+							<td width="5"></td>
+							
+							
+					
+
+							<td height = 25    align = left  class="f11" >
+							
+							<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+							 <tr>
+							  <td  style = "padding:0px;font-size:11px">
+			
+				  
+				  <b style="color:#9933FF">{? .str_nick}{.str_nick}{:}{.str_name}{/} <a href="{.str_tmp2}" target = "_blank"> </a></b>
+			
+				&nbsp;&nbsp;<font class = "f11">{.dt_date}</font> {? (_OID == str_tmp10) ||_SESSION.IN_ADMIN}&nbsp;&nbsp;<a href="javascript:ChkDel({.num_serial});"><img src="./image/icon_del.gif" width="11" height="11" border="0" align="absmiddle"></a>{/}
+
+							  </td>
+							 </tr>
+
+							 <tr>
+							  <td style = "padding:10px 5px 5px 10px;font-size:11px">{= nl2br(.str_comment)}  </td>
+							 </tr>
+							</table>
+							
+						 </td>
+							
+						<tr>
+							<td colspan = 6  height = 1 background ="./image/line.gif"></td>
+						</tr>
+						<tr>
+							<td height="5"></td>
+						</tr>
+						<!--{/}-->
+					</table>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan = 4>
+					<table width="100%" border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td class="padding">
+								<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">								
+									<script language="javaScript" src="js/lib.validate.js"></script>
+									<form method="post" name="commentform" action="/tong_board.comment" onsubmit="return validate(this);">
+			
+									<tr>
+										
+										<td width="78%" align="left"><img src="./image/comment_img02.gif" width="58" height="11"></td>
+										<td width="12%"><img src="./image/comment_img03.gif" width="58" height="11"></td>
+										
+									</tr>
+
+									<input type="hidden" name="num_main" value="{id}">
+									<input type="hidden" name="mcode" value="{mcode}">
+									<input type="hidden" name="str_tmp1" value="{str_tmp1_s}">
+									<input type="hidden" name="str_tmp2" value="{str_tmp2_s}">
+									<tr>
+										<? if(check_edumark_ip()) { ?>
+											<input name="cmt_name" hname="이름" type="hidden" class="login" id="cmt_name" style="width:58px; border:1 solid e5e5e5" maxbyte="20" required value="관리센터" readonly>
+											<? }else{ ?>
+											<input name="cmt_name" hname="이름" type="hidden" class="login" id="cmt_name" style="width:58px; border:1 solid e5e5e5" maxbyte="20" required value="{str_tmp1}" readonly>
+											<? } ?>
+											<input type="hidden" name="str_user" value="{_SESSION.USERID}">
+											<input type="hidden" name="str_nick" value="{_SESSION.NICKNAME}">
+											<input type="hidden" name="chr_mtype" value="{_SESSION.CHR_MTYPE}">
+										
+										<td valign="top">
+											<textarea name="cmt_comment" hname="나도 한마디 내용" class="sroll" id="cmt_comment" style="width:97%; height:80px; border:1 solid e5e5e5"maxbyte="1000" required></textarea>
+										</td>
+										<td valign="top">
+											<input name="cmt_pass" hname="비밀번호" type="password" {? _SESSION.PASSWORD} value="{_SESSION.PASSWORD}" readonly{/} class="login" id="cmt_pass"  style="width:58px; border:1 solid e5e5e5"maxbyte="8" required>
+											<br><input type="image" src="./image/btn_submit.gif">
+										</td>
+									</tr>
+									<tr>
+										<td height="10"></td>
+									</tr>
+									</form>													
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+			
+			</table>
+			
+			</center>
+		</td>
+	</tr>
+	<tr>
+		<td height="10"></td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="{? str_width}{str_width}{?str_width <= 100}%{/}{:}100%{/}">
+	<tr>
+		<td height="10"></td>
+	</tr>
+	<tr>
+		<td>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<!--{? env.writable}-->
+					<td>{hidden_s}<a href="{writelink}"><img src="./image/btn_write.gif"></a>{hidden_e}</td>
+					<td width="5"></td>
+					{?sadmin}<td>{hidden_s}{hidden_s2}<a href="{replylink}" ><img src="./image/btn_reply.gif" alt="답글달기"></a>{hidden_s2}{hidden_e}</td>
+					<td width="5"></td>{/}
+					<td>{hidden_s}<a href="{modifylink}"><img src="./image/btn_modify.gif"></a>{hidden_e}</td>
+					<td width="5"></td>
+					<td>{hidden_s}<a href="{deletelink}"><img src="./image/btn_delete.gif" ></a>{hidden_e}</td>
+					
+					<!--{/}-->
+
+				</tr>
+			</table>
+		</td>
+		<td align="right"><a href="{listlink}"><img src="./image/btn_list.gif"></a></td>
+	</tr>
+</table>
+
+</center>

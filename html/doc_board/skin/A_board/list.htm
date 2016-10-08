@@ -1,0 +1,65 @@
+<style>
+	.f11 {font-size:11px; color:656565; font-family:돋움; padding-top:3}
+	.f1 {font-size:11px; color:565656; font-family:돋움; padding-top:3}
+</style>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+	<tr>
+	  <td colspan = 8 align = center>
+
+	  <!--{? _SESSION.ADMIN}-->
+				<br>
+					<a href="{writelink}" target="{target}"><img src="./image/btn_write.gif"></a>
+					{? LIST}<a href="{modifylink}"  target="{target}"><img src="./image/btn_modify.gif"></a>{/}
+
+					<a href="{deletelink}"  target="{target}"><img src="./image/btn_delete.gif" ></a>
+					<!--{/}--></td>
+	</tr>
+</table>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+ {? total > 1}
+ <tr>
+   <td align = right style = "padding:5px 5px 0 5px">
+   
+<script language="Javascript">
+function gogo(idx){
+location.href=idx;
+}
+</script>
+관련문서 보기 : 
+<select name="" onchange = "gogo(this.value)" >
+	<option value="" {? !id  } selected{/}>-- 문서를 선택하세요. --</option>
+<!--{@ LIST}-->
+	<option value="{.readlink}" {? id == .num_serial  } selected{/}>{.str_title}</option>
+{/}   
+</select>
+
+   
+   </td>
+ </tr>
+ {/}
+ <tr>
+  <td valign = top height = "100" style="">
+		<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 style = "table-layout:fixed">
+		 <tr>
+		  <td>
+		   <div style = " padding:0px 0px 0px 0px ;height :180" align="">{? content}{content}{:}<center><img src=http://hkedu.co.kr/theme/bk7/images/test.jpg></center>{/}</div>	
+		  </td>
+		 </tr>
+		</table>
+  </td>
+ </tr>
+</table>
+
+<br>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+	<tr>
+	  <td colspan = 8 align = center>
+
+	  <!--{? _SESSION.ADMIN || env.writable}-->
+					<a href="{writelink}" target="{target}"><img src="./image/btn_write.gif"></a>
+					{? LIST}<a href="{modifylink}"  target="{target}"><img src="./image/btn_modify.gif"></a>{/}
+
+					<a href="{deletelink}"  target="{target}"><img src="./image/btn_delete.gif" ></a>
+					<!--{/}--></td>
+	</tr>
+</table>

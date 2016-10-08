@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="/css/common.css" type="text/css" />
+<link rel="stylesheet" href="./memo.css" type="text/css" />
+
+
+
+
+
+
+<div id="memoWrap">
+
+	<div class="objTop">
+		<div class="memoTit">
+			<img src="./images/memoTit.gif" alt="쪽지함" />
+		</div>
+		
+		{#MEMO_TOP}
+	</div>
+
+	<div class="objContent">
+
+		<!-- 게시판 영역 시작 -->
+		<div class="board">
+
+			<div class="boardInfo">
+				<span class="infoTit">쪽지보내기</span>
+				<span class="infoNotice">쪽지 보관기간은 1개월입니다.</span>
+			</div>
+	
+			<form class="boardWriteForm" method="post" >
+				<fieldset>
+				<legend>쪽지쓰기</legend>
+					<table class="boardWrite" border="1" cellspacing="0" summary="쪽지쓰기 목록입니다..">
+						<caption>쪽지쓰기 목록</caption>
+						<tr>
+							<th><label for="receiveMan">받을사람</label></th>
+							<td><input id="receiveMan" class="inputtxt" type="text" title="받을사람" name="str_to_id" value="{str_to_id}"/></td>
+						</tr>
+						<tr>
+							<th><label for="title">제목</label></th>
+							<td><input id="title" class="inputtxt" type="text" title="제목" name="str_title" value="{str_title}"  /></td>
+						</tr>
+						<tr>
+							<th><label>내용</label></th>
+							<td><TEXTAREA NAME="str_text" ></TEXTAREA></td>
+						</tr>
+					</table>
+				</fieldset>
+			
+
+		</div>
+		<!-- 게시판 영역 끝 -->
+
+	<!-- 버튼 시작 -->
+	<div class="buttonArea">
+		<input type="image" src="./images/btn_submit.gif" value=""/>
+	</div>
+	<!-- 버튼 끝 -->
+
+	</div>
+
+</div>
+
+</form>
+

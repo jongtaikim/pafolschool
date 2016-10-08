@@ -1,0 +1,28 @@
+<div id="newsletter">
+{#TOP_TAB}
+
+
+<div class="cancel">
+	<form method="post" onsubmit="return validate(this);" enctype="multipart/form-data" name="basicinfo">
+	<input type="hidden" name="mode" value="{mode}">
+		<fieldset>
+			<legend>해지 정보</legend>
+			<div class="bor">
+				<p class="left">
+					<label for="ap1"><strong><em>*</em>이름</strong></label><input class="txt" id="ap1" type="text"  name="str_name" hname="이름"  required/>
+				</p>
+				<p class="right">
+					<label for="ap2"><strong><em>*</em>e-mail</strong></label><input class="txt" id="ap2" type="text" name="str_email" hname="이메일"  required />
+				</p>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>해지신청</legend>
+			<strong>아래에 해지사유를 적어 주시면, 적극적인 반영이 되도록 최선을 다 하겠습니다. </strong>
+			<textarea cols="80" rows="10" name="str_text"></textarea>
+		</fieldset>
+		<input class="btn" type="image" src="./images/sub1/applyBtn3.gif" alt="해지신청" />
+	</form>
+</div>
+
+</div>

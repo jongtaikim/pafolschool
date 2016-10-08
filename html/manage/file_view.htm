@@ -1,0 +1,111 @@
+<style type="text/css" title="">
+.tile{float:left;padding-right:10px;padding-left:5px}
+</style>
+
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr><td height="12"></td></tr>
+	<tr valign="top">
+		<td width="21"><img src="/html/admin/images/subtitle_icon.gif"></td>
+		<td width="99%" class="subtitle">첨부파일 관리</td>
+	</tr>
+	<tr><td colspan="2" height="14"></td></tr>
+	<tr><td colspan="2" class="subtitle_line01"></td></tr>
+	<tr><td colspan="2" class="subtitle_line02"></td></tr>
+
+</table>
+
+
+<div style="padding:5px 0 10px 0 ">
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+ <tr>
+  <td>
+   <div class="tab01">
+	<ul>
+	<li ><a href="/manage.file_view?PageNum=010400" class="active" >일반 게시판</a></li>
+	
+     </ul>
+	</div>
+  </td>
+ </tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%"  class= "table01">
+<tr>
+  <td colspan = "20" align="right">
+
+  <form method=get>  
+
+  <input type="hidden" name="type"  value="{type}">
+  { ? type =="class"}
+
+  <select name="mcode"  style=  "font-size:11px" onchange="this.form.submit()">
+	<option value="">게시판을 선택해주세요.</option>
+	{@ LIST}
+	{? .size > 0}
+	<option value="{.num_fcode}.{.num_mcode}"  {? .code == mcode} selected{/}>{.name} | {.str_title} ({=byte_convert(.size)}) </option>{/}
+	{/}
+  </select> 
+
+  {:}
+
+    <select name="mcode"  style=  "font-size:11px" onchange="this.form.submit()">
+	<option value="">게시판을 선택해주세요.</option>
+	{@ LIST}
+	{? .size > 0}
+	<option value="{.num_mcode}" {? mcode == .num_mcode} selected{/}>{.str_title} ({=byte_convert(.size)}) </option>{/}
+	{/}
+  </select> 
+  {/}
+
+  </form>
+
+
+  </td>
+</tr>
+
+<tr>
+  <td colspan = "20" align>
+
+  <div style = "width:13px;height:10px;background-color:red;float:left;" ></div><span class="tile">음원파일</span>
+  <div style = "width:13px;height:10px;background-color:blue;float:left;" ></div><span class="tile">프로그램 파일</span>
+  <div style = "width:13px;height:10px;background-color:#0066CC;float:left;" ></div><span class="tile">동영상</span>
+  </td>
+</tr>
+<tr>
+  <td colspan = "20" align=center><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}"/></td>
+</tr>
+<tr>
+<th>번호</th>
+<th>파일</th>
+<th>용량</th>
+<th>다운횟수</th>
+<th>게시물확인</th>
+<th>삭제</th>
+</tr>
+
+{@ file_LIST}
+<tr>
+  <td>{.index_ +1}</td>
+
+  <td><a href="http://<?=HOST?>.<?=DOMAIN_?>/download/<?=_OID?>/{.str_sect}/{.str_code}/{.num_main}/{.num_serial}/{.str_upfile}"
+  style ="{? .str_ftype == 'mp3'}color:red{/}{? .str_ftype == 'exe'}color:blue{/}{? .str_ftype == 'wmv' ||  .str_ftype == 'avi' ||  .str_ftype == 'mpg' }color:#0066CC{/}"
+  ><img src='/image/icon/{.str_ftype}.gif' align="absmiddle" onerror="this.src='/image/icon/unknown.gif';"> {.str_upfile}</a></td>
+  <td>{.num_size_B}</td>
+  <td>{.num_down}</td>
+  <td align=center><a href="/board.read?mcode={.str_code}&id={.num_main}" target="_blank">보기</a></td>
+   <td align=center><a href="/manage.file_del?mcode={.str_code}&id={.num_main}&serial={.num_serial}">삭제</a></td>
+</tr>
+{/}
+<tr>
+  <td colspan = "20" align=center><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}"/></td>
+</tr>
+</table>
+
+
+</div>

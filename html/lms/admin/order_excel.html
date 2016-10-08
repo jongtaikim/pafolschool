@@ -1,0 +1,64 @@
+<table align="center" width="100%" border="1" cellspacing="0" cellpadding="0" style="font-size:11px">
+	<thead>
+		<tr>
+			<th style="text-align:center">신청기수</th>
+			<th style="text-align:center">신청날짜</th>
+			<th style="text-align:center">학생이름</th>
+			<th style="text-align:center">성별</th>
+			<th style="text-align:center">주민번호</th>
+			<th style="text-align:center">학교</th>
+			<th style="text-align:center">학년</th>
+			<th style="text-align:center">T-Shirt</th>
+			<th style="text-align:center">학부모(부)</th>
+			<th style="text-align:center">학부모(모)</th>
+			<th style="text-align:center">이메일</th>
+			<th style="text-align:center">주소</th>
+			<th style="text-align:center">집전화</th>
+			<th style="text-align:center">휴대폰</th>
+			<th style="text-align:center">결제정보</th>
+			<th style="text-align:center">현금영수증</th>
+			<th style="text-align:center">메모</th>
+	
+		
+		</tr>
+	</thead>
+	<tbody>
+		{@ LIST}
+		<tr>
+			<td style="text-align:center">{.str_ccode_text} 제{.camp.num_serial}기</td>
+			<td style="text-align:center">{=date("Y.m.d",.dt_date)}</td>
+			<td style="text-align:center">{.str_st_name}</td>
+			<td style="text-align:center">{? .str_sex == "1"}남{:}여{/}</td>
+			<td style="text-align:center">{.str_jumin}</td>
+
+			<td style="text-align:center">{.str_school}</td>
+			<td style="text-align:center">{.str_class}</td>
+			
+			<td style="text-align:center">{.str_tsize}호</td>
+			<td style="text-align:center">{.str_pr_name1 }</td>
+			<td style="text-align:center" >{.str_pr_name2 }</td>
+			<td style="text-align:center" >{.str_email }</td>
+			<td style="text-align:center" >우({.str_zipcode }) {.str_addr1}{.str_addr2}</td>
+			<td style="text-align:center" >{.str_phone }</td>
+			<td style="text-align:center" >{.str_handphone }</td>
+			<td style="text-align:center" >{? .str_order_st == "0"}
+				<span style="color:red">입금확인전</span>
+				{: .str_order_st == "1"}
+				<span style="color:blue">입금확인</span>
+				{: .str_order_st == "5"}
+				<span style="color:blue">카드승인</span>
+				{: .str_order_st == "2"}
+				<span style="color:#808080">취소</span>
+				{: .str_order_st == "8"}
+				<span style="color:#808080">취소환불</span>
+				{: .str_order_st == "6"}
+				<span style="color:#73758c">대기자 변경(결제)</span>
+				{: .str_order_st == "7"}
+				<span style="color:#73758c">대기자 변경(비결제)</span>
+				{/}</td>
+			<td style="text-align:center" >{?.str_money_tax =="y"}{.str_money_number}{:}신청안함{/}</td>
+			<td style="text-align:center" >{.str_memo}</td>
+		</tr>
+		{/}
+	</tbody>
+</table>

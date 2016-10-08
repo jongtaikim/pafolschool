@@ -1,0 +1,47 @@
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="table01">
+ <tr>
+  <th>번호</th>
+  <th>학교명</th>
+  <th>용량</th>
+  <th>만료날짜</th>
+  <th>삭제</th>
+ </tr>
+{@ LIST}
+ <tr>
+   <td>{.num_oid}</td>
+   <td>{.str_organ}</td>
+   <td>{.num_size / (1024*1024)}MB</td>
+   <td>{=date("Y-m-d",.num_date)}</td>
+   <td><input type="button" name="" value="삭제" class="button" onclick="location.href='/manage.upload_manage?num_serial={.num_serial}&mode=del'"></td>
+ </tr>
+
+
+
+ {/}
+</table>
+<br><br>
+
+<form method="post" onsubmit="return validate(this)" >
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="table01">
+ <tr>
+  <th>호스트</th>
+  <td>  
+	<select name="num_oid" hname="호스트선택" required >
+		<option value="">--호스트선택--</option>
+		{@ LIST2}
+		<option value="{.num_oid}">{.str_organ}</option>
+		{/}
+	</select>
+  </td>
+    <th>업로드용량</th>
+    <td><input type="text" name="num_size" value="" class="" style="width:80px" hname="용량" required >MB</td>
+    <th>만료날짜</th>
+	<td><wa:datepicker name="num_date" required="true"/></td>
+	  <td>
+	   <input type="submit" name="" value="등록" class="button">
+	  </td>
+ </tr>
+</table>
+</form>

@@ -1,0 +1,332 @@
+<script language="JavaScript" src="/js/cht.js"></script>
+<style type="text/css" title="">
+TABLE.zizibe01 TD{
+border:1px solid #bfcfde;
+padding:5px;
+
+
+}
+
+TABLE.zizibe01 TD.no1{
+border:1px solid #bfcfde;
+padding:5px;
+
+
+}
+
+TABLE.zizibe01 TH.title1{
+border:1px solid #bfcfde;
+padding:5px;
+background-image:none;
+width:150px;
+
+}
+
+TABLE.zizibe01 TH.title2{
+
+padding-top:1px;
+padding-bottom:4px
+background-image:none;
+text-align:left;
+color:#285775; 
+font-weight:bold;
+font-size:12px;
+
+}
+
+TABLE.zizibe01 TH.icon01{
+width:20;
+padding-bottom:4px
+}
+
+#noTd{
+border:0px;
+border-bottom:1px dotted #D8D8D8;
+}
+</style>
+
+
+<table align="center" width=98% border=0 cellspacing=0 cellpadding=0 class="zizibe01">
+	<tr valign="top">
+		<th class="icon01"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+		<th class="title2" width="100%">디스크사용량</th>
+	</tr>
+	<tr>
+		<td colspan="2">
+		월별 디스크 사용량 (단위 : MB)<br>
+
+			<table cellpadding=0 cellspacing=0 border=0 width="100%">
+				<tr>				
+					<td height=35>:: 검색일</td>
+					<td bgcolor=ffffff>
+						<SELECT name="year" onchange="chatr(this.value)" class=select size=1>  
+
+						<option value=2008 {?year=="2008"} selected {/}>2008</option> 
+						<option value=2009 {?year=="2009"} selected {/}>2009</option> 
+						<option value=2010 {?year=="2010"} selected {/}>2010</option> 
+						<option value=2011 {?year=="2011"} selected {/}>2011</option> 
+						<option value=2012 {?year=="2012"} selected {/}>2012</option> 
+
+						</SELECT>년 
+
+					</td>
+					<td height=35>호스트 용량 제한</td>
+					<td>{num_disk}MB</td>
+					<td height=35>호스트 업로드 사이즈</td>
+					<td>{num_upload_size}MB</td>
+				</tr>
+			</table>
+
+
+
+				<div id="chartdiv2" align="center"> FusionCharts. </div>
+				<script type="text/javascript">
+				   var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "590", "400");
+				   chart.setDataURL("/manage.use_disk?year={OID}|<?=date("Y")?>");		
+				   
+					  
+				   chart.render("chartdiv2");
+
+				   function chatr(ye){
+
+
+					var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "590", "400");
+				   chart.setDataURL("/manage.use_disk?year={OID}|"+ye);		
+				   
+					  
+				   chart.render("chartdiv2");
+				   
+				   }
+				</script> 
+							
+
+			<table align="center" width:98% border=0 cellspacing=0 cellpadding=0>
+				<tr>
+					<td align = center><b>총 사용량 : {tot_file}yte </td>
+				</tr>
+			</table>
+
+		</td>
+	</tr>
+	
+	<tr>
+		<th height="20">
+	</tr>
+
+	<tr valign="top">
+		<th class="icon01"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+		<th class="title2" width="100%">게시판사용현황 (웹문서,Qna포함)</th>
+	</tr>
+	
+	<tr>
+		<td  colspan = 3>
+			월별 게시판 DB 사용량 (단위 : 건)<br>
+
+			<table cellpadding=0 cellspacing=0 border=0 width="100%">
+				<tr>				
+					<td height=35 width = 50>:: 검색일</td>
+					<td bgcolor=ffffff>
+						<SELECT name="year2" onchange="chatr2(this.value)" class=select size=1> 
+							<option value=2008 {?year=="2008"} selected {/}>2008</option> 
+							<option value=2009 {?year=="2009"} selected {/}>2009</option> 
+							<option value=2010 {?year=="2010"} selected {/}>2010</option> 
+							<option value=2011 {?year=="2011"} selected {/}>2011</option> 
+							<option value=2012 {?year=="2012"} selected {/}>2012</option> 
+						</SELECT>년 					
+					</td>				
+				</tr>
+			</table>
+
+		<div id="chartdiv3" align="center"> 
+			FusionCharts. </div>
+		  <script type="text/javascript">
+			   var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "590", "400");
+			   chart.setDataURL("/manage.use_board?year={OID}|<?=date("Y")?>");		
+			   
+				  
+			   chart.render("chartdiv3");
+
+			   function chatr2(ye){
+
+
+				var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "590", "400");
+			   chart.setDataURL("/manage.use_board?year={OID}|"+ye);		
+			   
+				  
+			   chart.render("chartdiv3");
+			   
+			   }
+			</script> 
+						
+
+			<table align="center" width:98% border=0 cellspacing=0 cellpadding=0>
+				<tr>
+					<td align = center><b>총 데이터 건 수  : {tot_board} 건</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<th height="20">
+	</tr>
+	<tr valign="top">
+		<th class="icon01"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+		<th class="title2" width="100%">회원 통계</th>
+	</tr>
+	<tr>
+		<td  colspan = 3>
+			<table align="center" width:98% border=0 cellspacing=0 cellpadding=0>
+				<tr>
+					<td align = center>
+						<table align="center"  border=0 cellspacing=0 cellpadding=0>
+							<tr align = center>
+								<td>총회원수</td>
+								{@ tot_mtype}
+								<td>{.mtype}</td>
+								{/}
+							</tr>
+							<tr align = center>
+								<td>{=number_format(tot_mtype_total)} 명</td>
+								{@ tot_mtype}
+								<td>{=number_format(.mtype_cnt)} 명</td>
+								{/}
+							</tr>
+						</table>
+
+						<div id="chartdiv4" align="center"> 
+						FusionCharts. </div>
+					  <script type="text/javascript">
+						   var chart = new FusionCharts("/cht_flash/FCF_Bar2D.swf", "ChartId", "590", "400");
+						   chart.setDataURL("/manage.use_member?oids={OID}");		
+						   
+							  
+						   chart.render("chartdiv4");
+
+
+						</script> 
+
+					</td>
+				</tr>
+			</table>	
+		</td>
+	</tr>
+
+	
+	<tr>
+		<th height="20">
+	</tr>
+	<tr valign="top">
+		<th class="icon01"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+		<th class="title2" width="100%">접속 통계</th>
+	</tr>
+
+
+	<tr>
+		<td  colspan = 3>
+			<table align="center" width:98% border=0 cellspacing=0 cellpadding=0>
+				<tr>
+					<td align = center>
+					<div id="chartdiv5" align="center"> 
+					FusionCharts. </div>
+				  <script type="text/javascript">
+					   var chart = new FusionCharts("/cht_flash/FCF_Line.swf", "ChartId", "590", "400");
+					   chart.setDataURL("/manage.use_counter?oids={OID}");		
+					   
+						  
+					   chart.render("chartdiv5");
+
+
+					</script> 
+	
+						<table align="center" width:98% border=0 cellspacing=0 cellpadding=0>
+							<tr>
+								<td valign = top>
+									<table align="center" width = 100% border=0 cellspacing=0 cellpadding=0>
+										<tr align = center>
+
+											<td width = 100>접근방법</td> <td width = 60>횟수</td>
+
+										</tr>
+										 {@ COUNTERLIST}
+										<tr align = center>
+
+
+											<td>{? .str_re_name}{=trim(.str_re_name)}{:}불명{/}</td><td>{=number_format(.counter)} 건</td>
+
+										</tr>{/}
+									</table>	
+								</td>
+								<td>
+								<div id="chartdiv9" align="center"> 
+								FusionCharts. </div>
+								<script type="text/javascript">
+								   var chart = new FusionCharts("/cht_flash/FCF_Pie2D.swf", "ChartId", "400", "400");
+								   chart.setDataURL("/manage.use_seh?oids={OID}");		
+								   
+									  
+								   chart.render("chartdiv9");
+
+
+								</script> 
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+
+
+			<table cellpadding=0 cellspacing=0 border=0 width="100%">
+			<tr>
+			  <td colspan = 20>시간별 접속 현황</td>
+			</tr>
+				<tr>				
+					<td height=35 width = 50>:: 검색일</td>
+					<td bgcolor=ffffff>
+						<SELECT name="year2" onchange="chatr7(this.value)" class=select size=1>  
+						
+							<?
+							for($ii=1; $ii<32; $ii++) {?>
+								
+							
+							<option value=<?=$ii?> <? if(date("d") == $ii){?>selected<?}?> ><?=$ii?></option> 
+							
+							<?
+							
+							}
+							
+							?>
+
+						</SELECT> 일
+						
+					</td>
+					
+				</tr>
+				
+				</table>
+
+			<div id="chartdiv6" align="center"> 
+					FusionCharts. </div>
+				  <script type="text/javascript">
+					   var chart = new FusionCharts("/cht_flash/FCF_Line.swf", "ChartId", "590", "400");
+					   chart.setDataURL("/manage.use_counter_time?oids={OID}|");		
+					   
+						  
+					   chart.render("chartdiv6");
+
+				function chatr7(ye){
+
+
+						var chart = new FusionCharts("/cht_flash/FCF_Line.swf", "ChartId", "590", "400");
+					   chart.setDataURL("/manage.use_counter_time?oids={OID}|"+ye);		
+					   
+						  
+					   chart.render("chartdiv6");
+					   
+					   }
+					</script> 
+			  </td>
+			</tr>
+			</table>
+

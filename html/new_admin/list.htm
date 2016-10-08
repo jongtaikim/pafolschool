@@ -1,0 +1,73 @@
+<script language="javaScript">
+<!--
+URL.delVar('page');
+
+function writeArticle() {
+	location.href = URL.setVar({'act':'.write'});
+}
+
+function deleteArticle() {
+	var form = document.forms['orderForm'];
+	if(form.elements['id[]'] == undefined) return false;
+	var els = form.elements['id[]'];
+	if(!els.length) els = new Array(els);
+	var cnt = els.length;
+	var chk = new Array();
+	for(var i=0;i<cnt;i++) {
+		if(els[i].checked) chk[chk.length] = els[i].value;
+	}
+	if(chk.length<1) {
+		alert('삭제할 항목에 체크하여 주십시오.');
+		return false;
+	}
+	var ids = chk.join(',');
+	location.href = URL.setVar({'act':'.delete','ids':ids});
+
+}
+//-->
+</script>
+<wa:applet module="admin.main.comptabs"></wa:applet>
+<h2>{title}</h2>
+<form name="orderForm" onsubmit="return false;">
+
+<table width="725" class="table01"> 
+<tr align="center">
+	<td  align = left colspan = "5" style = "padding-left:10px"><b>■ (주) 아이노크 홈페이지 공지사항</b></td>
+	
+</tr>
+
+<tr align="center">
+	<th width="50%"><b>제목</th>
+	<th width="20%"><b>등록일</b></th>
+	<th width="10%"><b>조회수</b></th>
+	{hidden_s}<th width="10%"><b>삭제</b></th>{hidden_e}
+	{hidden_s}<th width="10%"><b>수정</b></th>{hidden_e}
+</tr>
+<!--{@ LIST}-->
+<tr align="center">
+	<td align="left" style="padding-left:10px;">{.img}&nbsp;&nbsp;<a href="{.viewlink}">{.str_title} </a> </td>
+	<td>{.dt_date}</td>
+	<td>{.num_hit}</td>
+	{hidden_s}<td><input type="checkbox" name="id[]" value="{.num_serial}"></td>{hidden_e}
+	{hidden_s}<td><a href="{.modifylink}">수정</a></td>{hidden_e}
+</tr>
+<!--{:}-->
+<tr height="100">
+	<td colspan="5" align="center">등록된 내용이 없습니다.</td>
+</tr>
+<!--{/}-->
+</table>
+</form>
+
+<table width="725" cellpadding="0" cellspacing="0">
+<tr height="50">
+	<td align="center" colspan="2"><wa:paging total="{total}" runat="server"></wa:paging></td>
+</tr>
+{hidden_s}
+<tr>
+	<td align="left"><input type="button" value="등록" class="button2" onclick="writeArticle();"></td>
+	<td align="right"><input type="button" value="삭제" class="button2" onclick="deleteArticle();"></td>
+</tr>
+{hidden_e}
+</table>
+

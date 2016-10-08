@@ -1,0 +1,41 @@
+						<script language="javaScript" id="dynScript"></script>
+						<script language="javaScript">
+						<!--
+						function selectccode1(el) {
+
+							var ccode = el.value;
+							var step = el.getAttribute("step");
+							var nextstep = step + 1;
+							if(nextstep == 5) return;
+							var id = 'dynArea'+ step + '_1';
+							document.getElementById(id).innerHTML = "";
+						
+							if(ccode) {
+								document.getElementById('{varname}').value = el.value;
+								document.getElementById('dynScript').src = '/party.dynselect?mode={typetypeto}&varname={varname}&step='+step+'&ccode='+ccode+'&id='+id;
+								
+								
+								//alert('/menu.dynselect?varname={varname}&step='+step+'&ccode='+ccode+'&id='+id);
+							} else if(step > 1) {
+								var pel = document.getElementById('{varname}'+(step-1));
+					
+								document.getElementById('{varname}').value = pel.value;
+							} else {
+								document.getElementById('{varname}').value = '';
+							}
+
+						}
+						//-->
+						</script>
+
+						<input type="hidden" name="{varname}" hname="{hname}" id="{varname}" value="{ccode}" {required}>
+						<!--{@ CATE_LIST}-->
+						<select name="{varname}{.step}" id="{varname}{.step}" step="{.step}" onchange="selectccode1(this);" style="font-size:11px;" >
+							<option value="" style="color:#666666;">{.depth_str}</option>
+							<!--{@ OPTIONS}-->
+							<option value="{..num_ccode}"{? ..num_ccode==.cur_ccode} selected{/}>{..str_title}</option>
+							<!--{/}-->
+						</select>
+						<span id="dynArea{.step}_1">
+						<!--{/}-->
+						<!--{= str_repeat('</span>', CATE_LIST.size_) }-->

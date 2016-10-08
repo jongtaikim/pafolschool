@@ -1,0 +1,100 @@
+<script type="text/javascript">
+function copy_url() {
+	var form = document.forms['basicinfo']
+	var el = form.elements['menu_url'];
+	var tRange = el.createTextRange();
+	tRange.execCommand("Copy");
+	alert("메뉴의 URL이 클립보드에 복사되었습니다.");
+}
+
+function del_menu() {
+	if(!confirm('정말 삭제하시겠습니까?')) return false;
+	location.href = "menu.admin.del?mcode={mcode}";
+}
+
+function reset_menu() {
+	if(!confirm('내용을 삭제하여 비어있는 메뉴로 만듭니다. 계속하시겠습니까?')) return false;
+	location.href = "menu.admin.reset?mcode={mcode}";
+}
+</script>
+<h2>메뉴 옵션</h2>
+
+<div class="tab01">
+	<ul>
+		<li class="active"><a href="#">메뉴옵션</a></li>
+		<!--{? rights}-->
+		<li><a href="menu.admin.rights?mcode={mcode}">권한설정</a></li>
+		<!--{/}-->
+		<!--{? sub_cnt > 1}-->
+		<li><a href="menu.admin.listorder?mcode={mcode}">하위메뉴 순서변경</a></li>
+		<!--{/}-->
+		<!--{@ TABS}-->
+		<li><a href="{.value_}">{.key_}</a></li>
+		<!--{/}-->
+	</ul>
+</div>
+<!--{? env.showopt}-->
+<div style="padding:15px;">
+	<wa:form name="basicinfo" method="post" action="index.php?requestReffer=1">
+	<table width="550" class="table01"> 
+		<tr> 
+			<th HEIGHT="30" colspan=2 class="head">메뉴 옵션 </th> 
+		</tr> 
+		<tr align="center"  height="25">
+			<th align="center" width="80">메뉴이름</th>
+			<td align="left" >{menu_location} &gt; <input name="str_title" type="text" id="str_title" value="{str_title2}" size="20" readonly> 	{? mcode < 99 }<span style = "font-size:11px">Top메뉴명수정 [ 수강관리 -> 대분류 추가 ]</span>{/}</td>
+		</tr>
+		
+		<tr align="center"  height="25">
+			<th align="center" width="80">메뉴펼침</th>
+			<td align="left" ><INPUT TYPE="radio" NAME="str_number" value = "1" {? str_number} checked{/} style = "border:0px"> 켜기 <INPUT TYPE="radio" NAME="str_number" value = "0" {? !str_number} checked{/} style = "border:0px"> 끄기</td>
+		</tr>
+
+
+		{? mcode > 99 }
+		<tr align="center"  height="25"> 
+			<th align="center"  width="80">메뉴형태</th> 
+			<td align="left" >{menu_name} <input type="button" value="{admin_btn_text}" onClick="location.href=this.href;" href="{admin_url}" class="button"><!-- {admin_desc} --></td>
+		</tr>
+		{/}
+		<tr align="center"  height="25"> 
+			<th align="center"  width="80">메뉴표출</th> 
+			<td align="left">
+				<input type="radio" name="num_view" id="num_view_1" value="1" style="border:0px;"{? num_view} checked{/}> <label for="num_view_1">표출</label>
+				<input type="radio" name="num_view" id="num_view_0" value="0" style="border:0px;"{? !num_view} checked{/}> <label for="num_view_0">표출하지 않음</label>
+			</td>
+		</tr>
+		<tr align="center"  height="25"> 
+			<th align="center"  width="80">메뉴주소</th> 
+			<td align="left"><input type="text" size="40" name="menu_url" class="stretch" value="{menu_url}" readonly><button onClick="copy_url()" class="button">주소복사</button></td>
+		</tr>
+		<tr align="center">
+			<td colspan="2" align="center">
+			<input name="submit" type="submit" value="${Save changes}" class="button2"><br>
+			</td>
+		</tr>
+	</table>
+	{? mcode > 99 }
+	<table width="550" class="table01"> 
+		<tr>
+			<td colspan="2" align="center">
+			<!--{? num_enable_remove}-->
+			<!--{? sub_cnt < 1}-->
+			{? mcode > 99 }
+			<button class="button" onClick="del_menu()"><img src="/image/icon/del_menu.gif" border="0" align="absmiddle">현재메뉴 삭제</button>
+			{/}
+			<!--{/}-->
+			<button class="button" onClick="reset_menu()"><img src="/image/icon/reload.gif" border="0" align="absmiddle">빈메뉴로 만들기</button>
+			<!--{/}-->
+			<!--{? admin_desc}-->
+			<div class="tip">Note: {admin_desc}</div>
+			<!--{/}-->
+			</td> 
+		</tr> 
+	</table>
+	{/}
+	</wa:form>
+</div>
+<!--{/}-->	
+</body>
+</html>

@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+/* popup-style */
+.layer_container {
+	position:absolute;left:50%;top:260px;z-index:100;
+}
+.layer_container .inner_container {position:relative;}
+.layer_container .inner_container a.btn_ly_close {
+	position:absolute;right:45px;top:33px;
+	display:block;width:23px;height:23px;
+	background:url("../img/popup/btn_ly_close.gif") no-repeat 0 0;text-indent:-9999px;
+}
+
+/* login */
+.layer_login {
+	position:absolute;margin:0 0 0 -330px;
+	width:660px;height:416px;
+	background:url("../img/popup/bg_login.gif") no-repeat 0 0;
+}
+.layer_login .login_wrap {
+	padding:57px 0 0 65px;
+}
+.layer_login h1 {margin:0 0 16px 0;}
+.layer_login p {margin:0 0 5px 0;font-size:12px;color:#999;letter-spacing:-0.15em;}
+
+.layer_login .form_area {overflow:hidden;margin:0 0 14px 0;padding:33px 0 39px;width:505px;border-top:1px solid #a0a0a0;border-bottom:1px solid #a0a0a0;}
+.layer_login .form_area .bg_login {float:left;margin:0 24px 0 18px;width:69px;height:92px;background:url("../img/popup/ico_login.gif") no-repeat 0 0;}
+.layer_login .form_area .login {float:left;margin:29px 0 0 0;}
+.layer_login .form_area .login p {overflow:hidden;margin:0 0 7px 0;}
+.layer_login .form_area .login p label {
+	float:left;
+	display:inline-block;
+	margin:2px 0 0 0;
+	width:76px;height:19px;
+	background:url("../img/popup/tit_login.gif") no-repeat 0 0;text-indent:-9999px;
+	font-weight:bold;font-size:14px;color:#525252;
+}
+.layer_login .form_area .login p.uid label {background-position:0 0;}
+.layer_login .form_area .login p.upwd label {background-position:0 -33px;}
+.layer_login .form_area .login p .txt_type {float:left;width:168px;height:20px;line-height:20px;}
+.layer_login .form_area .btn_login {
+	float:right;
+	margin:29px 0 0 0;
+	width:122px;height:52px;
+	border:0 none;
+	background:url("../img/popup/pop_button.gif") no-repeat 0 0;
+	cursor:pointer;
+}
+
+.layer_login .login_wrap .info {overflow:hidden;margin:0 0 5px 0;width:505px;}
+.layer_login .login_wrap .info span {float:left;margin:5px 0 0 0;line-height:13px;font-size:12px;color:#999;letter-spacing:-0.125em;}
+.layer_login .login_wrap .info a {
+	float:right;
+	width:119px;height:22px;
+	background:url("../img/popup/pop_button.gif") no-repeat 0 0;text-indent:-9999px;
+}
+.layer_login .login_wrap .info a.btn_join {background-position:0 -58px;}
+.layer_login .login_wrap .info a.btn_srch {background-position:0 -85px;}

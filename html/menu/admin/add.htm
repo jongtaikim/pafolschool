@@ -1,0 +1,185 @@
+<body>
+<script language="javascript">
+function done(form) {
+	returnValue = form.elements['str_title'].value;
+	if(!returnValue) {
+		alert('메뉴명을 입력하세요.');
+		return false;
+	}
+	self.close();
+}
+
+//2008-06-26 종태 디자인툴 사용하다 이동시 체크
+//<[CDATA[
+var config12 = {'className':'jsTooltip-opacity'};
+var config = {'className':'jsTooltip'};
+//]]>
+</script>
+<form name="menuform" method="post" onSubmit="return done(this);" target="content">
+<input type="hidden" name="parent" value="{parent}">
+
+
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+<style>
+ .ico{padding:0 0 0 15; background-color:f9f9f9;}
+ .f1{padding:3 0 0 6; background-color:f9f9f9;font-size:12px;color:#4a4a4a;}
+ .f2{padding:0 0 2 10; font-size:11px;color:#666666;}
+ .f3{padding:11 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+ .f4{padding:0 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+</style>
+
+<FORM METHOD=POST >
+	
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+	<tr>
+		<td valign="top">
+			<table cellpadding="0" cellspacing="0" border="0" width="98%" align = center>
+			<col width="20"></col><col width="17%"></col><col width="%"></col>
+				<tr>
+					<td colspan="3">
+
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+							  <td height = 20></td>
+							</tr>
+							<tr>
+								<td style="padding:0 5 4 0"><img src="/html/image/ico_box02.gif"></td>
+								<td style="font-size:12; color:e9084d"><!-- e57700 -->위치 : {menu_location}</td>
+							</tr>
+							<tr>
+								<td height="4"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+				</tr>
+		
+
+
+				<tr height="50">
+					<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+					<td class="f1">매뉴명</td>
+						<td class="f2"  style = "padding:5px">
+
+					<input type="text" name="str_title" size="20" class="button">		
+	 
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+				</tr>
+
+
+
+				<tr height="50">
+					<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+					<td class="f1">매뉴형태</td>
+						<td class="f2"  style = "padding:5px;line-height:20px;font-weight: ">
+
+
+			<!--{@ MENU_TYPE}-->
+
+			<INPUT TYPE="radio" NAME="str_type" value = "{.key_}"  id = "str_type_{.index_}" onclick = "SaveCookie('MENU_SELECT', '{.key_}', 1);"  
+			{? _SESSION.MENU_SELECT2  == .key_} checked {/} ><label for="str_type_{.index_}">{.value_}&nbsp;</label>{? .index_ == 3 ||  .index_ == 8 ||  .index_ == 13 ||  .index_ == 17 }<br>{/}
+			<!--{/}-->
+
+			
+	 
+					</td>
+				</tr>
+<?// onmouseover="new jsTooltip(event,this,tip('빈 메뉴','하위메뉴의 첫번째 메뉴를 연결합니다.'),config12);"?>				
+				<tr>
+					<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+				</tr>
+
+
+
+
+
+{? MENU_TYPE3 }
+
+<tr height="50">
+					<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+					<td class="f1">강좌관련메뉴</td>
+						<td class="f2"  style = "padding:5px;line-height:20px">
+
+
+			<!--{@ MENU_TYPE3}-->
+
+		<INPUT TYPE="radio" NAME="str_type" value = "{.key_}" >{.value_}&nbsp;{? .index_ == 2 || .index_ == 6 || .index_ == 9}<br>{/}
+			<!--{/}-->
+
+			
+	 
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+				</tr>
+
+{/}
+
+
+
+{? MENU_TYPE2 }
+
+<tr height="50">
+					<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+					<td class="f1">솔루션메뉴</td>
+						<td class="f2"  style = "padding:5px;line-height:20px">
+
+
+			<!--{@ MENU_TYPE2}-->
+
+		<INPUT TYPE="radio" NAME="str_type" value = "{.key_}"    id = "str_type2_{.index_}"><label for="str_type2_{.index_}">{.value_}&nbsp;</label>{? .index_ ==3}<br>{/}
+			<!--{/}-->
+
+			
+	 
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+				</tr>
+
+{/}
+
+
+
+
+
+
+<tr>
+					<td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+				</tr>
+
+
+
+				<tr>
+				  <td colspan="3" align =center style="padding:10"><input type="image" src="/html/image/btn_save.gif" value="저장하기"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</form>
+
+

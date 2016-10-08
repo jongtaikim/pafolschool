@@ -1,0 +1,154 @@
+ <style>select{behavior: url('/selectbox.htc');}</style>
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() { //이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+        if(document.body.readyState == "complete") { 
+            clearInterval(ifrContentsTimer); 
+        }else { 
+            resizeFrame(); 
+        } 
+} 
+function resizeFrame(){  //페이지가 로딩되면 바로 리사이즈..
+        var h = parseInt(document.body.scrollHeight);
+         var w = parseInt(document.body.scrollWidth)+15; 
+	self.resizeTo(w, h); 
+
+document.getElementById('loding').style.left =  10;
+document.getElementById('loding').style.top = 80;
+
+} 
+//-->
+</script>
+
+<body onload="resizeFrame();ifrContentsTimer = setInterval('resizeRetry()',100);" style="margin:0" bgcolor="#FFFFFF" >
+
+<!--{? env.showopt}-->
+<wa:form name="basicinfo" method="post">
+<TABLE width="95%"  class="table11" border=0 cellspacing=0 cellpadding=0 align=center>
+<tr> 
+<th HEIGHT="30" colspan=2 class="head">[{str_title}] &nbsp;메뉴 설정 </th> 
+</tr>
+
+<TR>
+	<TD align =  center>메뉴이름&nbsp;&nbsp;<input name="str_title" type="text" id="str_title" value="{str_title}" size="20"></TD>
+</tr>
+
+<tr height="25">
+			
+			<td align="center" >영문이름&nbsp;&nbsp;<input name="str_title2" type="text" id="str_title2" value="{str_title2}" size="20"></td>
+		</tr>
+
+
+<TR>
+	<TD align =  center>
+	
+	{? str_type == "board#B" ||  str_type == "board#A" || str_type == "qna_board" || str_type == "board#G" }
+	
+		스킨설정&nbsp;&nbsp;
+			
+<SELECT name="str_skin" size="1" id="str_skin" >
+{@ bbs_skin }
+<option value="{.str_skin}" {? skin == .str_skin }selected{/}>{.skin_name}</option>
+{/}
+</SELECT><br>
+
+
+
+{/}
+
+	
+
+
+{? str_type == "mov_board"  }
+	
+스킨설정&nbsp;&nbsp;
+			
+<SELECT name="str_skin" size="1" id="str_skin" >
+{@ mov_skin }
+<option value="{.str_skin}" {? skin == .str_skin }selected{/}>{.skin_name}</option>
+{/}
+</SELECT><br>
+
+
+
+{/}
+
+	
+
+
+
+{? str_type == "doc_board"}
+			<input type="button" value="{admin_btn_text}" onClick="parent.location.href='{admin_url}'"  class="button"><!-- {admin_desc} -->
+			{:}
+
+			{/}
+	</TD>
+</TR>
+
+<tr>
+<td align =  center>
+<input type="button" value="메뉴상단 html 편집" onClick="window.open('menu.admin.top_edit?mcode={mcode}', '', 'height=500, width=700, toolbar=no, scrollbars=no, menubar=no, resizable=yes');"  class="button">
+</td>
+</tr>
+
+<tr>
+<td align =  center>
+가로사이즈 : <input name="str_width" hname="게시판 가로사이즈" type="text" id="str_width" value="{str_width}" style="width:60" > 
+</tr>
+
+
+
+
+<tr>
+<td align =  center>
+하위메뉴 펼침
+<INPUT TYPE="radio" NAME="str_number" value = "1" {? str_number} checked{/} style = "border:0px"> 켜기 <INPUT TYPE="radio" NAME="str_number" value = "0" {? !str_number} checked{/} style = "border:0px"> 끄기
+</td>
+</tr>
+
+
+<tr>
+<td align =  center>
+타이틀바 표시
+<INPUT TYPE="radio" NAME="str_subtitlebar" value  = "Y" {?str_subtitlebar == "Y"}checked{/}>표시함
+				<INPUT TYPE="radio" NAME="str_subtitlebar" value  = "N" {?str_subtitlebar == "N"}checked{/}>표시안함
+
+</td>
+</tr>
+
+
+<tr>
+<td align =  center>
+관리자만 글쓰기
+	<input type="radio" name="str_w" id="str_w" value="Y" style="border:0px;"{? str_w == "Y"} checked{/}> 설정
+				<input type="radio" name="str_w" id="str_w" value="N" style="border:0px;"{? str_w == "N"} checked{/}> 설정안함
+
+</td>
+</tr>
+
+
+		
+
+
+
+
+
+
+
+<tr>
+<td align =  center>
+<INPUT TYPE="submit" value="적용하기"> 
+</td>
+</tr>
+
+
+</TABLE>
+
+
+	
+	
+	</wa:form>
+
+<!--{/}-->	

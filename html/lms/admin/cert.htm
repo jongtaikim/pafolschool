@@ -1,0 +1,206 @@
+<style type="text/css" title="">
+td{text-align:center}
+</style>
+<script type="text/javascript">
+// <![CDATA[
+
+function checkSelected() {
+	form = document.forms['itemForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('{=_la("항목을 선택하여 주십시오.")}');
+		return false;
+	}
+	return true;
+}
+
+
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.itemForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.itemForm.all.value = "";
+
+ return;
+}
+
+
+function deleteItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 교육신청건을 삭제 하시겠습니까?')) return false;
+
+	form.elements['mode'].value = 'delete';
+	form.method="post";
+	form.submit();
+}
+
+function selectItem() {
+	form = document.forms['itemForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 교육신청건 작업을 실행 하시겠습니까?')) return false;
+
+	//form.elements['mode'].value = 'delete';
+	form.method="post";
+	form.submit();
+}
+// ]]>
+</script>
+
+
+<div class="" id="ajax_info"></div>
+
+
+<div class="tab">
+	<ul>
+		<li {? !types} class="on"{/}>
+			<a href="/lms.admin.order_list?PageNum=040200">전체</a>
+		</li>
+		<li {? types == 1} class="on"{/}>
+			<a href="/lms.admin.order_list?types=1&PageNum=040201">공개교육</a>
+		</li>
+		<li {? types == 100} class="on"{/}>
+			<a href="/lms.admin.order_list?types=100&PageNum=040202">위탁교육</a>
+		</li>
+		
+	</ul>
+</div>
+
+<form method="POST" id="itemForm" name="itemForm">
+<input type="hidden" name="all" id="all" >
+<input type="hidden" name="mode" id="mode" >
+<input type="hidden" name="types" id="types" >
+
+	<!--ui object -->
+	<p class="buTitle17" >총{=count(LIST)}개의 수료 대기건이 있습니다.</p>
+
+	<table class="tbl_type" border="1" cellspacing="0" summary="교육 목록리스트" style="margin-top:20px">
+	<caption>등록별 교육목록</caption>
+	<colgroup>
+
+		
+		<col width="50%">  
+		<col width="15%">
+		<col width="10%">
+		
+
+		
+	</colgroup>  
+
+	<thead>
+		<tr >
+			
+			
+			
+			<th style="text-align:center">교육명</th>
+			<th style="text-align:center">수료대기인원</th>
+			
+			<th style="text-align:center">수료상태</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		{@ LIST}
+		<tr>
+			
+			
+			<td style="text-align:left">
+			
+			<a href="/lms.admin.cert_view?lms_code={.num_lms_code}">
+			<span style="color:#cc0000">
+			
+			{? .lms.num_ccode == "10"}
+				[{.lms.num_year}.{.lms.num_month}.{.lms.num_start_day}~{.lms.num_end_day}]
+			{/}	
+			</span>
+			<span style="color:#0033cc">
+			{? .lms.num_ccode == "10"}[공개] {:}[위탁] {/}
+
+			{.lms.str_title}</span></a>
+			
+		
+			
+			</span></a>
+			</td>
+			<td>{.counter +0}명</td>
+			
+			<td>{? .str_lms_st =="y"}수료{:}-{/}</td>
+		</tr>
+		{:}
+		<tr>
+			<td colspan="3" style="text-align:center" height="100px">수료 대기건이 없습니다. 입금확인이 된건이 있는지 확인해 주세요.</td>
+		</tr>
+		{/}
+	</tbody>
+	</table>
+
+
+
+	
+
+</form>
+
+<table cellpadding="0" cellspacing="0" border="0" style="margin-top:20px;float:left">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text" style="text-align:left">
+			ㆍ입금확인된 교육신청건에 인원들이 표시됩니다.<br>
+			ㆍ교육완료된 인원들을 [수료완료] 처리해줘야만 수료증 출력이 가능합니다.<br>
+			ㆍ해당교육을 마감처리해야만 각 인원들이 수료증을 출력할 수 있습니다.<br/>
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>

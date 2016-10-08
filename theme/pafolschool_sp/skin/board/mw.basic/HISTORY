@@ -1,0 +1,357 @@
+
+ver.1.1.2 (09.09.28)
+    : 첫번째 첨부 이미지 본문 출력안함에서 원본을 썸네일로 교체
+    : 제목스타일 레벨 오류 수정
+    : view 페이지 본문 및 코멘트 날짜에 요일 추가, 연도표시 2자에서 4자로 변경
+    : cf_thumb2_keep 에러 수정 
+    : 글삭제시 썸네일2,3 삭제코드 추가
+    : 지에디터 업로드 alert 버그 수정
+    : 지에디터 insert_editor 오류 수정
+    : 플래쉬 멀티업로더 (지업로더) 탑재
+    : 댓글공지 style 수정
+    : 게시물 작성시간 현재시간으로 갱신 후 날짜순 정렬 옵션 추가 및 iframe 에서 ajax 로 방법 변경
+    : 글등록 알림문자 내용에 글쓴이 추가 및 알림글제외를 관리자에서 최고관리자로 변경
+
+    mw.basic/mw.adm/mw.upgrade.php
+    mw.basic/mw.adm/mw.config.php
+    mw.basic/mw.adm/mw.config.update.php
+    mw.basic/mw.proc/mw.time.now.php
+    mw.basic/mw.geditor/geditor.js
+    mw.basic/mw.geditor/upload.php
+    mw.basic/mw.guploader/*
+    mw.basic/list.skin.php
+    mw.basic/write.skin.php
+    mw.basic/write_update.skin.php
+    mw.basic/view.skin.php
+    mw.basic/view_comment.skin.php
+    mw.basic/delete.tail.skin.php
+    mw.basic/delete_all.tail.skin.php
+    mw.basic/style.common.css
+
+ver.1.1.1 (09.09.09)
+    : 코멘트 자동등록방지코드 오류수정 (1.0.8 ~ 1.1.0 버전)
+    : 갤러리사용시 noimage 크기 조정
+    : 제목스타일 옵션 추가
+    : 코멘트 디자인 변경 및 이미지 기능 추가
+    : 업로더 포인트 127만 되는 오류 수정 (수정후 mw.adm/mw.upgrade.php 파일에서 아래 코드 주석처리 요망.)
+        //sql_query("alter table $mw[basic_config_table] change cf_uploader_point cf_uploader_point int not null", false);
+        //sql_query("alter table $mw[basic_config_table] change cf_uploader_day cf_uploader_day int not null", false);
+    : exif info 백그라운드 디자인 변경, 투명효과
+
+    mw.basic/mw.adm/mw.config.php
+    mw.basic/mw.adm/mw.config.update.php
+    mw.basic/mw.adm/mw.upgrade.php
+    mw.basic/mw.lib/mw.skin.basic.lib.php
+    mw.basic/mw.proc/mw.comment.image.php
+    mw.basic/mw.proc/mw.comment.image.update.php
+    mw.basic/img/exif.png
+    mw.basic/view.skin.php
+    mw.basic/view_comment.skin.php
+    mw.basic/list.skin.php
+    mw.basic/write.skin.php
+    mw.basic/write_update.skin.php
+ 
+ver.1.1.0 (09.08.26)
+    : 본문상단/하단, 첨부파일상단/하단 파일 include 기능
+    : 자동등록방지코드 오류수정 (1.0.8 과 1.0.9 버전)
+    : 썸네일2, 3 추가
+    : 1:1 게시판 공지사항 확인 가능
+
+    mw.basic/mw.adm/mw.config.php
+    mw.basic/mw.adm/mw.config.update.php
+    mw.basic/mw.adm/mw.upgrade.php
+    mw.basic/mw.lib/mw.skin.basic.lib.php
+    mw.basic/mw.proc/mw.adm.thumb.remake.php
+    mw.basic/view.skin.php
+    mw.basic/write.skin.php
+    mw.basic/write_update.skin.php
+
+ver.1.0.9 (09.08.17)
+    : 짧은 링크 플러그인 옵션 (자체 도메인)
+    : 공지사항 순서 변경 기능
+
+    mw.basic/mw.adm/mw.config.php
+    mw.basic/mw.proc/mw.bo_notice.php
+    mw.basic/mw.js/selectbox.js
+    mw.basic/view.skin.php
+
+ver.1.0.8 (09.08.04)
+    : G-Editor 디자인 변경
+    : 인쇄기능 추가
+    : 짧은링크 생성 기능 (umz.kr 이용)
+    : 이모티콘 디렉토리에 출쳐 표기
+    : kcaptcha 로딩 prototype 에서 jquery 로 변경 
+    : 관리자 UI 변경
+
+    mw.basic/mw.geditor/*
+    mw.basic/mw.adm/mw.config.php
+    mw.basic/mw.adm/mw.config.update.php
+    mw.basic/mw.adm/mw.board.member.php
+    mw.basic/mw.adm/mw.board.member.update.php
+    mw.basic/mw.adm/mw.upgrade.php
+    mw.basic/mw.lib/mw.skin.basic.lib.php
+    mw.basic/mw.proc/mw.print.php
+    mw.basic/mw.emoticon/LICENSE
+    mw.basic/mw.js/jquery-1.3.2.min.js
+    mw.basic/mw.js/jquery-ui.js
+    mw.basic/img/btn_singo2.gif
+    mw.basic/img/btn_print.gif
+    mw.basic/img/logo_curlychoi.gif
+    mw.basic/style.common.css
+    mw.basic/view.skin.php
+    mw.basic/view_comment.skin.php
+    mw.basic/write_update.skin.php
+    mw.basic/write.skin.php
+
+ver.1.0.7 (09.07.27)
+    : SMS 글등록 알림 시 관리자글 제외
+    : 이미지 메타정보 출력 기능 (exif-info)
+
+    mw.basic/mw.adm/mw.config.php
+    mw.basic/mw.adm/mw.config.update.php
+    mw.basic/mw.lib/mw.skin.basic.lib.php
+    mw.basic/mw.proc/mw.exif.show.php
+    mw.basic/write_update.skin.php
+    mw.basic/view.skin.php
+    
+ver.1.0.6 (09.05.22)
+    - 오류수정
+    : 코멘트 에디터 사용 버그 수정
+    : 에디터로 삽입한 이미지 리사이징 버그수정 (파일명에 공백있을시 작동안하는 증상)
+
+    - 신규기능
+    : 가입인사 기능 (한명당 게시물 한개만 등록가능)
+    : 배추컨텐츠샵 기능 (솔루션 구입후 사용가능) 
+    : 문자전송에 070 가능
+    : 원터치 접근차단 기능
+    : 원터치 아이피 조회 기능
+    : 관리자만 dhtml editor 사용 기능
+    : 글쓰기 버튼 클릭시 alert 공지 띄우기 기능
+    : 일반 게시판형에서도 무조건 섬네일 생성
+    : 삭제글 남김 기능 - 관리자 삭제시 그냥 삭제
+    : 썸네일 비율유지 기능
+    : 썸네일 재생성 기능
+    : 사용자정의CSS 설정
+
+    mw.basic/mw.adm/mw.config.php
+    mw.basic/mw.adm/mw.config.update.php
+    mw.basic/mw.lib/mw.skin.basic.lib.php
+    mw.basic/mw.proc/mw.intercept.php
+    mw.basic/mw.proc/mw.intercept.update.php
+    mw.basic/mw.proc/mw.whois.php
+    mw.basic/mw.proc/mw.adm.thumb.remake.php
+    mw.basic/write_comment_update.head.skin.php
+    mw.basic/write_comment_update.skin.php
+    mw.basic/write_update.skin.php
+    mw.basic/delete.skin.php
+    mw.basic/delete.tail.skin.php
+    mw.basic/delete_all.tail.skin.php
+    mw.basic/delete_comment.head.skin.php
+    mw.basic/list.skin.php
+    mw.basic/view.skin.php
+    mw.basic/view_comment.skin.php
+    mw.basic/download.head.skin.php
+ 
+ver.1.0.5 (09.01.20)
+    - 오류수정
+    : 그누보드 utf8 카테고리 선택 오류수정. urlencode 적용
+    : 코멘트 입력 받지 않을경우 기존코멘트 삭제기능 오류수정
+    : 코멘트 글 변경/삭제로그 오류수정
+
+    - 신규기능
+    : 첫번째 첨부 이미지 본문 출력 안함 (썸네일 전용)
+    : 제목 오름차순 정렬 추가 
+    : 첨부파일 링크 상단 및 하단 내용 추가 
+    : 썸네일형, 요약형의 경우 제목크기 키움
+
+    mw.basic/style.common.css
+    mw.basic/mw.adm/mw.config.php
+    mw.basic/mw.adm/mw.config.update.php
+    mw.basic/mw.lib/mw.skin.basic.lib.php
+    mw.basic/mw.proc/mw.adm.order.date.php -> mw.basic/mw.proc/mw.adm.order.php 
+    mw.basic/view.skin.php
+    mw.basic/view_comment.skin.php
+    mw.basic/list.skin.php
+    mw.basic/delete_comment.head.skin.php
+    mw.basic/write_comment_update.skin.php
+    mw.basic/write_comment_update.head.skin.php
+
+ver.1.0.4 (08.12.10)
+    - 오류수정
+    : 삭제 및 관리자 오류 수정
+    : 관련글 입력 두번 출력되는 오류 수정
+    : 다운로드 및 변경 로그 페이징 오류 수정
+    : 비회원 글,코멘트 자동등록방지 오류 수정
+    : 업로더 포인트 제공 한번만 되는 오류 수정
+
+    - 신규기능
+    : 게시물 목록 셔플
+    : 공지사항 목록 날짜,이름,조회수 출력 여부
+    : 게시물 목록 날짜,이름,조회수 출력 여부
+    : 다중 게시물 분류(카테고리) 이동 기능 
+    : 익명게시판 이름,이메일,홈페이지 입력창 제거
+    : 게시물 작성시간 현재시간으로 갱신
+
+    mw.basic/download.skin.php
+    mw.basic/delete.tail.skin.php
+    mw.basic/delete_all.tail.skin.php
+    mw.basic/write.skin.php
+    mw.basic/list.skin.php
+    mw.basic/view.skin.php
+    mw.basic/view_comment.skin.php
+    mw.basic/mw.lib/mw.skin.basic.lib.php
+    mw.basic/mw.adm/mw.config.php 
+    mw.basic/mw.adm/mw.config.update.php 
+    mw.basic/mw.proc/mw.move.cate.php 
+    mw.basic/mw.proc/mw.move.cate.update.php 
+    mw.basic/img/btn_select_cate.gif 
+    mw.basic/img/btn_now.gif 
+
+ver.1.0.3 (08.11.11)
+    : 다운로드 로그 오류 해결
+    : 게시판 접근권한 오류 해결
+    : 웹에디터로 첨부한 이미지 뿐만 아니라 다양한 상황의 본문 이미지 팝업 크기 조정
+    : 코멘트잠금 위치변경 (작성된 코멘트는 보여주고 코멘트 입력창만 없엠)
+    : 글등록 알림메일 오류수정
+    : html 작성권한이 없고 dhtml 에디터 사용시 글 등록 에러 수정
+    : 제목링크 삭제시 style 적용안되던 오류 수정
+    : 에디터 삽입이미지 resize
+    : 코멘트 신고버튼 오류수정
+    : 링크 게시판 기능 (클릭하면 link1 주소로 이동)
+    : 코멘트 에디터 사용시 금지단어 입력 에러 수정
+    : 코멘트를 남겨야 다운로드 가능한 기능 비회원 버그 수정 
+    : 트랙백 입력 항목 복구
+    : 익명게시판 코멘트 출력 오류 수정
+    : 코멘트 새창 기능 복구
+    : 관련글에서 현재글 출력되는 버그 수정
+    : 그누보드 4.30.00 이상 변경된 kcaptcha 지원 
+    : test@test.com 으로 메일 발송되는 오류 수정
+ 
+    mw.basic/view.skin.php
+    mw.basic/view_comment.skin.php
+    mw.basic/list.skin.php
+    mw.basic/write.skin.php
+    mw.basic/write_update.skin.php
+    mw.basic/delete.tail.skin.php
+    mw.basic/delete_all.tail.skin.php
+    mw.basic/download.tail.skin.php
+    mw.basic/mw.lib/mw.skin.basic.lib.php
+
+
+ver.1.0.2 (08.05.29)
+    : 지에디터로 삽입된 이미지 클릭시 새창으로 안보이는 문제 해결
+    : 이미지 첨부파일이 없을경우 지에디터로 삽입된 이미지로 썸네일생성
+    : 글수정 페이지의 첨부파일명 길이 조정
+    : 각 파일마다 라이센스 표시 추가
+    : 출처자동복사 기능중 이미지 복사가 안되는 문제 해결, 코멘트에도 적용
+      (nhn autosourcing open source 이용)
+    : 제나빌더에서 첨부이미지 새창 안나오는 문제 해결
+    : 추천/비추천 버튼 본문으로 이동
+    : 파일아이콘 변경
+    : 갤러리형식 style 조정
+    : 코멘트를 남겨야 다운로드 가능한 기능 비회원까지 확장
+    : 코멘트를 남겨야 다운로드 가능한 기능, 다운로드 후 코멘트 삭제금지
+    : 조회수,추천수 등 view 에서 컴마 추가
+    : 코멘트에 달린 비밀 코멘트 확인
+    : 상단 제목바 조회, 추천, 비추천 링크
+    : 쓰기버튼항상 출력 옵션 추가
+    : 권한이 없으면 제목링크 삭제기능 추가
+    : 코멘트 허락 기능 추가
+    : 환경설정파일명 변경 config.php -> mw.config.php
+    : 게시판별 회원 접근권한 설정 기능
+    : 다운로드 기록 기능
+    : 글등록 알림메일 오류수정
+    : 글수정내용 기록 기능
+    : 에디터 글 작성시 text 모드 선택했을 경우 html 옵션 변경
+    : 코멘트 기본 내용 설정
+    : 코멘트 지에디터에 html 소스보기 추가
+
+    mw.basic/*
+
+ver.1.0.1 (08.05.13)
+    : 요약형에서 제목 여백 조절
+    : 라이센스의 프로그램 명칭에서 버전 제거
+    : 글번호, 조회수등에 컴마 설정
+    : SMS4 모듈과의 충돌현상 해결
+    : 첨부 이미지 출력시 간격 <p> 에서 <br><br> 태그로 변경
+    : 글작성시 CCL 사용안함을 기본으로 변경
+    : 관련글 설정시 안내 메시지 오류 수정
+    : 코멘트 공지 추가
+    : 공지사항 bold 처리
+    : 설치디렉토리의 혼동을 없에기위해 디렉토리명 전부 mw. 추가
+    : 코멘트를 남겨야 다운로드 가능한 기능 추가
+    : 게시판 관리자의 메일발송 체크에 관계 없이 글등록 알림 메일발송 하도록 수정
+    : 디렉토리명에서 버전제거 (이모티콘 호환성 ㅠㅠ)
+    : 스킨 디렉토리명 변경으로 이모티콘이 엑박으로 나오는 현상 -> 싱크기능 추가
+    : 첨부파일 다운로드시 업로더에게 포인트 제공 (기간제가능)
+    : 자동등록방지코드 이미지 사용여부 설정 (그누보드 4.22.00 이전버전의 호환성을 위해)
+    : 같은 그룹, 같은 스킨을 사용하는 모든 게시판에 동일하게 환경설정 오류수정
+    : 코멘트 입력시 비밀글 체크 기본 설정기능
+    : 요약형 선택시 본문요약 길이 설정기능
+    : 본문 rich_content 기본 사용 (본문의 원하는 위치에 첨부이미지 삽입)
+      {이미지:0}, {이미지:1}, {이미지:2}...
+    : 코멘트 작성시 로그인 했지만 권한이 없을 경우 로그인하라는 메시지 출력 에러수정
+      (코멘트 입력창 항상 출력기능을 사용할 경우)
+    : 첨부파일 삭제시 썸네일 다시생성
+
+    mw.basic/*
+
+ver.1.0.0 (08.05.01)
+    : 배포
+
+배추 베이직 스킨 이력 ↑
+
+==========================================================
+배추 베이직 스킨
+==========================================================
+[특징]
+- 어디에서든 게시판 디자인이 일관적으로 출력되도록 StyleSheet 설계
+- 여분필드를 사용하지 않아 그누보드의 확장성 그대로 유지
+
+[그누보드 문제해결]
+- 첨부이미지가 원본사이즈로 출력된후 사이즈가 조절되어 화면이 끄덕거리던 문제를 해결
+- 페이지링크 page 중복 제거
+- 다음,이전 검색시 page 링크에러 해결
+- TEXT 로 작성된 글 에디터로 수정할 때 한줄로 나오는 문제해결
+
+[유용한 기능]
+- 일반게시판, 1:1게시판, 익명게시판 선택 기능
+- 신고기능 (지정한 여러명의 회원아이디로 쪽지전송)
+- 게시물 잠금 기능 (비밀글로 변경하는 버튼 추가)
+- 게시물 CCL 표시기능 (게시글 작성자가 CCL 선택)
+- 게시물 및 코멘트에 지에디터 탑제 (스킨에 지에디터 포함)
+- 코멘트 이모티콘 첨부 기능
+- 코멘트 입력창 권한이 없어도 출력하는 기능 (권한없으면 로그인 메세지 출력)
+- 게시글 날짜순 정렬기능
+- 게시글 본문의 링크를 무조건 새창으로 열리게 하는 기능
+- 게시글 본문의 상단과 하단에 코드자동 삽입기능 (광고등 삽입이 용의함)
+- 로그인하지 않아도 글쓰기 버튼 기본출력
+- 본문 복사시 출처가 자동으로 복사되는 기능  (IE전용)
+- 글등록알림 메일 전송기능 (여러명에게 글 등록 알림 메일 전송)
+- 글등록알림 문자 전송기능 (여러명에게 글 등록 알림 문자 전송)
+- 짤방기능 (짤방 필수 등록 기능 포함)
+- 관련글 검색,출력기능
+- 이전글, 다음글 단축키 (Alt+N, Alt+B)
+- 게시판 상단 인기 게시물 출력기능
+- 비밀글 썸네일 출력 안함
+
+[기타정보]
+- 트랙백 버튼 제외
+- 일부 아이콘 "뜨락의이름" 님이 배포하신 것을 재가공하여 사용
+  http://www.sir.co.kr/bbs/board.php?bo_table=cm_free&wr_id=245079
+
+[소프트웨어 라이센스]
+- GPL (압축파일내에 동봉된 LICENSE 파일 참조)
+
+[설치방법]
+- 그누보드/skin/board 에 디렉토리채로 업로드
+- 게시판 스킨 적용방법과 동일 (http://sir.co.kr/manual/youngcart4/?man=skin.htm)
+
+[버전업방법]
+- 기존 스킨을 삭제하고 새로 업로드 하세요
+- 수정한 파일이 있다면 버전업된 부분만 적용하셔도 됩니다.
+
+[기타문의]
+- 곱슬최씨의 그누보드4 스킨 작업실 (http://g4.miwit.com)
+
+==========================================================

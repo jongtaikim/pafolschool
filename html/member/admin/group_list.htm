@@ -1,0 +1,206 @@
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+<style>
+ .ico{padding:0 0 0 15; background-color:f9f9f9;}
+ .f1{padding:3 0 0 6; background-color:f9f9f9;font-size:12px;color:#4a4a4a; }
+ .f2{padding:5 0 5 10; font-size:11px;color:#666666; }
+ .f3{padding:11 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+ .f4{padding:0 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+</style>
+
+<script type="text/javascript" src="js/lib.validate.js"></script>
+<script type="text/javascript">
+function modifyGroup(group) {
+	form = document.forms['modifyForm'];
+	form.elements['str_group'].value = group;
+	form.elements['str_group_name'].value = document.forms['listForm'].elements['group_name_' + group].value;
+	form.submit();
+}
+function deleteGroup(group) {
+	if(!confirm('그룹을 삭제하시겠습니까?')) return false;
+	form = document.forms['deleteForm'];
+	form.elements['str_group'].value = group;
+	form.submit();
+}
+</script>
+
+<form name="modifyForm" method="post" style="margin:0px;">
+<input type="hidden" name="mode" value="modify">
+<input type="hidden" name="str_group" value="">
+<input type="hidden" name="str_group_name" value="">
+</form>
+<form name="deleteForm" method="post" style="margin:0px;">
+<input type="hidden" name="mode" value="delete">
+<input type="hidden" name="str_group" value="">
+</form>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+
+<!-- 상단 Start -->
+	<tr>
+		<td width="11px" background="/html/admin/images/bx1_top_left.gif"></td>
+		<td background="/html/admin/images/bx1_top_bg.gif">
+			<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif" >
+				<tr>
+					<td width="12px" height="28px" background="/html/admin/images/bx1_title_left.gif"></td>
+					<td class="bx1_title">그룹설정</td>
+					<td width="14px" background="/html/admin/images/bx1_title_right.gif"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="11px" align="right" background="/html/admin/images/bx1_top_right.gif"></td>
+	</tr>
+<!-- 상단 End -->
+
+	<tr>
+		<td background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:15px;">
+			
+			
+			<form name="addForm" method="post" onsubmit="return validate(this);" style="margin:0px;">
+			<input type="hidden" name="mode" value="add">
+
+			<!-- 표1 Start -->	
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="c4d4e7">
+				<tr height="58" bgcolor="FFFFFF">
+					<td width="190" class="table01_title" background="/html/admin/images/bx4_bg1.gif">추가할 그룹명</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="3"></td>
+								<td width="12"rowspan="3"></td>
+								<td><input type="text" name="str_group_name" hname="그룹명" maxbyte="20" size="28" value="" class="fom01" required></td>
+								<td style="padding-left:4px; padding-top:3px"><input type="image" src="/html/admin/images/btn_group_01.gif" value="그룹추가" style="cursor:hand"></td>
+							</tr>
+							<tr><td height="6"></td></tr>
+							<tr>
+								<td colspan="2" class="font11_03">* 10자 이내로 입력하여 주십시오.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+			</form>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_btm_line01"></td>
+				</tr>
+				<tr><td height="20"></td></tr>
+			</table>
+		<!-- 표1End -->	
+
+
+			<form name="listForm" style="margin:0px;">
+			
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="d5dfe7">
+				<tr bgcolor="#f3f6f8" height="29">
+					<td class="subtitle01" align="center">그룹명</td>
+					<td class="subtitle01" align="center">삭제</td>
+				<tr>
+
+				{@ LIST}
+				<tr bgcolor="#FFFFFF" height="28">
+					<td align="center">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td><input type="text" name="group_name_{.str_group}" value="{.str_group_name}" size="20" class="fom01"></td>
+								<td width="4"></td>
+								<td style="padding-top:2px"><input type="image" src="/html/admin/images/btn_modify.gif" value="수정" onclick="modifyGroup('{.str_group}');"style="cursor:hand"></td>
+							</tr>
+						</table>
+					</td>
+					<td align="center" style="padding-top:2px"><input type="image" src="/html/admin/images/btn_delete_03.gif" value="삭제" onclick="deleteGroup('{.str_group}');" style="cursor:hand"></td>
+				</tr>
+				{:}
+				<tr height="100" bgcolor="FFFFFF">
+					<td colspan="2" align="center">등록된 그룹이 없습니다.</td>
+				</tr>
+				{/}
+			<table>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_btm_line01"></td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+
+			
+			
+
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td class="font11_03">* 회원목록에서 회원을 그룹에 할당하여 각 메뉴에서 그룹을 부여할 수 있습니다.</td>
+				</tr>
+			</table>
+
+		</td>
+		<td background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>
+
+<input type="hidden" name="end" value="">
+</FORM>
+
+<br>
+<br>
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td width="14px"><img src="/html/admin/images/tip_icon.gif"></td>
+		<td class="tip_title">도움말</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="14px" height="12px" style="padding:0px" background="/html/admin/images/bx_tip_top_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_top_bg.gif"  style="padding:0px"></td>
+		<td width="14px" style="padding:0px" background="/html/admin/images/bx_tip_top_right.gif"></td>
+	</tr>				
+	<tr>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_left.gif"></td>
+		<td class="tip_text">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" class="tip_text">
+								<tr>
+									<td class="tip_text">
+										* 회원그룹관리는 그룹편성으로 각 페이지(메뉴)에 그룹단위로 그룹을 설정할 수 있는 기능입니다.<br>
+										<font color="#0d75b8">* 해당 메뉴에 대한 관리 기능은 홈페이지 전체 관리자의 기능과 동일합니다. </font>
+									</td>
+								</tr>
+								
+							</table>
+		</td>
+		<td width="14px" background="/html/admin/images/bx_tip_mid_right.gif"></td>
+	</tr>
+	<tr >
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_left.gif"></td>
+		<td background="/html/admin/images/bx_tip_btm_bg.gif"></td>
+		<td width="14px"><img src="/html/admin/images/bx_tip_btm_right.gif"></td>
+	</tr>
+</table>
+
+
+
+

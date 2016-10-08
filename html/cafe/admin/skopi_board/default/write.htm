@@ -1,0 +1,319 @@
+<div id="sub_content_area">
+<script type="text/javascript" src="/js/ieemu.js"></script>
+<script type="text/javascript" src="/js/lib.cookie.js"></script>
+<script type="text/javascript" src="/js/seo.default.js"></script>
+<script type="text/javascript">
+if (moz) {
+   emulateAllModel();
+}
+</script>
+<script src="/js/lib.attachfile.js"></script>
+<!-- IF 'Filtering' -->
+<script src="/js/lib.filter.js"></script>
+<!-- ENDIF 'Filtering' -->
+<script>
+	function del_file() {
+		var form = document.forms['writeform'];
+		var listbox = form.elements['listbox'];
+		if (listbox.selectedIndex < 0) return;
+		var fileid = listbox.options[listbox.selectedIndex].value;
+		window.open('/?cafe_id={{cafe_id}}&act={{board_del_file_url}}&mcode={{mcode}}&main={{id}}&id='+fileid,'process_frame');
+	}
+	
+	// 폼검사 및 업로드가 완료되었는지 확인하는 플래그
+	var UploadCompleted = false;
+	
+	function prepare(form) {
+		var strContent = oFCKeditor.GetValue();
+
+		if(strContent.length>100000) {
+			alert('글을 작성할 수 없습니다 : 글의 내용을 줄여주세요');
+			document.all['submit_btn'].style.visibility = "visible";
+			return false;
+		}
+
+		//<!-- IF 'Filtering' -->
+		// 유해 단어 검사
+		strFilterList = "{{filter_words}}";
+		if(filterword(form.elements['str_title'].value, strFilterList)){
+			document.all['submit_btn'].style.visibility = "visible";
+			return false;
+		}
+
+		strContent = filtertext(strContent, strFilterList);
+		if(strContent != null){
+			document.all['submit_btn'].style.visibility = "visible";
+//			document.frames['frame_' + oFCKeditor.InstanceName].objContent.DOM.body.innerHTML= strContent;
+			oFCKeditor.SetValue(strContent);
+			return false;
+		}
+		//<!-- ENDIF 'Filtering' -->
+
+		if(!UploadCompleted) {
+			if(!confirm('저장하시겠습니까?') || !validate(form) || !check_maxsize()) {
+				document.all['submit_btn'].style.visibility = "visible";
+				return false;
+			}
+			form.elements['content'].value = oFCKeditor.GetValue();
+
+			if(document.xEditFileCtrl.GetCount()) {
+				document.xEditFileCtrl.UpLoad();
+				return false;
+			}
+		}
+		return true;
+	}
+
+	function OnUploadCompleted(filelist) {
+		if(UploadCompleted) return false;
+		UploadCompleted = true;
+		document.forms['writeform'].elements['upfiles'].value = filelist;
+		document.forms['writeform'].submit();
+	}
+
+	function copyFileUrl(index) {
+		var els = document.forms['writeform'].elements;
+		var fileid = els['listbox'].options[index].value;
+		var filename = els['listbox'].options[index].text;
+		var fileUrl;
+		fileUrl = "http://";
+		fileUrl += els['FILE_HOST'].value;		
+		fileUrl += "/download/cafe.board/{{oid}}/{{cafe_id}}/{{mcode}}/{{serial}}/";
+		fileUrl += fileid + "/" + filename + "?nocount=1";
+		els['buf'].value = fileUrl;
+		var tRange = els['buf'].createTextRange();
+		tRange.execCommand("Copy");
+		alert(filename + " 파일의 Url이 클립보드에 복사되었습니다.");
+		els['buf'].value = "";
+	}
+</script>
+<script language="VBScript">
+<!--
+Sub xEditFileCtrl_UploadCompleted( filelist )
+	OnUploadCompleted(filelist)
+End Sub
+//-->
+</script>
+<script language="JavaScript" event="UploadCompleted(filelist)" for="xEditFileCtrl">
+<!--
+	OnUploadCompleted(filelist);
+//-->
+</script>
+
+<script src="/js/lib.validate.js"></script>
+<form name="writeform" method="post" enctype="multipart/form-data" onsubmit="return prepare(this);">
+	<input type="hidden" name="act" value="{{act}}">
+	<input type="hidden" name="oid" value="{{oid}}">
+	<input type="hidden" name="cafe_id" value="{{cafe_id}}">
+	<input type="hidden" name="mcode" value="{{mcode}}">
+	<input type="hidden" name="phpsessid" value="{{phpsessid}}">
+	<input type="hidden" name="timestamp" value="{{timestamp}}">
+	<input type="hidden" name="id" value="{{id}}">
+	<input type="hidden" name="upfiles" value="">
+	<input type="hidden" name="str_thumb" value="{{str_thumb}}">
+	<input type="hidden" name="FILE_HOST" value="{{FILE_HOST}}">
+	<input type="hidden" name="origin_num_file" value="{{num_file}}">
+	<input type="hidden" name="buf" value="">
+	<!-- IF 'SUB_TITLE' -->
+	<div id="sub_title_area">
+		{{board_title}}
+	</div>
+	<!-- ENDIF 'SUB_TITLE' -->
+
+	<!-- 라이센스 추가 21008.06.24 BY NCS -->
+	<table width="100%">
+		<tr>
+			<td align="center">{{LICENCE}}</td>
+		</tr>
+	</table>
+	<!-- 라이센스 추가 21008.06.24 BY NCS -->
+
+	<div class="title_area writetitle_area  border_top_2px border_bottom_1px border_color_2 board_top">
+		<h4>게시물쓰기/편집</h4>
+	</div>
+	<table class="write_area">
+		<tr>
+			<th>이 름 : </th>
+			<td class="write_info"><input name="str_name" type="text" class="login" id="str_name" value="{{name}}" hname="이름" required onKeyUp="cal_byte('str_name', 20);" {{readOnly}}></td>
+			<th>E-mail : </th>
+			<td class="write_info"><input name="str_email" type="text" class="login" id="str_email" value="{{email}}" option="email" hname="이메일" onKeyUp="cal_byte('str_email', 30);"></td>
+		</tr>
+		<tr>
+			<th>비밀번호 : </th>
+			<td class="write_info"><input name="str_pass" type="password" class="login" id="str_pass" value="{{pass}}" required hname="비밀번호" onKeyUp="cal_byte('str_pass', 20);"></td>
+			<th><!-- IF 'ISOPERATOR' -->기능 : <!-- ENDIF 'ISOPERATOR' --></th>
+			<td>
+				<!-- IF 'ISOPERATOR' -->
+				<input name="b_isnotice" type="checkbox" id="b_isnotice" hname="공지글" {{isnotice}}>공지글
+				<!-- ENDIF 'ISOPERATOR' -->
+			</td>
+		</tr>
+		<tr>
+			<th>제 목 : </th>
+			<td colspan="3">
+				{{re}}<input name="str_title" type="text" class="login" id="str_title2" value="{{title}}" hname="제목" required onKeyUp="cal_byte('str_title', 60);">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4" class="write_area_edit">
+				<textarea name="content" class="sroll" id="content" hname="내용" maxbyte="120000">{{content}}</textarea>
+				<script src="/util/FCKeditor_2.4.2/fckeditor.js"></script>
+				<script>
+//									var oFCKeditor = new FCKeditor('content', '100%', 400, 'CafeBoard');
+					var oFCKeditor = new FCKeditor('content', '100%', 400, 'CafeBoard');
+					oFCKeditor.ReplaceTextarea() ;
+				</script>
+			</td>
+		</tr>
+	</table>
+
+	<table class="addfile_area border_bottom_2px border_color_2">
+		<!-- IF 'ATTACH' -->
+		<tr>
+			<th>
+				첨부파일 :<iframe name="process_frame" width="1" height="1" frameborder="0"></iframe>
+			</th>
+			<td class="addfile_area_upload">
+				<select name="listbox" size="3" id="listbox" ondblclick="copyFileUrl(this.selectedIndex);">
+					<!-- DYNAMIC AREA 'FILE' -->
+					<option value="{{num_serial}}">{{str_upfile}}</option>
+					<!-- DYNAMIC AREA 'FILE' -->
+				</select>
+			</td>
+			<td class="addfile_area_btn" align="center">
+				<div>총 <input name="sizebox" type="text" class="login" id="str_email2" size="5"> KB</div>
+				<a href="javascript:del_file()"><img src="/image/button/bt01/03.gif" width="40" height="19" border="0"></a></p>
+			</td>
+		</tr>
+		<!-- ENDIF 'ATTACH' -->
+		<tr>
+			<th>파일첨부 :</th>
+			<td class="addfile_area_upload">
+				<script language=JavaScript>
+						<!--
+						// 찾아보기 버튼 클릭
+						function add_file() {
+							document.xEditFileCtrl.BtnAddFile();
+							check_maxsize();
+						}
+						// 전체용량 체크
+						function check_maxsize() {
+							sel_all();
+							try {
+								var uploaded_size = 0;
+								if(FA) {
+									uploaded_size = FA.bytes;
+								}
+								if(document.xEditFileCtrl.GetTotalSize() + uploaded_size > 5242880) {
+									sel_all();
+									remove_file();
+									alert("첨부파일은 5M 이상 올리실 수 없습니다.");
+									return false;
+								}
+							} catch (e) {}
+							unsel_all();
+							return true;
+						}
+						// 선택 상태 토글
+						function sel_toggle() {
+							document.xEditFileCtrl.ToggleCheck();
+						}
+						// 전체 선택
+						function sel_all() {
+							document.xEditFileCtrl.CheckAll(1);
+							document.xEditFileCtrl.focus();
+						}
+						// 전체 선택 해제
+						function unsel_all() {
+							document.xEditFileCtrl.CheckAll(0);
+						}
+						// download
+						function do_download() {
+							document.xEditFileCtrl.DownLoad();
+						}
+
+						// 파일 제거
+						function remove_file() {
+							document.xEditFileCtrl.BtnRemoveFile();
+						}
+						// -->
+						</script> 
+
+						<script language="javascript" src="/js/obj.fileupload.js"></script>
+						<script language="javascript" >
+						<!--
+						fileUpLoad('{{phpsessid}}','{{timestamp}}','{{FILE_HOST}}');
+						-->
+					</script>
+						
+						<!-- <object
+						type="application/x-oleobject"
+						codebase="/util/xEditFile/xEditFile.cab#version=1,0,0,6"
+						id="xEditFileCtrl"
+						classid="CLSID:F6D408E8-B0D0-4E39-938D-6E5D9FFDE932"
+						width="300" height="60">
+						<param name="AlignVertical" value="FALSE">
+						<param name="AllowedFileType"
+						value="zip, arj, rar, gz, tgz, ace, Z, exe, pdf, doc, hwp, xls, ppt, bmp, jpg, jpeg, png, gif, txt, mp3, ogg, aiff, avi, mpg, mpeg, mov, swf, flv, wmv, wav, enc">
+						<param name="ArticleInfo" value="act|{{board_attach_file_url}},phpsessid|{{phpsessid}},timestamp|{{timestamp}}">
+						<param name="BackgroundColor" value="#FFFFFF">
+						<param name="BufferSize" value="40960">
+						<param name="DeniedFileType" value="">
+						<param name="FnWidth" value="200">
+						<param name="FsWidth" value="80">
+						<param name="HideScrollbar" value="FALSE">
+						<param name="ListStyle" value="0">
+						<param name="MaxFileNum" value="10">
+						<param name="MaxFileSize" value="5242880">
+						<param name="ServerAddr" value="{{FILE_HOST}}">
+						<param name="ServerPort" value="80">
+						<param name="ServerScript" value="/index.php">
+						<param name="ShowBorder" value="TRUE">
+						<param name="ShowGrid" value="FALSE">
+						<param name="TextColor" value="black">
+						<param name="UploadMode" value="TRUE">
+						</object> -->
+				</td>
+				<td class="addfile_area_btn" align="center">
+					<p><input type="button" value="찾아보기..." onClick="add_file();"></p>
+					<input type="button" value="선택파일 제거" onClick="javascript:remove_file()">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="right">첨부파일 총 용량은 5M까지 가능합니다.(5M가능)</td>
+			</tr>
+		</table>
+	<input type="image" src="/image/button/bt01/05.gif" id="submit_btn" width="40" height="19" onclick="this.style.visibility='hidden';">
+	<a href="javascript:history.back()" id="cancel_btn"><img src="/image/button/bt01/09.gif" width="40" height="19"></a>
+	<a href="{{listlink}}" id="list_btn"><img src="/image/button/bt01/02.gif" width="40" height="19"></a>
+</form>
+
+
+<script language="javaScript">
+<!--
+	var FA;
+	if(document.forms['writeform'].elements['sizebox']) {
+		FA = new FileAttach();
+		FA.setForm(document.forms['writeform']);
+		FA.incByte(Number('{{filesize}}'));
+	}
+//-->
+</script>
+<script language="javaScript">
+<!--
+	/*
+	if (username = getCookie('NAME')) {
+		var el = document.forms['writeform'].elements['str_name'];
+		if (!el.value || el.value == username) {
+			el.value = username;
+			el.onkeydown = el.onkeyup = el.onselectstart = el.oncontextmenu =  function() { return false; }
+			el.readOnly = true;
+		} 
+	}
+	*/
+	if (FormCheckerObject == null) {
+		FormCheckerObject = new FormChecker;
+	}
+//-->
+</script>
+</div>

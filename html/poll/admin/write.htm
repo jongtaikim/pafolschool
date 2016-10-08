@@ -1,0 +1,271 @@
+<script language="javaScript" src="js/lib.calendar.js"></script>
+<script language="javaScript" src="js/lib.validate.js"></script>
+<style type="text/css" title="">
+.item{border:1px solid #cdcdcd;margin-bottom:5px;padding:3px}
+.item input {border:1px solid #cdcdcd;margin:2px}
+</style>
+<script language="javaScript">
+<!--
+function get_content_serial() {
+	var el = document.forms['writeForm'].elements['cids[]'];
+	if(!el) return 1;
+	if(!el.length) return Number(el.value) + 1;
+	return Number(el[el.length-1].value) + 1;
+}
+
+function contents_add() {
+	num = get_content_serial();
+	var contents = '<div class="item">'+ num + '. 보기 : <input type="hidden" name="cids[]" value="' + num + '">\n';
+	contents +='<input type="text" name="contents[]" value="" style="width:80%;"><br>이미지 : <input type="file" name="upfile'+num+'" id="upfile'+num+'" ></div>';
+	document.getElementById('contentsArea').innerHTML += contents;
+}
+
+function contents_init() {
+	document.getElementById('contentsArea').innerHTML = '';
+}
+
+function delete_check() {
+	if(confirm('중복확인 데이타(IP,회원 ID)를 초기화 하시겠습니까?')) {
+		location.href = URL.setVar({'act':'.delete_check','id':'{id}'});
+	}else{
+		return false;
+	}
+}
+
+function type_add(chk) {
+	if(chk == 'ip' || chk == 'id'){
+		{? chr_check == 'cd'}alert('옵션을 변경하시고 저장하면 기존 인증코드가 모두 초기화됩니다.');{/}
+		document.all.div1.style.display = "none";
+		document.all.div2.style.display = "none";
+
+	}else if(chk == 'mt'){
+		{? chr_check == 'cd'}alert('옵션을 변경하시고 저장하면 기존 인증코드가 모두 초기화됩니다.');{/}
+		document.all.div1.style.display = "block";
+		document.all.div2.style.display = "none";
+
+	}else if(chk == 'cd'){
+		document.all.div1.style.display = "none";
+		document.all.div2.style.display = "block";
+
+	}
+}
+
+
+
+//-->
+</script>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<!-- 상단 Start -->
+				<tr>
+					<td width="11px" background="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif" >
+							<tr>
+								<td width="12px" height="28px" background="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">설문등록</td>
+								<td width="14px" background="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11px" align="right" background="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+			<!-- 상단 End -->
+	<tr>
+		<td background="/html/admin/images/bx1_mid_left.gif"></td>
+		<td bgcolor="#FFFFFF" style="padding:15px;">
+			<!-- 설문등록 Start -->
+			<form name="writeForm" method="post" onsubmit="return validate(this);" enctype='multipart/form-data'>
+			<input type="hidden" name="old_contents_num" value="{LIST.size_}">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="c4d4e7">						
+			<input type="hidden" name="str_type" value="poll">
+				<tr height="38" bgcolor="#FFFFFF">
+					<td class="table02_title05" width="180">설문기간</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" height="100%">
+							<tr>
+								<td width="2" bgcolor="#fafbfd"></td>
+								<td width="12"rowspan="3"></td>
+								<td><wa:datepicker name="dt_start_date" hname="설문기간" value="{dt_start_date}" size="10" maxlength="10" required="true"></wa:datepicker></td>
+								<td>~</td>
+								<td><wa:datepicker name="dt_finish_date" hname="설문기간" value="{dt_finish_date}" size="10" maxlength="10" required="true"></wa:datepicker></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr height="62" bgcolor="#FFFFFF">
+					<td class="table02_title05">중복확인 방법</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="2" height="100%"></td>
+								<td width="12"rowspan="3" rowspan="2"></td>
+								<td><input type="radio" name="chr_check" id="check_ip" value="ip" {? chr_check == 'ip' || !chr_check}checked{/} onclick="type_add(this.value)"> <label for="check_ip">IP로 중복 투표 금지시킴</label></td>
+								<td style="padding-left:4px;"><input type="radio" name="chr_check" id="check_id" value="id" {? chr_check == 'id'}checked{/} onclick="type_add(this.value)"> <label for="check_id">ID로 중복 투표 금지시킴</label></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="radio" name="chr_check" id="check_mt" value="mt" {? chr_check == 'mt'}checked{/} onclick="type_add(this.value)"> <label for="check_mt">회원권한별 투표허용</label>
+						
+							<!-- 회원권한별 체크 Start -->									
+								<div id="div1" {? chr_check != 'mt'} style="display:none; padding:7px;; border:1px solid #dbdbdb"{/}>
+									<table width="90%">
+									<tr><td style="font-size:11px;">
+										<font color="#d43e6c">* 투표를 허용할 권한을 체크해주세요.</font><br>
+										<!--{@ MTYPES}-->
+										<input type="checkbox" name="mytypes[]" value="{.key_}" {? in_array(.key_,groups) }checked{/}>{.value_}
+											{? (.index_+1) % 4 == 0 }<br>{/}
+										<!--{/}-->
+									</td></tr>
+									</table>
+
+								</div>
+								<div id="div2" {? chr_check != 'cd'} style="display:none; padding:7px;; border:1px solid #dbdbdb"{/}>
+									<table width="90%">
+									<tr><td style="font-size:11px;">
+									{? chr_check == 'cd' && groups}
+										<!--textarea cols="60" rows="5" name="grouptext">{str_poll_group}</textarea-->
+										※ <font color="red" style="font-size:11px;">투표참여</font>, <font color="blue"style="font-size:11px;">투표불참</font><br>
+										<!--{@ groups}-->
+											{? in_array(.value_,cddata) }<font color="red">{.value_}</font>, {:} <font color="blue">{.value_}</font>, {/}
+										<!--{/}-->
+										<input type=hidden name="str_poll_group" value="{str_poll_group}">
+									{:}
+										※ 인증코드를 생성할 인증코드수를 입력해주세요. <input type=text name="ccnt" size=5 value="{groupcnt}"><br>
+										(설문조사를 저장하시면 자동으로 인증코드가 생성됩니다.)
+									{/}
+									</td></tr>
+									</table>
+								</div>
+							<!-- 회원권한별 체크 End -->									
+								</td>
+							</tr>
+						</table>
+						
+						
+					</td>
+				</tr>
+				<!--{? id}-->
+				<tr height="80" bgcolor="#FFFFFF">
+					<td class="table02_title05">중복확인 데이타 초기화</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" height="100%">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="2"></td>
+								<td width="12"rowspan="3" rowspan="2"></td>
+								<td><input type="image" src="/html/admin/images/btn_delete_check.gif" value="초기화" onclick="delete_check(); return false;" style="margin-bottom:5px;">
+								<br>설문조사를 초기화하기 위하여 중복확인을 위한 IP, 회원 ID, 인증코드 데이타를 삭제하시려면 '초기화' 버튼을 눌러주십시오.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<!--{/}-->
+				<tr height="38" bgcolor="#FFFFFF">
+					<td class="table02_title05">결과확인</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" height="100%">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="2"></td>
+								<td width="12"rowspan="3" rowspan="2"></td>
+								<td><input type="radio" name="chr_result" id="result_e" value="e" {? chr_result != 'i'}checked{/}> <label for="result_e">항시 설문결과 확인가능</label></td>
+								<td><input type="radio" name="chr_result" id="result_i" value="i" {? chr_result == 'i'}checked{/}> <label for="result_i">종료 후 결과를 볼 수 있음</label></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr height="38" bgcolor="#FFFFFF">
+					<td class="table02_title05">질문</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" height="100%">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="2"></td>
+								<td width="12"rowspan="3" rowspan="2"></td>
+								<td><input type="text" name="str_title" hname="질문" value="{str_title}" style="width:370px;" required class="fom01"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td class="table02_title05">보기항목</td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" height="100%">
+							<tr>
+								<td width="2" bgcolor="#fafbfd" rowspan="2"></td>
+								<td width="12"rowspan="3" rowspan="2"></td>
+								<td style="padding:12px 0px 12px 0px;">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td>
+											
+											<span class="btn_pack small icon"><span class="add"></span><a href="#none" onclick="contents_add(); return false;">만들기</a></span>
+
+											</td>
+											<td>
+											&nbsp;
+											<span class="btn_pack small icon"><span class="refresh"></span><a href="#none" onclick="contents_init(); return false;">초기화</a></span>
+
+										</td>
+										</tr>
+										<tr><td height="10"></td></tr>
+									</table>
+									<table cellpadding="0" cellspacing="0" border="0" width="370" align="center">
+										<tr>
+											<td width="100%" class="table_top_line02"></td>
+										</tr>			
+									</table>
+									<table cellpadding="0" cellspacing="1" border="0" width="370" align="center" bgcolor="c4d4e7">	
+										<tr align="center" height="26">
+											<td width="100%" background="/html/admin/images/bx2_bg1.gif" class="table02_title05">보기</td>
+										</tr>
+									</table>
+									<table cellpadding="0" cellspacing="0" border="0" width="370">
+										<tr>
+											<td colspan="3" width="100%" class="table_btm_line01"></td>
+										</tr>
+										<tr><td height="8"></td></tr>
+									</table>
+									<div id="contentsArea">
+									<!--{@ LIST}-->
+
+									<div class="item">{= .index_ + 1}. 보기 : <input type="hidden" name="cids[]" value="{.num_serial}">
+									<input type="text" name="contents[]" value="{.str_contents}" style="width:80%;"><br>
+									이미지 : <input type="file" name="upfile{.index_ + 1}" id="upfile{.index_ + 1}" >
+									{? .str_file}<br><span style="margin-left:40px"><a href="/hosts/<?=HOST?>/poll/{.str_file}" target="_blank">등록된 이미지가 있습니다.</a> <input type="checkbox" name="upfile_del{.index_ +1}" value="{.str_file}">삭제</span>{/}
+									</div>
+									
+
+									<!--{/}-->
+									</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td colspan="3" width="100%" class="table_btm_line01"></td>
+				</tr>
+				<tr><td height="10"></td></tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" align="center">
+				<tr><td height="10"></td></tr>
+				<tr>
+					<td><span class="btn_pack medium icon"><span class="check"></span><input type="submit" name="" value="저장하기" class=""></span></td>
+				</tr>
+			</table>
+			</form>		
+			<!-- 설문등록 End -->
+		</td>
+		<td background="/html/admin/images/bx1_mid_right.gif"></td>
+	</tr>
+	<tr>
+		<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+		<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+		<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+	</tr>
+</table>

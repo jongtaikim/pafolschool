@@ -1,0 +1,138 @@
+<html>
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+<!-- <link href="/css/admin_ver2006_2.css" rel="stylesheet" type="text/css"> -->
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.default.js"></SCRIPT>
+	<script language="javascript">
+	<!--
+	function tabmenu(imgID)
+	{
+		if (document["Image1"]) document["Image1"].src="/image/admin/menu/option/images/menu_tep_01_off.gif";
+		if (document["Image2"]) document["Image2"].src="/image/admin/menu/option/images/menu_tep_02_off.gif";
+		if (document["Image3"]) document["Image3"].src="/image/admin/menu/option/images/menu_tep_03_off.gif";
+		if (document["Image4"]) document["Image4"].src="/image/admin/menu/option/images/menu_tep_04_off.gif";
+		document["Image"+ imgID ].src="/image/admin/menu/option/images/menu_tep_0" + imgID + "_on.gif";
+
+		if (document["Image1"]) document.all["Image1_layer"].style.display = "none";
+		if (document["Image2"]) document.all["Image2_layer"].style.display = "none";
+		if (document["Image3"]) document.all["Image3_layer"].style.display = "none";
+		if (document["Image4"]) document.all["Image4_layer"].style.display = "none";
+		document.all["Image" + imgID + "_layer"].style.display = "block";
+
+
+	}
+	function del_chk(obj) {
+		if(confirm("삭제하시겠습니까?")) {
+			document.location.href='/vote.admin.del?serial='+obj;
+		}
+	}
+//-->
+</script>
+<body>
+
+
+	<!-- <table width="94%" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="628"></td>
+		<td width="87"><a href="/vote.admin.main"><img src="/image/admin/button/poll_tep_01_on.gif" name="Image1" width="87" height="27" border="0" id="Image1" ></a></td>
+		<td width="106"><a href="/vote.admin.people_list"><img src="/image/admin/button/poll_tep_02_off.gif" name="Image2" height="27" border="0" id="Image2"  ></a></td>
+	</tr>
+	</table> -->
+
+<table cellpadding="0" cellspacing="0" border="0" width="632">
+	<tr valign="top">
+		<td width="100%" colspan="7">
+			<div class="tab19" width="100%">
+				<ul>
+					<li class="active"><a href="/vote.admin.main">투표목록</a></li>
+					<li><a href="/vote.admin.people_list">유권자 관리</a></li>
+				</ul>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%">
+	<tr><td height="17"></td></tr>
+	<tr>
+		<td colspan="2">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr >
+					<td width="20"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01">투표관리</td>
+				</tr>
+				<tr><td height="8"></td></tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<!-- 표1 Start -->	
+			<form name="orderform" method="post">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="d5dfe7">
+				<tr height="28" bgcolor="FFFFFF">
+					<td width="43" class="table01_title">번호</td>
+					<td width="160" class="table01_title">선거명</td>
+					<td width="120" class="table01_title">선거일정</td>
+					<td width="120" class="table01_title">관리</td>
+					<td width="60" class="table01_title">결과</td>
+				</tr>
+				{@ LIST}
+				<tr height="28" bgcolor="FFFFFF" valign="top">
+					<td class="table01_text09 ">{.num_serial}</td>
+					<td class="table01_text08"><a href="/vote.admin.make?serial={.num_serial}">{.str_title}</a></td>
+					<td class="table01_text09">{=date("Y-m-d",.num_start_date)} ~ {=date("Y-m-d",.num_end_date)}</a></td>
+					<td class="table01_text05">
+					<img src="/html/admin/images/btn_delete_03.gif" style="cursor:hand" onClick="del_chk({.num_serial})"> 
+					<a href="vote.admin.make2?serial={.num_serial}">
+					<img src="/html/admin/images/btn_vote_entry_edit.gif" border="0"></a>
+					</td>
+					<td class="table01_text05"><img src="/html/admin/images/btn_look.gif" style="cursor:hand" onClick="document.location.href='/vote.admin.view?serial={.num_serial}'"></td>
+				</tr>
+				{:}
+				<tr bgcolor="FFFFFF">
+				  <td colspan = 20  align=center height=100>등록된 투표가 없습니다.</td>
+				</tr>
+				{/}		
+
+			</form>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td colspan="3" width="100%" class="table_btm_line01"></td>
+				</tr>
+				<tr><td height="10"></td></tr>
+			</table>
+		<!-- 표1 End -->	
+		</td>
+	</tr>
+</table>
+<table align="center" width="98%" height="39" border="0" cellspacing="0" cellpadding="0"  background="/html/admin/images/bx4_bg.gif" >
+	<tr valign="top">
+		<td width="5"><img src="/html/admin/images/bx4_left.gif"></td>
+		<td width="4"></td>
+		<td style="padding-top:10;"><img src="/html/admin/images/btn_preview_01.gif" onClick="window.open('/vote.view','vote','width=520,height=480,scrollbars=1')" style="cursor:hand;"></td>		
+		<td style="padding-top:10" align="right">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width='200' align="right"><a href="/vote.admin.people_list"><img src="/html/admin/images/btn_poll_control.gif" border="0"></a>&nbsp;<a href="/vote.admin.make"><img src="/html/admin/images/btn_new_poll.gif" border="0"></a></td>
+				</tr>
+			</table>
+		</td>
+		<td width="2"></td>
+		<td width="5"><img src="/html/admin/images/bx4_right.gif"></td>
+	</tr>
+</table>
+
+</body>
+</html>

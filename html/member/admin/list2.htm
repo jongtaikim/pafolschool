@@ -1,0 +1,159 @@
+<body>
+<script type="text/javascript">
+function deleteMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 삭제 하시겠습니까?')) return false;
+	if (confirm('선택하신 회원이 작성한 게시물도 같이 삭제하시겠습니까?')) {
+		form.elements['relation'].value = '1';
+	}
+	form.elements['mode'].value = 'delete';
+	form.submit();
+}
+
+function authMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 인증 하시겠습니까?')) return false;
+	form.elements['mode'].value = 'auth';
+	form.submit();
+}
+
+function noauthMember() {
+	form = document.forms['memberForm'];
+	if (!checkSelected()) return false;
+	if (!confirm('선택하신 회원을 인증취소 하시겠습니까?')) return false;
+	form.elements['mode'].value = 'noauth';
+	form.submit();
+}
+
+function checkSelected() {
+	form = document.forms['memberForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('회원을 선택하여 주십시오.');
+		return false;
+	}
+	return true;
+}
+
+function manageGroup(id) {
+	window.open('member.admin.mem_group?id=' + id,'manageGroup','width=350,height=500');
+}
+
+function viewMember(id) {
+	window.open('member.admin.view?id=' + id,'viewMember','width=500,height=440,scrollbars=yes');
+}
+</script>
+
+<div class="tab01">
+<ul>
+	<li{? !noauth} class="active"{/}><a href="member.admin.list">회원목록</a></li>
+	<li{? noauth} class="active"{/}><a href="member.admin.list?noauth=1">인증대기회원</a></li>
+</ul>
+</div>
+<!--{? !noauth}-->
+<h2>회원목록</h2>
+<!--{:}-->
+<h2>인증대기회원</h2>
+<!--{/}-->
+<div style="padding:15px;">
+	<table width="600">
+	<tr>
+		<td>
+			<form name="searchForm" method="get" style="margin:0px;">
+			<select name="search_key">
+				<option value="str_name"{? search_key=='str_name'} selected{/}>이름</option>
+				<option value="str_id"{? search_key=='str_id'} selected{/}>ID</option>
+				<option value="str_email"{? search_key=='str_email'} selected{/}>Email</option>
+			</select>
+			<input type="text" name="search_value" value="{search_value}">
+			<input type="submit" class="button" value="검색">
+			</form>
+		</td>
+		<td align="right">
+			<form name="searchForm3" method="get" style="display:inline;margin:0px;">
+			<select name="search_mtype" onchange="this.form.submit();">
+			<option value="">전체회원</option>
+			<!--{@ MTYPES}-->
+			<option value="{.key_}"{? search_mtype==.key_} selected{/}>{.value_}</option>
+			<!--{/}-->
+			</select>
+			</form>
+			<!--{? !noauth}-->
+				<form name="searchForm4" method="get" style="display:inline;margin:0px;">
+				<select name="search_group" onchange="this.form.submit();">
+				<option value="">전체그룹</option>
+				<!--{@ GROUPS}-->
+				<option value="{.str_group}"{? search_group==.str_group} selected{/}>{.str_group_name}</option>
+				<!--{/}-->
+				</select>
+				</form>
+			<!--{/}-->
+		</td>
+	</tr>
+	</table>
+	<br>
+	<form name="memberForm" method="post" style="margin:0px;">
+	<input type="hidden" name="mode" value="">
+	<input type="hidden" name="relation" value="">
+	<table width="700" class="table01">
+	<tr>
+		<th width="5%">선택</th>
+		<th width="12%">이름</th>
+		<th width="15%">ID</th>
+		<th width="13%">집전화</th>
+		<th width="13%">휴대전화</th>
+		<th width="20%">Email</th>
+		
+		<!--<th width="13%">생일</th>-->
+		<th width="13%">신청학습그룹</th>
+		<!--{? !noauth}--><th width="15%">그룹관리</th><!--{/}-->
+	</tr>
+	<!--{@ LIST}-->
+	<tr align="center">
+		<td><input type="checkbox" name="ids[]" value="{.str_id}" style="border:0px;"></td>
+		<td>{.str_name} </td>
+		<td><a href="#" onclick="viewMember('{.str_id}');">{.str_id}</a></td>
+		<td>{.str_phone}</td>
+		<td>{.str_handphone}</td>
+		<td>{.str_email}</td>
+		<!--<td>{= substr(.num_birthday,0,4)}-{= substr(.num_birthday,4,2)}-{= substr(.num_birthday,6,2)}({.birthday_type})</td>-->
+		<td>{.str_group}</td>
+		<!--{? !noauth}--><td><input type="button" class="button" value="그룹설정" onclick="manageGroup('{.str_id}');"></td><!--{/}-->
+	</tr>
+	<!--{:}-->
+	<tr height="100">
+		<td colspan="7" align="center">검색된 회원이 없습니다.</td>
+	</tr>
+	<!--{/}-->
+	</table>
+	</form>
+	<table width="600">
+	<tr height="30">
+		<td>
+			선택한 회원을
+			<!--{? noauth}-->
+			<input type="button" class="button2" value="인증" onclick="authMember();">
+			<input type="button" class="button2" value="삭제" onclick="deleteMember();">
+			<!--{:}-->
+			<input type="button" class="button" value="인증취소" onclick="noauthMember();">
+			<input type="button" class="button" value="삭제" onclick="deleteMember();">
+			<!--{/}-->
+		</td>
+	</tr>
+	<tr height="30">
+		<td align="center"><wa:paging runat="server" total="{total}" listnum="{listnum}" /></td>
+	</tr>
+	</table>
+	</div>
+</body>

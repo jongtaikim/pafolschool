@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<script>
+	function endselect(){
+	 result = confirm("에디터모드로 홈페이지를 보시겠습니까?");
+	if (result){
+	self.location="/?def=1";
+	}else{
+	self.location="/?def=2";
+	}
+}
+</script>
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="992" align = center>
+				<tr>
+					<td width="21"></td>
+					<td width="21"><img src="/html/admin2/images/icon1.gif"></td>
+					<td style="padding-top:3"><b>Easy Site은 {=date("Y-m-d")} 에 업데이트 되었습니다.</b>
+					
+					
+					</td>
+				
+					<td align = right width = 190 style="padding-top:3">
+					
+					<b>사용 만료일 : </b><font color = "red"> {? end_date}{end_date}{:}없음{/}</font></td>
+					
+					<td align="right" style="padding-top:3" width = 340>|&nbsp; 
+					<b><a href="http://main.hkedu.co.kr/manual.ppt" >메뉴얼 다운로드</a></b>
+					|&nbsp; <a href="/" ><b>메인가기</b></a> ㅣ <a href="/admin.logout"><b>로그아웃</b></a> 
+
+&nbsp;<span style="font-weight:bold; cursor:pointer;" onclick="remoconSwitch()"><img src="http://blogimgs.naver.com/nblog/remote_icon.png" align="absmiddle"><font color = #0000FF> 디자인툴
+
+					</td>
+					<td width="22"></td>
+				</tr>
+			</table>
+
+
+			
+<script>
+
+var win = null;
+function NewWindow(mypage,myname,w,h,scroll){
+   LeftPosition = (screen.width) ? (screen.width-w)/2 : 0;
+   TopPosition = (screen.height) ? (screen.height-h)/2 : 0;
+   settings = 'height='+h+',width='+w+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',resizable'
+   win = window.open(mypage,myname,settings)
+} 
+
+
+</script>
+

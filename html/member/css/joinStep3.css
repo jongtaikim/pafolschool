@@ -1,0 +1,346 @@
+@charset "euc-kr";
+
+/* 이웃닷컴(e-wut.com) 
+웹 퍼블리싱 
+작업자:김동우, 김은정 */
+
+body {
+	background:url(../images/step1BodyBg.gif) repeat-x left top;
+	}
+#wrapper {
+	width:760px;
+	margin:0 auto;
+	}
+h1 {
+	float:left;
+	position:static;
+	visibility:visible;
+	line-height:130%;
+	font-size:14px;
+	width:auto;
+	height:20px;
+	padding-top:3px;
+	padding-left:25px;
+	color:#0178aa;
+	background:url(../images/titleIcon2.gif) no-repeat left top;
+	
+	}
+#joinStep3 h2 {
+			visibility:visible;
+			line-height:130%;
+			font-size:14px;
+			width:auto;
+			height:29px;
+			padding-left:20px;
+			position:static;
+			background:url(../images/titleIcon.gif) no-repeat left top;
+			}
+ .gnb {
+	height:24px;
+	padding-top:31px;
+	margin-bottom:23px;
+	}
+.gnb ul {
+		overflow:hidden;
+		float:right;
+		}
+.gnb ul li {
+			float:left;
+			margin-right:-1px;
+			padding:0 10px;
+			font-size:0.92em;
+			background:url(../images/bar.gif) no-repeat right 1px;
+			}
+#joinStep3 .topArea {
+	margin-bottom:30px;
+	}
+#joinStep3 .contentArea {
+	padding:0 14px;
+	}
+
+
+
+
+			#joinStep3 .star {
+				margin-right:4px;
+				color:#006995;
+				}
+			
+			#joinStep3 #info {
+				padding-bottom:5px;
+				background:url(../images/boxBtmBg2.gif) no-repeat left bottom;
+				}
+			#joinStep3 #info ul {
+				padding:10px 0 0 31px;
+				margin-bottom:10px;
+				line-height:150%;
+				background:url(../images/boxTopBg.gif) no-repeat left top;
+				}
+			#joinStep3 #info em {
+				font-weight:bold;
+				}
+			#joinStep3 #info p {
+				padding-left:31px;
+				font-weight:bold;
+				color:#145d7b;
+				background:url(../images/join/icons2.gif) no-repeat 14px 13px;
+				}
+		#joinInfoInput {
+			padding:0 6px;
+			}
+		#joinInfoInputTop {
+			float:left;
+			width:720px;
+			height:20px;
+			padding-top:13px;
+			border-bottom:#ededed 2px solid;
+			background:url(../images/join/boxTopBg.gif) no-repeat left bottom;
+			}
+			
+			#joinInfoInputTop p {
+				float:right;
+				margin-top:2px;
+				font-size:11px;
+				}
+				#joinInfoInputTop p em {
+					color:#f30;
+					font-weight:bold;
+					font-style:normal;
+					}
+
+		em {
+		color:#f30;
+		font-weight:bold;
+		font-style:normal;
+		}
+	
+		#joinInfoInputContent {
+			float:left;
+			width:720px;
+			}
+			#joinInfoInputContent form {
+				border-top:#9d9d9d 1px solid;
+				}
+			#joinInfoInputContent .row {	
+				float:left;
+				width:100%;
+				padding:7px 0;
+				border-bottom:#ededed 1px solid;
+				background:url(../images/step3RowBg.gif) repeat-y left top;
+				}
+			
+				#joinInfoInputContent .left {
+					float:left;
+					width:300px;
+					}
+				#joinInfoInputContent .title {
+					float:left;
+					width:134px;
+					height:15px;
+					margin-right:10px;
+					padding:5px 29px 0 0;
+					font-weight:bold;
+					text-align:right;
+					}
+				#joinInfoInputContent .inputSpan {
+					display:block;
+					padding-top:4px;
+					}
+					#joinInfoInputContent .input input {	
+						border:#cccbca 1px solid;
+						background:url(../images/inputBg.gif) repeat-x left top;
+						}
+				#joinInfoInputContent .comment {
+					white-space:nowrap;
+					margin-left:5px;
+					margin-top:3px;
+					font-size:11px;
+					color:#f30;
+					vertical-align:3px;
+					}
+			/*성별*/
+			#joinInfoInputContent .sex input {
+				margin-left:5px;
+				}
+
+			/*생년월일*/
+				#joinInfoInputContent .birth .monthPower {
+					margin-left:18px;
+					}
+			/*아이디*/
+			#joinInfoInputContent .id img {
+				display:inline;
+				vertical-align:-3px;
+				margin-left:10px;
+				}
+			/*비밀번호*/
+			#joinInfoInputContent .password input, #joinInfoInputContent .rePassword input {
+				height:15px;
+				}
+			#joinInfoInputContent .password .comment {
+				margin-top:3px;
+				}
+			/*이메일*/
+			
+			#joinInfoInputContent .emailId .title {
+				margin-bottom:30px;
+				}
+				#joinInfoInputContent .emailId .input .divide {
+					margin:0 3px;
+					}
+				#joinInfoInputContent .emailId input {
+					width:100px;
+					}
+				#joinInfoInputContent .emailId li {
+					font-size:11px;
+					letter-spacing:-1px;
+					margin-top:3px;
+					}
+				
+				#joinInfoInputContent .emailId select {
+					margin-left: 8px;
+					}
+				#joinInfoInputContent .emailId .comment {
+					font-size:11px;
+					color:#f30;
+					margin-top:3px;
+					vertical-align:3px;
+					}
+			/*우편번호*/
+			#joinInfoInputContent .zipcode .codeBox {
+				width:50px;
+				}
+			#joinInfoInputContent .zipcode p {
+				display:inline;
+				margin:0 5px;
+				vertical-align:5px;
+				}
+				#joinInfoInputContent .zipcode p input {
+					vertical-align:-6px;
+					}
+				#joinInfoInputContent .zipcode p label {
+					vertical-align:-3px;
+					}
+			#joinInfoInputContent .zipcode .input span {
+				margin:0 3px;
+				}
+			#joinInfoInputContent .zipcode img {
+				display:inline;
+				vertical-align:-3px;
+				}
+			/*주소*/
+			#joinInfoInputContent .address .title {
+				margin-bottom:30px;
+				}
+				#joinInfoInputContent .address .input div {
+					margin-top:5px;
+					}
+				#joinInfoInputContent .address input {
+					width:360px;
+					margin-left:5px;
+					}
+			/*전화번호*/
+			#joinInfoInputContent .phone {
+				border:0;
+				padding-bottom:0;
+				}
+			
+				#joinInfoInputContent .phone input {
+					width:50px;
+					}
+				#joinInfoInputContent .phone .input span {
+					margin:0 3px;
+					}
+
+			/*휴대폰*/
+			#joinInfoInputContent .cellPhone .title span {
+				margin-left:8px;
+				}
+				#joinInfoInputContent .cellPhone input {
+					width:50px;
+					}
+				#joinInfoInputContent .cellPhone span {
+					margin:0 3px;
+					}
+			/*자녀정보*/
+			#joinInfoInputContent .parents table {
+				margin-right:10px;
+				text-align:center;
+				border-collapse:collapse;
+				vertical-align:12px;
+				}
+				#joinInfoInputContent .parents table tr {
+					height:26px;
+					}
+				#joinInfoInputContent .parents table th {
+					background:#f1f1f1;
+					border:#e3e3e3 1px solid;
+					}
+				#joinInfoInputContent .parents table td {
+					padding:0 15px;
+					border:#e3e3e3 1px solid;
+					}
+				#joinInfoInputContent .parents img {
+					float:left;
+					margin-right:5px;
+					}
+			/*본인사진*/
+			#joinInfoInputContent .photo img {
+				display:inline;
+				margin-right:5px;
+				vertical-align:-5px;
+				}
+			#joinInfoInputContent .photo input {
+				height:23px;
+				}
+			/*졸업년도*/
+			#joinInfoInputContent .graduate select {
+				margin-right:5px;
+				}
+	
+	 #btnArea {
+		padding-left:30px;
+		padding-top:18px;
+		border-top:#ededed 1px solid;
+
+		}
+	 #btnArea span {
+		 margin-top:10px;
+		margin-right:20px;
+		font-weight:bold;
+		vertical-align:19px;
+		padding-left:10px;
+		background:url(../images/bu1.gif) no-repeat left 2px;
+		}
+		#joinInfo #btnArea img {
+			display:inline;
+			margin-left:5px;
+			}
+
+
+
+
+
+
+
+#joinStep3 .footerArea {
+	float:left;
+	width:100%;
+	padding-top:25px;
+	margin-top:30px;
+	background:url(../images/introFooterAreaBg.gif) no-repeat left top;
+	}
+	#joinStep3 .footerMenu {
+		display:inline;
+	overflow:hidden;
+		float:left;
+		width:500px;
+		margin-left:250px;
+		}
+	#joinStep3 .footerMenu li {
+		float:left;
+		margin-left:-1px;
+		padding:0 8px;
+		font-size:0.92em;
+		background:url(../images/bar.gif) no-repeat left 1px;
+		}

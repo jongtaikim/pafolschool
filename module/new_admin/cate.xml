@@ -1,0 +1,16 @@
+<menu>
+<주메뉴 link="menu.blank?mcode=10" menuText=" 학교안내 "  color="26BAB7" target="">
+</주메뉴>
+<주메뉴 link="menu.blank?mcode=11" menuText=" 학교소식 "  color="6DBF00" target="">
+</주메뉴>
+<주메뉴 link="http://insung.iknock.co.kr/class.list" menuText=" 학년마당 "  color="C8BA00" target="_self">
+</주메뉴>
+<주메뉴 link="menu.blank?mcode=13" menuText=" 학교교육활동 "  color="26BAB7" target="">
+</주메뉴>
+<주메뉴 link="board.list?mcode=14" menuText=" 자료실 "  color="6DBF00" target="">
+</주메뉴>
+<주메뉴 link="menu.blank?mcode=16" menuText=" 학부모마당 "  color="C8BA00" target="">
+</주메뉴>
+<주메뉴 link="menu.blank?mcode=15" menuText=" 참여마당 "  color="26BAB7" target="">
+</주메뉴>
+</menu>

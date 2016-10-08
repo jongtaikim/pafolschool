@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<tree>
+	<!-- DYNAMIC AREA 'LIST' --><tree icon="{{icon}}" text="{{text}}" action="{{action}}" {{subdata}}/>
+	<!-- DYNAMIC AREA 'LIST' -->
+</tree>

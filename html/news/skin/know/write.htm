@@ -1,0 +1,109 @@
+<link rel="stylesheet" type="text/css" href="./style.css">
+<link rel="stylesheet" type="text/css" href="/html/board/borderBasic.css">
+<form name="writeForm" method="post" enctype="multipart/form-data" onsubmit="return validate(this);">
+<input type="hidden" name="id" value="{id}">
+<input type="hidden" name="str_thumb" value="{str_thumb}">
+<input type="hidden" name="origin_num_file" value="{num_file}">
+
+   
+<div class="boardType1" style="width:100%">
+
+	<div class="writeTop">
+		<div class="title">
+		<b>| {? !id} <b>글쓰기</b>{/} 
+				 {? id} <b>수정</b> {/} 
+
+		</b>            
+		</div>
+	</div>
+
+	 <div class="writeBody">
+	
+
+		<div class="titleText"> 
+				<div class="text1 bgcolor bcolor">제목</div>
+				<div class="text3 paddingLeft">
+
+				
+		 
+				<div> 
+				<input name="str_title" type="text" class="text50" id="str_title2"  value="{str_title}" hname="제목" required  maxbyte="100">
+				</div>
+ 
+				</div>
+		</div>
+
+		
+		{? _SESSION.ADMIN}
+		<div class="titleText">
+				<div class="text1 bgcolor bcolor">관리자기능</div>
+				<div class="text3 paddingLeft">
+
+				<input type="radio" name="num_order" value=""{? !num_order} checked{/} style = "border:0px">일반
+				&nbsp;&nbsp;
+				<input type="radio" name="num_order" value="1"{? num_order == 1} checked{/} style = "border:0px"> 
+				공지
+				&nbsp;&nbsp;
+				날짜<wa:datepicker name="dt_date" value="{dt_date}"/>  
+				&nbsp;&nbsp;
+				조회수<input type="text" name="num_hit" value="{num_hit}" style = "width:40px" class = "button">  
+				</div>
+		</div>
+		{/}
+	</div>
+ 
+
+<br><br><br>
+
+  
+ 
+	<div class="editBody" >
+	
+
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0 class="table01">
+ <tr>
+  <th width="120px">상식</th>
+  <td><textarea name="str_memo" style="width:500px;height:150px">{str_memo}</textarea></td>
+ </tr>
+
+ <tr>
+  <th>풀이</th>
+  <td><textarea name="content" style="width:500px;height:150px">{content}</textarea></td>
+ </tr>
+
+</table>
+
+
+	
+	</div>
+
+ 
+ 
+
+
+</div>
+<br>
+
+
+
+
+<div class="btnBody">
+	<div class="div50">
+	<input type="image" src="./image/btn_submit.gif" id="submit_btn" alt="글 등록" >
+	<a href="#"><img src="./image/btn_cancel.gif" onclick="history.go(-1);" alt="취소"></a>
+	</div>
+	<div class="div50" style="text-align:right"><a href="{listlink}"><img src="./image/btn_list.gif" alt="목록으로 가기"></a></div>
+	
+	<div class="">&nbsp;</div>
+</div>
+
+
+
+
+
+
+</form>
+
+
+ 
+

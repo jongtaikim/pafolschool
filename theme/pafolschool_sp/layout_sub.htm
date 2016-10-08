@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta name="Description"  content="파폴스포츠캠프, 파폴스쿨, 겨울방학스포츠, 겨울, 겨울방학, 엄성흠, 고려대학교 스포츠과학연구기업, 국가대표 트레이너, 국가대표, 트래이너,종합스포츠캠프, FORTIUM, 포티움"> 
+<meta name="Keywords"  content="파폴스포츠캠프, 파폴스쿨, 겨울방학스포츠, 겨울, 겨울방학, 엄성흠, 고려대학교 스포츠과학연구기업, 국가대표 트레이너, 국가대표, 트래이너,종합스포츠캠프, FORTIUM, 포티움">
+<meta name="language" content="ko" />
+
+<link rel="stylesheet" href="./css/content_style.css" type="text/css" />
+<link rel="stylesheet" href="./css/popup_style.css" type="text/css" />
+<link rel="stylesheet" href="/css/doc_style.css" type="text/css" />
+<link rel="stylesheet" href="/css/common.css" type="text/css" />
+<link rel="stylesheet" href="./styles/bootstrap_user_page.css" type="text/css" />
+<link rel="stylesheet" href="./libs/assets/animate.css/animate.css" type="text/css" />
+<link rel="stylesheet" href="./libs/assets/font-awesome/css/font-awesome.css" type="text/css" />
+<link rel="stylesheet" href="./libs/jquery/waves/dist/waves.css" type="text/css" />
+<link rel="stylesheet" href="./styles/material-design-icons.css" type="text/css" />
+<link rel="stylesheet" href="./styles/font.css" type="text/css" />
+<link rel="stylesheet" href="./styles/app_user_page.css" type="text/css" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="./css/css.css" />
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="./js/script.js"></script>
+<script src="./js/centerQuick.js"></script>
+<script type="text/javascript" src="/js/lib.validate2.js"></script>
+
+<title>파폴스포츠캠프</title>
+</head>
+
+<body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0">
+
+
+{#TOP_TOOL}
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+	<td  align="center" valign="top" style="background-position:top; background-repeat:repeat-x;" background="./images/sub_top_bg.png">
+		{#TOP}
+
+		<img src="./images/sub_visual_01.png" alt="Multiple Sports Camp based on Sport Science / 대한민국 최초/최고 청소년 종합스포츠캠프" />
+
+
+	</td>
+  </tr>
+
+
+{? _GET.mcode || _GET.cate}
+<tr>
+    <td align="center" valign="top" background="./images/sub_body_bg.png" style="background-position:top; background-repeat:repeat-x;" height="260">
+		<table width="1000" border="0" cellspacing="0" cellpadding="0">
+    		<tr>
+    				<td valign="top" background="./images/sub_body_Line_bg.png">
+					<table width="1000" border="0" cellpadding="0" cellspacing="0">
+    						<tr>
+    						<td width="210" valign="top">
+							<img src="./images/sub_eng_title_{=substr(mcode,0,3)}.png" alt="pafol sports" width="210" height="50" /><br />
+    							<img src="./images/sub_kor_title_{=substr(mcode,0,3)}.png" alt="파폴스포츠" width="210" height="210" />
+						</td>
+    						
+						<td><img src="./images/podding.png" alt="" width="30" height="30" /></td>
+    						
+						<td width="760" height="260" valign="top" background="./images/sub_body_title_{mcode}.png" style="background-position:top; background-repeat:repeat-x;">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td width="3%" valign="bottom" style="padding-left :10px; padding-bottom :8px;"><img src="./images/icon_home.png" width="19" height="14" alt="home" /></td>
+									<td width="97%" height="120" valign="bottom">
+										<wa:applet module="_titlebar" cate="{cate}" mcode="{mcode}"/>
+										HOME {menu_location6} &gt; {? !menu_data.str_title}<a href="#" class="now">빈메뉴</a>{:}<a href="#" class="now">{menu_data.str_title}</a>{/}
+								
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				<tr>
+			
+    				<td valign="top">
+				
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    						<tr>
+    							<td>
+								<script language="JavaScript">
+
+									function on(obj) {
+									obj.src = obj.src.replace('_off', '_on');
+									}
+									function off(obj) {
+									obj.src = obj.src.replace('_on', '_off');
+									}
+
+								</script>
+								<wa:applet module="submenuObj.main" cate="{cate}" setmodule="{act2}">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									
+									{@ SUBMENU}
+									<tr>
+										<td>
+										
+										
+
+										<a href="{.str_link}" target="{.str_target}" ><img src="./images/pafolSports_smenu_{.num_mcode}_{? substr(_GET.cate,0,5) == .num_cate && _GET.cate}on{:}off{/}.png" alt="{.str_title}" 
+										 border="0" /></a>
+										
+										</td>
+									</tr>
+									{/}
+									
+								</table>
+								</wa:applet>
+
+							</td>
+    						</tr>
+    						<tr>
+    							<td>
+								<img src="./images/sub_left_tel.png" alt="" width="210" height="169" />
+							</td>
+						</tr>
+    						<tr>
+    								<td><a href="/qna.list?mcode=11316&amp;cate=11316"><img src="./images/left_banner.png" width="210" height="85" border="0" /></a></td>
+    								</tr>
+    					</table>
+					
+				</td>
+				<td>&nbsp;</td>
+				<td valign="top" style="padding-left :10px;padding-top:20px">
+					
+					<div style="width:720px">
+						{#CONTENT}
+					</div>
+				</td>
+			</tr>
+		<tr>
+    			<td valign="top">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td height="80" valign="top" style="padding-left :10px;">&nbsp;</td>
+    		</tr>
+    	</table>
+	
+	</td>
+    </tr>
+    </table>
+    </td>
+  </tr>
+
+{:}
+
+
+<tr>
+	 <td align="" valign="top"  style="background-position:top; background-repeat:repeat-x;" height="260" class="b-l b-r">
+		<div style="margin:30px auto;width:950px" >
+			{#CONTENT}
+		</div>
+	</td>
+</tr>
+{/}
+
+  <!-- 하단 카피라이터 시작 -->
+	  {#FOOT}
+	<!-- 하단 카피라이터 끝 -->
+</table>
+
+<!-- quick -->
+<div class="quick_area po" id="quick_area" >
+    <div class="quick">
+	<!-- 퀵메뉴 시작-->
+	<table width="87" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td><a href="http://cafe.naver.com/pafolsports.cafe " target="_blank"><img src="./images/Quick_menu_01.png" alt="파폴스포츠 카페" width="87" height="79" border="0" /></a></td>
+	  </tr>
+	  <tr>
+	    <td><a href="http://www.pafolschool.com/" target="_blank"><img src="./images/Quick_menu_02.png" alt="파폴스쿨" width="87" height="58" border="0" /></a></td>
+	  </tr>
+	  <tr>
+	    <td><a href="http://www.fortium.co.kr/" target="_blank"><img src="./images/Quick_menu_03.png" alt="고려대학교 스포츠과학연구기업 포티움" width="87" height="73" border="0" /></a></td>
+	  </tr>
+	  <tr>
+	    <td><a href="/lms.order?no_tab=y&ccode=74&mcode=11312&cate=11312"><img src="./images/Quick_menu_04.png" alt="파폴스포츠 신청하기" width="87" height="194" border="0" /></a></td>
+	  </tr>
+	  <tr>
+	  		<td><a href="/qna.list?mcode=11316&amp;cate=11316"><img src="./images/Quick_menu_05.png" width="87" height="120" border="0" /></a></td>
+	  		</tr>
+	</table>
+	<!-- 퀵메뉴 끝-->
+    </div>
+</div>
+<!-- //quick -->
+
+
+{#COMMON}
+
+<!-- 퀵메뉴 스크립트 시작 -->
+<script type="text/javascript">
+
+(function($) {
+    jQuery.fn.centerQuick = function(m_width, m_left, m_top, s_top) {
+        this.each(function() {
+            var self = $(this);
+            var left = ($(document).width() - m_width) / 2 + m_width + m_left;
+            self.css({
+                'position' : 'absolute',
+                'top' : m_top + 'px',
+                'left' : left + 'px'
+            });
+            $(window).scroll(function() {
+                var c_top = $(document).scrollTop();
+                var top = 0;
+                if (c_top + s_top > m_top) {
+                    top = c_top + s_top;
+                } else {
+                    top = m_top;
+                }
+                
+                self.stop().animate({"top": top+"px"}, 500);
+            });
+            $(window).resize(function() {
+                var w_width = $(window).width();
+                var left = (w_width - m_width) / 2 + m_width + m_left;
+                if (w_width < m_width) {
+                    left = m_width + m_left;
+                }
+                
+                self.css('left', left + 'px');
+            });
+        });
+    }
+})(jQuery);
+
+
+$(document).ready(function(){
+    $('#quick_area').centerQuick(1000, 20, 335, 50); // (가운데 메인영역 넓이, 메인과 퀵메뉴의 좌측 간격, 초기 기본 높이, 스크롤 내렸을 경우 상단 간격)
+});
+</script>
+<!-- 퀵메뉴 스크립트 끝 -->
+
+</body>
+</html>

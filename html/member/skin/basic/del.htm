@@ -1,0 +1,64 @@
+<script type="text/javascript" src="/js/lib.validate.js"></script>
+<form method=post onsubmit="return validate(this);">
+
+
+
+
+<table align="center" width=92% border=0 cellspacing=0 cellpadding=0>
+<col width="20%"></col><col width="80%"></col>
+ <tr>
+	<td height="15"></td>
+ </tr>
+ <tr>
+  <td colspan  =2>
+   <font color="f97002">* 탈퇴사유를 남겨주시면 반성하고 뒤돌아보는 소중한 자료로 삼겠습니다.</font>
+  </td>
+ </tr>
+ <tr>
+	<td height="5"></td>
+ </tr>
+<tr><td colspan="2" height="2" bgcolor="5e91c4"></td></tr>
+
+ <tr height="40"><td style="background-color:edf8fd; color:#1c59a0; padding-left:10;">회원</td>
+ <td style=" padding-left:10;">
+{_SESSION.NAME}({_SESSION.USERID}) 님
+
+ </td></tr>
+
+<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+
+ <tr height="40"><td style="background-color:edf8fd; color:#1c59a0; padding-left:10;">탈퇴사유</td>
+ <td style=" padding-left:10;">
+
+<input type="text" name="str_title" value="" class="" style="width:70r%">
+ 
+ </td></tr>
+
+<tr>
+		<td colspan="2" height="1" bgcolor="b8cfda"></td>
+	</tr>
+
+
+ <tr height="140" ><td style="background-color:edf8fd; color:#1c59a0; padding-left:10;">남기시는 글</td>
+ <td style=" padding-left:10;">
+
+<TEXTAREA NAME="str_text" style = "width : 97%; height:120" hname="남기시는 글" maxbyte="4000" minbyte="10" required></TEXTAREA>
+ 
+ </td></tr>
+
+<tr><td colspan="2" height="2" bgcolor="5e91c4"></td></tr>
+
+<tr>
+	<td height="15"></td>
+</tr>
+ <tr>
+  <td colspan  =2 align = center>
+   <input type="image" src="/host_img/stock/find_btn_01.gif">&nbsp;<img src="/host_img/stock/join_btn_02.gif" onclick ="reset();">
+  </td>
+ </tr>
+</table>
+
+</form>

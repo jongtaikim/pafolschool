@@ -1,0 +1,38 @@
+<? 
+include 'admin_menu.php';
+
+$pn_1 = substr(_PN,1,1)-1;
+$pn_2 = substr(_PN,3,1)-1;
+$pn_3 = substr(_PN,5,1)-1;
+$pn_33 = substr(_PN,5,1);
+
+?>
+
+<div id="menu_v" class="menu_v">
+<ul>
+	
+<li   class="active">
+	<a href="#none">
+		<span>
+		<?=$menu[$pn_1][title]?>
+		</span>
+		<span class="i">
+		</span>
+	</a> 
+	
+	
+	<ul style="display:block">
+	<? for($ii=0; $ii<count($menu[$pn_1][submenu]); $ii++) { 
+	 $ia = $ii ; ?>
+
+		<li <? if( $ia == $pn_2){?> class="active" <? } ?>>
+			<a href="<?=$menu[$pn_1][submenu][$ii][link].$menu[$pn_1][submenu][$ii][pn]?>" >
+			<span><?=$menu[$pn_1][submenu][$ii][title]?></span>
+			</a>
+		</li>
+		<? } ?>
+	</ul>
+	
+</li>
+
+

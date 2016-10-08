@@ -1,0 +1,41 @@
+			<table cellpadding="0" cellspacing="0" border="0" width="958" height="97" background="/html/admin2/images/i_banner_bg.gif">
+				<? if($_SERVER[HTTP_HOST] == "sh3.hkedu.co.kr") { ?>
+				<tr>
+					<td width="15"><img src="/html/admin2/images/i_banner_left.gif"></td>
+					<td><a href="#" onclick = "alert('준비중입니다.')"><img src="/html/admin2/images/i_banner1.gif"></a></td>
+					<td width="17" align="center"><img src="/html/admin2/images/i_banner_line.gif"></td>
+					<td><a href="#" onclick = "alert('준비중입니다.')"><img src="/html/admin2/images/i_banner2.gif"></a></td>
+					<td width="17" align="center"><img src="/html/admin2/images/i_banner_line.gif"></td>
+					<td><a href="#" onclick = "alert('준비중입니다.')"><img src="/html/admin2/images/i_banner3.gif"></a></td>
+					<td width="13" align="right"><img src="/html/admin2/images/i_banner_right.gif"></td>
+				</tr>
+
+				<? 	}else {?>
+				<tr>
+					<td width="15"><img src="/html/admin2/images/i_banner_left.gif"></td>
+					<td><a href="/board.list?mcode=900000"><img src="/html/admin2/images/i_banner1.gif"></a></td>
+					<td width="17" align="center"><img src="/html/admin2/images/i_banner_line.gif"></td>
+					<td><a href="/board.list?mcode=900001"><img src="/html/admin2/images/i_banner2.gif"></a></td>
+					<td width="17" align="center"><img src="/html/admin2/images/i_banner_line.gif"></td>
+					<td><a href="#" onclick = "alert('준비중입니다.')"><img src="/html/admin2/images/i_banner3.gif"></a></td>
+					<td width="13" align="right"><img src="/html/admin2/images/i_banner_right.gif"></td>
+				</tr>
+
+				<? } ?>
+			</table>
+		</td>
+	</tr>
+</table>
+<map name="Map">
+	<area shape="rect" coords="25,10,140,45" href="/admin.main.list?code=com" >
+	<area shape="rect" coords="188,10,264,45" href="/attach.admin.manage" >
+	<area shape="rect" coords="320,10,419,45" href="/member.admin.list" >
+	<area shape="rect" coords="476,10,553,45" href="/admin.common" >
+</map>
+<FONT COLOR="#ffffff"><?=_OID?></FONT><a href="#" onclick = "endselect();" style = "color:#ffffff"><b>학교홈페이지 바로가기</b></a>
+
+{? sadmin}
+<script>
+//fenster('aaaa', '메뉴', '/admin.chet2');
+</script>
+{/}

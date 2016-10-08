@@ -1,0 +1,43 @@
+@charset "euc-kr";
+
+/* ÀÌ¿ô´åÄÄ(e-wut.com) 
+À¥ ÆÛºí¸®½Ì 
+ÀÛ¾÷ÀÚ:±èµ¿¿ì, ±èÀºÁ¤ */
+
+
+#wrapper {
+	width:595px;
+	}
+	#certificationInfo {
+		padding:18px;
+		}
+	#certificationInfo li {
+		padding-left:10px;
+		line-height:180%;
+		background:url(../images/joinInfoIcon.gif) no-repeat left 8px;
+		}
+	#infoBtnArea {
+		padding:20px 0;
+		text-align:center;
+		background:url(../images/dotLine.gif) repeat-x left bottom;
+		}
+	#certificationInfo p {
+		padding:0 20px;
+		}
+		#certificationInfo p strong {
+			padding-left:10px;
+			background:url(../images/bu1.gif) no-repeat left 3px;
+			}
+	#certificationInfo p .link {
+		font-weight:bold;
+		color:#006cad;
+		line-height:180%;
+		}
+		#certificationInfo p .link a {
+			font-weight:normal;
+		color:#006cad;
+			}
+		#certificationInfo p img {
+			display:block;
+			margin-top:20px;
+			}

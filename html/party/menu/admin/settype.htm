@@ -1,0 +1,37 @@
+<body>
+<h2>메뉴형태 선택</h2>
+<div class="tab01">
+	<ul>
+		<li><a href="party.menu.admin.option?pcode={pcode}&mcode={mcode}">메뉴옵션</a></li>
+		<li class="active"><a href="party.menu.admin.option?pcode={pcode}&mcode={mcode}">메뉴형태 선택</a></li>
+		<!--{@ TABS}-->
+		<li><a href="{.value_}">{.key_}</a></li>
+		<!--{/}-->
+	</ul>
+</div>
+<div style="margin:15px;">
+<table width="550" class="table01">
+<form method="post" onsubmit="return validate(this);">
+	<tbody>
+		<tr>
+			<th>메뉴명</td>
+			<td><input type="text" name="str_title" value="{str_title}" size="20" required>
+		</tr>
+		<tr>
+			<th>메뉴 옵션</td>
+			<td>
+				<select name="str_type">
+				<!--{@ MENU_TYPE}-->
+					<option value="{.key_}">{.value_}</option>
+				<!--{/}-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" class="button2" target="menu_option" value="${OK}"></td>
+		</tr>
+	</tbody>
+</form>
+</table>
+</div>
+</body>

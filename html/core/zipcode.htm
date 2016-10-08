@@ -1,0 +1,81 @@
+<head>
+<title> 우편번호검색 </title>
+</head>
+<link rel="stylesheet" type="text/css" href="./mailCodePopup.css" />
+<link rel="stylesheet" type="text/css" href="./common.css" />
+<div id="wrapper">
+		<!-- 우편번호찾기 시작 -->
+		<div id="mailCodePopup">
+			<h1>찾으실 주소를 입력하세요</h1>
+			<p class="comment">찾고자 하는 지역의 '동이름'을 입력해주십시오.</p>
+			<p class="comment">예 : 서울시 강남구 역삼 1동이라면 '역삼1'만 입력하시면 됩니다.</p>
+
+			<!-- 검색 입력영역 시작 -->
+			<form method=post>
+			<fieldset>
+			<legend>우편번호 찾기</legend>
+			<div id="searchArea">
+				<div class="leftCol">
+					<label for="codeSearch"><strong>동이름 입력</strong></label>
+				</div>
+				<div class="rightCol">
+					<input type="text" id="codeSearch" style="ime-mode:active"  name="q" size="15" value="{q}" tabindex="1"/><span>동(읍/면)</span>
+					<input type="image" class="searchBtn" src="./images/searchBtn.gif" alt="검색" />
+				</div>
+			</div>
+			</fieldset>
+			</form>
+			<!-- 검색 입력영역 끝-->
+			
+
+			<!--{? q}-->
+			
+			<script type="text/javascript">
+			resizeTo(420,500);
+			function $$(s) {
+				return opener.document.forms['{form}'].elements[s];
+			}
+			function insert_addr(addr,zip1,zip2) {
+				$$('{el_addr}').value = addr;
+				{? el_zip}
+				$$('{el_zip}').value = zip1+'-'+zip2;
+				{: //else}
+				$$('{el_zip1}').value = zip1;
+				$$('{el_zip2}').value = zip2;
+				{/}
+				{? el_focus}
+				$$('{el_focus}').focus();
+				{/}
+				self.close();
+			}
+			</script>
+
+			
+			<!-- 검색 결과 영역 시작 -->
+			<div id="resultArea" >
+				<table cellpadding="0" cellspacing="0" summary="주소, 우편번호, 우편번호 검색결과 표">
+					<caption>우편번호 검색결과</caption>
+					<thead>
+						<tr>
+							<th class="address">주소</th>
+							<th class="code">우편번호</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!--{@ LIST}-->
+						<tr>
+							<td class="address"><a href="#none" onClick="insert_addr('{.input_addr} ','{.zip1}','{.zip2}')" onkeypress="insert_addr('{.input_addr} ','{.zip1}','{.zip2}')">{.addr}</a></td>
+							<td class="code">{.zipcode}</td>
+						</tr>
+						{/}
+					</tbody>
+				</table>
+			</div>
+			<!-- 검색 결과 영역 끝 -->
+		</div>
+		<!-- 우편번호찾기 끝 -->
+
+	</div>
+
+
+<!--{/}-->

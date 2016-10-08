@@ -1,0 +1,146 @@
+<link rel="STYLESHEET" type="text/css" href="./style.css">
+<table width="95%" align="center" border="0" cellspacing="0" cellpadding="0">
+<tr height="10"><td></td></tr>
+<form method='post' action="board.list_modify">
+<input type='hidden' name='page' value='{page}'>
+<tr>
+	<td>
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td colspan="2" style='padding:0 20 10 30;'>
+				<font color='red'>
+				1.체크하신 게시물은 삭제되며, 삭제 후 복구 할 수 없습니다.<br>
+				2.또한 글 순서는 입력순으로 나오기 때문에 날짜가 변경되어도 날짜 순으로 나오지 않습니다
+				</font>
+			</td>
+		</tr>
+		<tr>
+			<td width="52%" height="20"><img src="./image/icon_total.gif" width="10" height="11" align="absmiddle"> <span class="f-CG8pt">총 {total} 개 게시물이 있습니다 </span></td>
+			<td width="48%" align="right">
+				<!--{? env.admin}--><img src="./image/icon15.gif" width="13" height="14" align="absmiddle"> 관리<!--{/}-->
+			</td>
+		</tr>
+		<tr>
+			<td height="26" colspan="2">
+
+				<table height="3" width="100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="70%" bgcolor="#FFB400"></td>
+					<td width="30%" bgcolor="#FF8A00"></td>
+				</tr>
+				</table>
+				<table width="100%" cellpadding="0" cellspacing="1" bgcolor="#C3C3C3">
+				<tr bgcolor="#FFFFFF">
+					<td>
+						<table width="100%" height="26" border="0" cellpadding="0" cellspacing="0">
+						<tr align="center">
+							<td width="7%">삭제</td>
+							<td width="60%">제목</td>
+							<td width="14%">글쓴이</td>
+							<td width="12%">날짜</td>
+							<td width="7%">조회</td>
+						</tr>
+						<tr height="4" bgcolor="#F5F5F5">
+							<td colspan="5"></td>
+						</tr>
+						<tr height="1" bgcolor="#A6A6A6">
+							<td colspan="5"></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+				<table height="1" width="100%" cellpadding="0" cellspacing="0" bgcolor="#E8E8E8">
+				<tr>
+					<td></td>
+				</tr>
+				</table>
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="3">
+				<!--{@ LIST}-->
+				<tr bgcolor="{bgcolor}">
+					<td width="7%" height="25" align="center">
+						<input type="hidden" name="board_id[]" value="{.num_serial}">
+						<input type="checkbox" name="del_{.num_serial}" value="{.num_serial}">
+					</td>
+					<td width="60%">{.indent}{? .num_depth}<img src="./image/icon_reply.gif" width="27" height="13">{/}<a href="{.readlink}">{.title}</a> <font color="#990000">{.cmt}</font></td>
+					<td width="14%" align="center"><input type='text' name='chg_name[]' value="{.name}" style='width:100%;'></td>
+					<td width="12%" align="center" class="f-d8pt"><input type='text' name='chg_date[]' value='{.date}' style='width:100%;'></td>
+					<td width="7%" align="center"><input type='text' name='chg_hit[]' value="{.hit}" style='width:100%;'></td>
+				</tr>
+				<tr>
+					<td height="1" colspan="5" background="./image/dotline01.gif"></td>
+				</tr>
+				<!--{/}-->
+				<tr>
+					<td height="1" colspan="5"  bgcolor="C6C6C6"></td>
+				</tr>
+				</table>
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr height="4">
+					<td bgcolor="#F5F5F5"></td>
+				</tr>
+				<tr>
+					<td height="35" align="center">
+						<script src="/js/lib.paging.js"></script>
+						<script>
+							PG = new Paging({total});
+							with(PG.config) {
+								itemPerPage = {listnum};
+								prevIcon = "./image/btn_prevpage.gif";
+								nextIcon = "./image/btn_nextpage.gif";
+								firstIcon = "./image/btn_firstpage.gif";
+								lastIcon = "./image/btn_lastpage.gif";
+								thisPageStyle = "color:#00826C;font-weight:bold;";
+							}
+							document.write(PG);
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td height="2" bgcolor="F8F8F8"></td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="A4A4A4"></td>
+				</tr>
+				<tr>
+					<td height="30">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="43%">
+								<a href="{writelink}"><img src="./image/btn_write.gif" width="51" height="19" border="0"></a>
+								<input type='image' src="./image/btn_submit.gif" border="0">
+							</td>
+							</form>
+							<td width="57%" align="right">
+								<table width="320" border="0" cellspacing="0" cellpadding="0">
+								<form method="get" name="searchform">
+								<input type="hidden" name="act" value="{act}">
+								<input type="hidden" name="code" value="{code}">
+								<tr>
+									<td width="92" align="right" ><img src="./image/text_search.gif" width="47" height="13">&nbsp;</td>
+									<td width="67" align="center"><select name="key" id="key">
+										<option value="str_name">글쓴이</option>
+										<option value="str_title">제목</option>
+									</select></td>
+									<td width="120" align="center"><input name="search" type="text" class="login" id="search" style="width:90%;" value="{search}"></td>
+									<td width="41" align="right"><input type="image" src="./image/btn_search.gif" width="40" height="19"></td>
+								</tr>
+								</form>													
+								</table>
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="30" colspan="2">&nbsp;</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>

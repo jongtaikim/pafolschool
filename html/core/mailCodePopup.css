@@ -1,0 +1,84 @@
+@charset "euc-kr";
+
+/*
+웹 퍼블리싱
+작업자:김은정(lulubong@hanmail.net) 
+*/
+#mailCodePopup {
+	width:387px;
+	padding-top:4px;
+	padding-left:3px;
+	}
+#mailCodePopup h1 {
+	display:block;
+	width:352px;
+	height:24px;
+	margin-bottom:15px;
+	padding-top:10px;
+	padding-left:32px;
+	font-size:12px;
+	color:#b83873;
+	background:url(images/titleBg.gif) no-repeat left top;
+	}
+#mailCodePopup .comment {
+	margin-bottom:3px;
+	padding-left:14px;
+	background:url(images/commentDot.gif) no-repeat 6px 4px;
+	}
+	#mailCodePopup #searchArea {
+		float:left;
+		width:371px;
+		margin-left:6px;
+		border-top:#f0a2c6 1px solid;
+		border-bottom:#f0a2c6 1px solid;
+		background:#fffbfe;
+		}
+		#mailCodePopup #searchArea .leftCol {
+			float:left;
+			width:105px;
+			height:32px;
+			padding-top:20px;
+			color:#b83873;
+			text-align:center;
+			background:#ffeaf5;
+			}
+			#codeSearch {
+				width:90px;
+				height:14px;
+				border:#f0a2c6 1px solid;
+				}
+		#mailCodePopup #searchArea .rightCol {
+			float:left;
+			margin-left:10px;
+			padding-top:15px;
+			}
+		#mailCodePopup #searchArea .rightCol .searchBtn {
+			vertical-align:-5px;
+			}
+
+	#mailCodePopup #resultArea {
+		width:371px;
+		margin-left:6px;
+		margin-top:15px;
+		}
+		#mailCodePopup #resultArea table {
+			width:100%;
+			border-top:1px solid;
+			}
+			#mailCodePopup #resultArea table th {
+				height:25px;
+				border-bottom:1px solid;
+				}
+			#mailCodePopup #resultArea table td {
+				height:20px;
+				padding:2px 0;
+				line-height:130%;
+				background:url(images/dotLine.gif) repeat-x left bottom;
+				}
+			#mailCodePopup #resultArea table td.address {
+				width:282px;
+				padding-left:4px;
+				}
+			#mailCodePopup #resultArea table td.code {
+				text-align:center;
+				}

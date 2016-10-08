@@ -1,0 +1,214 @@
+{?! _GET.no_tab }
+{? _GET.py =="ts"}
+<!--패키지-->
+
+	<div class="tab_line " id="tab_line">
+	<ul>
+		
+		<li class="m4 {? ccode == '64' || ccode == '65' }on{/}"><a href="#tab5"><span>공부사관학교</span></a>
+			<ul>
+				{@ cate_LIST}
+					
+					{? .num_ccode == '64' || .num_ccode == '65'}
+					<? $ia2++; ?>
+					<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+					{/}
+				{/}
+			</ul>
+		</li>
+		
+		
+		<li class="m3 {? ccode == '70' || ccode == '71' }on{/}"><a href="#tab4"><span>패키지</span></a>
+			<ul>
+				{@ cate_LIST}
+					
+					{? .num_ccode == '70' || .num_ccode == '71'}
+					<? $ia2++; ?>
+					<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+					{/}
+				{/}
+			</ul>
+		</li>
+
+		<!--li class="m2 {? ccode == '83' || ccode == '84' }on{/}"><a href="#tab3"><span>스포츠패키지</span></a>
+			<ul>
+				{@ cate_LIST}
+					
+					{? .num_ccode == '83' || .num_ccode == '84'}
+					
+					<? $ia2++; ?>
+					<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+					{/}
+
+
+				{/}
+			</ul>
+		</li-->
+	</ul>
+</div>
+{: _GET.py=='u' }
+<!--패키지-->
+<div class="tab_line " id="tab_line">
+	<ul>
+		<li class="m1 {? ccode == '68'}on{/}"><a href="#tab4"><span>미국</span></a>
+			<ul>
+				{@ cate_LIST}
+					
+					{? .num_ccode == '68' }
+					<? $ia2++; ?>
+					<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+					{/}
+				{/}
+			</ul>
+		</li>
+		<!--li class="m2 {? ccode == '69' }on{/}"><a href="#tab4"><span>필리핀</span></a>
+			<ul>
+				{@ cate_LIST}
+					
+					{? .num_ccode == '69' }
+					<? $ia2++; ?>
+					<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+					{/}
+				{/}
+			</ul>
+		</li-->
+	</ul>
+</div>
+
+{: _GET.py=='z' }
+<!--패키지-->
+<div class="tab_line " id="tab_line">
+	<ul>
+		<li class="m1 on"><a href="#tab4"><span>공부 스킬 & 습관 마스터</span></a>
+			<ul>
+				{@ cate_LIST}
+					
+					{? .num_ccode == '88' || .num_ccode == '89' }
+					<? $ia2++; ?>
+					<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+					{/}
+				{/}
+			</ul>
+		</li>
+		<!--li class="m2 {? ccode == '69' }on{/}"><a href="#tab4"><span>필리핀</span></a>
+			<ul>
+				{@ cate_LIST}
+					
+					{? .num_ccode == '69' }
+					<? $ia2++; ?>
+					<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+					{/}
+				{/}
+			</ul>
+		</li-->
+	</ul>
+</div>
+
+{:}
+
+<div class="tab_line " id="tab_line">
+	<ul>
+		<li class="m1 {? ccode == '21' || ccode == '22' || ccode == '23' || ccode == '42' }on{/}"  ><a href="#tab1"><span>인문학</span></a>
+			<ul style="">
+				{@ cate_LIST}
+					{? .num_ccode == '21' || .num_ccode == '22' || .num_ccode == '23'  || .num_ccode == '42'}
+					<? $ia++; ?>
+					<li class="s<?=$ia?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}">{.str_title}</a></li>
+					{/}
+				{/}
+			</ul>
+		</li>
+
+		<li class="m2 {? ccode == '31' || ccode == '32' || ccode == '10033'}on{/}"><a href="#tab2"><span>공부법</span></a>
+			<ul>
+				{@ cate_LIST}
+					{? .num_ccode == '31' || .num_ccode == '32' || .num_ccode == '10033'}
+					<? $ia2++; ?>
+					<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}">{.str_title}</a></li>
+					{/}
+				{/}
+			</ul>
+		</li>
+
+		
+		<li class="m3 {? ccode == '58' || ccode == '59' }on{/}"><a href="#tab4"><span>IT/SW</span></a>
+			<ul>
+				{@ cate_LIST}
+					
+					{? .num_ccode == '58' || .num_ccode == '59' }
+					<? $ia2++; ?>
+					<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}">{.str_title}</a></li>
+					{/}
+				{/}
+			</ul>
+		</li>
+		
+		{? is_admin}
+			
+			<li class="m4 {? ccode == '64' || ccode == '65' }on{/}"><a href="#tab5"><span>공부사관학교</span></a>
+				<ul>
+					{@ cate_LIST}
+						
+						{? .num_ccode == '64' || .num_ccode == '65'}
+						<? $ia2++; ?>
+						<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+						{/}
+					{/}
+				</ul>
+			</li>
+			
+			
+			<li class="m5 {? ccode == '70' || ccode == '71' }on{/}"><a href="#tab4"><span>패키지</span></a>
+				<ul>
+					{@ cate_LIST}
+						
+						{? .num_ccode == '70' || .num_ccode == '71'}
+						<? $ia2++; ?>
+						<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+						{/}
+					{/}
+				</ul>
+			</li>
+
+			<li class="m6 {? ccode == '88' || ccode == '89' }on{/}"><a href="#tab4"><span>공부 스킬 & 습관 마스터</span></a>
+				<ul>
+					{@ cate_LIST}
+						
+						{? .num_ccode == '88' || .num_ccode == '89' }
+						<? $ia2++; ?>
+						<li class="s<?=$ia2?> {? .num_ccode == ccode}on{/}"><a href="{act2}?ccode={.num_ccode}&mcode={mcode}&cate={cate}&py={_GET.py}">{.str_title}</a></li>
+						{/}
+					{/}
+				</ul>
+			</li>
+
+		{/}
+
+		
+	</ul>
+</div>
+{/}
+
+
+<script type="text/javascript">
+jQuery(function($){
+	var tab = $('.tab_line');
+	tab.removeClass('js_off');
+	
+	function onSelectTab(){
+		var t = $(this);
+		$('.m1,.m2,.m3,.m4,.m5,.m6').removeClass('on');
+		var myclass = [];
+		t.parentsUntil('.tab_line:first').filter('li').each(function(){
+			myclass.push( $(this).attr('class') );
+		});
+		myclass = myclass.join(' ');
+		if (!tab.hasClass(myclass)) tab.attr('class','tab_line').addClass(myclass);
+	}
+
+	tab.find('li>a').click(onSelectTab).focus(onSelectTab);
+});
+</script>
+<br />
+
+{/}

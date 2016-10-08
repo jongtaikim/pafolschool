@@ -1,0 +1,81 @@
+<script type="text/javascript" language="JavaScript1.5" src="/js/ieemu.js"></script>
+
+<!-- for xLoadTree -->
+<script type="text/javascript" src="/js/xtree.js"></script>
+<script type="text/javascript" src="/js/xmlextras.js"></script>
+<script type="text/javascript" src="/js/xloadtree.js"></script>
+<link type="text/css" rel="stylesheet" href="/css/xtree.css" />
+
+<!-- for coolbtn -->
+<!-- <script type="text/javascript" src="/js/cb2.js"></script> -->
+<!-- <link type="text/css" rel="StyleSheet" href="/css/cb2.css"> -->
+
+<style>
+	body, td, span, div {
+		font-size: 9pt;
+	}
+</style>
+<script type="text/javascript">
+	var gSelectedNode = '';
+
+	function add_menu() {
+		var menuname = showModalDialog(URL.setVar({'act':'.dic_group_add'}),'create','dialogHeight: 130px; dialogWidth: 350px; scroll: no;');
+		if (!menuname) return;
+	}
+
+	function setSelected(gcode) {
+		gSelectedNode = gcode;
+	}
+
+	function del_menu() {
+		if (!confirm('그룹에 포함된 주소록은 미지정 그룹에 속하게 됩니다.\n정말 삭제하시겠습니까?')) return;
+		node = tree.getSelected;
+		if (node() == null) return;
+		parent.frames['smsdic_content'].location.href=URL.setVar({'act':'.dic_group_del','gcode':gSelectedNode});
+	}
+
+	function add_node(menuname,gcode) {
+		node = tree.getSelected;
+		node().add(new WebFXTreeItem(menuname,'javascript:detail('+gcode+')'));
+		node().expand();
+	}
+
+	function detail(node) {
+		gSelectedNode = node;
+		status = "선택된 노드:" + gSelectedNode;
+		s = tree.getSelected();
+		parent.frames['smsdic_content'].location.href=URL.setVar({'act':'.dic_group_list','gcode':node});
+		document.getElementById('btnDel').disabled = (s.childNodes.length > 1 || String(node) == '0') ? true : false;
+	}
+</script>
+</head>
+
+<body bgcolor="#F7F8F3" topmargin="0" leftmargin="0">
+<script type="text/javascript">
+/// XP Look
+webFXTreeConfig.blankIcon		= "/image/icon/blank.png";
+webFXTreeConfig.rootIcon		= "/image/icon/folder.png";
+webFXTreeConfig.openRootIcon	= "/image/icon/openfolder.png";
+webFXTreeConfig.folderIcon		= "/image/icon/folder.png";
+webFXTreeConfig.openFolderIcon	= "/image/icon/openfolder.png";
+webFXTreeConfig.fileIcon		= "/image/icon/file.png";
+webFXTreeConfig.lMinusIcon		= "/image/icon/Lminus.png";
+webFXTreeConfig.lPlusIcon		= "/image/icon/Lplus.png";
+webFXTreeConfig.tMinusIcon		= "/image/icon/Tminus.png";
+webFXTreeConfig.tPlusIcon		= "/image/icon/Tplus.png";
+webFXTreeConfig.iIcon			= "/image/icon/I.png";
+webFXTreeConfig.lIcon			= "/image/icon/L.png";
+webFXTreeConfig.tIcon			= "/image/icon/T.png";
+var tree = new WebFXLoadTree("전체", '/sms.dic_group_tree',"javascript:;","explorer");
+</script>
+<table bgcolor="buttonface" width="100%">
+	<tr>
+		<td><input type="button" class="button" value="그룹추가" onclick="add_menu()"></td>
+		<td><input type="button" class="button" value="그룹삭제" onclick="del_menu()" id="btnDel" disabled></td>
+		<td><input type="button" class="button" value="갱신" onclick="tree.reload()"></td>
+		<td width="99%"></td>
+	</tr>
+</table>
+<div style="padding: 10px;font-size:9pt;"><script type="text/javascript">document.write(tree);</script></div>
+</body>
+</html>

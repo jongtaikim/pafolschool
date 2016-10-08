@@ -1,0 +1,140 @@
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+
+<link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+
+<!-- <link href="/css/admin_ver2006_2.css" rel="stylesheet" type="text/css"> -->
+	<SCRIPT LANGUAGE="JavaScript" SRC="/js/seo.default.js"></SCRIPT>
+	<script language="javascript">
+	<!--
+	// 전체선택, 전체해제 구성
+	function MM_chkBoxCotrol(form)
+	{
+		len = form.elements.length;
+		for( var i=0; i<len; i++ )
+		{
+			if( form.elements[i].name != "chr_chk" )
+			form.elements[i].checked = form.chr_chk.checked;
+		}
+	}
+	function del_mode(obj) {
+		if(obj=='sel') {
+			var msg = "선택한 유권자 삭제하시겠습니까?";
+		}else {
+			var msg = "전체 유권자를 삭제하시겠습니까?\n복구할수 없습니다.";
+		}
+		if(confirm(msg)){
+			orderform.mode.value = obj;
+			orderform.submit();
+		}
+	}
+//-->
+</script>
+
+<body>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="632">
+	<tr valign="top">
+		<td width="100%" colspan="7">
+			<div class="tab19" width="100%">
+				<ul>
+					<li><a href="/vote.admin.main">투표목록</a></li>
+					<li class="active"><a href="/vote.admin.people_list">유권자 관리</a></li>
+				</ul>
+			</div>
+		</td>
+	</tr>
+	<tr><td height="17"></td></tr>
+</table>
+
+<table align="center" width="98%" height="39" border="0" cellspacing="0" cellpadding="0"  background="/html/admin/images/bx4_bg.gif" >
+	<tr valign="top">
+		<td width="5"><img src="/html/admin/images/bx4_left.gif"></td>
+		<td width="4"></td>
+		<td style="padding-top:9px;"><img src="/html/admin/images/btn_choice_delete.gif" border="0" style="cursor:hand" onclick="del_mode('sel');"></td>
+		<td align="right" style="padding-top:9px;">
+			<img src="/html/admin/images/btn_print.gif" border="0" onclick="window.open('/vote.admin.print','print','width=450,height=500,scrollbars=1');" style="cursor:hand">&nbsp;<a href="/vote.admin.people"><img src="/html/admin/images/btn_poll_add_record.gif" border="0"></a>&nbsp;<img src="/html/admin/images/btn_poll_all_delete.gif" border="0" style="cursor:hand" onclick="del_mode('all');">
+		</td>
+		<td width="2"></td>
+		<td width="5"><img src="/html/admin/images/bx4_right.gif"></td>
+	</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%">
+	<tr><td height="9"></td></tr>
+	<tr>
+		<td>
+			<!-- 표1 Start -->	
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<tr>
+					<td width="100%" class="table_top_line01"></td>
+				</tr>
+				<tr>
+					<td width="100%" class="table_top_line02"></td>
+				</tr>			
+			</table>
+			<table cellpadding="0" cellspacing="1" border="0" width="100%" align="center" bgcolor="d5dfe7">
+			<form name="orderform" method="post">
+			<input type="hidden" name="mode" value="sel">
+				
+				<tr height="28" bgcolor="FFFFFF">
+					<td width="53" class="table01_title"><input type="checkbox" name="chr_chk" onClick="MM_chkBoxCotrol(this.form);"></td>
+					<td width="60" class="table01_title"></td>
+					<td width="160" class="table01_title">이름</td>
+					<td width="100" class="table01_title">학년</td>
+					<td width="100" class="table01_title">학급</td>
+					<td width="60" class="table01_title">번호</td>
+					<td width="120" class="table01_title">인증코드</td>
+				</tr>
+				{@ LIST}
+				<tr height="28" bgcolor="FFFFFF" valign="top">
+					<td class="table01_text01"><input type="checkbox" name="basecode[]" value="{.del_jumin}" class="check"></td>
+					<td class="table01_text09">{.rnum}</td>
+					<td class="table01_text09">{.str_name}</td>
+					<td class="table01_text09">{.str_grade}</td>
+					<td class="table01_text09">{.str_class}</td>
+					<td class="table01_text09">{.str_jumin}</td>
+					<td class="table01_text09">{.str_code}</td>
+				</tr>
+				{/}		
+
+			</form>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td colspan="3" width="100%" class="table_btm_line01"></td>
+				</tr>
+				<tr><td height="10"></td></tr>
+			</table>
+		<!-- 표1 End -->	
+		</td>
+	</tr>
+	<tr><td height="4"></td></tr>
+	<tr>
+		<td align="center"><wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" previcon="/image/btn_prevpage.gif" nexticon="/image/btn_nextpage.gif" firsticon="/image/btn_firstpage.gif" lasticon="/image/btn_lastpage.gif" /></td>
+	</tr>
+	<tr><td height="12"></td></tr>
+</table>
+
+
+
+<table align="center" width="98%" height="39" border="0" cellspacing="0" cellpadding="0"  background="/html/admin/images/bx4_bg.gif" >
+	<tr valign="top">
+		<td width="5"><img src="/html/admin/images/bx4_left.gif"></td>
+		<td width="4"></td>
+		<td style="padding-top:9px;"><img src="/html/admin/images/btn_choice_delete.gif" border="0" style="cursor:hand" onclick="del_mode('sel');"></td>
+		<td align="right" style="padding-top:9px;">
+			<img src="/html/admin/images/btn_print.gif" border="0" onclick="window.open('/vote.admin.print','print','width=450,height=500,scrollbars=1');" style="cursor:hand">&nbsp;<a href="/vote.admin.people"><img src="/html/admin/images/btn_poll_add_record.gif" border="0"></a>&nbsp;<img src="/html/admin/images/btn_poll_all_delete.gif" border="0" style="cursor:hand" onclick="del_mode('all');">
+		</td>
+		<td width="2"></td>
+		<td width="5"><img src="/html/admin/images/bx4_right.gif"></td>
+	</tr>
+</table>
+
+
+</body>
+</html>

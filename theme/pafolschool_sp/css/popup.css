@@ -1,0 +1,347 @@
+body {
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:"돋움",dotum;
+	background:url(images/headerBg.gif) repeat-x left top;
+	overflow-y:scroll;
+	}
+img {
+	display:block;
+	border:0;
+	}
+a {
+	text-decoration:none;
+	}
+
+article, aside, hgroup, header, footer, figure, figcaption, nav, section {
+    display:block;
+}
+
+/*팝업공통*/
+.fixed {
+	position:fixed;
+	z-index:0;
+	}
+#popupBack {
+	display:none;
+	position:absolute;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	background:url(images/popupBack.png) repeat left top;
+	cursor:pointer;
+	}
+#popup {
+	display:none;
+	position:absolute;
+	left:50%;
+	top:50%;
+	width:682px;
+	height:444px;
+	margin-left:-341px;
+	margin-top:-222px;
+	padding:34px 39px 0 36px;
+	background:url(images/popupBg.png) no-repeat left top;
+	z-index:1;
+	}
+#popup .popupClose {
+	position:absolute;
+	right:39px;
+	top:34px;
+	cursor:pointer;
+	}
+#popup .popupTop {
+	width:100%;
+	height:43px;
+	}
+	#popup .popupTop .popupTit {
+		float:left;
+		}
+	#popup .popupBtnArea {
+		float:left;
+		height:26px;
+		padding-left:10px;
+		border-left:1px solid #b0b0b0;
+		}
+		#popup .popupBtn {
+			display:block;
+			float:left;
+			height:26px;
+			color:#fff;
+			font-weight:bold;
+			background:url(images/popupBtnRightBg.gif) no-repeat top right;
+			}
+		#popup .popupBtn span {
+			display:block;
+			height:19px;
+			padding:7px 13px 0 13px;
+			background:url(images/popupBtnLeftBg.gif) no-repeat top left;
+			}
+#popup .popupContent {
+	width:100%;
+	height:317px;
+	padding:12px 0;
+	overflow-y:auto;
+	color:#a0a0a0;
+	line-height:170%;
+	}
+	#popup h4 {
+		display:none;
+		}
+	#popup h5 {
+		margin:14px 0;
+		padding:0;
+		color:#c72424;
+		font-size:16px;
+		}
+	#popup h6 {
+		margin:18px 0 8px 0;
+		padding:0;
+		color:#606060;
+		font-size:14px;
+		}
+	#popup p {
+		padding:0;
+		margin:0 0 10px 0;
+		}
+	#popup ol {
+		margin:6px 0;
+		padding-left:18px;
+		}
+	#popup ol li ol li {
+		list-style-type:decimal-leading-zero;
+		}
+	#popup ol li ul li {
+		list-style-type:none;
+		
+		}
+	#popup ul {
+		margin:6px 0;
+		padding:0;
+		}
+	#popup ul li {
+		color:#909090;
+		list-style-type:none;
+		}
+	#popup ul li ul {
+		font-size:11px;
+		}
+	#popup ul li ul li {
+		color:#b0b0b0;
+		line-height:130%
+		}
+	#popup table, #popup table td, #popup table th {border:0;}
+	#popup table {width:95%; margin:15px 0; border-collapse:collapse; border-top:#676665 2px solid; border-right:#ffffff 2px solid; border-left:#ffffff 2px solid; font-family:"돋움",dotum;}
+	#popup table td {padding:5px; border:#e0e0e0 1px solid; line-height:150%;}
+	#popup table thead {border-top:#676665 2px solid;}
+	#popup table thead th {padding:5px; border:#e0e0e0 1px solid; background:#f0f0ee;}
+	#popup table tbody th {padding:5px; border:#e0e0e0 1px solid; font-weight:bold;}
+	#popup table td ol {margin-left:25px; line-height:180%;}
+	#popup table td ol li {list-style-type:decimal;}
+
+#popup .popupFooter {
+	padding-top:16px;
+	font-family:"arial";
+	color:#a0a0a0;
+	font-size:11px;
+	text-align:center;
+	}
+
+
+
+#wrapper {
+	width:100%;
+	}
+#header {
+	position:relative;
+	width:960px;
+	margin:0 auto;
+	padding-top:56px;
+	height:74px;
+	}
+	h1.logo {
+		display:block;
+		float:left;
+		width:211px;
+		height:74px;
+		margin:0;
+		padding:0;
+		background:url(images/logo.gif) no-repeat left top;
+		text-indent:-5000px;
+		}
+	#nav {
+		position:absolute;
+		right:10px;
+		bottom:0;
+		}
+	#nav ul {
+		margin:0;
+		padding:0;
+		}
+	#nav li {
+		float:left;
+		list-style-type:none;
+		}
+	#nav li a {
+		display:block;
+		overflow:hidden;
+		height:24px;
+		}
+	#nav li a:hover img, #nav li.on a img {
+		margin-top:-24px;
+		}
+#article {
+	width:960px;
+	margin:0 auto;
+	}
+#footer {
+	width:960px;
+	margin:0 auto;
+	padding:20px 0;
+	color:#404040;
+	text-align:center;
+	font-size:11px;
+	font-family:"Arial";
+	}
+.mainImg {
+	display:block;
+	margin-left:-65px;
+	}
+/*서브*/
+#article.sub {
+	margin-top:20px;
+	background:url(images/articleBg.gif) no-repeat left bottom;
+	}
+#article.sub .subContent {
+	position:relative;
+	width:860px;
+	padding:42px 56px 50px 44px;;
+	padding-left:44px;
+	padding-bottom:50px;
+	background:url(images/articleTop.gif) no-repeat left top;
+	}
+#article.sub .subContent h2 {
+	display:block;
+	height:27px;
+	padding:0;
+	margin:0 0 18px 0;
+	text-indent:-5000px;
+	}
+	.incidentListTit {
+		width:202px;
+		background:url(images/incidentListTit.gif) no-repeat left top;
+		}
+	.cyberIncidentTit {
+		width:566px;
+		background:url(images/cyberIncidentTit.gif) no-repeat left top;
+		}
+	.privacyIncidentTit {
+		width:644px;
+		background:url(images/privacyIncidentTit.gif) no-repeat left top;
+		}
+	.securityVideoTit {
+		width:261px;
+		background:url(images/securityVideoTit.gif) no-repeat left top;
+		}
+#article.sub .subContent .navigation {
+	clear:both;
+	width:850px;
+	padding:12px 0 12px 10px;
+	color:#5f5f5f;
+	font-size:12px;
+	background:#f7f7f7;
+	border-top:1px solid #b5b5b5;
+	border-bottom:1px solid #b5b5b5;
+	}
+	#article.sub .subContent .navigation .navigationTit {
+		font-weight:bold;
+		}
+	#article.sub .subContent .navigation .currentNavigation {
+		color:#f08311;
+		font-weight:bold;
+		}
+
+#article .subTab {
+	display:block;
+	position:absolute;
+	top:87px;
+	width:133px;
+	height:42px;
+	padding:0;
+	margin:0;
+	text-indent:-5000px;
+	cursor:pointer;
+	background-repeat:no-repeat;
+	background-position:left bottom;
+	}
+	#article .subTab.on {
+		background-position:left top;	
+		}
+	#article .subTab1 {
+		left:44px;
+		background-image:url(images/procedureTabImg.gif);
+		}
+	#article .subTab2 {
+		left:177px;
+		background-image:url(images/summaryTabImg.gif);
+		}
+
+#article .content {
+	display:none;
+	padding-top:41px;
+	}
+#article .content.on {
+	display:block;
+	}
+
+#article .summary {
+	padding-top:28px;
+	}
+	#article .summary p {
+		margin:0 0 24px 0;
+		padding:0;
+		color:#7d7d7d;
+		line-height:150%;
+		}
+	#article .summary h4 {
+		padding:0;
+		margin:0 0 9px 0;
+		color:#232323;
+		font-size:14px;
+		}
+	#article .summary h5 {
+		padding:0;
+		margin:0 0 8px 0;	
+		color:#7d7d7d;
+		font-size:12px;
+		}
+
+#article .commonList {
+	}
+	#article .commonList a {
+		color:inherit;
+		}
+	#article .commonList h3 {
+		margin:35px 0 0 0;
+		padding:0 0 5px 0;
+		color:#232323;
+		font-size:16px;
+		}
+	#article .commonList h4 {
+		margin:15px 0 0 0;
+		padding:0;
+		color:#4f4f4f;
+		font-size:12px;
+		}
+	#article .commonList h4.mainItem {
+		color:#117d9c;
+		}
+	#article .commonList p {
+		margin:6px 0 15px 0;
+		padding:0 0 0 16px;
+		color:#7d7d7d;
+		font-size:12px;
+		line-height:21px;
+		}

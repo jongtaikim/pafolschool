@@ -1,0 +1,188 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<?
+$menu = array();
+
+
+
+
+$menu[0]['title'] = "스킨선택";
+$menu[0]['link'] = "/skin.select?mode=basic";
+
+	$menu[0]['submenu'][0]['title'] = "기본템플릿";
+	$menu[0]['submenu'][0]['link'] = "/skin.select?mode=basic";
+
+	$menu[0]['submenu'][1]['title'] = "내스킨";
+	$menu[0]['submenu'][1]['link'] = "/skin.select?mode=my";
+	
+	$menu[0]['submenu'][2]['title'] = "공유스킨";
+	$menu[0]['submenu'][2]['link'] = "/skin.select?mode=gong";
+
+
+
+$menu[1]['title'] = "레이아웃관리";
+$menu[1]['link'] = "/attach.admin.manage?layout=main";
+	
+	$menu[1]['submenu'][0]['title'] = "메인화면";
+	$menu[1]['submenu'][0]['link'] = "/attach.admin.manage?layout=main";
+
+	$menu[1]['submenu'][1]['title'] = "1번서브";
+	$menu[1]['submenu'][1]['link'] = "/attach.admin.manage?layout=sub";
+
+	$menu[1]['submenu'][2]['title'] = "2번서브";
+	$menu[1]['submenu'][2]['link'] = "/attach.admin.manage?layout=sub2";
+
+	$menu[1]['submenu'][3]['title'] = "3번서브";
+	$menu[1]['submenu'][3]['link'] = "/attach.admin.manage?layout=sub3";
+
+	$menu[1]['submenu'][4]['title'] = "4번서브";
+	$menu[1]['submenu'][4]['link'] = "/attach.admin.manage?layout=sub4";
+
+	$menu[1]['submenu'][5]['title'] = "5번서브";
+	$menu[1]['submenu'][5]['link'] = "/attach.admin.manage?layout=sub5";
+
+
+
+
+$menu[2]['title'] = "서브페이지 관리";
+$menu[2]['link'] = "/menu.admin.frame";
+$menu[2]['img'] = "./images/menu2_title.gif";
+
+	$menu[2]['submenu'][0]['title'] = "서브페이지 관리";
+	$menu[2]['submenu'][0]['link'] = "/menu.admin.frame";
+
+	$menu[2]['submenu'][0]['title'] = "게시판 목록";
+	$menu[2]['submenu'][0]['link'] = "/menu.admin.frame";
+
+	$menu[2]['submenu'][0]['title'] = "웹문서 목록";
+	$menu[2]['submenu'][0]['link'] = "/menu.admin.frame";
+
+
+
+
+
+$menu[3]['title'] = "회원관리";
+$menu[3]['link'] = "/member.admin.list";
+$menu[3]['img'] = "./images/menu3_title.gif";
+
+	$menu[3]['submenu'][0]['title'] = "전체회원목록";
+	$menu[3]['submenu'][0]['link'] = "/member.admin.list";
+
+	$menu[3]['submenu'][1]['title'] = "회원가입 설정";
+	$menu[3]['submenu'][1]['link'] = "/member.admin.setup";
+
+	$menu[3]['submenu'][2]['title'] = "개인보호정책 및 이용약관 ";
+	$menu[3]['submenu'][2]['link'] = "/member.admin.info";
+
+
+	$menu[3]['submenu'][3]['title'] = "회원활동내역";
+	$menu[3]['submenu'][3]['link'] = "/member.admin.point_list";
+
+
+
+
+$menu[4]['title'] = "환경설정";
+$menu[4]['link'] = "/admin.common";
+
+	$menu[4]['submenu'][0]['title'] = "환경설정";
+	$menu[4]['submenu'][0]['link'] = "/admin.common";
+
+	$menu[4]['submenu'][1]['title'] = "공지사항 설정";
+	$menu[4]['submenu'][1]['link'] = "/news.admin.list?code=com";
+
+	$menu[4]['submenu'][2]['title'] = "설문조사";
+	$menu[4]['submenu'][2]['link'] = "/poll.admin.list";
+
+	$menu[4]['submenu'][3]['title'] = "팝업관리";
+	$menu[4]['submenu'][3]['link'] = "/popup.admin.list";
+
+
+$hhh2 = {act3};
+$hhh = {act2};
+
+?>
+
+<script language="Javascript">
+function $(id) {
+	if(!id) return null;
+	return document.getElementById(id);
+}
+
+
+</script>
+
+ <link rel="stylesheet" href="./link.css">
+ <script language='javascript' src='./js/flash.js'></script>
+
+<body topmargin="0" leftmargin="0">
+
+
+<div style = "text-align:center">
+<table cellpadding="0" cellspacing="0" border="0" width="977" height="119" background="./image/top_bg.gif">
+	<tr valign="top">
+		<td>		
+			<table  border=0 cellspacing=0 cellpadding=0 width="100%" align="center">
+				 <tr>				  
+					<td><a href="/admin.main"  target="_top"><img src = "./image/logo.gif"></a></td>
+					<td align="right" valign="top" style="padding-top:22"><a href="/"><img src="./image/t_main.gif"></a><img src="./image/t_line.gif"><a href="/admin.logout"><img src="./image/t_login.gif"></a><img src="./image/t_line.gif"><a href="#"><img src="./image/t_center.gif"></a></td>				
+				 </tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td width="977" height="68"  valign="top"align="center" >
+
+			<table cellpadding="0" cellspacing="0" border="0" width = "100%" align = center>
+				<tr>
+					<td>
+
+					<table  border=0 cellspacing=0 cellpadding=0 class=table01>
+				   <tr>
+				    <td><a href="/manage.order_list2">고객사 관리</a></td>
+  				    <td>서비스 관리</td>
+					<td>매출 관리</td>
+					<td>시스템 리소스 관리</td>
+					<td>공지사항</td>
+					<td>작업요청</td>
+					<td>FAQ 관리</td>
+					<td>호스트 관리</td>
+
+				   </tr>
+				  </table>
+						
+
+
+					</td>
+
+					<td align="right" valign="top">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td height="13"></td>
+							</tr>
+							<tr valign="top">
+								<td style="padding-top:2"><img src="./image/t_search_title.gif"></td>
+								<td width="5"></td>
+								<td style="padding-top:1"><img src="./image/t_fom_search_l.gif"></td>
+								<td><input type = "text" name=""  id = "" hname="" style="border:none; padding:4 0 0 4; font-size:11px; font-family:돋움;  width:106; height:19; background-image:url(./image/t_fom_search.gif)" onFocus="this.style.backgroundImage='url(./image/t_fom_search1.gif)';return "></td>
+								<td style="padding-top:1"><img src="./image/t_fom_search_r.gif"></td>
+								<td width="4"></td>
+								<td style="padding-top:1"><img src="./image/t_btn_search.gif"></td>
+								<td width="13"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+
+			</table>
+
+			
+		
+		</td>
+	</tr>
+</table>
+</div>
+
+</body>

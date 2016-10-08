@@ -1,0 +1,67 @@
+<div id="sub_content_area">
+<script type="text/javascript" src="/js/lib.cookie.js"></script>
+<script type="text/javascript" src="/js/seo.default.js"></script>	
+	<!-- IF 'SUB_TITLE' -->
+	<div id="sub_title_area">
+		{{board_title}}
+	</div>
+	<!-- ENDIF 'SUB_TITLE' -->
+	<div class="read_area_top"></div>
+	<div class="read_area_content">
+		<div class="title_area border_top_2px border_bottom_1px border_color_2 board_top">
+			<h4>{{title}}</h4>
+		</div>
+		<dl class="author_area">
+			<dt>글쓴이 정보</dt>
+			<dd class="author_name">글쓴이 :<span>{{name}} <!-- DYNAMIC AREA 'STR_USER' -->(ID : {{str_user}})<!-- DYNAMIC AREA 'STR_USER' --></span>  <span>{{email}}</span> <span>[{{method}}] 답변을 요청하였습니다.<br></span></dd>
+			<dd class="author_date">날짜 <span>{{reg_date}}</span></dd>
+			<dd class="author_ip">[{{public}}게시물]  <!-- DYNAMIC AREA 'STR_IP' -->(IP : <a href="http://whois.nic.or.kr/whois/webapisvc?VALUE=?ip={{remote_addr}}" target="_blank">{{remote_addr}})</a><!-- DYNAMIC AREA 'STR_IP' --></dd>
+			<!-- IF 'ATTACH' -->
+			<dd class="added_file">
+				첨부파일
+				<!-- DYNAMIC AREA 'FILE' -->
+				<a href="{{downlink}}"> {{icon}} {{filename}}</a>
+				<!-- DYNAMIC AREA 'FILE' -->
+			</dd>
+			<!-- ENDIF 'ATTACH' -->
+		</dl>
+		<hr/>
+		<div class="content_area">
+			<table class="content_area_table">
+				<tr>
+					<td id="user_content"><div>{{content}}</div></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="read_area_bottom"></div>
+	<hr/>
+	<dl class="prev_next">
+		<dt>페이지 전환</dt>
+		<dd><span class="next_link">다음글</span>{{nextlink}}</dd>
+		<dd><span class="prev_link">이전글</span>{{prevlink}}</dd>
+	</dl>
+
+	<hr/>
+	<div id="read_btn">
+	<!-- IF 'COMMENT_WRITE' -->
+		<a href="{{writelink}}"><img src="/image/button/bt01/01.gif" width="51" height="19" alt="글쓰기 버튼" /></a>
+		<a href="{{replylink}}"><img src="/image/button/bt01/10.gif" width="40" height="19"  alt="답글달기 버튼"></a>
+		<a href="{{modifylink}}"><img src="/image/button/bt01/06.gif" width="40" height="19" alt="수정 버튼" /></a>
+		<a href="{{deletelink}}"><img src="/image/button/bt01/03.gif" width="40" height="19" alt="글 삭제 버튼" /></a>
+	<!-- ENDIF 'COMMENT_WRITE' -->
+		<a href="{{listlink}}"><img src="/image/button/bt01/02.gif" width="40" height="19" alt="목록으로 돌아가기 버튼" /></a>
+	</div>
+<script>
+	if (username = '{{USER_NAME}}') {
+		if(document.forms['commentform'] != undefined) {
+			var el = document.forms['commentform'].elements['cmt_name'];
+			if (!el.value || el.value == username) {
+				el.value = username;
+				el.onkeydown = el.onkeyup = el.onselectstart = el.oncontextmenu =  function() { return false; }
+				el.readOnly = true;
+			}
+		}
+	}	
+</script>
+</div>

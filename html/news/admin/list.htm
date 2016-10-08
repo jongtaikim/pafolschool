@@ -1,0 +1,149 @@
+<script language="javaScript">
+<!--
+URL.delVar('page');
+
+function writeArticle() {
+	location.href = '/news.admin.write?code={code}';
+
+}
+
+function deleteArticle() {
+	var form = document.forms['itemForm'];
+	if(form.elements['ids[]'] == undefined) return false;
+	var els = form.elements['ids[]'];
+	if(!els.length) els = new Array(els);
+	var cnt = els.length;
+	var chk = new Array();
+	for(var i=0;i<cnt;i++) {
+		if(els[i].checked) chk[chk.length] = els[i].value;
+	}
+	if(chk.length<1) {
+		alert('삭제할 항목에 체크하여 주십시오.');
+		return false;
+	}
+	var ids = chk.join(',');
+	//location.href = URL.setVar({'act':'.delete','ids':ids});
+	form.submit();
+
+}
+//-->
+
+function checkSelected() {
+	form = document.forms['itemForm'];
+	ids = form.elements['ids[]'];
+	if (!ids) return false;
+	if (!ids.length) ids = [ids];
+	flag = false;
+	for (i = 0,cnt=ids.length; i<cnt; i++) {
+		if (ids[i].checked) {
+			flag = true;
+			break;
+		}
+	}
+	if(!flag) {
+		alert('{=_la("항목을 선택하여 주십시오.")}');
+		return false;
+	}
+	return true;
+}
+
+
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.itemForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.itemForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.itemForm.all.value = "";
+
+ return;
+}
+
+</script>
+
+
+
+
+
+<form method="POST" id="itemForm" name="itemForm" action="/news.admin.delete">
+<input type="hidden" name="all" id="all" >
+<input type="hidden" name="mode" id="mode" >
+<input type="hidden" name="types" id="types" >
+
+	<!--ui object -->
+	<p class="buTitle17" >총{total + 0}개의 뉴스레터가 등록되있습니다.</p>
+
+	<table class="tbl_type" border="1" cellspacing="0" summary="뉴스레터 목록리스트" style="margin-top:20px">
+	<caption>뉴스레터 교육목록</caption>
+	<colgroup>
+		<col width="5%">
+		<col width="5%">
+		<col>  
+		<col width="14%">
+		<col width="14%">
+		<col width="8%">
+		<col width="10%">
+
+		
+	</colgroup>  
+
+	<thead>
+		<tr >
+			<th style="text-align:center"><input type="checkbox" name="" onclick ="checkall();"></th>
+			<th style="text-align:center">번호</th>
+			<th style="text-align:center">제목</th>
+			<th style="text-align:center">등록날짜</th>
+			<th style="text-align:center">조회수</th>
+		</tr>
+	</thead>
+	<tbody>
+		{@ LIST}
+		<tr>
+			<td style="text-align:center"><input type="checkbox" name="ids[]" value="{.num_serial}"></td>
+			<td style="text-align:center">{.num_serial}</td>
+			<td style="text-align:left"><a href="{.modifylink}">{.str_title}</a></td>
+			<td style="text-align:center">{=date("Y.m.d",.dt_date)}</td>
+			<td style="text-align:center">{.num_hit}</td>
+		</tr>
+		{/}
+	</tbody>
+	</table>
+
+
+	<div style="margin:10px 0 10px 0;border-bottom:1px solid #cdcdcd">
+		<wa:paging runat="server" total="{total}" numberformat=" %n " listnum="{listnum}" class="paginate_complex"/>
+	</div>
+	<div >
+		<span class="btn_pack medium icon" style="float:left"><span class="delete"></span><a href="#" onclick="deleteArticle();">선택 삭제</a></span>
+		<span class="btn_pack medium icon" style="float:right"><span class="add"></span><a href="#" onclick="writeArticle();">신규등록</a></span>
+	</div>
+
+</form>
+
+

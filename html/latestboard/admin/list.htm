@@ -1,0 +1,50 @@
+
+	<table cellpadding="0" cellspacing="0" border="0" <?if(_OID =="1") echo "width=98%"; else 	echo "width=680"; ?> height="45" background="/html/admin2/images/sub_title_bg.gif">
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545"><b>{? type == 'B'}최근게시물{:}최근겔러리{/}</b></td>
+				<td> ※ {? type == 'B'}최근게시물{:}최근겔러리{/}에 등록될 게시판을 선택하여 주십시오.</td>
+				</tr>
+			</table>
+			<br>
+<div style = "width:674px;	<?if(_OID =="1") echo "width:98%"; else 	echo "width:680"; ?>	;	overflow: auto;padding:10px">
+
+<div style="margin:10px;" >
+<form name="configForm" method="post">
+<table <?if(_OID =="1") echo "width=90%"; else 	echo "width=580"; ?> class="table01" align = center>
+<tr>
+
+	<th width="45%">게시물을 불어올 게시판</td>
+	<th width = "10%">코드</th>
+	<th width="25%">선택</td>
+	{? type == 'B'}<th width="25%">메인 개별 노출<br>(작업중)</td>{/}
+</tr>
+<!--{@ LIST}-->
+<tr>
+
+	<td style = "padding-left:10px">	{? .str_mtitle1 != .str_mtitle  && .str_mtitle != "추가메뉴" }{.str_mtitle1} > {/} {.str_mtitle} > <img src = "/html/board/skin/silver/image/icon_total.gif"  align="absmiddle"> {.str_title} </td>
+	<td align = center>{.num_mcode}</td>
+	<td align="center">
+		<input type="checkbox" name="mcodes[]" value="{.num_mcode}" style="border:0px;"{? .chr_recent == 'Y'} checked{/}>
+	
+	</td>
+
+		<td align="center">
+		{? type == 'B'}<input type="checkbox" name="num_main_view[]" value="1|{.str_title}|{.num_mcode}" style="border:0px;"{? .num_main_view == '1'} checked{/}>{/}
+	
+	</td>
+</tr>
+<!--{/}-->
+</table>
+
+</div>
+</div>
+<br>
+<table <?if(_OID =="1") echo "width=98%"; else 	echo "width=674"; ?> class="Table01">
+<tr>
+	<td align="center"><input type="submit" class="button2" value="저장"></td>
+</tr>
+</table>
+</form><br>
+
+

@@ -1,0 +1,451 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>B-MART  - 온라인 관리시스템</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<link rel="STYLESHEET" type="text/css" href="./css/2005_admin.css">
+<style>
+body {margin:0px;}
+
+a:link {
+	color: #336699;
+	text-decoration:none;
+}
+
+a:visited {
+	color: #336699;
+	text-decoration:none;
+}
+
+a:active {
+	color:red;
+	text-decoration:none;
+}
+
+a:hover {
+	color:red;
+	text-decoration:none;
+}
+</style>
+
+
+
+<style>
+td.mtDropdown{ FONT-SIZE: 12px; COLOR: #333333; FONT-FAMILY:verdana;  letter-spacing:-1; }
+.mtDropdownMenu {
+    LEFT: -1000px; OVERFLOW: hidden; POSITION: absolute; TOP: -1000px
+}
+.mtDropdownMenu .content {
+    POSITION: absolute
+}
+.mtDropdownMenu .items {
+    BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; Z-INDEX: 2; LEFT: 0px; BORDER-LEFT: #999999 1px solid; BORDER-BOTTOM: #999999 1px solid; POSITION: relative; TOP: 0px
+}
+.top .items {
+    BORDER-TOP: medium none
+}
+.mtDropdownMenu .item {
+    BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 12px; BORDER-LEFT: medium none; CURSOR: hand; COLOR: #4a4b4b; BORDER-BOTTOM: medium none; FONT-FAMILY: 굴림; TEXT-DECORATION: none
+}
+.mtDropdownMenu .background {
+    Z-INDEX: 1; LEFT: 0px; POSITION: absolute; TOP: 0px; moz-opacity: .8
+}
+.mtDropdownMenu .shadowRight {
+    Z-INDEX: 3; FILTER: alpha(opacity=40); WIDTH: 2px; POSITION: absolute; TOP: 3px; moz-opacity: .4
+}
+.mtDropdownMenu .shadowBottom {
+    Z-INDEX: 1; FILTER: alpha(opacity=40); LEFT: 3px; POSITION: absolute; HEIGHT: 2px; moz-opacity: .4
+}
+.mtDropdownMenu .hover {
+    BACKGROUND: #F5F5F5; font-weight: bold; 
+}
+</style>
+
+<script language=javascript src="/js/drop_menu_sc2.js" ></script>
+<script language=javascript>
+var preloaded = [];
+function init() {
+        mtDropDown.initialize();
+}
+
+
+</script>
+
+
+<script language="javascript">
+var Tmenuov = "";
+var Tmenuou = "";
+
+function msover(num) {
+  
+}
+
+function msout(num) {
+  
+    Tmenuov = num;
+}
+
+function divmsover() {
+    
+    Tmenuou = Tmenuov;
+}
+
+function divmsout() {
+   
+}
+</script>
+
+</head>
+
+<body style = "font-size:12px" onload=init();>
+<table cellpadding="0" cellspacing="0" width="100%" height="100%">
+<tr>
+<td width = 140 height =57 >
+<!--로고=-->
+<a href="/admin.main" ><img src="./image/logo.gif" width="165" height="47" border="0" alt=""></a>
+<!--로고-->
+</td>
+
+<td bgcolor = #72bc1f style = "padding-left : 20px;padding-top : 10px">
+
+<?php
+{weekdayArr} = array('일','월','화','수','목','금','토','일');
+{weekday} = {weekdayArr}[date('w')].'요일';
+?>
+
+
+
+<b  style="color: #66FFCC;font-weight:bold;font-size:9pt;">
+{__OBRANCH}</b> - <font style="color: #006600;font-weight:bold;font-size:9pt;">{= date('Y년 n월 j일')} {weekday} </font>&nbsp;
+
+<b  style="color: #FFFFFF;font-weight:bold;font-size:9pt;"> B-MART
+관리자모드
+</b>
+<br>
+
+
+<script>
+function gogo(url){
+
+if (document.getElementById("menu").style.display == 'none')
+{
+window.open(url,'admin_menu');
+}
+}
+function gogo2(url){
+
+
+window.open(url,'admin_menu');
+
+}
+</script>
+
+<TABLE cellpadding="5" cellspacing="5" width="720" height="30">
+<TR bgcolor = #5d850a align = center>
+	
+	
+	<TD  id=menu1 onclick = "gogo2('bs.admin.menu?part=1','admin_menu');window.open('/bs.admin.main','admin_content');menuHidden('1');"  style = "color : #ffffff;font-size:12px;CURSOR: hand;">
+	<b ><a href="#" onmouseover = "gogo('bs.admin.menu?part=1','admin_menu');" ><font color = #ffffff>홈페이지관리</TD>
+	
+	
+	
+	
+<TD  id=menu9 onclick = "gogo2('/bs.admin.menu?part=2','admin_menu');window.open('/bs.admin.stock.list','admin_content');menuHidden('2');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#" onmouseover = "gogo('/bs.admin.menu?part=2','admin_menu');" ><font color = #ffffff>도서관리</TD>
+	
+	
+	
+	<TD  id=menu3 onclick = "gogo2('/bs.admin.menu?part=3','admin_menu');window.open('/bs.admin.stock.list','admin_content');menuHidden('2');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#" onmouseover = "gogo('/bs.admin.menu?part=3','admin_menu');" ><font color = #ffffff>상품관리</TD>
+	
+	
+	<TD  id=menu4 onclick = "gogo2('/bs.admin.menu?part=4','admin_menu');window.open('/bs.admin.order.list','admin_content');menuHidden('2');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#" onmouseover = "gogo('/bs.admin.menu?part=4','admin_menu');" ><font color = #ffffff>판매관리</TD>
+	
+	
+	<TD  id=menu5 onclick = "gogo2('/bs.admin.menu?part=5','admin_menu');window.open('/member.admin.list','admin_content');menuHidden('1');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#" onmouseover = "gogo('/bs.admin.menu?part=5','admin_menu');" ><font color = #ffffff>고객관리</TD>
+	
+	<TD  id=menu6 onclick = "gogo2('/bs.admin.menu?part=6','admin_menu');window.open('/bs.admin.sms.send','admin_content');menuHidden('1');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#" onmouseover = "gogo('/bs.admin.menu?part=6','admin_menu');" ><font color = #ffffff>SMS관리</TD>
+
+
+	
+<TD  id=menu2 onclick = "gogo2('/bs.admin.menu?part=7','admin_menu');window.open('/attach.admin.manage?layout=main','admin_content');menuHidden('2');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#" onmouseover = "gogo('/bs.admin.menu?part=7','admin_menu');" ><font color = #ffffff>레이아웃관리</TD>
+
+
+	
+	
+	<TD  id=menu8 onclick = "gogo2('/bs.admin.menu?part=8','admin_menu');window.open('/menu.admin.frame','admin_content');menuHidden('2');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><a href="#" onmouseover = "gogo('/bs.admin.menu?part=8','admin_menu');" ><font color = #ffffff>사이트설정</TD>
+
+	
+
+	<TD  id=menu7 onclick = "gogo2('/bs.admin.menu?part=comm','admin_menu');window.open('/bs.admin.notice.list','admin_content');menuHidden('1');"><b style = "color : #ffffff;font-size:12px;CURSOR: hand;"><font color = #ffffff>관리자커뮤니티</TD>
+</TR>
+</TABLE>
+
+
+</td>
+
+<td width = 20%  bgcolor = #72bc1f>
+
+<TABLE bgcolor = #ffffff cellpadding="0" cellspacing="0">
+<TR>
+	<TD><a href="/"><img src="./image/btn_home.gif" width="71" height="19" border="0" alt=""></a>
+				<a href="bs.admin.help.list" target="admin_content"><img src="./image/btn_help.gif" width="61" height="19" border="0" alt=""></a>
+				<a href="admin.logout"><img src="./image/btn_logout.gif" width="72" height="19" border="0" alt=""></a></TD>
+</TR>
+</TABLE>
+
+</td>
+
+</tr>
+
+<tr><td colspan = 3 bgcolor = #5d850a height = 2></td></tr>
+
+<tr>
+<td bgcolor = #88CA00 align = center><font  style="color: #ffffff;font-size:9pt;"><b>EZ북마트 2.0 </td>
+<td colspan = 2 bgcolor = #9be500 height = 20>
+<font  style="color: #333366;font-size:9pt;">
+ &nbsp; &nbsp;안녕하세요? <font color = "#006600">B-MART</font> <b style="color:#FF3366"> {__OBRANCH}</b> 운영자님 *^^* &nbsp;|&nbsp;현재 사용하고계시는 <b>관리자 모드</b>의 마지막 업데이트는 <font color = "#0066FF">2007년 11월 30일</font> 에 이루어 졌습니다.</b>
+</td></tr>
+
+
+<tr>
+
+<td colspan = 3 bgcolor = #ffffff height = 100% >
+
+<script>
+
+
+function menuHidden(idx){
+if (idx == "1")
+{
+document.getElementById("menu").style.display = '';
+document.getElementById("view2").style.display = '';
+document.getElementById("view1").style.display = 'none';
+}else{
+document.getElementById("menu").style.display = 'none';
+document.getElementById("view1").style.display = '';
+document.getElementById("view2").style.display = 'none';
+}
+
+
+}
+
+</script>
+<TABLE cellpadding="0" cellspacing="0" width="100%" height="100%">
+<TR style="font-size:11px">
+	<TD id = "menu" style = "display:"><iframe name="admin_menu" src="bs.admin.menu?part=1" width="165" height="100%" frameborder="0" scrolling="no"></iframe></TD>
+	
+	<td  id = "view1" style = "display:none" bgcolor=#E0E0E0 width = 15><a href = "#" onclick = "menuHidden('1');" >▶ 왼쪽 메뉴 보이기▶</td>
+		<td id = "view2" width = 15 ><a href = "#" onclick = "menuHidden('2');" >◁ 왼쪽 메뉴 숨기기◁ </td>
+	
+	</td>
+
+	<TD width = 99% ><iframe name="admin_content" src="/bs.admin.main" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe></TD>
+</TR>
+</TABLE>
+
+
+
+
+</td></tr>
+
+</table>
+	
+
+<!--------------------------------메뉴데이터입니다 ------------------------------------------------>
+<script language="javascript">
+
+
+if (mtDropDown.isSupported()) {
+	var ms = new mtDropDownSet(mtDropDown.direction.down, 0, 0, mtDropDown.reference.bottomLeft);
+	
+	
+	var menu1 = ms.addMenu(document.getElementById("menu1"));
+
+
+		menu1.addItem("관리정보", "/bs.admin.main"); 
+		
+			
+			var subMenu0 = menu1.addMenu(menu1.items[0]);
+				subMenu0.addItem("온라인서점정보", "/bs.admin.main.copyright");
+				subMenu0.addItem("서비스정책", "/bs.admin.main.agreement?part=claus");
+				subMenu0.addItem("입금계좌", "/bs.admin.main.banklist");
+
+
+
+
+
+
+	var menu2 = ms.addMenu(document.getElementById("menu2"));
+		menu2.addItem("사이트메인", "/attach.admin.manage?layout=main"); 
+		menu2.addItem("사이트서브메인", "/attach.admin.manage?layout=sub3"); 
+		menu2.addItem("상품리스트", "/attach.admin.manage?layout=sub"); 
+		menu2.addItem("마이페이지", "/attach.admin.manage?layout=myinfo"); 
+		menu2.addItem("고객센터", "/attach.admin.manage?layout=custom"); 
+
+
+	
+	var menu3 = ms.addMenu(document.getElementById("menu3"));
+	
+
+		menu3.addItem("재고관리", "/bs.admin.stock.list"); 
+	
+		var subMenu3_1 = menu3.addMenu(menu3.items[0]);
+			subMenu3_1.addItem("재고관리", "/bs.admin.stock.list"); 
+			subMenu3_1.addItem("개별할인/적립율", "/bs.admin.stock.list_"); 
+			subMenu3_1.addItem("전체할인/적립율", "/bs.admin.stock.costchange"); 
+			subMenu3_1.addItem("신규입고", "/bs.admin.stock.import"); 
+			subMenu3_1.addItem("입고기록", "/bs.admin.stock.story_enter"); 
+			subMenu3_1.addItem("출고기록", "/bs.admin.stock.story_out"); 
+			subMenu3_1.addItem("재고관리", "/bs.admin.stock.month_total"); 
+
+		menu3.addItem("마스터도서관리", "/bs.admin.book.list"); 
+
+		var subMenu3_2 = menu3.addMenu(menu3.items[1]);
+			subMenu3_2.addItem("마스터도서목록", "/bs.admin.book.list"); 
+			subMenu3_2.addItem("마스터도서분류", "/bs.mcate.admin.main"); 
+			subMenu3_2.addItem("신규도서직접입력", "/bs.admin.book.register"); 
+
+	
+
+	var menu4 = ms.addMenu(document.getElementById("menu4"));
+
+menu4.addItem("주문관리", "/bs.admin.order.list"); 
+menu4.addItem("상점관리(신용카드)", "https://iniweb.inicis.com/DefaultWebApp/index.html"); 
+menu4.addItem("판매현황", "/bs.admin.order.sell_present"); 
+
+	var subMenu4_3 = menu4.addMenu(menu4.items[2]);
+			subMenu4_3.addItem("기간별 판매현황", "/bs.admin.order.sell_present"); 
+			subMenu4_3.addItem("상품별 판매현황", "/bs.admin.order.book_present"); 
+			subMenu4_3.addItem("학교별 판매현황", "/bs.admin.order.sch_present"); 
+
+
+menu4.addItem("본사판매현황", "/bs.admin.order.hq_present"); 
+			var subMenu4_4 = menu4.addMenu(menu4.items[3]);
+			subMenu4_4.addItem("기간별 판매현황", "/bs.admin.order.hq_present"); 
+			subMenu4_4.addItem("상품별 판매현황", "/bs.admin.order.hq_present_byday"); 
+			
+
+
+	var menu5 = ms.addMenu(document.getElementById("menu5"));
+
+menu5.addItem("회원목록", "/member.admin.list"); 
+	var subMenu5_1 = menu5.addMenu(menu5.items[0]);
+	    	subMenu5_1.addItem("전체회원", "/member.admin.list"); 
+			subMenu5_1.addItem("개인회원", "/member.admin.list_c"); 
+			subMenu5_1.addItem("기관회원", "/member.admin.list_b"); 
+
+
+menu5.addItem("회원등록", "member.admin.add"); 
+	var subMenu5_2 = menu5.addMenu(menu5.items[1]);
+	    
+			subMenu5_2.addItem("개인회원등록", "/member.admin.add"); 
+			subMenu5_2.addItem("기관회원등록", "/member.admin.add?type=B"); 
+
+menu5.addItem("직원목록", "/member.admin.staff"); 
+
+	
+	
+	var menu6 = ms.addMenu(document.getElementById("menu6"));
+
+menu6.addItem("SMS발송", "/bs.admin.sms.send"); 
+menu6.addItem("자동발송관리", "/bs.admin.sms.mng_auto"); 
+menu6.addItem("주소록관리", "/bs.admin.sms.dic_list"); 
+var subMenu6_3 = menu6.addMenu(menu6.items[2]);
+	    
+			subMenu6_3.addItem("개별관리", "/bs.admin.sms.dic_list"); 
+			subMenu6_3.addItem("그룹별관리", "/bs.admin.sms.dic_group"); 
+
+
+menu6.addItem("발송내역조회", "/bs.admin.sms.send_log"); 
+menu6.addItem("충전내역조회", "/bs.admin.sms.point_log"); 
+
+
+	
+
+
+		
+		var menu8 = ms.addMenu(document.getElementById("menu8"));
+
+		menu8.addItem("사이트메뉴관리", "/menu.admin.frame"); 
+		menu8.addItem("각종디자인관리", "/setUp.setup"); 
+
+		menu8.addItem("공지사항", "/news.admin.list?code=com"); 
+		menu8.addItem("자료실", "/news.admin.list?code=pds"); 
+		menu8.addItem("배너관리", "/banner.admin.list"); 
+		menu8.addItem("팝업창", "/popup.admin.list"); 
+
+
+		menu8.addItem("하단메뉴관리", "/bs.bmenu.admin.list"); 
+		
+		menu8.addItem("고객센터", "/bs.inf.admin.cate_list"); 
+
+
+
+			var submenu8 = menu8.addMenu(menu8.items[1]);
+			
+				submenu8.addItem("서브중앙디자인", "bs.admin.main.issue");
+				submenu8.addItem("메인플래시디자인", "/setUp.setup");
+				
+			
+	
+
+			var subMenu2 = menu8.addMenu(menu8.items[6]);
+				subMenu2.addItem("하단메뉴관리", "/bs.bmenu.admin.list");
+				subMenu2.addItem("하단메뉴순서변경", "/bs.bmenu.admin.listorder");
+;
+			
+
+		
+
+			var subMenu6 = menu8.addMenu(menu8.items[7]);
+				subMenu6.addItem("이용안내", "/bs.inf.admin.cate_list");
+				subMenu6.addItem("자주묻는질문", "/bs.faq.admin.cate_list");
+				subMenu6.addItem("자료실", "/news.admin.list?code=pds");
+				subMenu6.addItem("입금자찾기", "/bs.fp.admin.list");
+				subMenu6.addItem("1:1상담", "/bs.consult.admin.list");
+
+
+
+
+
+var menu9 = ms.addMenu(document.getElementById("menu9"));
+
+		menu9.addItem("메인표출도서관리", "/bs.admin.main.main_hot"); 
+		menu9.addItem("도서분류관리", "/bs.cate.admin.main"); 
+		menu9.addItem("도서관리", "/bs.admin.main.book"); 
+	
+
+			var submenu9 = menu9.addMenu(menu9.items[0]);
+			
+
+				submenu9.addItem("메인표출 시선집중", "/bs.admin.main.main_hot");
+				submenu9.addItem("메인표출 이벤트", "/bs.admin.main.maineve_hot");
+				submenu9.addItem("매인표출 신간도서", "/bs.admin.main.main_book?code=new");
+				submenu9.addItem("매인표출 인기도서", "/bs.admin.main.main_book?code=pop");
+				submenu9.addItem("매인표출 기획도서", "/bs.admin.main.main_book?code=spec");
+				submenu9.addItem("Today베스트셀러", "/news.admin.list?code=best");
+
+
+	
+
+			var subMenu9_5 = menu9.addMenu(menu9.items[2]);
+				subMenu9_5.addItem("전체도서", "/bs.admin.main.book");
+				subMenu9_5.addItem("신간도서", "/bs.admin.main.book?part=new");
+				subMenu9_5.addItem("인기도서", "/bs.admin.main.book?part=pop");
+				subMenu9_5.addItem("기획도서", "/bs.admin.main.book?part=spec");
+				subMenu9_5.addItem("시선집중", "/bs.admin.main.hot?code=new");
+
+		
+
+
+
+
+	mtDropDown.renderAll();
+}
+
+
+
+</script>
+<!--------------------------------메뉴데이터입니다 ------------------------------------------------>
+
+
+</html>

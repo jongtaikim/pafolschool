@@ -1,0 +1,220 @@
+<!--style>select{behavior: url('/selectbox.htc');}</style-->
+<style>
+ .ico{padding:0 0 0 15; background-color:f9f9f9;}
+ .f1{padding:3 0 0 6; background-color:f9f9f9;font-size:12px;color:#4a4a4a; }
+ .f2{padding:5 0 5 10; font-size:11px;color:#666666; }
+ .f3{padding:11 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+ .f4{padding:0 0 0 20; background-color:f9f9f9;font-size:11px;color:#666666;}
+</style>
+<body style="margin:0" bgcolor="#FFFFFF"  >
+
+<FORM METHOD=POST >
+
+	
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+<!-- 타이틀 Start -->
+	<tr valign="top">
+		<td height="59">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="59" background="/html/image/title_bg.gif">
+				<tr><td height="20"></td></tr>
+				<tr valign="top">
+					<td width="33"><img src="/html/image/title_icon.gif"></td>
+					<td class="stitle"><img src='/f.php?text=회원 등업 설정&font=-윤고딕330&size2=10&bg=ffffff&color=423c2b'></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+<!-- 타이틀 End -->	
+	<tr>
+		<td height="21"></td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<table cellpadding="0" cellspacing="0" border="0" width="95%" align = center>
+			<col width="1%"></col><col width="15%"></col><col width="%"></col>
+				
+		
+<tr>
+  <td colspan = 3>
+
+
+<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="padding:0 5 4 0"><img src="/html/image/ico_box02.gif"></td>
+								<td style="font-size:12; color:e9084d"><!-- e57700 -->권한별로 등급업할 수 있는 조건을 설정하여주세요.</td>
+							</tr>
+							<tr>
+								<td height="4"></td>
+							</tr>
+						</table>
+
+</td>
+</tr>
+
+<tr>
+					<td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+				</tr>
+				
+				
+
+				
+				<tr height="120">
+					<td class="ico"><img src="/html/image/ico_box01.gif"></td>
+					<td class="f1">등업 조건</td>
+						<td class="f2"  valign = top>
+
+<script language="Javascript">
+function add_tr()
+{
+   var lo_table = document.getElementById("dataTable"); // 테이블지정
+   var li_rows  = lo_table.rows.length; // 테이블 row 개수(Tr의 개수
+   var lo_tbody = lo_table.childNodes[0]; // table의 첫번째 차일드 즉 tbody를 지정한다.
+   var lo_row,lo_cell;
+
+   lo_row = document.createElement("TR"); // Tr을 하나 생성한다.
+   lo_tbody.appendChild(lo_row); // tbody에 자식노드를 하나 추가한다.
+  
+
+   
+      lo_cell = document.createElement("TD"); // Td를 생성한다.
+   lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+   lo_cell.innerHTML ='<select name="str_up_mtype[]" ><option value="">설정안함</option><!--{@ MTYPES}-->{? .key_ !="x"} <option value="{.key_}">{.value_}</option>{/}<!--{/}--></select>'; // 고유이름지정
+
+
+   lo_cell = document.createElement("TD"); // Td를 생성한다.
+   lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+   lo_cell.innerHTML = "<input type=\"text\" name=\"num_login_point[]\"  class=\"button\" style=width:40px>"; // 고유이름지정
+	
+
+	   lo_cell = document.createElement("TD"); // Td를 생성한다.
+   lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+   lo_cell.innerHTML = "<input type=\"text\" name=\"num_board_point[]\"  class=\"button\" style=width:40px>"; // 고유이름지정
+
+
+   lo_cell = document.createElement("TD"); // Td를 생성한다.
+   lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+   lo_cell.innerHTML = "<input type=\"text\" name=\"num_commint_point[]\"  class=\"button\" style=width:40px>"; // 고유이름지정
+
+
+   lo_cell = document.createElement("TD"); // Td를 생성한다.
+   lo_row.appendChild(lo_cell); // Tr에 td를 하나 추가한다.
+   lo_cell.innerHTML = "<input type=\"text\" name=\"num_repaly_point[]\"  class=\"button\" style=width:40px>"; // 고유이름지정
+
+
+
+
+
+}
+</script>
+
+
+<table  border=0 cellspacing=0 cellpadding=0 class="table01" id="dataTable">
+ <tr bgcolor="#F0F0F0" align =center>
+
+	<td class="f2">설정권한</td>
+   <td class="f2">로그인</td>
+   <td class="f2">글쓰기</td>
+   <td class="f2">덧글</td>
+   <td class="f2">답글</td>
+
+ </tr>
+ {@ LIST}
+ <tr>
+
+
+  <td class="f2">
+  <select name="str_up_mtype[]" >
+  <option value="">설정안함</option>
+  {@ .mtypes}
+  {? ..key_ !="x"} 
+  <option value="{..key_}"{? .str_up_mtype==..key_} selected{/}>{..value_}</option>
+  {/}
+  {/}
+  </select>
+  </td>
+  
+  <td class="f2"><input type="text" name="num_login_point[]" value="{.num_login_point}" class="button" style=width:40px></td>
+  <td class="f2"><input type="text" name="num_board_point[]" value="{.num_board_point}" class="button" style=width:40px></td>
+  <td class="f2"><input type="text" name="num_commint_point[]" value="{.num_commint_point}" class="button" style=width:40px></td>
+  <td class="f2"><input type="text" name="num_repaly_point[]" value="{.num_repaly_point}" class="button" style=width:40px></td>
+
+ </tr>
+ {/}
+</table>
+
+				
+<table align="center" width=100% border=0 cellspacing=0 cellpadding=0>
+ <tr>
+  <td style="padding-top:10">
+   <input type="button"  value="라인추가" class="button" onclick="add_tr()">				
+  </td>
+ </tr>
+</table>	 
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3" width="100%" height="1" background="/html/member/images/line1.gif"></td>
+				</tr>
+
+
+
+
+
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="ffffff"></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="100%" height="1" bgcolor="c0c0c0"></td>
+				</tr>
+
+				<tr>
+					<td colspan="3" width="100%" height="3" bgcolor="ececec"></td>
+				</tr>
+
+				<tr>
+				  <td colspan="3" align =center style="padding:10"><input type="image" src="/html/image/btn_save.gif" value="저장하기"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" width="98%" height="52" background="/html/member/admin/image/tip_bg.gif">
+				<tr>
+					<td width="4"><img src="/html/member/admin/image/tip_left.gif"></td>
+					<td width="118"><img src="/html/member/admin/image/tip.gif"></td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td height="1"></td>
+							</tr>
+							<tr>
+								<td style="padding:0 6 3 13"><img src="/html/image/ico_triangle1.gif"></td>
+								<td style="color:545963; font-size:11px">설정해놓은 조건은 로그인시 체크하여 적용됩니다.</td>
+							</tr>
+							<tr>
+								<td height="4"></td>
+							</tr>
+							<tr>
+								<td style="padding:0 6 3 13"><img src="/html/image/ico_triangle1.gif"></td>
+								<td style="color:545963; font-size:11px">권한을 선택하지 않으면 설정되지 않습니다.</td>
+							</tr>
+						</table>
+					</td>
+					<td width="4" align="right"><img src="/html/member/admin/image/tip_right.gif"></td>
+				</tr>
+			</table>
+
+
+
+<input type="hidden" name="end" value="">
+</FORM>
+</body>

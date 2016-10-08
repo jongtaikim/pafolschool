@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+ </head>
+<script language="JavaScript" src="/js/cht.js"></script>
+<style type="text/css">
+.title {height:29; text-align:center; padding-top:1; color:red}
+.title1 {color:#464444;font-family:돋움; font-weight:bold; padding-top:1}
+.menu {color:#555555; font-family:돋움; padding:8 0 0 17}
+.menu1 {color:#555555; font-family:돋움; padding:8 0 0 15}
+
+</style>
+
+
+ <!--홈페이지 기본통계 start -->		
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				
+				<div class="tab19" width="100%">
+			<ul>
+			<li><a href="/manage.admin.organ_view?mode=disk&PageNum=020401">디스크사용량</a></li>
+			<li  class="active"><a href="#">게시판 사용 현황</a></li>
+			
+		</ul>
+				</div>
+				<tr>
+					<td width="11" background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF" style="padding:19px 0px 13px 0px">
+					
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+							<tr >
+								<td width="20" style="padding-left:12"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+								<td class="subtitle01">월별 게시판 DB 사용량 <span style="text-weight:normal;color:#000;font-weight:normal;">(총: {tot_board} 건)</span></td>
+							</tr>
+							<tr><td height="8"></td></tr>
+						</table>
+					<!-- 표1 Start -->	
+						<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_top_line01"></td>
+							</tr>
+							<tr>
+								<td width="100%" class="table_top_line02"></td>
+							</tr>			
+						</table>
+						<table cellpadding="0" cellspacing="1" border="0" width="96%" align="center" bgcolor="d5dfe7">
+							<tr height="34" bgcolor="FFFFFF">
+								<td width="100" class="table01_title03">검색일</td>
+								<td width="521" class="table01_sel01" colspan="12">
+								
+								<SELECT name="year2" onchange="chatr2(this.value)" class=select size=1> 
+									<option value=2008 {?year=="2008"} selected {/}>2008</option> 
+									<option value=2009 {?year=="2009"} selected {/}>2009</option> 
+									<option value=2010 {?year=="2010"} selected {/}>2010</option> 
+									<option value=2011 {?year=="2011"} selected {/}>2011</option> 
+									<option value=2012 {?year=="2012"} selected {/}>2012</option> 
+									<option value=2013 {?year=="2013"} selected {/}>2013</option> 
+									<option value=2014 {?year=="2014"} selected {/}>2014</option> 
+									<option value=2015 {?year=="2015"} selected {/}>2015</option> 
+									<option value=2016 {?year=="2016"} selected {/}>2016</option> 
+								</SELECT>년 				
+								
+								</td>
+							</tr>
+						</table>
+						<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_btm_line01"></td>
+							</tr>
+							<tr><td height="20"></td></tr>
+						</table>
+					<!-- 표1 End -->	
+					
+
+					<div id="chartdiv3" align="center"> 
+			FusionCharts. </div>
+		  <script type="text/javascript">
+			   var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "590", "400");
+			   chart.setDataURL("/manage.use_board?year={OID}|<?=date("Y")?>");		
+			   
+				  
+			   chart.render("chartdiv3");
+
+			   function chatr2(ye){
+
+
+				var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "590", "400");
+			   chart.setDataURL("/manage.use_board?year={OID}|"+ye);		
+			   
+				  
+			   chart.render("chartdiv3");
+			   
+			   }
+			</script> 
+
+
+
+					</td>
+					<td width="11" background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+				<tr>
+					<td height="19" colspan="3">&nbsp;</td>
+				</tr>
+				
+			</table>
+		<!-- 홈페이지 기본통계 end -->
+</html>

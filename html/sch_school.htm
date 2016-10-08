@@ -1,0 +1,171 @@
+<style type="text/css" title="">
+#mailCodePopup {
+	width:100%;
+	}
+#mailCodePopup .h1 {
+
+	
+	height:24px;
+	margin-bottom:15px;
+	padding-top:10px;
+	padding-left:32px;
+	font-size:12px;
+
+	background-color:#cdcdcd;
+	}
+#mailCodePopup .comment {
+	margin-bottom:3px;
+	padding-left:14px;
+	background:url(images/commentDot.gif) no-repeat 6px 4px;
+	}
+	#mailCodePopup #searchArea {
+		float:left;
+		width:374px;
+		margin-left:6px;
+		border-top:#c6cccb 1px solid;
+		border-bottom:#c6cccb 1px solid;
+		background:#fafafa;
+		}
+		#mailCodePopup #searchArea .leftCol {
+			float:left;
+			width:105px;
+			height:32px;
+			padding-top:20px;
+			
+			text-align:center;
+			background:#ebedeb;
+			}
+			#codeSearch {
+				width:90px;
+
+				border:#c6cccb 1px solid;
+				}
+		#mailCodePopup #searchArea .rightCol {
+			float:left;
+			margin-left:10px;
+			padding-top:15px;
+			}
+		#mailCodePopup #searchArea .rightCol .searchBtn {
+			vertical-align:-5px;
+			}
+
+	#mailCodePopup #resultArea {
+		width:374px;
+		margin-left:6px;
+		margin-top:15px;
+		}
+		#mailCodePopup #resultArea table {
+			width:100%;
+			border-top:1px solid;
+			}
+			#mailCodePopup #resultArea table th {
+				height:25px;
+				border-bottom:1px solid;
+				}
+			#mailCodePopup #resultArea table td {
+				height:20px;
+				padding:2px 0;
+				line-height:130%;
+				border-bottom:1px dashed #cdcdcd
+				}
+			#mailCodePopup #resultArea table td.address {
+				width:202px;
+				padding-left:4px;
+				}
+			#mailCodePopup #resultArea table td.code {
+				text-align:center;
+				}
+</style>
+
+		<!-- 우편번호찾기 시작 -->
+		<div id="mailCodePopup">
+			<div class="h1">찾으실 학교명을 입력하세요</div>
+			
+			<p class="comment">예 : 고려초등학교 -> 고려</p>
+			<p class="comment">미취학 아동은 검색창에 '미취학'을 검색해주세요.</p>
+			<p class="comment">해외학교 또는 미검색 학교인 경우에는 운영본부로 연락바랍니다.</p>
+			
+
+
+			<!-- 검색 입력영역 시작 -->
+			<form method=post>
+			<fieldset>
+			<legend>학교 찾기</legend>
+			<div id="searchArea">
+				<div class="leftCol">
+					<label for="codeSearch"><strong>학교이름 입력</strong></label>
+				</div>
+				<div class="rightCol">
+					<input type="text" id="codeSearch" style="ime-mode:active"  name="q"  size="15" value="{q}" tabindex="1"/><span></span>
+					
+					
+				<span class="btn_pack  small"><input type="submit" name="" value="검색" class=""></span>
+					
+
+				</div>
+			</div>
+			</fieldset>
+			</form>
+			<!-- 검색 입력영역 끝-->
+			
+
+			<!--{? q}-->
+			
+			<script type="text/javascript">
+			function insert_addr(value) {
+				opener.document.getElementById('str_school').value = value;
+				self.close()
+			}
+
+				resizeTo(405,500);
+			</script>
+
+			
+			<!-- 검색 결과 영역 시작 -->
+			<div id="resultArea" >
+				<table cellpadding="0" cellspacing="0" summary="주소, 우편번호, 우편번호 검색결과 표">
+					<caption>학교 검색결과</caption>
+					<thead>
+						<tr>
+							
+							<th >학교명</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						{@ school_LIST}
+						<tr>
+							<td >
+							<a href="#none" onClick="insert_addr('{.str_organ}')">{.str_organ}</a>
+							<br>
+							{.str_addr}
+							</td>
+							
+						</tr>
+						{:}
+						<tr>
+							<td >
+							일치하는 학교가 없습니다. <br>학교명을 직접 입력하실려면 아래 칸에 입력하여 주십시요.<br><br>
+							직접입력 : <input type="text" name="text_organ" id="text_organ" value="{q}" class=""> 
+							<span class="btn_pack  small"><a href="javascript:insert_addr($('text_organ').value)">입력</a></span>
+							
+
+							</td>
+							
+						</tr>
+						{/}
+					</tbody>
+				</table>
+			</div>
+			<!-- 검색 결과 영역 끝 -->
+		</div>
+		<!-- 우편번호찾기 끝 -->
+
+
+
+
+<!--{/}-->
+<script type="text/javascript">
+$('codeSearch').focus();
+//parent.layerPopupW(420,400);
+</script>

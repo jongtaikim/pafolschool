@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<title>동의 현황 관리</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<link href="css/sangin.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.style3 {	color: #FFFFFF;
+	font-weight: bold;
+}
+-->
+</style>
+<SCRIPT LANGUAGE="javascript" SRC="/js/seo.default.js"></SCRIPT>
+</HEAD>
+<BODY>
+<table width="430" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="17" height="9"><img src="/image/member/join_images/greenbox_top_left.gif" width="17" height="9"></td>
+		<td background="/image/member/join_images/greenbox_top_bg.gif"></td>
+		<td width="17"><img src="/image/member/join_images/greenbox_top_right.gif" width="17" height="9"></td>
+	</tr>
+	<tr>
+		<td background="/image/member/join_images/greenbox_left_bg.gif"></td>
+		<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<script>
+			function delagreement(userid){
+				if(confirm('이 학부모 동의를 취소시키시겠습니까?')){
+					document.manage_agreement.operation.value = "del";
+					document.manage_agreement.confirmor_id.value = userid;
+					document.manage_agreement.submit();
+				}
+			}
+			
+			function addagreement(){
+				if(confirm('학부모 동의 대행을 하시겠습니까?')){
+					document.manage_agreement.operation.value = "add";
+					document.manage_agreement.confirmor_id.value = 
+												manage_agreement.agency_type.options[manage_agreement.agency_type.selectedIndex].value;
+					document.manage_agreement.submit();
+				}
+			}
+		</script>
+		<Form name="manage_agreement" method="POST">
+		<input type="hidden" name="operation" value="">
+		<input type="hidden" name="user" value="{{user}}">
+		<input type="hidden" name="user_name" value="{{user_name}}">
+		<input type="hidden" name="confirmor_id" value="">
+		<input type="hidden" name="cafe_id" value="{{cafe_id}}">
+			<tr>
+				<td align="center"><table width="100%" border="0" cellspacing="0" cellpadding="5">
+					<tr>
+						<td height="25" align="center" bgcolor="#6F9D0D"><span class="style3">- 학부모 동의 관리 -</span></td>
+					</tr>
+					<tr><td height="7" ></td></tr>
+					<tr>
+						<td height="22"><strong><img src="/image/member/join_images/basic_sub_title_icon.gif" width="4" height="4">
+							{{user_name}}</strong> {{user_rank}}의  학부모 동의현황</td>
+					</tr>
+					<tr>
+						<td height="22"><table width="100%" border="0" cellpadding="1" cellspacing="1" bgcolor="#d5d5d5">
+							<tr bgcolor="#eFeFeF">
+								<td width="30"><div align="center">번호</div></td>
+								<td><div align="center">동의자</div></td>
+								<td><div align="center">관계</div></td>
+								<td><div align="center">동의날짜</div></td>
+								<td><div align="center">관리</div></td>
+							</tr>
+<!-- DYNAMIC AREA 'CONFIRMORS' -->
+							<tr bgcolor="#FFFFFF">
+								<td><div align="center">{{rnum}}</div></td>
+								<td><div align="center">
+									<a href="javascript:view_info('/?act=member.admin.info&user={{confirmor_id}}&rank={{confirmor_rank}}','info',500,500,1);">
+										{{confirmor_name}}</a></div>
+								</td>
+								<td><div align="center">{{relation}}</div></td>
+								<td><div align="center">{{agree_date}}</div></td>
+								<td><div align="center"><a href="javascript:delagreement('{{confirmor_id}}');">
+									<img src="/image/member/join_button/delete_small.gif" width="30" height="16" border="0"></a></div></td>
+							</tr>
+<!-- DYNAMIC AREA 'CONFIRMORS' -->
+<!-- IF 'NoAgree' -->
+							<tr bgcolor="#FFFFFF">
+								<td colspan="5" align="center">학부모 동의가 되지 않은 회원입니다.</td>
+							</tr>
+<!-- ENDIF 'NoAgree' -->
+						</table></td>
+					</tr>
+<!--					<tr>
+						<td align="right" bgcolor="efefef"><a href="#">
+							<img src="/image/member/join_button/m_a_ok.gif" width="110" height="21" border="0" align="absmiddle"></a></td>
+					</tr>-->
+				</table></td>
+			</tr>
+			<tr><td height="18"></td></tr>
+			<tr>
+				<td height="10">
+					<img src="/image/member/join_images/basic_sub_title_icon.gif" width="4" height="4" align="absmiddle">
+						<strong>학부모 동의 대행</strong> 						
+				</td>
+			</tr>
+			<tr>
+				<td height="10" align="center"><table width="98%" border="0" bgcolor="d5d5d5" cellpadding="3" cellspacing="1">
+					<tr>
+						<td width="15%" bgcolor="efefef"><div align="center">동의형태</div></td>
+						<td width="40%" bgcolor="FFFFFF">
+							<select name="agency_type" style="font-size:12px; width:140px">
+								<option value="paper">서면동의 </option>
+								<option value="admin">관리자(선생님) 대행</option>
+							</select>
+						</td>
+						<td width="45%" bgcolor="efefef"><div align="center"><a href="javascript:addagreement();">
+							<img src="/image/member/join_button/m_a_ok.gif" width="110" height="21" border="0" align="absmiddle"></a></div></td>
+					</tr>
+				</table></td>
+			</tr>
+			<tr>
+				<td height="1" background="/images/line_bg.gif"></td>
+			</tr>
+			<tr><td height="10"></td></tr>
+			<tr>
+				<td align="center"><a href="javascript:window.opener.location.reload(); window.close();">
+					<img src="/image/member/join_button/confirmation.gif" width="39" height="21" border="0"></a></td>
+			</tr>
+			<tr><td height="10"></td></tr>
+		</Form>
+		</table></td>
+		<td background="/image/member/join_images/greenbox_right_bg.gif"></td>
+	</tr>
+	<tr>
+		<td width="17" height="9" valign="top"><img src="/image/member/join_images/greenbox_bottom_left.gif" width="17" height="9"></td>
+		<td height="9" background="/image/member/join_images/greenbox_bottom_bg.gif"></td>
+		<td width="17" height="9" valign="top"><img src="/image/member/join_images/greenbox_bottom_right.gif" width="17" height="9"></td>
+	</tr>
+</table>
+</BODY>
+</HTML>

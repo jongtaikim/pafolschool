@@ -1,0 +1,113 @@
+<script language="javascript" src="/js/lib.cookie.js"></script>
+<script language="JavaScript">
+<!--
+var ifrContentsTimer;
+function resizeRetry() {
+
+	//이미지같이 로딩시간이 걸리는 것들이 로딩된후 다시 한번 리사이즈
+	if(document.body.readyState == "complete") {
+		clearInterval(ifrContentsTimer);
+	}
+	else {
+		resizeFrame();
+	}
+}
+function resizeFrame(){
+	
+	//페이지가 로딩되면 바로 리사이즈..
+    var h = parseInt(document.body.scrollHeight);
+    var w = parseInt(document.body.scrollWidth)+10; 
+
+
+	self.resizeTo(w, h); 
+
+	//alert(document.documentElement.scrollWidth);
+	//alert(document.documentElement.scrollHeight);
+
+	
+}
+
+function closeWin(el,day) {
+	
+  if ( el.checked ) setCookie( "{boid}popup{num_serial}", "done" , day);
+	if ( el.checked ) opener.setCookie( "{boid}popup{num_serial}", "done" , day);
+	
+	self.close();
+}
+//-->
+</script>
+
+ <body   topmargin="0" leftmargin="0" style="background-image:url(./images/body_bg.gif); background-repeat:repeat-x;" bgcolor="fee479">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%"  valign="top" style="background-image:url(./images/visual.gif); background-repeat:repeat-x;">
+	<tr>
+		<td height="129"></td>
+	</tr>
+	<tr valign="top">
+		<td style="padding:0px 13px 0px 13px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+				<tr height="14" valign="top">
+					<td width="9" background="./images/top_left.gif"></td>
+					<td background="./images/top_bg.gif"></td>
+					<td width="9" background="./images/top_right.gif"></td>
+				</tr>
+				<tr valign="top">
+					<td width="9" background="./images/mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0" width="95%" align="center">
+							<tr>
+								<td align="center" style="color:#2c2c2c; font-weight:bold; font-ramily:돋움; font-size:12px; padding:18px 19px 0px 19px">{str_title}</td>
+								<td align="right" width="50" style="padding-top:15;position:relative">
+									<a href="#none" onclick="if($('flist').style.display=='none') $('flist').style.display=''; else $('flist').style.display='none'" onkeypress="if($('flist').style.display=='none') $('flist').style.display=''; else $('flist').style.display='none'"><img src="./images/btn_file.gif" alt="첨부파일 목록보기" /></a>
+									
+									
+									<div style=";top:20px;left:-150px;position:absolute;border:2px solid #B4B4B4;width:200px;background-color:#ffffff;padding:5px;display:none" id="flist">
+										<div style="text-align:right;margin-bottom:5px"><a href="#none" onclick="$('flist').style.display='none'" onkeypress="$('flist').style.display='none'"><img src='/image/btn_close_1.gif' alt="첨부파일목록 닫기"/></a></div>
+         <!--{@ FILE_LIST}-->
+										첨부파일 {=(.index_+1)} : 
+										<a href="{.file_url}">{.str_upfile}</a>
+										<br>
+         <!--{/}-->&nbsp;
+									</div>
+									
+								</td>
+							</tr>
+							<tr><td height="10"></td></tr>
+						</table>
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td valign=top>
+									<div style="overflow:auto;width:100%;height:{num_height-250};padding:5px">{content}</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="9" align="right" background="./images/mid_right.gif"></td>
+				</tr>
+				<tr height="20" valign="top">
+					<td width="9" style="background:url(./images/bot_left.png); _background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./images/bot_left.png', sizingMethod='crop');"></td>
+					<td background="./images/bot_bg.gif"></td>
+					<td width="9" align="right" style="background:url(./images/bot_right.png); _background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./images/bot_right.png', sizingMethod='crop');">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="21">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+				<tr valign="top">
+					<td width="29" style="padding:4px 0px 0ox 0px" align="right"><input type="checkbox" name="updata" onClick="closeWin(this,{num_kill});" onkeypress="closeWin(this,{num_kill});" style="vertical-align:;"></td>
+					<td width="6"></td>
+					<td style="color:#804600; font-size:11px; font-family:돋움; padding-top:10">{num_kill+0}일 동안 이 창을 열지 않습니다. </td>
+					<td align="right" style="padding:9px 16px 0ox 0px"><a href="#none" onclick="self.close();" onkeypress="self.close();"><img src="./images/btn_close.gif" alt="팝업창 닫기"/></a></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr><td height="6"></td></tr>
+</table>
+
+<script language="Javascript" type="text/javascript">
+<!--
+ifrContentsTimer = setInterval('resizeRetry()',1000);
+//-->
+</script>

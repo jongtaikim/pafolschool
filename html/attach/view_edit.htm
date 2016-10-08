@@ -1,0 +1,56 @@
+<wa:upload part="script" sect="main" code="part" />
+<wa:upload part="script" sect="main" code="part"></wa:upload>
+
+{CSS}
+
+
+<TABLE   border=1>
+<tr>
+<TD style="padding:10px">
+	<script>
+function Govw(key){
+	location.href= key;
+}
+</script> 
+다른 모듈 편집
+<select  onchange="Govw(this.value);">
+<!--{@ LIST}-->
+<option value="/attach.view_edit?name={.name}" {? .name == name} selected {/} >{.title}</option>
+<!--{/}-->
+</select>
+
+<br>
+<br>
+	<iframe src ="/attach.view?name={name}" width = "{width}" height ="{height}"  frameborder =  0 ></iframe>
+	</TD>
+
+</tr>
+
+<TR>
+	<TD >
+	
+
+
+
+<form name="editorForm" method="post" onsubmit="return validate(this);">
+
+
+<!-- Editor -->
+
+
+<div ></div>
+<wa:upload part="editor_module" sect="main" code="part" name="content" width="{?width >450}{width}{:}450{/}" height="485" form="editorForm"><link rel="stylesheet" type="text/css" href="/theme/{_THEME}/css/main.css">{content}</wa:upload>
+
+
+</form>   
+
+
+
+	</TD>
+
+
+
+	
+	
+</TR>
+</TABLE>

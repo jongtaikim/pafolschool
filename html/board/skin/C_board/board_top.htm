@@ -1,0 +1,169 @@
+{? act2 == "/board.list" || act2 == "/tong_board.list"}
+
+{? chr_stats == 1}
+
+{str_top}
+{/}
+
+{/}
+{?sadmin }
+
+
+<!--center><a href='/ewut_return?mcode={mcode}{?chr_listtype =="G"}&gall=y{/}'  onClick="fenster2('자료이관', '자료이관', this.href ,  '10%', '10%', '500px', '300px'); return false;" style="color:blue" target="_blank">이웃 마이그래이션</a>
+</center>
+
+<!--center><a href='http://eunhang-hs.now17.co.kr/ewut_board_file?mcode={mcode}&mcode2={mcode}&mode=y' target="_blank" >이웃 파일만</a> 
+|
+<a href='/ewut_return2?mcode={mcode}{?chr_listtype =="G"}&gall=y{/}'  onClick="fenster2('자료이관', '자료이관', this.href ,  '10%', '10%', '500px', '300px'); return false;" style="color:blue" target="_blank">이웃 파일만2</a>
+</center>
+
+<!--a href='http://seohae.hs.kr/sub_list.php?mcode={mcode}' style="color:blue" target="_blank">서해고</a-->
+
+<!--a href='http://eunhaeng-sh.now17.co.kr/curl.cschool?mcode={mcode}'  onClick="fenster2('자료이관', '자료이관', this.href ,  '10%', '10%', '800px', '400px'); return false;" style="color:blue" target="_blank">은행중</a>
+
+<!--a href='http://mokgam.now17.co.kr/curl.makgaml?mcode={mcode}'  onClick="fenster2('자료이관', '자료이관', this.href ,  '10%', '10%', '800px', '400px'); return false;" style="color:blue" target="_blank">목감초</a-->
+
+
+<!--a href='http://www.seohae.ms.kr/sub_list.php?mcode={mcode}' onClick="fenster2('자료이관', '자료이관', this.href ,  '10%', '10%', '500px', '300px'); return false;" style="color:blue" target="_blank">서해중</a>
+</center-->
+
+
+
+{/}
+	<!--{? _SESSION.ADMIN && mcode}-->
+		<div style="width:100%;text-align:right">{? chr_hak ==1}<a href="javascript:fenster2('카테고리관리', '카테고리관리', '/board.admin.categorypop?mcode={mcode}',  '20%', '30%', '280px', '160px',this)"  style="font-size:11px;"><b>+카테고리관리</b></a>{/}</div>	
+	<!--{/}-->
+
+{? chr_hak ==1}
+
+					<div class="boardInfo">
+						<div class="infoleft"><a href="/board.xml?mcode={mcode}" target="_blank"><img src='/image/rss.gif' border='0' alt="게시판 RSS보기"></a>
+						총 <strong>{total}</strong>개의 게시물이 있습니다.</div>
+						
+					</div>
+
+					<div class="boardInfo">
+					<div class="infoleft">
+						
+					{? chr_hak ==1}
+					<div style="float:left">
+						<select name="str_category" id="str_category" >
+								<option value="">** 카테고리 **</option>
+								<option value="일반" {? '일반' == str_category} selected{/}>일반</option>
+								<!--{@ cate_LIST}-->
+								<option value="{.str_category}" {? .str_category == str_category} selected{/}>{.str_category} ({.counter})</option>
+								<!--{/}-->
+						</select>
+					</div>
+					<div style="float:left;margin-left:5px; ">
+						<a href="javascript:select1($('str_category').value);" title="카테고리보기"><img src='/image/btn_search.gif' alt="카테고리보기" align="absmiddle" ></a>
+					</div>
+			   		{/} 
+					</div>
+
+					
+					<div class="inforight search">
+							<form class="boardSearchForm" name="searchform" action="/board.list">
+								<fieldset>
+									<legend>게시물 검색</legend>
+									<img src="/images/board/boardSearchFormTit.gif" alt="검색" method="get" />
+									<input type="hidden" name="mcode" value="{mcode}"/>
+									<select name="key" id="key" style="float:right">
+										<option value="str_title">제목</option>
+										<option value="str_name">글쓴이</option>
+									</select>
+
+
+
+									<input class="inputtxt" type="text" title="검색"  id="search" name="search"  value="{search}"/>
+									
+									<span class="button02 smallarrowIcon">
+										<span><input type="submit" value="검색" /></span>
+									</span>
+									
+								</fieldset>
+							</form>
+						</div>
+
+					</div>
+
+{:}
+					<div class="boardInfo">
+						<div class="infoleft"><a href="/board.xml?mcode={mcode}"><img src='/image/rss.gif' border='0' alt="게시판 RSS보기"></a> 총 <strong>{total}</strong>개의 게시물이 있습니다.</div>
+						<div class="inforight search">
+							<form class="boardSearchForm" name="searchform" action="/board.list">
+								<fieldset>
+									<legend>게시물 검색</legend>
+									<img src="/images/board/boardSearchFormTit.gif" alt="검색" method="get" />
+									<input type="hidden" name="mcode" value="{mcode}"/>
+									<select name="key" id="key" style="float:right">
+										<option value="str_title">제목</option>
+										<option value="str_name">글쓴이</option>
+									</select>
+
+									<input class="inputtxt" type="text" title="검색"  id="search" name="search"  value="{search}"/>
+									
+									<span class="button02 smallarrowIcon">
+										<span><input type="submit" value="검색" /></span>
+									</span>
+									
+								</fieldset>
+							</form>
+						</div>
+					</div>
+
+{/}
+
+
+
+
+<!-- 게시물 개수와 카테고리 부분 End -->
+
+
+<script language="Javascript">
+
+function checkall() {
+
+var all = document.getElementById("all").value;
+
+if ( all == 'Y')
+{
+uncheckall() 
+ return;
+
+}else{
+  var form = document.listForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+    form.elements[i].checked = true;
+	
+ }
+  }
+  document.listForm.all.value = "Y";
+ 
+  
+  return;
+}
+}
+
+function uncheckall() {
+  var form = document.listForm;
+  for (i=0; i < form.elements.length; i++) {
+ if (form.elements[i].name =="ids[]") {
+  form.elements[i].checked = false;
+ }
+  }
+  document.listForm.all.value = "";
+
+ return;
+}
+
+function select1(val) { // 코드 입력
+if(val) {
+	location.href='board.list?mcode={mcode}&str_category='+val;
+	}else{
+	location.href='board.list?mcode={mcode}';
+}
+}
+
+</script>

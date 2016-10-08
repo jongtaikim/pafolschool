@@ -1,0 +1,99 @@
+
+<div class="modal fade" id="myModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="m_title">Modal title</h4>
+      </div>
+      <div class="modal-body" id="m_body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script type="text/javascript" src="./scripts/php.js"></script>
+<script type="text/javascript" src="./scripts/app.src.js"></script>
+<script type="text/javascript" src="./scripts/jquery.cookie.js"></script>
+
+
+<script type="text/javascript">
+var m_popup = {
+	ifropen : function(title,url,h){
+
+		$('#m_title').html(title);
+		if(!h) h = 500;
+		$('#m_body').html('<iframe name="ifropen" src="'+url+'" width="100%" height="'+h+'px" scrolling="yes" frameborder=0></iframe>');
+		$('#myModal').modal('show');
+
+	}
+}
+
+
+function layer_popup(url,w,h,tr,title){
+	m_popup.ifropen(title,url,600);
+}
+</script>
+
+
+
+<div id="layer_popup" ></div>
+<!-- 로그인 -->
+<div class="background-overlay" style="display:none"></div>
+
+<div class="layer_container layer_login animated fadeInDown" style="display:none;position:fixed" id="layer_login">
+	<div class="inner_container">
+		<div class="login_wrap">
+			<h1><img src="./img/popup/h1_login.gif" alt="login"></h1>
+			<p>파폴스쿨에서 제공하는 보다 많은 정보와 서비스 이용을 원하신다면 로그인을 해주시기 바랍니다.</p>
+			<form name="loginFormMain"  id="loginFormMain" method="post" action="member.login" onsubmit="return validate(this);" >
+			<input type="hidden" name="oid" value="<?=_OID?>"/>
+			<input type="hidden" name="r_url" value="<?=$_SERVER[HTTP_HOST]?>"/>
+			<input type="hidden" name="re_url" value="<?=$_SERVER[HTTP_HOST]?>{? reurl}{reurl}{:}{act3}{/}"/>
+			<input type="hidden" name="redir" value="{? reurl}{reurl}{:}{act3}{/}"/>
+			<input type="hidden" name="ssid" name="ssid2" value="<?=$_REQUEST[PHPSESSID]?>"/>
+
+				<div class="form_area">
+					<span class="bg_login"></span>
+					<div class="login">
+						<p class="uid"><label for="uid">회원아이디</label><input type="text" name="userid" id="uid" class="txt_type" /></p>
+						<p class="upwd"><label for="upwd">비밀번호</label><input type="password" name="passwd" id="upwd" class="txt_type" /></p>
+					</div>
+					<input type="submit" value="" class="btn_login" />
+				</div>
+				<div class="info_box">
+					<p class="info"><span>- 회원가입 하시면, 더 많은 혜택과 각종 정보를 누리실 수 있습니다.</span><a href="member.join_step" class="btn_join">회원가입</a></p>
+					<p class="info"><span>- 회원 아이디와 비밀번호를 잊으셨습니까? 여기에서 확인하세요</span><a href="/member.findid" class="btn_srch">아이디,비밀번호 찾기</a></p>
+				</div>
+			</form>
+		</div>
+		<a href="javascript:loginClose()" class="btn_ly_close">닫기</a>
+	</div>
+</div>
+<!-- //로그인 -->
+
+
+
+
+<script type="text/javascript">
+// <![CDATA[
+function login(){
+	{? !_SESSION.USERID}
+		$('#sgnb').hide();
+		$('.background-overlay').show().height($(document).height());
+		$('#layer_login').show();
+	{/}
+}
+function loginClose(){
+	$('.background-overlay').hide();
+	$('#layer_login').hide();
+}
+
+//login();
+// ]]>
+</script>

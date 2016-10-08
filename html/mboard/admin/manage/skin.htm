@@ -1,0 +1,50 @@
+<body>
+<script>
+	function updatePreview(sel) {
+		var preview_area = document.getElementById('preview');
+		var skin = sel.options[sel.selectedIndex].value;
+		var url = '/html/{listtype}/' + skin + '/preview.gif';
+		preview_area.src = url;
+	}
+</script>
+
+<div class="tab01">
+	<ul>
+		<li><a href="menu.admin.option?mcode={mcode}">메뉴옵션</a></li>	
+		<li><a href="menu.admin.rights?mcode={mcode}">권한설정</a></li>
+		<li><a href="mboard.admin.manage.basic?mcode={mcode}">기본설정</a></li>
+		<li class="active"><a href="#">게시판 스킨설정</a></li>
+	</ul>
+</div>
+<div style="padding:15px;">
+	<wa:form name="skininfo">
+	<input type="hidden" name="mcode" value="{mcode}">
+	<table width="450" class="table01">
+		<tr>
+			<th HEIGHT="30" colspan="2" class="head">기본제공 스킨 </th>
+		</tr>
+
+		<tr align="center" height="25">
+			<th align="center">현재 스킨 </th>
+			<td align="left">{current_skinname}</td>
+		</tr>
+		<tr align="center" height="25">
+			<th align="center">스킨목록</th>
+			<td align="left">
+			<select name="str_skin" size="1" id="str_skin" style="width: 200px" aonChange="updatePreview(this)">
+				<!--{@ SKIN_LIST}-->
+				<option value="{.str_skin}">{.skinname}</option>
+				<!--{/}-->					
+			</select>
+			</td>
+		</tr>
+		<!-- <tr> 
+			<th HEIGHT="30" colspan="2" ><img src="html/board/skin/{str_skin}/preview.gif" id="preview" width="300" height="300"></th> 
+		</tr> -->
+		<tr align="center" height="25">
+			<th colspan="2" align="center"><input type="submit" class="button" value="저장하기"></th>
+		</tr> 
+	</table>
+	</wa:form>
+</div>
+</body>

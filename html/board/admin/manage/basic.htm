@@ -1,0 +1,189 @@
+<body>
+<script type="text/javascript">
+// user custom handler
+function onColorChange1(str)
+{
+	document.getElementById("chr_oddcolor").value = str;
+}
+
+function onColorChange2(str)
+{
+	document.getElementById("chr_evencolor").value = str;
+}
+</script>
+
+
+<style type="text/css" title="">
+TABLE.zizibe01 TD{
+border:1px solid #bfcfde;
+padding:5px;
+
+
+}
+
+TABLE.zizibe01 TD.no1{
+border:1px solid #bfcfde;
+padding:5px;
+
+
+}
+
+TABLE.zizibe01 TH.title1{
+border:1px solid #bfcfde;
+padding:5px;
+background-image:none;
+width:150px;
+
+}
+
+TABLE.zizibe01 TH.title2{
+
+padding-top:1px;
+padding-bottom:4px
+background-image:none;
+text-align:left;
+color:#285775; 
+font-weight:bold;
+font-size:12px;
+
+}
+
+TABLE.zizibe01 TH.icon01{
+width:20;
+padding-bottom:4px
+}
+
+#noTd{
+border:0px;
+border-bottom:1px dotted #D8D8D8;
+}
+</style>
+
+<table  cellpadding="0" cellspacing="0" border="0" width=98% >
+
+<tr>
+	<td ><table cellpadding="0" cellspacing="0" border="0" width=98% height="45" background="/html/admin2/images/sub_title_bg.gif" align = center>
+				<tr>
+					<td style="padding:0 6 0 2" width="20" align = right><img src="/html/admin2/images/icon4.gif"></td>
+					<td style="padding:3 0 0 0; color:454545"><b>게시판 기본설정</b></td>
+				
+				</tr>
+			</table>
+
+
+
+
+<div class="tab01">
+	<ul>
+		<li><a href="menu.admin.option?mcode={mcode}">메뉴옵션</a></li>	
+		<li><a href="menu.admin.rights?mcode={mcode}">권한설정</a></li>
+		<li class="active"><a href="board.admin.manage.basic?mcode={mcode}">기본설정</a></li>
+			<li ><a href="board.admin.manage.move?mcode={mcode}">데이터 이동</a></li>
+	</ul>
+</div>
+
+
+<div style="padding:15px;">
+	<wa:form name="basicinfo" style="margin:0px;" onsubmit="return validate(this);">
+	<input type="hidden" name="mcode" value="{mcode}">
+	<table width="98%" class="zizibe01" align =center border=0>
+		<tr>
+			<th colspan="4" class="head">기본정보</th>
+		</tr>
+		<tr align="center" >
+			<th align="right">게시판 이름 </th>
+			<td align="left" colspan="3">
+				<input type="hidden" name="title_type" value="{title_type}">
+				<input name="str_title" hname="게시판 이름" type="text" id="str_title" value="{str_title2}" required>
+				<!-- <button class="button" disabled>고급설정</button> -->
+			</td>
+		</tr>
+		<tr> 
+			<th class="head" colspan="4" >옵션</th> 
+		</tr>
+		
+		<tr align="center" > 
+			<th align="right">게시판 가로사이즈</th> 
+			<td align="left" colspan="3" >
+				<input name="str_width" hname="게시판 가로사이즈" type="text" id="str_width" value="{str_width}" style="width:60" required> 100 이하로 설정하면 %로 적용됩니다.
+			</td>
+		</tr>
+		
+		<tr align="center" > 
+			<th align="right">제목 표시 글자수</th> 
+			<td align="left">
+				<input name="num_titlelen" hname="제목 표시 글자수" type="text" id="num_titlelen" value="{num_titlelen}" style="width:60" required>
+			</td>
+			<th align="left" colspan="2">
+				<input type=checkbox name="str_list_view" value="Y" {?str_list_view == 'Y'}checked{/}>하단 리스트 표출
+			</td>
+		</tr>
+		
+		<!--tr align="center" > 
+			<th align="right">파일 업로드 사용</th> 
+			<td align="left">
+				<input name="chr_upload" type="checkbox" id="chr_upload" value="Y" {? chr_upload=='Y'}checked{/} style="border:0px;">
+			</td>
+		</tr-->
+		<tr align="center" > 
+			<th align="right">페이지당 목록수 </th> 
+			<td align="left"><input name="num_listnum" hname="페이지당 목록수" type="text" id="num_listnum" value="{num_listnum}" size="3" maxlength="3" option="number" required></td>
+			<th align="right">페이징 갯수 </th> 
+			<td align="left"><input name="num_navnum" hname="페이징 갯수" type="text" id="num_navnum" value="{num_navnum}" size="3" maxlength="3" option="number" required></td>
+		</tr>
+		<tr align="center" > 
+			<th align="right">관리자 ID </th> 
+			<td align="left" colspan="3">
+				<input name="str_admin_id" type="text" id="str_admin_id" value="{str_admin_id}">
+				<br>※ 상담실스킨 선택시만 적용됨.
+			</td>
+		</tr>
+		<tr align="center" > 
+			<th align="right">첨부파일<br>허용파일 확장자 </th> 
+			<td align="left" colspan="3">
+				<textarea name="str_file_type" style="border:1px solid #B9B8BE;	background-color: #F0F0F0;	color:#435556;	padding-top:2px;	font-size:11px;width : 350px;height:80px">{str_file_type}</textarea><br>
+				<? //2008-11-20 현민 유해단어 수정시 /module/board/write.php 에서도 동일하게 수정해줘야함 ?>
+				※ "," 구분자로 확장자 구분<br>
+			</td>
+		</tr>
+		<!--tr> 
+			<th HEIGHT="30" colspan="4" class="head">색상</th> 
+		</tr> 
+		<tr align="center" > 
+			<th align="right">홀수열 색상 </th> 
+			<td align="left"><input name="chr_oddcolor" hname="홀수열 색상" type="text" id="chr_oddcolor" value="{chr_oddcolor}" size="7" maxlength="7" required></td>
+		</tr>
+		<tr align="center" > 
+			<th align="right">짝수열 색상 </th> 
+			<td align="left"><input name="chr_evencolor" hname="짝수열 색상" type="text" id="chr_evencolor" value="{chr_evencolor}" size="7" maxlength="7" required></td>
+		</tr-->
+
+
+
+		<!--
+		<tr> 
+			<td HEIGHT="30" colspan=3 align="CENTER">스킨에 따라 목록 색상이 적용되지 않을 수도 있습니다. </td> 
+		</tr>
+		<tr> 
+			<td HEIGHT="30" colspan=3 class="section">게시판 설명 문구</td> 
+		</tr> 
+		<tr align="center" > 
+			<td HEIGHT="30" colspan=3 align="CENTER">
+				<textarea name="str_caption" rows="3" style="width:100%;">{str_caption}</textarea>
+			</td>
+		</tr>
+		<tr > 
+			<td HEIGHT="30" colspan=3 style="padding-left:30px;">
+				※ 게시판에 대한 간단한 설명 문구를 입력하여 주십시오.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;(게시판 목록 위에 표시됩니다.)
+			</td> 
+		</tr> -->
+		<tr> 
+			<th HEIGHT="30" colspan="4" class="head" style="text-align:center"><span>
+				<input type="submit" value="저장하기" class="button">
+			</span></th> 
+		</tr>
+	</table>
+	</wa:form>
+</div>
+</body>

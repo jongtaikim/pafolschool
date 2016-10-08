@@ -1,0 +1,92 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<link href="/css/admin_ver2006_2.css" rel="stylesheet" type="text/css">
+<SCRIPT LANGUAGE="JavaScript" >
+
+function class_copy(year){
+	var strAlert = " " + year + " 년 학급편성을 {{school_year}} 년 학급편성으로 복사하시겠습니까 ?\n ";
+		if(confirm(strAlert)){
+				document.location.href='/?act=admin.form.class_copy';
+		}
+}
+</SCRIPT>
+<body>
+<!-- 테이블의 시작 -->
+<table width="700" border="0" align="left" cellpadding="0" cellspacing="0">
+<tr>
+	<td align="center">
+	<!-- 테이블의 시작 -->
+		<table width="98%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td><img src="/image/admin/main/side_banner/title_icon.gif" width="15" height="17" align="absmiddle">
+					<strong><font color="#000000" size="2">학급편성</font></strong>
+				</td>
+				<td width="126"></td>
+			</tr>
+		</table>
+	<!-- 테이블의 끝 -->
+	</td>
+</tr>
+<tr><td height="13"> </td></tr>
+<tr>
+	<td>
+	<!-- 테이블의 시작 -->
+	<table width="100%" height="300" border="0" cellspacing="0" cellpadding="0">
+		<tr><td height="2"  bgcolor="d7d7d7"></td></tr>
+		<tr><td height="30"></td></tr>
+		<tr>
+			<td align="center">
+			<img src="/image/admin/form/class_copy.gif" width="482" height="400" border="0" usemap="#Map">
+			<map name="Map">
+			  <area shape="rect" coords="252,157,419,185" href="javascript:class_copy('{{last_year}}');">
+			  <area shape="rect" coords="70,155,237,184" href="/?act=admin.form.main&check_new=Y">
+			</map>
+			</td>
+		</tr>
+		<tr><td height="10"></td></tr>
+	</table>
+	<!-- 테이블의 끝 -->
+	</td>
+</tr>
+<!--
+<tr><td height="20"></td></tr>
+<tr>
+	<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td><img src="/image/admin/main/food/images/help_icon.gif" width="13" height="14" align="absmiddle">
+						<strong>도움말 </strong>
+					</td>
+					<td width="117">						
+					</td>
+				</tr>
+			</table></td>
+		</tr>
+		<tr><td height="7"></td></tr>
+		<tr>
+			<td><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="E7E7E7">
+				<tr bgcolor="D2D2D2"><td height="2"></td></tr>
+				<tr align="center" bgcolor="F7F7F7">
+					<td height="50" bgcolor="#FFFFFF"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td width="10"><img src="/image/admin/main/food/images/basic_sub_title_icon.gif" width="4" height="4" align="absmiddle"></td>
+							<td height="20">학년의 구성이 된이후에 반의 구성을 등록합니다. </td>
+						</tr>
+						<tr>
+							<td width="10"><img src="/image/admin/main/food/images/basic_sub_title_icon.gif" width="4" height="4" align="absmiddle"></td>
+							<td height="20">전년도 학급의 학급편성을 가져와서 올해의 학급편성에 사용할수 있습니다  </td>
+						</tr>
+
+					</table></td>
+				</tr>
+			</table></td>
+		</tr>
+	</table></td>
+</tr>
+<tr><td height="13"></td></tr>
+-->
+</table>
+<!-- 테이블의 끝 -->
+</body>
+</html>     

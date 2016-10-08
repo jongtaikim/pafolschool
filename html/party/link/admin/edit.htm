@@ -1,0 +1,38 @@
+<body style="overflow: hidden">
+<h2>링크 변경</h2>
+
+<div class="tab01">
+	<ul>
+		<li><a href="party.menu.admin.option?pcode={pcode}&mcode={mcode}">메뉴옵션</a></li>
+		<li class="active"><a href="#">링크변경</a></li>
+	</ul>
+</div>
+<div style="margin:15px;">
+<form name="menuform" method="post">
+<table width="500" border="0" class="table01">
+<tr>
+	<th width="100">링크제목</th>
+	<td><input type="text" name="str_title" value="{str_title}" size="20"></td>
+</tr>
+<tr>
+	<th width="100">URL</th>
+	<td><input type="text" name="str_link" value="{str_link}" size="45"></td>
+</tr>
+<tr>
+	<th>내용표시</th>
+	<td>
+		<label for="str_target1"><input type="radio" name="str_target" id="str_target1" value="_self" onClick="onaction(this)" {? str_target == '_self'}checked{/} style="border:0px;">현재창에</label>
+		<label for="str_target2"><input type="radio" name="str_target" id="str_target2" value="_blank" onClick="onaction(this)" {? str_target == '_blank'}checked{/} style="border:0px;">새창에</label>
+	</td>
+</tr>
+<tr>
+	<td align="center" colspan="2"><input type="submit" target="menu_option" value="확  인" class="button"></td>
+</tr>
+</table>
+<div class="tip" style="width:500px;">
+NOTE: 외부 URL은 <font color="#0000FF">http://</font> 를 포함한 전체 주소를 모두 넣으세요.<br> 다른 메뉴 주소를 붙여넣기 하실때는 <font color="#0000FF">http://주소/</font> 를 제외한 나머지 부분만 넣는것이 속도가 빠릅니다<br>
+<font color="#0000FF">"mailto:메일주소"</font> 를 이용하여 이메일보내기 링크로 사용할 수도 있습니다.
+</div>
+</form>
+</div>
+</body>

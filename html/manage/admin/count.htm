@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+<script language="JavaScript" src="/js/cht.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/admin.css">
+  <link rel="stylesheet" type="text/css" href="/css/admin_sub.css">
+  <link rel="stylesheet" type="text/css" href="/css/tab.roundwhite.css">
+ </head>
+
+<style type="text/css">
+.title {height:29; text-align:center; padding-top:1; color:red}
+.title1 {color:#464444;font-family:돋움; font-weight:bold; padding-top:1}
+.menu {color:#555555; font-family:돋움; padding:8 0 0 17}
+.menu1 {color:#555555; font-family:돋움; padding:8 0 0 15}
+
+</style>
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" >
+				<tr >
+					<td width="20"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+					<td class="subtitle01" width="80">방문자 통계 </td>
+					<td class="table01_text03">* 월별, 일별 방문자 수와 추이를 확인할 수 있습니다.</td>
+				</tr>
+				<tr><td height="15"></td></tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" >
+				<tr valign="top">
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" width="204" height="199" background="/html/admin/images/total_bg.gif">
+							<tr>
+								<td align="center" style="line-height:190%">
+									<b style="color:#277496;">생성이후 현재까지 방문자</b><br>
+									<b style="color:#277496; font-size:18px">{=number_format(max_c)} 명</b>
+								</td>
+							</tr>
+						</table>
+					</td>
+					
+				<!-- 월별 방문자수 start -->	
+					<td width="183px" style="padding-left:25px">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="14"><img src="/html/admin/images/bu_circle_01.gif"></td>
+								<td class="subtitle01" >연도</td>
+								<td class="table01_sel01" colspan="12">
+								
+								<SELECT name="year" onchange="location.href='/manage.admin.organ_view?mode=count&PageNum=010800&month={month}&year='+this.value" class=select size=1>  
+						<option value=2008 {?year=="2008"} selected {/}>2008</option> 
+						<option value=2009 {?year=="2009"} selected {/}>2009</option> 
+						<option value=2010 {?year=="2010"} selected {/}>2010</option> 
+						<option value=2011 {?year=="2011"} selected {/}>2011</option> 
+						<option value=2012 {?year=="2012"} selected {/}>2012</option> 
+						<option value=2013 {?year=="2013"} selected {/}>2013</option> 
+						<option value=2014 {?year=="2014"} selected {/}>2014</option> 
+						<option value=2015 {?year=="2015"} selected {/}>2015</option> 
+						<option value=2016 {?year=="2016"} selected {/}>2016</option> 
+
+								</SELECT>년 
+
+								</td>
+							</tr>
+							<tr><td height="7"></td></tr>
+						</table>
+
+						<!-- 표1 Start -->	
+						<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_top_line01"></td>
+							</tr>
+							<tr>
+								<td width="100%" class="table_top_line02"></td>
+							</tr>			
+						</table>
+						<table cellpadding="0" cellspacing="1" border="0" width="96%" align="center" bgcolor="d5dfe7">
+							<tr>
+								<td colspan="2" align="center" background="/html/admin/images/bx_bg.gif" class="subtitle01" height="29">월별 방문자수</td>
+							</tr>
+							{@ mLIST}
+							<tr height="24" bgcolor="FFFFFF">
+								<td class="table01_title04"><a href="/manage.admin.organ_view?mode=count&PageNum=010800&month={.dater}&year={year}">{? .dater == month}<b style="color:#365eb4">{/}{year}/{.dater}</b></a></td>
+								<td class="table01_text04">{.counter}</td>
+							</tr>
+							{/}
+						</table>
+						<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_btm_line01"></td>
+							</tr>
+							<tr><td height="20"></td></tr>
+						</table>
+					<!-- 표1 End -->	
+
+
+
+
+
+					</td>
+				<!-- 월별 방문자수 End -->	
+
+				<!-- 일별 방문자수 start -->	
+					<td width="183" style="padding-left:13; padding-top:28" rowspan=2>
+					<!-- 표2 Start -->	
+					<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+						<tr>
+							<td width="100%" class="table_top_line01"></td>
+						</tr>
+						<tr>
+							<td width="100%" class="table_top_line02"></td>
+						</tr>			
+					</table>
+					<table cellpadding="0" cellspacing="1" border="0" width="96%" align="center" bgcolor="d5dfe7">
+						<tr>
+							<td colspan="2" align="center" background="/html/admin/images/bx_bg.gif" class="subtitle01" height="29">{month}월 일별 방문자수</td>
+						</tr>
+						{@ dLIST}
+						<tr height="24" bgcolor="FFFFFF">
+							<td class="table01_title04">{year}/{month}/{.day}</td>
+							<td class="table01_text04">{.counter}</td>
+						</tr>
+						{/}
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+						<tr>
+							<td width="100%" class="table_btm_line01"></td>
+						</tr>
+						<tr><td height="20"></td></tr>
+					</table>
+				<!-- 표2 End -->	
+				</td>
+			<!-- 일별 방문자수 End -->	
+				</tr>
+
+				<tr>
+				  <td colspan = 2 valign=top style="padding-top:10px; padding-bottom:20px">
+				  
+					<div id="chartdiv9" align="center" style="border:1px solid #D4D4D4">FusionCharts. </div>
+						<script type="text/javascript">
+						   var chart = new FusionCharts("/cht_flash/FCF_Column2D.swf", "ChartId", "400", "400");
+						   chart.setDataURL("/manage.use_seh?oids={year}|{month}");		
+						   
+							  
+						   chart.render("chartdiv9");
+
+
+						</script> 
+	
+				  
+				  </td>
+				</tr>
+
+			</table>
+
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td height="1" background="/html/admin/images/dot_line_02.gif"></td>
+				</tr>
+			</table>
+
+			<!-- 방문자그래프 사용설정 start -->							
+			<div style="padding-top:20px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<!-- 상단 Start -->
+				<tr>
+					<td width="11px" background="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif" align="center">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif" >
+							<tr>
+								<td width="12px" height="28px" background="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title"><?=date("Y")?>년 {month}월 방문자 그래프</td>
+								<td width="14px" background="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11px" align="right" background="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+			<!-- 상단 End -->
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr><td height="10"></td></tr>
+							<tr>
+								<td align="center">
+
+
+					<div id="chartdiv5" align="center"> 
+					FusionCharts. </div>
+				  <script type="text/javascript">
+					   var chart = new FusionCharts("/cht_flash/FCF_Line.swf", "ChartId", "590", "400");
+					   chart.setDataURL("/manage.use_counter?oids={OID}");		
+					   
+						  
+					   chart.render("chartdiv5");
+
+
+					</script> 
+
+								</td>
+							</tr>
+							<tr><td height="10"></td></tr>
+						</table>
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+		<!-- 방문자그래프 사용설정 end -->
+
+		<!-- 일자별 방문자 그래프 start -->							
+			<div style="padding-top:20px">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+				<!-- 상단 Start -->
+				<tr>
+					<td width="11px" background="/html/admin/images/bx1_top_left.gif"></td>
+					<td background="/html/admin/images/bx1_top_bg.gif" align="center">
+						<table cellpadding="0" cellspacing="0" border="0" background="/html/admin/images/bx1_title_bg.gif" >
+							<tr>
+								<td width="12px" height="28px" background="/html/admin/images/bx1_title_left.gif"></td>
+								<td class="bx1_title">일자별 방문자 그래프</td>
+								<td width="14px" background="/html/admin/images/bx1_title_right.gif"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="11px" align="right" background="/html/admin/images/bx1_top_right.gif"></td>
+				</tr>
+			<!-- 상단 End -->
+				<tr>
+					<td background="/html/admin/images/bx1_mid_left.gif"></td>
+					<td bgcolor="#FFFFFF">
+						
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+							<tr >
+								<td width="20" style="padding-left:12"><img src="/html/admin/images/subtitle_icon_01.gif"></td>
+								<td class="subtitle01">시간별 접속 현황</td>
+							</tr>
+							<tr><td height="8"></td></tr>
+						</table>
+
+
+
+
+
+
+
+					<!-- 표2 Start -->	
+						<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_top_line01"></td>
+							</tr>
+							<tr>
+								<td width="100%" class="table_top_line02"></td>
+							</tr>			
+						</table>
+						<table cellpadding="0" cellspacing="1" border="0" width="96%" align="center" bgcolor="d5dfe7">
+							<tr height="34" bgcolor="FFFFFF">
+								<td width="100" class="table01_title03">검색일</td>
+								<td width="521" class="table01_sel01" colspan="12">
+								
+								<SELECT name="year2" onchange="chatr7(this.value)" class=select size=1>  
+						
+							<?	for($ii=1; $ii<32; $ii++) {?>
+							<option value=<?=$ii?> <? if(date("d") == $ii){?>selected<?}?> ><?=$ii?></option> 
+							<? } ?>
+						</SELECT> 일
+
+								</td>
+							</tr>
+						</table>
+						<table cellpadding="0" cellspacing="0" border="0" width="96%" align="center">
+							<tr>
+								<td width="100%" class="table_btm_line01"></td>
+							</tr>
+							<tr><td height="20"></td></tr>
+						</table>
+					<!-- 표2 End -->	
+
+
+
+
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr><td height="10"></td></tr>
+							<tr>
+								<td align="center" colspan="2">
+					<div id="chartdiv6" align="center"> 
+					FusionCharts. </div>
+				  <script type="text/javascript">
+					   var chart = new FusionCharts("/cht_flash/FCF_Line.swf", "ChartId", "590", "400");
+					   chart.setDataURL("/manage.use_counter_time?oids={OID}|");		
+					   
+						  
+					   chart.render("chartdiv6");
+
+				function chatr7(ye){
+
+
+						var chart = new FusionCharts("/cht_flash/FCF_Line.swf", "ChartId", "590", "400");
+					   chart.setDataURL("/manage.use_counter_time?oids={OID}|"+ye);		
+					   
+						  
+					   chart.render("chartdiv6");
+					   
+					   }
+					</script> 
+							</td>
+							</tr>
+							<tr><td height="18"></td></tr>
+						</table>
+
+
+
+
+
+
+
+
+					</td>
+					<td background="/html/admin/images/bx1_mid_right.gif"></td>
+				</tr>
+				<tr>
+					<td width="11"><img src="/html/admin/images/bx1_btm_left.gif"></td>
+					<td background="/html/admin/images/bx1_btm_bg.gif"></td>
+					<td width="11" align="right"><img src="/html/admin/images/bx1_btm_right.gif"></td>
+				</tr>
+			</table>
+			</div>
+		<!-- 일자별 방문자 그래프 end -->
+
+			
