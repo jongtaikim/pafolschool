@@ -116,6 +116,7 @@ switch(REQUEST_METHOD) {
 		$str_text = $_POST['content'];
 	    $str_text = WebApp::ImgChaneDe($str_text);
 		$title = str_replace("'","''",$title);
+        $str_text = addslashes($str_text);
 		//$str_text = str_replace("'","''",$str_text);
 		
        

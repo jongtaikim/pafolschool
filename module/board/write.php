@@ -206,7 +206,7 @@ switch ($REQUEST_METHOD) {
 
 		$title = str_replace("'","''",$title);
 		//$str_text = str_replace("'","\'",$str_text);
-		
+        $str_text = addslashes($str_text);
 		
 
 	

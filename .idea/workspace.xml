@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="917f1101-7512-4cb3-9853-b11138651788" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/board/modify.php" afterPath="$PROJECT_DIR$/module/board/modify.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/board/write.php" afterPath="$PROJECT_DIR$/module/board/write.php" />
     </list>
     <ignored path="pafolschool.git.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +25,59 @@
   <component name="FavoritesManager">
     <favorites_list name="pafolschool.git" />
   </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="modify.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/board/modify.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="118" column="8" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="42" />
+              <folding>
+                <marker date="1476008989125" expanded="true" signature="1075:1587" ph="SELECT num_m... ${$ARTICLE_TABLE}" />
+                <marker date="1476008989125" expanded="true" signature="1963:2067" ph="select num_s... TAB_BOARD_CATEGORY" />
+                <marker date="1476008989125" expanded="true" signature="2693:2784" ph="SELECT str_p... ${$ARTICLE_TABLE}" />
+                <marker date="1476008989125" expanded="true" signature="3911:4718" ph="UPDATE ${$AR... " />
+                <marker date="1476008989125" expanded="true" signature="5544:5708" ph="UPDATE ${$AR... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="write.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/module/board/write.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+              <folding>
+                <marker date="1476009015874" expanded="true" signature="1510:1614" ph="select num_s... TAB_BOARD_CATEGORY" />
+                <marker date="1476009015874" expanded="true" signature="1754:1933" ph="SELECT /*+ I... ${$ARTICLE_TABLE}" />
+                <marker date="1476009015874" expanded="true" signature="1767:1823" ph="/*+ INDEX_DE... " />
+                <marker date="1476009015874" expanded="true" signature="2757:2879" ph="select count... TAB_BOARD_CATEGORY" />
+                <marker date="1476009015874" expanded="true" signature="2963:3087" ph="SELECT max(N... TAB_BOARD_CATEGORY" />
+                <marker date="1476009015874" expanded="true" signature="3197:3330" ph="INSERT INTO TAB_BOARD_CATEGORY... " />
+                <marker date="1476009015874" expanded="true" signature="3498:3609" ph="SELECT max(n... ${$ARTICLE_TABLE}" />
+                <marker date="1476009015874" expanded="true" signature="3689:3774" ph="SELECT max(n... ${$ARTICLE_TABLE}" />
+                <marker date="1476009015874" expanded="true" signature="5344:6225" ph="INSERT INTO ${$ARTICLE_TABLE}... " />
+                <marker date="1476009015874" expanded="true" signature="7077:7127" ph="select ${$pl... TAB_ORGAN" />
+                <marker date="1476009015874" expanded="true" signature="7239:7337" ph="select count... ${$ARTICLE_TABLE}" />
+                <marker date="1476009015874" expanded="true" signature="8051:8259" ph="UPDATE ${$AR... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/module/board/modify.php" />
+        <option value="$PROJECT_DIR$/module/board/write.php" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -64,6 +119,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -92,14 +148,31 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="html" />
+              <option name="myItemId" value="module" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pafolschool.git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pafolschool.git" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="module" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="board" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -128,18 +201,19 @@
       <updated>1475896555446</updated>
       <workItem from="1475896557061" duration="1400000" />
       <workItem from="1475947130948" duration="616000" />
+      <workItem from="1476008917401" duration="144000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2016000" />
+    <option name="totallyTimeSpent" value="2160000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1002" y="0" width="1565" height="1047" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28077754" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2372093" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24053156" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -173,5 +247,42 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/module/board/modify.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="118" column="8" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="42" />
+          <folding>
+            <marker date="1476008989125" expanded="true" signature="1075:1587" ph="SELECT num_m... ${$ARTICLE_TABLE}" />
+            <marker date="1476008989125" expanded="true" signature="1963:2067" ph="select num_s... TAB_BOARD_CATEGORY" />
+            <marker date="1476008989125" expanded="true" signature="2693:2784" ph="SELECT str_p... ${$ARTICLE_TABLE}" />
+            <marker date="1476008989125" expanded="true" signature="3911:4718" ph="UPDATE ${$AR... " />
+            <marker date="1476008989125" expanded="true" signature="5544:5708" ph="UPDATE ${$AR... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/board/write.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+          <folding>
+            <marker date="1476009015874" expanded="true" signature="1510:1614" ph="select num_s... TAB_BOARD_CATEGORY" />
+            <marker date="1476009015874" expanded="true" signature="1754:1933" ph="SELECT /*+ I... ${$ARTICLE_TABLE}" />
+            <marker date="1476009015874" expanded="true" signature="1767:1823" ph="/*+ INDEX_DE... " />
+            <marker date="1476009015874" expanded="true" signature="2757:2879" ph="select count... TAB_BOARD_CATEGORY" />
+            <marker date="1476009015874" expanded="true" signature="2963:3087" ph="SELECT max(N... TAB_BOARD_CATEGORY" />
+            <marker date="1476009015874" expanded="true" signature="3197:3330" ph="INSERT INTO TAB_BOARD_CATEGORY... " />
+            <marker date="1476009015874" expanded="true" signature="3498:3609" ph="SELECT max(n... ${$ARTICLE_TABLE}" />
+            <marker date="1476009015874" expanded="true" signature="3689:3774" ph="SELECT max(n... ${$ARTICLE_TABLE}" />
+            <marker date="1476009015874" expanded="true" signature="5344:6225" ph="INSERT INTO ${$ARTICLE_TABLE}... " />
+            <marker date="1476009015874" expanded="true" signature="7077:7127" ph="select ${$pl... TAB_ORGAN" />
+            <marker date="1476009015874" expanded="true" signature="7239:7337" ph="select count... ${$ARTICLE_TABLE}" />
+            <marker date="1476009015874" expanded="true" signature="8051:8259" ph="UPDATE ${$AR... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
