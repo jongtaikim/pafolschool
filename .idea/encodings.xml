@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/html/lms/order.htm" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/html/lms/tab.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/html/lms/view_dev.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/board/modify.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/board/write.php" charset="EUC-KR" />
