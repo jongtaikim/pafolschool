@@ -5,7 +5,7 @@
 * 작성자: 김종태
 * 설   명: 교육관리
 *****************************************************************
-* 
+*
 */
 $DB = &WebApp::singleton('DB');
 
@@ -23,11 +23,11 @@ switch ($REQUEST_METHOD) {
 
 	$tpl->setLayout('no3');
 	$tpl->define("CONTENT", Display::getTemplate("lms/admin/cate.htm"));
-	
+
 	 break;
 	case "POST":
 
-	 
+
 
 	 for($ii=0; $ii<count($cates); $ii++) {
 		$iia = $ii + 1;
@@ -38,12 +38,12 @@ switch ($REQUEST_METHOD) {
 		 }
 		 if($DB->query($sql)){
 		 $DB->commit();
-			
+
 			 //WebApp::moveBack('수정됨');
 		 }
-		
+
 	}
-	
+
 	if($mode=="reset"){
 	echo '<script>alert("'._la('적용되었습니다.').'"); parent.dataLoads("'.$cate.'");</script>';
 	}else{

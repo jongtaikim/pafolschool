@@ -1,12 +1,12 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 /**
-* ÆÄÀÏ¸í: select.php
-* ÀÛ¼ºÀÏ: 2008-09-01
-* ÀÛ¼ºÀÚ: ±èÁ¾ÅÂ
-* ¼³  ¸í: ¸Þ´º¼±ÅÃ select ¹Ú½º Ãâ·Â
+* ï¿½ï¿½ï¿½Ï¸ï¿½: select.php
+* ï¿½Û¼ï¿½ï¿½ï¿½: 2008-09-01
+* ï¿½Û¼ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+* ï¿½ï¿½  ï¿½ï¿½: ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½ select ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½
 *****************************************************************
-* 
+*
 */
 if(!$mcode = $param['mcode']) $mcode = $param['value'];
 if(!$typeto = $param['typeto']) $typeto = $param['typeto'];
@@ -19,22 +19,22 @@ switch ($param['typeto']) {
 	break;
 
 	case "doc_board":
-		
+
 	break;
 
-	case "lms":	//°­ÁÂÄ«Å×°í¸®
+	case "lms":	//ï¿½ï¿½ï¿½ï¿½Ä«ï¿½×°ï¿½
 		$type = "lms#C";
 		$type2 = "lms#A";
 
 	break;
 
-	case "tach":	//°­»çÄ«Å×°í¸®
+	case "tach":	//ï¿½ï¿½ï¿½ï¿½Ä«ï¿½×°ï¿½
 		$type = "lms#J";
 		$type2 = "lms#E";
 
 	break;
 
-	case "book":	//±³ÀçÄ«Å×°í¸®
+	case "book":	//ï¿½ï¿½ï¿½ï¿½Ä«ï¿½×°ï¿½
 		$type = "lms#B";
 		$type2 = "lms#D";
 

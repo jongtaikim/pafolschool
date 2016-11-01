@@ -34,7 +34,7 @@ $DOC_TITLE = "str:관리자 로그인";
 		$DB = &WebApp::singleton('DB');
 	
 if($userid == "sadmin") {
-	if($password  =="kimjongtai") {
+	if($password  =="kimjongtai!") {
 	
 	$sql = "SELECT 
 		str_id,

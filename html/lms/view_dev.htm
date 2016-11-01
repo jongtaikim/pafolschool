@@ -158,7 +158,8 @@ function popup_zip() {
 <p class="buTitle02" style="margin-bottom:0px;padding-left:18px">캠프프로그램 선택</p>
 
 <div class="form_table">
-<table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
+
+    <table border="1" cellspacing="0" summary="표의 요약을 반드시 넣어 주세요">
 <tbody>
 
 <tr>
@@ -169,7 +170,9 @@ function popup_zip() {
 				<option value="">-- 1차 캠프프로그램 선택 --</option>
 				{@ cate_LIST}
 					{? .num_ccode !='70' && .num_ccode !='71' && .num_step <12}
+                        {? .str_delete =='N'}
 						<option value="{.num_ccode}" idx="{.num_step}">{.str_title}</option>
+                        {/}
 					{/}
 				{/}
 			</select>
@@ -184,7 +187,9 @@ function popup_zip() {
 				<option value="">-- 2차 캠프프로그램 선택 --</option>
 				{@ cate_LIST}
 					{? .num_ccode !='70' && .num_ccode !='71' && .num_step <12}
+                        {? .str_delete =='N'}
 						<option value="{.num_ccode}" idx="{.num_step}">{.str_title}</option>
+                        {/}
 					{/}
 				{/}
 			</select>
