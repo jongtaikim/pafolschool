@@ -11,5 +11,7 @@
     <file url="file://$PROJECT_DIR$/module/lms/admin/cate.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/lms/order.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/lms/view.php" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/module/out_bbs/module.php" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/theme/pafolschool/top.htm" charset="EUC-KR" />
   </component>
 </project>

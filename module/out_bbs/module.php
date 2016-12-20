@@ -221,7 +221,7 @@ if($array_type[$i] !="recentBoard"){
 				$data[$ii]['thumb_url'] = str_replace("http://".$_SERVER[HTTP_HOST],"",$data[$ii]['thumb_url']);
 				$data[$ii]['thumb_url'] = trim($data[$ii]['thumb_url']);	
 				if(!is_file( _DOC_ROOT.$data[$ii]['thumb_url']."_100")){
-				$FH->GDImageResize(_DOC_ROOT.$data[$ii]['thumb_url'] , _DOC_ROOT.$data[$ii]['thumb_url']."_100" , "100", "75");
+				//$FH->GDImageResize(_DOC_ROOT.$data[$ii]['thumb_url'] , _DOC_ROOT.$data[$ii]['thumb_url']."_100" , "100", "75");
 				}
 				$data[$ii]['thumb_url'] = $data[$ii]['thumb_url']."_100";
 
