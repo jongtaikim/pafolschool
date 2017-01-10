@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/html/lms/order.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/html/lms/tab.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/html/lms/view_dev.htm" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/html/lms/view_dev_test.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/index.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/admin/login.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/board/modify.php" charset="EUC-KR" />
@@ -11,6 +12,7 @@
     <file url="file://$PROJECT_DIR$/module/lms/admin/cate.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/lms/order.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/lms/view.php" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/module/lms/view_end_lg.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/out_bbs/module.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/theme/pafolschool/top.htm" charset="EUC-KR" />
   </component>

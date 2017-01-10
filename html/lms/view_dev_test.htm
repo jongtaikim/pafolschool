@@ -1,5 +1,6 @@
 <?
-$CST_PLATFORM	= {CST_PLATFORM};	
+$CST_PLATFORM	= {CST_PLATFORM};
+
 ?>
 
 <link rel="stylesheet" type="text/css" href="/css/doc_style.css">
@@ -40,7 +41,7 @@ function jumin_check() { //주민번호 검증
 		var a5=strjumin.substring(4,5);
 		var a6=strjumin.substring(5,6);
 		var checkdigit=a1*2+a2*3+a3*4+a4*5+a5*6+a6*7;
-		   
+
 		var b1=strjumin.substring(6,7);
 		var b2=strjumin.substring(7,8);
 		var b3=strjumin.substring(8,9);
@@ -112,7 +113,7 @@ function popup_zip() {
 				 * 인증실패 화면 처리
 				 */
 			}
-			
+
 		} else {
 			alert("LG데이콤 전자결제를 위한 ActiveX 설치 실패");
 			/*
@@ -128,7 +129,7 @@ function popup_zip() {
 			document.getElementById('LGD_BUTTON2').style.display='';
 		}else{
 			document.getElementById('LGD_BUTTON1').style.display='';
-			document.getElementById('LGD_BUTTON2').style.display='none';	
+			document.getElementById('LGD_BUTTON2').style.display='none';
 		}
 	}
 
@@ -173,7 +174,7 @@ function popup_zip() {
 	<td>
 		<div class="item">
 		<input class="i_text" name="email1" id="email1" hname="{=_la('이메일')}" type="text"  maxbyte="50" style="width:100px" value="{email1}"  required >@<input name="email2" id="email2" hname="이메일" type="text"  value="{email2}" maxbyte="50" required />
-										
+
 			<select name="emailSelect1"  onchange = "$$('email2').value=this.value" required="false">
 				<option value="">Email 주소 선택</option>
 				<option value="">직접입력</option>
@@ -190,7 +191,7 @@ function popup_zip() {
 			<div class="" id="">
 				적성검사 및 캠프 소견서 등을 이메일로 받을 예정입니다. 주로 사용하는 이메일 주소를 등록해주세요.
 			</div>
-		
+
 		</div>
 	</td>
 </tr>
@@ -204,9 +205,9 @@ function popup_zip() {
 		<wa:btn size="2" type="a" href="javascript:popup_zip();" value="우편번호"/><br />
 
 		<input class="i_text" name="str_addr1" id="str_addr1" value="{str_addr1}" hname="{=_la('기본주소')}" type="text" style = "width:70%" maxbyte="255" required> <br>
-		<input class="i_text" name="str_addr2"  id="str_addr2" value="{str_addr2}"  hname="{=_la('상세주소')}" type="text" style = "width:70%"  maxbyte="255" required> 
+		<input class="i_text" name="str_addr2"  id="str_addr2" value="{str_addr2}"  hname="{=_la('상세주소')}" type="text" style = "width:70%"  maxbyte="255" required>
 		</div>
-		
+
 	</td>
 </tr>
 
@@ -217,7 +218,7 @@ function popup_zip() {
 		<input class="i_text" name="tel1" id="tel1" value="{tel1}"  hname="{=_la('연락처')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4">
 		-<input class="i_text"  name="tel2" id="tel2" value="{tel2}" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
 		-<input class="i_text"  name="tel3" id="tel3" value="{tel3}" hname="{=_la('연락처')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
-		
+
 		</div>
 	</td>
 </tr>
@@ -229,11 +230,11 @@ function popup_zip() {
 		<input class="i_text" name="tel11" id="tel11" value="{tel11}"  hname="{=_la('휴대폰')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4">
 		-<input class="i_text"  name="tel22" id="tel22" value="{tel22}" hname="{=_la('휴대폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
 		-<input class="i_text"  name="tel33" id="tel33" value="{tel33}" hname="{=_la('휴대폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
-		
-		
+
+
 		<span style="color:#ff3333">* 상담 및 입금 확인용</span>
 		</div>
-		
+
 	</td>
 </tr>
 
@@ -267,7 +268,7 @@ function scsledk(idx){
 		$$('bank_price_info').innerHTML =  number_format($$('sndAmount').value,0)+"원";
 		<? } ?>
 	}
-	
+
 	if(idx == "3"){
 		$$('namet_1').innerHTML = '학생성명';
 		$$('namet_2').innerHTML = '참여과정';
@@ -285,10 +286,10 @@ function scsledk(idx){
 	<td>
 		<div class="item">
 		<input type="radio" name="str_etc" id="str_etc_se" value="4" checked onclick="scsledk(this.value)"> 해당없음
-		
-		
+
+
 		</div>
-		
+
 	</td>
 </tr>
 
@@ -305,7 +306,7 @@ function scsledk(idx){
 
 </table>
 </div>
-</fieldset> 
+</fieldset>
 
 
 <fieldset>
@@ -321,7 +322,7 @@ function scsledk(idx){
 	<th scope="row" width="100px">학생성명</th>
 	<td colspan="2">
 		<div class="item">
-		<input class="i_text" title="학생성명"  type="text" name="str_st_name" id="str_st_name" hname="{=_la('학생성명')}" value="11" style="width:80px" required> 
+		<input class="i_text" title="학생성명"  type="text" name="str_st_name" id="str_st_name" hname="{=_la('학생성명')}" value="11" style="width:80px" required>
 		</div>
 	</td>
 </tr>
@@ -340,11 +341,11 @@ function views_sibal(){
 	<th scope="row">주민등록번호</th>
 	<td colspan="2">
 		<div class="item">
-			<input class="i_text" title="주민등록번호" type="text" name="jumin1" id="jumin1" hname="주민등록번호" value="840210" style="width:80px"  required> 
+			<input class="i_text" title="주민등록번호" type="text" name="jumin1" id="jumin1" hname="주민등록번호" value="840210" style="width:80px"  required>
 			-
-			<input class="i_text" title="주민등록번호" type="text" name="jumin2" id="jumin2" hname="주민등록번호" value="1626644" style="width:80px"  onkeyup="chkSex()" required> 
+			<input class="i_text" title="주민등록번호" type="text" name="jumin2" id="jumin2" hname="주민등록번호" value="1626644" style="width:80px"  onkeyup="chkSex()" required>
 			<wa:btn size="2" type="button" js="jumin_check();" event="onclick" value="주민번호 유효성 검사"/>
-			
+
 			<span style="color:#ff3333">* 여행자 보험 가입용 <a href="javascript:layer_popup('/html/lms/tu_info.htm', '550', '260','y','여행자 보험 가입')">[자세히..]</a></span>
 			<br><strong style="color:blue">참가학생의 주민번호를 입력하시기 바랍니다.</strong>
 		</div>
@@ -384,12 +385,12 @@ function chkSex(){
 	<th scope="row">{=_la('학교/학년')}</th>
 	<td colspan="2">
 		<div class="item">
-			
-			<input class="i_text" title="학교명" type="text" name="str_school" id="str_school" hname="{=_la('학교명')}"   required onclick="winOpen('/sch_school',400,400,'yes')" style="width:120px"  readonly value="장충초등학교"> 
+
+			<input class="i_text" title="학교명" type="text" name="str_school" id="str_school" hname="{=_la('학교명')}"   required onclick="winOpen('/sch_school',400,400,'yes')" style="width:120px"  readonly value="장충초등학교">
 
 			<select  name="str_class" id="str_class" hname="학년정보" required>
 				<option value="">-- {=_la('학년정보')} --</option>
-				
+
 				<option value="초3" selected>초3</option>
 				<option value="초4" >초4</option>
 				<option value="초5" >초5</option>
@@ -400,7 +401,7 @@ function chkSex(){
 				<option value="중3" >중3</option>
 
 				<option value="고1" >고1</option>
-				
+
 			</select>
 		</div>
 	</td>
@@ -423,10 +424,10 @@ function chkSex(){
 		<input type="radio" name="str_tsize" id="str_tsize11" value="110" ><label for="str_tsize11">110호</label>
 	</td>
 	<td style="position:relative;"><span class="btn_pack small" ><input type="button" name="" value="SIZE 보기"  onclick="layer_popup('/html/lms/t_size_info.htm', '550', '450','y','T-셔츠 SIZE 보기')" ></span>
-	
-	
+
+
 	<div  id="tsize" style="display:none;position:absolute;left:-320px;background-color:#e4e4e4;border:2px solid #cdcdcd;z-index:99;width:460px" onmouseout="view_size()">
-	
+
 			<script type="text/javascript">
 			// <![CDATA[
 			function view_size(){
@@ -440,12 +441,12 @@ function chkSex(){
 			}
 			// ]]>
 			</script>
-		
-				
+
+
 
 	</div>
 
-	
+
 	</td>
 </tr>
 
@@ -454,12 +455,12 @@ function chkSex(){
 	<th scope="row">{=_la('메모')}</th>
 	<td colspan="3">
 		<div class="item">
-		 <textarea  class="i_text" cols="50" rows="10" name="str_memo" id="str_memo" hname="{=_la('메모')}" ></textarea> 
+		 <textarea  class="i_text" cols="50" rows="10" name="str_memo" id="str_memo" hname="{=_la('메모')}" ></textarea>
 		<br>
 		<span style="color:#ff3333">* 학생 건강정보 등 특이사항 작성용</span>
 		</div>
-		
-		
+
+
 	</td>
 </tr>
 </table>
@@ -471,8 +472,8 @@ function memberCopy(){
 	 {? _SESSION.CHR_MTYPE == "s"}
 		$$('str_st_name').value="{_SESSION.NAME}";
 		//$$('str_st_eng_name').value="{str_eng_name}";
-		
-		
+
+
 		$$('str_school').value= '{str_school}';
 		$$('str_class').value= '{str_class}';
 		$$('str_sex').value= '{str_sex}';
@@ -497,7 +498,7 @@ function memberCopy(){
 </div>
 {/}
 </div>
-</fieldset> 
+</fieldset>
 
 
 <script type="text/javascript">
@@ -505,28 +506,28 @@ function memberCopy(){
 function selectPayMos(idx){
 	if(idx == "bank"){
 		$$('bank').style.display='block';
-	
+
 		$$('bank_btn').style.display='block';
 		$$('card_btn').style.display='none';
 		$$('LGD_PAYINFO').target = '';
 		$$('LGD_PAYINFO').action = '';
 		//_frm.action ='lms.view_ok';
 
-		
-	
+
+
 	}else{
 		$$('bank').style.display='none';
-	
+
 //		$$('ordername').value = $$('str_pr_name1').value;
 		//$$('phoneno').value = $$('tel11').value +  $$('tel22').value + $$('tel33').value;
 		$$('bank_btn').style.display='none';
 		$$('card_btn').style.display='block';
-		
+
 	}
 }
 
 function submitss(){
-	
+
 	if($$('str_etc_se').checked != true){
 		if($$('str_etc_text1').value ==""){
 			alert($$('namet_1').innerHTML+'는 필수사항입니다.');
@@ -550,9 +551,9 @@ function submitss(){
 		if(validate($$('LGD_PAYINFO'))) {
 			if($$('str_class').value !=""){
 				$$('LGD_PAYINFO').action = '/lms.view_end_lg';
-				
+
 				 doPay_ActiveX();
-				
+
 				//_pay(document.LGD_PAYINFO)
 			}else{
 				alert('학년은 필수 선택사항입니다.');
@@ -589,9 +590,9 @@ function submitss(){
 	<th scope="row" style="width:140px">결제방법 선택</th>
 	<td>
 		<div class="item" style="padding-top:5px">
-			
+
 			<input type="radio" name="str_pay_mes" value="card" id="str_pay_mes1" onclick="selectPayMos(this.value)" checked> <label for="str_pay_mes1">신용카드</label>
-	
+
 			<input type="radio" name="str_pay_mes" value="bank" id="str_pay_mes2" onclick="selectPayMos(this.value)"> <label for="str_pay_mes2">무통장 입금</label>
 		</div>
 	</td>
@@ -619,7 +620,8 @@ function submitss(){
 <input type="hidden" name="LGD_HASHDATA" value="{LGD_HASHDATA}"><!-- MD5 해쉬암호값 -->
 <input type="hidden" name="LGD_CASNOTEURL" value="{LGD_CASNOTEURL}"><!-- 무통장거시기 -->
 <input type="hidden" name="LGD_CUSTOM_PROCESSTIMEOUT"   value="{LGD_CUSTOM_PROCESSTIMEOUT}">	<!-- TWOTR타임아웃 시간 -->
-<input type="hidden" name="LGD_VERSION"         		id="LGD_VERSION"		value="PHP_XPay_1.1">							<!-- 버전정보 (삭제하지 마세요) -->
+<!--<input type="hidden" name="LGD_VERSION"         		id="LGD_VERSION"		value="PHP_XPay_1.1">							&lt;!&ndash; 버전정보 (삭제하지 마세요) &ndash;&gt;-->
+<input type="hidden" name="LGD_VERSION"         		id="LGD_VERSION"		value="{LGD_WINDOW_VER}">							<!-- 버전정보 (삭제하지 마세요) -->
 <input type="hidden" name="LGD_PAYKEY" id="LGD_PAYKEY" value="">	<!-- LG데이콤 PAYKEY(인증후 자동셋팅)-->
 <input type="hidden" name="host2"	value="{host2}">	<!-- 다시 돌아갈 url hosting -->
 
@@ -655,7 +657,7 @@ function submitss(){
 	<th scope="row">입금예정자 명</th>
 	<td>
 		<div class="item" style="padding-top:5px">
-			<input class="i_text" title="입금예정자 명" type="text" name="str_bank_name" id="str_bank_name" value="{_SESSION.NAME}" hname="{=_la('입금예정자 명')}"  required> 
+			<input class="i_text" title="입금예정자 명" type="text" name="str_bank_name" id="str_bank_name" value="{_SESSION.NAME}" hname="{=_la('입금예정자 명')}"  required>
 		</div>
 	</td>
 </tr>
@@ -664,7 +666,7 @@ function submitss(){
 	<th scope="row">입금예정일</th>
 	<td>
 		<div class="item" style="padding-top:5px">
-			<wa:datepicker2 name="dt_bank_date" value="{dt_bank_date}"/> 
+			<wa:datepicker2 name="dt_bank_date" value="{dt_bank_date}"/>
 		</div>
 	</td>
 </tr>
@@ -700,14 +702,14 @@ function submitss(){
 			<input type="radio" name="numberH" value="1" onclick="vissd(this.value)" checked>휴대폰
 			<input type="radio" name="numberH" value="2" onclick="vissd(this.value)">주민등록번호
 			<input type="radio" name="numberH" value="3" onclick="vissd(this.value)">사업자등록번호
-			
+
 			<div class="" id="st_type1">
-				
+
 				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number1" id="money_number1" hname="현금영수증 번호" required="false">
 				-
-				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number2" id="money_number2" hname="현금영수증 번호" required="false"> 
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number2" id="money_number2" hname="현금영수증 번호" required="false">
 				-
-				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number3" id="money_number3" hname="현금영수증 번호" required="false"> 
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number3" id="money_number3" hname="현금영수증 번호" required="false">
 			</div>
 			<div class="" id="st_type2" style="display:none">
 				<input class="i_text" title="현금영수증 번호" type="text" style="width:80px" name="money_number11" id="money_number1" hname="현금영수증 번호" required="false">
@@ -717,9 +719,9 @@ function submitss(){
 			<div class="" id="st_type3" style="display:none">
 				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number111" id="money_number1" hname="현금영수증 번호" required="false">
 				-
-				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number222" id="money_number2" hname="현금영수증 번호" required="false"> 
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:30px" name="money_number222" id="money_number2" hname="현금영수증 번호" required="false">
 				-
-				<input class="i_text" title="현금영수증 번호" type="text" style="width:80px" name="money_number333" id="money_number3" hname="현금영수증 번호" required="false"> 
+				<input class="i_text" title="현금영수증 번호" type="text" style="width:80px" name="money_number333" id="money_number3" hname="현금영수증 번호" required="false">
 			</div>
 		</div>
 	</td>
@@ -734,7 +736,7 @@ function submitss(){
 
 
 
-</fieldset> 
+</fieldset>
 
 <div style="text-align:center;margin-top:20px" id="card_btn">
 	<span class="btn_pack medium icon"><span class="check"></span><input type="button" name="" value="결제실행"  onclick="javascript:submitss();" ></span>
@@ -746,7 +748,7 @@ function submitss(){
 	<span class="btn_pack medium "><a href="javascript:history.go(-1)">취소</a></span>
 </div>
 
-</form>  
+</form>
 
 
 
@@ -760,4 +762,4 @@ $(document).ready(function(){
 
 </script>
 
-<script language="javascript" src="<?= $_SERVER['SERVER_PORT']!=443?"http":"https" ?>://xpay.lgdacom.net<?=($CST_PLATFORM == "test")?":7080":""?>/xpay/js/xpay.js" type="text/javascript"></script>
+<script language="javascript" src="<?= $_SERVER['SERVER_PORT']!=443?"http":"https" ?>://xpay.uplus.co.kr<?=($CST_PLATFORM == "test")?($_SERVER['SERVER_PORT']!=443?":7080":":7443"):""?>/xpay/js/xpay.js" type="text/javascript"></script>

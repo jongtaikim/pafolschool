@@ -66,7 +66,7 @@ switch ($REQUEST_METHOD) {
 
 	$tpl->setLayout('@sub');
 	if($test){
-	$tpl->define("CONTENT", Display::getTemplate("lms/view_dev_test.htm"));	
+	$tpl->define("CONTENT", Display::getTemplate("lms/view_dev.htm"));
 	}else{
 	$tpl->define("CONTENT", Display::getTemplate("lms/view_dev.htm"));	
 	}
@@ -81,7 +81,7 @@ switch ($REQUEST_METHOD) {
 	 * 인증기본정보를 변경하여 주시기 바랍니다.
 	 */
 	 if($test){
-		$CST_PLATFORM	= "test";	// LG데이콤 인증서비스 선택(test:테스트, service:서비스)
+		$CST_PLATFORM	= "service";	// LG데이콤 인증서비스 선택(test:테스트, service:서비스)
 	 }else{
 		$CST_PLATFORM	= "service";	// LG데이콤 인증서비스 선택(test:테스트, service:서비스)
 	 }
@@ -108,6 +108,9 @@ switch ($REQUEST_METHOD) {
 	
 	$RESERVED= $RESERVED;		// 타입
 	$LGD_TIMESTAMP	= date("YmdHms");	// 타임스탬프
+    $LGD_CUSTOM_SKIN            = "red";                                //상점정의 결제창 스킨 (red, purple, yellow)
+    $LGD_WINDOW_VER             = "2.5";                                //결제창 버젼정보
+
 	//$LGD_CUSTOM_SKIN		= "";		// 상점정의 결제창 스킨 (red, blue, cyan, green, yellow)
 	//$LGD_CUSTOM_USABLEPAY		= "SC0010";	// 특정 결재수단만 보이게할경우(신용카드:SC0010 문화상품권:SC0111)
 	$LGD_CUSTOM_PROCESSTIMEOUT	= "600";// 인증후 승인요청까지 가능 허용 시간(초단위), 디폴트는 10min
@@ -173,6 +176,8 @@ switch ($REQUEST_METHOD) {
 		'LGD_HASHDATA'=>$LGD_HASHDATA,
 		'LGD_CUSTOM_PROCESSTYPE'=>$LGD_CUSTOM_PROCESSTYPE,
 		'LGD_CASNOTEURL'=>$LGD_CASNOTEURL,
+		'LGD_WINDOW_VER'=>$LGD_WINDOW_VER,
+		'LGD_CUSTOM_SKIN'=>$LGD_CUSTOM_SKIN,
 		'real_money'=>$real_money,
 
 	));
