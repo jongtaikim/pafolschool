@@ -7,6 +7,7 @@
     <file url="file://$PROJECT_DIR$/html/lms/view_dev_test.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/index.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/admin/login.php" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/module/board/list.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/board/modify.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/board/write.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/lms/admin/cate.php" charset="EUC-KR" />
