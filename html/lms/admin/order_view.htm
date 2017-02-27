@@ -286,6 +286,51 @@ function def_ccodes(){
 </tr>
 
 
+
+<tr>
+    <th scope="row">학생 휴대폰</th>
+    <td>
+        <div class="item">
+            <input class="i_text" name="tel111" id="tel111" value="{tel111}"  hname="{=_la('휴대폰')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4">
+            -<input class="i_text"  name="tel222" id="tel222" value="{tel222}" hname="{=_la('휴대폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+            -<input class="i_text"  name="tel333" id="tel333" value="{tel333}" hname="{=_la('휴대폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+
+
+            <span style="color:#ff3333">* 입/퇴소 확인용</span>
+        </div>
+
+    </td>
+</tr>
+
+
+<tr>
+    <th scope="row">입소 정보</th>
+    <td>
+        <div class="item">
+            서울역(개별) <input type="radio" name="str_end_text1" value="서울역(개별)" {? str_end_text1=='서울역(개별)'}selected{/}>
+            종합운동장역(개별) <input type="radio" name="str_end_text1" value="종합운동장역(개별)" {? str_end_text1=='종합운동장역(개별)'}selected{/}>
+            캠프장(직접) <input type="radio" name="str_end_text1" value="캠프장(직접)" {? str_end_text1=='캠프장(직접)'}selected{/}>
+            KTX이용 <input type="radio" name="str_end_text1" value="KTX이용" {? str_end_text1=='KTX이용'}selected{/}>
+        </div>
+
+    </td>
+</tr>
+
+
+<tr>
+    <th scope="row">퇴소 정보</th>
+    <td>
+        <div class="item">
+            서울역(개별) <input type="radio" name="str_end_text2" value="서울역(개별)" {? str_end_text2=='서울역(개별)'}selected{/}>
+            종합운동장역(개별) <input type="radio" name="str_end_text2" value="종합운동장역(개별)" {? str_end_text2=='종합운동장역(개별)'}selected{/}>
+            캠프장(직접) <input type="radio" name="str_end_text2" value="캠프장(직접)" {? str_end_text2=='캠프장(직접)'}selected{/}>
+            KTX이용 <input type="radio" name="str_end_text2" value="KTX이용" {? str_end_text2=='KTX이용'}selected{/}>
+        </div>
+
+    </td>
+</tr>
+
+
 <tr>
 	<th scope="row">{=_la('학교/학년')}</th>
 	<td colspan="2">

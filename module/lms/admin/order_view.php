@@ -26,7 +26,7 @@ switch ($REQUEST_METHOD) {
 	$tpl->assign(array('cate_LIST'=>$cate_row));
 	
 
-	$sql = "select b.str_title as camp_title, a.num_serial, a.num_ccode from TAB_CAMP a ,TAB_LMS_CATE b  where a.num_ccode = b.num_ccode order by a.num_ccode ,a.num_serial desc ";
+	$sql = "select b.str_title as camp_title, a.num_serial, a.num_ccode from TAB_CAMP a ,TAB_LMS_CATE b  where a.num_ccode = b.num_ccode  and b.str_delete='N' order by a.num_ccode ,a.num_serial desc ";
 
 	$camp_row = $DB -> sqlFetchAll($sql);
 	
@@ -68,6 +68,11 @@ switch ($REQUEST_METHOD) {
 	$data[tel11] = $tel[0];
 	$data[tel22] = $tel[1];
 	$data[tel33] = $tel[2];
+
+    $tel = explode("-",$data[str_handphone2]);
+	$data[tel111] = $tel[0];
+	$data[tel222] = $tel[1];
+	$data[tel333] = $tel[2];
 
 	$email = explode("@",$data[str_email]);
 	$data[email1] = $email[0];
@@ -127,6 +132,7 @@ switch ($REQUEST_METHOD) {
 	
 	$datas[str_phone] = $tel1."-".$tel2."-".$tel3;
 	$datas[str_handphone] = $tel11."-".$tel22."-".$tel33;
+	$datas[str_handphone2] = $tel111."-".$tel222."-".$tel333;
 
 	if(date("Ymd") >= 20131112){
 		if($str_etc < 4){

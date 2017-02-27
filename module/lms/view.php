@@ -41,6 +41,11 @@ switch ($REQUEST_METHOD) {
 	$data[tel22] = $tel[1];
 	$data[tel33] = $tel[2];
 
+    $tel = explode("-",$data[str_handphone2]);
+	$data[tel111] = $tel[0];
+	$data[tel222] = $tel[1];
+	$data[tel333] = $tel[2];
+
 	$email = explode("@",$data[str_email]);
 	$data[email1] = $email[0];
 	$data[email2] = $email[1];
@@ -238,6 +243,8 @@ if ($xpay->TX())
 
 		$datas[str_phone] = $tel1."-".$tel2."-".$tel3;
 		$datas[str_handphone] = $tel11."-".$tel22."-".$tel33;
+		$datas[str_handphone2] = $tel111."-".$tel222."-".$tel333;
+            
 		$datas[str_st_email] =  $st_email1."@".$st_email2;
 		$datas[dt_bank_date] = WebApp::mkday($_POST[dt_bank_date]);
 		$datas[dt_date] = mktime();

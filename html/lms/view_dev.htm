@@ -497,6 +497,48 @@ function chkSex(){
 </tr>
 
 
+<tr>
+    <th scope="row">학생 휴대폰</th>
+    <td>
+        <div class="item">
+            <input class="i_text" name="tel111" id="tel111" value="{tel111}"  hname="{=_la('휴대폰')}" type="text" style="width:60px" maxbyte="50"  style="ime-mode:active" maxlength="4">
+            -<input class="i_text"  name="tel222" id="tel222" value="{tel222}" hname="{=_la('휴대폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+            -<input class="i_text"  name="tel333" id="tel333" value="{tel333}" hname="{=_la('휴대폰')}" type="text" style="width:60px"  maxbyte="50"  style="ime-mode:active" maxlength="4">
+
+
+            <span style="color:#ff3333">* 입/퇴소 확인용</span>
+        </div>
+
+    </td>
+</tr>
+
+
+<tr>
+    <th scope="row">입소 정보</th>
+    <td>
+        <div class="item">
+            서울역(개별) <input type="radio" name="str_end_text1" value="서울역(개별)">
+            종합운동장역(개별) <input type="radio" name="str_end_text1" value="종합운동장역(개별)">
+            캠프장(직접) <input type="radio" name="str_end_text1" value="캠프장(직접)">
+            KTX이용 <input type="radio" name="str_end_text1" value="KTX이용">
+        </div>
+
+    </td>
+</tr>
+
+
+<tr>
+    <th scope="row">퇴소 정보</th>
+    <td>
+        <div class="item">
+            서울역(개별) <input type="radio" name="str_end_text2" value="서울역(개별)">
+            종합운동장역(개별) <input type="radio" name="str_end_text2" value="종합운동장역(개별)">
+            캠프장(직접) <input type="radio" name="str_end_text2" value="캠프장(직접)">
+            KTX이용 <input type="radio" name="str_end_text2" value="KTX이용">
+        </div>
+
+    </td>
+</tr>
 
 <tr>
 	<th scope="row">{=_la('학교/학년')}</th>
@@ -530,18 +572,18 @@ function chkSex(){
 <tr>
 	<th scope="row" >T-셔츠 사이즈</th>
 	<td style="width:360px">
-		<input type="radio" name="str_tsize" id="str_tsize1" value="16" checked><label for="str_tsize1">16호</label>
+		<!--<input type="radio" name="str_tsize" id="str_tsize1" value="16" checked><label for="str_tsize1">16호</label>
 		<input type="radio" name="str_tsize" id="str_tsize2" value="17" ><label for="str_tsize2">17호</label>
 		<input type="radio" name="str_tsize" id="str_tsize3" value="18" ><label for="str_tsize3">18호</label>
-		<!--input type="radio" name="str_tsize" id="str_tsize4" value="19" ><label for="str_tsize4">19호</label-->
-		<br>
+		&lt;!&ndash;input type="radio" name="str_tsize" id="str_tsize4" value="19" ><label for="str_tsize4">19호</label&ndash;&gt;
+		<br>-->
 		<input type="radio" name="str_tsize" id="str_tsize6" value="S" ><label for="str_tsize6">S</label>
 		<input type="radio" name="str_tsize" id="str_tsize7" value="M" ><label for="str_tsize7">M</label>
 		<input type="radio" name="str_tsize" id="str_tsize8" value="L" ><label for="str_tsize8">L</label>
 		<input type="radio" name="str_tsize" id="str_tsize9" value="XL" ><label for="str_tsize9">XL</label>
 		<input type="radio" name="str_tsize" id="str_tsize10" value="XXL" ><label for="str_tsize10">XXL</label>
 	</td>
-	<td style="position:relative;"><span class="btn_pack small" ><input type="button" name="" value="SIZE 보기"  onclick="window.open('/html/lms/t_size_info.htm','pop3up', 'width=550, height=450, scrollbars=no, toolbars=no');" ></span>
+	<td style="position:relative;"><!--<span class="btn_pack small" ><input type="button" name="" value="SIZE 보기"  onclick="window.open('/html/lms/t_size_info.htm','pop3up', 'width=550, height=450, scrollbars=no, toolbars=no');" ></span>-->
 
 
 	<div  id="tsize" style="display:none;position:absolute;left:-320px;background-color:#e4e4e4;border:2px solid #cdcdcd;z-index:99;width:460px" onmouseout="view_size()">
@@ -570,12 +612,12 @@ function chkSex(){
 
 
 <tr>
-	<th scope="row">{=_la('메모')}</th>
+	<th scope="row">{=_la('NOTICE')}</th>
 	<td colspan="3">
 		<div class="item">
 		 <textarea  class="i_text" cols="50" rows="10" name="str_memo" id="str_memo" hname="{=_la('메모')}" ></textarea>
 		<br>
-		<span style="color:#ff3333">* 학생 건강정보 등 특이사항 작성용</span>
+		<span style="color:#ff3333">* 멘토에게 바라는 점이나 학생 건강정보 등 특이사항</span>
 		</div>
 
 

@@ -16,7 +16,7 @@ switch ($REQUEST_METHOD) {
 	
 	
 
-	$sql = "select * from ".$table2." where num_oid = '$_OID'  order by num_step asc ";
+	$sql = "select * from ".$table2." where num_oid = '$_OID' and STR_DELETE ='N' order by num_step asc ";
 	$row = $DB -> sqlFetchAll($sql);
 	$tpl->assign(array('cate_LIST'=>$row));
 	

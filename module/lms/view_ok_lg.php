@@ -102,6 +102,7 @@ if ($xpay->TX())
 
 		$datas[str_phone] = $tel1."-".$tel2."-".$tel3;
 		$datas[str_handphone] = $tel11."-".$tel22."-".$tel33;
+		$datas[str_handphone2] = $tel111."-".$tel222."-".$tel333;
 		$datas[str_st_email] =  $st_email1."@".$st_email2;
 		
 		$datas[dt_date] = mktime();
