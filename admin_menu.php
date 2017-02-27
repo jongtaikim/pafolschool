@@ -216,7 +216,7 @@ $menu[$cate1]['link'] = "/lms.admin.main";
 	
 	$cate2 = 1;
 	$menu[$cate1]['submenu'][$cate2]['title'] = "캠프관리";
-	$menu[$cate1]['submenu'][$cate2]['link'] = "/lms.admin.order_list?all=y";
+	$menu[$cate1]['submenu'][$cate2]['link'] = "/lms.admin.order_list?in_num_serial=24,25,26";
 	$menu[$cate1]['submenu'][$cate2]['tip'] = "캠프 신청현황확인 및 맨토를 관리합니다.";
 		
 		$cate3 = 0;
@@ -226,7 +226,7 @@ $menu[$cate1]['link'] = "/lms.admin.main";
 
 		$cate3++;
 		$menu[$cate1]['submenu'][$cate2]['submenu_sub'][$cate3]['title'] = "켐프신청 관리";
-		$menu[$cate1]['submenu'][$cate2]['submenu_sub'][$cate3]['link'] = "/lms.admin.order_list";
+		$menu[$cate1]['submenu'][$cate2]['submenu_sub'][$cate3]['link'] = "/lms.admin.order_list"."?in_num_serial=24,25,26";
 		$menu[$cate1]['submenu'][$cate2]['submenu_sub'][$cate3]['tip'] = "켐프 신청 목록";
 
 		$cate3++;
