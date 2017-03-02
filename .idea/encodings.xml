@@ -2,6 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/admin_menu.php" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/config.php" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/html/lib/class.WebApp.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/html/lms/admin/order_list.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/html/lms/admin/order_view.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/html/lms/order.htm" charset="EUC-KR" />
@@ -9,6 +11,7 @@
     <file url="file://$PROJECT_DIR$/html/lms/view_dev.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/html/lms/view_dev_test.htm" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/index.php" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/index_head.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/admin/login.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/board/list.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/board/modify.php" charset="EUC-KR" />
@@ -23,6 +26,7 @@
     <file url="file://$PROJECT_DIR$/module/lms/view_ok.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/lms/view_ok_lg.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/module/out_bbs/module.php" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/runModule.php" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/theme/pafolschool/top.htm" charset="EUC-KR" />
   </component>
 </project>
